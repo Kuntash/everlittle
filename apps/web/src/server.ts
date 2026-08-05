@@ -20,11 +20,21 @@ export default createServerEntry({
 
     if (url.pathname === "/api/platform" && request.method === "GET") {
       const runtime = getRuntimeEnv();
-      const row = await runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"').first<{
-        count: number;
-      }>();
+      const [row, child] = await Promise.all([
+        runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"').first<{ count: number }>(),
+        runtime.DB.prepare(
+          `SELECT display_name AS displayName,
+                  CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS enabled
+           FROM child_profile ORDER BY created_at LIMIT 1`,
+        ).first<{ displayName: string; enabled: number }>(),
+      ]);
 
-      return Response.json({ needsSetup: Number(row?.count ?? 0) === 0 });
+      return Response.json({
+        needsSetup: Number(row?.count ?? 0) === 0,
+        childAccess: child
+          ? { displayName: child.displayName, enabled: Boolean(child.enabled) }
+          : null,
+      });
     }
 
     return handler.fetch(request);

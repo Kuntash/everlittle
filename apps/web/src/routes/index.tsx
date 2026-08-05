@@ -18,6 +18,8 @@ import {
   Plus,
   PenLine,
   PlayCircle,
+  Pause,
+  Maximize2,
   ShieldCheck,
   Sparkles,
   Trash2,
@@ -26,14 +28,18 @@ import {
   Video,
   X,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 
 import { authClient } from "@/lib/auth-client";
 
 export const Route = createFileRoute("/")({ component: Everlittle });
 
-type PlatformState = { needsSetup: boolean };
+type PlatformState = {
+  needsSetup: boolean;
+  childAccess: { displayName: string; enabled: boolean } | null;
+};
+type ChildSession = { signedIn: boolean; child?: { displayName: string } };
 type InvitationPreview = {
   archiveName: string;
   email: string;
@@ -50,7 +56,13 @@ type Member = {
   email: string;
   image?: string | null;
 };
-type Child = { id: string; displayName: string; birthDate: string; avatarAssetKey?: string | null };
+type Child = {
+  id: string;
+  displayName: string;
+  birthDate: string;
+  avatarAssetKey?: string | null;
+  childAccessEnabled?: 0 | 1;
+};
 type MemoryKind = "photo" | "story" | "voice" | "video" | "milestone" | "letter";
 type Memory = {
   id: string;
@@ -101,6 +113,7 @@ type View = "parent" | "timeline" | "capsules" | "child" | "family";
 function Everlittle() {
   const session = authClient.useSession();
   const [platform, setPlatform] = useState<PlatformState | null>(null);
+  const [childSession, setChildSession] = useState<ChildSession | null>(null);
   const [invitation, setInvitation] = useState<InvitationPreview | null>(null);
   const [invitationChecked, setInvitationChecked] = useState(false);
   const inviteToken =
@@ -110,6 +123,12 @@ function Everlittle() {
     void fetch("/api/platform")
       .then((response) => response.json() as Promise<PlatformState>)
       .then(setPlatform);
+  }, []);
+
+  useEffect(() => {
+    void fetch("/api/child/session")
+      .then((response) => response.json() as Promise<ChildSession>)
+      .then(setChildSession);
   }, []);
 
   useEffect(() => {
@@ -125,10 +144,12 @@ function Everlittle() {
       .finally(() => setInvitationChecked(true));
   }, [inviteToken]);
 
-  if (session.isPending || !platform || !invitationChecked) return <Loading />;
+  if (session.isPending || !platform || !childSession || !invitationChecked) return <Loading />;
   if (!session.data?.user) {
+    if (childSession.signedIn) return <ChildArchiveApp />;
     return (
       <AccessScreen
+        childAccess={platform.childAccess}
         invitation={invitation}
         inviteToken={inviteToken}
         needsSetup={platform.needsSetup}
@@ -152,10 +173,12 @@ function Loading() {
 }
 
 function AccessScreen({
+  childAccess,
   invitation,
   inviteToken,
   needsSetup,
 }: {
+  childAccess: PlatformState["childAccess"];
   invitation: InvitationPreview | null;
   inviteToken: string;
   needsSetup: boolean;
@@ -164,6 +187,8 @@ function AccessScreen({
   const [mode, setMode] = useState<"sign-in" | "setup">(
     needsSetup || isInvitation ? "setup" : "sign-in",
   );
+  const [entrance, setEntrance] = useState<"adult" | "child">("adult");
+  const [pin, setPin] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState(invitation?.email ?? "");
   const [password, setPassword] = useState("");
@@ -206,6 +231,22 @@ function AccessScreen({
     window.location.assign("/");
   }
 
+  async function enterChildSpace(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setSubmitting(true);
+    const response = await apiFetch("/api/child/sign-in", {
+      method: "POST",
+      body: JSON.stringify({ pin }),
+    });
+    if (!response.ok) {
+      setError(await responseError(response));
+      setSubmitting(false);
+      return;
+    }
+    window.location.assign("/");
+  }
+
   return (
     <main className="access-shell">
       <section className="access-story" aria-labelledby="access-heading">
@@ -233,97 +274,162 @@ function AccessScreen({
           <div className="access-icon">
             <LockKeyhole size={22} />
           </div>
-          <p className="eyebrow">
-            {isInvitation
-              ? `Invitation to ${invitation?.archiveName ?? "your family"}`
-              : mode === "setup"
-                ? "Begin your archive"
-                : "Welcome back"}
-          </p>
-          <h2>
-            {isInvitation
-              ? "Join Diki Choetso’s family archive"
-              : mode === "setup"
-                ? "Create your family’s private place"
-                : "Your memories are waiting"}
-          </h2>
-          <p className="card-intro">
-            {isInvitation
-              ? `You were invited as ${roleLabel(invitation?.role ?? "parent")} using ${invitation?.email ?? email}.`
-              : mode === "setup"
-                ? "The first account becomes the archive owner."
-                : "Sign in to return to your family archive."}
-          </p>
-
-          <form onSubmit={submit}>
-            {mode === "setup" ? (
-              <label>
-                Your name
-                <input
-                  autoComplete="name"
-                  onChange={(event) => setName(event.target.value)}
-                  required
-                  value={name}
-                />
-              </label>
-            ) : null}
-            <label>
-              Email address
-              <input
-                autoComplete="email"
-                disabled={isInvitation}
-                inputMode="email"
-                onChange={(event) => setEmail(event.target.value)}
-                required
-                type="email"
-                value={email}
-              />
-            </label>
-            <label>
-              Password
-              <input
-                autoComplete={mode === "setup" ? "new-password" : "current-password"}
-                minLength={10}
-                onChange={(event) => setPassword(event.target.value)}
-                required
-                type="password"
-                value={password}
-              />
-              {mode === "setup" ? <small>At least 10 characters</small> : null}
-            </label>
-
-            {error ? (
-              <p className="form-error" role="alert">
-                {error}
+          {entrance === "child" ? (
+            <>
+              <p className="eyebrow">{childAccess?.displayName ?? "Diki"}’s private space</p>
+              <h2>Open the story your family kept for you</h2>
+              <p className="card-intro">
+                Enter the six-digit family PIN. No email address or adult account is needed.
               </p>
-            ) : null}
-            <button
-              className="primary-button"
-              disabled={submitting || Boolean(inviteToken && !invitation)}
-              type="submit"
-            >
-              {submitting
-                ? "Opening…"
-                : isInvitation
-                  ? mode === "setup"
-                    ? "Create account & join"
-                    : "Sign in & join"
+              <form className="child-pin-form" onSubmit={enterChildSpace}>
+                <label>
+                  Family PIN
+                  <input
+                    autoComplete="one-time-code"
+                    autoFocus
+                    className="pin-input"
+                    inputMode="numeric"
+                    maxLength={6}
+                    minLength={6}
+                    onChange={(event) => setPin(event.target.value.replace(/\D/g, ""))}
+                    pattern="[0-9]{6}"
+                    placeholder="••••••"
+                    required
+                    type="password"
+                    value={pin}
+                  />
+                </label>
+                {error ? (
+                  <p className="form-error" role="alert">
+                    {error}
+                  </p>
+                ) : null}
+                <button
+                  className="primary-button"
+                  disabled={submitting || pin.length !== 6}
+                  type="submit"
+                >
+                  {submitting ? "Opening…" : "Open my story"} <ArrowRight size={18} />
+                </button>
+              </form>
+              <button
+                className="text-button"
+                onClick={() => {
+                  setEntrance("adult");
+                  setError("");
+                }}
+                type="button"
+              >
+                Back to family sign in
+              </button>
+            </>
+          ) : (
+            <>
+              <p className="eyebrow">
+                {isInvitation
+                  ? `Invitation to ${invitation?.archiveName ?? "your family"}`
                   : mode === "setup"
-                    ? "Begin our story"
-                    : "Enter Everlittle"}
-              <ArrowRight size={18} />
-            </button>
-          </form>
+                    ? "Begin your archive"
+                    : "Welcome back"}
+              </p>
+              <h2>
+                {isInvitation
+                  ? "Join Diki Choetso’s family archive"
+                  : mode === "setup"
+                    ? "Create your family’s private place"
+                    : "Your memories are waiting"}
+              </h2>
+              <p className="card-intro">
+                {isInvitation
+                  ? `You were invited as ${roleLabel(invitation?.role ?? "parent")} using ${invitation?.email ?? email}.`
+                  : mode === "setup"
+                    ? "The first account becomes the archive owner."
+                    : "Sign in to return to your family archive."}
+              </p>
 
-          {isInvitation ? (
-            <button
-              className="text-button"
-              onClick={() => setMode(mode === "setup" ? "sign-in" : "setup")}
-              type="button"
-            >
-              {mode === "setup" ? "I already have an account" : "Create a new account"}
-            </button>
-          ) : null}
+              <form onSubmit={submit}>
+                {mode === "setup" ? (
+                  <label>
+                    Your name
+                    <input
+                      autoComplete="name"
+                      onChange={(event) => setName(event.target.value)}
+                      required
+                      value={name}
+                    />
+                  </label>
+                ) : null}
+                <label>
+                  Email address
+                  <input
+                    autoComplete="email"
+                    disabled={isInvitation}
+                    inputMode="email"
+                    onChange={(event) => setEmail(event.target.value)}
+                    required
+                    type="email"
+                    value={email}
+                  />
+                </label>
+                <label>
+                  Password
+                  <input
+                    autoComplete={mode === "setup" ? "new-password" : "current-password"}
+                    minLength={10}
+                    onChange={(event) => setPassword(event.target.value)}
+                    required
+                    type="password"
+                    value={password}
+                  />
+                  {mode === "setup" ? <small>At least 10 characters</small> : null}
+                </label>
+                {error ? (
+                  <p className="form-error" role="alert">
+                    {error}
+                  </p>
+                ) : null}
+                <button
+                  className="primary-button"
+                  disabled={submitting || Boolean(inviteToken && !invitation)}
+                  type="submit"
+                >
+                  {submitting
+                    ? "Opening…"
+                    : isInvitation
+                      ? mode === "setup"
+                        ? "Create account & join"
+                        : "Sign in & join"
+                      : mode === "setup"
+                        ? "Begin our story"
+                        : "Enter Everlittle"}
+                  <ArrowRight size={18} />
+                </button>
+              </form>
+              {isInvitation ? (
+                <button
+                  className="text-button"
+                  onClick={() => setMode(mode === "setup" ? "sign-in" : "setup")}
+                  type="button"
+                >
+                  {mode === "setup" ? "I already have an account" : "Create a new account"}
+                </button>
+              ) : null}
+              {!isInvitation && childAccess?.enabled ? (
+                <div className="child-entrance">
+                  <span>or</span>
+                  <button
+                    onClick={() => {
+                      setEntrance("child");
+                      setError("");
+                    }}
+                    type="button"
+                  >
+                    <Baby size={18} /> I’m {childAccess.displayName}
+                  </button>
+                </div>
+              ) : null}
+            </>
+          )}
         </div>
       </section>
     </main>
@@ -486,6 +592,57 @@ function ArchiveApp({ name }: { name: string }) {
         />
       ) : null}
       {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
+    </main>
+  );
+}
+
+function ChildArchiveApp() {
+  const [state, setState] = useState<{
+    child: Child;
+    memories: Memory[];
+    capsules: Capsule[];
+  } | null>(null);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    void fetch("/api/child/archive")
+      .then(async (response) => {
+        if (!response.ok) throw new Error(await responseError(response));
+        return response.json() as Promise<{
+          child: Child;
+          memories: Memory[];
+          capsules: Capsule[];
+        }>;
+      })
+      .then(setState)
+      .catch((reason: Error) => setError(reason.message));
+  }, []);
+
+  async function leave() {
+    await apiFetch("/api/child/sign-out", { method: "POST" });
+    location.reload();
+  }
+
+  if (!state) {
+    return error ? (
+      <main className="loading-shell">
+        <Brand />
+        <p className="form-error">{error}</p>
+      </main>
+    ) : (
+      <Loading />
+    );
+  }
+
+  return (
+    <main className="app-shell child-shell">
+      <header className="app-header">
+        <Brand compact />
+        <button className="child-leave" onClick={() => void leave()} type="button">
+          <LogOut size={16} /> Leave Diki’s space
+        </button>
+      </header>
+      <ChildView capsules={state.capsules} child={state.child} memories={state.memories} />
     </main>
   );
 }
@@ -696,13 +853,12 @@ function ChildView({
       {featured ? (
         <section className="child-grid real-child-grid" id="child-stories">
           {childMemories.map((memory, index) => (
-            <button
+            <article
               className={`story-card child-story-button ${index === 0 ? "large" : ""}`}
               key={memory.id}
-              onClick={() => setSelectedMemory(memory)}
-              type="button"
             >
               {memory.mediaType === "image" ? <MemoryMedia memory={memory} featured /> : null}
+              {memory.mediaType === "video" ? <MemoryMedia memory={memory} featured /> : null}
               <p className="eyebrow">
                 {isDemoMemory(memory) ? "Sample · " : ""}
                 {kindLabel(memory.kind)} from {memory.authorName ?? "your family"}
@@ -710,7 +866,14 @@ function ChildView({
               <h2>{memory.title}</h2>
               {memory.body ? <p>{memory.body}</p> : null}
               {memory.kind === "voice" ? <MemoryPlayback memory={memory} /> : null}
-            </button>
+              <button
+                className="story-open"
+                onClick={() => setSelectedMemory(memory)}
+                type="button"
+              >
+                Read this memory <ArrowRight size={15} />
+              </button>
+            </article>
           ))}
         </section>
       ) : (
@@ -818,22 +981,22 @@ function TimelineView({
               </header>
               <div className="timeline-cards">
                 {items.map((memory) => (
-                  <button
-                    className="timeline-card"
-                    key={memory.id}
-                    onClick={() => setSelectedMemory(memory)}
-                    type="button"
-                  >
+                  <article className="timeline-card" key={memory.id}>
                     <MemoryMedia memory={memory} />
-                    <span className="timeline-card-copy">
+                    {memory.kind === "voice" ? <MemoryPlayback memory={memory} /> : null}
+                    <button
+                      className="timeline-card-copy"
+                      onClick={() => setSelectedMemory(memory)}
+                      type="button"
+                    >
                       <small>
                         {isDemoMemory(memory) ? "Sample · " : ""}
                         {kindLabel(memory.kind)} · {audienceLabel(memory.audience)}
                       </small>
                       <strong>{memory.title}</strong>
                       <span>{memory.body ?? `Kept by ${memory.authorName ?? "family"}`}</span>
-                    </span>
-                  </button>
+                    </button>
+                  </article>
                 ))}
               </div>
             </section>
@@ -1303,12 +1466,7 @@ function MemoryMedia({ memory, featured = false }: { memory: Memory; featured?: 
     );
   }
   if (memory.mediaType === "video" && memory.mediaId) {
-    return (
-      <div className={`memory-video ${featured ? "featured" : ""}`}>
-        <video controls playsInline preload="metadata" src={`/api/media/${memory.mediaId}`} />
-        <span>{formatMemoryDate(memory.happenedAt)}</span>
-      </div>
-    );
+    return <SecureVideoPlayer featured={featured} memory={memory} />;
   }
   return (
     <div className={`memory-photo memory-symbol ${memory.kind}`}>
@@ -1319,27 +1477,265 @@ function MemoryMedia({ memory, featured = false }: { memory: Memory; featured?: 
 }
 
 function MemoryPlayback({ memory }: { memory: Memory }) {
-  if (memory.mediaType === "audio" && memory.mediaId) {
-    return (
-      <div className="voice-player">
-        <span aria-hidden="true">
-          <PlayCircle />
-        </span>
-        <audio
-          aria-label={`Play ${memory.title}`}
-          controls
-          preload="metadata"
-          src={`/api/media/${memory.mediaId}`}
-        />
-      </div>
-    );
-  }
+  if (memory.mediaType === "audio" && memory.mediaId) return <SecureAudioPlayer memory={memory} />;
   return (
     <div className="voice-player empty" aria-label="No recording attached">
       <span aria-hidden="true">
         <PlayCircle />
       </span>
       <p>No recording is attached to this sample.</p>
+    </div>
+  );
+}
+
+const WAVEFORM_BARS = [
+  9, 15, 21, 13, 27, 35, 22, 17, 31, 39, 25, 14, 20, 33, 42, 29, 18, 24, 36, 30, 16, 12, 26, 38, 28,
+  19, 34, 23, 15, 31, 40, 27, 18, 24, 13, 21,
+];
+
+function SecureAudioPlayer({ memory }: { memory: Memory }) {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const objectUrlRef = useRef<string | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [ready, setReady] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [waveform, setWaveform] = useState(WAVEFORM_BARS);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+    setLoading(true);
+    setReady(false);
+    setError("");
+    void (async () => {
+      try {
+        const response = await fetch(`/api/media/${memory.mediaId}`, {
+          credentials: "same-origin",
+          signal: controller.signal,
+        });
+        if (!response.ok) throw new Error(await responseError(response));
+        const blob = await response.blob();
+        if (!active) return;
+        const objectUrl = URL.createObjectURL(blob);
+        objectUrlRef.current = objectUrl;
+        if (audioRef.current) audioRef.current.src = objectUrl;
+        setWaveform(await waveformFromAudio(blob));
+        if (active) setReady(true);
+      } catch (caught) {
+        if (active && !controller.signal.aborted) {
+          setError(
+            caught instanceof Error && caught.message
+              ? caught.message
+              : "The recording could not be loaded. Check your connection and try again.",
+          );
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => {
+      active = false;
+      controller.abort();
+      if (objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current);
+      objectUrlRef.current = null;
+    };
+  }, [memory.mediaId]);
+
+  async function toggle() {
+    const audio = audioRef.current;
+    if (!audio || !ready) return;
+    if (!audio.paused) {
+      audio.pause();
+      return;
+    }
+    setError("");
+    try {
+      await audio.play();
+    } catch {
+      setError("This recording could not be played on this device.");
+    }
+  }
+
+  function seek(value: number) {
+    if (!audioRef.current || !duration) return;
+    audioRef.current.currentTime = value;
+    setCurrentTime(value);
+  }
+
+  const progress = duration ? currentTime / duration : 0;
+  return (
+    <div className="voice-player custom-player">
+      <audio
+        aria-label={memory.title}
+        onDurationChange={(event) => setDuration(event.currentTarget.duration || 0)}
+        onEnded={() => setPlaying(false)}
+        onPause={() => setPlaying(false)}
+        onPlay={() => setPlaying(true)}
+        onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+        ref={audioRef}
+      />
+      <button
+        aria-label={playing ? "Pause recording" : "Play recording"}
+        className="media-play"
+        disabled={loading || !ready}
+        onClick={() => void toggle()}
+        type="button"
+      >
+        {loading ? <span className="player-loader" /> : playing ? <Pause /> : <PlayCircle />}
+      </button>
+      <div className="waveform-wrap">
+        <div className="waveform" aria-hidden="true">
+          {waveform.map((height, index) => (
+            <i
+              className={index / waveform.length <= progress ? "played" : ""}
+              key={`${height}-${index}`}
+              style={{ height }}
+            />
+          ))}
+        </div>
+        <input
+          aria-label="Recording position"
+          max={duration || 1}
+          min={0}
+          onChange={(event) => seek(Number(event.target.value))}
+          step="0.01"
+          type="range"
+          value={currentTime}
+        />
+        <div className="player-time">
+          <span>{formatMediaTime(currentTime)}</span>
+          <span>{duration ? formatMediaTime(duration) : "—:—"}</span>
+        </div>
+      </div>
+      {error ? <p className="media-error">{error}</p> : null}
+    </div>
+  );
+}
+
+function SecureVideoPlayer({ memory, featured }: { memory: Memory; featured: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const objectUrlRef = useRef<string | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [ready, setReady] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const controller = new AbortController();
+    let active = true;
+    setLoading(true);
+    setReady(false);
+    setError("");
+    void (async () => {
+      try {
+        const response = await fetch(`/api/media/${memory.mediaId}`, {
+          credentials: "same-origin",
+          signal: controller.signal,
+        });
+        if (!response.ok) throw new Error(await responseError(response));
+        const objectUrl = URL.createObjectURL(await response.blob());
+        if (!active) {
+          URL.revokeObjectURL(objectUrl);
+          return;
+        }
+        objectUrlRef.current = objectUrl;
+        if (videoRef.current) videoRef.current.src = objectUrl;
+        setReady(true);
+      } catch (caught) {
+        if (active && !controller.signal.aborted) {
+          setError(
+            caught instanceof Error && caught.message
+              ? caught.message
+              : "The video could not be loaded. Check your connection and try again.",
+          );
+        }
+      } finally {
+        if (active) setLoading(false);
+      }
+    })();
+    return () => {
+      active = false;
+      controller.abort();
+      if (objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current);
+      objectUrlRef.current = null;
+    };
+  }, [memory.mediaId]);
+
+  async function toggle() {
+    const video = videoRef.current;
+    if (!video || !ready) return;
+    if (!video.paused) {
+      video.pause();
+      return;
+    }
+    setError("");
+    try {
+      await video.play();
+    } catch {
+      setError("This video could not be played on this device.");
+    }
+  }
+
+  return (
+    <div
+      className={`memory-video custom-video ${featured ? "featured" : ""} ${ready ? "is-ready" : ""} ${playing ? "is-playing" : ""}`}
+    >
+      <video
+        onDurationChange={(event) => setDuration(event.currentTarget.duration || 0)}
+        onEnded={() => setPlaying(false)}
+        onPause={() => setPlaying(false)}
+        onPlay={() => setPlaying(true)}
+        onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
+        playsInline
+        ref={videoRef}
+      />
+      {!ready ? <img alt="" src="/memory-icons/video.png" /> : null}
+      <button
+        aria-label={playing ? "Pause video" : "Play video"}
+        className="video-play"
+        disabled={loading || !ready}
+        onClick={() => void toggle()}
+        type="button"
+      >
+        {loading ? <span className="player-loader" /> : playing ? <Pause /> : <PlayCircle />}
+      </button>
+      <div className="video-controls">
+        <button
+          aria-label={playing ? "Pause video" : "Play video"}
+          onClick={() => void toggle()}
+          type="button"
+        >
+          {playing ? <Pause /> : <PlayCircle />}
+        </button>
+        <input
+          aria-label="Video position"
+          max={duration || 1}
+          min={0}
+          onChange={(event) => {
+            if (videoRef.current) videoRef.current.currentTime = Number(event.target.value);
+          }}
+          step="0.01"
+          type="range"
+          value={currentTime}
+        />
+        <span>
+          {formatMediaTime(currentTime)} / {duration ? formatMediaTime(duration) : "—:—"}
+        </span>
+        <button
+          aria-label="Full screen"
+          onClick={() => void videoRef.current?.requestFullscreen()}
+          type="button"
+        >
+          <Maximize2 />
+        </button>
+      </div>
+      <span>{formatMemoryDate(memory.happenedAt)}</span>
+      {error ? <p className="media-error video-error">{error}</p> : null}
     </div>
   );
 }
@@ -1640,6 +2036,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   const [copied, setCopied] = useState(false);
   const [childName, setChildName] = useState(state.children[0]?.displayName ?? "Diki Choetso");
   const [birthDate, setBirthDate] = useState(state.children[0]?.birthDate ?? "");
+  const [childPin, setChildPin] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -1685,6 +2082,20 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
       },
       child ? "Diki’s profile was updated." : "Diki’s profile is ready.",
     );
+  }
+
+  async function saveChildPin(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const child = state.children[0];
+    if (!child) return;
+    const saved = await mutate(
+      `/api/archive/children/${child.id}/access-pin`,
+      { method: "PUT", body: JSON.stringify({ pin: childPin }) },
+      child.childAccessEnabled
+        ? "Diki’s family PIN was changed. Her other child sessions were signed out."
+        : "Diki’s private sign-in is ready.",
+    );
+    if (saved) setChildPin("");
   }
 
   async function copyInvite() {
@@ -1829,34 +2240,76 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
             </div>
           </div>
           {canEditChild ? (
-            <form className="settings-form" onSubmit={saveChild}>
-              <label>
-                Her full name
-                <input
-                  onChange={(event) => setChildName(event.target.value)}
-                  required
-                  value={childName}
-                />
-              </label>
-              <label>
-                Date of birth
-                <input
-                  onChange={(event) => setBirthDate(event.target.value)}
-                  required
-                  type="date"
-                  value={birthDate}
-                />
-              </label>
-              {!state.children.length ? (
-                <p className="field-note">
-                  We kept this blank so her age and future capsules are calculated from the correct
-                  date.
-                </p>
+            <>
+              <form className="settings-form" onSubmit={saveChild}>
+                <label>
+                  Her full name
+                  <input
+                    onChange={(event) => setChildName(event.target.value)}
+                    required
+                    value={childName}
+                  />
+                </label>
+                <label>
+                  Date of birth
+                  <input
+                    onChange={(event) => setBirthDate(event.target.value)}
+                    required
+                    type="date"
+                    value={birthDate}
+                  />
+                </label>
+                {!state.children.length ? (
+                  <p className="field-note">
+                    We kept this blank so her age and future capsules are calculated from the
+                    correct date.
+                  </p>
+                ) : null}
+                <button className="primary-button" type="submit">
+                  {state.children.length ? "Save profile" : "Create Diki’s profile"}
+                </button>
+              </form>
+              {state.children[0] ? (
+                <form className="settings-form child-access-settings" onSubmit={saveChildPin}>
+                  <div className="child-access-heading">
+                    <span>
+                      <LockKeyhole size={16} />
+                    </span>
+                    <div>
+                      <strong>
+                        {state.children[0].childAccessEnabled
+                          ? "Child sign-in is on"
+                          : "Set up child sign-in"}
+                      </strong>
+                      <small>
+                        Diki uses this PIN instead of an email and sees only items marked “For
+                        Diki.”
+                      </small>
+                    </div>
+                  </div>
+                  <label>
+                    {state.children[0].childAccessEnabled
+                      ? "Choose a new six-digit PIN"
+                      : "Six-digit family PIN"}
+                    <input
+                      autoComplete="new-password"
+                      inputMode="numeric"
+                      maxLength={6}
+                      minLength={6}
+                      onChange={(event) => setChildPin(event.target.value.replace(/\D/g, ""))}
+                      pattern="[0-9]{6}"
+                      placeholder="••••••"
+                      required
+                      type="password"
+                      value={childPin}
+                    />
+                  </label>
+                  <button className="soft-button" disabled={childPin.length !== 6} type="submit">
+                    {state.children[0].childAccessEnabled ? "Change PIN" : "Turn on child sign-in"}
+                  </button>
+                </form>
               ) : null}
-              <button className="primary-button" type="submit">
-                {state.children.length ? "Save profile" : "Create Diki’s profile"}
-              </button>
-            </form>
+            </>
           ) : (
             <p className="card-intro">An owner or parent can update Diki’s profile.</p>
           )}
@@ -2037,6 +2490,35 @@ function formatDate(value: string) {
 
 function formatMemoryDate(value: string) {
   return new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date(value));
+}
+
+function formatMediaTime(value: number) {
+  if (!Number.isFinite(value) || value < 0) return "0:00";
+  const minutes = Math.floor(value / 60);
+  const seconds = Math.floor(value % 60);
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}
+
+async function waveformFromAudio(blob: Blob): Promise<number[]> {
+  try {
+    const context = new AudioContext();
+    const buffer = await context.decodeAudioData(await blob.arrayBuffer());
+    const samples = buffer.getChannelData(0);
+    const bars = WAVEFORM_BARS.length;
+    const bucketSize = Math.max(1, Math.floor(samples.length / bars));
+    const amplitudes = Array.from({ length: bars }, (_, index) => {
+      const start = index * bucketSize;
+      const end = Math.min(samples.length, start + bucketSize);
+      let sum = 0;
+      for (let sample = start; sample < end; sample += 1) sum += samples[sample] ** 2;
+      return Math.sqrt(sum / Math.max(1, end - start));
+    });
+    const peak = Math.max(...amplitudes, 0.01);
+    await context.close();
+    return amplitudes.map((amplitude) => Math.round(8 + (amplitude / peak) * 34));
+  } catch {
+    return WAVEFORM_BARS;
+  }
 }
 
 function currentLocalDateTime() {

@@ -29,8 +29,11 @@ const capsuleSchema = z.object({
   unlocksAt: z.iso.datetime(),
   audience: z.enum(["family", "child"]),
 });
+const childPinSchema = z.object({ pin: z.string().regex(/^\d{6}$/) });
 
 const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
+const CHILD_SESSION_COOKIE = "everlittle.child_session";
+const CHILD_SESSION_SECONDS = 60 * 60 * 24 * 7;
 const MEDIA_TYPES: ReadonlyMap<
   string,
   { mediaType: "image" | "audio" | "video"; extension: string }
@@ -70,6 +73,14 @@ type MembershipContext = {
   user: SessionUser;
 };
 
+type ChildAccessContext = {
+  sessionId: string;
+  childId: string;
+  archiveId: string;
+  displayName: string;
+  birthDate: string;
+};
+
 type Invitation = {
   id: string;
   archiveId: string;
@@ -81,6 +92,19 @@ type Invitation = {
 
 export async function handleArchiveApi(request: Request): Promise<Response | null> {
   const url = new URL(request.url);
+
+  if (url.pathname === "/api/child/session" && request.method === "GET") {
+    return getChildSession(request);
+  }
+  if (url.pathname === "/api/child/sign-in" && request.method === "POST") {
+    return signInChild(request);
+  }
+  if (url.pathname === "/api/child/sign-out" && request.method === "POST") {
+    return signOutChild(request);
+  }
+  if (url.pathname === "/api/child/archive" && request.method === "GET") {
+    return getChildArchive(request);
+  }
 
   if (url.pathname === "/api/invitations/preview" && request.method === "GET") {
     return previewInvitation(request);
@@ -136,6 +160,11 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
   const childMatch = url.pathname.match(/^\/api\/archive\/children\/([^/]+)$/);
   if (childMatch && request.method === "PUT") {
     return updateChildProfile(request, childMatch[1]);
+  }
+
+  const childPinMatch = url.pathname.match(/^\/api\/archive\/children\/([^/]+)\/access-pin$/);
+  if (childPinMatch && request.method === "PUT") {
+    return setChildAccessPin(request, childPinMatch[1]);
   }
 
   const invitationMatch = url.pathname.match(/^\/api\/archive\/invitations\/([^/]+)$/);
@@ -244,7 +273,8 @@ async function getArchiveState(request: Request): Promise<Response> {
     database
       .prepare(
         `SELECT id, display_name AS displayName, birth_date AS birthDate,
-                avatar_asset_key AS avatarAssetKey
+                avatar_asset_key AS avatarAssetKey,
+                CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS childAccessEnabled
          FROM child_profile WHERE archive_id = ? ORDER BY created_at`,
       )
       .bind(context.archiveId)
@@ -580,6 +610,184 @@ async function removeMember(request: Request, targetMemberId: string): Promise<R
   return Response.json({ removed: true });
 }
 
+async function setChildAccessPin(request: Request, childId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role !== "owner" && context.role !== "parent") return forbidden();
+
+  const parsed = childPinSchema.safeParse(await readJson(request));
+  if (!parsed.success) {
+    return Response.json({ error: "Choose a six-digit PIN." }, { status: 400 });
+  }
+  const child = await runtime.DB.prepare(
+    "SELECT id FROM child_profile WHERE id = ? AND archive_id = ?",
+  )
+    .bind(childId, context.archiveId)
+    .first();
+  if (!child) return Response.json({ error: "Child profile not found." }, { status: 404 });
+
+  const pinHash = await keyedHash(runtime.BETTER_AUTH_SECRET, `${childId}:${parsed.data.pin}`);
+  await runtime.DB.batch([
+    runtime.DB.prepare(
+      "UPDATE child_profile SET access_pin_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+    ).bind(pinHash, childId),
+    runtime.DB.prepare(
+      "UPDATE child_access_session SET revoked_at = CURRENT_TIMESTAMP WHERE child_id = ? AND revoked_at IS NULL",
+    ).bind(childId),
+    auditStatement(runtime.DB, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "child_access.pin_changed",
+      entityType: "child_profile",
+      entityId: childId,
+    }),
+  ]);
+  return Response.json({ updated: true });
+}
+
+async function signInChild(request: Request): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const parsed = childPinSchema.safeParse(await readJson(request));
+  if (!parsed.success) {
+    return Response.json({ error: "Enter the six-digit family PIN." }, { status: 400 });
+  }
+
+  const clientIdentity = `${request.headers.get("cf-connecting-ip") ?? "local"}|${
+    request.headers.get("user-agent") ?? "unknown"
+  }`;
+  const attemptKey = await keyedHash(runtime.BETTER_AUTH_SECRET, clientIdentity);
+  const recent = await runtime.DB.prepare(
+    `SELECT COUNT(*) AS count FROM child_access_attempt
+     WHERE attempt_key = ? AND attempted_at > datetime('now', '-15 minutes')`,
+  )
+    .bind(attemptKey)
+    .first<{ count: number }>();
+  if (Number(recent?.count ?? 0) >= 8) {
+    return Response.json(
+      { error: "Too many tries. Ask a parent and wait a little." },
+      { status: 429 },
+    );
+  }
+
+  const profiles = await runtime.DB.prepare(
+    `SELECT c.id, c.archive_id AS archiveId, c.access_pin_hash AS pinHash
+     FROM child_profile c WHERE c.access_pin_hash IS NOT NULL`,
+  ).all<{ id: string; archiveId: string; pinHash: string }>();
+  let matched: { id: string; archiveId: string } | null = null;
+  for (const profile of profiles.results) {
+    const candidate = await keyedHash(
+      runtime.BETTER_AUTH_SECRET,
+      `${profile.id}:${parsed.data.pin}`,
+    );
+    if (safeEqual(candidate, profile.pinHash)) {
+      matched = profile;
+      break;
+    }
+  }
+
+  const attemptId = crypto.randomUUID();
+  if (!matched) {
+    await runtime.DB.prepare(
+      "INSERT INTO child_access_attempt (id, attempt_key, succeeded) VALUES (?, ?, 0)",
+    )
+      .bind(attemptId, attemptKey)
+      .run();
+    return Response.json({ error: "That PIN did not open Diki’s space." }, { status: 401 });
+  }
+
+  const rawToken = createSecureToken();
+  const tokenHash = await hashToken(rawToken);
+  const sessionId = crypto.randomUUID();
+  const expiresAt = new Date(Date.now() + CHILD_SESSION_SECONDS * 1000).toISOString();
+  await runtime.DB.batch([
+    runtime.DB.prepare(
+      `INSERT INTO child_access_session (id, child_id, token_hash, expires_at)
+       VALUES (?, ?, ?, ?)`,
+    ).bind(sessionId, matched.id, tokenHash, expiresAt),
+    runtime.DB.prepare(
+      "INSERT INTO child_access_attempt (id, attempt_key, succeeded) VALUES (?, ?, 1)",
+    ).bind(attemptId, attemptKey),
+  ]);
+
+  return Response.json(
+    { signedIn: true },
+    { headers: { "set-cookie": childSessionCookie(rawToken, request, CHILD_SESSION_SECONDS) } },
+  );
+}
+
+async function signOutChild(request: Request): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const rawToken = readCookie(request, CHILD_SESSION_COOKIE);
+  if (rawToken) {
+    const tokenHash = await hashToken(rawToken);
+    await runtime.DB.prepare(
+      "UPDATE child_access_session SET revoked_at = CURRENT_TIMESTAMP WHERE token_hash = ?",
+    )
+      .bind(tokenHash)
+      .run();
+  }
+  return Response.json(
+    { signedOut: true },
+    { headers: { "set-cookie": childSessionCookie("", request, 0) } },
+  );
+}
+
+async function getChildSession(request: Request): Promise<Response> {
+  const context = await getChildAccessContext(request);
+  return Response.json(
+    context ? { signedIn: true, child: { displayName: context.displayName } } : { signedIn: false },
+  );
+}
+
+async function getChildArchive(request: Request): Promise<Response> {
+  const runtime = getRuntimeEnv();
+  const context = await getChildAccessContext(request);
+  if (!context) return Response.json({ error: "Enter the family PIN." }, { status: 401 });
+
+  const [memories, capsules] = await Promise.all([
+    runtime.DB.prepare(
+      `SELECT m.id, m.child_id AS childId, m.kind, m.title, m.body,
+              m.happened_at AS happenedAt, m.audience, m.created_at AS createdAt,
+              m.created_by_user_id AS createdByUserId, u.name AS authorName,
+              ma.id AS mediaId, ma.media_type AS mediaType,
+              ma.content_type AS contentType, ma.byte_size AS byteSize
+       FROM memory m
+       LEFT JOIN "user" u ON u.id = m.created_by_user_id
+       LEFT JOIN media_asset ma ON ma.id = (
+         SELECT first_asset.id FROM media_asset first_asset
+         WHERE first_asset.memory_id = m.id ORDER BY first_asset.created_at LIMIT 1
+       )
+       WHERE m.child_id = ? AND m.archive_id = ? AND m.audience = 'child'
+       ORDER BY m.happened_at DESC, m.created_at DESC LIMIT 100`,
+    )
+      .bind(context.childId, context.archiveId)
+      .all(),
+    runtime.DB.prepare(
+      `SELECT tc.id, tc.child_id AS childId, tc.title, tc.body,
+              tc.unlocks_at AS unlocksAt, tc.audience, tc.created_at AS createdAt,
+              tc.created_by_user_id AS createdByUserId, u.name AS authorName, 0 AS locked
+       FROM time_capsule tc
+       LEFT JOIN "user" u ON u.id = tc.created_by_user_id
+       WHERE tc.child_id = ? AND tc.audience = 'child'
+         AND datetime(tc.unlocks_at) <= CURRENT_TIMESTAMP
+       ORDER BY datetime(tc.unlocks_at) DESC`,
+    )
+      .bind(context.childId)
+      .all(),
+  ]);
+
+  return Response.json({
+    child: { id: context.childId, displayName: context.displayName, birthDate: context.birthDate },
+    memories: memories.results,
+    capsules: capsules.results,
+  });
+}
+
 async function createMemory(request: Request): Promise<Response> {
   if (!isSameOrigin(request)) return forbidden();
   const database = getRuntimeEnv().DB;
@@ -892,18 +1100,28 @@ async function updateMemory(request: Request, memoryId: string): Promise<Respons
 
 async function serveMedia(request: Request, assetId: string): Promise<Response> {
   const runtime = getRuntimeEnv();
-  const context = await getMembershipContext(request);
-  if (!context) return unauthorized();
+  const adult = await getMembershipContext(request);
+  const child = adult ? null : await getChildAccessContext(request);
+  if (!adult && !child) return unauthorized();
 
-  const asset = await runtime.DB.prepare(
-    `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
-     FROM media_asset ma
-     JOIN memory m ON m.id = ma.memory_id
-     WHERE ma.id = ? AND ma.archive_id = ?
-       AND (m.audience != 'parents' OR ? IN ('owner', 'parent'))`,
-  )
-    .bind(assetId, context.archiveId, context.role)
-    .first<{ objectKey: string; contentType: string }>();
+  const asset = adult
+    ? await runtime.DB.prepare(
+        `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
+         FROM media_asset ma
+         JOIN memory m ON m.id = ma.memory_id
+         WHERE ma.id = ? AND ma.archive_id = ?
+           AND (m.audience != 'parents' OR ? IN ('owner', 'parent'))`,
+      )
+        .bind(assetId, adult.archiveId, adult.role)
+        .first<{ objectKey: string; contentType: string }>()
+    : await runtime.DB.prepare(
+        `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
+         FROM media_asset ma
+         JOIN memory m ON m.id = ma.memory_id
+         WHERE ma.id = ? AND m.child_id = ? AND m.archive_id = ? AND m.audience = 'child'`,
+      )
+        .bind(assetId, child?.childId, child?.archiveId)
+        .first<{ objectKey: string; contentType: string }>();
   if (!asset) return Response.json({ error: "Media not found." }, { status: 404 });
 
   const requestedRange = request.headers.has("range");
@@ -1061,6 +1279,23 @@ async function getMembershipContext(request: Request): Promise<MembershipContext
   return membership ? { ...membership, user } : null;
 }
 
+async function getChildAccessContext(request: Request): Promise<ChildAccessContext | null> {
+  const rawToken = readCookie(request, CHILD_SESSION_COOKIE);
+  if (!rawToken) return null;
+  const tokenHash = await hashToken(rawToken);
+  return getRuntimeEnv()
+    .DB.prepare(
+      `SELECT cas.id AS sessionId, c.id AS childId, c.archive_id AS archiveId,
+              c.display_name AS displayName, c.birth_date AS birthDate
+       FROM child_access_session cas
+       JOIN child_profile c ON c.id = cas.child_id
+       WHERE cas.token_hash = ? AND cas.revoked_at IS NULL
+         AND datetime(cas.expires_at) > CURRENT_TIMESTAMP`,
+    )
+    .bind(tokenHash)
+    .first<ChildAccessContext>();
+}
+
 async function getSessionUser(request: Request): Promise<SessionUser | null> {
   const runtime = getRuntimeEnv();
   const auth = createAuth({
@@ -1124,6 +1359,47 @@ async function hashToken(token: string): Promise<string> {
   const bytes = new TextEncoder().encode(token);
   const digest = await crypto.subtle.digest("SHA-256", bytes);
   return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+async function keyedHash(secret: string, value: string): Promise<string> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(secret),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(value));
+  return Array.from(new Uint8Array(signature), (byte) => byte.toString(16).padStart(2, "0")).join(
+    "",
+  );
+}
+
+function safeEqual(left: string, right: string): boolean {
+  const encoder = new TextEncoder();
+  const leftBytes = encoder.encode(left);
+  const rightBytes = encoder.encode(right);
+  const subtle = crypto.subtle as SubtleCrypto & {
+    timingSafeEqual(left: ArrayBufferView, right: ArrayBufferView): boolean;
+  };
+  return (
+    leftBytes.byteLength === rightBytes.byteLength && subtle.timingSafeEqual(leftBytes, rightBytes)
+  );
+}
+
+function readCookie(request: Request, name: string): string | null {
+  const cookie = request.headers.get("cookie") ?? "";
+  for (const part of cookie.split(";")) {
+    const [key, ...value] = part.trim().split("=");
+    if (key === name) return decodeURIComponent(value.join("="));
+  }
+  return null;
+}
+
+function childSessionCookie(value: string, request: Request, maxAge: number): string {
+  const secure = new URL(request.url).protocol === "https:" ? "; Secure" : "";
+  return `${CHILD_SESSION_COOKIE}=${encodeURIComponent(value)}; Path=/; HttpOnly; SameSite=Strict; Max-Age=${maxAge}${secure}`;
 }
 
 function isSameOrigin(request: Request): boolean {

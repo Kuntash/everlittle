@@ -67,6 +67,8 @@ ownership to a parent, and then leave without weakening access control.
 - [x] Implement memory creation for photos, stories, voice notes, videos, milestones, and letters.
 - [x] Show private range-streamed playback controls for voice and video memories.
 - [x] Store private media in R2 and serve it only through authorized requests.
+- [ ] Normalize uploaded MOV/WebM/audio files into browser-safe playback formats and keep the
+      original files for archive-quality export.
 - [ ] Generate image thumbnails and audio metadata without exposing the bucket publicly.
 - [ ] Implement timeline filtering, pagination, favorites, and contributor attribution.
 - [x] Implement sealed capsules with server-enforced unlock dates.
@@ -81,7 +83,9 @@ ownership to a parent, and then leave without weakening access control.
 
 ## P2 — Child experience
 
-- [ ] Implement parent-managed child access without a public email account.
+- [x] Implement parent-managed child access without a public email account.
+- [ ] Let an owner or parent turn child access off and revoke every child session without changing the PIN.
+- [ ] Show parents the last child-access time and active-device count.
 - [ ] Define age-aware permissions and presentation modes.
 - [ ] Allow a child to add reflections without editing the original family memory.
 - [x] Keep locked capsule bodies inaccessible at the API layer until their unlock date.

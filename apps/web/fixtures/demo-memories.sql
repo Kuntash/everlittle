@@ -107,7 +107,7 @@ INSERT OR IGNORE INTO media_asset
   (id, archive_id, memory_id, object_key, media_type, content_type, byte_size)
 SELECT
   'demo-video-asset-v1', a.id, 'demo-memory-video-v1',
-  'fixtures/demo-video-sample-v1.mp4', 'video', 'video/mp4', 172051
+  'fixtures/demo-video-sample-v1.mp4', 'video', 'video/mp4', 42661
 FROM family_archive a
 WHERE EXISTS (SELECT 1 FROM memory m WHERE m.id = 'demo-memory-video-v1' AND m.archive_id = a.id)
 LIMIT 1;
