@@ -14,6 +14,34 @@ const childSchema = z.object({
   displayName: z.string().trim().min(1).max(100),
   birthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
 });
+const memorySchema = z.object({
+  childId: z.string().uuid(),
+  kind: z.enum(["photo", "story", "voice", "milestone", "letter"]),
+  title: z.string().trim().min(1).max(160),
+  body: z.string().trim().max(20_000).optional(),
+  happenedAt: z.iso.datetime(),
+  audience: z.enum(["parents", "family", "child"]),
+});
+
+const MAX_MEDIA_BYTES = 25 * 1024 * 1024;
+const MEDIA_TYPES: ReadonlyMap<string, { mediaType: "image" | "audio"; extension: string }> =
+  new Map([
+    ["image/jpeg", { mediaType: "image", extension: "jpg" }],
+    ["image/png", { mediaType: "image", extension: "png" }],
+    ["image/webp", { mediaType: "image", extension: "webp" }],
+    ["image/gif", { mediaType: "image", extension: "gif" }],
+    ["image/heic", { mediaType: "image", extension: "heic" }],
+    ["image/heif", { mediaType: "image", extension: "heif" }],
+    ["audio/mpeg", { mediaType: "audio", extension: "mp3" }],
+    ["audio/mp4", { mediaType: "audio", extension: "m4a" }],
+    ["audio/x-m4a", { mediaType: "audio", extension: "m4a" }],
+    ["audio/aac", { mediaType: "audio", extension: "aac" }],
+    ["audio/webm", { mediaType: "audio", extension: "webm" }],
+    ["audio/ogg", { mediaType: "audio", extension: "ogg" }],
+    ["audio/wav", { mediaType: "audio", extension: "wav" }],
+    ["audio/wave", { mediaType: "audio", extension: "wav" }],
+    ["audio/x-wav", { mediaType: "audio", extension: "wav" }],
+  ]);
 
 type FamilyRole = "owner" | "parent" | "contributor" | "viewer";
 
@@ -60,6 +88,25 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
 
   if (url.pathname === "/api/archive/children" && request.method === "POST") {
     return createChildProfile(request);
+  }
+
+  if (url.pathname === "/api/archive/memories" && request.method === "POST") {
+    return createMemory(request);
+  }
+
+  const mediaViewMatch = url.pathname.match(/^\/api\/media\/([^/]+)$/);
+  if (mediaViewMatch && request.method === "GET") {
+    return serveMedia(request, mediaViewMatch[1]);
+  }
+
+  const memoryMediaMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)\/media$/);
+  if (memoryMediaMatch && request.method === "PUT") {
+    return uploadMemoryMedia(request, memoryMediaMatch[1]);
+  }
+
+  const memoryMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)$/);
+  if (memoryMatch && request.method === "DELETE") {
+    return deleteMemory(request, memoryMatch[1]);
   }
 
   const childMatch = url.pathname.match(/^\/api\/archive\/children\/([^/]+)$/);
@@ -150,7 +197,7 @@ async function getArchiveState(request: Request): Promise<Response> {
   const context = await getMembershipContext(request);
   if (!context) return unauthorized();
 
-  const [archive, members, children, invitations] = await Promise.all([
+  const [archive, members, children, memories, invitations] = await Promise.all([
     database
       .prepare(
         `SELECT id, name, slug, timezone, created_at AS createdAt
@@ -178,6 +225,26 @@ async function getArchiveState(request: Request): Promise<Response> {
       )
       .bind(context.archiveId)
       .all(),
+    database
+      .prepare(
+        `SELECT m.id, m.child_id AS childId, m.kind, m.title, m.body,
+                m.happened_at AS happenedAt, m.audience, m.created_at AS createdAt,
+                m.created_by_user_id AS createdByUserId, u.name AS authorName,
+                ma.id AS mediaId, ma.media_type AS mediaType,
+                ma.content_type AS contentType, ma.byte_size AS byteSize
+         FROM memory m
+         LEFT JOIN "user" u ON u.id = m.created_by_user_id
+         LEFT JOIN media_asset ma ON ma.id = (
+           SELECT first_asset.id FROM media_asset first_asset
+           WHERE first_asset.memory_id = m.id ORDER BY first_asset.created_at LIMIT 1
+         )
+         WHERE m.archive_id = ?
+           AND (m.audience != 'parents' OR ? IN ('owner', 'parent'))
+         ORDER BY m.happened_at DESC, m.created_at DESC
+         LIMIT 100`,
+      )
+      .bind(context.archiveId, context.role)
+      .all(),
     context.role === "owner"
       ? database
           .prepare(
@@ -201,6 +268,7 @@ async function getArchiveState(request: Request): Promise<Response> {
     },
     members: members.results,
     children: children.results,
+    memories: memories.results,
     invitations: invitations.results,
   });
 }
@@ -233,7 +301,6 @@ async function createInvitation(request: Request): Promise<Response> {
   if (!parsed.success) {
     return Response.json({ error: "Enter a valid email and family role." }, { status: 400 });
   }
-
   const existingMember = await database
     .prepare(
       `SELECT fm.id FROM family_member fm JOIN "user" u ON u.id = fm.user_id
@@ -471,6 +538,246 @@ async function removeMember(request: Request, targetMemberId: string): Promise<R
     }),
   ]);
   return Response.json({ removed: true });
+}
+
+async function createMemory(request: Request): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const database = getRuntimeEnv().DB;
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role === "viewer") return forbidden();
+
+  const parsed = memorySchema.safeParse(await readJson(request));
+  if (!parsed.success) {
+    return Response.json(
+      { error: "Check the memory title, date, and sharing choice." },
+      { status: 400 },
+    );
+  }
+  if (new Date(parsed.data.happenedAt).valueOf() > Date.now() + 5 * 60 * 1000) {
+    return Response.json({ error: "A memory cannot be dated in the future." }, { status: 400 });
+  }
+  if (parsed.data.audience === "parents" && context.role !== "owner" && context.role !== "parent") {
+    return forbidden();
+  }
+
+  const child = await database
+    .prepare("SELECT id FROM child_profile WHERE id = ? AND archive_id = ?")
+    .bind(parsed.data.childId, context.archiveId)
+    .first();
+  if (!child) return Response.json({ error: "Child profile not found." }, { status: 404 });
+
+  const memoryId = crypto.randomUUID();
+  await database.batch([
+    database
+      .prepare(
+        `INSERT INTO memory
+          (id, archive_id, child_id, created_by_user_id, kind, title, body, happened_at, audience)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        memoryId,
+        context.archiveId,
+        parsed.data.childId,
+        context.user.id,
+        parsed.data.kind,
+        parsed.data.title,
+        parsed.data.body || null,
+        parsed.data.happenedAt,
+        parsed.data.audience,
+      ),
+    auditStatement(database, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "memory.created",
+      entityType: "memory",
+      entityId: memoryId,
+      metadata: { kind: parsed.data.kind, audience: parsed.data.audience },
+    }),
+  ]);
+
+  return Response.json({ id: memoryId }, { status: 201 });
+}
+
+async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role === "viewer") return forbidden();
+
+  const memory = await runtime.DB.prepare(
+    `SELECT id, kind, created_by_user_id AS createdByUserId
+     FROM memory WHERE id = ? AND archive_id = ?`,
+  )
+    .bind(memoryId, context.archiveId)
+    .first<{ id: string; kind: string; createdByUserId: string | null }>();
+  if (!memory) return Response.json({ error: "Memory not found." }, { status: 404 });
+  if (context.role === "contributor" && memory.createdByUserId !== context.user.id)
+    return forbidden();
+
+  const contentType = (request.headers.get("content-type") ?? "").split(";", 1)[0].toLowerCase();
+  const media = MEDIA_TYPES.get(contentType);
+  const byteSize = Number(request.headers.get("content-length") ?? "0");
+  if (!media || !request.body || !Number.isSafeInteger(byteSize) || byteSize < 1) {
+    return Response.json({ error: "Choose a supported photo or audio file." }, { status: 400 });
+  }
+  if (byteSize > MAX_MEDIA_BYTES) {
+    return Response.json({ error: "Media files must be 25 MB or smaller." }, { status: 413 });
+  }
+  if (
+    (memory.kind === "photo" && media.mediaType !== "image") ||
+    (memory.kind === "voice" && media.mediaType !== "audio") ||
+    (memory.kind !== "photo" && memory.kind !== "voice")
+  ) {
+    return Response.json({ error: "This file does not match the memory type." }, { status: 400 });
+  }
+
+  const existing = await runtime.DB.prepare(
+    "SELECT id FROM media_asset WHERE memory_id = ? LIMIT 1",
+  )
+    .bind(memoryId)
+    .first();
+  if (existing) return Response.json({ error: "This memory already has media." }, { status: 409 });
+
+  const assetId = crypto.randomUUID();
+  const objectKey = `${context.archiveId}/${memoryId}/${assetId}.${media.extension}`;
+  await runtime.MEDIA.put(objectKey, request.body, {
+    httpMetadata: { contentType },
+    customMetadata: {
+      archiveId: context.archiveId,
+      memoryId,
+      uploadedByUserId: context.user.id,
+    },
+  });
+
+  try {
+    await runtime.DB.batch([
+      runtime.DB.prepare(
+        `INSERT INTO media_asset
+          (id, archive_id, memory_id, object_key, media_type, content_type, byte_size)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      ).bind(
+        assetId,
+        context.archiveId,
+        memoryId,
+        objectKey,
+        media.mediaType,
+        contentType,
+        byteSize,
+      ),
+      auditStatement(runtime.DB, {
+        id: crypto.randomUUID(),
+        archiveId: context.archiveId,
+        actorUserId: context.user.id,
+        action: "media.uploaded",
+        entityType: "media_asset",
+        entityId: assetId,
+        metadata: { memoryId, mediaType: media.mediaType, byteSize },
+      }),
+    ]);
+  } catch (error) {
+    await runtime.MEDIA.delete(objectKey);
+    console.error(
+      JSON.stringify({ event: "media_metadata_write_failed", memoryId, assetId, error }),
+    );
+    return Response.json({ error: "The media upload could not be saved." }, { status: 500 });
+  }
+
+  return Response.json({ id: assetId, url: `/api/media/${assetId}` }, { status: 201 });
+}
+
+async function serveMedia(request: Request, assetId: string): Promise<Response> {
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+
+  const asset = await runtime.DB.prepare(
+    `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
+     FROM media_asset ma
+     JOIN memory m ON m.id = ma.memory_id
+     WHERE ma.id = ? AND ma.archive_id = ?
+       AND (m.audience != 'parents' OR ? IN ('owner', 'parent'))`,
+  )
+    .bind(assetId, context.archiveId, context.role)
+    .first<{ objectKey: string; contentType: string }>();
+  if (!asset) return Response.json({ error: "Media not found." }, { status: 404 });
+
+  const requestedRange = request.headers.has("range");
+  const object = requestedRange
+    ? await runtime.MEDIA.get(asset.objectKey, { range: request.headers })
+    : await runtime.MEDIA.get(asset.objectKey);
+  if (!object) return Response.json({ error: "Media not found." }, { status: 404 });
+
+  const headers = new Headers();
+  object.writeHttpMetadata(headers);
+  headers.set("content-type", asset.contentType);
+  headers.set("content-disposition", "inline");
+  headers.set("cache-control", "private, max-age=3600");
+  headers.set("accept-ranges", "bytes");
+  headers.set("etag", object.httpEtag);
+
+  let status = 200;
+  if (requestedRange && object.range) {
+    const offset =
+      "suffix" in object.range ? object.size - object.range.suffix : (object.range.offset ?? 0);
+    const length =
+      "suffix" in object.range
+        ? object.range.suffix
+        : (object.range.length ?? object.size - offset);
+    headers.set("content-range", `bytes ${offset}-${offset + length - 1}/${object.size}`);
+    headers.set("content-length", String(length));
+    status = 206;
+  } else {
+    headers.set("content-length", String(object.size));
+  }
+
+  return new Response(object.body, { headers, status });
+}
+
+async function deleteMemory(request: Request, memoryId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+
+  const memory = await runtime.DB.prepare(
+    `SELECT id, created_by_user_id AS createdByUserId
+     FROM memory WHERE id = ? AND archive_id = ?`,
+  )
+    .bind(memoryId, context.archiveId)
+    .first<{ id: string; createdByUserId: string | null }>();
+  if (!memory) return Response.json({ error: "Memory not found." }, { status: 404 });
+  const canDelete =
+    context.role === "owner" ||
+    context.role === "parent" ||
+    (context.role === "contributor" && memory.createdByUserId === context.user.id);
+  if (!canDelete) return forbidden();
+
+  const assets = await runtime.DB.prepare(
+    "SELECT object_key AS objectKey FROM media_asset WHERE memory_id = ?",
+  )
+    .bind(memoryId)
+    .all<{ objectKey: string }>();
+  const objectKeys = assets.results.map((asset) => asset.objectKey);
+  if (objectKeys.length) await runtime.MEDIA.delete(objectKeys);
+
+  await runtime.DB.batch([
+    runtime.DB.prepare("DELETE FROM memory WHERE id = ? AND archive_id = ?").bind(
+      memoryId,
+      context.archiveId,
+    ),
+    auditStatement(runtime.DB, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "memory.deleted",
+      entityType: "memory",
+      entityId: memoryId,
+    }),
+  ]);
+  return Response.json({ deleted: true });
 }
 
 async function createChildProfile(request: Request): Promise<Response> {

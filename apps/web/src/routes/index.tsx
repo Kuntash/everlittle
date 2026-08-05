@@ -9,22 +9,24 @@ import {
   Check,
   Copy,
   Crown,
+  FileAudio,
   Heart,
   Home,
   Image,
-  KeyRound,
   LockKeyhole,
   LogOut,
   Mic,
   Plus,
+  PenLine,
   ShieldCheck,
   Sparkles,
   Trash2,
   UserPlus,
   Users,
+  X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
-import type { FormEvent, ReactNode } from "react";
+import type { FormEvent } from "react";
 
 import { authClient } from "@/lib/auth-client";
 
@@ -48,6 +50,23 @@ type Member = {
   image?: string | null;
 };
 type Child = { id: string; displayName: string; birthDate: string; avatarAssetKey?: string | null };
+type MemoryKind = "photo" | "story" | "voice" | "milestone" | "letter";
+type Memory = {
+  id: string;
+  childId: string;
+  kind: MemoryKind;
+  title: string;
+  body: string | null;
+  happenedAt: string;
+  audience: "parents" | "family" | "child";
+  createdAt: string;
+  createdByUserId: string | null;
+  authorName: string | null;
+  mediaId: string | null;
+  mediaType: "image" | "audio" | null;
+  contentType: string | null;
+  byteSize: number | null;
+};
 type PendingInvitation = {
   id: string;
   email: string;
@@ -60,6 +79,7 @@ type ArchiveState = {
   currentMember: { id: string; role: FamilyRole; userId: string };
   members: Member[];
   children: Child[];
+  memories: Memory[];
   invitations: PendingInvitation[];
 };
 type View = "parent" | "child" | "family";
@@ -290,9 +310,6 @@ function AccessScreen({
               {mode === "setup" ? "I already have an account" : "Create a new account"}
             </button>
           ) : null}
-          <p className="privacy-note">
-            <KeyRound size={14} /> Powered by Better Auth
-          </p>
         </div>
       </section>
     </main>
@@ -405,9 +422,16 @@ function ArchiveApp({ name }: { name: string }) {
         </div>
       </header>
       {view === "parent" ? (
-        <ParentView name={name} childName={childName} onNavigate={setView} />
+        <ParentView
+          child={state.children[0]}
+          memories={state.memories}
+          name={name}
+          onNavigate={setView}
+          refresh={refresh}
+          role={state.currentMember.role}
+        />
       ) : null}
-      {view === "child" ? <ChildView childName={childName} /> : null}
+      {view === "child" ? <ChildView childName={childName} memories={state.memories} /> : null}
       {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
     </main>
   );
@@ -415,13 +439,28 @@ function ArchiveApp({ name }: { name: string }) {
 
 function ParentView({
   name,
-  childName,
+  child,
+  memories,
   onNavigate,
+  refresh,
+  role,
 }: {
   name: string;
-  childName: string;
+  child?: Child;
+  memories: Memory[];
   onNavigate: (view: View) => void;
+  refresh: () => Promise<void>;
+  role: FamilyRole;
 }) {
+  const [composerKind, setComposerKind] = useState<MemoryKind | null>(null);
+  const canCreate = role !== "viewer";
+  const childName = child?.displayName ?? "Diki Choetso";
+  const featured = memories[0];
+
+  function openComposer(kind: MemoryKind) {
+    if (child) setComposerKind(kind);
+  }
+
   return (
     <div className="archive-layout">
       <section className="archive-main">
@@ -429,50 +468,91 @@ function ParentView({
         <div className="page-title-row">
           <div>
             <h1>{childName}’s story</h1>
-            <p>A private family archive · ready for her first memory</p>
+            <p>
+              A private family archive · {memories.length}{" "}
+              {memories.length === 1 ? "memory" : "memories"}
+            </p>
           </div>
-          <button className="round-action" aria-label="Add memory">
-            <Plus />
-          </button>
+          {canCreate ? (
+            <button
+              className="round-action"
+              aria-label="Add memory"
+              disabled={!child}
+              onClick={() => openComposer("story")}
+            >
+              <Plus />
+            </button>
+          ) : null}
         </div>
-        <article className="featured-memory">
-          <div className="memory-photo monsoon">
-            <span>August 5, 2026</span>
+        {featured ? (
+          <article className="featured-memory">
+            <MemoryMedia memory={featured} featured />
+            <div className="memory-copy">
+              <p className="eyebrow">Latest {kindLabel(featured.kind)}</p>
+              <h2>{featured.title}</h2>
+              {featured.body ? <p>{featured.body}</p> : null}
+              {featured.mediaType === "audio" && featured.mediaId ? (
+                <audio
+                  className="memory-audio"
+                  controls
+                  preload="metadata"
+                  src={`/api/media/${featured.mediaId}`}
+                />
+              ) : null}
+              <span className="byline">
+                {formatMemoryDate(featured.happenedAt)} · {featured.authorName ?? "Family"}
+              </span>
+            </div>
+          </article>
+        ) : (
+          <div className="memory-empty">
+            <span>
+              <Sparkles />
+            </span>
+            <p className="eyebrow">The first page is waiting</p>
+            <h2>Keep the small thing you don’t want to forget.</h2>
+            <p>A sleepy expression, a new sound, a photograph, or simply what today felt like.</p>
+            {canCreate && child ? (
+              <button
+                className="primary-button"
+                onClick={() => openComposer("story")}
+                type="button"
+              >
+                Write the first memory <ArrowRight size={17} />
+              </button>
+            ) : null}
           </div>
-          <div className="memory-copy">
-            <p className="eyebrow">Design preview</p>
-            <h2>Your first monsoon</h2>
-            <p>You pressed your tiny hands to the window and watched the rain arrive.</p>
-            <span className="byline">A sample of how Diki’s memories will feel</span>
-          </div>
-        </article>
+        )}
         <div className="section-heading">
           <h2>Recent memories</h2>
-          <button>See timeline</button>
+          {memories.length ? <span>{memories.length} kept</span> : null}
         </div>
         <div className="memory-list">
-          <MemoryRow icon={<Camera />} title="Morning giggles" meta="Photo memory" />
-          <MemoryRow icon={<Mic />} title="Bath time stories" meta="Voice memory" />
-          <MemoryRow icon={<BookHeart />} title="To my little adventurer" meta="Future letter" />
+          {memories.slice(featured ? 1 : 0, 7).map((memory) => (
+            <MemoryRow key={memory.id} memory={memory} />
+          ))}
         </div>
       </section>
       <aside className="archive-side">
         <p className="eyebrow">Quick capture</p>
         <h2>What happened today?</h2>
         <div className="capture-grid">
-          <button>
+          <button disabled={!canCreate || !child} onClick={() => openComposer("photo")}>
             <Camera /> Photo
           </button>
-          <button>
+          <button disabled={!canCreate || !child} onClick={() => openComposer("story")}>
             <BookHeart /> Story
           </button>
-          <button>
+          <button disabled={!canCreate || !child} onClick={() => openComposer("voice")}>
             <Mic /> Voice
           </button>
-          <button>
+          <button disabled={!canCreate || !child} onClick={() => openComposer("milestone")}>
             <Sparkles /> Milestone
           </button>
         </div>
+        {!child ? (
+          <p className="capture-note">Create Diki’s profile in Family before adding memories.</p>
+        ) : null}
         <div className="capsule-card">
           <span className="capsule-seal">
             <Sparkles />
@@ -486,11 +566,25 @@ function ParentView({
         </div>
       </aside>
       <MobileNav active="parent" onNavigate={onNavigate} />
+      {composerKind && child ? (
+        <MemoryComposer
+          child={child}
+          initialKind={composerKind}
+          onClose={() => setComposerKind(null)}
+          onCreated={async () => {
+            await refresh();
+            setComposerKind(null);
+          }}
+          role={role}
+        />
+      ) : null}
     </div>
   );
 }
 
-function ChildView({ childName }: { childName: string }) {
+function ChildView({ childName, memories }: { childName: string; memories: Memory[] }) {
+  const childMemories = memories.filter((memory) => memory.audience === "child");
+  const featured = childMemories[0];
   return (
     <div className="child-view">
       <section className="child-hero">
@@ -506,33 +600,289 @@ function ChildView({ childName }: { childName: string }) {
           </button>
         </div>
       </section>
-      <section className="child-grid">
-        <article className="story-card large">
-          <div className="memory-photo monsoon" />
-          <p className="eyebrow">A memory from Papa</p>
-          <h2>Your first monsoon</h2>
-          <button className="listen-button">
-            <Mic size={18} /> Listen to the story · 0:38
+      {featured ? (
+        <section className="child-grid real-child-grid">
+          {childMemories.map((memory, index) => (
+            <article className={`story-card ${index === 0 ? "large" : ""}`} key={memory.id}>
+              {memory.mediaType === "image" ? <MemoryMedia memory={memory} featured /> : null}
+              <p className="eyebrow">
+                {kindLabel(memory.kind)} from {memory.authorName ?? "your family"}
+              </p>
+              <h2>{memory.title}</h2>
+              {memory.body ? <p>{memory.body}</p> : null}
+              {memory.mediaType === "audio" && memory.mediaId ? (
+                <audio
+                  className="memory-audio"
+                  controls
+                  preload="metadata"
+                  src={`/api/media/${memory.mediaId}`}
+                />
+              ) : null}
+            </article>
+          ))}
+        </section>
+      ) : (
+        <section className="child-empty">
+          <Sparkles />
+          <h2>Your family is still gathering your stories.</h2>
+          <p>The memories marked “For Diki” will appear here.</p>
+        </section>
+      )}
+    </div>
+  );
+}
+
+function MemoryComposer({
+  child,
+  initialKind,
+  onClose,
+  onCreated,
+  role,
+}: {
+  child: Child;
+  initialKind: MemoryKind;
+  onClose: () => void;
+  onCreated: () => Promise<void>;
+  role: FamilyRole;
+}) {
+  const [kind, setKind] = useState<MemoryKind>(initialKind);
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [happenedAt, setHappenedAt] = useState(currentLocalDateTime());
+  const [audience, setAudience] = useState<"parents" | "family" | "child">("family");
+  const [file, setFile] = useState<File | null>(null);
+  const [error, setError] = useState("");
+  const [stage, setStage] = useState<"idle" | "saving" | "uploading">("idle");
+
+  const needsMedia = kind === "photo" || kind === "voice";
+
+  function chooseKind(nextKind: MemoryKind) {
+    setKind(nextKind);
+    setFile(null);
+    setError("");
+  }
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (needsMedia && !file) {
+      setError(
+        kind === "photo" ? "Choose a photograph to keep." : "Choose an audio recording to keep.",
+      );
+      return;
+    }
+    if (file && file.size > 25 * 1024 * 1024) {
+      setError("Media files must be 25 MB or smaller.");
+      return;
+    }
+
+    setError("");
+    setStage("saving");
+    const response = await apiFetch("/api/archive/memories", {
+      method: "POST",
+      body: JSON.stringify({
+        childId: child.id,
+        kind,
+        title,
+        body: body || undefined,
+        happenedAt: new Date(happenedAt).toISOString(),
+        audience,
+      }),
+    });
+    if (!response.ok) {
+      setError(await responseError(response));
+      setStage("idle");
+      return;
+    }
+
+    const created = (await response.json()) as { id: string };
+    if (file) {
+      setStage("uploading");
+      const upload = await fetch(`/api/archive/memories/${created.id}/media`, {
+        method: "PUT",
+        headers: { "content-type": file.type },
+        body: file,
+      });
+      if (!upload.ok) {
+        await apiFetch(`/api/archive/memories/${created.id}`, { method: "DELETE" });
+        setError(await responseError(upload));
+        setStage("idle");
+        return;
+      }
+    }
+
+    await onCreated();
+  }
+
+  return (
+    <div
+      className="composer-backdrop"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget && stage === "idle") onClose();
+      }}
+    >
+      <section
+        className="memory-composer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="composer-title"
+      >
+        <header className="composer-header">
+          <div>
+            <p className="eyebrow">Keep this moment</p>
+            <h2 id="composer-title">A new memory for {child.displayName}</h2>
+          </div>
+          <button aria-label="Close" disabled={stage !== "idle"} onClick={onClose} type="button">
+            <X />
           </button>
-        </article>
-        <article className="story-card letter-card">
-          <span className="capsule-seal">
-            <Sparkles />
-          </span>
-          <p className="eyebrow">Unlocked for you</p>
-          <h2>For your twelfth birthday</h2>
-          <p>A letter from Mama, written eleven years ago.</p>
-          <button>
-            Open the letter <ArrowRight size={16} />
-          </button>
-        </article>
-        <article className="story-card voices-card">
-          <Users />
-          <p className="eyebrow">Family voices</p>
-          <h2>People who love you</h2>
-          <p>Stories from Mama, Papa, Aama, and your family.</p>
-        </article>
+        </header>
+
+        <div className="kind-picker" aria-label="Memory type">
+          {(["photo", "story", "voice", "milestone", "letter"] as MemoryKind[]).map((item) => (
+            <button
+              className={kind === item ? "active" : ""}
+              key={item}
+              onClick={() => chooseKind(item)}
+              type="button"
+            >
+              {memoryIcon(item)}
+              <span>{kindLabel(item)}</span>
+            </button>
+          ))}
+        </div>
+
+        <form className="composer-form" onSubmit={submit}>
+          <label>
+            {kind === "letter"
+              ? "Letter title"
+              : kind === "milestone"
+                ? "What changed?"
+                : "Memory title"}
+            <input
+              autoFocus
+              maxLength={160}
+              onChange={(event) => setTitle(event.target.value)}
+              placeholder={memoryTitlePlaceholder(kind)}
+              required
+              value={title}
+            />
+          </label>
+          <label>
+            {kind === "letter" ? "Your letter" : "The story behind it"}
+            <textarea
+              maxLength={20_000}
+              onChange={(event) => setBody(event.target.value)}
+              placeholder={memoryBodyPlaceholder(kind)}
+              rows={5}
+              value={body}
+            />
+          </label>
+
+          {needsMedia ? (
+            <label className="media-drop">
+              {kind === "photo" ? <Camera /> : <FileAudio />}
+              <span>
+                <strong>
+                  {file
+                    ? file.name
+                    : kind === "photo"
+                      ? "Choose a photograph"
+                      : "Choose an audio recording"}
+                </strong>
+                <small>
+                  {file
+                    ? formatFileSize(file.size)
+                    : "JPEG, PNG, WebP, MP3, M4A, WebM, OGG or WAV · up to 25 MB"}
+                </small>
+              </span>
+              <input
+                accept={
+                  kind === "photo"
+                    ? "image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif"
+                    : "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/webm,audio/ogg,audio/wav,audio/wave,audio/x-wav"
+                }
+                capture={kind === "voice" ? "user" : undefined}
+                onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+                required
+                type="file"
+              />
+            </label>
+          ) : null}
+
+          <div className="composer-fields">
+            <label>
+              When it happened
+              <input
+                max={currentLocalDateTime()}
+                onChange={(event) => setHappenedAt(event.target.value)}
+                required
+                type="datetime-local"
+                value={happenedAt}
+              />
+            </label>
+            <label>
+              Who can see it
+              <select
+                onChange={(event) => setAudience(event.target.value as typeof audience)}
+                value={audience}
+              >
+                <option value="family">Family archive</option>
+                {role === "owner" || role === "parent" ? (
+                  <option value="parents">Parents only</option>
+                ) : null}
+                <option value="child">For Diki</option>
+              </select>
+            </label>
+          </div>
+          <p className="audience-note">
+            {audience === "child"
+              ? "This will appear in Diki’s child view."
+              : audience === "parents"
+                ? "Only owners and parents should use this private context."
+                : "Visible to accepted family members."}
+          </p>
+          {error ? (
+            <p className="form-error" role="alert">
+              {error}
+            </p>
+          ) : null}
+          <div className="composer-actions">
+            <button
+              className="text-button"
+              disabled={stage !== "idle"}
+              onClick={onClose}
+              type="button"
+            >
+              Cancel
+            </button>
+            <button className="primary-button" disabled={stage !== "idle"} type="submit">
+              {stage === "saving"
+                ? "Saving memory…"
+                : stage === "uploading"
+                  ? "Keeping media private…"
+                  : "Keep this memory"}
+              {stage === "idle" ? <ArrowRight size={17} /> : null}
+            </button>
+          </div>
+        </form>
       </section>
+    </div>
+  );
+}
+
+function MemoryMedia({ memory, featured = false }: { memory: Memory; featured?: boolean }) {
+  if (memory.mediaType === "image" && memory.mediaId) {
+    return (
+      <div className={`memory-photo real-photo ${featured ? "featured" : ""}`}>
+        <img alt="" loading={featured ? "eager" : "lazy"} src={`/api/media/${memory.mediaId}`} />
+        <span>{formatMemoryDate(memory.happenedAt)}</span>
+      </div>
+    );
+  }
+  return (
+    <div className={`memory-photo memory-symbol ${memory.kind}`}>
+      {memoryIcon(memory.kind)}
+      <span>{formatMemoryDate(memory.happenedAt)}</span>
     </div>
   );
 }
@@ -850,13 +1200,16 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   );
 }
 
-function MemoryRow({ icon, title, meta }: { icon: ReactNode; title: string; meta: string }) {
+function MemoryRow({ memory }: { memory: Memory }) {
   return (
     <article className="memory-row">
-      <span>{icon}</span>
+      <span>{memoryIcon(memory.kind)}</span>
       <div>
-        <h3>{title}</h3>
-        <p>{meta}</p>
+        <h3>{memory.title}</h3>
+        <p>
+          {formatMemoryDate(memory.happenedAt)} · {memory.authorName ?? "Family"} ·{" "}
+          {audienceLabel(memory.audience)}
+        </p>
       </div>
       <Heart size={18} />
     </article>
@@ -929,4 +1282,51 @@ function initials(name: string) {
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date(value));
+}
+
+function formatMemoryDate(value: string) {
+  return new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date(value));
+}
+
+function currentLocalDateTime() {
+  const now = new Date();
+  const local = new Date(now.getTime() - now.getTimezoneOffset() * 60_000);
+  return local.toISOString().slice(0, 16);
+}
+
+function kindLabel(kind: MemoryKind) {
+  return kind.charAt(0).toUpperCase() + kind.slice(1);
+}
+
+function audienceLabel(audience: Memory["audience"]) {
+  if (audience === "child") return "For Diki";
+  if (audience === "parents") return "Parents only";
+  return "Family";
+}
+
+function memoryIcon(kind: MemoryKind) {
+  if (kind === "photo") return <Camera />;
+  if (kind === "voice") return <Mic />;
+  if (kind === "milestone") return <Sparkles />;
+  if (kind === "letter") return <BookHeart />;
+  return <PenLine />;
+}
+
+function memoryTitlePlaceholder(kind: MemoryKind) {
+  if (kind === "photo") return "That sleepy afternoon smile";
+  if (kind === "voice") return "The sound she made today";
+  if (kind === "milestone") return "She reached for us";
+  if (kind === "letter") return "For the day you wonder…";
+  return "A small moment worth keeping";
+}
+
+function memoryBodyPlaceholder(kind: MemoryKind) {
+  if (kind === "letter") return "Dear Diki…";
+  if (kind === "milestone") return "What happened, and how did it feel?";
+  return "Write the detail a photograph or recording cannot hold…";
+}
+
+function formatFileSize(bytes: number) {
+  if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }

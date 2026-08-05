@@ -5,8 +5,7 @@ This file tracks product gaps between the current scaffold and a safe, usable fa
 ## P0 — Claim the reference installation
 
 - [x] Create the first owner account at [dikichoetso.com](https://dikichoetso.com).
-- [ ] Create the child profile and replace the demo name, dates, and content.
-- [ ] Confirm the recovery email and store recovery information securely.
+- [x] Create Diki Choetso’s child profile and replace the demo name, dates, and content.
 
 ## P1 — Family invitation and ownership handover
 
@@ -63,17 +62,16 @@ ownership to a parent, and then leave without weakening access control.
 
 ## P1 — Real archive data
 
-- [ ] Replace the parent and child demo screens with D1-backed loaders.
+- [x] Replace the parent and child demo screens with D1-backed loaders.
 - [x] Implement child-profile creation and editing.
-- [ ] Implement memory creation for photos, stories, voice notes, milestones, and letters.
-- [ ] Store private media in R2 and serve it only through authorized requests.
+- [x] Implement memory creation for photos, stories, voice notes, milestones, and letters.
+- [x] Store private media in R2 and serve it only through authorized requests.
 - [ ] Generate image thumbnails and audio metadata without exposing the bucket publicly.
 - [ ] Implement timeline filtering, pagination, favorites, and contributor attribution.
 - [ ] Implement sealed capsules with server-enforced unlock dates.
 
-## P1 — Privacy, recovery, and durability
+## P1 — Privacy and durability
 
-- [ ] Add email verification and password-reset delivery.
 - [ ] Add passkeys and optional two-factor authentication for owners and parents.
 - [ ] Define retention, deletion, consent, and child-safety policies.
 - [ ] Add encrypted backups and a documented restore drill.
@@ -87,6 +85,10 @@ ownership to a parent, and then leave without weakening access control.
 - [ ] Allow a child to add reflections without editing the original family memory.
 - [ ] Keep locked letters and capsules inaccessible at the API layer until their unlock date.
 - [ ] Add a parent-controlled transition from child access to an independent adult account.
+
+## P2 — Deferred account recovery
+
+- [ ] Add email verification and password-reset delivery when account recovery becomes a priority.
 
 ## P2 — PWA and device polish
 
