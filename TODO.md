@@ -24,6 +24,24 @@ ownership to a parent, and then leave without weakening access control.
 - [ ] Notify the new owner and show a clear change-of-control receipt.
 - [x] Let the former owner leave, remain a parent, or become a contributor/viewer.
 
+### Current invitation UX gaps
+
+- [ ] Send invitation emails automatically instead of requiring the owner to copy and privately
+      deliver a bearer link.
+- [ ] Warn the owner that an invitation link grants access and should be shared only with the
+      intended recipient.
+- [ ] Add **Resend** and **Replace link** actions with clear expiry information.
+- [ ] Let an invitee explicitly decline an invitation.
+- [ ] Show accepted, expired, revoked, and declined invitation history—not only active invitations.
+- [ ] Notify the owner when an invitation is accepted, declined, or expires.
+- [ ] Show the inviter’s identity and a plain-language permission summary before acceptance.
+- [ ] Add a correction flow for an invitation sent to the wrong email address.
+- [ ] Require password re-entry or another recent-authentication check before ownership transfer.
+- [ ] Give both parties a durable ownership-transfer receipt with the previous owner, new owner,
+      timestamp, and resulting roles.
+- [ ] End the transfer flow with an explicit choice for the former owner: remain a parent, change
+      role, or leave the archive.
+
 ### Safety invariants
 
 - [x] Never allow an archive to have zero owners.
