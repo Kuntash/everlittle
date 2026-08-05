@@ -1,9 +1,11 @@
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 
+import { acceptInvitation, findValidInvitation, handleArchiveApi } from "@/lib/archive-api";
 import { createAuth } from "@/lib/auth";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 
 type SignUpPayload = { user?: { id?: string; name?: string } };
+type SignUpInput = { email?: string };
 
 export default createServerEntry({
   async fetch(request) {
@@ -12,6 +14,9 @@ export default createServerEntry({
     if (url.pathname.startsWith("/api/auth/")) {
       return handleAuthRequest(request);
     }
+
+    const archiveResponse = await handleArchiveApi(request);
+    if (archiveResponse) return archiveResponse;
 
     if (url.pathname === "/api/platform" && request.method === "GET") {
       const runtime = getRuntimeEnv();
@@ -30,6 +35,12 @@ async function handleAuthRequest(request: Request): Promise<Response> {
   const runtime = getRuntimeEnv();
   const url = new URL(request.url);
   const isEmailSignUp = url.pathname.endsWith("/sign-up/email");
+  const signUpInput = isEmailSignUp ? await readSignUpInput(request.clone()) : null;
+  const invitationToken = isEmailSignUp ? request.headers.get("x-everlittle-invitation") : null;
+  const invitation =
+    invitationToken && signUpInput?.email
+      ? await findValidInvitation(runtime.DB, invitationToken, signUpInput.email)
+      : null;
   const row = isEmailSignUp
     ? await runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"').first<{ count: number }>()
     : null;
@@ -38,18 +49,28 @@ async function handleAuthRequest(request: Request): Promise<Response> {
     database: runtime.DB,
     secret: runtime.BETTER_AUTH_SECRET,
     baseURL: url.origin,
-    allowSignUp: isFirstUser,
+    allowSignUp: isFirstUser || Boolean(invitation),
   });
   const response = await auth.handler(request);
 
-  if (isFirstUser && response.ok) {
+  if (isEmailSignUp && response.ok) {
     const payload = (await response.clone().json()) as SignUpPayload;
-    if (payload.user?.id) {
+    if (payload.user?.id && isFirstUser) {
       await bootstrapFamily(runtime.DB, payload.user.id, payload.user.name ?? "Our family");
+    } else if (payload.user?.id && invitation) {
+      await acceptInvitation(runtime.DB, invitation, payload.user.id);
     }
   }
 
   return response;
+}
+
+async function readSignUpInput(request: { json(): Promise<unknown> }): Promise<SignUpInput | null> {
+  try {
+    return (await request.json()) as SignUpInput;
+  } catch {
+    return null;
+  }
 }
 
 async function bootstrapFamily(database: D1Database, userId: string, ownerName: string) {
