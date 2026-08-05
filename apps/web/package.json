@@ -14,10 +14,13 @@
     "build": "vp build",
     "preview": "vp preview",
     "deploy": "vp run build && wrangler deploy",
+    "build:production": "CLOUDFLARE_ENV=production vp build",
+    "deploy:production": "CLOUDFLARE_ENV=production vp build && wrangler deploy",
     "typecheck": "tsr generate && tsc --noEmit",
     "cf-typegen": "wrangler types",
     "db:migrate:local": "wrangler d1 migrations apply DB --local",
-    "db:migrate:remote": "wrangler d1 migrations apply DB --remote"
+    "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "db:migrate:production": "wrangler d1 migrations apply DB --remote --env production"
   },
   "dependencies": {
     "@everlittle/domain": "workspace:*",

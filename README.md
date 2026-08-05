@@ -72,11 +72,25 @@ pnpm ready
 
 ## Deployment
 
-1. Create a D1 database and R2 bucket.
-2. Replace the placeholder resource identifiers in `apps/web/wrangler.jsonc`.
-3. Apply migrations with `pnpm db:migrate:remote`.
-4. Add `BETTER_AUTH_SECRET` with `wrangler secret put BETTER_AUTH_SECRET`.
-5. Deploy with `pnpm --filter @everlittle/web deploy`.
+The reference self-hosted installation runs at [dikichoetso.com](https://dikichoetso.com). Its
+Cloudflare environment is configured under `env.production` in `apps/web/wrangler.jsonc`.
+
+```sh
+pnpm db:migrate:production
+pnpm deploy:production
+```
+
+The Cloudflare Vite plugin selects that environment at build time with
+`CLOUDFLARE_ENV=production`; passing `--env production` only to the final `wrangler deploy` command
+is not sufficient.
+
+For another self-hosted installation:
+
+1. Create a D1 database and private R2 bucket.
+2. Add a separate Wrangler environment with its resource identifiers and custom domain.
+3. Apply migrations against that environment.
+4. Add a unique `BETTER_AUTH_SECRET` with `wrangler secret put`.
+5. Build with `CLOUDFLARE_ENV=<environment>` and deploy the generated Worker configuration.
 
 ## Privacy posture
 

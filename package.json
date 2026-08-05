@@ -12,6 +12,8 @@
     "cf-typegen": "vp run @everlittle/web#cf-typegen",
     "db:migrate:local": "vp run @everlittle/web#db:migrate:local",
     "db:migrate:remote": "vp run @everlittle/web#db:migrate:remote",
+    "db:migrate:production": "vp run @everlittle/web#db:migrate:production",
+    "deploy:production": "vp run @everlittle/web#deploy:production",
     "setup:vp": "vp config"
   },
   "devDependencies": {

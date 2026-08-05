@@ -4,6 +4,9 @@
   "compatibility_date": "2026-08-05",
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
+  "secrets": {
+    "required": ["BETTER_AUTH_SECRET"],
+  },
   "assets": {
     "not_found_handling": "single-page-application",
   },
@@ -28,4 +31,35 @@
       "bucket_name": "everlittle-media",
     },
   ],
+  "env": {
+    "production": {
+      "name": "everlittle-dikichoetso",
+      "secrets": {
+        "required": ["BETTER_AUTH_SECRET"],
+      },
+      "routes": [
+        {
+          "pattern": "dikichoetso.com",
+          "custom_domain": true,
+        },
+      ],
+      "vars": {
+        "APP_NAME": "Everlittle",
+      },
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "everlittle-dikichoetso-db",
+          "database_id": "09349ff2-e49b-4656-a48d-a3b6d9b74437",
+          "migrations_dir": "migrations",
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "MEDIA",
+          "bucket_name": "everlittle-dikichoetso-media",
+        },
+      ],
+    },
+  },
 }
