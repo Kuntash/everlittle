@@ -105,6 +105,9 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
   }
 
   const memoryMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)$/);
+  if (memoryMatch && request.method === "PATCH") {
+    return updateMemory(request, memoryMatch[1]);
+  }
   if (memoryMatch && request.method === "DELETE") {
     return deleteMemory(request, memoryMatch[1]);
   }
@@ -686,6 +689,70 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   }
 
   return Response.json({ id: assetId, url: `/api/media/${assetId}` }, { status: 201 });
+}
+
+async function updateMemory(request: Request, memoryId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const database = getRuntimeEnv().DB;
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+
+  const existing = await database
+    .prepare(
+      `SELECT id, child_id AS childId, created_by_user_id AS createdByUserId
+       FROM memory WHERE id = ? AND archive_id = ?`,
+    )
+    .bind(memoryId, context.archiveId)
+    .first<{ id: string; childId: string; createdByUserId: string | null }>();
+  if (!existing) return Response.json({ error: "Memory not found." }, { status: 404 });
+  const canEdit =
+    context.role === "owner" ||
+    context.role === "parent" ||
+    (context.role === "contributor" && existing.createdByUserId === context.user.id);
+  if (!canEdit) return forbidden();
+
+  const parsed = memorySchema.safeParse(await readJson(request));
+  if (!parsed.success || parsed.data.childId !== existing.childId) {
+    return Response.json(
+      { error: "Check the memory title, date, and sharing choice." },
+      { status: 400 },
+    );
+  }
+  if (new Date(parsed.data.happenedAt).valueOf() > Date.now() + 5 * 60 * 1000) {
+    return Response.json({ error: "A memory cannot be dated in the future." }, { status: 400 });
+  }
+  if (parsed.data.audience === "parents" && context.role !== "owner" && context.role !== "parent") {
+    return forbidden();
+  }
+
+  await database.batch([
+    database
+      .prepare(
+        `UPDATE memory
+         SET kind = ?, title = ?, body = ?, happened_at = ?, audience = ?,
+             updated_at = CURRENT_TIMESTAMP
+         WHERE id = ? AND archive_id = ?`,
+      )
+      .bind(
+        parsed.data.kind,
+        parsed.data.title,
+        parsed.data.body || null,
+        parsed.data.happenedAt,
+        parsed.data.audience,
+        memoryId,
+        context.archiveId,
+      ),
+    auditStatement(database, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "memory.updated",
+      entityType: "memory",
+      entityId: memoryId,
+      metadata: { kind: parsed.data.kind, audience: parsed.data.audience },
+    }),
+  ]);
+  return Response.json({ updated: true });
 }
 
 async function serveMedia(request: Request, assetId: string): Promise<Response> {

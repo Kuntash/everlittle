@@ -15,7 +15,6 @@ import {
   Image,
   LockKeyhole,
   LogOut,
-  Mic,
   Plus,
   PenLine,
   ShieldCheck,
@@ -82,7 +81,7 @@ type ArchiveState = {
   memories: Memory[];
   invitations: PendingInvitation[];
 };
-type View = "parent" | "child" | "family";
+type View = "parent" | "timeline" | "child" | "family";
 
 function Everlittle() {
   const session = authClient.useSession();
@@ -394,8 +393,6 @@ function ArchiveApp({ name }: { name: string }) {
     );
   }
 
-  const childName = state.children[0]?.displayName ?? "Diki Choetso";
-
   return (
     <main className="app-shell">
       <header className="app-header">
@@ -404,6 +401,12 @@ function ArchiveApp({ name }: { name: string }) {
           <div className="view-switch" aria-label="Archive view">
             <button className={view === "parent" ? "active" : ""} onClick={() => setView("parent")}>
               Parent
+            </button>
+            <button
+              className={view === "timeline" ? "active" : ""}
+              onClick={() => setView("timeline")}
+            >
+              Timeline
             </button>
             <button className={view === "child" ? "active" : ""} onClick={() => setView("child")}>
               Child
@@ -424,6 +427,7 @@ function ArchiveApp({ name }: { name: string }) {
       {view === "parent" ? (
         <ParentView
           child={state.children[0]}
+          currentUserId={state.currentMember.userId}
           memories={state.memories}
           name={name}
           onNavigate={setView}
@@ -431,7 +435,17 @@ function ArchiveApp({ name }: { name: string }) {
           role={state.currentMember.role}
         />
       ) : null}
-      {view === "child" ? <ChildView childName={childName} memories={state.memories} /> : null}
+      {view === "timeline" ? (
+        <TimelineView
+          child={state.children[0]}
+          currentUserId={state.currentMember.userId}
+          memories={state.memories}
+          onNavigate={setView}
+          refresh={refresh}
+          role={state.currentMember.role}
+        />
+      ) : null}
+      {view === "child" ? <ChildView child={state.children[0]} memories={state.memories} /> : null}
       {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
     </main>
   );
@@ -440,6 +454,7 @@ function ArchiveApp({ name }: { name: string }) {
 function ParentView({
   name,
   child,
+  currentUserId,
   memories,
   onNavigate,
   refresh,
@@ -447,12 +462,14 @@ function ParentView({
 }: {
   name: string;
   child?: Child;
+  currentUserId: string;
   memories: Memory[];
   onNavigate: (view: View) => void;
   refresh: () => Promise<void>;
   role: FamilyRole;
 }) {
   const [composerKind, setComposerKind] = useState<MemoryKind | null>(null);
+  const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const canCreate = role !== "viewer";
   const childName = child?.displayName ?? "Diki Choetso";
   const featured = memories[0];
@@ -488,7 +505,9 @@ function ParentView({
           <article className="featured-memory">
             <MemoryMedia memory={featured} featured />
             <div className="memory-copy">
-              <p className="eyebrow">Latest {kindLabel(featured.kind)}</p>
+              <p className="eyebrow">
+                {isDemoMemory(featured) ? "Sample · " : ""}Latest {kindLabel(featured.kind)}
+              </p>
               <h2>{featured.title}</h2>
               {featured.body ? <p>{featured.body}</p> : null}
               {featured.mediaType === "audio" && featured.mediaId ? (
@@ -502,6 +521,13 @@ function ParentView({
               <span className="byline">
                 {formatMemoryDate(featured.happenedAt)} · {featured.authorName ?? "Family"}
               </span>
+              <button
+                className="memory-open"
+                onClick={() => setSelectedMemory(featured)}
+                type="button"
+              >
+                Open memory <ArrowRight size={15} />
+              </button>
             </div>
           </article>
         ) : (
@@ -529,7 +555,7 @@ function ParentView({
         </div>
         <div className="memory-list">
           {memories.slice(featured ? 1 : 0, 7).map((memory) => (
-            <MemoryRow key={memory.id} memory={memory} />
+            <MemoryRow key={memory.id} memory={memory} onOpen={() => setSelectedMemory(memory)} />
           ))}
         </div>
       </section>
@@ -538,16 +564,16 @@ function ParentView({
         <h2>What happened today?</h2>
         <div className="capture-grid">
           <button disabled={!canCreate || !child} onClick={() => openComposer("photo")}>
-            <Camera /> Photo
+            {memoryIcon("photo")} Photo
           </button>
           <button disabled={!canCreate || !child} onClick={() => openComposer("story")}>
-            <BookHeart /> Story
+            {memoryIcon("story")} Story
           </button>
           <button disabled={!canCreate || !child} onClick={() => openComposer("voice")}>
-            <Mic /> Voice
+            {memoryIcon("voice")} Voice
           </button>
           <button disabled={!canCreate || !child} onClick={() => openComposer("milestone")}>
-            <Sparkles /> Milestone
+            {memoryIcon("milestone")} Milestone
           </button>
         </div>
         {!child ? (
@@ -578,13 +604,28 @@ function ParentView({
           role={role}
         />
       ) : null}
+      {selectedMemory && child ? (
+        <MemoryDetail
+          child={child}
+          currentUserId={currentUserId}
+          memory={selectedMemory}
+          onClose={() => setSelectedMemory(null)}
+          onChanged={async () => {
+            await refresh();
+            setSelectedMemory(null);
+          }}
+          role={role}
+        />
+      ) : null}
     </div>
   );
 }
 
-function ChildView({ childName, memories }: { childName: string; memories: Memory[] }) {
+function ChildView({ child, memories }: { child?: Child; memories: Memory[] }) {
   const childMemories = memories.filter((memory) => memory.audience === "child");
   const featured = childMemories[0];
+  const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
+  const childName = child?.displayName ?? "Diki Choetso";
   return (
     <div className="child-view">
       <section className="child-hero">
@@ -592,20 +633,35 @@ function ChildView({ childName, memories }: { childName: string; memories: Memor
         <h1>Hi, {childName}.</h1>
         <p>Here are the moments your family kept for you.</p>
         <div className="child-actions">
-          <button className="primary-button">
+          <button
+            className="primary-button"
+            disabled={!featured}
+            onClick={() => featured && setSelectedMemory(featured)}
+          >
             Start with today <ArrowRight size={18} />
           </button>
-          <button className="soft-button">
+          <button
+            className="soft-button"
+            onClick={() =>
+              document.getElementById("child-stories")?.scrollIntoView({ behavior: "smooth" })
+            }
+          >
             <CalendarDays size={18} /> Explore my timeline
           </button>
         </div>
       </section>
       {featured ? (
-        <section className="child-grid real-child-grid">
+        <section className="child-grid real-child-grid" id="child-stories">
           {childMemories.map((memory, index) => (
-            <article className={`story-card ${index === 0 ? "large" : ""}`} key={memory.id}>
+            <button
+              className={`story-card child-story-button ${index === 0 ? "large" : ""}`}
+              key={memory.id}
+              onClick={() => setSelectedMemory(memory)}
+              type="button"
+            >
               {memory.mediaType === "image" ? <MemoryMedia memory={memory} featured /> : null}
               <p className="eyebrow">
+                {isDemoMemory(memory) ? "Sample · " : ""}
                 {kindLabel(memory.kind)} from {memory.authorName ?? "your family"}
               </p>
               <h2>{memory.title}</h2>
@@ -618,7 +674,7 @@ function ChildView({ childName, memories }: { childName: string; memories: Memor
                   src={`/api/media/${memory.mediaId}`}
                 />
               ) : null}
-            </article>
+            </button>
           ))}
         </section>
       ) : (
@@ -628,6 +684,315 @@ function ChildView({ childName, memories }: { childName: string; memories: Memor
           <p>The memories marked “For Diki” will appear here.</p>
         </section>
       )}
+      {selectedMemory && child ? (
+        <MemoryDetail
+          child={child}
+          currentUserId=""
+          memory={selectedMemory}
+          onChanged={async () => undefined}
+          onClose={() => setSelectedMemory(null)}
+          role="viewer"
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function TimelineView({
+  child,
+  currentUserId,
+  memories,
+  onNavigate,
+  refresh,
+  role,
+}: {
+  child?: Child;
+  currentUserId: string;
+  memories: Memory[];
+  onNavigate: (view: View) => void;
+  refresh: () => Promise<void>;
+  role: FamilyRole;
+}) {
+  const [filter, setFilter] = useState<MemoryKind | "all">("all");
+  const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
+  const visible = filter === "all" ? memories : memories.filter((memory) => memory.kind === filter);
+  const groups = new Map<string, Memory[]>();
+  for (const memory of visible) {
+    const key = new Intl.DateTimeFormat(undefined, { month: "long", year: "numeric" }).format(
+      new Date(memory.happenedAt),
+    );
+    groups.set(key, [...(groups.get(key) ?? []), memory]);
+  }
+
+  return (
+    <div className="timeline-page">
+      <section className="timeline-hero">
+        <p className="eyebrow">Her days, kept gently</p>
+        <h1>{child?.displayName ?? "Diki Choetso"}’s timeline</h1>
+        <p>Every small beginning, in the order your family remembers it.</p>
+      </section>
+      <div className="timeline-filters" aria-label="Filter memories">
+        <button
+          className={filter === "all" ? "active" : ""}
+          onClick={() => setFilter("all")}
+          type="button"
+        >
+          All
+        </button>
+        {(["photo", "story", "voice", "milestone", "letter"] as MemoryKind[]).map((kind) => (
+          <button
+            className={filter === kind ? "active" : ""}
+            key={kind}
+            onClick={() => setFilter(kind)}
+            type="button"
+          >
+            {memoryIcon(kind)}
+            <span>{kindLabel(kind)}</span>
+          </button>
+        ))}
+      </div>
+      {groups.size ? (
+        <div className="timeline-groups">
+          {[...groups].map(([label, items]) => (
+            <section className="timeline-group" key={label}>
+              <header>
+                <span />
+                <h2>{label}</h2>
+                <small>
+                  {items.length} {items.length === 1 ? "memory" : "memories"}
+                </small>
+              </header>
+              <div className="timeline-cards">
+                {items.map((memory) => (
+                  <button
+                    className="timeline-card"
+                    key={memory.id}
+                    onClick={() => setSelectedMemory(memory)}
+                    type="button"
+                  >
+                    <MemoryMedia memory={memory} />
+                    <span className="timeline-card-copy">
+                      <small>
+                        {isDemoMemory(memory) ? "Sample · " : ""}
+                        {kindLabel(memory.kind)} · {audienceLabel(memory.audience)}
+                      </small>
+                      <strong>{memory.title}</strong>
+                      <span>{memory.body ?? `Kept by ${memory.authorName ?? "family"}`}</span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <section className="timeline-empty">
+          <Sparkles />
+          <h2>No {filter === "all" ? "memories" : `${filter} memories`} yet.</h2>
+          <p>New moments will settle here in time.</p>
+        </section>
+      )}
+      <MobileNav active="timeline" onNavigate={onNavigate} />
+      {selectedMemory && child ? (
+        <MemoryDetail
+          child={child}
+          currentUserId={currentUserId}
+          memory={selectedMemory}
+          onClose={() => setSelectedMemory(null)}
+          onChanged={async () => {
+            await refresh();
+            setSelectedMemory(null);
+          }}
+          role={role}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function MemoryDetail({
+  child,
+  currentUserId,
+  memory,
+  onClose,
+  onChanged,
+  role,
+}: {
+  child: Child;
+  currentUserId: string;
+  memory: Memory;
+  onClose: () => void;
+  onChanged: () => Promise<void>;
+  role: FamilyRole;
+}) {
+  const [editing, setEditing] = useState(false);
+  const [title, setTitle] = useState(memory.title);
+  const [body, setBody] = useState(memory.body ?? "");
+  const [happenedAt, setHappenedAt] = useState(toLocalDateTime(memory.happenedAt));
+  const [audience, setAudience] = useState<Memory["audience"]>(memory.audience);
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  const canEdit =
+    role === "owner" ||
+    role === "parent" ||
+    (role === "contributor" && memory.createdByUserId === currentUserId);
+  useDocumentScrollLock();
+
+  async function save(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusy(true);
+    setError("");
+    const response = await apiFetch(`/api/archive/memories/${memory.id}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        childId: child.id,
+        kind: memory.kind,
+        title,
+        body: body || undefined,
+        happenedAt: new Date(happenedAt).toISOString(),
+        audience,
+      }),
+    });
+    if (!response.ok) {
+      setError(await responseError(response));
+      setBusy(false);
+      return;
+    }
+    await onChanged();
+  }
+
+  async function remove() {
+    if (!confirm(`Delete “${memory.title}”? Its private media will also be removed.`)) return;
+    setBusy(true);
+    const response = await apiFetch(`/api/archive/memories/${memory.id}`, { method: "DELETE" });
+    if (!response.ok) {
+      setError(await responseError(response));
+      setBusy(false);
+      return;
+    }
+    await onChanged();
+  }
+
+  return (
+    <div
+      className="composer-backdrop"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget && !busy) onClose();
+      }}
+    >
+      <section
+        className="memory-detail"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="memory-detail-title"
+      >
+        <header className="composer-header detail-header">
+          <div>
+            <p className="eyebrow">
+              {isDemoMemory(memory) ? "Sample · " : ""}
+              {kindLabel(memory.kind)} · {audienceLabel(memory.audience)}
+            </p>
+            <h2 id="memory-detail-title">{editing ? "Edit this memory" : memory.title}</h2>
+          </div>
+          <button aria-label="Close" disabled={busy} onClick={onClose} type="button">
+            <X />
+          </button>
+        </header>
+        {editing ? (
+          <form className="composer-form detail-form" onSubmit={save}>
+            <label>
+              Memory title
+              <input
+                maxLength={160}
+                onChange={(event) => setTitle(event.target.value)}
+                required
+                value={title}
+              />
+            </label>
+            <label>
+              The story behind it
+              <textarea
+                maxLength={20_000}
+                onChange={(event) => setBody(event.target.value)}
+                rows={6}
+                value={body}
+              />
+            </label>
+            <div className="composer-fields">
+              <label>
+                When it happened
+                <input
+                  max={currentLocalDateTime()}
+                  onChange={(event) => setHappenedAt(event.target.value)}
+                  required
+                  type="datetime-local"
+                  value={happenedAt}
+                />
+              </label>
+              <label>
+                Who can see it
+                <select
+                  onChange={(event) => setAudience(event.target.value as Memory["audience"])}
+                  value={audience}
+                >
+                  <option value="family">Family archive</option>
+                  {role === "owner" || role === "parent" ? (
+                    <option value="parents">Parents only</option>
+                  ) : null}
+                  <option value="child">For Diki</option>
+                </select>
+              </label>
+            </div>
+            {error ? <p className="form-error">{error}</p> : null}
+            <div className="composer-actions">
+              <button
+                className="text-button"
+                disabled={busy}
+                onClick={() => setEditing(false)}
+                type="button"
+              >
+                Cancel
+              </button>
+              <button className="primary-button" disabled={busy} type="submit">
+                {busy ? "Saving…" : "Save changes"}
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className="detail-content">
+            <MemoryMedia memory={memory} featured />
+            {memory.body ? <p className="detail-story">{memory.body}</p> : null}
+            {memory.mediaType === "audio" && memory.mediaId ? (
+              <audio
+                className="memory-audio"
+                controls
+                preload="metadata"
+                src={`/api/media/${memory.mediaId}`}
+              />
+            ) : null}
+            <p className="detail-meta">
+              Kept by {memory.authorName ?? "family"} · {formatMemoryDate(memory.happenedAt)}
+            </p>
+            {error ? <p className="form-error">{error}</p> : null}
+            {canEdit ? (
+              <div className="detail-actions">
+                <button className="soft-button" onClick={() => setEditing(true)} type="button">
+                  <PenLine size={16} /> Edit memory
+                </button>
+                <button
+                  className="delete-memory"
+                  disabled={busy}
+                  onClick={() => void remove()}
+                  type="button"
+                >
+                  <Trash2 size={16} /> Delete
+                </button>
+              </div>
+            ) : null}
+          </div>
+        )}
+      </section>
     </div>
   );
 }
@@ -655,6 +1020,7 @@ function MemoryComposer({
   const [stage, setStage] = useState<"idle" | "saving" | "uploading">("idle");
 
   const needsMedia = kind === "photo" || kind === "voice";
+  useDocumentScrollLock();
 
   function chooseKind(nextKind: MemoryKind) {
     setKind(nextKind);
@@ -1200,19 +1566,20 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   );
 }
 
-function MemoryRow({ memory }: { memory: Memory }) {
+function MemoryRow({ memory, onOpen }: { memory: Memory; onOpen: () => void }) {
   return (
-    <article className="memory-row">
+    <button className="memory-row" onClick={onOpen} type="button">
       <span>{memoryIcon(memory.kind)}</span>
       <div>
         <h3>{memory.title}</h3>
         <p>
           {formatMemoryDate(memory.happenedAt)} · {memory.authorName ?? "Family"} ·{" "}
           {audienceLabel(memory.audience)}
+          {isDemoMemory(memory) ? " · Sample" : ""}
         </p>
       </div>
       <Heart size={18} />
-    </article>
+    </button>
   );
 }
 
@@ -1223,7 +1590,10 @@ function MobileNav({ active, onNavigate }: { active: View; onNavigate: (view: Vi
         <Home />
         Home
       </button>
-      <button>
+      <button
+        className={active === "timeline" ? "active" : ""}
+        onClick={() => onNavigate("timeline")}
+      >
         <Image />
         Timeline
       </button>
@@ -1294,6 +1664,40 @@ function currentLocalDateTime() {
   return local.toISOString().slice(0, 16);
 }
 
+function toLocalDateTime(value: string) {
+  const date = new Date(value);
+  return new Date(date.getTime() - date.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
+}
+
+function useDocumentScrollLock() {
+  useEffect(() => {
+    const scrollY = window.scrollY;
+    const previous = {
+      bodyOverflow: document.body.style.overflow,
+      bodyPosition: document.body.style.position,
+      bodyTop: document.body.style.top,
+      bodyWidth: document.body.style.width,
+      htmlOverflow: document.documentElement.style.overflow,
+      htmlOverscroll: document.documentElement.style.overscrollBehavior,
+    };
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+    document.documentElement.style.overflow = "hidden";
+    document.documentElement.style.overscrollBehavior = "none";
+    return () => {
+      document.body.style.overflow = previous.bodyOverflow;
+      document.body.style.position = previous.bodyPosition;
+      document.body.style.top = previous.bodyTop;
+      document.body.style.width = previous.bodyWidth;
+      document.documentElement.style.overflow = previous.htmlOverflow;
+      document.documentElement.style.overscrollBehavior = previous.htmlOverscroll;
+      window.scrollTo(0, scrollY);
+    };
+  }, []);
+}
+
 function kindLabel(kind: MemoryKind) {
   return kind.charAt(0).toUpperCase() + kind.slice(1);
 }
@@ -1305,11 +1709,7 @@ function audienceLabel(audience: Memory["audience"]) {
 }
 
 function memoryIcon(kind: MemoryKind) {
-  if (kind === "photo") return <Camera />;
-  if (kind === "voice") return <Mic />;
-  if (kind === "milestone") return <Sparkles />;
-  if (kind === "letter") return <BookHeart />;
-  return <PenLine />;
+  return <img alt="" className="memory-kind-art" src={`/memory-icons/${kind}.png`} />;
 }
 
 function memoryTitlePlaceholder(kind: MemoryKind) {
@@ -1329,4 +1729,8 @@ function memoryBodyPlaceholder(kind: MemoryKind) {
 function formatFileSize(bytes: number) {
   if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function isDemoMemory(memory: Memory) {
+  return memory.id.startsWith("demo-memory-");
 }
