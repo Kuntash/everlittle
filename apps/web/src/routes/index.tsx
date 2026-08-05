@@ -17,11 +17,13 @@ import {
   LogOut,
   Plus,
   PenLine,
+  PlayCircle,
   ShieldCheck,
   Sparkles,
   Trash2,
   UserPlus,
   Users,
+  Video,
   X,
 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -49,7 +51,7 @@ type Member = {
   image?: string | null;
 };
 type Child = { id: string; displayName: string; birthDate: string; avatarAssetKey?: string | null };
-type MemoryKind = "photo" | "story" | "voice" | "milestone" | "letter";
+type MemoryKind = "photo" | "story" | "voice" | "video" | "milestone" | "letter";
 type Memory = {
   id: string;
   childId: string;
@@ -62,9 +64,21 @@ type Memory = {
   createdByUserId: string | null;
   authorName: string | null;
   mediaId: string | null;
-  mediaType: "image" | "audio" | null;
+  mediaType: "image" | "audio" | "video" | null;
   contentType: string | null;
   byteSize: number | null;
+};
+type Capsule = {
+  id: string;
+  childId: string;
+  title: string;
+  body: string | null;
+  unlocksAt: string;
+  audience: "family" | "child";
+  createdAt: string;
+  createdByUserId: string | null;
+  authorName: string | null;
+  locked: 0 | 1;
 };
 type PendingInvitation = {
   id: string;
@@ -79,9 +93,10 @@ type ArchiveState = {
   members: Member[];
   children: Child[];
   memories: Memory[];
+  capsules: Capsule[];
   invitations: PendingInvitation[];
 };
-type View = "parent" | "timeline" | "child" | "family";
+type View = "parent" | "timeline" | "capsules" | "child" | "family";
 
 function Everlittle() {
   const session = authClient.useSession();
@@ -408,6 +423,12 @@ function ArchiveApp({ name }: { name: string }) {
             >
               Timeline
             </button>
+            <button
+              className={view === "capsules" ? "active" : ""}
+              onClick={() => setView("capsules")}
+            >
+              Capsules
+            </button>
             <button className={view === "child" ? "active" : ""} onClick={() => setView("child")}>
               Child
             </button>
@@ -445,7 +466,25 @@ function ArchiveApp({ name }: { name: string }) {
           role={state.currentMember.role}
         />
       ) : null}
-      {view === "child" ? <ChildView child={state.children[0]} memories={state.memories} /> : null}
+      {view === "capsules" ? (
+        <CapsulesView
+          capsules={state.capsules}
+          child={state.children[0]}
+          currentUserId={state.currentMember.userId}
+          onNavigate={setView}
+          refresh={refresh}
+          role={state.currentMember.role}
+        />
+      ) : null}
+      {view === "child" ? (
+        <ChildView
+          capsules={state.capsules.filter(
+            (capsule) => !capsule.locked && capsule.audience === "child",
+          )}
+          child={state.children[0]}
+          memories={state.memories}
+        />
+      ) : null}
       {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
     </main>
   );
@@ -510,14 +549,7 @@ function ParentView({
               </p>
               <h2>{featured.title}</h2>
               {featured.body ? <p>{featured.body}</p> : null}
-              {featured.mediaType === "audio" && featured.mediaId ? (
-                <audio
-                  className="memory-audio"
-                  controls
-                  preload="metadata"
-                  src={`/api/media/${featured.mediaId}`}
-                />
-              ) : null}
+              {featured.kind === "voice" ? <MemoryPlayback memory={featured} /> : null}
               <span className="byline">
                 {formatMemoryDate(featured.happenedAt)} · {featured.authorName ?? "Family"}
               </span>
@@ -572,6 +604,9 @@ function ParentView({
           <button disabled={!canCreate || !child} onClick={() => openComposer("voice")}>
             {memoryIcon("voice")} Voice
           </button>
+          <button disabled={!canCreate || !child} onClick={() => openComposer("video")}>
+            {memoryIcon("video")} Video
+          </button>
           <button disabled={!canCreate || !child} onClick={() => openComposer("milestone")}>
             {memoryIcon("milestone")} Milestone
           </button>
@@ -586,7 +621,7 @@ function ParentView({
           <p className="eyebrow">Future capsule</p>
           <h3>For when you’re 18</h3>
           <p>Write a note now for Diki to open one day.</p>
-          <button>
+          <button onClick={() => onNavigate("capsules")} type="button">
             Add a note <ArrowRight size={16} />
           </button>
         </div>
@@ -621,7 +656,15 @@ function ParentView({
   );
 }
 
-function ChildView({ child, memories }: { child?: Child; memories: Memory[] }) {
+function ChildView({
+  capsules,
+  child,
+  memories,
+}: {
+  capsules: Capsule[];
+  child?: Child;
+  memories: Memory[];
+}) {
   const childMemories = memories.filter((memory) => memory.audience === "child");
   const featured = childMemories[0];
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
@@ -666,14 +709,7 @@ function ChildView({ child, memories }: { child?: Child; memories: Memory[] }) {
               </p>
               <h2>{memory.title}</h2>
               {memory.body ? <p>{memory.body}</p> : null}
-              {memory.mediaType === "audio" && memory.mediaId ? (
-                <audio
-                  className="memory-audio"
-                  controls
-                  preload="metadata"
-                  src={`/api/media/${memory.mediaId}`}
-                />
-              ) : null}
+              {memory.kind === "voice" ? <MemoryPlayback memory={memory} /> : null}
             </button>
           ))}
         </section>
@@ -684,6 +720,22 @@ function ChildView({ child, memories }: { child?: Child; memories: Memory[] }) {
           <p>The memories marked “For Diki” will appear here.</p>
         </section>
       )}
+      {capsules.length ? (
+        <section className="child-capsules">
+          <p className="eyebrow">Opened for you</p>
+          <h2>Letters sent from an earlier day</h2>
+          {capsules.map((capsule) => (
+            <article key={capsule.id}>
+              <BookHeart />
+              <div>
+                <small>From {capsule.authorName ?? "your family"}</small>
+                <h3>{capsule.title}</h3>
+                <p>{capsule.body}</p>
+              </div>
+            </article>
+          ))}
+        </section>
+      ) : null}
       {selectedMemory && child ? (
         <MemoryDetail
           child={child}
@@ -739,17 +791,19 @@ function TimelineView({
         >
           All
         </button>
-        {(["photo", "story", "voice", "milestone", "letter"] as MemoryKind[]).map((kind) => (
-          <button
-            className={filter === kind ? "active" : ""}
-            key={kind}
-            onClick={() => setFilter(kind)}
-            type="button"
-          >
-            {memoryIcon(kind)}
-            <span>{kindLabel(kind)}</span>
-          </button>
-        ))}
+        {(["photo", "story", "voice", "video", "milestone", "letter"] as MemoryKind[]).map(
+          (kind) => (
+            <button
+              className={filter === kind ? "active" : ""}
+              key={kind}
+              onClick={() => setFilter(kind)}
+              type="button"
+            >
+              {memoryIcon(kind)}
+              <span>{kindLabel(kind)}</span>
+            </button>
+          ),
+        )}
       </div>
       {groups.size ? (
         <div className="timeline-groups">
@@ -963,14 +1017,7 @@ function MemoryDetail({
           <div className="detail-content">
             <MemoryMedia memory={memory} featured />
             {memory.body ? <p className="detail-story">{memory.body}</p> : null}
-            {memory.mediaType === "audio" && memory.mediaId ? (
-              <audio
-                className="memory-audio"
-                controls
-                preload="metadata"
-                src={`/api/media/${memory.mediaId}`}
-              />
-            ) : null}
+            {memory.kind === "voice" ? <MemoryPlayback memory={memory} /> : null}
             <p className="detail-meta">
               Kept by {memory.authorName ?? "family"} · {formatMemoryDate(memory.happenedAt)}
             </p>
@@ -1019,7 +1066,7 @@ function MemoryComposer({
   const [error, setError] = useState("");
   const [stage, setStage] = useState<"idle" | "saving" | "uploading">("idle");
 
-  const needsMedia = kind === "photo" || kind === "voice";
+  const needsMedia = kind === "photo" || kind === "voice" || kind === "video";
   useDocumentScrollLock();
 
   function chooseKind(nextKind: MemoryKind) {
@@ -1032,12 +1079,16 @@ function MemoryComposer({
     event.preventDefault();
     if (needsMedia && !file) {
       setError(
-        kind === "photo" ? "Choose a photograph to keep." : "Choose an audio recording to keep.",
+        kind === "photo"
+          ? "Choose a photograph to keep."
+          : kind === "voice"
+            ? "Choose an audio recording to keep."
+            : "Choose a video to keep.",
       );
       return;
     }
-    if (file && file.size > 25 * 1024 * 1024) {
-      setError("Media files must be 25 MB or smaller.");
+    if (file && file.size > 50 * 1024 * 1024) {
+      setError("Media files must be 50 MB or smaller.");
       return;
     }
 
@@ -1104,17 +1155,19 @@ function MemoryComposer({
         </header>
 
         <div className="kind-picker" aria-label="Memory type">
-          {(["photo", "story", "voice", "milestone", "letter"] as MemoryKind[]).map((item) => (
-            <button
-              className={kind === item ? "active" : ""}
-              key={item}
-              onClick={() => chooseKind(item)}
-              type="button"
-            >
-              {memoryIcon(item)}
-              <span>{kindLabel(item)}</span>
-            </button>
-          ))}
+          {(["photo", "story", "voice", "video", "milestone", "letter"] as MemoryKind[]).map(
+            (item) => (
+              <button
+                className={kind === item ? "active" : ""}
+                key={item}
+                onClick={() => chooseKind(item)}
+                type="button"
+              >
+                {memoryIcon(item)}
+                <span>{kindLabel(item)}</span>
+              </button>
+            ),
+          )}
         </div>
 
         <form className="composer-form" onSubmit={submit}>
@@ -1146,28 +1199,32 @@ function MemoryComposer({
 
           {needsMedia ? (
             <label className="media-drop">
-              {kind === "photo" ? <Camera /> : <FileAudio />}
+              {kind === "photo" ? <Camera /> : kind === "voice" ? <FileAudio /> : <Video />}
               <span>
                 <strong>
                   {file
                     ? file.name
                     : kind === "photo"
                       ? "Choose a photograph"
-                      : "Choose an audio recording"}
+                      : kind === "voice"
+                        ? "Choose an audio recording"
+                        : "Choose a video"}
                 </strong>
                 <small>
                   {file
                     ? formatFileSize(file.size)
-                    : "JPEG, PNG, WebP, MP3, M4A, WebM, OGG or WAV · up to 25 MB"}
+                    : "Photos, MP3, M4A, MP4, MOV or WebM · up to 50 MB"}
                 </small>
               </span>
               <input
                 accept={
                   kind === "photo"
                     ? "image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif"
-                    : "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/webm,audio/ogg,audio/wav,audio/wave,audio/x-wav"
+                    : kind === "voice"
+                      ? "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/webm,audio/ogg,audio/wav,audio/wave,audio/x-wav"
+                      : "video/mp4,video/webm,video/quicktime"
                 }
-                capture={kind === "voice" ? "user" : undefined}
+                capture={kind === "voice" || kind === "video" ? "user" : undefined}
                 onChange={(event) => setFile(event.target.files?.[0] ?? null)}
                 required
                 type="file"
@@ -1245,10 +1302,331 @@ function MemoryMedia({ memory, featured = false }: { memory: Memory; featured?: 
       </div>
     );
   }
+  if (memory.mediaType === "video" && memory.mediaId) {
+    return (
+      <div className={`memory-video ${featured ? "featured" : ""}`}>
+        <video controls playsInline preload="metadata" src={`/api/media/${memory.mediaId}`} />
+        <span>{formatMemoryDate(memory.happenedAt)}</span>
+      </div>
+    );
+  }
   return (
     <div className={`memory-photo memory-symbol ${memory.kind}`}>
       {memoryIcon(memory.kind)}
       <span>{formatMemoryDate(memory.happenedAt)}</span>
+    </div>
+  );
+}
+
+function MemoryPlayback({ memory }: { memory: Memory }) {
+  if (memory.mediaType === "audio" && memory.mediaId) {
+    return (
+      <div className="voice-player">
+        <span aria-hidden="true">
+          <PlayCircle />
+        </span>
+        <audio
+          aria-label={`Play ${memory.title}`}
+          controls
+          preload="metadata"
+          src={`/api/media/${memory.mediaId}`}
+        />
+      </div>
+    );
+  }
+  return (
+    <div className="voice-player empty" aria-label="No recording attached">
+      <span aria-hidden="true">
+        <PlayCircle />
+      </span>
+      <p>No recording is attached to this sample.</p>
+    </div>
+  );
+}
+
+function CapsulesView({
+  capsules,
+  child,
+  currentUserId,
+  onNavigate,
+  refresh,
+  role,
+}: {
+  capsules: Capsule[];
+  child?: Child;
+  currentUserId: string;
+  onNavigate: (view: View) => void;
+  refresh: () => Promise<void>;
+  role: FamilyRole;
+}) {
+  const [creating, setCreating] = useState(false);
+  const [error, setError] = useState("");
+  const locked = capsules.filter((capsule) => capsule.locked);
+  const opened = capsules.filter((capsule) => !capsule.locked);
+  const canCreate = role !== "viewer";
+
+  async function remove(capsule: Capsule) {
+    if (!confirm(`Delete the capsule “${capsule.title}”?`)) return;
+    const response = await apiFetch(`/api/archive/capsules/${capsule.id}`, { method: "DELETE" });
+    if (!response.ok) {
+      setError(await responseError(response));
+      return;
+    }
+    await refresh();
+  }
+
+  return (
+    <div className="capsules-page">
+      <section className="capsules-hero">
+        <div>
+          <p className="eyebrow">Words for her future</p>
+          <h1>Time capsules</h1>
+          <p>
+            Seal a note today. Everlittle will keep its contents private until the day you choose.
+          </p>
+        </div>
+        {canCreate ? (
+          <button className="primary-button" disabled={!child} onClick={() => setCreating(true)}>
+            <Plus size={17} /> New capsule
+          </button>
+        ) : null}
+      </section>
+
+      {error ? <p className="form-error capsule-page-error">{error}</p> : null}
+      {capsules.length ? (
+        <div className="capsule-sections">
+          {locked.length ? (
+            <section>
+              <header className="section-heading">
+                <h2>Waiting for their day</h2>
+                <span>{locked.length} sealed</span>
+              </header>
+              <div className="capsule-grid">
+                {locked.map((capsule) => (
+                  <article className="capsule-item locked" key={capsule.id}>
+                    <span className="capsule-lock">
+                      <LockKeyhole />
+                    </span>
+                    <p className="eyebrow">Opens {formatDate(capsule.unlocksAt)}</p>
+                    <h3>{capsule.title}</h3>
+                    <p>The note is sealed—even the person who wrote it cannot read it yet.</p>
+                    <footer>
+                      <small>From {capsule.authorName ?? "family"}</small>
+                      {role === "owner" ||
+                      role === "parent" ||
+                      capsule.createdByUserId === currentUserId ? (
+                        <button
+                          aria-label={`Delete ${capsule.title}`}
+                          onClick={() => void remove(capsule)}
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      ) : null}
+                    </footer>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+          {opened.length ? (
+            <section>
+              <header className="section-heading">
+                <h2>Ready to open</h2>
+                <span>{opened.length} opened</span>
+              </header>
+              <div className="capsule-grid">
+                {opened.map((capsule) => (
+                  <article className="capsule-item opened" key={capsule.id}>
+                    <span className="capsule-lock">
+                      <BookHeart />
+                    </span>
+                    <p className="eyebrow">Opened {formatDate(capsule.unlocksAt)}</p>
+                    <h3>{capsule.title}</h3>
+                    <p className="capsule-body">{capsule.body}</p>
+                    <footer>
+                      <small>From {capsule.authorName ?? "family"}</small>
+                      {role === "owner" ||
+                      role === "parent" ||
+                      capsule.createdByUserId === currentUserId ? (
+                        <button
+                          aria-label={`Delete ${capsule.title}`}
+                          onClick={() => void remove(capsule)}
+                        >
+                          <Trash2 size={15} />
+                        </button>
+                      ) : null}
+                    </footer>
+                  </article>
+                ))}
+              </div>
+            </section>
+          ) : null}
+        </div>
+      ) : (
+        <section className="capsules-empty">
+          <span>
+            <LockKeyhole />
+          </span>
+          <p className="eyebrow">A message can travel through time</p>
+          <h2>Write something Diki should meet later.</h2>
+          <p>A birthday letter, a family story, or a few words for the person she is becoming.</p>
+          {canCreate && child ? (
+            <button className="primary-button" onClick={() => setCreating(true)}>
+              Create the first capsule <ArrowRight size={17} />
+            </button>
+          ) : null}
+        </section>
+      )}
+      <MobileNav active="capsules" onNavigate={onNavigate} />
+      {creating && child ? (
+        <CapsuleComposer
+          child={child}
+          onClose={() => setCreating(false)}
+          onCreated={async () => {
+            await refresh();
+            setCreating(false);
+          }}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function CapsuleComposer({
+  child,
+  onClose,
+  onCreated,
+}: {
+  child: Child;
+  onClose: () => void;
+  onCreated: () => Promise<void>;
+}) {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [unlocksAt, setUnlocksAt] = useState(defaultCapsuleDate());
+  const [audience, setAudience] = useState<"family" | "child">("child");
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+  useDocumentScrollLock();
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusy(true);
+    setError("");
+    const response = await apiFetch("/api/archive/capsules", {
+      method: "POST",
+      body: JSON.stringify({
+        childId: child.id,
+        title,
+        body,
+        unlocksAt: new Date(unlocksAt).toISOString(),
+        audience,
+      }),
+    });
+    if (!response.ok) {
+      setError(await responseError(response));
+      setBusy(false);
+      return;
+    }
+    await onCreated();
+  }
+
+  function setEighteenthBirthday() {
+    const birthday = new Date(`${child.birthDate}T09:00:00`);
+    birthday.setFullYear(birthday.getFullYear() + 18);
+    setUnlocksAt(toLocalDateTime(birthday.toISOString()));
+  }
+
+  return (
+    <div
+      className="composer-backdrop"
+      role="presentation"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget && !busy) onClose();
+      }}
+    >
+      <section
+        className="memory-composer capsule-composer"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="capsule-title"
+      >
+        <header className="composer-header">
+          <div>
+            <p className="eyebrow">Seal it for later</p>
+            <h2 id="capsule-title">A capsule for {child.displayName}</h2>
+          </div>
+          <button aria-label="Close" disabled={busy} onClick={onClose} type="button">
+            <X />
+          </button>
+        </header>
+        <form className="composer-form" onSubmit={submit}>
+          <label>
+            Capsule title
+            <input
+              autoFocus
+              maxLength={160}
+              onChange={(event) => setTitle(event.target.value)}
+              placeholder="For the day you turn eighteen…"
+              required
+              value={title}
+            />
+          </label>
+          <label>
+            Your sealed note
+            <textarea
+              maxLength={20_000}
+              onChange={(event) => setBody(event.target.value)}
+              placeholder="Dear Diki…"
+              required
+              rows={7}
+              value={body}
+            />
+          </label>
+          <div className="capsule-date-row">
+            <label>
+              Unlock on
+              <input
+                min={currentLocalDateTime()}
+                onChange={(event) => setUnlocksAt(event.target.value)}
+                required
+                type="datetime-local"
+                value={unlocksAt}
+              />
+            </label>
+            <button className="soft-button" onClick={setEighteenthBirthday} type="button">
+              Her 18th birthday
+            </button>
+          </div>
+          <label>
+            Once opened, show it in
+            <select
+              onChange={(event) => setAudience(event.target.value as typeof audience)}
+              value={audience}
+            >
+              <option value="child">Diki’s view</option>
+              <option value="family">Family archive</option>
+            </select>
+          </label>
+          <p className="audience-note">
+            <LockKeyhole size={14} /> The note disappears from API responses until this date. Only
+            its title and unlock date remain visible.
+          </p>
+          {error ? (
+            <p className="form-error" role="alert">
+              {error}
+            </p>
+          ) : null}
+          <div className="composer-actions">
+            <button className="text-button" disabled={busy} onClick={onClose} type="button">
+              Cancel
+            </button>
+            <button className="primary-button" disabled={busy} type="submit">
+              {busy ? "Sealing…" : "Seal capsule"} {!busy ? <LockKeyhole size={16} /> : null}
+            </button>
+          </div>
+        </form>
+      </section>
     </div>
   );
 }
@@ -1597,7 +1975,10 @@ function MobileNav({ active, onNavigate }: { active: View; onNavigate: (view: Vi
         <Image />
         Timeline
       </button>
-      <button>
+      <button
+        className={active === "capsules" ? "active" : ""}
+        onClick={() => onNavigate("capsules")}
+      >
         <BookHeart />
         Capsules
       </button>
@@ -1664,6 +2045,13 @@ function currentLocalDateTime() {
   return local.toISOString().slice(0, 16);
 }
 
+function defaultCapsuleDate() {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() + 1);
+  date.setMinutes(0, 0, 0);
+  return toLocalDateTime(date.toISOString());
+}
+
 function toLocalDateTime(value: string) {
   const date = new Date(value);
   return new Date(date.getTime() - date.getTimezoneOffset() * 60_000).toISOString().slice(0, 16);
@@ -1715,6 +2103,7 @@ function memoryIcon(kind: MemoryKind) {
 function memoryTitlePlaceholder(kind: MemoryKind) {
   if (kind === "photo") return "That sleepy afternoon smile";
   if (kind === "voice") return "The sound she made today";
+  if (kind === "video") return "A little moment in motion";
   if (kind === "milestone") return "She reached for us";
   if (kind === "letter") return "For the day you wonder…";
   return "A small moment worth keeping";

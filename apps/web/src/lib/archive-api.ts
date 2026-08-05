@@ -16,32 +16,44 @@ const childSchema = z.object({
 });
 const memorySchema = z.object({
   childId: z.string().uuid(),
-  kind: z.enum(["photo", "story", "voice", "milestone", "letter"]),
+  kind: z.enum(["photo", "story", "voice", "video", "milestone", "letter"]),
   title: z.string().trim().min(1).max(160),
   body: z.string().trim().max(20_000).optional(),
   happenedAt: z.iso.datetime(),
   audience: z.enum(["parents", "family", "child"]),
 });
+const capsuleSchema = z.object({
+  childId: z.string().uuid(),
+  title: z.string().trim().min(1).max(160),
+  body: z.string().trim().min(1).max(20_000),
+  unlocksAt: z.iso.datetime(),
+  audience: z.enum(["family", "child"]),
+});
 
-const MAX_MEDIA_BYTES = 25 * 1024 * 1024;
-const MEDIA_TYPES: ReadonlyMap<string, { mediaType: "image" | "audio"; extension: string }> =
-  new Map([
-    ["image/jpeg", { mediaType: "image", extension: "jpg" }],
-    ["image/png", { mediaType: "image", extension: "png" }],
-    ["image/webp", { mediaType: "image", extension: "webp" }],
-    ["image/gif", { mediaType: "image", extension: "gif" }],
-    ["image/heic", { mediaType: "image", extension: "heic" }],
-    ["image/heif", { mediaType: "image", extension: "heif" }],
-    ["audio/mpeg", { mediaType: "audio", extension: "mp3" }],
-    ["audio/mp4", { mediaType: "audio", extension: "m4a" }],
-    ["audio/x-m4a", { mediaType: "audio", extension: "m4a" }],
-    ["audio/aac", { mediaType: "audio", extension: "aac" }],
-    ["audio/webm", { mediaType: "audio", extension: "webm" }],
-    ["audio/ogg", { mediaType: "audio", extension: "ogg" }],
-    ["audio/wav", { mediaType: "audio", extension: "wav" }],
-    ["audio/wave", { mediaType: "audio", extension: "wav" }],
-    ["audio/x-wav", { mediaType: "audio", extension: "wav" }],
-  ]);
+const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
+const MEDIA_TYPES: ReadonlyMap<
+  string,
+  { mediaType: "image" | "audio" | "video"; extension: string }
+> = new Map([
+  ["image/jpeg", { mediaType: "image", extension: "jpg" }],
+  ["image/png", { mediaType: "image", extension: "png" }],
+  ["image/webp", { mediaType: "image", extension: "webp" }],
+  ["image/gif", { mediaType: "image", extension: "gif" }],
+  ["image/heic", { mediaType: "image", extension: "heic" }],
+  ["image/heif", { mediaType: "image", extension: "heif" }],
+  ["audio/mpeg", { mediaType: "audio", extension: "mp3" }],
+  ["audio/mp4", { mediaType: "audio", extension: "m4a" }],
+  ["audio/x-m4a", { mediaType: "audio", extension: "m4a" }],
+  ["audio/aac", { mediaType: "audio", extension: "aac" }],
+  ["audio/webm", { mediaType: "audio", extension: "webm" }],
+  ["audio/ogg", { mediaType: "audio", extension: "ogg" }],
+  ["audio/wav", { mediaType: "audio", extension: "wav" }],
+  ["audio/wave", { mediaType: "audio", extension: "wav" }],
+  ["audio/x-wav", { mediaType: "audio", extension: "wav" }],
+  ["video/mp4", { mediaType: "video", extension: "mp4" }],
+  ["video/webm", { mediaType: "video", extension: "webm" }],
+  ["video/quicktime", { mediaType: "video", extension: "mov" }],
+]);
 
 type FamilyRole = "owner" | "parent" | "contributor" | "viewer";
 
@@ -94,6 +106,10 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
     return createMemory(request);
   }
 
+  if (url.pathname === "/api/archive/capsules" && request.method === "POST") {
+    return createCapsule(request);
+  }
+
   const mediaViewMatch = url.pathname.match(/^\/api\/media\/([^/]+)$/);
   if (mediaViewMatch && request.method === "GET") {
     return serveMedia(request, mediaViewMatch[1]);
@@ -110,6 +126,11 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
   }
   if (memoryMatch && request.method === "DELETE") {
     return deleteMemory(request, memoryMatch[1]);
+  }
+
+  const capsuleMatch = url.pathname.match(/^\/api\/archive\/capsules\/([^/]+)$/);
+  if (capsuleMatch && request.method === "DELETE") {
+    return deleteCapsule(request, capsuleMatch[1]);
   }
 
   const childMatch = url.pathname.match(/^\/api\/archive\/children\/([^/]+)$/);
@@ -200,7 +221,7 @@ async function getArchiveState(request: Request): Promise<Response> {
   const context = await getMembershipContext(request);
   if (!context) return unauthorized();
 
-  const [archive, members, children, memories, invitations] = await Promise.all([
+  const [archive, members, children, memories, capsules, invitations] = await Promise.all([
     database
       .prepare(
         `SELECT id, name, slug, timezone, created_at AS createdAt
@@ -248,6 +269,21 @@ async function getArchiveState(request: Request): Promise<Response> {
       )
       .bind(context.archiveId, context.role)
       .all(),
+    database
+      .prepare(
+        `SELECT tc.id, tc.child_id AS childId, tc.title, tc.unlocks_at AS unlocksAt,
+                tc.audience, tc.created_at AS createdAt,
+                tc.created_by_user_id AS createdByUserId, u.name AS authorName,
+                CASE WHEN datetime(tc.unlocks_at) <= CURRENT_TIMESTAMP THEN tc.body ELSE NULL END AS body,
+                CASE WHEN datetime(tc.unlocks_at) <= CURRENT_TIMESTAMP THEN 0 ELSE 1 END AS locked
+         FROM time_capsule tc
+         JOIN child_profile c ON c.id = tc.child_id
+         LEFT JOIN "user" u ON u.id = tc.created_by_user_id
+         WHERE c.archive_id = ?
+         ORDER BY datetime(tc.unlocks_at), tc.created_at DESC`,
+      )
+      .bind(context.archiveId)
+      .all(),
     context.role === "owner"
       ? database
           .prepare(
@@ -272,6 +308,7 @@ async function getArchiveState(request: Request): Promise<Response> {
     members: members.results,
     children: children.results,
     memories: memories.results,
+    capsules: capsules.results,
     invitations: invitations.results,
   });
 }
@@ -603,6 +640,100 @@ async function createMemory(request: Request): Promise<Response> {
   return Response.json({ id: memoryId }, { status: 201 });
 }
 
+async function createCapsule(request: Request): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const database = getRuntimeEnv().DB;
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role === "viewer") return forbidden();
+
+  const parsed = capsuleSchema.safeParse(await readJson(request));
+  if (!parsed.success) {
+    return Response.json(
+      { error: "Add a title, a note, and a valid unlock date." },
+      { status: 400 },
+    );
+  }
+  if (new Date(parsed.data.unlocksAt).valueOf() <= Date.now() + 60_000) {
+    return Response.json(
+      { error: "Choose an unlock time at least a minute from now." },
+      { status: 400 },
+    );
+  }
+  const child = await database
+    .prepare("SELECT id FROM child_profile WHERE id = ? AND archive_id = ?")
+    .bind(parsed.data.childId, context.archiveId)
+    .first();
+  if (!child) return Response.json({ error: "Child profile not found." }, { status: 404 });
+
+  const capsuleId = crypto.randomUUID();
+  await database.batch([
+    database
+      .prepare(
+        `INSERT INTO time_capsule
+          (id, child_id, title, body, unlocks_at, audience, created_by_user_id)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+      )
+      .bind(
+        capsuleId,
+        parsed.data.childId,
+        parsed.data.title,
+        parsed.data.body,
+        parsed.data.unlocksAt,
+        parsed.data.audience,
+        context.user.id,
+      ),
+    auditStatement(database, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "capsule.created",
+      entityType: "time_capsule",
+      entityId: capsuleId,
+      metadata: { unlocksAt: parsed.data.unlocksAt, audience: parsed.data.audience },
+    }),
+  ]);
+
+  // The sealed body is intentionally not echoed in the response.
+  return Response.json({ id: capsuleId, locked: true }, { status: 201 });
+}
+
+async function deleteCapsule(request: Request, capsuleId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const database = getRuntimeEnv().DB;
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+
+  const capsule = await database
+    .prepare(
+      `SELECT tc.id, tc.created_by_user_id AS createdByUserId
+       FROM time_capsule tc
+       JOIN child_profile c ON c.id = tc.child_id
+       WHERE tc.id = ? AND c.archive_id = ?`,
+    )
+    .bind(capsuleId, context.archiveId)
+    .first<{ id: string; createdByUserId: string | null }>();
+  if (!capsule) return Response.json({ error: "Capsule not found." }, { status: 404 });
+  const canDelete =
+    context.role === "owner" ||
+    context.role === "parent" ||
+    (context.role === "contributor" && capsule.createdByUserId === context.user.id);
+  if (!canDelete) return forbidden();
+
+  await database.batch([
+    database.prepare("DELETE FROM time_capsule WHERE id = ?").bind(capsuleId),
+    auditStatement(database, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "capsule.deleted",
+      entityType: "time_capsule",
+      entityId: capsuleId,
+    }),
+  ]);
+  return Response.json({ deleted: true });
+}
+
 async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Response> {
   if (!isSameOrigin(request)) return forbidden();
   const runtime = getRuntimeEnv();
@@ -624,15 +755,19 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   const media = MEDIA_TYPES.get(contentType);
   const byteSize = Number(request.headers.get("content-length") ?? "0");
   if (!media || !request.body || !Number.isSafeInteger(byteSize) || byteSize < 1) {
-    return Response.json({ error: "Choose a supported photo or audio file." }, { status: 400 });
+    return Response.json(
+      { error: "Choose a supported photo, audio, or video file." },
+      { status: 400 },
+    );
   }
   if (byteSize > MAX_MEDIA_BYTES) {
-    return Response.json({ error: "Media files must be 25 MB or smaller." }, { status: 413 });
+    return Response.json({ error: "Media files must be 50 MB or smaller." }, { status: 413 });
   }
   if (
     (memory.kind === "photo" && media.mediaType !== "image") ||
     (memory.kind === "voice" && media.mediaType !== "audio") ||
-    (memory.kind !== "photo" && memory.kind !== "voice")
+    (memory.kind === "video" && media.mediaType !== "video") ||
+    (memory.kind !== "photo" && memory.kind !== "voice" && memory.kind !== "video")
   ) {
     return Response.json({ error: "This file does not match the memory type." }, { status: 400 });
   }

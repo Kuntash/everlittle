@@ -21,8 +21,8 @@
     "db:migrate:local": "wrangler d1 migrations apply DB --local",
     "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
     "db:migrate:production": "wrangler d1 migrations apply DB --remote --env production",
-    "db:fixtures:production": "wrangler d1 execute DB --remote --env production --file fixtures/demo-memories.sql",
-    "db:fixtures:clear:production": "wrangler d1 execute DB --remote --env production --file fixtures/clear-demo-memories.sql"
+    "db:fixtures:production": "wrangler r2 object put everlittle-dikichoetso-media/fixtures/demo-voice-sample-v1.m4a --file fixtures/media/voice-sample.m4a --content-type audio/mp4 --remote && wrangler r2 object put everlittle-dikichoetso-media/fixtures/demo-video-sample-v1.mp4 --file fixtures/media/video-sample.mp4 --content-type video/mp4 --remote && wrangler d1 execute DB --remote --env production --file fixtures/demo-memories.sql",
+    "db:fixtures:clear:production": "wrangler d1 execute DB --remote --env production --file fixtures/clear-demo-memories.sql && wrangler r2 object delete everlittle-dikichoetso-media/fixtures/demo-voice-sample-v1.m4a --remote && wrangler r2 object delete everlittle-dikichoetso-media/fixtures/demo-video-sample-v1.mp4 --remote"
   },
   "dependencies": {
     "@everlittle/domain": "workspace:*",
