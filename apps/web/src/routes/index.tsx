@@ -118,6 +118,8 @@ function Everlittle() {
   const [invitationChecked, setInvitationChecked] = useState(false);
   const inviteToken =
     typeof window === "undefined" ? "" : (new URLSearchParams(location.search).get("invite") ?? "");
+  const childModeRequested =
+    typeof window !== "undefined" && new URLSearchParams(location.search).get("child") === "1";
 
   useEffect(() => {
     void fetch("/api/platform")
@@ -145,6 +147,18 @@ function Everlittle() {
   }, [inviteToken]);
 
   if (session.isPending || !platform || !childSession || !invitationChecked) return <Loading />;
+  if (childModeRequested && platform.childAccess?.enabled) {
+    if (childSession.signedIn) return <ChildArchiveApp />;
+    return (
+      <AccessScreen
+        childAccess={platform.childAccess}
+        forceChildMode
+        invitation={null}
+        inviteToken=""
+        needsSetup={false}
+      />
+    );
+  }
   if (!session.data?.user) {
     if (childSession.signedIn) return <ChildArchiveApp />;
     return (
@@ -174,11 +188,13 @@ function Loading() {
 
 function AccessScreen({
   childAccess,
+  forceChildMode = false,
   invitation,
   inviteToken,
   needsSetup,
 }: {
   childAccess: PlatformState["childAccess"];
+  forceChildMode?: boolean;
   invitation: InvitationPreview | null;
   inviteToken: string;
   needsSetup: boolean;
@@ -187,7 +203,7 @@ function AccessScreen({
   const [mode, setMode] = useState<"sign-in" | "setup">(
     needsSetup || isInvitation ? "setup" : "sign-in",
   );
-  const [entrance, setEntrance] = useState<"adult" | "child">("adult");
+  const [entrance, setEntrance] = useState<"adult" | "child">(forceChildMode ? "child" : "adult");
   const [pin, setPin] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState(invitation?.email ?? "");
@@ -244,7 +260,7 @@ function AccessScreen({
       setSubmitting(false);
       return;
     }
-    window.location.assign("/");
+    window.location.assign(forceChildMode ? "/?child=1" : "/");
   }
 
   return (
@@ -315,12 +331,16 @@ function AccessScreen({
               <button
                 className="text-button"
                 onClick={() => {
-                  setEntrance("adult");
-                  setError("");
+                  if (forceChildMode) {
+                    window.location.assign("/");
+                  } else {
+                    setEntrance("adult");
+                    setError("");
+                  }
                 }}
                 type="button"
               >
-                Back to family sign in
+                {forceChildMode ? "Back to the family archive" : "Back to family sign in"}
               </button>
             </>
           ) : (
@@ -620,7 +640,7 @@ function ChildArchiveApp() {
 
   async function leave() {
     await apiFetch("/api/child/sign-out", { method: "POST" });
-    location.reload();
+    location.assign("/");
   }
 
   if (!state) {
@@ -2037,6 +2057,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   const [childName, setChildName] = useState(state.children[0]?.displayName ?? "Diki Choetso");
   const [birthDate, setBirthDate] = useState(state.children[0]?.birthDate ?? "");
   const [childPin, setChildPin] = useState("");
+  const [childPinConfirmation, setChildPinConfirmation] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
@@ -2088,6 +2109,11 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
     event.preventDefault();
     const child = state.children[0];
     if (!child) return;
+    if (childPin !== childPinConfirmation) {
+      setMessage("");
+      setError("The two PINs do not match.");
+      return;
+    }
     const saved = await mutate(
       `/api/archive/children/${child.id}/access-pin`,
       { method: "PUT", body: JSON.stringify({ pin: childPin }) },
@@ -2095,7 +2121,10 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
         ? "Diki’s family PIN was changed. Her other child sessions were signed out."
         : "Diki’s private sign-in is ready.",
     );
-    if (saved) setChildPin("");
+    if (saved) {
+      setChildPin("");
+      setChildPinConfirmation("");
+    }
   }
 
   async function copyInvite() {
@@ -2292,7 +2321,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                       ? "Choose a new six-digit PIN"
                       : "Six-digit family PIN"}
                     <input
-                      autoComplete="new-password"
+                      autoComplete="off"
                       inputMode="numeric"
                       maxLength={6}
                       minLength={6}
@@ -2304,9 +2333,51 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                       value={childPin}
                     />
                   </label>
-                  <button className="soft-button" disabled={childPin.length !== 6} type="submit">
+                  <label>
+                    Confirm the six-digit PIN
+                    <input
+                      autoComplete="off"
+                      inputMode="numeric"
+                      maxLength={6}
+                      minLength={6}
+                      onChange={(event) =>
+                        setChildPinConfirmation(event.target.value.replace(/\D/g, ""))
+                      }
+                      pattern="[0-9]{6}"
+                      placeholder="••••••"
+                      required
+                      type="password"
+                      value={childPinConfirmation}
+                    />
+                  </label>
+                  <button
+                    className="soft-button"
+                    disabled={
+                      childPin.length !== 6 ||
+                      childPinConfirmation.length !== 6 ||
+                      childPin !== childPinConfirmation
+                    }
+                    type="submit"
+                  >
                     {state.children[0].childAccessEnabled ? "Change PIN" : "Turn on child sign-in"}
                   </button>
+                  {state.children[0].childAccessEnabled ? (
+                    <div className="child-access-test">
+                      <span>
+                        <Check size={15} /> Child sign-in is ready
+                      </span>
+                      <p>
+                        Test the exact screen Diki will use. You will stay signed in as a parent.
+                      </p>
+                      <button
+                        className="text-button"
+                        onClick={() => window.location.assign("/?child=1")}
+                        type="button"
+                      >
+                        Test Diki’s sign-in <ArrowRight size={15} />
+                      </button>
+                    </div>
+                  ) : null}
                 </form>
               ) : null}
             </>

@@ -1988,6 +1988,33 @@ h3,
   justify-content: center;
   margin: 0;
 }
+.child-access-test {
+  background: rgb(76 119 96 / 9%);
+  border: 1px solid rgb(76 119 96 / 16%);
+  border-radius: var(--radius-sm);
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.8rem;
+}
+.child-access-test > span {
+  align-items: center;
+  color: var(--forest);
+  display: flex;
+  font-size: 0.72rem;
+  font-weight: 750;
+  gap: 0.35rem;
+}
+.child-access-test p {
+  color: var(--muted-ink);
+  font-size: 0.66rem;
+  line-height: 1.5;
+  margin: 0;
+}
+.child-access-test .text-button {
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0.3rem 0 0;
+}
 .settings-form {
   display: grid;
   gap: 0.9rem;
