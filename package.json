@@ -1,0 +1,24 @@
+{
+  "name": "everlittle",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vp run @everlittle/web#dev",
+    "build": "vp run @everlittle/web#build",
+    "typecheck": "vp run @everlittle/web#typecheck",
+    "ready": "pnpm --filter @everlittle/web generate-routes && vp check && vp run @everlittle/web#build",
+    "cf-typegen": "vp run @everlittle/web#cf-typegen",
+    "db:migrate:local": "vp run @everlittle/web#db:migrate:local",
+    "db:migrate:remote": "vp run @everlittle/web#db:migrate:remote",
+    "setup:vp": "vp config"
+  },
+  "devDependencies": {
+    "vite-plus": "catalog:"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@11.0.9"
+}
