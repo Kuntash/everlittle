@@ -4,7 +4,7 @@ This file tracks product gaps between the current scaffold and a safe, usable fa
 
 ## P0 — Claim the reference installation
 
-- [ ] Create the first owner account at [dikichoetso.com](https://dikichoetso.com).
+- [x] Create the first owner account at [dikichoetso.com](https://dikichoetso.com).
 - [ ] Create the child profile and replace the demo name, dates, and content.
 - [ ] Confirm the recovery email and store recovery information securely.
 
@@ -15,38 +15,38 @@ ownership to a parent, and then leave without weakening access control.
 
 ### Required UX
 
-- [ ] Add a **Family** settings screen backed by real membership data.
-- [ ] Let an owner invite an adult by email as `parent`, `contributor`, or `viewer`.
+- [x] Add a **Family** settings screen backed by real membership data.
+- [x] Let an owner invite an adult by email as `parent`, `contributor`, or `viewer`.
 - [ ] Show pending, accepted, expired, and revoked invitations.
 - [ ] Give invitees a clear preview of the archive, inviter, and proposed role before acceptance.
-- [ ] Add a guided **Hand over this archive** flow for transferring ownership.
+- [x] Add a guided **Hand over this archive** flow for transferring ownership.
 - [ ] Require recent authentication and an explicit confirmation from the current owner.
 - [ ] Notify the new owner and show a clear change-of-control receipt.
-- [ ] Let the former owner leave, remain a parent, or become a contributor/viewer.
+- [x] Let the former owner leave, remain a parent, or become a contributor/viewer.
 
 ### Safety invariants
 
-- [ ] Never allow an archive to have zero owners.
+- [x] Never allow an archive to have zero owners.
 - [ ] Only an existing owner can transfer ownership or remove another owner.
-- [ ] Only transfer ownership to an accepted family member, never a pending invitation.
-- [ ] Perform the ownership swap atomically in D1.
+- [x] Only transfer ownership to an accepted family member, never a pending invitation.
+- [x] Perform the ownership swap atomically in D1.
 - [ ] Revoke active sessions when a member is removed or materially downgraded.
-- [ ] Hash invitation tokens at rest; make them expiring, revocable, and single-use.
-- [ ] Record invitation, acceptance, role-change, ownership-transfer, and removal audit events.
+- [x] Hash invitation tokens at rest; make them expiring, revocable, and single-use.
+- [x] Record invitation, acceptance, role-change, ownership-transfer, and removal audit events.
 - [ ] Prevent child profiles from managing membership or archive ownership.
 
 ### Server work
 
-- [ ] Add `family_invitation` and `audit_event` migrations.
+- [x] Add `family_invitation` and `audit_event` migrations.
 - [ ] Add authenticated endpoints for invitation preview, create, accept, revoke, and resend.
-- [ ] Add endpoints for role changes, ownership transfer, self-removal, and owner removal.
-- [ ] Add same-origin checks, Zod validation, authorization checks, and rate limits.
+- [x] Add endpoints for role changes, ownership transfer, self-removal, and owner removal.
+- [x] Add same-origin checks, Zod validation, authorization checks, and rate limits.
 - [ ] Add integration tests for concurrent transfer/removal and last-owner protection.
 
 ## P1 — Real archive data
 
 - [ ] Replace the parent and child demo screens with D1-backed loaders.
-- [ ] Implement child-profile creation and editing.
+- [x] Implement child-profile creation and editing.
 - [ ] Implement memory creation for photos, stories, voice notes, milestones, and letters.
 - [ ] Store private media in R2 and serve it only through authorized requests.
 - [ ] Generate image thumbnails and audio metadata without exposing the bucket publicly.

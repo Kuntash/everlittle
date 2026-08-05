@@ -409,13 +409,7 @@ async function transferOwnership(request: Request, targetMemberId: string): Prom
          WHERE archive_id = ? AND id IN (?, ?)
            AND EXISTS (SELECT 1 FROM family_member WHERE id = ? AND role = 'owner')`,
       )
-      .bind(
-        targetMemberId,
-        context.archiveId,
-        targetMemberId,
-        context.memberId,
-        context.memberId,
-      ),
+      .bind(targetMemberId, context.archiveId, targetMemberId, context.memberId, context.memberId),
     database
       .prepare(
         `INSERT INTO audit_event
