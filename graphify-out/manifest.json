@@ -1,0 +1,117 @@
+{
+  "apps/web/package.json": {
+    "mtime": 1785955812.4000614,
+    "ast_hash": "7850398829b6876e52c640dfd8da6369",
+    "semantic_hash": "7850398829b6876e52c640dfd8da6369"
+  },
+  "apps/web/public/sw.js": {
+    "mtime": 1785948611.965007,
+    "ast_hash": "a89be88714ed4a0d0e1fa73e9884ec9f",
+    "semantic_hash": "a89be88714ed4a0d0e1fa73e9884ec9f"
+  },
+  "apps/web/src/env.d.ts": {
+    "mtime": 1785948599.479416,
+    "ast_hash": "2c1766c8bbf9aba32ab2c2387be3543e",
+    "semantic_hash": "2c1766c8bbf9aba32ab2c2387be3543e"
+  },
+  "apps/web/src/lib/archive-api.ts": {
+    "mtime": 1785956869.6233604,
+    "ast_hash": "6b30297e52aad63330864b2e09b3f2a5",
+    "semantic_hash": "6b30297e52aad63330864b2e09b3f2a5"
+  },
+  "apps/web/src/lib/auth-client.ts": {
+    "mtime": 1785948599.4791975,
+    "ast_hash": "7e5ffd0852aee321277975c6e0ef14a2",
+    "semantic_hash": "7e5ffd0852aee321277975c6e0ef14a2"
+  },
+  "apps/web/src/lib/auth.ts": {
+    "mtime": 1785948599.479412,
+    "ast_hash": "8af0ae726ad539e8c91541ed17498ce9",
+    "semantic_hash": "8af0ae726ad539e8c91541ed17498ce9"
+  },
+  "apps/web/src/lib/runtime-env.ts": {
+    "mtime": 1785948599.4793184,
+    "ast_hash": "545d533abb387deb7f91d4ec19bc5834",
+    "semantic_hash": "545d533abb387deb7f91d4ec19bc5834"
+  },
+  "apps/web/src/router.tsx": {
+    "mtime": 1785948599.4819756,
+    "ast_hash": "57ea4f61a1f0b139158fc8e988f2f92a",
+    "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
+  },
+  "apps/web/src/routes/__root.tsx": {
+    "mtime": 1785948599.4789977,
+    "ast_hash": "e2c3a6dddc4fed860f4867d0e362aa97",
+    "semantic_hash": "e2c3a6dddc4fed860f4867d0e362aa97"
+  },
+  "apps/web/src/routes/index.tsx": {
+    "mtime": 1785958634.250541,
+    "ast_hash": "2d9f819de3e49f3f1b327a05064ba27c",
+    "semantic_hash": "2d9f819de3e49f3f1b327a05064ba27c"
+  },
+  "apps/web/src/server.ts": {
+    "mtime": 1785956514.7980235,
+    "ast_hash": "8995eea4fdfa50c95d47f2980136c8b1",
+    "semantic_hash": "8995eea4fdfa50c95d47f2980136c8b1"
+  },
+  "apps/web/tsconfig.json": {
+    "mtime": 1785948599.4798284,
+    "ast_hash": "31e855991386f0ac36f9520c43d24144",
+    "semantic_hash": "31e855991386f0ac36f9520c43d24144"
+  },
+  "apps/web/vite.config.ts": {
+    "mtime": 1785948599.4795043,
+    "ast_hash": "cfe78013060cf5a9f7849e2e834871c0",
+    "semantic_hash": "cfe78013060cf5a9f7849e2e834871c0"
+  },
+  "apps/web/worker-configuration.d.ts": {
+    "mtime": 1785950767.3525178,
+    "ast_hash": "cf8972e608c01fc72f98cf2a070d134e",
+    "semantic_hash": "cf8972e608c01fc72f98cf2a070d134e"
+  },
+  "package.json": {
+    "mtime": 1785953270.3561902,
+    "ast_hash": "dd4e8abb7cfd52d4c129b11230f69ff2",
+    "semantic_hash": "dd4e8abb7cfd52d4c129b11230f69ff2"
+  },
+  "packages/domain/package.json": {
+    "mtime": 1785948599.4800334,
+    "ast_hash": "26a7124adb9523ff62c9cea1e9e829d2",
+    "semantic_hash": "26a7124adb9523ff62c9cea1e9e829d2"
+  },
+  "packages/domain/src/index.ts": {
+    "mtime": 1785948599.482051,
+    "ast_hash": "5b0683f987da4cd140c57e414bd3366d",
+    "semantic_hash": "5b0683f987da4cd140c57e414bd3366d"
+  },
+  "packages/domain/tsconfig.json": {
+    "mtime": 1785948599.4799643,
+    "ast_hash": "4cf095dac7096d6c0adba3cf3a6cc3f1",
+    "semantic_hash": "4cf095dac7096d6c0adba3cf3a6cc3f1"
+  },
+  "packages/ui/package.json": {
+    "mtime": 1785948599.4801595,
+    "ast_hash": "63328089e023244e2ba0e1e4853f5ddc",
+    "semantic_hash": "63328089e023244e2ba0e1e4853f5ddc"
+  },
+  "tsconfig.json": {
+    "mtime": 1785948599.4805048,
+    "ast_hash": "a8a9494b59193e6271692af79e8d767a",
+    "semantic_hash": "a8a9494b59193e6271692af79e8d767a"
+  },
+  "vite.config.ts": {
+    "mtime": 1785948599.4803097,
+    "ast_hash": "0e84940d41d0bb420f5e2081c4d848b8",
+    "semantic_hash": "0e84940d41d0bb420f5e2081c4d848b8"
+  },
+  "apps/web/fixtures/media/video-sample.mp4": {
+    "mtime": 1785957559.8362403,
+    "ast_hash": "0afed13f0c84da28751b42c12c6d344b",
+    "semantic_hash": "0afed13f0c84da28751b42c12c6d344b"
+  },
+  "apps/web/fixtures/media/voice-sample.m4a": {
+    "mtime": 1785955587.0746152,
+    "ast_hash": "b8dc91992826a638d3243d4df6c3f1ec",
+    "semantic_hash": "b8dc91992826a638d3243d4df6c3f1ec"
+  }
+}
