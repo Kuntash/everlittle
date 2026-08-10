@@ -1,0 +1,29 @@
+#!/bin/sh
+
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+if ! command -v graphify >/dev/null 2>&1; then
+  echo "pre-commit: graphify is required (install it with: uv tool install graphifyy)" >&2
+  exit 1
+fi
+
+if ! git diff --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+  echo "pre-commit: stage or stash unstaged changes before updating the knowledge graph." >&2
+  exit 1
+fi
+
+echo "pre-commit: updating the project knowledge graph"
+graphify update .
+
+# Include only the canonical portable outputs, never machine state or dated backups.
+git add -A -- \
+  graphify-out/GRAPH_REPORT.md \
+  graphify-out/graph.html \
+  graphify-out/graph.json \
+  graphify-out/manifest.json \
+  graphify-out/cache \
+  graphify-out/.graphify_labels.json \
+  graphify-out/.graphify_labels.json.sig

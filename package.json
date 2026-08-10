@@ -16,6 +16,7 @@
     "db:fixtures:production": "pnpm --filter @everlittle/web db:fixtures:production",
     "db:fixtures:clear:production": "pnpm --filter @everlittle/web db:fixtures:clear:production",
     "deploy:production": "vp run @everlittle/web#deploy:production",
+    "setup:hooks": "git config core.hooksPath .githooks",
     "setup:vp": "vp config"
   },
   "devDependencies": {

@@ -70,9 +70,9 @@
     "semantic_hash": "cf8972e608c01fc72f98cf2a070d134e"
   },
   "package.json": {
-    "mtime": 1785953270.3561902,
-    "ast_hash": "dd4e8abb7cfd52d4c129b11230f69ff2",
-    "semantic_hash": "dd4e8abb7cfd52d4c129b11230f69ff2"
+    "mtime": 1786393461.1572213,
+    "ast_hash": "d496702a60fb7662657e0359a3ddeefe",
+    "semantic_hash": ""
   },
   "packages/domain/package.json": {
     "mtime": 1785948599.4800334,
@@ -113,5 +113,100 @@
     "mtime": 1785955587.0746152,
     "ast_hash": "b8dc91992826a638d3243d4df6c3f1ec",
     "semantic_hash": "b8dc91992826a638d3243d4df6c3f1ec"
+  },
+  ".githooks/pre-commit": {
+    "mtime": 1786393522.9844866,
+    "ast_hash": "f6eaa2857492c792535cbf955c58bdeb",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1785950767.3500903,
+    "ast_hash": "849e291ec53780164a96fd509e285894",
+    "semantic_hash": ""
+  },
+  "TODO.md": {
+    "mtime": 1785957844.6547887,
+    "ast_hash": "c1a86e30af7012983b3971e51bfb5f4f",
+    "semantic_hash": ""
+  },
+  "pnpm-workspace.yaml": {
+    "mtime": 1785948599.5415146,
+    "ast_hash": "2cfd264db0d6b8a7391154b72832b9bc",
+    "semantic_hash": ""
+  },
+  "apps/web/public/apple-touch-icon.png": {
+    "mtime": 1785948368.3623657,
+    "ast_hash": "cd29038affb9426c0387e157cef8de57",
+    "semantic_hash": ""
+  },
+  "apps/web/public/icon-192.png": {
+    "mtime": 1785948368.351809,
+    "ast_hash": "fd2f32a6a8a2c45a0feed5555cd40d51",
+    "semantic_hash": ""
+  },
+  "apps/web/public/icon-512.png": {
+    "mtime": 1785948368.3384354,
+    "ast_hash": "819a9f3816aaadcc18ba9779b442ef0c",
+    "semantic_hash": ""
+  },
+  "apps/web/public/icon-maskable-512.png": {
+    "mtime": 1785948368.365184,
+    "ast_hash": "819a9f3816aaadcc18ba9779b442ef0c",
+    "semantic_hash": ""
+  },
+  "apps/web/public/icon.svg": {
+    "mtime": 1785948314.091388,
+    "ast_hash": "36139d6d9a20f82eb7569d0b78dfede5",
+    "semantic_hash": ""
+  },
+  "apps/web/public/memory-icons/letter.png": {
+    "mtime": 1785952742.3229625,
+    "ast_hash": "fc93a093327ce8805456220750f1efdc",
+    "semantic_hash": ""
+  },
+  "apps/web/public/memory-icons/milestone.png": {
+    "mtime": 1785952738.3828707,
+    "ast_hash": "4d0a9ec552b12a6faf480c47bfdddcd5",
+    "semantic_hash": ""
+  },
+  "apps/web/public/memory-icons/photo.png": {
+    "mtime": 1785952724.864983,
+    "ast_hash": "f5cd1ff136927dd29fba467e8fd78dac",
+    "semantic_hash": ""
+  },
+  "apps/web/public/memory-icons/story.png": {
+    "mtime": 1785952729.2766948,
+    "ast_hash": "f72a15e53626afc43d715ccea1dda45b",
+    "semantic_hash": ""
+  },
+  "apps/web/public/memory-icons/video.png": {
+    "mtime": 1785955410.8458948,
+    "ast_hash": "42207b08fdfc9f502aab37aa9dc66a4c",
+    "semantic_hash": ""
+  },
+  "apps/web/public/memory-icons/voice.png": {
+    "mtime": 1785952733.8827908,
+    "ast_hash": "096f60efc71fdb1ba3f50b7ed4c01b50",
+    "semantic_hash": ""
+  },
+  "assets/design/everlittle-auth-flow.png": {
+    "mtime": 1785948624.011672,
+    "ast_hash": "98edd8be1f8b988b021fd351c899a62d",
+    "semantic_hash": ""
+  },
+  "assets/design/everlittle-child-flow.png": {
+    "mtime": 1785948624.0169156,
+    "ast_hash": "5432d0f9c07fe7c63b21ad624a1480a3",
+    "semantic_hash": ""
+  },
+  "assets/design/everlittle-mobile-flow.png": {
+    "mtime": 1785947638.7087982,
+    "ast_hash": "7cd106e7f729f6db6d4183397bef441e",
+    "semantic_hash": ""
+  },
+  "assets/design/everlittle-parent-flow.png": {
+    "mtime": 1785948624.01464,
+    "ast_hash": "6c59e455c29e424872964adb04fe3cd6",
+    "semantic_hash": ""
   }
 }

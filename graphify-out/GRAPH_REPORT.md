@@ -1,15 +1,16 @@
-# Graph Report - .  (2026-08-11)
+# Graph Report - everlittle  (2026-08-11)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 31 files · ~390,111 words
+- Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2021 nodes · 2312 edges · 168 communities (24 shown, 144 thin omitted)
+- 2050 nodes · 2337 edges · 171 communities (25 shown, 146 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3a60d298`
+- Built from commit: `187fb49f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -92,7 +93,7 @@
 - Text
 - TextEncoder
 - TransformStreamDefaultController
-- typescript
+- Everlittle TODO
 - router.tsx
 - AbortController
 - AiSearchJob
@@ -180,6 +181,9 @@
 - TraceItemFetchEventInfoRequest
 - UnsafeTraceMetrics
 - WebSearch
+- Everlittle
+- zod
+- pre-commit
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 29 edges
@@ -208,7 +212,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (168 total, 144 thin omitted)
+## Communities (171 total, 146 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -236,19 +240,19 @@ Nodes (24): compilerOptions, allowImportingTsExtensions, jsx, lib, module, modul
 
 ### Community 6 - "scripts"
 Cohesion: 0.08
-Nodes (24): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+16 more)
+Nodes (25): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+17 more)
 
 ### Community 7 - "dependencies"
-Cohesion: 0.09
-Nodes (23): dependencies, better-auth, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/inter, lucide-react, react (+15 more)
+Cohesion: 0.10
+Nodes (21): dependencies, better-auth, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/inter, lucide-react, react (+13 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10
 Nodes (7): CompressionStream, DecompressionStream, FixedLengthStream, IdentityTransformStream, TextDecoderStream, TextEncoderStream, TransformStream
 
 ### Community 11 - "devDependencies"
-Cohesion: 0.12
-Nodes (17): devDependencies, @cloudflare/vite-plugin, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, vite, @vitejs/plugin-react (+9 more)
+Cohesion: 0.11
+Nodes (19): devDependencies, @cloudflare/vite-plugin, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript, vite (+11 more)
 
 ### Community 13 - "scripts"
 Cohesion: 0.13
@@ -259,8 +263,8 @@ Cohesion: 0.15
 Nodes (3): Body, Request, Response
 
 ### Community 25 - "domain/package.json"
-Cohesion: 0.17
-Nodes (11): dependencies, zod, exports, zod, license, name, private, scripts (+3 more)
+Cohesion: 0.13
+Nodes (14): dependencies, zod, devDependencies, typescript, exports, typescript, zod, license (+6 more)
 
 ### Community 26 - "StreamError"
 Cohesion: 0.18
@@ -286,9 +290,9 @@ Nodes (7): exports, ./theme.css, license, name, private, type, version
 Cohesion: 0.29
 Nodes (6): imports, license, name, private, type, version
 
-### Community 78 - "typescript"
-Cohesion: 0.50
-Nodes (4): typescript, typescript, devDependencies, typescript
+### Community 78 - "Everlittle TODO"
+Cohesion: 0.14
+Nodes (13): Current invitation UX gaps, Everlittle TODO, P0 — Claim the reference installation, P1 — Family invitation and ownership handover, P1 — Privacy and durability, P1 — Real archive data, P2 — Child experience, P2 — Deferred account recovery (+5 more)
 
 ### Community 105 - "BasicImageTransformations"
 Cohesion: 0.67
@@ -298,22 +302,26 @@ Nodes (3): BasicImageTransformations, RequestInitCfPropertiesImage, RequestInitC
 Cohesion: 0.67
 Nodes (3): RequestInitCfPropertiesVaryAcceptHeader, RequestInitCfPropertiesVaryAcceptLanguageHeader, RequestInitCfPropertiesVaryHeader
 
+### Community 168 - "Everlittle"
+Cohesion: 0.18
+Nodes (10): Authentication, Deployment, Design references, Everlittle, License, Local development, Privacy posture, Product surfaces (+2 more)
+
 ## Knowledge Gaps
-- **992 isolated node(s):** `name`, `version`, `private`, `license`, `type` (+987 more)
+- **1014 isolated node(s):** `name`, `version`, `private`, `license`, `type` (+1009 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **144 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **146 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.034) - this node is a cross-community bridge._
-- **Why does `ReadableStream` connect `ReadableStream` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `Artifacts` connect `Artifacts` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+- **Why does `Event` connect `Event` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
 - **What connects `name`, `version`, `private` to the rest of the system?**
-  _992 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1014 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0023501762632197414 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
