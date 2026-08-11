@@ -3073,10 +3073,33 @@
       "norm_label": "web/vite.config.ts"
     },
     {
+      "label": "projectRoot",
+      "file_type": "code",
+      "source_file": "apps/web/vite.config.ts",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "apps_web_vite_config_projectroot",
+      "community": 166,
+      "community_name": "web/vite.config.ts",
+      "norm_label": "projectroot"
+    },
+    {
+      "label": "hashApplicationSource()",
+      "file_type": "code",
+      "source_file": "apps/web/vite.config.ts",
+      "source_location": "L13",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_vite_config_hashapplicationsource",
+      "community": 166,
+      "community_name": "web/vite.config.ts",
+      "norm_label": "hashapplicationsource()"
+    },
+    {
       "label": "releaseManifest()",
       "file_type": "code",
       "source_file": "apps/web/vite.config.ts",
-      "source_location": "L9",
+      "source_location": "L32",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_vite_config_releasemanifest",
@@ -32127,7 +32150,29 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/vite.config.ts",
-      "source_location": "L9",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_vite_config",
+      "target": "apps_web_vite_config_hashapplicationsource",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/vite.config.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_vite_config",
+      "target": "apps_web_vite_config_projectroot",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/vite.config.ts",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_vite_config",
@@ -52779,5 +52824,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "e4d07a4a963f0f6774b07cde7ab477fe47c51fa1"
+  "built_at_commit": "77b9ca40df3c5015c37de4f67d847023473d921f"
 }

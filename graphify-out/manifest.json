@@ -60,8 +60,8 @@
     "semantic_hash": "31e855991386f0ac36f9520c43d24144"
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1786432608.9442277,
-    "ast_hash": "88dccf7b6688933564defe9d1cecbc12",
+    "mtime": 1786432851.3354704,
+    "ast_hash": "48fba67d59ed1fd68978323124deb661",
     "semantic_hash": ""
   },
   "apps/web/worker-configuration.d.ts": {
