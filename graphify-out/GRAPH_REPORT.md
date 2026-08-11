@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-11)
 
 ## Corpus Check
-- 33 files · ~392,278 words
+- 33 files · ~392,424 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2089 nodes · 2411 edges · 176 communities (30 shown, 146 thin omitted)
+- 2089 nodes · 2411 edges · 176 communities (31 shown, 145 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `097122c1`
+- Built from commit: `e4d07a4a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -147,7 +147,6 @@
 - WritableStreamDefaultController
 - tsconfig.json
 - sw.js
-- env.d.ts
 - AnalyticsEngineDataset
 - __BaseEnv_Env
 - CacheContext
@@ -213,7 +212,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (176 total, 146 thin omitted)
+## Communities (176 total, 145 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -312,9 +311,9 @@ Cohesion: 0.20
 Nodes (16): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+8 more)
 
 ## Knowledge Gaps
-- **1019 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1014 more)
+- **1018 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1013 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **146 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **145 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -326,7 +325,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `Headers` connect `Headers` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1019 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1018 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0023501762632197414 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**

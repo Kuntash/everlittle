@@ -10,9 +10,9 @@
     "semantic_hash": ""
   },
   "apps/web/src/env.d.ts": {
-    "mtime": 1785948599.479416,
-    "ast_hash": "2c1766c8bbf9aba32ab2c2387be3543e",
-    "semantic_hash": "2c1766c8bbf9aba32ab2c2387be3543e"
+    "mtime": 1786432596.059023,
+    "ast_hash": "9dc7a3c83535bed85eafa900e3789f05",
+    "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
     "mtime": 1786427474.1543865,
@@ -40,8 +40,8 @@
     "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1786431355.6245365,
-    "ast_hash": "964c99f300d4c4841365992c64fb88f7",
+    "mtime": 1786432626.7878249,
+    "ast_hash": "16071238ec524f0edac7890edd29dc79",
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
@@ -60,9 +60,9 @@
     "semantic_hash": "31e855991386f0ac36f9520c43d24144"
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1785948599.4795043,
-    "ast_hash": "cfe78013060cf5a9f7849e2e834871c0",
-    "semantic_hash": "cfe78013060cf5a9f7849e2e834871c0"
+    "mtime": 1786432608.9442277,
+    "ast_hash": "88dccf7b6688933564defe9d1cecbc12",
+    "semantic_hash": ""
   },
   "apps/web/worker-configuration.d.ts": {
     "mtime": 1786427462.712608,

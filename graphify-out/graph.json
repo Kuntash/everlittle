@@ -1035,19 +1035,6 @@
       "norm_label": "env.d.ts"
     },
     {
-      "label": "Env",
-      "file_type": "code",
-      "source_file": "apps/web/src/env.d.ts",
-      "source_location": "L1",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "id": "apps_web_src_env_d_env",
-      "community": 132,
-      "community_name": "env.d.ts",
-      "norm_label": "env"
-    },
-    {
       "label": "archive-api.ts",
       "file_type": "code",
       "source_file": "apps/web/src/lib/archive-api.ts",
@@ -3084,6 +3071,18 @@
       "community": 166,
       "community_name": "web/vite.config.ts",
       "norm_label": "web/vite.config.ts"
+    },
+    {
+      "label": "releaseManifest()",
+      "file_type": "code",
+      "source_file": "apps/web/vite.config.ts",
+      "source_location": "L9",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_vite_config_releasemanifest",
+      "community": 166,
+      "community_name": "web/vite.config.ts",
+      "norm_label": "releasemanifest()"
     },
     {
       "label": "worker-configuration.d.ts",
@@ -27051,17 +27050,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "apps/web/src/env.d.ts",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "apps_web_src_env_d",
-      "target": "apps_web_src_env_d_env",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/archive-api.ts",
       "source_location": "L224",
       "weight": 1.0,
@@ -32133,6 +32121,17 @@
       "_origin": "ast",
       "source": "apps_web_tsconfig_compileroptions_types",
       "target": "ref_vite_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/vite.config.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_vite_config",
+      "target": "apps_web_vite_config_releasemanifest",
       "confidence_score": 1.0
     },
     {
@@ -52780,5 +52779,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "097122c1782984f505307a44e01867fe5efc5d88"
+  "built_at_commit": "e4d07a4a963f0f6774b07cde7ab477fe47c51fa1"
 }

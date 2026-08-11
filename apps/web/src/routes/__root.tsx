@@ -59,6 +59,7 @@ function PwaExperience() {
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const [showIosGuide, setShowIosGuide] = useState(false);
   const [updateWorker, setUpdateWorker] = useState<ServiceWorker | null>(null);
+  const [releaseAvailable, setReleaseAvailable] = useState(false);
   const [dismissed, setDismissed] = useState(true);
   const guideClose = useRef<HTMLButtonElement>(null);
   const guidePanel = useRef<HTMLElement>(null);
@@ -93,26 +94,63 @@ function PwaExperience() {
       window.location.reload();
     }
     navigator.serviceWorker.addEventListener("controllerchange", reloadForUpdate);
-    void navigator.serviceWorker.register("/sw.js").then((registration) => {
-      if (registration.waiting && navigator.serviceWorker.controller) {
-        setUpdateWorker(registration.waiting);
+    let registration: ServiceWorkerRegistration | null = null;
+
+    async function checkForRelease() {
+      if (document.visibilityState === "hidden") return;
+      try {
+        const response = await fetch(`/version.json?check=${Date.now()}`, { cache: "no-store" });
+        if (response.ok) {
+          const release = (await response.json()) as { buildId?: string };
+          if (release.buildId && release.buildId !== __EVERLITTLE_BUILD_ID__) {
+            setReleaseAvailable(true);
+          }
+        }
+        await registration?.update();
+      } catch {
+        // An offline PWA should continue quietly and check again when connectivity returns.
       }
-      registration.addEventListener("updatefound", () => {
-        const worker = registration.installing;
+    }
+
+    function checkWhenVisible() {
+      if (document.visibilityState === "visible") void checkForRelease();
+    }
+
+    void navigator.serviceWorker.register("/sw.js").then((nextRegistration) => {
+      registration = nextRegistration;
+      if (nextRegistration.waiting && navigator.serviceWorker.controller) {
+        setUpdateWorker(nextRegistration.waiting);
+      }
+      nextRegistration.addEventListener("updatefound", () => {
+        const worker = nextRegistration.installing;
         worker?.addEventListener("statechange", () => {
           if (worker.state === "installed" && navigator.serviceWorker.controller) {
             setUpdateWorker(worker);
           }
         });
       });
-      void registration.update();
+      void checkForRelease();
     });
+    window.addEventListener("focus", checkForRelease);
+    window.addEventListener("online", checkForRelease);
+    document.addEventListener("visibilitychange", checkWhenVisible);
 
     return () => {
       window.removeEventListener("beforeinstallprompt", capturePrompt);
+      window.removeEventListener("focus", checkForRelease);
+      window.removeEventListener("online", checkForRelease);
+      document.removeEventListener("visibilitychange", checkWhenVisible);
       navigator.serviceWorker.removeEventListener("controllerchange", reloadForUpdate);
     };
   }, []);
+
+  function applyUpdate() {
+    if (updateWorker) {
+      updateWorker.postMessage({ type: "SKIP_WAITING" });
+      return;
+    }
+    window.location.reload();
+  }
 
   useEffect(() => {
     if (!showIosGuide) return;
@@ -230,13 +268,13 @@ function PwaExperience() {
         </div>
       ) : null}
 
-      {updateWorker ? (
+      {updateWorker || releaseAvailable ? (
         <aside className="pwa-update" role="status">
           <div>
             <strong>A new Everlittle is ready</strong>
             <small>Update now to use the latest version.</small>
           </div>
-          <button onClick={() => updateWorker.postMessage({ type: "SKIP_WAITING" })} type="button">
+          <button onClick={applyUpdate} type="button">
             <RefreshCw /> Update
           </button>
         </aside>

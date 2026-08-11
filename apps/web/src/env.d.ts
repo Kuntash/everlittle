@@ -1,6 +1,1 @@
-interface Env {
-  DB: D1Database;
-  MEDIA: R2Bucket;
-  APP_NAME: string;
-  BETTER_AUTH_SECRET: string;
-}
+declare const __EVERLITTLE_BUILD_ID__: string;
