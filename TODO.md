@@ -67,8 +67,15 @@ ownership to a parent, and then leave without weakening access control.
 - [x] Implement memory creation for photos, stories, voice notes, videos, milestones, and letters.
 - [x] Show private range-streamed playback controls for voice and video memories.
 - [x] Store private media in R2 and serve it only through authorized requests.
+- [x] Accept iPhone HEIC/HEIF photos, MOV/HEVC video, and audio files without forcing camera capture.
+- [x] Add an explicit all-access audience for memories visible to family members and Diki.
+- [x] Restrict memory edits, deletion, media attachment, and public-link creation to the author.
+- [x] Add expiring, revocable public links for sharing one memory through the native share sheet or
+      WhatsApp without exposing the archive.
 - [ ] Normalize uploaded MOV/WebM/audio files into browser-safe playback formats and keep the
       original files for archive-quality export.
+- [ ] Transcode HEIC/HEIF into a web-safe display derivative for non-Apple browsers and social
+      preview crawlers while retaining the original in R2.
 - [ ] Generate image thumbnails and audio metadata without exposing the bucket publicly.
 - [ ] Implement timeline filtering, pagination, favorites, and contributor attribution.
 - [x] Implement sealed capsules with server-enforced unlock dates.

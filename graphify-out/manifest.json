@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1786427474.1543865,
-    "ast_hash": "cb8510f585c93fce41a78cf07a444ee2",
+    "mtime": 1786435833.2986042,
+    "ast_hash": "5833a612c34ac14191939fa55d4fb481",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786432381.6257026,
-    "ast_hash": "4bf67dddd4d1480ac273fa5207d268fa",
+    "mtime": 1786435674.2945335,
+    "ast_hash": "4f3048c22bf2f46e490ac4621363c613",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -60,8 +60,8 @@
     "semantic_hash": "31e855991386f0ac36f9520c43d24144"
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1786432851.3354704,
-    "ast_hash": "48fba67d59ed1fd68978323124deb661",
+    "mtime": 1786435857.6031904,
+    "ast_hash": "5d015121b145c9fd3d893fa911777850",
     "semantic_hash": ""
   },
   "apps/web/worker-configuration.d.ts": {
@@ -80,9 +80,9 @@
     "semantic_hash": "26a7124adb9523ff62c9cea1e9e829d2"
   },
   "packages/domain/src/index.ts": {
-    "mtime": 1785948599.482051,
-    "ast_hash": "5b0683f987da4cd140c57e414bd3366d",
-    "semantic_hash": "5b0683f987da4cd140c57e414bd3366d"
+    "mtime": 1786435844.5871446,
+    "ast_hash": "a7c2fb0afb68f1e69fb8ed14c69b3800",
+    "semantic_hash": ""
   },
   "packages/domain/tsconfig.json": {
     "mtime": 1785948599.4799643,
@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "TODO.md": {
-    "mtime": 1786431230.2525885,
-    "ast_hash": "e73a8f28a39036a3d74c306f627a420e",
+    "mtime": 1786435765.9215403,
+    "ast_hash": "efa79071689ae6b9390f60d6d024489e",
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
@@ -257,6 +257,11 @@
   "apps/web/public/offline.html": {
     "mtime": 1786430941.606841,
     "ast_hash": "575d6fa048300f5f6ad6f7ec26f7ab0e",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0007_memory_access_and_public_shares.sql": {
+    "mtime": 1786435459.8747678,
+    "ast_hash": "42a0457252176736d7c51697c6353dc1",
     "semantic_hash": ""
   }
 }

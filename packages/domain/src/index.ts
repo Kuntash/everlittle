@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const familyRoleSchema = z.enum(["owner", "parent", "contributor", "viewer"]);
-export const memoryKindSchema = z.enum(["photo", "story", "voice", "milestone", "letter"]);
-export const audienceSchema = z.enum(["parents", "family", "child"]);
+export const memoryKindSchema = z.enum(["photo", "story", "voice", "video", "milestone", "letter"]);
+export const audienceSchema = z.enum(["parents", "family", "child", "all"]);
 
 export type FamilyRole = z.infer<typeof familyRoleSchema>;
 export type MemoryKind = z.infer<typeof memoryKindSchema>;

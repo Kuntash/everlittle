@@ -19,6 +19,7 @@ import {
   PenLine,
   PlayCircle,
   Pause,
+  Share2,
   Maximize2,
   ShieldCheck,
   Sparkles,
@@ -72,7 +73,7 @@ type Memory = {
   title: string;
   body: string | null;
   happenedAt: string;
-  audience: "parents" | "family" | "child";
+  audience: "parents" | "family" | "child" | "all";
   createdAt: string;
   createdByUserId: string | null;
   authorName: string | null;
@@ -843,7 +844,9 @@ function ChildView({
   child?: Child;
   memories: Memory[];
 }) {
-  const childMemories = memories.filter((memory) => memory.audience === "child");
+  const childMemories = memories.filter(
+    (memory) => memory.audience === "child" || memory.audience === "all",
+  );
   const featured = childMemories[0];
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const childName = child?.displayName ?? "Diki Choetso";
@@ -1066,10 +1069,9 @@ function MemoryDetail({
   const [audience, setAudience] = useState<Memory["audience"]>(memory.audience);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
-  const canEdit =
-    role === "owner" ||
-    role === "parent" ||
-    (role === "contributor" && memory.createdByUserId === currentUserId);
+  const [shareBusy, setShareBusy] = useState(false);
+  const [shareUrl, setShareUrl] = useState("");
+  const canEdit = memory.createdByUserId === currentUserId;
   const { closing, requestClose } = useSheetTransition(onClose, busy);
   useDocumentScrollLock();
 
@@ -1108,6 +1110,50 @@ function MemoryDetail({
     }
     await onChanged();
     requestClose(true);
+  }
+
+  async function createShare() {
+    setShareBusy(true);
+    setError("");
+    const response = await apiFetch(`/api/archive/memories/${memory.id}/share`, {
+      method: "POST",
+    });
+    if (!response.ok) {
+      setError(await responseError(response));
+      setShareBusy(false);
+      return;
+    }
+    const result = (await response.json()) as { shareUrl: string };
+    setShareUrl(result.shareUrl);
+    setShareBusy(false);
+  }
+
+  async function sharePublicLink() {
+    if (!shareUrl) return;
+    if (navigator.share) {
+      await navigator.share({ title: memory.title, url: shareUrl });
+      return;
+    }
+    await navigator.clipboard.writeText(shareUrl);
+  }
+
+  async function copyPublicLink() {
+    if (shareUrl) await navigator.clipboard.writeText(shareUrl);
+  }
+
+  async function revokeShare() {
+    setShareBusy(true);
+    setError("");
+    const response = await apiFetch(`/api/archive/memories/${memory.id}/share`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      setError(await responseError(response));
+      setShareBusy(false);
+      return;
+    }
+    setShareUrl("");
+    setShareBusy(false);
   }
 
   return (
@@ -1174,6 +1220,7 @@ function MemoryDetail({
                   value={audience}
                 >
                   <option value="family">Family archive</option>
+                  <option value="all">Everyone — family + Diki</option>
                   {role === "owner" || role === "parent" ? (
                     <option value="parents">Parents only</option>
                   ) : null}
@@ -1204,6 +1251,38 @@ function MemoryDetail({
             <p className="detail-meta">
               Kept by {memory.authorName ?? "family"} · {formatMemoryDate(memory.happenedAt)}
             </p>
+            {canEdit ? (
+              <div className="public-share-box">
+                <div>
+                  <strong>Share this single memory</strong>
+                  <small>
+                    Anyone with the link can view it for 30 days. You can disable it anytime.
+                  </small>
+                </div>
+                {shareUrl ? (
+                  <div className="public-share-actions">
+                    <button onClick={() => void sharePublicLink()} type="button">
+                      <Share2 size={16} /> Share to an app
+                    </button>
+                    <button onClick={() => void copyPublicLink()} type="button">
+                      <Copy size={16} /> Copy
+                    </button>
+                    <button disabled={shareBusy} onClick={() => void revokeShare()} type="button">
+                      Disable
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    className="soft-button"
+                    disabled={shareBusy}
+                    onClick={() => void createShare()}
+                    type="button"
+                  >
+                    <Share2 size={16} /> {shareBusy ? "Creating link…" : "Create public link"}
+                  </button>
+                )}
+              </div>
+            ) : null}
             {error ? <p className="form-error">{error}</p> : null}
             {canEdit ? (
               <div className="detail-actions">
@@ -1244,7 +1323,7 @@ function MemoryComposer({
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [happenedAt, setHappenedAt] = useState(currentLocalDateTime());
-  const [audience, setAudience] = useState<"parents" | "family" | "child">("family");
+  const [audience, setAudience] = useState<"parents" | "family" | "child" | "all">("family");
   const [file, setFile] = useState<File | null>(null);
   const [error, setError] = useState("");
   const [stage, setStage] = useState<"idle" | "saving" | "uploading">("idle");
@@ -1300,7 +1379,10 @@ function MemoryComposer({
       setStage("uploading");
       const upload = await fetch(`/api/archive/memories/${created.id}/media`, {
         method: "PUT",
-        headers: { "content-type": file.type },
+        headers: {
+          "content-type": file.type || "application/octet-stream",
+          "x-everlittle-file-name": encodeURIComponent(file.name),
+        },
         body: file,
       });
       if (!upload.ok) {
@@ -1414,12 +1496,11 @@ function MemoryComposer({
                   <input
                     accept={
                       kind === "photo"
-                        ? "image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif"
+                        ? "image/*,.heic,.heif"
                         : kind === "voice"
-                          ? "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/webm,audio/ogg,audio/wav,audio/wave,audio/x-wav"
-                          : "video/mp4,video/webm,video/quicktime"
+                          ? "audio/*,.m4a,.caf"
+                          : "video/*,.mov,.m4v"
                     }
-                    capture={kind === "voice" || kind === "video" ? "user" : undefined}
                     disabled={!needsMedia}
                     onChange={(event) => setFile(event.target.files?.[0] ?? null)}
                     required={needsMedia}
@@ -1448,6 +1529,7 @@ function MemoryComposer({
                   value={audience}
                 >
                   <option value="family">Family archive</option>
+                  <option value="all">Everyone — family + Diki</option>
                   {role === "owner" || role === "parent" ? (
                     <option value="parents">Parents only</option>
                   ) : null}
@@ -1456,11 +1538,13 @@ function MemoryComposer({
               </label>
             </div>
             <p className="audience-note">
-              {audience === "child"
-                ? "This will appear in Diki’s child view."
-                : audience === "parents"
-                  ? "Only owners and parents should use this private context."
-                  : "Visible to accepted family members."}
+              {audience === "all"
+                ? "Visible to every accepted family member and in Diki’s child view."
+                : audience === "child"
+                  ? "This will appear in Diki’s child view."
+                  : audience === "parents"
+                    ? "Only owners and parents should use this private context."
+                    : "Visible to accepted family members."}
             </p>
             {error ? (
               <p className="form-error" role="alert">
@@ -2822,6 +2906,7 @@ function kindLabel(kind: MemoryKind) {
 }
 
 function audienceLabel(audience: Memory["audience"]) {
+  if (audience === "all") return "Everyone";
   if (audience === "child") return "For Diki";
   if (audience === "parents") return "Parents only";
   return "Family";

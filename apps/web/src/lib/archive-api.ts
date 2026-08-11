@@ -21,7 +21,7 @@ const memorySchema = z.object({
   title: z.string().trim().min(1).max(160),
   body: z.string().trim().max(20_000).optional(),
   happenedAt: z.iso.datetime(),
-  audience: z.enum(["parents", "family", "child"]),
+  audience: z.enum(["parents", "family", "child", "all"]),
 });
 const capsuleSchema = z.object({
   childId: z.string().uuid(),
@@ -45,6 +45,8 @@ const MEDIA_TYPES: ReadonlyMap<
   ["image/gif", { mediaType: "image", extension: "gif" }],
   ["image/heic", { mediaType: "image", extension: "heic" }],
   ["image/heif", { mediaType: "image", extension: "heif" }],
+  ["image/heic-sequence", { mediaType: "image", extension: "heic" }],
+  ["image/heif-sequence", { mediaType: "image", extension: "heif" }],
   ["audio/mpeg", { mediaType: "audio", extension: "mp3" }],
   ["audio/mp4", { mediaType: "audio", extension: "m4a" }],
   ["audio/x-m4a", { mediaType: "audio", extension: "m4a" }],
@@ -54,9 +56,35 @@ const MEDIA_TYPES: ReadonlyMap<
   ["audio/wav", { mediaType: "audio", extension: "wav" }],
   ["audio/wave", { mediaType: "audio", extension: "wav" }],
   ["audio/x-wav", { mediaType: "audio", extension: "wav" }],
+  ["audio/x-caf", { mediaType: "audio", extension: "caf" }],
+  ["audio/3gpp", { mediaType: "audio", extension: "3gp" }],
   ["video/mp4", { mediaType: "video", extension: "mp4" }],
   ["video/webm", { mediaType: "video", extension: "webm" }],
   ["video/quicktime", { mediaType: "video", extension: "mov" }],
+  ["video/x-m4v", { mediaType: "video", extension: "m4v" }],
+  ["video/hevc", { mediaType: "video", extension: "mov" }],
+  ["video/h265", { mediaType: "video", extension: "mov" }],
+]);
+
+const MEDIA_EXTENSIONS = new Map([
+  ["jpg", { mediaType: "image" as const, extension: "jpg", contentType: "image/jpeg" }],
+  ["jpeg", { mediaType: "image" as const, extension: "jpg", contentType: "image/jpeg" }],
+  ["png", { mediaType: "image" as const, extension: "png", contentType: "image/png" }],
+  ["webp", { mediaType: "image" as const, extension: "webp", contentType: "image/webp" }],
+  ["gif", { mediaType: "image" as const, extension: "gif", contentType: "image/gif" }],
+  ["heic", { mediaType: "image" as const, extension: "heic", contentType: "image/heic" }],
+  ["heif", { mediaType: "image" as const, extension: "heif", contentType: "image/heif" }],
+  ["mp3", { mediaType: "audio" as const, extension: "mp3", contentType: "audio/mpeg" }],
+  ["m4a", { mediaType: "audio" as const, extension: "m4a", contentType: "audio/mp4" }],
+  ["aac", { mediaType: "audio" as const, extension: "aac", contentType: "audio/aac" }],
+  ["wav", { mediaType: "audio" as const, extension: "wav", contentType: "audio/wav" }],
+  ["ogg", { mediaType: "audio" as const, extension: "ogg", contentType: "audio/ogg" }],
+  ["caf", { mediaType: "audio" as const, extension: "caf", contentType: "audio/x-caf" }],
+  ["mp4", { mediaType: "video" as const, extension: "mp4", contentType: "video/mp4" }],
+  ["mov", { mediaType: "video" as const, extension: "mov", contentType: "video/quicktime" }],
+  ["m4v", { mediaType: "video" as const, extension: "m4v", contentType: "video/x-m4v" }],
+  ["webm", { mediaType: "video" as const, extension: "webm", contentType: "video/webm" }],
+  ["3gp", { mediaType: "video" as const, extension: "3gp", contentType: "video/3gpp" }],
 ]);
 
 type FamilyRole = "owner" | "parent" | "contributor" | "viewer";
@@ -92,8 +120,34 @@ type Invitation = {
   inviterName: string;
 };
 
+type PublicMemory = {
+  id: string;
+  kind: string;
+  title: string;
+  body: string | null;
+  happenedAt: string;
+  childName: string;
+  authorName: string | null;
+  mediaId: string | null;
+  objectKey: string | null;
+  mediaType: "image" | "audio" | "video" | null;
+  contentType: string | null;
+};
+
 export async function handleArchiveApi(request: Request): Promise<Response | null> {
   const url = new URL(request.url);
+
+  const publicSharePageMatch = url.pathname.match(/^\/share\/([A-Za-z0-9_-]{43})$/);
+  if (publicSharePageMatch && request.method === "GET") {
+    return servePublicMemoryPage(request, publicSharePageMatch[1]);
+  }
+
+  const publicShareMediaMatch = url.pathname.match(
+    /^\/api\/public\/shares\/([A-Za-z0-9_-]{43})\/media$/,
+  );
+  if (publicShareMediaMatch && request.method === "GET") {
+    return servePublicMemoryMedia(request, publicShareMediaMatch[1]);
+  }
 
   if (url.pathname === "/api/child/session" && request.method === "GET") {
     return getChildSession(request);
@@ -151,6 +205,14 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
   const memoryMediaMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)\/media$/);
   if (memoryMediaMatch && request.method === "PUT") {
     return uploadMemoryMedia(request, memoryMediaMatch[1]);
+  }
+
+  const memoryShareMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)\/share$/);
+  if (memoryShareMatch && request.method === "POST") {
+    return createPublicMemoryShare(request, memoryShareMatch[1]);
+  }
+  if (memoryShareMatch && request.method === "DELETE") {
+    return revokePublicMemoryShare(request, memoryShareMatch[1]);
   }
 
   const memoryMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)$/);
@@ -917,7 +979,7 @@ async function getChildArchive(request: Request): Promise<Response> {
          SELECT first_asset.id FROM media_asset first_asset
          WHERE first_asset.memory_id = m.id ORDER BY first_asset.created_at LIMIT 1
        )
-       WHERE m.child_id = ? AND m.archive_id = ? AND m.audience = 'child'
+       WHERE m.child_id = ? AND m.archive_id = ? AND m.audience IN ('child', 'all')
        ORDER BY m.happened_at DESC, m.created_at DESC LIMIT 100`,
     )
       .bind(context.childId, context.archiveId)
@@ -1001,6 +1063,141 @@ async function createMemory(request: Request): Promise<Response> {
   ]);
 
   return Response.json({ id: memoryId }, { status: 201 });
+}
+
+async function createPublicMemoryShare(request: Request, memoryId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+
+  const memory = await runtime.DB.prepare(
+    `SELECT id, created_by_user_id AS createdByUserId
+     FROM memory WHERE id = ? AND archive_id = ?`,
+  )
+    .bind(memoryId, context.archiveId)
+    .first<{ id: string; createdByUserId: string | null }>();
+  if (!memory) return Response.json({ error: "Memory not found." }, { status: 404 });
+  if (memory.createdByUserId !== context.user.id) return forbidden();
+
+  const rawToken = createSecureToken();
+  const shareId = crypto.randomUUID();
+  const expiresAt = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString();
+  await runtime.DB.batch([
+    runtime.DB.prepare(
+      `UPDATE memory_public_share SET revoked_at = CURRENT_TIMESTAMP
+       WHERE memory_id = ? AND revoked_at IS NULL`,
+    ).bind(memoryId),
+    runtime.DB.prepare(
+      `INSERT INTO memory_public_share
+        (id, archive_id, memory_id, token_hash, created_by_user_id, expires_at)
+       VALUES (?, ?, ?, ?, ?, ?)`,
+    ).bind(
+      shareId,
+      context.archiveId,
+      memoryId,
+      await hashToken(rawToken),
+      context.user.id,
+      expiresAt,
+    ),
+    auditStatement(runtime.DB, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "memory.public_share_created",
+      entityType: "memory_public_share",
+      entityId: shareId,
+      metadata: { memoryId, expiresAt },
+    }),
+  ]);
+
+  const shareUrl = new URL(`/share/${rawToken}`, request.url).toString();
+  return Response.json({ shareUrl, expiresAt }, { status: 201 });
+}
+
+async function revokePublicMemoryShare(request: Request, memoryId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+
+  const memory = await runtime.DB.prepare(
+    `SELECT id, created_by_user_id AS createdByUserId
+     FROM memory WHERE id = ? AND archive_id = ?`,
+  )
+    .bind(memoryId, context.archiveId)
+    .first<{ id: string; createdByUserId: string | null }>();
+  if (!memory) return Response.json({ error: "Memory not found." }, { status: 404 });
+  if (memory.createdByUserId !== context.user.id) return forbidden();
+
+  await runtime.DB.batch([
+    runtime.DB.prepare(
+      `UPDATE memory_public_share SET revoked_at = CURRENT_TIMESTAMP
+       WHERE memory_id = ? AND archive_id = ? AND revoked_at IS NULL`,
+    ).bind(memoryId, context.archiveId),
+    auditStatement(runtime.DB, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "memory.public_share_revoked",
+      entityType: "memory",
+      entityId: memoryId,
+    }),
+  ]);
+  return Response.json({ revoked: true });
+}
+
+async function getPublicMemory(token: string): Promise<PublicMemory | null> {
+  const runtime = getRuntimeEnv();
+  return runtime.DB.prepare(
+    `SELECT m.id, m.kind, m.title, m.body, m.happened_at AS happenedAt,
+            c.display_name AS childName, u.name AS authorName,
+            ma.id AS mediaId, ma.object_key AS objectKey,
+            ma.media_type AS mediaType, ma.content_type AS contentType
+     FROM memory_public_share s
+     JOIN memory m ON m.id = s.memory_id
+     JOIN child_profile c ON c.id = m.child_id
+     LEFT JOIN "user" u ON u.id = m.created_by_user_id
+     LEFT JOIN media_asset ma ON ma.id = (
+       SELECT first_asset.id FROM media_asset first_asset
+       WHERE first_asset.memory_id = m.id ORDER BY first_asset.created_at LIMIT 1
+     )
+     WHERE s.token_hash = ? AND s.revoked_at IS NULL
+       AND datetime(s.expires_at) > CURRENT_TIMESTAMP`,
+  )
+    .bind(await hashToken(token))
+    .first<PublicMemory>();
+}
+
+async function servePublicMemoryPage(request: Request, token: string): Promise<Response> {
+  const memory = await getPublicMemory(token);
+  if (!memory) {
+    return new Response(publicShareUnavailablePage(), {
+      status: 404,
+      headers: { "content-type": "text/html; charset=utf-8", "cache-control": "no-store" },
+    });
+  }
+
+  const shareUrl = new URL(`/share/${token}`, request.url).toString();
+  const mediaUrl = memory.mediaId
+    ? new URL(`/api/public/shares/${token}/media`, request.url).toString()
+    : null;
+  return new Response(publicMemoryPage(memory, shareUrl, mediaUrl), {
+    headers: {
+      "content-type": "text/html; charset=utf-8",
+      "cache-control": "no-store",
+      "referrer-policy": "no-referrer",
+      "x-robots-tag": "noindex, nofollow, noarchive",
+    },
+  });
+}
+
+async function servePublicMemoryMedia(request: Request, token: string): Promise<Response> {
+  const memory = await getPublicMemory(token);
+  if (!memory?.objectKey || !memory.contentType) {
+    return Response.json({ error: "Shared media not found." }, { status: 404 });
+  }
+  return streamMediaObject(request, memory.objectKey, memory.contentType, "no-store");
 }
 
 async function createCapsule(request: Request): Promise<Response> {
@@ -1111,11 +1308,18 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
     .bind(memoryId, context.archiveId)
     .first<{ id: string; kind: string; createdByUserId: string | null }>();
   if (!memory) return Response.json({ error: "Memory not found." }, { status: 404 });
-  if (context.role === "contributor" && memory.createdByUserId !== context.user.id)
-    return forbidden();
+  if (memory.createdByUserId !== context.user.id) return forbidden();
 
-  const contentType = (request.headers.get("content-type") ?? "").split(";", 1)[0].toLowerCase();
-  const media = MEDIA_TYPES.get(contentType);
+  const suppliedContentType = (request.headers.get("content-type") ?? "")
+    .split(";", 1)[0]
+    .toLowerCase();
+  const fileName = decodeFileName(request.headers.get("x-everlittle-file-name"));
+  const extension = fileName.split(".").pop()?.toLowerCase() ?? "";
+  const inferred = MEDIA_EXTENSIONS.get(extension);
+  const media = MEDIA_TYPES.get(suppliedContentType) ?? inferred;
+  const contentType = MEDIA_TYPES.has(suppliedContentType)
+    ? suppliedContentType
+    : (inferred?.contentType ?? suppliedContentType);
   const byteSize = Number(request.headers.get("content-length") ?? "0");
   if (!media || !request.body || !Number.isSafeInteger(byteSize) || byteSize < 1) {
     return Response.json(
@@ -1203,11 +1407,7 @@ async function updateMemory(request: Request, memoryId: string): Promise<Respons
     .bind(memoryId, context.archiveId)
     .first<{ id: string; childId: string; createdByUserId: string | null }>();
   if (!existing) return Response.json({ error: "Memory not found." }, { status: 404 });
-  const canEdit =
-    context.role === "owner" ||
-    context.role === "parent" ||
-    (context.role === "contributor" && existing.createdByUserId === context.user.id);
-  if (!canEdit) return forbidden();
+  if (existing.createdByUserId !== context.user.id) return forbidden();
 
   const parsed = memorySchema.safeParse(await readJson(request));
   if (!parsed.success || parsed.data.childId !== existing.childId) {
@@ -1273,23 +1473,34 @@ async function serveMedia(request: Request, assetId: string): Promise<Response> 
         `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
          FROM media_asset ma
          JOIN memory m ON m.id = ma.memory_id
-         WHERE ma.id = ? AND m.child_id = ? AND m.archive_id = ? AND m.audience = 'child'`,
+         WHERE ma.id = ? AND m.child_id = ? AND m.archive_id = ?
+           AND m.audience IN ('child', 'all')`,
       )
         .bind(assetId, child?.childId, child?.archiveId)
         .first<{ objectKey: string; contentType: string }>();
   if (!asset) return Response.json({ error: "Media not found." }, { status: 404 });
 
+  return streamMediaObject(request, asset.objectKey, asset.contentType, "private, max-age=3600");
+}
+
+async function streamMediaObject(
+  request: Request,
+  objectKey: string,
+  contentType: string,
+  cacheControl: string,
+): Promise<Response> {
+  const runtime = getRuntimeEnv();
   const requestedRange = request.headers.has("range");
   const object = requestedRange
-    ? await runtime.MEDIA.get(asset.objectKey, { range: request.headers })
-    : await runtime.MEDIA.get(asset.objectKey);
+    ? await runtime.MEDIA.get(objectKey, { range: request.headers })
+    : await runtime.MEDIA.get(objectKey);
   if (!object) return Response.json({ error: "Media not found." }, { status: 404 });
 
   const headers = new Headers();
   object.writeHttpMetadata(headers);
-  headers.set("content-type", asset.contentType);
+  headers.set("content-type", contentType);
   headers.set("content-disposition", "inline");
-  headers.set("cache-control", "private, max-age=3600");
+  headers.set("cache-control", cacheControl);
   headers.set("accept-ranges", "bytes");
   headers.set("etag", object.httpEtag);
 
@@ -1324,11 +1535,7 @@ async function deleteMemory(request: Request, memoryId: string): Promise<Respons
     .bind(memoryId, context.archiveId)
     .first<{ id: string; createdByUserId: string | null }>();
   if (!memory) return Response.json({ error: "Memory not found." }, { status: 404 });
-  const canDelete =
-    context.role === "owner" ||
-    context.role === "parent" ||
-    (context.role === "contributor" && memory.createdByUserId === context.user.id);
-  if (!canDelete) return forbidden();
+  if (memory.createdByUserId !== context.user.id) return forbidden();
 
   const assets = await runtime.DB.prepare(
     "SELECT object_key AS objectKey FROM media_asset WHERE memory_id = ?",
@@ -1508,6 +1715,69 @@ function createSecureToken(): string {
     .replaceAll("+", "-")
     .replaceAll("/", "_")
     .replace(/=+$/, "");
+}
+
+function publicMemoryPage(memory: PublicMemory, shareUrl: string, mediaUrl: string | null) {
+  const title = escapeHtml(memory.title);
+  const childName = escapeHtml(memory.childName);
+  const authorName = escapeHtml(memory.authorName ?? "Family");
+  const description = escapeHtml(
+    memory.body?.slice(0, 180) || `A ${memory.kind} memory kept for ${memory.childName}.`,
+  );
+  const safeShareUrl = escapeHtml(shareUrl);
+  const safeMediaUrl = mediaUrl ? escapeHtml(mediaUrl) : null;
+  const happenedAt = new Intl.DateTimeFormat("en", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(memory.happenedAt));
+  const media =
+    safeMediaUrl && memory.mediaType === "image"
+      ? `<img class="memory-media" src="${safeMediaUrl}" alt="">`
+      : safeMediaUrl && memory.mediaType === "video"
+        ? `<video class="memory-media" src="${safeMediaUrl}" controls playsinline preload="metadata"></video>`
+        : safeMediaUrl && memory.mediaType === "audio"
+          ? `<audio class="memory-audio" src="${safeMediaUrl}" controls preload="metadata"></audio>`
+          : `<div class="memory-mark" aria-hidden="true">♡</div>`;
+  const ogMedia =
+    safeMediaUrl && memory.mediaType === "image"
+      ? `<meta property="og:image" content="${safeMediaUrl}">`
+      : "";
+  const story = memory.body
+    ? `<p class="story">${escapeHtml(memory.body).replaceAll("\n", "<br>")}</p>`
+    : "";
+  const whatsappText = encodeURIComponent(`${memory.title} — ${shareUrl}`);
+
+  return `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>${title} — Everlittle</title><meta name="description" content="${description}">
+<meta property="og:type" content="article"><meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}"><meta property="og:url" content="${safeShareUrl}">${ogMedia}
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="theme-color" content="#f7f1e7">
+<style>*{box-sizing:border-box}body{margin:0;background:#f7f1e7;color:#23332d;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.shell{min-height:100svh;padding:clamp(1rem,4vw,2.5rem)}.brand{color:#294f3c;font-family:Georgia,serif;font-size:1.2rem}.card{background:#fffdf8;border:1px solid #ddd6c8;border-radius:24px;box-shadow:0 24px 70px rgb(22 43 34/.12);margin:clamp(2rem,8vh,5rem) auto;max-width:720px;overflow:hidden}.copy{padding:clamp(1.4rem,6vw,3.5rem)}.eyebrow{color:#6b7c73;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}h1{color:#294f3c;font-family:Georgia,serif;font-size:clamp(2.5rem,10vw,5rem);font-weight:500;letter-spacing:-.04em;line-height:.95;margin:.65rem 0 1rem}.story{font-family:Georgia,serif;font-size:1.2rem;line-height:1.65}.byline{color:#6b7c73;font-size:.8rem;margin-top:1.5rem}.memory-media{background:#e9e1d3;display:block;max-height:72svh;object-fit:cover;width:100%}.memory-audio{margin:1rem 0;width:100%}.memory-mark{align-items:center;background:#e8d8bd;color:#9b613e;display:flex;font-family:Georgia,serif;font-size:8rem;justify-content:center;min-height:280px}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.5rem}.actions a,.actions button{background:#294f3c;border:0;border-radius:12px;color:#fffdf8;font:inherit;font-size:.82rem;font-weight:700;min-height:46px;padding:.75rem 1rem;text-decoration:none}.actions .secondary{background:#edf0eb;color:#294f3c}.privacy{color:#6b7c73;font-size:.7rem;line-height:1.5;margin-top:1rem}@media(max-width:600px){.shell{padding:0}.brand{display:block;padding:1rem 1.1rem}.card{border-radius:24px 24px 0 0;margin:1rem 0 0;min-height:calc(100svh - 4rem)}}
+</style></head><body><main class="shell"><span class="brand">everlittle</span><article class="card">${media}<div class="copy"><p class="eyebrow">A memory for ${childName} · ${escapeHtml(happenedAt)}</p><h1>${title}</h1>${story}<p class="byline">Kept with love by ${authorName}</p><div class="actions"><button id="share" type="button">Share to an app</button><a href="https://wa.me/?text=${whatsappText}" target="_blank" rel="noreferrer">WhatsApp</a><button class="secondary" id="copy" type="button">Copy link</button></div><p class="privacy">This private family chose to share this single memory. The rest of the archive remains protected.</p></div></article></main><script>const share=document.querySelector('#share'),copy=document.querySelector('#copy');share.addEventListener('click',async()=>{if(navigator.share){await navigator.share({url:location.href})}else{await navigator.clipboard.writeText(location.href);share.textContent='Link copied'}});copy.addEventListener('click',async()=>{await navigator.clipboard.writeText(location.href);copy.textContent='Copied'});</script></body></html>`;
+}
+
+function publicShareUnavailablePage() {
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Memory unavailable — Everlittle</title><style>body{align-items:center;background:#f7f1e7;color:#294f3c;display:flex;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;justify-content:center;margin:0;min-height:100svh;padding:2rem;text-align:center}h1{font-family:Georgia,serif;font-size:2.6rem;font-weight:500;margin:.5rem}p{color:#6b7c73;line-height:1.6}</style></head><body><main><small>everlittle</small><h1>This memory is no longer shared.</h1><p>The link may have expired or been disabled by its author.</p></main></body></html>`;
+}
+
+function escapeHtml(value: string) {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function decodeFileName(value: string | null) {
+  if (!value) return "";
+  try {
+    return decodeURIComponent(value).slice(0, 255);
+  } catch {
+    return "";
+  }
 }
 
 async function hashToken(token: string): Promise<string> {

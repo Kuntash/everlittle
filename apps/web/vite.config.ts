@@ -12,7 +12,14 @@ const buildId = process.env.EVERLITTLE_BUILD_ID ?? hashApplicationSource();
 
 function hashApplicationSource() {
   const hash = createHash("sha256");
-  const inputs = ["src", "public", "package.json", "vite.config.ts"];
+  const inputs = [
+    "src",
+    "public",
+    "package.json",
+    "vite.config.ts",
+    "../../packages/domain/src",
+    "../../packages/ui/src",
+  ];
 
   function addPath(path: string) {
     const fullPath = join(projectRoot, path);
