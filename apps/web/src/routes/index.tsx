@@ -1344,147 +1344,149 @@ function MemoryComposer({
           </button>
         </header>
 
-        <div className="kind-picker" aria-label="Memory type">
-          {(["photo", "story", "voice", "video", "milestone", "letter"] as MemoryKind[]).map(
-            (item) => (
-              <button
-                className={kind === item ? "active" : ""}
-                key={item}
-                onClick={() => chooseKind(item)}
-                type="button"
-              >
-                {memoryIcon(item)}
-                <span>{kindLabel(item)}</span>
-              </button>
-            ),
-          )}
-        </div>
-
-        <form className="composer-form" onSubmit={submit}>
-          <label>
-            {kind === "letter"
-              ? "Letter title"
-              : kind === "milestone"
-                ? "What changed?"
-                : "Memory title"}
-            <input
-              autoFocus
-              maxLength={160}
-              onChange={(event) => setTitle(event.target.value)}
-              placeholder={memoryTitlePlaceholder(kind)}
-              required
-              value={title}
-            />
-          </label>
-          <label>
-            {kind === "letter" ? "Your letter" : "The story behind it"}
-            <textarea
-              maxLength={20_000}
-              onChange={(event) => setBody(event.target.value)}
-              placeholder={memoryBodyPlaceholder(kind)}
-              rows={5}
-              value={body}
-            />
-          </label>
-
-          <div
-            aria-hidden={!needsMedia}
-            className={`media-field-shell ${needsMedia ? "is-visible" : ""}`}
-          >
-            <div className="media-field-inner">
-              <label className="media-drop">
-                {kind === "photo" ? <Camera /> : kind === "voice" ? <FileAudio /> : <Video />}
-                <span>
-                  <strong>
-                    {file
-                      ? file.name
-                      : kind === "photo"
-                        ? "Choose a photograph"
-                        : kind === "voice"
-                          ? "Choose an audio recording"
-                          : "Choose a video"}
-                  </strong>
-                  <small>
-                    {file
-                      ? formatFileSize(file.size)
-                      : "Photos, MP3, M4A, MP4, MOV or WebM · up to 50 MB"}
-                  </small>
-                </span>
-                <input
-                  accept={
-                    kind === "photo"
-                      ? "image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif"
-                      : kind === "voice"
-                        ? "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/webm,audio/ogg,audio/wav,audio/wave,audio/x-wav"
-                        : "video/mp4,video/webm,video/quicktime"
-                  }
-                  capture={kind === "voice" || kind === "video" ? "user" : undefined}
-                  disabled={!needsMedia}
-                  onChange={(event) => setFile(event.target.files?.[0] ?? null)}
-                  required={needsMedia}
-                  tabIndex={needsMedia ? 0 : -1}
-                  type="file"
-                />
-              </label>
-            </div>
+        <div className="composer-scroll">
+          <div className="kind-picker" aria-label="Memory type">
+            {(["photo", "story", "voice", "video", "milestone", "letter"] as MemoryKind[]).map(
+              (item) => (
+                <button
+                  className={kind === item ? "active" : ""}
+                  key={item}
+                  onClick={() => chooseKind(item)}
+                  type="button"
+                >
+                  {memoryIcon(item)}
+                  <span>{kindLabel(item)}</span>
+                </button>
+              ),
+            )}
           </div>
 
-          <div className="composer-fields">
+          <form className="composer-form" onSubmit={submit}>
             <label>
-              When it happened
+              {kind === "letter"
+                ? "Letter title"
+                : kind === "milestone"
+                  ? "What changed?"
+                  : "Memory title"}
               <input
-                max={currentLocalDateTime()}
-                onChange={(event) => setHappenedAt(event.target.value)}
+                autoFocus
+                maxLength={160}
+                onChange={(event) => setTitle(event.target.value)}
+                placeholder={memoryTitlePlaceholder(kind)}
                 required
-                type="datetime-local"
-                value={happenedAt}
+                value={title}
               />
             </label>
             <label>
-              Who can see it
-              <select
-                onChange={(event) => setAudience(event.target.value as typeof audience)}
-                value={audience}
-              >
-                <option value="family">Family archive</option>
-                {role === "owner" || role === "parent" ? (
-                  <option value="parents">Parents only</option>
-                ) : null}
-                <option value="child">For Diki</option>
-              </select>
+              {kind === "letter" ? "Your letter" : "The story behind it"}
+              <textarea
+                maxLength={20_000}
+                onChange={(event) => setBody(event.target.value)}
+                placeholder={memoryBodyPlaceholder(kind)}
+                rows={5}
+                value={body}
+              />
             </label>
-          </div>
-          <p className="audience-note">
-            {audience === "child"
-              ? "This will appear in Diki’s child view."
-              : audience === "parents"
-                ? "Only owners and parents should use this private context."
-                : "Visible to accepted family members."}
-          </p>
-          {error ? (
-            <p className="form-error" role="alert">
-              {error}
+
+            <div
+              aria-hidden={!needsMedia}
+              className={`media-field-shell ${needsMedia ? "is-visible" : ""}`}
+            >
+              <div className="media-field-inner">
+                <label className="media-drop">
+                  {kind === "photo" ? <Camera /> : kind === "voice" ? <FileAudio /> : <Video />}
+                  <span>
+                    <strong>
+                      {file
+                        ? file.name
+                        : kind === "photo"
+                          ? "Choose a photograph"
+                          : kind === "voice"
+                            ? "Choose an audio recording"
+                            : "Choose a video"}
+                    </strong>
+                    <small>
+                      {file
+                        ? formatFileSize(file.size)
+                        : "Photos, MP3, M4A, MP4, MOV or WebM · up to 50 MB"}
+                    </small>
+                  </span>
+                  <input
+                    accept={
+                      kind === "photo"
+                        ? "image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif"
+                        : kind === "voice"
+                          ? "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/webm,audio/ogg,audio/wav,audio/wave,audio/x-wav"
+                          : "video/mp4,video/webm,video/quicktime"
+                    }
+                    capture={kind === "voice" || kind === "video" ? "user" : undefined}
+                    disabled={!needsMedia}
+                    onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+                    required={needsMedia}
+                    tabIndex={needsMedia ? 0 : -1}
+                    type="file"
+                  />
+                </label>
+              </div>
+            </div>
+
+            <div className="composer-fields">
+              <label>
+                When it happened
+                <input
+                  max={currentLocalDateTime()}
+                  onChange={(event) => setHappenedAt(event.target.value)}
+                  required
+                  type="datetime-local"
+                  value={happenedAt}
+                />
+              </label>
+              <label>
+                Who can see it
+                <select
+                  onChange={(event) => setAudience(event.target.value as typeof audience)}
+                  value={audience}
+                >
+                  <option value="family">Family archive</option>
+                  {role === "owner" || role === "parent" ? (
+                    <option value="parents">Parents only</option>
+                  ) : null}
+                  <option value="child">For Diki</option>
+                </select>
+              </label>
+            </div>
+            <p className="audience-note">
+              {audience === "child"
+                ? "This will appear in Diki’s child view."
+                : audience === "parents"
+                  ? "Only owners and parents should use this private context."
+                  : "Visible to accepted family members."}
             </p>
-          ) : null}
-          <div className="composer-actions">
-            <button
-              className="text-button"
-              disabled={stage !== "idle"}
-              onClick={() => requestClose()}
-              type="button"
-            >
-              Cancel
-            </button>
-            <button
-              aria-busy={stage !== "idle"}
-              className="primary-button"
-              disabled={stage !== "idle"}
-              type="submit"
-            >
-              <MemoryStageLabel stage={stage} />
-            </button>
-          </div>
-        </form>
+            {error ? (
+              <p className="form-error" role="alert">
+                {error}
+              </p>
+            ) : null}
+            <div className="composer-actions">
+              <button
+                className="text-button"
+                disabled={stage !== "idle"}
+                onClick={() => requestClose()}
+                type="button"
+              >
+                Cancel
+              </button>
+              <button
+                aria-busy={stage !== "idle"}
+                className="primary-button"
+                disabled={stage !== "idle"}
+                type="submit"
+              >
+                <MemoryStageLabel stage={stage} />
+              </button>
+            </div>
+          </form>
+        </div>
       </section>
     </div>
   );
@@ -2826,7 +2828,9 @@ function audienceLabel(audience: Memory["audience"]) {
 }
 
 function memoryIcon(kind: MemoryKind) {
-  return <img alt="" className="memory-kind-art" src={`/memory-icons/${kind}.png`} />;
+  return (
+    <img alt="" className="memory-kind-art" draggable={false} src={`/memory-icons/${kind}.png`} />
+  );
 }
 
 function memoryTitlePlaceholder(kind: MemoryKind) {
