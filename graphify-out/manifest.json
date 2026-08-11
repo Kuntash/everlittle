@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786431342.9065459,
-    "ast_hash": "a32649e167ad1c4b375976253b109b5c",
+    "mtime": 1786432016.996338,
+    "ast_hash": "49268bcec9f0d3bf5466d181d7ffbc98",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {

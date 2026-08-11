@@ -592,7 +592,6 @@ function ArchiveApp({ name }: { name: string }) {
           child={state.children[0]}
           currentUserId={state.currentMember.userId}
           memories={state.memories}
-          onNavigate={setView}
           refresh={refresh}
           role={state.currentMember.role}
         />
@@ -602,7 +601,6 @@ function ArchiveApp({ name }: { name: string }) {
           capsules={state.capsules}
           child={state.children[0]}
           currentUserId={state.currentMember.userId}
-          onNavigate={setView}
           refresh={refresh}
           role={state.currentMember.role}
         />
@@ -617,6 +615,7 @@ function ArchiveApp({ name }: { name: string }) {
         />
       ) : null}
       {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
+      <MobileNav active={view} onNavigate={setView} />
     </main>
   );
 }
@@ -808,7 +807,6 @@ function ParentView({
           </button>
         </div>
       </aside>
-      <MobileNav active="parent" onNavigate={onNavigate} />
       {composerKind && child ? (
         <MemoryComposer
           child={child}
@@ -940,14 +938,12 @@ function TimelineView({
   child,
   currentUserId,
   memories,
-  onNavigate,
   refresh,
   role,
 }: {
   child?: Child;
   currentUserId: string;
   memories: Memory[];
-  onNavigate: (view: View) => void;
   refresh: () => Promise<void>;
   role: FamilyRole;
 }) {
@@ -1032,7 +1028,6 @@ function TimelineView({
           <p>New moments will settle here in time.</p>
         </section>
       )}
-      <MobileNav active="timeline" onNavigate={onNavigate} />
       {selectedMemory && child ? (
         <MemoryDetail
           child={child}
@@ -1783,14 +1778,12 @@ function CapsulesView({
   capsules,
   child,
   currentUserId,
-  onNavigate,
   refresh,
   role,
 }: {
   capsules: Capsule[];
   child?: Child;
   currentUserId: string;
-  onNavigate: (view: View) => void;
   refresh: () => Promise<void>;
   role: FamilyRole;
 }) {
@@ -1912,7 +1905,6 @@ function CapsulesView({
           ) : null}
         </section>
       )}
-      <MobileNav active="capsules" onNavigate={onNavigate} />
       {creating && child ? (
         <CapsuleComposer
           child={child}
