@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { createAuth } from "@/lib/auth";
 import { getRuntimeEnv } from "@/lib/runtime-env";
+import { sendInvitationEmail } from "@/lib/invitation-email";
 
 const invitationSchema = z.object({
   email: z.email().transform((value) => value.trim().toLowerCase()),
@@ -88,6 +89,7 @@ type Invitation = {
   email: string;
   role: Exclude<FamilyRole, "owner">;
   expiresAt: string;
+  inviterName: string;
 };
 
 export async function handleArchiveApi(request: Request): Promise<Response | null> {
@@ -120,6 +122,13 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
 
   if (url.pathname === "/api/archive/invitations" && request.method === "POST") {
     return createInvitation(request);
+  }
+
+  const resendInvitationMatch = url.pathname.match(
+    /^\/api\/archive\/invitations\/([^/]+)\/resend$/,
+  );
+  if (resendInvitationMatch && request.method === "POST") {
+    return resendInvitation(request, resendInvitationMatch[1]);
   }
 
   if (url.pathname === "/api/archive/children" && request.method === "POST") {
@@ -197,9 +206,10 @@ export async function findValidInvitation(
   const invitation = await database
     .prepare(
       `SELECT i.id, i.archive_id AS archiveId, a.name AS archiveName, i.email, i.role,
-              i.expires_at AS expiresAt
+              i.expires_at AS expiresAt, inviter.name AS inviterName
        FROM family_invitation i
        JOIN family_archive a ON a.id = i.archive_id
+       JOIN "user" inviter ON inviter.id = i.invited_by_user_id
        WHERE i.token_hash = ? AND i.accepted_at IS NULL AND i.revoked_at IS NULL
          AND datetime(i.expires_at) > CURRENT_TIMESTAMP`,
     )
@@ -317,7 +327,9 @@ async function getArchiveState(request: Request): Promise<Response> {
     context.role === "owner"
       ? database
           .prepare(
-            `SELECT id, email, role, expires_at AS expiresAt, created_at AS createdAt
+            `SELECT id, email, role, expires_at AS expiresAt, created_at AS createdAt,
+                    email_status AS emailStatus, email_sent_at AS emailSentAt,
+                    email_attempt_count AS emailAttemptCount
              FROM family_invitation
              WHERE archive_id = ? AND accepted_at IS NULL AND revoked_at IS NULL
                AND datetime(expires_at) > CURRENT_TIMESTAMP
@@ -357,12 +369,14 @@ async function previewInvitation(request: Request): Promise<Response> {
     email: invitation.email,
     role: invitation.role,
     expiresAt: invitation.expiresAt,
+    inviterName: invitation.inviterName,
   });
 }
 
 async function createInvitation(request: Request): Promise<Response> {
   if (!isSameOrigin(request)) return forbidden();
-  const database = getRuntimeEnv().DB;
+  const runtime = getRuntimeEnv();
+  const database = runtime.DB;
   const context = await getMembershipContext(request);
   if (!context) return unauthorized();
   if (context.role !== "owner") return forbidden();
@@ -436,10 +450,151 @@ async function createInvitation(request: Request): Promise<Response> {
   invitationUrl.search = "";
   invitationUrl.searchParams.set("invite", rawToken);
 
+  const archive = await database
+    .prepare("SELECT name FROM family_archive WHERE id = ?")
+    .bind(context.archiveId)
+    .first<{ name: string }>();
+  const delivery = await deliverInvitation(runtime, {
+    archiveId: context.archiveId,
+    archiveName: archive?.name ?? "your family archive",
+    invitationId,
+    invitationUrl: invitationUrl.toString(),
+    inviter: context.user,
+    recipient: parsed.data.email,
+    role: parsed.data.role,
+    expiresAt,
+  });
+
   return Response.json(
-    { id: invitationId, invitationUrl: invitationUrl.toString(), expiresAt },
+    { id: invitationId, invitationUrl: invitationUrl.toString(), expiresAt, delivery },
     { status: 201 },
   );
+}
+
+async function resendInvitation(request: Request, invitationId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role !== "owner") return forbidden();
+
+  const invitation = await runtime.DB.prepare(
+    `SELECT i.id, i.email, i.role, a.name AS archiveName, i.email_last_attempt_at AS lastAttempt
+     FROM family_invitation i JOIN family_archive a ON a.id = i.archive_id
+     WHERE i.id = ? AND i.archive_id = ? AND i.accepted_at IS NULL AND i.revoked_at IS NULL`,
+  )
+    .bind(invitationId, context.archiveId)
+    .first<{
+      id: string;
+      email: string;
+      role: "parent" | "contributor" | "viewer";
+      archiveName: string;
+      lastAttempt: string | null;
+    }>();
+  if (!invitation) return Response.json({ error: "Invitation not found" }, { status: 404 });
+  if (
+    invitation.lastAttempt &&
+    Date.now() - new Date(`${invitation.lastAttempt}Z`).getTime() < 60_000
+  ) {
+    return Response.json(
+      { error: "Wait a minute before sending this invitation again." },
+      { status: 429 },
+    );
+  }
+
+  const rawToken = createSecureToken();
+  const expiresAt = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+  await runtime.DB.batch([
+    runtime.DB.prepare(
+      `UPDATE family_invitation SET token_hash = ?, expires_at = ?, email_status = 'not_sent'
+       WHERE id = ?`,
+    ).bind(await hashToken(rawToken), expiresAt, invitationId),
+    auditStatement(runtime.DB, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "invitation.replaced",
+      entityType: "family_invitation",
+      entityId: invitationId,
+    }),
+  ]);
+  const invitationUrl = new URL(request.url);
+  invitationUrl.pathname = "/";
+  invitationUrl.search = "";
+  invitationUrl.searchParams.set("invite", rawToken);
+  const delivery = await deliverInvitation(runtime, {
+    archiveId: context.archiveId,
+    archiveName: invitation.archiveName,
+    invitationId,
+    invitationUrl: invitationUrl.toString(),
+    inviter: context.user,
+    recipient: invitation.email,
+    role: invitation.role,
+    expiresAt,
+  });
+  return Response.json({ invitationUrl: invitationUrl.toString(), expiresAt, delivery });
+}
+
+async function deliverInvitation(
+  runtime: Env,
+  input: {
+    archiveId: string;
+    archiveName: string;
+    invitationId: string;
+    invitationUrl: string;
+    inviter: SessionUser;
+    recipient: string;
+    role: "parent" | "contributor" | "viewer";
+    expiresAt: string;
+  },
+) {
+  try {
+    const messageId = await sendInvitationEmail(runtime, {
+      archiveName: input.archiveName,
+      expiresAt: input.expiresAt,
+      invitationUrl: input.invitationUrl,
+      inviterEmail: input.inviter.email,
+      inviterName: input.inviter.name,
+      recipient: input.recipient,
+      role: input.role,
+    });
+    await runtime.DB.batch([
+      runtime.DB.prepare(
+        `UPDATE family_invitation SET email_status = 'sent', email_message_id = ?,
+         email_sent_at = CURRENT_TIMESTAMP, email_last_attempt_at = CURRENT_TIMESTAMP,
+         email_attempt_count = email_attempt_count + 1 WHERE id = ?`,
+      ).bind(messageId, input.invitationId),
+      auditStatement(runtime.DB, {
+        id: crypto.randomUUID(),
+        archiveId: input.archiveId,
+        actorUserId: input.inviter.id,
+        action: "invitation.email_sent",
+        entityType: "family_invitation",
+        entityId: input.invitationId,
+      }),
+    ]);
+    return { status: "sent" as const };
+  } catch (error) {
+    console.error(
+      JSON.stringify({ event: "invitation.email_failed", invitationId: input.invitationId }),
+    );
+    await runtime.DB.batch([
+      runtime.DB.prepare(
+        `UPDATE family_invitation SET email_status = 'failed', email_last_attempt_at = CURRENT_TIMESTAMP,
+         email_attempt_count = email_attempt_count + 1 WHERE id = ?`,
+      ).bind(input.invitationId),
+      auditStatement(runtime.DB, {
+        id: crypto.randomUUID(),
+        archiveId: input.archiveId,
+        actorUserId: input.inviter.id,
+        action: "invitation.email_failed",
+        entityType: "family_invitation",
+        entityId: input.invitationId,
+        metadata: { reason: error instanceof Error ? error.name : "UnknownError" },
+      }),
+    ]);
+    return { status: "failed" as const };
+  }
 }
 
 async function acceptInvitationForCurrentUser(request: Request): Promise<Response> {

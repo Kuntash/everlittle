@@ -169,5 +169,10 @@
   "167": "vite.config.ts",
   "168": "Everlittle",
   "169": "zod",
-  "170": "pre-commit"
+  "170": "pre-commit",
+  "171": "0001_foundation.sql",
+  "172": "clear-demo-memories.sql",
+  "173": "demo-memories.sql",
+  "174": "0003_memory_media_guards.sql",
+  "175": "0006_invitation_email.sql"
 }

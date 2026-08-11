@@ -17,7 +17,7 @@ ownership to a parent, and then leave without weakening access control.
 - [x] Add a **Family** settings screen backed by real membership data.
 - [x] Let an owner invite an adult by email as `parent`, `contributor`, or `viewer`.
 - [ ] Show pending, accepted, expired, and revoked invitations.
-- [ ] Give invitees a clear preview of the archive, inviter, and proposed role before acceptance.
+- [x] Give invitees a clear preview of the archive, inviter, and proposed role before acceptance.
 - [x] Add a guided **Hand over this archive** flow for transferring ownership.
 - [ ] Require recent authentication and an explicit confirmation from the current owner.
 - [ ] Notify the new owner and show a clear change-of-control receipt.
@@ -25,15 +25,15 @@ ownership to a parent, and then leave without weakening access control.
 
 ### Current invitation UX gaps
 
-- [ ] Send invitation emails automatically instead of requiring the owner to copy and privately
+- [x] Send invitation emails automatically instead of requiring the owner to copy and privately
       deliver a bearer link.
-- [ ] Warn the owner that an invitation link grants access and should be shared only with the
+- [x] Warn the owner that an invitation link grants access and should be shared only with the
       intended recipient.
-- [ ] Add **Resend** and **Replace link** actions with clear expiry information.
+- [x] Add **Resend** and **Replace link** actions with clear expiry information.
 - [ ] Let an invitee explicitly decline an invitation.
 - [ ] Show accepted, expired, revoked, and declined invitation history—not only active invitations.
 - [ ] Notify the owner when an invitation is accepted, declined, or expires.
-- [ ] Show the inviter’s identity and a plain-language permission summary before acceptance.
+- [x] Show the inviter’s identity and a plain-language permission summary before acceptance.
 - [ ] Add a correction flow for an invitation sent to the wrong email address.
 - [ ] Require password re-entry or another recent-authentication check before ownership transfer.
 - [ ] Give both parties a durable ownership-transfer receipt with the previous owner, new owner,
@@ -55,7 +55,7 @@ ownership to a parent, and then leave without weakening access control.
 ### Server work
 
 - [x] Add `family_invitation` and `audit_event` migrations.
-- [ ] Add authenticated endpoints for invitation preview, create, accept, revoke, and resend.
+- [x] Add authenticated endpoints for invitation preview, create, accept, revoke, and resend.
 - [x] Add endpoints for role changes, ownership transfer, self-removal, and owner removal.
 - [x] Add same-origin checks, Zod validation, authorization checks, and rate limits.
 - [ ] Add integration tests for concurrent transfer/removal and last-owner protection.

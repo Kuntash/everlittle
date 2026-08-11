@@ -2054,6 +2054,12 @@ h3,
   height: 15px;
   width: 15px;
 }
+.invite-privacy-note {
+  color: var(--muted-ink);
+  font-size: 0.68rem;
+  line-height: 1.55;
+  margin: 0.8rem 0 0;
+}
 .pending-list {
   border-top: 1px solid var(--line);
   margin-top: 1.1rem;
@@ -2082,6 +2088,25 @@ h3,
   border: 0;
   color: #8b402c;
   padding: 0.5rem;
+}
+.pending-actions {
+  align-items: center;
+  display: flex;
+  gap: 0.15rem;
+}
+.pending-actions button:first-child {
+  color: var(--forest);
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+.delivery-status {
+  font-weight: 700;
+}
+.delivery-status.is-sent {
+  color: var(--forest);
+}
+.delivery-status.is-failed {
+  color: #8b402c;
 }
 
 @media (min-width: 760px) {

@@ -45,6 +45,7 @@ type InvitationPreview = {
   email: string;
   role: FamilyRole;
   expiresAt: string;
+  inviterName: string;
 };
 type FamilyRole = "owner" | "parent" | "contributor" | "viewer";
 type Member = {
@@ -98,6 +99,9 @@ type PendingInvitation = {
   role: Exclude<FamilyRole, "owner">;
   expiresAt: string;
   createdAt: string;
+  emailStatus: "not_sent" | "sent" | "failed";
+  emailSentAt: string | null;
+  emailAttemptCount: number;
 };
 type ArchiveState = {
   archive: { id: string; name: string; slug: string; timezone: string; createdAt: string };
@@ -488,7 +492,8 @@ function InvitationAcceptance({
         <p className="eyebrow">Family invitation</p>
         <h2>Join {invitation.archiveName}</h2>
         <p className="card-intro">
-          Continue as {invitation.email} with the {roleLabel(invitation.role)} role.
+          {invitation.inviterName} invited {invitation.email} to join as a{" "}
+          {roleLabel(invitation.role)}. {roleDescription(invitation.role)}
         </p>
         {error ? <p className="form-error">{error}</p> : null}
         <button
@@ -2054,6 +2059,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   const [inviteRole, setInviteRole] = useState<Exclude<FamilyRole, "owner">>("parent");
   const [inviteUrl, setInviteUrl] = useState("");
   const [copied, setCopied] = useState(false);
+  const [inviteBusy, setInviteBusy] = useState(false);
   const [childName, setChildName] = useState(state.children[0]?.displayName ?? "Diki Choetso");
   const [birthDate, setBirthDate] = useState(state.children[0]?.birthDate ?? "");
   const [childPin, setChildPin] = useState("");
@@ -2076,19 +2082,54 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
 
   async function invite(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setInviteBusy(true);
+    setError("");
+    setMessage("");
     const response = await apiFetch("/api/archive/invitations", {
       method: "POST",
       body: JSON.stringify({ email: inviteEmail, role: inviteRole }),
     });
     if (!response.ok) {
       setError(await responseError(response));
+      setInviteBusy(false);
       return;
     }
-    const result = (await response.json()) as { invitationUrl: string };
+    const result = (await response.json()) as {
+      invitationUrl: string;
+      delivery: { status: "sent" | "failed" };
+    };
     setInviteUrl(result.invitationUrl);
     setInviteEmail("");
-    setMessage("Invitation link created.");
+    setMessage(
+      result.delivery.status === "sent"
+        ? "Invitation sent by email."
+        : "The invitation is ready, but email could not be sent. Copy the private link below.",
+    );
     setError("");
+    await refresh();
+    setInviteBusy(false);
+  }
+
+  async function resendInvite(item: PendingInvitation) {
+    setError("");
+    setMessage("");
+    const response = await apiFetch(`/api/archive/invitations/${item.id}/resend`, {
+      method: "POST",
+    });
+    if (!response.ok) {
+      setError(await responseError(response));
+      return;
+    }
+    const result = (await response.json()) as {
+      invitationUrl: string;
+      delivery: { status: "sent" | "failed" };
+    };
+    setInviteUrl(result.invitationUrl);
+    setMessage(
+      result.delivery.status === "sent"
+        ? `A new invitation was sent to ${item.email}. The old link no longer works.`
+        : "A new link was created, but email failed. Copy the private link below.",
+    );
     await refresh();
   }
 
@@ -2421,10 +2462,15 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                   <option value="viewer">Viewer</option>
                 </select>
               </label>
-              <button className="primary-button" type="submit">
-                Create invite link <ArrowRight size={17} />
+              <button className="primary-button" disabled={inviteBusy} type="submit">
+                {inviteBusy ? "Sending…" : "Send invitation"}{" "}
+                {!inviteBusy ? <ArrowRight size={17} /> : null}
               </button>
             </form>
+            <p className="invite-privacy-note">
+              We’ll email a private, seven-day link to this address. Anyone with the link can open
+              the invitation, so only share the fallback copy with its intended recipient.
+            </p>
             {inviteUrl ? (
               <div className="invite-result">
                 <input aria-label="Invitation link" readOnly value={inviteUrl} />
@@ -2438,25 +2484,38 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
               <div className="pending-list">
                 <p className="eyebrow">Pending</p>
                 {state.invitations.map((item) => (
-                  <div key={item.id}>
+                  <div className="pending-invite" key={item.id}>
                     <span>
                       <strong>{item.email}</strong>
                       <small>
                         {roleLabel(item.role)} · expires {formatDate(item.expiresAt)}
                       </small>
+                      <small className={`delivery-status is-${item.emailStatus}`}>
+                        {item.emailStatus === "sent"
+                          ? "Email sent"
+                          : item.emailStatus === "failed"
+                            ? "Email failed"
+                            : "Not emailed"}
+                      </small>
                     </span>
-                    <button
-                      aria-label={`Revoke invitation for ${item.email}`}
-                      onClick={() =>
-                        void mutate(
-                          `/api/archive/invitations/${item.id}`,
-                          { method: "DELETE" },
-                          `Invitation for ${item.email} was revoked.`,
-                        )
-                      }
-                    >
-                      <Trash2 size={15} />
-                    </button>
+                    <span className="pending-actions">
+                      <button onClick={() => void resendInvite(item)} type="button">
+                        {item.emailStatus === "failed" ? "Retry" : "Send again"}
+                      </button>
+                      <button
+                        aria-label={`Revoke invitation for ${item.email}`}
+                        onClick={() =>
+                          void mutate(
+                            `/api/archive/invitations/${item.id}`,
+                            { method: "DELETE" },
+                            `Invitation for ${item.email} was revoked.`,
+                          )
+                        }
+                        type="button"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </span>
                   </div>
                 ))}
               </div>
@@ -2545,6 +2604,13 @@ async function responseError(response: Response) {
 
 function roleLabel(role: FamilyRole) {
   return role.charAt(0).toUpperCase() + role.slice(1);
+}
+
+function roleDescription(role: FamilyRole) {
+  if (role === "parent") return "Parents can manage the archive and add memories.";
+  if (role === "contributor") return "Contributors can add memories to Diki’s story.";
+  if (role === "viewer") return "Viewers can see family memories shared with them.";
+  return "Owners manage the family archive.";
 }
 
 function initials(name: string) {

@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-11)
 
 ## Corpus Check
-- 31 files · ~390,111 words
+- 33 files · ~391,251 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2050 nodes · 2337 edges · 171 communities (25 shown, 146 thin omitted)
+- 2084 nodes · 2403 edges · 176 communities (30 shown, 146 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `187fb49f`
+- Built from commit: `689b3d74`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -184,47 +184,48 @@
 - Everlittle
 - zod
 - pre-commit
+- 0001_foundation.sql
 
 ## God Nodes (most connected - your core abstractions)
-1. `getRuntimeEnv()` - 29 edges
-2. `handleArchiveApi()` - 25 edges
+1. `getRuntimeEnv()` - 30 edges
+2. `handleArchiveApi()` - 26 edges
 3. `Event` - 25 edges
 4. `Console` - 21 edges
-5. `getMembershipContext()` - 19 edges
-6. `isSameOrigin()` - 18 edges
-7. `unauthorized()` - 18 edges
-8. `forbidden()` - 18 edges
-9. `compilerOptions` - 17 edges
-10. `URLSearchParams` - 16 edges
+5. `getMembershipContext()` - 20 edges
+6. `isSameOrigin()` - 19 edges
+7. `unauthorized()` - 19 edges
+8. `forbidden()` - 19 edges
+9. `auditStatement()` - 17 edges
+10. `compilerOptions` - 17 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `fetch()` --calls--> `handleArchiveApi()`  [EXTRACTED]
-  apps/web/src/server.ts → apps/web/src/lib/archive-api.ts
-- `handleAuthRequest()` --calls--> `findValidInvitation()`  [EXTRACTED]
-  apps/web/src/server.ts → apps/web/src/lib/archive-api.ts
-- `handleAuthRequest()` --calls--> `acceptInvitation()`  [EXTRACTED]
-  apps/web/src/server.ts → apps/web/src/lib/archive-api.ts
-- `getArchiveState()` --calls--> `getRuntimeEnv()`  [EXTRACTED]
-  apps/web/src/lib/archive-api.ts → apps/web/src/lib/runtime-env.ts
-- `previewInvitation()` --calls--> `getRuntimeEnv()`  [EXTRACTED]
-  apps/web/src/lib/archive-api.ts → apps/web/src/lib/runtime-env.ts
+- `child_access_session` --references--> `child_profile`  [EXTRACTED]
+  apps/web/migrations/0005_child_access.sql → apps/web/migrations/0001_foundation.sql
+- `audit_event` --references--> `"user"`  [EXTRACTED]
+  apps/web/migrations/0002_family_access.sql → apps/web/migrations/0001_foundation.sql
+- `family_invitation` --references--> `"user"`  [EXTRACTED]
+  apps/web/migrations/0002_family_access.sql → apps/web/migrations/0001_foundation.sql
+- `memory_next` --references--> `"user"`  [EXTRACTED]
+  apps/web/migrations/0004_video_memories_and_capsules.sql → apps/web/migrations/0001_foundation.sql
+- `audit_event` --references--> `family_archive`  [EXTRACTED]
+  apps/web/migrations/0002_family_access.sql → apps/web/migrations/0001_foundation.sql
 
 ## Import Cycles
 - None detected.
 
-## Communities (171 total, 146 thin omitted)
+## Communities (176 total, 146 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
 Nodes (847): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentMemoryIncomingMemory, AgentMemoryIngestOptions, AgentMemoryListMemoriesOptions, AgentMemoryListMemoriesResult, AgentMemoryMemory, AgentMemoryMemoryListEntry (+839 more)
 
 ### Community 1 - "archive-api.ts"
-Cohesion: 0.11
-Nodes (63): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, ChildAccessContext, childPinSchema, childSchema, childSessionCookie() (+55 more)
+Cohesion: 0.10
+Nodes (71): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, ChildAccessContext, childPinSchema, childSchema, childSessionCookie() (+63 more)
 
 ### Community 2 - "index.tsx"
-Cohesion: 0.08
-Nodes (50): authClient, AccessScreen(), apiFetch(), ArchiveApp(), ArchiveState, audienceLabel(), Capsule, CapsuleComposer() (+42 more)
+Cohesion: 0.07
+Nodes (51): authClient, AccessScreen(), apiFetch(), ArchiveApp(), ArchiveState, audienceLabel(), Capsule, CapsuleComposer() (+43 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -306,25 +307,29 @@ Nodes (3): RequestInitCfPropertiesVaryAcceptHeader, RequestInitCfPropertiesVaryA
 Cohesion: 0.18
 Nodes (10): Authentication, Deployment, Design references, Everlittle, License, Local development, Privacy posture, Product surfaces (+2 more)
 
+### Community 171 - "0001_foundation.sql"
+Cohesion: 0.20
+Nodes (16): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+8 more)
+
 ## Knowledge Gaps
-- **1014 isolated node(s):** `name`, `version`, `private`, `license`, `type` (+1009 more)
+- **1018 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1013 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **146 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.043) - this node is a cross-community bridge._
+- **Why does `Container` connect `Container` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
+- **Why does `Console` connect `Console` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Why does `Event` connect `Event` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **What connects `name`, `version`, `private` to the rest of the system?**
-  _1014 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
+  _1018 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0023501762632197414 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.11261872455902307 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09649122807017543 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07581453634085213 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07441016333938294 - nodes in this community are weakly interconnected._

@@ -15,9 +15,9 @@
     "semantic_hash": "2c1766c8bbf9aba32ab2c2387be3543e"
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1785956869.6233604,
-    "ast_hash": "6b30297e52aad63330864b2e09b3f2a5",
-    "semantic_hash": "6b30297e52aad63330864b2e09b3f2a5"
+    "mtime": 1786427474.1543865,
+    "ast_hash": "cb8510f585c93fce41a78cf07a444ee2",
+    "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
     "mtime": 1785948599.4791975,
@@ -45,9 +45,9 @@
     "semantic_hash": "e2c3a6dddc4fed860f4867d0e362aa97"
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1785958634.250541,
-    "ast_hash": "2d9f819de3e49f3f1b327a05064ba27c",
-    "semantic_hash": "2d9f819de3e49f3f1b327a05064ba27c"
+    "mtime": 1786427458.1603873,
+    "ast_hash": "53cb3708e5ea6fad8986a14c9d09f92d",
+    "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
     "mtime": 1785956514.7980235,
@@ -65,9 +65,9 @@
     "semantic_hash": "cfe78013060cf5a9f7849e2e834871c0"
   },
   "apps/web/worker-configuration.d.ts": {
-    "mtime": 1785950767.3525178,
-    "ast_hash": "cf8972e608c01fc72f98cf2a070d134e",
-    "semantic_hash": "cf8972e608c01fc72f98cf2a070d134e"
+    "mtime": 1786427462.712608,
+    "ast_hash": "e81c9510de092eea1e8f251c14df67d4",
+    "semantic_hash": ""
   },
   "package.json": {
     "mtime": 1786393461.1572213,
@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "TODO.md": {
-    "mtime": 1785957844.6547887,
-    "ast_hash": "c1a86e30af7012983b3971e51bfb5f4f",
+    "mtime": 1786427458.1611743,
+    "ast_hash": "ce3d100e27f7da13300926c91eb571d6",
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
@@ -207,6 +207,51 @@
   "assets/design/everlittle-parent-flow.png": {
     "mtime": 1785948624.01464,
     "ast_hash": "6c59e455c29e424872964adb04fe3cd6",
+    "semantic_hash": ""
+  },
+  "apps/web/fixtures/clear-demo-memories.sql": {
+    "mtime": 1785955434.441288,
+    "ast_hash": "32c5bd6f58ad473fffc2f1a7dd6d93e0",
+    "semantic_hash": ""
+  },
+  "apps/web/fixtures/demo-memories.sql": {
+    "mtime": 1785957548.297159,
+    "ast_hash": "33559986e83d4631b0768cfd978a6912",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0001_foundation.sql": {
+    "mtime": 1785948314.09172,
+    "ast_hash": "d3fe225680a17ef7cbd51b221fbc99f8",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0002_family_access.sql": {
+    "mtime": 1785950767.350474,
+    "ast_hash": "d9f761875ccf35b969161c468b9f8323",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0003_memory_media_guards.sql": {
+    "mtime": 1785951803.9412055,
+    "ast_hash": "6f4991172508b51eab64f79cbae2d539",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0004_video_memories_and_capsules.sql": {
+    "mtime": 1785955094.0304668,
+    "ast_hash": "d9cbd65e640d24ce5c5dc0acf45a7be3",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0005_child_access.sql": {
+    "mtime": 1785956402.8301423,
+    "ast_hash": "3690b6f4e00f6b4b2bdc01e72bbd7721",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0006_invitation_email.sql": {
+    "mtime": 1786427368.0264983,
+    "ast_hash": "f3dd90b85f784b6f2ba301eb3c6e5bcc",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/invitation-email.ts": {
+    "mtime": 1786427368.0267053,
+    "ast_hash": "59a7f66adad524fcc6263963610b066f",
     "semantic_hash": ""
   }
 }
