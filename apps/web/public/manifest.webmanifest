@@ -7,6 +7,8 @@
   "scope": "/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
+  "launch_handler": { "client_mode": "navigate-existing" },
+  "prefer_related_applications": false,
   "background_color": "#f7f1e7",
   "theme_color": "#f7f1e7",
   "orientation": "portrait-primary",

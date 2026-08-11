@@ -28,7 +28,7 @@ import {
   Video,
   X,
 } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 
 import { authClient } from "@/lib/auth-client";
@@ -816,7 +816,6 @@ function ParentView({
           onClose={() => setComposerKind(null)}
           onCreated={async () => {
             await refresh();
-            setComposerKind(null);
           }}
           role={role}
         />
@@ -829,7 +828,6 @@ function ParentView({
           onClose={() => setSelectedMemory(null)}
           onChanged={async () => {
             await refresh();
-            setSelectedMemory(null);
           }}
           role={role}
         />
@@ -1043,7 +1041,6 @@ function TimelineView({
           onClose={() => setSelectedMemory(null)}
           onChanged={async () => {
             await refresh();
-            setSelectedMemory(null);
           }}
           role={role}
         />
@@ -1078,6 +1075,7 @@ function MemoryDetail({
     role === "owner" ||
     role === "parent" ||
     (role === "contributor" && memory.createdByUserId === currentUserId);
+  const { closing, requestClose } = useSheetTransition(onClose, busy);
   useDocumentScrollLock();
 
   async function save(event: FormEvent<HTMLFormElement>) {
@@ -1101,6 +1099,7 @@ function MemoryDetail({
       return;
     }
     await onChanged();
+    requestClose(true);
   }
 
   async function remove() {
@@ -1113,14 +1112,15 @@ function MemoryDetail({
       return;
     }
     await onChanged();
+    requestClose(true);
   }
 
   return (
     <div
-      className="composer-backdrop"
+      className={`composer-backdrop ${closing ? "is-closing" : ""}`}
       role="presentation"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget && !busy) onClose();
+      onPointerDown={(event) => {
+        if (event.target === event.currentTarget) requestClose();
       }}
     >
       <section
@@ -1137,7 +1137,7 @@ function MemoryDetail({
             </p>
             <h2 id="memory-detail-title">{editing ? "Edit this memory" : memory.title}</h2>
           </div>
-          <button aria-label="Close" disabled={busy} onClick={onClose} type="button">
+          <button aria-label="Close" disabled={busy} onClick={() => requestClose()} type="button">
             <X />
           </button>
         </header>
@@ -1255,6 +1255,7 @@ function MemoryComposer({
   const [stage, setStage] = useState<"idle" | "saving" | "uploading">("idle");
 
   const needsMedia = kind === "photo" || kind === "voice" || kind === "video";
+  const { closing, requestClose } = useSheetTransition(onClose, stage !== "idle");
   useDocumentScrollLock();
 
   function chooseKind(nextKind: MemoryKind) {
@@ -1316,14 +1317,15 @@ function MemoryComposer({
     }
 
     await onCreated();
+    requestClose(true);
   }
 
   return (
     <div
-      className="composer-backdrop"
+      className={`composer-backdrop ${closing ? "is-closing" : ""}`}
       role="presentation"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget && stage === "idle") onClose();
+      onPointerDown={(event) => {
+        if (event.target === event.currentTarget) requestClose();
       }}
     >
       <section
@@ -1337,7 +1339,12 @@ function MemoryComposer({
             <p className="eyebrow">Keep this moment</p>
             <h2 id="composer-title">A new memory for {child.displayName}</h2>
           </div>
-          <button aria-label="Close" disabled={stage !== "idle"} onClick={onClose} type="button">
+          <button
+            aria-label="Close"
+            disabled={stage !== "idle"}
+            onClick={() => requestClose()}
+            type="button"
+          >
             <X />
           </button>
         </header>
@@ -1385,40 +1392,47 @@ function MemoryComposer({
             />
           </label>
 
-          {needsMedia ? (
-            <label className="media-drop">
-              {kind === "photo" ? <Camera /> : kind === "voice" ? <FileAudio /> : <Video />}
-              <span>
-                <strong>
-                  {file
-                    ? file.name
-                    : kind === "photo"
-                      ? "Choose a photograph"
+          <div
+            aria-hidden={!needsMedia}
+            className={`media-field-shell ${needsMedia ? "is-visible" : ""}`}
+          >
+            <div className="media-field-inner">
+              <label className="media-drop">
+                {kind === "photo" ? <Camera /> : kind === "voice" ? <FileAudio /> : <Video />}
+                <span>
+                  <strong>
+                    {file
+                      ? file.name
+                      : kind === "photo"
+                        ? "Choose a photograph"
+                        : kind === "voice"
+                          ? "Choose an audio recording"
+                          : "Choose a video"}
+                  </strong>
+                  <small>
+                    {file
+                      ? formatFileSize(file.size)
+                      : "Photos, MP3, M4A, MP4, MOV or WebM · up to 50 MB"}
+                  </small>
+                </span>
+                <input
+                  accept={
+                    kind === "photo"
+                      ? "image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif"
                       : kind === "voice"
-                        ? "Choose an audio recording"
-                        : "Choose a video"}
-                </strong>
-                <small>
-                  {file
-                    ? formatFileSize(file.size)
-                    : "Photos, MP3, M4A, MP4, MOV or WebM · up to 50 MB"}
-                </small>
-              </span>
-              <input
-                accept={
-                  kind === "photo"
-                    ? "image/jpeg,image/png,image/webp,image/gif,image/heic,image/heif"
-                    : kind === "voice"
-                      ? "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/webm,audio/ogg,audio/wav,audio/wave,audio/x-wav"
-                      : "video/mp4,video/webm,video/quicktime"
-                }
-                capture={kind === "voice" || kind === "video" ? "user" : undefined}
-                onChange={(event) => setFile(event.target.files?.[0] ?? null)}
-                required
-                type="file"
-              />
-            </label>
-          ) : null}
+                        ? "audio/mpeg,audio/mp4,audio/x-m4a,audio/aac,audio/webm,audio/ogg,audio/wav,audio/wave,audio/x-wav"
+                        : "video/mp4,video/webm,video/quicktime"
+                  }
+                  capture={kind === "voice" || kind === "video" ? "user" : undefined}
+                  disabled={!needsMedia}
+                  onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+                  required={needsMedia}
+                  tabIndex={needsMedia ? 0 : -1}
+                  type="file"
+                />
+              </label>
+            </div>
+          </div>
 
           <div className="composer-fields">
             <label>
@@ -1461,18 +1475,18 @@ function MemoryComposer({
             <button
               className="text-button"
               disabled={stage !== "idle"}
-              onClick={onClose}
+              onClick={() => requestClose()}
               type="button"
             >
               Cancel
             </button>
-            <button className="primary-button" disabled={stage !== "idle"} type="submit">
-              {stage === "saving"
-                ? "Saving memory…"
-                : stage === "uploading"
-                  ? "Keeping media private…"
-                  : "Keep this memory"}
-              {stage === "idle" ? <ArrowRight size={17} /> : null}
+            <button
+              aria-busy={stage !== "idle"}
+              className="primary-button"
+              disabled={stage !== "idle"}
+              type="submit"
+            >
+              <MemoryStageLabel stage={stage} />
             </button>
           </div>
         </form>
@@ -1905,7 +1919,6 @@ function CapsulesView({
           onClose={() => setCreating(false)}
           onCreated={async () => {
             await refresh();
-            setCreating(false);
           }}
         />
       ) : null}
@@ -1928,6 +1941,7 @@ function CapsuleComposer({
   const [audience, setAudience] = useState<"family" | "child">("child");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const { closing, requestClose } = useSheetTransition(onClose, busy);
   useDocumentScrollLock();
 
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -1950,6 +1964,7 @@ function CapsuleComposer({
       return;
     }
     await onCreated();
+    requestClose(true);
   }
 
   function setEighteenthBirthday() {
@@ -1960,10 +1975,10 @@ function CapsuleComposer({
 
   return (
     <div
-      className="composer-backdrop"
+      className={`composer-backdrop ${closing ? "is-closing" : ""}`}
       role="presentation"
-      onMouseDown={(event) => {
-        if (event.target === event.currentTarget && !busy) onClose();
+      onPointerDown={(event) => {
+        if (event.target === event.currentTarget) requestClose();
       }}
     >
       <section
@@ -1977,7 +1992,7 @@ function CapsuleComposer({
             <p className="eyebrow">Seal it for later</p>
             <h2 id="capsule-title">A capsule for {child.displayName}</h2>
           </div>
-          <button aria-label="Close" disabled={busy} onClick={onClose} type="button">
+          <button aria-label="Close" disabled={busy} onClick={() => requestClose()} type="button">
             <X />
           </button>
         </header>
@@ -2039,7 +2054,12 @@ function CapsuleComposer({
             </p>
           ) : null}
           <div className="composer-actions">
-            <button className="text-button" disabled={busy} onClick={onClose} type="button">
+            <button
+              className="text-button"
+              disabled={busy}
+              onClick={() => requestClose()}
+              type="button"
+            >
               Cancel
             </button>
             <button className="primary-button" disabled={busy} type="submit">
@@ -2462,9 +2482,17 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                   <option value="viewer">Viewer</option>
                 </select>
               </label>
-              <button className="primary-button" disabled={inviteBusy} type="submit">
-                {inviteBusy ? "Sending…" : "Send invitation"}{" "}
-                {!inviteBusy ? <ArrowRight size={17} /> : null}
+              <button
+                aria-busy={inviteBusy}
+                className="primary-button"
+                disabled={inviteBusy}
+                type="submit"
+              >
+                <AnimatedActionLabel
+                  showArrow={!inviteBusy}
+                  text={inviteBusy ? "Sending…" : "Send invitation"}
+                  transitionKey={inviteBusy ? "sending" : "idle"}
+                />
               </button>
             </form>
             <p className="invite-privacy-note">
@@ -2549,25 +2577,25 @@ function MobileNav({ active, onNavigate }: { active: View; onNavigate: (view: Vi
     <nav className="mobile-nav" aria-label="Primary">
       <button className={active === "parent" ? "active" : ""} onClick={() => onNavigate("parent")}>
         <Home />
-        Home
+        <span>Home</span>
       </button>
       <button
         className={active === "timeline" ? "active" : ""}
         onClick={() => onNavigate("timeline")}
       >
         <Image />
-        Timeline
+        <span>Timeline</span>
       </button>
       <button
         className={active === "capsules" ? "active" : ""}
         onClick={() => onNavigate("capsules")}
       >
         <BookHeart />
-        Capsules
+        <span>Capsules</span>
       </button>
       <button className={active === "family" ? "active" : ""} onClick={() => onNavigate("family")}>
         <Users />
-        Family
+        <span>Family</span>
       </button>
     </nav>
   );
@@ -2703,6 +2731,96 @@ function useDocumentScrollLock() {
       window.scrollTo(0, scrollY);
     };
   }, []);
+}
+
+function useSheetTransition(onClose: () => void, blocked: boolean) {
+  const [closing, setClosing] = useState(false);
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const requestClose = useCallback(
+    (force = false) => {
+      if (closing || (blocked && !force)) return;
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        onClose();
+        return;
+      }
+      setClosing(true);
+      timer.current = setTimeout(onClose, 190);
+    },
+    [blocked, closing, onClose],
+  );
+
+  useEffect(() => {
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") requestClose();
+    }
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [requestClose]);
+
+  useEffect(
+    () => () => {
+      if (timer.current) clearTimeout(timer.current);
+    },
+    [],
+  );
+
+  return { closing, requestClose };
+}
+
+function MemoryStageLabel({ stage }: { stage: "idle" | "saving" | "uploading" }) {
+  return (
+    <AnimatedActionLabel
+      showArrow={stage === "idle"}
+      text={
+        stage === "saving"
+          ? "Saving memory…"
+          : stage === "uploading"
+            ? "Keeping media private…"
+            : "Keep this memory"
+      }
+      transitionKey={stage}
+    />
+  );
+}
+
+function AnimatedActionLabel({
+  showArrow,
+  text,
+  transitionKey,
+}: {
+  showArrow: boolean;
+  text: string;
+  transitionKey: string;
+}) {
+  const [shown, setShown] = useState({ showArrow, text, transitionKey });
+  const [phase, setPhase] = useState<"idle" | "out" | "in">("idle");
+
+  useEffect(() => {
+    if (transitionKey === shown.transitionKey) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setShown({ showArrow, text, transitionKey });
+      setPhase("idle");
+      return;
+    }
+    setPhase("out");
+    const swap = setTimeout(() => {
+      setShown({ showArrow, text, transitionKey });
+      setPhase("in");
+    }, 90);
+    const settle = setTimeout(() => setPhase("idle"), 230);
+    return () => {
+      clearTimeout(swap);
+      clearTimeout(settle);
+    };
+  }, [transitionKey]);
+
+  return (
+    <span aria-live="polite" className={`stage-label is-${phase}`}>
+      {shown.text}
+      {shown.showArrow ? <ArrowRight size={17} /> : null}
+    </span>
+  );
 }
 
 function kindLabel(kind: MemoryKind) {

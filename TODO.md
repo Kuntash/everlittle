@@ -97,11 +97,11 @@ ownership to a parent, and then leave without weakening access control.
 
 ## P2 — PWA and device polish
 
-- [ ] Add platform-specific installation guidance for iOS and Android.
+- [x] Add platform-specific installation guidance for iOS and Android.
 - [ ] Add an offline read-only library for explicitly downloaded memories.
-- [ ] Define safe caching rules so authenticated HTML and private media are never broadly cached.
+- [x] Define safe caching rules so authenticated HTML and private media are never broadly cached.
 - [ ] Test standalone mode, safe areas, camera capture, microphone permissions, and uploads.
-- [ ] Add update prompts when a new service-worker version is ready.
+- [x] Add update prompts when a new service-worker version is ready.
 
 ## P2 — Quality and operations
 

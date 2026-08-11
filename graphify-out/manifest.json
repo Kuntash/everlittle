@@ -5,9 +5,9 @@
     "semantic_hash": "7850398829b6876e52c640dfd8da6369"
   },
   "apps/web/public/sw.js": {
-    "mtime": 1785948611.965007,
-    "ast_hash": "a89be88714ed4a0d0e1fa73e9884ec9f",
-    "semantic_hash": "a89be88714ed4a0d0e1fa73e9884ec9f"
+    "mtime": 1786431483.5639484,
+    "ast_hash": "6e8e68210e19a2392eb62143d21c260f",
+    "semantic_hash": ""
   },
   "apps/web/src/env.d.ts": {
     "mtime": 1785948599.479416,
@@ -40,13 +40,13 @@
     "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1785948599.4789977,
-    "ast_hash": "e2c3a6dddc4fed860f4867d0e362aa97",
-    "semantic_hash": "e2c3a6dddc4fed860f4867d0e362aa97"
+    "mtime": 1786431355.6245365,
+    "ast_hash": "964c99f300d4c4841365992c64fb88f7",
+    "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786427458.1603873,
-    "ast_hash": "53cb3708e5ea6fad8986a14c9d09f92d",
+    "mtime": 1786431342.9065459,
+    "ast_hash": "a32649e167ad1c4b375976253b109b5c",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "TODO.md": {
-    "mtime": 1786427458.1611743,
-    "ast_hash": "ce3d100e27f7da13300926c91eb571d6",
+    "mtime": 1786431230.2525885,
+    "ast_hash": "e73a8f28a39036a3d74c306f627a420e",
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
@@ -252,6 +252,11 @@
   "apps/web/src/lib/invitation-email.ts": {
     "mtime": 1786427368.0267053,
     "ast_hash": "59a7f66adad524fcc6263963610b066f",
+    "semantic_hash": ""
+  },
+  "apps/web/public/offline.html": {
+    "mtime": 1786430941.606841,
+    "ast_hash": "575d6fa048300f5f6ad6f7ec26f7ab0e",
     "semantic_hash": ""
   }
 }

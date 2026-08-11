@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-11)
 
 ## Corpus Check
-- 33 files · ~391,251 words
+- 33 files · ~392,294 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2084 nodes · 2403 edges · 176 communities (30 shown, 146 thin omitted)
+- 2089 nodes · 2411 edges · 176 communities (30 shown, 146 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `689b3d74`
+- Built from commit: `a5c9eaae`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -225,7 +225,7 @@ Nodes (71): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement
 
 ### Community 2 - "index.tsx"
 Cohesion: 0.07
-Nodes (51): authClient, AccessScreen(), apiFetch(), ArchiveApp(), ArchiveState, audienceLabel(), Capsule, CapsuleComposer() (+43 more)
+Nodes (52): authClient, AccessScreen(), apiFetch(), ArchiveApp(), ArchiveState, audienceLabel(), Capsule, CapsuleComposer() (+44 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -312,7 +312,7 @@ Cohesion: 0.20
 Nodes (16): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+8 more)
 
 ## Knowledge Gaps
-- **1018 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1013 more)
+- **1019 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1014 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **146 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -320,16 +320,16 @@ Nodes (16): "account", child_profile, family_archive, family_member, media_asset
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.043) - this node is a cross-community bridge._
-- **Why does `Container` connect `Container` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.032) - this node is a cross-community bridge._
+  _High betweenness centrality (0.034) - this node is a cross-community bridge._
 - **Why does `Console` connect `Console` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.026) - this node is a cross-community bridge._
+- **Why does `Headers` connect `Headers` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1018 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1019 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0023501762632197414 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.09649122807017543 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07441016333938294 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07049180327868852 - nodes in this community are weakly interconnected._
