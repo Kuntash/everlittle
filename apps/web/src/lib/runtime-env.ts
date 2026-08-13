@@ -1,5 +1,7 @@
 import { env } from "cloudflare:workers";
 
+import { getDeploymentConfig } from "@/lib/deployment";
+
 export function getRuntimeEnv() {
   const runtime = env as Env;
 
@@ -8,6 +10,8 @@ export function getRuntimeEnv() {
       "BETTER_AUTH_SECRET is missing. Add it to .dev.vars locally or configure it with Wrangler.",
     );
   }
+
+  getDeploymentConfig(runtime);
 
   return runtime;
 }

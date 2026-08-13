@@ -16,7 +16,9 @@
   },
   "vars": {
     "APP_NAME": "Everlittle",
+    "DEPLOYMENT_MODE": "self-hosted",
     "INVITATION_FROM_EMAIL": "invites@example.com",
+    "PUBLIC_APP_URL": "http://localhost:3000",
   },
   "send_email": [{ "name": "EMAIL" }],
   "d1_databases": [
@@ -47,7 +49,9 @@
       ],
       "vars": {
         "APP_NAME": "Everlittle",
+        "DEPLOYMENT_MODE": "self-hosted",
         "INVITATION_FROM_EMAIL": "invites@dikichoetso.com",
+        "PUBLIC_APP_URL": "https://dikichoetso.com",
       },
       "send_email": [
         {

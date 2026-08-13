@@ -2,6 +2,7 @@ import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 
 import { acceptInvitation, findValidInvitation, handleArchiveApi } from "@/lib/archive-api";
 import { createAuth } from "@/lib/auth";
+import { getDeploymentConfig } from "@/lib/deployment";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 
 type SignUpPayload = { user?: { id?: string; name?: string } };
@@ -20,17 +21,24 @@ export default createServerEntry({
 
     if (url.pathname === "/api/platform" && request.method === "GET") {
       const runtime = getRuntimeEnv();
-      const [row, child] = await Promise.all([
-        runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"').first<{ count: number }>(),
-        runtime.DB.prepare(
-          `SELECT display_name AS displayName,
-                  CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS enabled
-           FROM child_profile ORDER BY created_at LIMIT 1`,
-        ).first<{ displayName: string; enabled: number }>(),
-      ]);
+      const deployment = getDeploymentConfig(runtime);
+      const row = await runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"').first<{
+        count: number;
+      }>();
+      const child =
+        deployment.mode === "self-hosted"
+          ? await runtime.DB.prepare(
+              `SELECT display_name AS displayName,
+                      CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS enabled
+               FROM child_profile ORDER BY created_at LIMIT 1`,
+            ).first<{ displayName: string; enabled: number }>()
+          : null;
 
       return Response.json({
-        needsSetup: Number(row?.count ?? 0) === 0,
+        allowsPublicSignup: deployment.capabilities.allowsPublicSignup,
+        deploymentMode: deployment.mode,
+        needsSetup:
+          deployment.capabilities.allowsInitialOwnerBootstrap && Number(row?.count ?? 0) === 0,
         childAccess: child
           ? { displayName: child.displayName, enabled: Boolean(child.enabled) }
           : null,
@@ -43,6 +51,7 @@ export default createServerEntry({
 
 async function handleAuthRequest(request: Request): Promise<Response> {
   const runtime = getRuntimeEnv();
+  const deployment = getDeploymentConfig(runtime);
   const url = new URL(request.url);
   const isEmailSignUp = url.pathname.endsWith("/sign-up/email");
   const signUpInput = isEmailSignUp ? await readSignUpInput(request.clone()) : null;
@@ -55,20 +64,23 @@ async function handleAuthRequest(request: Request): Promise<Response> {
     ? await runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"').first<{ count: number }>()
     : null;
   const isFirstUser = isEmailSignUp && Number(row?.count ?? 0) === 0;
+  const isOwnerBootstrap =
+    isFirstUser && deployment.capabilities.allowsInitialOwnerBootstrap && !invitation;
+  const isHostedSignup = deployment.capabilities.allowsPublicSignup && !invitation;
   const auth = createAuth({
     database: runtime.DB,
     secret: runtime.BETTER_AUTH_SECRET,
-    baseURL: url.origin,
-    allowSignUp: isFirstUser || Boolean(invitation),
+    baseURL: deployment.publicAppUrl,
+    allowSignUp: isOwnerBootstrap || isHostedSignup || Boolean(invitation),
   });
   const response = await auth.handler(request);
 
   if (isEmailSignUp && response.ok) {
     const payload = (await response.clone().json()) as SignUpPayload;
-    if (payload.user?.id && isFirstUser) {
-      await bootstrapFamily(runtime.DB, payload.user.id, payload.user.name ?? "Our family");
-    } else if (payload.user?.id && invitation) {
+    if (payload.user?.id && invitation) {
       await acceptInvitation(runtime.DB, invitation, payload.user.id);
+    } else if (payload.user?.id && (isOwnerBootstrap || isHostedSignup)) {
+      await bootstrapFamily(runtime.DB, payload.user.id, payload.user.name ?? "Our family");
     }
   }
 

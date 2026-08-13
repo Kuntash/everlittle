@@ -37,6 +37,8 @@ import { authClient } from "@/lib/auth-client";
 export const Route = createFileRoute("/")({ component: Everlittle });
 
 type PlatformState = {
+  allowsPublicSignup: boolean;
+  deploymentMode: "hosted" | "self-hosted";
   needsSetup: boolean;
   childAccess: { displayName: string; enabled: boolean } | null;
 };
@@ -161,6 +163,7 @@ function Everlittle() {
         invitation={null}
         inviteToken=""
         needsSetup={false}
+        allowsPublicSignup={platform.allowsPublicSignup}
       />
     );
   }
@@ -172,6 +175,7 @@ function Everlittle() {
         invitation={invitation}
         inviteToken={inviteToken}
         needsSetup={platform.needsSetup}
+        allowsPublicSignup={platform.allowsPublicSignup}
       />
     );
   }
@@ -192,12 +196,14 @@ function Loading() {
 }
 
 function AccessScreen({
+  allowsPublicSignup,
   childAccess,
   forceChildMode = false,
   invitation,
   inviteToken,
   needsSetup,
 }: {
+  allowsPublicSignup: boolean;
   childAccess: PlatformState["childAccess"];
   forceChildMode?: boolean;
   invitation: InvitationPreview | null;
@@ -206,7 +212,7 @@ function AccessScreen({
 }) {
   const isInvitation = Boolean(invitation && inviteToken);
   const [mode, setMode] = useState<"sign-in" | "setup">(
-    needsSetup || isInvitation ? "setup" : "sign-in",
+    needsSetup || isInvitation || allowsPublicSignup ? "setup" : "sign-in",
   );
   const [entrance, setEntrance] = useState<"adult" | "child">(forceChildMode ? "child" : "adult");
   const [pin, setPin] = useState("");
@@ -368,7 +374,9 @@ function AccessScreen({
                 {isInvitation
                   ? `You were invited as ${roleLabel(invitation?.role ?? "parent")} using ${invitation?.email ?? email}.`
                   : mode === "setup"
-                    ? "The first account becomes the archive owner."
+                    ? needsSetup
+                      ? "The first account becomes the archive owner."
+                      : "Create an account to begin your family archive."
                     : "Sign in to return to your family archive."}
               </p>
 
@@ -430,13 +438,13 @@ function AccessScreen({
                   <ArrowRight size={18} />
                 </button>
               </form>
-              {isInvitation ? (
+              {isInvitation || allowsPublicSignup ? (
                 <button
                   className="text-button"
                   onClick={() => setMode(mode === "setup" ? "sign-in" : "setup")}
                   type="button"
                 >
-                  {mode === "setup" ? "I already have an account" : "Create a new account"}
+                  {mode === "setup" ? "I already have an account" : "Create a family archive"}
                 </button>
               ) : null}
               {!isInvitation && childAccess?.enabled ? (

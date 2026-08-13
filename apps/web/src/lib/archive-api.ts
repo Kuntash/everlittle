@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { createAuth } from "@/lib/auth";
 import { getRuntimeEnv } from "@/lib/runtime-env";
+import { getDeploymentConfig } from "@/lib/deployment";
 import { sendInvitationEmail } from "@/lib/invitation-email";
 
 const invitationSchema = z.object({
@@ -507,9 +508,7 @@ async function createInvitation(request: Request): Promise<Response> {
     }),
   ]);
 
-  const invitationUrl = new URL(request.url);
-  invitationUrl.pathname = "/";
-  invitationUrl.search = "";
+  const invitationUrl = new URL("/", getDeploymentConfig(runtime).publicAppUrl);
   invitationUrl.searchParams.set("invite", rawToken);
 
   const archive = await database
@@ -580,9 +579,7 @@ async function resendInvitation(request: Request, invitationId: string): Promise
       entityId: invitationId,
     }),
   ]);
-  const invitationUrl = new URL(request.url);
-  invitationUrl.pathname = "/";
-  invitationUrl.search = "";
+  const invitationUrl = new URL("/", getDeploymentConfig(runtime).publicAppUrl);
   invitationUrl.searchParams.set("invite", rawToken);
   const delivery = await deliverInvitation(runtime, {
     archiveId: context.archiveId,
@@ -1111,7 +1108,10 @@ async function createPublicMemoryShare(request: Request, memoryId: string): Prom
     }),
   ]);
 
-  const shareUrl = new URL(`/share/${rawToken}`, request.url).toString();
+  const shareUrl = new URL(
+    `/share/${rawToken}`,
+    getDeploymentConfig(runtime).publicAppUrl,
+  ).toString();
   return Response.json({ shareUrl, expiresAt }, { status: 201 });
 }
 
@@ -1663,7 +1663,7 @@ async function getSessionUser(request: Request): Promise<SessionUser | null> {
   const auth = createAuth({
     database: runtime.DB,
     secret: runtime.BETTER_AUTH_SECRET,
-    baseURL: new URL(request.url).origin,
+    baseURL: getDeploymentConfig(runtime).publicAppUrl,
     allowSignUp: false,
   });
   const session = await auth.api.getSession({ headers: request.headers });

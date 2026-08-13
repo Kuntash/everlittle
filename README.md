@@ -38,9 +38,13 @@ THS school-management system:
 
 1. Better Auth runs inside the TanStack Start server entry.
 2. Users and sessions are stored in Cloudflare D1.
-3. The first successful signup bootstraps a family archive and owner membership.
-4. Public signup closes after the owner exists; additional adults should join through invitations.
-5. Child profiles use parent-managed access rather than public email accounts.
+3. In self-hosted mode, the first successful signup bootstraps a family archive and owner
+   membership.
+4. In hosted mode, public signup creates a starter archive until the dedicated onboarding flow is
+   complete.
+5. Self-hosted public signup closes after the owner exists; additional adults join through
+   invitations.
+6. Child profiles use parent-managed access rather than public email accounts.
 
 The invitation and child-PIN interfaces are represented in the schema and design references; their
 server endpoints are the next implementation milestone.
@@ -60,7 +64,12 @@ Use a strong local secret in `apps/web/.dev.vars`:
 
 ```text
 BETTER_AUTH_SECRET=at-least-32-random-characters
+DEPLOYMENT_MODE=self-hosted
+PUBLIC_APP_URL=http://localhost:3000
 ```
+
+See [`docs/deployment-modes.md`](docs/deployment-modes.md) for hosted and self-hosted policy,
+validation, and configuration fixtures.
 
 ## Validation
 

@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1786435833.2986042,
-    "ast_hash": "5833a612c34ac14191939fa55d4fb481",
+    "mtime": 1786652897.4899979,
+    "ast_hash": "dc5c5de6d70728ef5a98bfae6bd9389a",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -30,9 +30,9 @@
     "semantic_hash": "8af0ae726ad539e8c91541ed17498ce9"
   },
   "apps/web/src/lib/runtime-env.ts": {
-    "mtime": 1785948599.4793184,
-    "ast_hash": "545d533abb387deb7f91d4ec19bc5834",
-    "semantic_hash": "545d533abb387deb7f91d4ec19bc5834"
+    "mtime": 1786652855.555529,
+    "ast_hash": "cf3512f9ced9f6a78bdf6856f474fb31",
+    "semantic_hash": ""
   },
   "apps/web/src/router.tsx": {
     "mtime": 1785948599.4819756,
@@ -45,14 +45,14 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786435674.2945335,
-    "ast_hash": "4f3048c22bf2f46e490ac4621363c613",
+    "mtime": 1786652855.5566568,
+    "ast_hash": "de0c3b0e84c2223f470b71a637ad7a3d",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1785956514.7980235,
-    "ast_hash": "8995eea4fdfa50c95d47f2980136c8b1",
-    "semantic_hash": "8995eea4fdfa50c95d47f2980136c8b1"
+    "mtime": 1786652949.2384348,
+    "ast_hash": "e1023f11656cd2f99b4cd14d0539b2fe",
+    "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
     "mtime": 1785948599.4798284,
@@ -65,8 +65,8 @@
     "semantic_hash": ""
   },
   "apps/web/worker-configuration.d.ts": {
-    "mtime": 1786427462.712608,
-    "ast_hash": "e81c9510de092eea1e8f251c14df67d4",
+    "mtime": 1786652862.994877,
+    "ast_hash": "3b8a47fcde9a279145cc504d45557e49",
     "semantic_hash": ""
   },
   "package.json": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1785950767.3500903,
-    "ast_hash": "849e291ec53780164a96fd509e285894",
+    "mtime": 1786652928.5741758,
+    "ast_hash": "8a11031f2981be5673d876f2f7a9bd75",
     "semantic_hash": ""
   },
   "TODO.md": {
@@ -262,6 +262,26 @@
   "apps/web/migrations/0007_memory_access_and_public_shares.sql": {
     "mtime": 1786435459.8747678,
     "ast_hash": "42a0457252176736d7c51697c6353dc1",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/deployment.ts": {
+    "mtime": 1786652855.555135,
+    "ast_hash": "df3d99f85838865c3cd2def140b07fe3",
+    "semantic_hash": ""
+  },
+  "SAAS_MIGRATION_CHECKLIST.md": {
+    "mtime": 1786652928.5744162,
+    "ast_hash": "68b6995d2ff0c472a75f290ddef0c5b2",
+    "semantic_hash": ""
+  },
+  "TRADEMARK_KNOCKOUT.md": {
+    "mtime": 1786651937.6135046,
+    "ast_hash": "dcecf67bc2db36f90155edd7862a7435",
+    "semantic_hash": ""
+  },
+  "docs/deployment-modes.md": {
+    "mtime": 1786652928.5738065,
+    "ast_hash": "8dc89761404493f598ca715e768b437b",
     "semantic_hash": ""
   }
 }
