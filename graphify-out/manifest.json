@@ -40,8 +40,8 @@
     "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1786432626.7878249,
-    "ast_hash": "16071238ec524f0edac7890edd29dc79",
+    "mtime": 1786648183.9484406,
+    "ast_hash": "4929e5f0bf56ad32adb3e74253962c4c",
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {

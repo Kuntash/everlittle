@@ -19,12 +19,15 @@ html {
   background: var(--paper);
   color: var(--ink);
   font-family: "Inter Variable", sans-serif;
+  overscroll-behavior-y: none;
+  -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  overscroll-behavior-y: none;
 }
 button,
 input,
@@ -34,6 +37,18 @@ textarea {
 }
 button {
   cursor: pointer;
+}
+button,
+[role="button"],
+a,
+label,
+summary {
+  touch-action: manipulation;
+}
+button,
+[role="button"] {
+  -webkit-user-select: none;
+  user-select: none;
 }
 h1,
 h2,
@@ -55,6 +70,7 @@ h3,
   gap: 3rem;
   justify-content: center;
   min-height: 100svh;
+  min-height: 100dvh;
 }
 
 .loading-dot {
@@ -124,6 +140,7 @@ h3,
 .access-shell {
   display: grid;
   min-height: 100svh;
+  min-height: 100dvh;
 }
 .access-story,
 .access-panel {
@@ -367,6 +384,7 @@ h3,
 
 .app-shell {
   min-height: 100svh;
+  min-height: 100dvh;
   padding: 0 max(1rem, env(safe-area-inset-left)) max(6rem, env(safe-area-inset-bottom))
     max(1rem, env(safe-area-inset-right));
 }
@@ -587,10 +605,15 @@ h3,
   opacity: 0;
   pointer-events: none;
 }
-.custom-video.is-playing:hover .video-play,
 .custom-video.is-playing:focus-within .video-play {
   opacity: 1;
   pointer-events: auto;
+}
+@media (hover: hover) and (pointer: fine) {
+  .custom-video.is-playing:hover .video-play {
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 .video-controls {
   align-items: center;
@@ -1430,6 +1453,7 @@ h3,
   border-radius: 1.5rem 1.5rem 0 0;
   box-shadow: 0 -22px 60px rgb(16 31 26 / 22%);
   max-height: calc(100svh - max(1rem, env(safe-area-inset-top)));
+  max-height: calc(100dvh - max(1rem, env(safe-area-inset-top)));
   max-width: 720px;
   display: flex;
   flex-direction: column;
@@ -1702,6 +1726,7 @@ h3,
   border-radius: 1.5rem 1.5rem 0 0;
   box-shadow: 0 -22px 60px rgb(16 31 26 / 22%);
   max-height: calc(100svh - max(1rem, env(safe-area-inset-top)));
+  max-height: calc(100dvh - max(1rem, env(safe-area-inset-top)));
   max-width: 720px;
   overscroll-behavior-y: contain;
   overflow-y: auto;
@@ -2512,6 +2537,7 @@ h3,
   .access-story,
   .access-panel {
     min-height: 100svh;
+    min-height: 100dvh;
     padding: 3.5rem;
   }
   .access-card {
@@ -2547,6 +2573,7 @@ h3,
   .memory-composer {
     border-radius: 1.5rem;
     max-height: calc(100svh - 4rem);
+    max-height: calc(100dvh - 4rem);
     padding: 1.7rem;
   }
   .kind-picker {
@@ -2555,6 +2582,7 @@ h3,
   .memory-detail {
     border-radius: 1.5rem;
     max-height: calc(100svh - 4rem);
+    max-height: calc(100dvh - 4rem);
     padding: 1.7rem;
   }
   .composer-fields {
@@ -2617,10 +2645,6 @@ h3,
 }
 
 @media (display-mode: standalone) {
-  html,
-  body {
-    overscroll-behavior-y: none;
-  }
   .app-header {
     padding-top: max(1.1rem, env(safe-area-inset-top));
   }

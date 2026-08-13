@@ -18,6 +18,7 @@ export const Route = createRootRoute({
         content: "A private family memory archive and time capsule.",
       },
       { name: "theme-color", content: "#f7f1e7" },
+      { name: "color-scheme", content: "light" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
       { name: "apple-mobile-web-app-title", content: "Everlittle" },
