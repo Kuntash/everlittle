@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-14)
 
 ## Corpus Check
-- 38 files · ~397,967 words
+- 42 files · ~399,401 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2155 nodes · 2526 edges · 178 communities (32 shown, 146 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.5)
+- 2178 nodes · 2581 edges · 178 communities (32 shown, 146 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.56)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c8aab98c`
+- Built from commit: `6bbc8393`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -53,7 +53,6 @@
 - ReadableStream
 - Socket
 - WritableStreamDefaultWriter
-- index.ts
 - AiSearchInstance
 - DurableObjectNamespace
 - R2Bucket
@@ -189,28 +188,28 @@
 - Everlittle preliminary trademark knockout search
 
 ## God Nodes (most connected - your core abstractions)
-1. `getRuntimeEnv()` - 35 edges
-2. `handleArchiveApi()` - 30 edges
+1. `getRuntimeEnv()` - 37 edges
+2. `handleArchiveApi()` - 33 edges
 3. `Event` - 25 edges
-4. `getMembershipContext()` - 22 edges
-5. `isSameOrigin()` - 21 edges
-6. `unauthorized()` - 21 edges
+4. `getMembershipContext()` - 23 edges
+5. `unauthorized()` - 22 edges
+6. `isSameOrigin()` - 21 edges
 7. `forbidden()` - 21 edges
 8. `Console` - 21 edges
 9. `auditStatement()` - 19 edges
 10. `compilerOptions` - 17 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `createChildProfile()` --calls--> `slugify()`  [EXTRACTED]
+  apps/web/src/lib/archive-api.ts → packages/domain/src/index.ts
+- `bootstrapFamily()` --calls--> `slugify()`  [EXTRACTED]
+  apps/web/src/server.ts → packages/domain/src/index.ts
 - `child_access_session` --references--> `child_profile`  [EXTRACTED]
   apps/web/migrations/0005_child_access.sql → apps/web/migrations/0001_foundation.sql
 - `audit_event` --references--> `"user"`  [EXTRACTED]
   apps/web/migrations/0002_family_access.sql → apps/web/migrations/0001_foundation.sql
 - `family_invitation` --references--> `"user"`  [EXTRACTED]
   apps/web/migrations/0002_family_access.sql → apps/web/migrations/0001_foundation.sql
-- `memory_next` --references--> `"user"`  [EXTRACTED]
-  apps/web/migrations/0004_video_memories_and_capsules.sql → apps/web/migrations/0001_foundation.sql
-- `memory_public_share` --references--> `"user"`  [EXTRACTED]
-  apps/web/migrations/0007_memory_access_and_public_shares.sql → apps/web/migrations/0001_foundation.sql
 
 ## Import Cycles
 - None detected.
@@ -222,12 +221,12 @@ Cohesion: 0.00
 Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentMemoryIncomingMemory, AgentMemoryIngestOptions, AgentMemoryListMemoriesOptions, AgentMemoryListMemoriesResult, AgentMemoryMemory, AgentMemoryMemoryListEntry (+840 more)
 
 ### Community 1 - "archive-api.ts"
-Cohesion: 0.07
-Nodes (91): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, ChildAccessContext, childPinSchema, childSchema, childSessionCookie() (+83 more)
+Cohesion: 0.06
+Nodes (108): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, ChildAccessContext, childPinSchema, childSchema, childSessionCookie() (+100 more)
 
 ### Community 2 - "index.tsx"
-Cohesion: 0.07
-Nodes (52): authClient, AccessScreen(), apiFetch(), ArchiveApp(), ArchiveState, audienceLabel(), Capsule, CapsuleComposer() (+44 more)
+Cohesion: 0.06
+Nodes (62): authClient, ChildSession, Route, PublicChild, Route, Route, AccessScreen(), apiFetch() (+54 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -281,10 +280,6 @@ Nodes (9): compilerOptions, module, moduleResolution, noEmit, skipLibCheck, stri
 Cohesion: 0.22
 Nodes (3): ByteLengthQueuingStrategy, CountQueuingStrategy, QueuingStrategy
 
-### Community 38 - "index.ts"
-Cohesion: 0.22
-Nodes (8): Audience, audienceSchema, ChildProfile, FamilyRole, familyRoleSchema, Memory, MemoryKind, memoryKindSchema
-
 ### Community 44 - "ui/package.json"
 Cohesion: 0.25
 Nodes (7): exports, ./theme.css, license, name, private, type, version
@@ -322,24 +317,24 @@ Cohesion: 0.15
 Nodes (12): EverLittle 3D, United States, Everlittle Baby domain, EverLittle Co., United States-facing marketplace use, Everlittle, India, Everlittle preliminary trademark knockout search, Material commercial uses found, Practical domain decision, Preliminary assessment (+4 more)
 
 ## Knowledge Gaps
-- **1055 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1050 more)
+- **1061 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1056 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **146 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `ImageHandle` connect `ImageHandle` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.027) - this node is a cross-community bridge._
-- **Why does `Console` connect `Console` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
 - **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.025) - this node is a cross-community bridge._
+- **Why does `DurableObjectState` connect `DurableObjectState` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `Flagship` connect `Flagship` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1055 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1061 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.07302405498281787 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.057513348588863464 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.07049180327868852 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05738615327656423 - nodes in this community are weakly interconnected._

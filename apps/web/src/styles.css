@@ -333,6 +333,49 @@ h3,
   font-size: 0.68rem;
   font-weight: 450;
 }
+.child-access-shell {
+  align-items: center;
+  background: var(--paper-deep);
+  display: flex;
+  flex-direction: column;
+  gap: 2.25rem;
+  justify-content: center;
+  min-height: 100svh;
+  min-height: 100dvh;
+  padding: max(1.25rem, env(safe-area-inset-top)) 1.25rem max(1.25rem, env(safe-area-inset-bottom));
+}
+.child-access-shell > .access-card {
+  max-width: 480px;
+}
+.child-back-link {
+  align-items: center;
+  color: var(--muted-ink);
+  display: inline-flex;
+  font-size: 0.72rem;
+  gap: 0.35rem;
+  margin-bottom: 1.4rem;
+}
+.child-profile-list {
+  display: grid;
+  gap: 0.7rem;
+}
+.child-profile-list a {
+  align-items: center;
+  background: rgb(183 139 66 / 9%);
+  border: 1px solid rgb(183 139 66 / 24%);
+  border-radius: var(--radius-sm);
+  color: var(--forest);
+  display: flex;
+  font-weight: 700;
+  justify-content: space-between;
+  min-height: 54px;
+  padding: 0.75rem 0.9rem;
+}
+.child-profile-list a > span {
+  align-items: center;
+  display: flex;
+  gap: 0.6rem;
+}
 .form-error {
   background: rgb(185 110 85 / 10%);
   border-radius: 0.6rem;

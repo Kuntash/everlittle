@@ -37,7 +37,7 @@
   "35": "ReadableStream",
   "36": "Socket",
   "37": "WritableStreamDefaultWriter",
-  "38": "index.ts",
+  "38": "0008_tenant_slugs.sql",
   "39": "AiSearchInstance",
   "40": "DurableObjectNamespace",
   "41": "R2Bucket",

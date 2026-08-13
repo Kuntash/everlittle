@@ -40,7 +40,12 @@ type PlatformState = {
   allowsPublicSignup: boolean;
   deploymentMode: "hosted" | "self-hosted";
   needsSetup: boolean;
-  childAccess: { displayName: string; enabled: boolean } | null;
+  childAccess: {
+    displayName: string;
+    childSlug: string;
+    familySlug: string;
+    enabled: boolean;
+  } | null;
 };
 type ChildSession = { signedIn: boolean; child?: { displayName: string } };
 type InvitationPreview = {
@@ -62,6 +67,7 @@ type Member = {
 };
 type Child = {
   id: string;
+  slug: string;
   displayName: string;
   birthDate: string;
   avatarAssetKey?: string | null;
@@ -117,7 +123,7 @@ type ArchiveState = {
 };
 type View = "parent" | "timeline" | "capsules" | "child" | "family";
 
-function Everlittle() {
+export function Everlittle() {
   const session = authClient.useSession();
   const [platform, setPlatform] = useState<PlatformState | null>(null);
   const [childSession, setChildSession] = useState<ChildSession | null>(null);
@@ -155,17 +161,10 @@ function Everlittle() {
 
   if (session.isPending || !platform || !childSession || !invitationChecked) return <Loading />;
   if (childModeRequested && platform.childAccess?.enabled) {
-    if (childSession.signedIn) return <ChildArchiveApp />;
-    return (
-      <AccessScreen
-        childAccess={platform.childAccess}
-        forceChildMode
-        invitation={null}
-        inviteToken=""
-        needsSetup={false}
-        allowsPublicSignup={platform.allowsPublicSignup}
-      />
+    location.replace(
+      `/${encodeURIComponent(platform.childAccess.familySlug)}/kids/${encodeURIComponent(platform.childAccess.childSlug)}`,
     );
+    return <Loading />;
   }
   if (!session.data?.user) {
     if (childSession.signedIn) return <ChildArchiveApp />;
@@ -183,7 +182,38 @@ function Everlittle() {
     return <InvitationAcceptance invitation={invitation} token={inviteToken} />;
   }
 
+  if (platform.deploymentMode === "hosted" && !currentFamilySlug()) {
+    return <ArchiveRedirect />;
+  }
+
   return <ArchiveApp name={session.data.user.name} />;
+}
+
+function ArchiveRedirect() {
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    void fetch("/api/archives")
+      .then(async (response) => {
+        if (!response.ok) throw new Error(await responseError(response));
+        return response.json() as Promise<{ archives: Array<{ slug: string }> }>;
+      })
+      .then(({ archives }) => {
+        const first = archives[0];
+        if (!first) throw new Error("Create a family archive to continue.");
+        location.replace(`/${encodeURIComponent(first.slug)}`);
+      })
+      .catch((reason: Error) => setError(reason.message));
+  }, []);
+
+  return error ? (
+    <main className="loading-shell">
+      <Brand />
+      <p className="form-error">{error}</p>
+    </main>
+  ) : (
+    <Loading />
+  );
 }
 
 function Loading() {
@@ -258,22 +288,6 @@ function AccessScreen({
     window.location.assign("/");
   }
 
-  async function enterChildSpace(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setError("");
-    setSubmitting(true);
-    const response = await apiFetch("/api/child/sign-in", {
-      method: "POST",
-      body: JSON.stringify({ pin }),
-    });
-    if (!response.ok) {
-      setError(await responseError(response));
-      setSubmitting(false);
-      return;
-    }
-    window.location.assign(forceChildMode ? "/?child=1" : "/");
-  }
-
   return (
     <main className="access-shell">
       <section className="access-story" aria-labelledby="access-heading">
@@ -308,7 +322,16 @@ function AccessScreen({
               <p className="card-intro">
                 Enter the six-digit family PIN. No email address or adult account is needed.
               </p>
-              <form className="child-pin-form" onSubmit={enterChildSpace}>
+              <form
+                className="child-pin-form"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  if (!childAccess) return;
+                  location.assign(
+                    `/${encodeURIComponent(childAccess.familySlug)}/kids/${encodeURIComponent(childAccess.childSlug)}`,
+                  );
+                }}
+              >
                 <label>
                   Family PIN
                   <input
@@ -331,11 +354,7 @@ function AccessScreen({
                     {error}
                   </p>
                 ) : null}
-                <button
-                  className="primary-button"
-                  disabled={submitting || pin.length !== 6}
-                  type="submit"
-                >
+                <button className="primary-button" disabled={!childAccess} type="submit">
                   {submitting ? "Opening…" : "Open my story"} <ArrowRight size={18} />
                 </button>
               </form>
@@ -451,13 +470,12 @@ function AccessScreen({
                 <div className="child-entrance">
                   <span>or</span>
                   <button
-                    onClick={() => {
-                      setEntrance("child");
-                      setError("");
-                    }}
+                    onClick={() =>
+                      location.assign(`/${encodeURIComponent(childAccess.familySlug)}/kids`)
+                    }
                     type="button"
                   >
-                    <Baby size={18} /> I’m {childAccess.displayName}
+                    <Baby size={18} /> Open child space
                   </button>
                 </div>
               ) : null}
@@ -524,7 +542,7 @@ function ArchiveApp({ name }: { name: string }) {
   const [error, setError] = useState("");
 
   async function refresh() {
-    const response = await fetch("/api/archive");
+    const response = await apiFetch("/api/archive");
     if (!response.ok) {
       setError(await responseError(response));
       return;
@@ -629,7 +647,13 @@ function ArchiveApp({ name }: { name: string }) {
   );
 }
 
-function ChildArchiveApp() {
+export function ChildArchiveApp({
+  apiPrefix = "/api/child",
+  leaveTo = "/",
+}: {
+  apiPrefix?: string;
+  leaveTo?: string;
+}) {
   const [state, setState] = useState<{
     child: Child;
     memories: Memory[];
@@ -638,7 +662,7 @@ function ChildArchiveApp() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    void fetch("/api/child/archive")
+    void fetch(`${apiPrefix}/archive`)
       .then(async (response) => {
         if (!response.ok) throw new Error(await responseError(response));
         return response.json() as Promise<{
@@ -649,11 +673,11 @@ function ChildArchiveApp() {
       })
       .then(setState)
       .catch((reason: Error) => setError(reason.message));
-  }, []);
+  }, [apiPrefix]);
 
   async function leave() {
-    await apiFetch("/api/child/sign-out", { method: "POST" });
-    location.assign("/");
+    await apiFetch(`${apiPrefix}/sign-out`, { method: "POST" });
+    location.assign(leaveTo);
   }
 
   if (!state) {
@@ -672,7 +696,7 @@ function ChildArchiveApp() {
       <header className="app-header">
         <Brand compact />
         <button className="child-leave" onClick={() => void leave()} type="button">
-          <LogOut size={16} /> Leave Diki’s space
+          <LogOut size={16} /> Leave {state.child.displayName}’s space
         </button>
       </header>
       <ChildView capsules={state.capsules} child={state.child} memories={state.memories} />
@@ -1385,7 +1409,7 @@ function MemoryComposer({
     const created = (await response.json()) as { id: string };
     if (file) {
       setStage("uploading");
-      const upload = await fetch(`/api/archive/memories/${created.id}/media`, {
+      const upload = await fetch(scopedApiPath(`/api/archive/memories/${created.id}/media`), {
         method: "PUT",
         headers: {
           "content-type": file.type || "application/octet-stream",
@@ -1588,7 +1612,11 @@ function MemoryMedia({ memory, featured = false }: { memory: Memory; featured?: 
   if (memory.mediaType === "image" && memory.mediaId) {
     return (
       <div className={`memory-photo real-photo ${featured ? "featured" : ""}`}>
-        <img alt="" loading={featured ? "eager" : "lazy"} src={`/api/media/${memory.mediaId}`} />
+        <img
+          alt=""
+          loading={featured ? "eager" : "lazy"}
+          src={scopedApiPath(`/api/media/${memory.mediaId}`)}
+        />
         <span>{formatMemoryDate(memory.happenedAt)}</span>
       </div>
     );
@@ -1640,7 +1668,7 @@ function SecureAudioPlayer({ memory }: { memory: Memory }) {
     setError("");
     void (async () => {
       try {
-        const response = await fetch(`/api/media/${memory.mediaId}`, {
+        const response = await fetch(scopedApiPath(`/api/media/${memory.mediaId}`), {
           credentials: "same-origin",
           signal: controller.signal,
         });
@@ -1761,7 +1789,7 @@ function SecureVideoPlayer({ memory, featured }: { memory: Memory; featured: boo
     setError("");
     void (async () => {
       try {
-        const response = await fetch(`/api/media/${memory.mediaId}`, {
+        const response = await fetch(scopedApiPath(`/api/media/${memory.mediaId}`), {
           credentials: "same-origin",
           signal: controller.signal,
         });
@@ -2687,7 +2715,7 @@ function MobileNav({ active, onNavigate }: { active: View; onNavigate: (view: Vi
   );
 }
 
-function Brand({ compact = false }: { compact?: boolean }) {
+export function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`brand ${compact ? "compact" : ""}`}>
       <span className="brand-mark" aria-hidden="true">
@@ -2705,7 +2733,20 @@ function Brand({ compact = false }: { compact?: boolean }) {
 function apiFetch(path: string, init: RequestInit = {}) {
   const headers = new Headers(init.headers);
   if (!headers.has("content-type")) headers.set("content-type", "application/json");
-  return fetch(path, { ...init, headers });
+  return fetch(scopedApiPath(path), { ...init, headers });
+}
+
+function scopedApiPath(path: string) {
+  const slug = currentFamilySlug();
+  if (!slug || !path.startsWith("/api/")) return path;
+  if (!path.startsWith("/api/archive") && !path.startsWith("/api/media")) return path;
+  return `/api/families/${encodeURIComponent(slug)}${path.slice(4)}`;
+}
+
+function currentFamilySlug() {
+  if (typeof window === "undefined") return "";
+  const [first = ""] = window.location.pathname.split("/").filter(Boolean);
+  return first;
 }
 
 async function responseError(response: Response) {

@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { childSlugSchema, familySlugSchema, slugify } from "@everlittle/domain";
 
 import { createAuth } from "@/lib/auth";
 import { getRuntimeEnv } from "@/lib/runtime-env";
@@ -36,6 +37,8 @@ const childPinSchema = z.object({ pin: z.string().regex(/^\d{6}$/) });
 const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
 const CHILD_SESSION_COOKIE = "everlittle.child_session";
 const CHILD_SESSION_SECONDS = 60 * 60 * 24 * 7;
+const FAMILY_SLUG_HEADER = "x-everlittle-family-slug";
+const CHILD_SLUG_HEADER = "x-everlittle-child-slug";
 const MEDIA_TYPES: ReadonlyMap<
   string,
   { mediaType: "image" | "audio" | "video"; extension: string }
@@ -109,6 +112,8 @@ type ChildAccessContext = {
   archiveId: string;
   displayName: string;
   birthDate: string;
+  childSlug: string;
+  familySlug: string;
 };
 
 type Invitation = {
@@ -137,6 +142,37 @@ type PublicMemory = {
 
 export async function handleArchiveApi(request: Request): Promise<Response | null> {
   const url = new URL(request.url);
+  const scopedApiMatch = url.pathname.match(/^\/api\/families\/([^/]+)(\/.*)$/);
+  if (scopedApiMatch) {
+    const slug = decodeURIComponent(scopedApiMatch[1]);
+    if (!familySlugSchema.safeParse(slug).success) return notFound();
+    const headers = new Headers(request.headers);
+    headers.set(FAMILY_SLUG_HEADER, slug);
+    const childMatch = scopedApiMatch[2].match(/^\/children\/([^/]+)(?:\/|$)/);
+    if (childMatch) {
+      const childSlug = decodeURIComponent(childMatch[1]);
+      if (!childSlugSchema.safeParse(childSlug).success) return notFound();
+      headers.set(CHILD_SLUG_HEADER, childSlug);
+    }
+    request = new Request(request, { headers });
+    url.pathname = `/api${scopedApiMatch[2]}`;
+  }
+
+  if (url.pathname === "/api/children" && request.method === "GET") {
+    return listPublicChildren(request);
+  }
+  if (url.pathname.match(/^\/api\/children\/[^/]+\/sign-in$/) && request.method === "POST") {
+    return signInChild(request);
+  }
+  if (url.pathname.match(/^\/api\/children\/[^/]+\/session$/) && request.method === "GET") {
+    return getChildSession(request);
+  }
+  if (url.pathname.match(/^\/api\/children\/[^/]+\/sign-out$/) && request.method === "POST") {
+    return signOutChild(request);
+  }
+  if (url.pathname.match(/^\/api\/children\/[^/]+\/archive$/) && request.method === "GET") {
+    return getChildArchive(request);
+  }
 
   const publicSharePageMatch = url.pathname.match(/^\/share\/([A-Za-z0-9_-]{43})$/);
   if (publicSharePageMatch && request.method === "GET") {
@@ -173,6 +209,10 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
 
   if (url.pathname === "/api/archive" && request.method === "GET") {
     return getArchiveState(request);
+  }
+
+  if (url.pathname === "/api/archives" && request.method === "GET") {
+    return listUserArchives(request);
   }
 
   if (url.pathname === "/api/archive/invitations" && request.method === "POST") {
@@ -345,7 +385,7 @@ async function getArchiveState(request: Request): Promise<Response> {
       .all(),
     database
       .prepare(
-        `SELECT id, display_name AS displayName, birth_date AS birthDate,
+        `SELECT id, slug, display_name AS displayName, birth_date AS birthDate,
                 avatar_asset_key AS avatarAssetKey,
                 CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS childAccessEnabled
          FROM child_profile WHERE archive_id = ? ORDER BY created_at`,
@@ -416,6 +456,22 @@ async function getArchiveState(request: Request): Promise<Response> {
     capsules: capsules.results,
     invitations: invitations.results,
   });
+}
+
+async function listUserArchives(request: Request): Promise<Response> {
+  const user = await getSessionUser(request);
+  if (!user) return unauthorized();
+  const archives = await getRuntimeEnv()
+    .DB.prepare(
+      `SELECT a.id, a.name, a.slug, fm.role
+       FROM family_member fm
+       JOIN family_archive a ON a.id = fm.archive_id
+       WHERE fm.user_id = ?
+       ORDER BY fm.created_at, a.name`,
+    )
+    .bind(user.id)
+    .all<{ id: string; name: string; slug: string; role: FamilyRole }>();
+  return Response.json({ archives: archives.results });
 }
 
 async function previewInvitation(request: Request): Promise<Response> {
@@ -870,7 +926,11 @@ async function signInChild(request: Request): Promise<Response> {
     return Response.json({ error: "Enter the six-digit family PIN." }, { status: 400 });
   }
 
-  const clientIdentity = `${request.headers.get("cf-connecting-ip") ?? "local"}|${
+  const familySlug = request.headers.get(FAMILY_SLUG_HEADER);
+  const childSlug = request.headers.get(CHILD_SLUG_HEADER);
+  if (!familySlug || !childSlug) return notFound();
+
+  const clientIdentity = `${familySlug}|${childSlug}|${request.headers.get("cf-connecting-ip") ?? "local"}|${
     request.headers.get("user-agent") ?? "unknown"
   }`;
   const attemptKey = await keyedHash(runtime.BETTER_AUTH_SECRET, clientIdentity);
@@ -887,21 +947,18 @@ async function signInChild(request: Request): Promise<Response> {
     );
   }
 
-  const profiles = await runtime.DB.prepare(
+  const profile = await runtime.DB.prepare(
     `SELECT c.id, c.archive_id AS archiveId, c.access_pin_hash AS pinHash
-     FROM child_profile c WHERE c.access_pin_hash IS NOT NULL`,
-  ).all<{ id: string; archiveId: string; pinHash: string }>();
-  let matched: { id: string; archiveId: string } | null = null;
-  for (const profile of profiles.results) {
-    const candidate = await keyedHash(
-      runtime.BETTER_AUTH_SECRET,
-      `${profile.id}:${parsed.data.pin}`,
-    );
-    if (safeEqual(candidate, profile.pinHash)) {
-      matched = profile;
-      break;
-    }
-  }
+     FROM child_profile c
+     JOIN family_archive a ON a.id = c.archive_id
+     WHERE a.slug = ? AND c.slug = ? AND c.access_pin_hash IS NOT NULL`,
+  )
+    .bind(familySlug, childSlug)
+    .first<{ id: string; archiveId: string; pinHash: string }>();
+  const candidate = profile
+    ? await keyedHash(runtime.BETTER_AUTH_SECRET, `${profile.id}:${parsed.data.pin}`)
+    : "";
+  const matched = profile && safeEqual(candidate, profile.pinHash) ? profile : null;
 
   const attemptId = crypto.randomUUID();
   if (!matched) {
@@ -910,7 +967,7 @@ async function signInChild(request: Request): Promise<Response> {
     )
       .bind(attemptId, attemptKey)
       .run();
-    return Response.json({ error: "That PIN did not open Diki’s space." }, { status: 401 });
+    return Response.json({ error: "That PIN did not open this story." }, { status: 401 });
   }
 
   const rawToken = createSecureToken();
@@ -954,8 +1011,31 @@ async function signOutChild(request: Request): Promise<Response> {
 async function getChildSession(request: Request): Promise<Response> {
   const context = await getChildAccessContext(request);
   return Response.json(
-    context ? { signedIn: true, child: { displayName: context.displayName } } : { signedIn: false },
+    context
+      ? {
+          signedIn: true,
+          child: { displayName: context.displayName, slug: context.childSlug },
+          familySlug: context.familySlug,
+        }
+      : { signedIn: false },
   );
+}
+
+async function listPublicChildren(request: Request): Promise<Response> {
+  const familySlug = request.headers.get(FAMILY_SLUG_HEADER);
+  if (!familySlug) return notFound();
+  const children = await getRuntimeEnv()
+    .DB.prepare(
+      `SELECT c.slug, c.display_name AS displayName
+       FROM child_profile c
+       JOIN family_archive a ON a.id = c.archive_id
+       WHERE a.slug = ? AND c.access_pin_hash IS NOT NULL
+       ORDER BY c.created_at`,
+    )
+    .bind(familySlug)
+    .all<{ slug: string; displayName: string }>();
+  if (children.results.length === 0) return notFound();
+  return Response.json({ children: children.results });
 }
 
 async function getChildArchive(request: Request): Promise<Response> {
@@ -1573,13 +1653,18 @@ async function createChildProfile(request: Request): Promise<Response> {
     return Response.json({ error: "Enter a name and birth date." }, { status: 400 });
 
   const childId = crypto.randomUUID();
+  const childSlug = await uniqueChildSlug(
+    database,
+    context.archiveId,
+    slugify(parsed.data.displayName, `child-${childId.slice(0, 8)}`),
+  );
   await database.batch([
     database
       .prepare(
-        `INSERT INTO child_profile (id, archive_id, display_name, birth_date)
-         VALUES (?, ?, ?, ?)`,
+        `INSERT INTO child_profile (id, archive_id, slug, display_name, birth_date)
+         VALUES (?, ?, ?, ?, ?)`,
       )
-      .bind(childId, context.archiveId, parsed.data.displayName, parsed.data.birthDate),
+      .bind(childId, context.archiveId, childSlug, parsed.data.displayName, parsed.data.birthDate),
     auditStatement(database, {
       id: crypto.randomUUID(),
       archiveId: context.archiveId,
@@ -1589,7 +1674,7 @@ async function createChildProfile(request: Request): Promise<Response> {
       entityId: childId,
     }),
   ]);
-  return Response.json({ id: childId }, { status: 201 });
+  return Response.json({ id: childId, slug: childSlug }, { status: 201 });
 }
 
 async function updateChildProfile(request: Request, childId: string): Promise<Response> {
@@ -1630,15 +1715,44 @@ async function updateChildProfile(request: Request, childId: string): Promise<Re
 async function getMembershipContext(request: Request): Promise<MembershipContext | null> {
   const user = await getSessionUser(request);
   if (!user) return null;
-  const membership = await getRuntimeEnv()
-    .DB.prepare(
-      `SELECT id AS memberId, archive_id AS archiveId, role
-     FROM family_member WHERE user_id = ?
-     ORDER BY CASE role WHEN 'owner' THEN 0 WHEN 'parent' THEN 1 ELSE 2 END LIMIT 1`,
-    )
-    .bind(user.id)
-    .first<Omit<MembershipContext, "user">>();
+  const runtime = getRuntimeEnv();
+  const deployment = getDeploymentConfig(runtime);
+  const requestedSlug = request.headers.get(FAMILY_SLUG_HEADER);
+  if (requestedSlug && !familySlugSchema.safeParse(requestedSlug).success) return null;
+  if (deployment.mode === "hosted" && !requestedSlug) return null;
+
+  const membership = requestedSlug
+    ? await runtime.DB.prepare(
+        `SELECT fm.id AS memberId, fm.archive_id AS archiveId, fm.role
+         FROM family_member fm
+         JOIN family_archive a ON a.id = fm.archive_id
+         WHERE fm.user_id = ? AND a.slug = ?
+         LIMIT 1`,
+      )
+        .bind(user.id, requestedSlug)
+        .first<Omit<MembershipContext, "user">>()
+    : await runtime.DB.prepare(
+        `SELECT id AS memberId, archive_id AS archiveId, role
+         FROM family_member WHERE user_id = ?
+         ORDER BY CASE role WHEN 'owner' THEN 0 WHEN 'parent' THEN 1 ELSE 2 END LIMIT 1`,
+      )
+        .bind(user.id)
+        .first<Omit<MembershipContext, "user">>();
   return membership ? { ...membership, user } : null;
+}
+
+async function uniqueChildSlug(database: D1Database, archiveId: string, requested: string) {
+  const base = childSlugSchema.parse(requested);
+  for (let attempt = 0; attempt < 100; attempt += 1) {
+    const suffix = attempt === 0 ? "" : `-${attempt + 1}`;
+    const candidate = `${base.slice(0, 48 - suffix.length)}${suffix}`;
+    const existing = await database
+      .prepare("SELECT 1 FROM child_profile WHERE archive_id = ? AND slug = ?")
+      .bind(archiveId, candidate)
+      .first();
+    if (!existing) return candidate;
+  }
+  throw new Error("Could not create a unique child address.");
 }
 
 async function getChildAccessContext(request: Request): Promise<ChildAccessContext | null> {
@@ -1648,14 +1762,24 @@ async function getChildAccessContext(request: Request): Promise<ChildAccessConte
   return getRuntimeEnv()
     .DB.prepare(
       `SELECT cas.id AS sessionId, c.id AS childId, c.archive_id AS archiveId,
-              c.display_name AS displayName, c.birth_date AS birthDate
+              c.display_name AS displayName, c.birth_date AS birthDate,
+              c.slug AS childSlug, a.slug AS familySlug
        FROM child_access_session cas
        JOIN child_profile c ON c.id = cas.child_id
+       JOIN family_archive a ON a.id = c.archive_id
        WHERE cas.token_hash = ? AND cas.revoked_at IS NULL
          AND datetime(cas.expires_at) > CURRENT_TIMESTAMP`,
     )
     .bind(tokenHash)
-    .first<ChildAccessContext>();
+    .first<ChildAccessContext>()
+    .then((context) => {
+      if (!context) return null;
+      const familySlug = request.headers.get(FAMILY_SLUG_HEADER);
+      const childSlug = request.headers.get(CHILD_SLUG_HEADER);
+      if (familySlug && familySlug !== context.familySlug) return null;
+      if (childSlug && childSlug !== context.childSlug) return null;
+      return context;
+    });
 }
 
 async function getSessionUser(request: Request): Promise<SessionUser | null> {
@@ -1844,6 +1968,10 @@ async function readJson(request: Request): Promise<unknown> {
 
 function unauthorized() {
   return Response.json({ error: "Sign in to continue." }, { status: 401 });
+}
+
+function notFound() {
+  return Response.json({ error: "Not found." }, { status: 404 });
 }
 
 function forbidden() {

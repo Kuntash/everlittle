@@ -1,5 +1,7 @@
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 
+import { slugify } from "@everlittle/domain";
+
 import { acceptInvitation, findValidInvitation, handleArchiveApi } from "@/lib/archive-api";
 import { createAuth } from "@/lib/auth";
 import { getDeploymentConfig } from "@/lib/deployment";
@@ -29,9 +31,17 @@ export default createServerEntry({
         deployment.mode === "self-hosted"
           ? await runtime.DB.prepare(
               `SELECT display_name AS displayName,
+                      c.slug AS childSlug, a.slug AS familySlug,
                       CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS enabled
-               FROM child_profile ORDER BY created_at LIMIT 1`,
-            ).first<{ displayName: string; enabled: number }>()
+               FROM child_profile c
+               JOIN family_archive a ON a.id = c.archive_id
+               ORDER BY c.created_at LIMIT 1`,
+            ).first<{
+              displayName: string;
+              childSlug: string;
+              familySlug: string;
+              enabled: number;
+            }>()
           : null;
 
       return Response.json({
@@ -40,7 +50,12 @@ export default createServerEntry({
         needsSetup:
           deployment.capabilities.allowsInitialOwnerBootstrap && Number(row?.count ?? 0) === 0,
         childAccess: child
-          ? { displayName: child.displayName, enabled: Boolean(child.enabled) }
+          ? {
+              displayName: child.displayName,
+              childSlug: child.childSlug,
+              familySlug: child.familySlug,
+              enabled: Boolean(child.enabled),
+            }
           : null,
       });
     }
@@ -97,14 +112,31 @@ async function readSignUpInput(request: { json(): Promise<unknown> }): Promise<S
 
 async function bootstrapFamily(database: D1Database, userId: string, ownerName: string) {
   const archiveId = crypto.randomUUID();
+  const archiveSlug = await uniqueArchiveSlug(
+    database,
+    slugify(`${ownerName}-family`, `family-${archiveId.slice(0, 8)}`),
+  );
   await database.batch([
     database
       .prepare("INSERT INTO family_archive (id, name, slug) VALUES (?, ?, ?)")
-      .bind(archiveId, `${ownerName}'s family`, `family-${archiveId.slice(0, 8)}`),
+      .bind(archiveId, `${ownerName}'s family`, archiveSlug),
     database
       .prepare(
         "INSERT INTO family_member (id, archive_id, user_id, role) VALUES (?, ?, ?, 'owner')",
       )
       .bind(crypto.randomUUID(), archiveId, userId),
   ]);
+}
+
+async function uniqueArchiveSlug(database: D1Database, requested: string) {
+  for (let attempt = 0; attempt < 100; attempt += 1) {
+    const suffix = attempt === 0 ? "" : `-${attempt + 1}`;
+    const candidate = `${requested.slice(0, 48 - suffix.length)}${suffix}`;
+    const existing = await database
+      .prepare("SELECT 1 FROM family_archive WHERE slug = ?")
+      .bind(candidate)
+      .first();
+    if (!existing) return candidate;
+  }
+  throw new Error("Could not create a unique family address.");
 }

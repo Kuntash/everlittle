@@ -70,18 +70,19 @@ guarantee; availability must be confirmed with a registrar.
 
 ## Phase 3: Tenant model and readable slugs
 
-- [ ] Formalize validation and normalization for `family_archive.slug`.
-- [ ] Add `child_profile.slug`.
-- [ ] Add a unique index for child slugs within an archive.
-- [ ] Add reserved-slug validation.
+- [x] Formalize validation and normalization for `family_archive.slug`.
+- [x] Add `child_profile.slug`.
+- [x] Add a unique index for child slugs within an archive.
+- [x] Add reserved-slug validation.
 - [ ] Decide whether family slugs can be changed after creation.
 - [ ] Add slug-history redirects if family or child slugs can change.
-- [ ] Resolve family slugs to immutable archive UUIDs on the server.
-- [ ] Resolve child slugs only within the already resolved archive.
-- [ ] Never accept a browser-provided archive UUID as authorization.
-- [ ] Add an explicit active-archive context for adult requests.
-- [ ] Replace the current first-membership lookup with route-scoped membership resolution.
-- [ ] Support one adult account belonging to multiple family archives.
+- [x] Resolve family slugs to immutable archive UUIDs on the server.
+- [x] Resolve child slugs only within the already resolved archive.
+- [x] Never accept a browser-provided archive UUID as authorization.
+- [x] Add an explicit route-scoped archive context for adult requests.
+- [x] Replace the current first-membership lookup with route-scoped membership resolution in
+      hosted mode while retaining a temporary self-hosted compatibility fallback.
+- [x] Support one adult account belonging to multiple family archives at the data and API layer.
 - [ ] Add a family switcher when an adult has more than one membership.
 
 ## Phase 4: Tenant-isolation audit
@@ -101,23 +102,23 @@ guarantee; availability must be confirmed with a registrar.
 
 ## Phase 5: Child identity and PIN access
 
-- [ ] Add `/:familySlug/kids` as the child profile chooser.
-- [ ] Add `/:familySlug/kids/:childSlug` as the selected child entrance.
-- [ ] Show only the selected family's child profiles.
+- [x] Add `/:familySlug/kids` as the child profile chooser.
+- [x] Add `/:familySlug/kids/:childSlug` as the selected child entrance.
+- [x] Show only the selected family's child profiles.
 - [ ] Change the entrance copy from `I am Diki Choetso` to a profile-choice question.
-- [ ] After profile selection, ask for that child's PIN.
-- [ ] Call it `your PIN` instead of `the family PIN`.
-- [ ] Keep one PIN per child, even if a family chooses the same digits for siblings.
-- [ ] Replace global PIN scanning with one archive-and-child-scoped lookup.
+- [x] After profile selection, ask for that child's PIN.
+- [x] Call it `your PIN` instead of `the family PIN`.
+- [x] Keep one PIN per child, even if a family chooses the same digits for siblings.
+- [x] Replace global PIN scanning with one archive-and-child-scoped lookup.
 - [ ] Add a dedicated `CHILD_PIN_PEPPER` separate from `BETTER_AUTH_SECRET`.
 - [ ] Evaluate a deliberately slow Worker-compatible PIN hash.
-- [ ] Rate-limit by archive, child, IP, and device signal.
+- [x] Rate-limit by archive, child, IP, and device signal.
 - [ ] Add progressive delays or temporary lockouts after repeated failures.
-- [ ] Scope child sessions to both `archive_id` and `child_id`.
-- [ ] Revoke all sessions for that child when their PIN changes.
+- [x] Scope child sessions to both `archive_id` and `child_id`.
+- [x] Revoke all sessions for that child when their PIN changes.
 - [ ] Add a parent action to disable child access and revoke every child session.
 - [ ] Show parents the last child-access time and active-device count.
-- [ ] Require reauthentication before switching from one child's space to another.
+- [x] Require reauthentication before switching from one child's space to another.
 - [ ] Preserve a future path to passkeys, trusted devices, and adult-account transition.
 
 ## Phase 6: Hosted authentication and onboarding
@@ -228,7 +229,7 @@ guarantee; availability must be confirmed with a registrar.
 ## Launch gates
 
 - [ ] No unresolved cross-tenant authorization findings.
-- [ ] No globally scanned child PIN authentication.
+- [x] No globally scanned child PIN authentication.
 - [ ] Hosted and self-hosted modes pass the same core product test suite.
 - [ ] A clean self-host deployment completes successfully from the documented steps.
 - [ ] A full backup can be restored into new infrastructure.

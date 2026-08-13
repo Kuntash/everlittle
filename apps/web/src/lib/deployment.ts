@@ -80,5 +80,5 @@ function parsePublicAppUrl(value: string | undefined) {
 }
 
 function isValidSlug(value: string) {
-  return /^[a-z0-9](?:[a-z0-9-]{1,46}[a-z0-9])?$/.test(value);
+  return value.length >= 3 && /^[a-z0-9](?:[a-z0-9-]{1,46}[a-z0-9])?$/.test(value);
 }

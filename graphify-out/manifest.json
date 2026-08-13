@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1786652897.4899979,
-    "ast_hash": "dc5c5de6d70728ef5a98bfae6bd9389a",
+    "mtime": 1786653477.630591,
+    "ast_hash": "fe67fa23be959cc2bba199cfeead16c2",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -45,13 +45,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786652855.5566568,
-    "ast_hash": "de0c3b0e84c2223f470b71a637ad7a3d",
+    "mtime": 1786653637.4810505,
+    "ast_hash": "eb474103d971341bb47f6d10550e73fc",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1786652949.2384348,
-    "ast_hash": "e1023f11656cd2f99b4cd14d0539b2fe",
+    "mtime": 1786653504.2430089,
+    "ast_hash": "4f609e7373250bc7ef9766bbe1d866d8",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -80,8 +80,8 @@
     "semantic_hash": "26a7124adb9523ff62c9cea1e9e829d2"
   },
   "packages/domain/src/index.ts": {
-    "mtime": 1786435844.5871446,
-    "ast_hash": "a7c2fb0afb68f1e69fb8ed14c69b3800",
+    "mtime": 1786653238.9168904,
+    "ast_hash": "ce5c3ee4c1ebb15afe28b49b3fa18953",
     "semantic_hash": ""
   },
   "packages/domain/tsconfig.json": {
@@ -265,13 +265,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/deployment.ts": {
-    "mtime": 1786652855.555135,
-    "ast_hash": "df3d99f85838865c3cd2def140b07fe3",
+    "mtime": 1786653238.917105,
+    "ast_hash": "256010a3c9e8e83410180f18e54e20fa",
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786652928.5744162,
-    "ast_hash": "68b6995d2ff0c472a75f290ddef0c5b2",
+    "mtime": 1786653619.3651621,
+    "ast_hash": "62a3c3eccd97f5c1bef3175b53d7e877",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -282,6 +282,26 @@
   "docs/deployment-modes.md": {
     "mtime": 1786652928.5738065,
     "ast_hash": "8dc89761404493f598ca715e768b437b",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0008_tenant_slugs.sql": {
+    "mtime": 1786653186.6499777,
+    "ast_hash": "c32bd5714dc8f1bfc7253a64c09bd9d8",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/$familySlug.kids.$childSlug.tsx": {
+    "mtime": 1786653637.475962,
+    "ast_hash": "f864933423e3f8f8faf21c9d0b60643c",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/$familySlug.kids.index.tsx": {
+    "mtime": 1786653637.4759643,
+    "ast_hash": "2e29a382d2502f34a0933a733dbdc1a0",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/$familySlug.tsx": {
+    "mtime": 1786653186.6512768,
+    "ast_hash": "4d648d60181136902085f97c3813ef1c",
     "semantic_hash": ""
   }
 }
