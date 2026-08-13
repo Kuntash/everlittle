@@ -752,8 +752,10 @@ async function createInvitation(request: Request): Promise<Response> {
     }),
   ]);
 
-  const invitationUrl = new URL("/", getDeploymentConfig(runtime).publicAppUrl);
-  invitationUrl.searchParams.set("invite", rawToken);
+  const invitationUrl = new URL(
+    `/invite/${encodeURIComponent(rawToken)}`,
+    getDeploymentConfig(runtime).publicAppUrl,
+  );
 
   const archive = await database
     .prepare("SELECT name FROM family_archive WHERE id = ?")
@@ -823,8 +825,10 @@ async function resendInvitation(request: Request, invitationId: string): Promise
       entityId: invitationId,
     }),
   ]);
-  const invitationUrl = new URL("/", getDeploymentConfig(runtime).publicAppUrl);
-  invitationUrl.searchParams.set("invite", rawToken);
+  const invitationUrl = new URL(
+    `/invite/${encodeURIComponent(rawToken)}`,
+    getDeploymentConfig(runtime).publicAppUrl,
+  );
   const delivery = await deliverInvitation(runtime, {
     archiveId: context.archiveId,
     archiveName: invitation.archiveName,

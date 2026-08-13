@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Baby, LockKeyhole } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import { Brand } from "@/routes/index";
+import { Brand } from "@/components/brand";
 
 export const Route = createFileRoute("/$familySlug/kids/")({ component: ChildChooser });
 

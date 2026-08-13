@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
 import { authClient } from "@/lib/auth-client";
-import { Brand } from "@/routes/index";
+import { Brand } from "@/components/brand";
 
 export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 

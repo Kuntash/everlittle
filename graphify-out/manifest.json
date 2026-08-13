@@ -1,8 +1,8 @@
 {
   "apps/web/package.json": {
-    "mtime": 1785955812.4000614,
-    "ast_hash": "7850398829b6876e52c640dfd8da6369",
-    "semantic_hash": "7850398829b6876e52c640dfd8da6369"
+    "mtime": 1786655440.0664694,
+    "ast_hash": "9464837f572655481680a6463b974375",
+    "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
     "mtime": 1786431483.5639484,
@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1786654486.8425107,
-    "ast_hash": "541ea1ef9194f7befe17d387faa61de3",
+    "mtime": 1786655190.4588058,
+    "ast_hash": "ef694c35cb3f562f443c317765536926",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -40,13 +40,13 @@
     "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1786648183.9484406,
-    "ast_hash": "4929e5f0bf56ad32adb3e74253962c4c",
+    "mtime": 1786655875.1130521,
+    "ast_hash": "656ca77bf4186bc64391500a799ce50f",
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786654486.8461254,
-    "ast_hash": "1cbd8d3ee64020c3674328d176d25f9d",
+    "mtime": 1786655875.1136513,
+    "ast_hash": "becccfe2e97d19e92045484ff009c1ce",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -65,13 +65,13 @@
     "semantic_hash": ""
   },
   "apps/web/worker-configuration.d.ts": {
-    "mtime": 1786652862.994877,
-    "ast_hash": "3b8a47fcde9a279145cc504d45557e49",
+    "mtime": 1786655455.6671226,
+    "ast_hash": "38d972634a4bb8f03d783a07b070639a",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1786393461.1572213,
-    "ast_hash": "d496702a60fb7662657e0359a3ddeefe",
+    "mtime": 1786655440.0668204,
+    "ast_hash": "c68dca2dc5899386e06695ae7f61b391",
     "semantic_hash": ""
   },
   "packages/domain/package.json": {
@@ -250,13 +250,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/invitation-email.ts": {
-    "mtime": 1786427368.0267053,
-    "ast_hash": "59a7f66adad524fcc6263963610b066f",
+    "mtime": 1786655190.4591823,
+    "ast_hash": "2534fed057b5b887f15ec518f68f3408",
     "semantic_hash": ""
   },
   "apps/web/public/offline.html": {
-    "mtime": 1786430941.606841,
-    "ast_hash": "575d6fa048300f5f6ad6f7ec26f7ab0e",
+    "mtime": 1786656018.8665917,
+    "ast_hash": "4c8b0b325c27089de2d1a64fdd32a2e2",
     "semantic_hash": ""
   },
   "apps/web/migrations/0007_memory_access_and_public_shares.sql": {
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786654529.2359626,
-    "ast_hash": "bf17e0deb055f29a47d943aac5405978",
+    "mtime": 1786656000.3565161,
+    "ast_hash": "a3bfa816fc68a1b619b1279f4ff351b2",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -290,13 +290,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/$familySlug.kids.$childSlug.tsx": {
-    "mtime": 1786653637.475962,
-    "ast_hash": "f864933423e3f8f8faf21c9d0b60643c",
+    "mtime": 1786655907.9417787,
+    "ast_hash": "e794069588f4e7aa67fda1a9afe361ae",
     "semantic_hash": ""
   },
   "apps/web/src/routes/$familySlug.kids.index.tsx": {
-    "mtime": 1786653637.4759643,
-    "ast_hash": "2e29a382d2502f34a0933a733dbdc1a0",
+    "mtime": 1786655907.942087,
+    "ast_hash": "56fd7376fdffce6f1f247060ee893f41",
     "semantic_hash": ""
   },
   "apps/web/src/routes/$familySlug.tsx": {
@@ -310,8 +310,48 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/onboarding.tsx": {
-    "mtime": 1786654529.2356176,
-    "ast_hash": "9a66e8d51f274c024fa3675d16db5a99",
+    "mtime": 1786655907.9423413,
+    "ast_hash": "3412ae667a64b9d4309d5e36c889ee3d",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/auth-route.tsx": {
+    "mtime": 1786655537.1335804,
+    "ast_hash": "91fb7d23c4bbd7375f089b7f855b4554",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/brand.tsx": {
+    "mtime": 1786655752.641179,
+    "ast_hash": "93804cb2f202aae132a9a619eb4a4f4d",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/marketing-home.tsx": {
+    "mtime": 1786656004.677179,
+    "ast_hash": "8e9eb15a5aedd9a4c453d3980f9253f0",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/invite.$token.tsx": {
+    "mtime": 1786655190.4578593,
+    "ast_hash": "70cedc6d14e3611c336285983e7d83a6",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/sign-in.tsx": {
+    "mtime": 1786655190.4575899,
+    "ast_hash": "83a6d856b513d3e3d4f1600b1a042b34",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/sign-up.tsx": {
+    "mtime": 1786655190.457711,
+    "ast_hash": "0d7814e6584ed8b054d76ae77c020d10",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/family-album.jpg": {
+    "mtime": 1786655096.9361758,
+    "ast_hash": "834fd585a6e2be5a772f343f97d2b302",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/voice-memory.jpg": {
+    "mtime": 1786655096.9736836,
+    "ast_hash": "b3be7bef8c94e1739168f435a76d92ad",
     "semantic_hash": ""
   }
 }

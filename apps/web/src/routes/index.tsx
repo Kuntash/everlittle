@@ -32,11 +32,13 @@ import {
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 
+import { Brand } from "@/components/brand";
 import { authClient } from "@/lib/auth-client";
+import { MarketingHome } from "@/components/marketing-home";
 
 export const Route = createFileRoute("/")({ component: Everlittle });
 
-type PlatformState = {
+export type PlatformState = {
   allowsPublicSignup: boolean;
   deploymentMode: "hosted" | "self-hosted";
   needsSetup: boolean;
@@ -48,7 +50,7 @@ type PlatformState = {
   } | null;
 };
 type ChildSession = { signedIn: boolean; child?: { displayName: string } };
-type InvitationPreview = {
+export type InvitationPreview = {
   archiveName: string;
   email: string;
   role: FamilyRole;
@@ -160,6 +162,9 @@ export function Everlittle() {
   }, [inviteToken]);
 
   if (session.isPending || !platform || !childSession || !invitationChecked) return <Loading />;
+  if (platform.deploymentMode === "hosted" && !session.data?.user && !inviteToken) {
+    return <MarketingHome />;
+  }
   if (childModeRequested && platform.childAccess?.enabled) {
     location.replace(
       `/${encodeURIComponent(platform.childAccess.familySlug)}/kids/${encodeURIComponent(platform.childAccess.childSlug)}`,
@@ -219,7 +224,7 @@ function ArchiveRedirect() {
   );
 }
 
-function Loading() {
+export function Loading() {
   return (
     <main className="loading-shell">
       <Brand />
@@ -228,11 +233,12 @@ function Loading() {
   );
 }
 
-function AccessScreen({
+export function AccessScreen({
   allowsPublicSignup,
   childAccess,
   forceChildMode = false,
   invitation,
+  initialMode,
   inviteToken,
   needsSetup,
 }: {
@@ -240,12 +246,13 @@ function AccessScreen({
   childAccess: PlatformState["childAccess"];
   forceChildMode?: boolean;
   invitation: InvitationPreview | null;
+  initialMode?: "sign-in" | "setup";
   inviteToken: string;
   needsSetup: boolean;
 }) {
   const isInvitation = Boolean(invitation && inviteToken);
   const [mode, setMode] = useState<"sign-in" | "setup">(
-    needsSetup || isInvitation || allowsPublicSignup ? "setup" : "sign-in",
+    initialMode ?? (needsSetup || isInvitation || allowsPublicSignup ? "setup" : "sign-in"),
   );
   const [entrance, setEntrance] = useState<"adult" | "child">(forceChildMode ? "child" : "adult");
   const [pin, setPin] = useState("");
@@ -299,7 +306,7 @@ function AccessScreen({
         <Brand />
         <div className="story-copy">
           <p className="eyebrow">Private family archive</p>
-          <h1 id="access-heading">A place for the memories she’ll grow into.</h1>
+          <h1 id="access-heading">A place for the memories they’ll grow into.</h1>
           <p>
             Keep the photographs, voices, ordinary afternoons, and future letters that make a
             childhood feel whole.
@@ -322,7 +329,7 @@ function AccessScreen({
           </div>
           {entrance === "child" ? (
             <>
-              <p className="eyebrow">{childAccess?.displayName ?? "Diki"}’s private space</p>
+              <p className="eyebrow">{childAccess?.displayName ?? "Your child"}’s private space</p>
               <h2>Open the story your family kept for you</h2>
               <p className="card-intro">
                 Enter the six-digit family PIN. No email address or adult account is needed.
@@ -389,7 +396,7 @@ function AccessScreen({
               </p>
               <h2>
                 {isInvitation
-                  ? "Join Diki Choetso’s family archive"
+                  ? `Join ${invitation?.archiveName ?? "your family archive"}`
                   : mode === "setup"
                     ? "Create your family’s private place"
                     : "Your memories are waiting"}
@@ -492,7 +499,7 @@ function AccessScreen({
   );
 }
 
-function InvitationAcceptance({
+export function InvitationAcceptance({
   invitation,
   token,
 }: {
@@ -729,7 +736,7 @@ function ParentView({
   const [composerKind, setComposerKind] = useState<MemoryKind | null>(null);
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const canCreate = role !== "viewer";
-  const childName = child?.displayName ?? "Diki Choetso";
+  const childName = child?.displayName ?? "your child";
   const featured = memories[0];
 
   function openComposer(kind: MemoryKind) {
@@ -831,7 +838,7 @@ function ParentView({
           </button>
         </div>
         {!child ? (
-          <p className="capture-note">Create Diki’s profile in Family before adding memories.</p>
+          <p className="capture-note">Create a child profile in Family before adding memories.</p>
         ) : null}
         <div className="capsule-card">
           <span className="capsule-seal">
@@ -839,7 +846,7 @@ function ParentView({
           </span>
           <p className="eyebrow">Future capsule</p>
           <h3>For when you’re 18</h3>
-          <p>Write a note now for Diki to open one day.</p>
+          <p>Write a note now for {childName} to open one day.</p>
           <button onClick={() => onNavigate("capsules")} type="button">
             Add a note <ArrowRight size={16} />
           </button>
@@ -886,7 +893,7 @@ function ChildView({
   );
   const featured = childMemories[0];
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
-  const childName = child?.displayName ?? "Diki Choetso";
+  const childName = child?.displayName ?? "there";
   return (
     <div className="child-view">
       <section className="child-hero">
@@ -941,7 +948,7 @@ function ChildView({
         <section className="child-empty">
           <Sparkles />
           <h2>Your family is still gathering your stories.</h2>
-          <p>The memories marked “For Diki” will appear here.</p>
+          <p>The memories marked “For child” will appear here.</p>
         </section>
       )}
       {capsules.length ? (
@@ -1001,8 +1008,8 @@ function TimelineView({
   return (
     <div className="timeline-page">
       <section className="timeline-hero">
-        <p className="eyebrow">Her days, kept gently</p>
-        <h1>{child?.displayName ?? "Diki Choetso"}’s timeline</h1>
+        <p className="eyebrow">Their days, kept gently</p>
+        <h1>{child?.displayName ?? "Your child"}’s timeline</h1>
         <p>Every small beginning, in the order your family remembers it.</p>
       </section>
       <div className="timeline-filters" aria-label="Filter memories">
@@ -1257,11 +1264,11 @@ function MemoryDetail({
                   value={audience}
                 >
                   <option value="family">Family archive</option>
-                  <option value="all">Everyone — family + Diki</option>
+                  <option value="all">Everyone — family + {child.displayName}</option>
                   {role === "owner" || role === "parent" ? (
                     <option value="parents">Parents only</option>
                   ) : null}
-                  <option value="child">For Diki</option>
+                  <option value="child">For {child.displayName}</option>
                 </select>
               </label>
             </div>
@@ -1566,19 +1573,19 @@ function MemoryComposer({
                   value={audience}
                 >
                   <option value="family">Family archive</option>
-                  <option value="all">Everyone — family + Diki</option>
+                  <option value="all">Everyone — family + {child.displayName}</option>
                   {role === "owner" || role === "parent" ? (
                     <option value="parents">Parents only</option>
                   ) : null}
-                  <option value="child">For Diki</option>
+                  <option value="child">For {child.displayName}</option>
                 </select>
               </label>
             </div>
             <p className="audience-note">
               {audience === "all"
-                ? "Visible to every accepted family member and in Diki’s child view."
+                ? `Visible to every accepted family member and in ${child.displayName}’s child view.`
                 : audience === "child"
-                  ? "This will appear in Diki’s child view."
+                  ? `This will appear in ${child.displayName}’s child view.`
                   : audience === "parents"
                     ? "Only owners and parents should use this private context."
                     : "Visible to accepted family members."}
@@ -1934,7 +1941,7 @@ function CapsulesView({
     <div className="capsules-page">
       <section className="capsules-hero">
         <div>
-          <p className="eyebrow">Words for her future</p>
+          <p className="eyebrow">Words for their future</p>
           <h1>Time capsules</h1>
           <p>
             Seal a note today. Everlittle will keep its contents private until the day you choose.
@@ -2023,8 +2030,8 @@ function CapsulesView({
             <LockKeyhole />
           </span>
           <p className="eyebrow">A message can travel through time</p>
-          <h2>Write something Diki should meet later.</h2>
-          <p>A birthday letter, a family story, or a few words for the person she is becoming.</p>
+          <h2>Write something {child?.displayName ?? "your child"} should meet later.</h2>
+          <p>A birthday letter, a family story, or a few words for the person they are becoming.</p>
           {canCreate && child ? (
             <button className="primary-button" onClick={() => setCreating(true)}>
               Create the first capsule <ArrowRight size={17} />
@@ -2132,7 +2139,7 @@ function CapsuleComposer({
             <textarea
               maxLength={20_000}
               onChange={(event) => setBody(event.target.value)}
-              placeholder="Dear Diki…"
+              placeholder={`Dear ${child.displayName}…`}
               required
               rows={7}
               value={body}
@@ -2159,7 +2166,7 @@ function CapsuleComposer({
               onChange={(event) => setAudience(event.target.value as typeof audience)}
               value={audience}
             >
-              <option value="child">Diki’s view</option>
+              <option value="child">{child.displayName}’s view</option>
               <option value="family">Family archive</option>
             </select>
           </label>
@@ -2199,7 +2206,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   const [inviteUrl, setInviteUrl] = useState("");
   const [copied, setCopied] = useState(false);
   const [inviteBusy, setInviteBusy] = useState(false);
-  const [childName, setChildName] = useState(state.children[0]?.displayName ?? "Diki Choetso");
+  const [childName, setChildName] = useState(state.children[0]?.displayName ?? "Your child");
   const [birthDate, setBirthDate] = useState(state.children[0]?.birthDate ?? "");
   const [childPin, setChildPin] = useState("");
   const [childPinConfirmation, setChildPinConfirmation] = useState("");
@@ -2281,7 +2288,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
         method: child ? "PUT" : "POST",
         body: JSON.stringify({ displayName: childName, birthDate }),
       },
-      child ? "Diki’s profile was updated." : "Diki’s profile is ready.",
+      child ? `${childName}’s profile was updated.` : `${childName}’s profile is ready.`,
     );
   }
 
@@ -2298,8 +2305,8 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
       `/api/archive/children/${child.id}/access-pin`,
       { method: "PUT", body: JSON.stringify({ pin: childPin }) },
       child.childAccessEnabled
-        ? "Diki’s family PIN was changed. Her other child sessions were signed out."
-        : "Diki’s private sign-in is ready.",
+        ? `${childName}’s family PIN was changed. Their other child sessions were signed out.`
+        : `${childName}’s private sign-in is ready.`,
     );
     if (saved) {
       setChildPin("");
@@ -2319,8 +2326,8 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
         <p className="eyebrow">Private family circle</p>
         <h1>{state.archive.name}</h1>
         <p>
-          Invite the people who will help keep Diki Choetso’s story, then hand ownership to her
-          mother when she is ready.
+          Invite the people who will help keep {childName}’s story. You can change roles or hand
+          ownership to another adult whenever your family needs.
         </p>
       </section>
       {message ? (
@@ -2444,15 +2451,15 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
               <Baby />
             </span>
             <div>
-              <p className="eyebrow">Her story</p>
-              <h2>Diki’s profile</h2>
+              <p className="eyebrow">Child profile</p>
+              <h2>{childName}’s profile</h2>
             </div>
           </div>
           {canEditChild ? (
             <>
               <form className="settings-form" onSubmit={saveChild}>
                 <label>
-                  Her full name
+                  Child’s full name
                   <input
                     onChange={(event) => setChildName(event.target.value)}
                     required
@@ -2470,12 +2477,12 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                 </label>
                 {!state.children.length ? (
                   <p className="field-note">
-                    We kept this blank so her age and future capsules are calculated from the
+                    We kept this blank so their age and future capsules are calculated from the
                     correct date.
                   </p>
                 ) : null}
                 <button className="primary-button" type="submit">
-                  {state.children.length ? "Save profile" : "Create Diki’s profile"}
+                  {state.children.length ? "Save profile" : "Create child profile"}
                 </button>
               </form>
               {state.children[0] ? (
@@ -2491,8 +2498,8 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                           : "Set up child sign-in"}
                       </strong>
                       <small>
-                        Diki uses this PIN instead of an email and sees only items marked “For
-                        Diki.”
+                        {childName} uses this PIN instead of an email and sees only items marked for
+                        their child view.
                       </small>
                     </div>
                   </div>
@@ -2547,14 +2554,15 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                         <Check size={15} /> Child sign-in is ready
                       </span>
                       <p>
-                        Test the exact screen Diki will use. You will stay signed in as a parent.
+                        Test the exact screen {childName} will use. You will stay signed in as a
+                        parent.
                       </p>
                       <button
                         className="text-button"
                         onClick={() => window.location.assign("/?child=1")}
                         type="button"
                       >
-                        Test Diki’s sign-in <ArrowRight size={15} />
+                        Test {childName}’s sign-in <ArrowRight size={15} />
                       </button>
                     </div>
                   ) : null}
@@ -2562,7 +2570,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
               ) : null}
             </>
           ) : (
-            <p className="card-intro">An owner or parent can update Diki’s profile.</p>
+            <p className="card-intro">An owner or parent can update the child profile.</p>
           )}
         </section>
 
@@ -2720,21 +2728,6 @@ function MobileNav({ active, onNavigate }: { active: View; onNavigate: (view: Vi
   );
 }
 
-export function Brand({ compact = false }: { compact?: boolean }) {
-  return (
-    <div className={`brand ${compact ? "compact" : ""}`}>
-      <span className="brand-mark" aria-hidden="true">
-        <Sparkles size={14} />
-        <span />
-      </span>
-      <div>
-        <strong>Everlittle</strong>
-        {compact ? null : <small>A place for the memories they’ll grow into.</small>}
-      </div>
-    </div>
-  );
-}
-
 function apiFetch(path: string, init: RequestInit = {}) {
   const headers = new Headers(init.headers);
   if (!headers.has("content-type")) headers.set("content-type", "application/json");
@@ -2768,7 +2761,7 @@ function roleLabel(role: FamilyRole) {
 
 function roleDescription(role: FamilyRole) {
   if (role === "parent") return "Parents can manage the archive and add memories.";
-  if (role === "contributor") return "Contributors can add memories to Diki’s story.";
+  if (role === "contributor") return "Contributors can add memories to the child’s story.";
   if (role === "viewer") return "Viewers can see family memories shared with them.";
   return "Owners manage the family archive.";
 }
@@ -2961,7 +2954,7 @@ function kindLabel(kind: MemoryKind) {
 
 function audienceLabel(audience: Memory["audience"]) {
   if (audience === "all") return "Everyone";
-  if (audience === "child") return "For Diki";
+  if (audience === "child") return "For child";
   if (audience === "parents") return "Parents only";
   return "Family";
 }
@@ -2974,15 +2967,15 @@ function memoryIcon(kind: MemoryKind) {
 
 function memoryTitlePlaceholder(kind: MemoryKind) {
   if (kind === "photo") return "That sleepy afternoon smile";
-  if (kind === "voice") return "The sound she made today";
+  if (kind === "voice") return "The sound they made today";
   if (kind === "video") return "A little moment in motion";
-  if (kind === "milestone") return "She reached for us";
+  if (kind === "milestone") return "They reached for us";
   if (kind === "letter") return "For the day you wonder…";
   return "A small moment worth keeping";
 }
 
 function memoryBodyPlaceholder(kind: MemoryKind) {
-  if (kind === "letter") return "Dear Diki…";
+  if (kind === "letter") return "Dear you…";
   if (kind === "milestone") return "What happened, and how did it feel?";
   return "Write the detail a photograph or recording cannot hold…";
 }

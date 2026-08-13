@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-14)
 
 ## Corpus Check
-- 44 files · ~401,183 words
+- 50 files · ~427,451 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2195 nodes · 2638 edges · 179 communities (33 shown, 146 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.55)
+- 2212 nodes · 2670 edges · 184 communities (39 shown, 145 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.54)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `f7227c40`
+- Built from commit: `672ee8fb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -181,12 +181,17 @@
 - WebSearch
 - web/vite.config.ts
 - Everlittle
-- zod
+- $familySlug.kids.$childSlug.tsx
 - pre-commit
 - family_archive
 - Everlittle hosted and self-hosted migration checklist
 - Everlittle preliminary trademark knockout search
 - invitation-email.ts
+- auth-route.tsx
+- responseError
+- MemoryComposer
+- onboarding.tsx
+- formatMemoryDate
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 41 edges
@@ -215,19 +220,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (179 total, 146 thin omitted)
+## Communities (184 total, 145 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
-Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentMemoryIncomingMemory, AgentMemoryIngestOptions, AgentMemoryListMemoriesOptions, AgentMemoryListMemoriesResult, AgentMemoryMemory, AgentMemoryMemoryListEntry (+840 more)
+Nodes (849): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentMemoryIncomingMemory, AgentMemoryIngestOptions, AgentMemoryListMemoriesOptions, AgentMemoryListMemoriesResult, AgentMemoryMemory, AgentMemoryMemoryListEntry (+841 more)
 
 ### Community 1 - "archive-api.ts"
 Cohesion: 0.06
 Nodes (109): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, checkOnboardingSlug(), ChildAccessContext, childPinSchema, childSchema (+101 more)
 
 ### Community 2 - "index.tsx"
-Cohesion: 0.05
-Nodes (68): authClient, ChildSession, Route, PublicChild, Route, Route, AccessScreen(), apiFetch() (+60 more)
+Cohesion: 0.10
+Nodes (20): Route, ArchiveState, Capsule, Child, ChildSession, currentFamilySlug(), Everlittle(), FamilyRole (+12 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -242,12 +247,12 @@ Cohesion: 0.08
 Nodes (24): compilerOptions, allowImportingTsExtensions, jsx, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+16 more)
 
 ### Community 6 - "scripts"
-Cohesion: 0.08
-Nodes (25): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+17 more)
+Cohesion: 0.07
+Nodes (27): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+19 more)
 
 ### Community 7 - "dependencies"
-Cohesion: 0.10
-Nodes (21): dependencies, better-auth, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/inter, lucide-react, react (+13 more)
+Cohesion: 0.09
+Nodes (23): dependencies, better-auth, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/inter, lucide-react, react (+15 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10
@@ -258,8 +263,8 @@ Cohesion: 0.11
 Nodes (19): devDependencies, @cloudflare/vite-plugin, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript, vite (+11 more)
 
 ### Community 13 - "scripts"
-Cohesion: 0.13
-Nodes (15): scripts, build, build:production, cf-typegen, db:fixtures:clear:production, db:fixtures:production, db:migrate:local, db:migrate:production (+7 more)
+Cohesion: 0.12
+Nodes (17): scripts, build, build:production, cf-typegen, db:fixtures:clear:production, db:fixtures:production, db:migrate:hosted, db:migrate:local (+9 more)
 
 ### Community 20 - "Body"
 Cohesion: 0.15
@@ -305,6 +310,10 @@ Nodes (3): RequestInitCfPropertiesVaryAcceptHeader, RequestInitCfPropertiesVaryA
 Cohesion: 0.11
 Nodes (16): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Authentication, Deployment (+8 more)
 
+### Community 169 - "$familySlug.kids.$childSlug.tsx"
+Cohesion: 0.19
+Nodes (7): Brand(), MarketingHome(), ChildSession, Route, PublicChild, Route, ChildArchiveApp()
+
 ### Community 171 - "family_archive"
 Cohesion: 0.16
 Nodes (20): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+12 more)
@@ -321,25 +330,45 @@ Nodes (12): EverLittle 3D, United States, Everlittle Baby domain, EverLittle Co.
 Cohesion: 0.43
 Nodes (6): buildInvitationEmail(), escapeHtml(), InvitationEmailInput, roleDescriptions, sendInvitationEmail(), titleCase()
 
+### Community 179 - "auth-route.tsx"
+Cohesion: 0.21
+Nodes (7): AuthRoute(), InvitationPreview, Loading(), PlatformState, Route, Route, Route
+
+### Community 180 - "responseError"
+Cohesion: 0.27
+Nodes (12): AccessScreen(), apiFetch(), ArchiveApp(), ArchiveRedirect(), CapsulesView(), FamilySettings(), formatDate(), initials() (+4 more)
+
+### Community 181 - "MemoryComposer"
+Cohesion: 0.29
+Nodes (11): CapsuleComposer(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), memoryBodyPlaceholder(), MemoryComposer(), MemoryDetail(), memoryTitlePlaceholder() (+3 more)
+
+### Community 182 - "onboarding.tsx"
+Cohesion: 0.27
+Nodes (7): authClient, Draft, Onboarding(), responseMessage(), Route, sections, toSlug()
+
+### Community 183 - "formatMemoryDate"
+Cohesion: 0.36
+Nodes (10): audienceLabel(), ChildView(), formatMemoryDate(), isDemoMemory(), kindLabel(), memoryIcon(), MemoryMedia(), MemoryRow() (+2 more)
+
 ## Knowledge Gaps
-- **1066 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1061 more)
+- **1072 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1067 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **146 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **145 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `WritableStreamDefaultWriter` connect `WritableStreamDefaultWriter` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.037) - this node is a cross-community bridge._
-- **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
+- **Why does `URLSearchParams` connect `URLSearchParams` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `Container` connect `Container` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `FormData` connect `FormData` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.022) - this node is a cross-community bridge._
+- **Why does `D1PreparedStatement` connect `D1PreparedStatement` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.027) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1066 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1072 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0023446658851113715 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.062090007627765065 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.05058717253839205 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10153846153846154 - nodes in this community are weakly interconnected._

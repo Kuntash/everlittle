@@ -36,6 +36,44 @@
     },
   ],
   "env": {
+    "hosted": {
+      "name": "everlittle-hosted",
+      "secrets": {
+        "required": ["BETTER_AUTH_SECRET"],
+      },
+      "routes": [
+        {
+          "pattern": "geteverlittle.com",
+          "custom_domain": true,
+        },
+      ],
+      "vars": {
+        "APP_NAME": "Everlittle",
+        "DEPLOYMENT_MODE": "hosted",
+        "INVITATION_FROM_EMAIL": "invites@geteverlittle.com",
+        "PUBLIC_APP_URL": "https://geteverlittle.com",
+      },
+      "send_email": [
+        {
+          "name": "EMAIL",
+          "allowed_sender_addresses": ["invites@geteverlittle.com"],
+        },
+      ],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "everlittle-hosted-db",
+          "database_id": "3b114b81-448b-46d1-80fc-5dd9010f447f",
+          "migrations_dir": "migrations",
+        },
+      ],
+      "r2_buckets": [
+        {
+          "binding": "MEDIA",
+          "bucket_name": "everlittle-hosted-media",
+        },
+      ],
+    },
     "production": {
       "name": "everlittle-dikichoetso",
       "secrets": {

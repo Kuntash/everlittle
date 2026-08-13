@@ -3,7 +3,8 @@ import { ArrowLeft, ArrowRight, LockKeyhole } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
-import { Brand, ChildArchiveApp } from "@/routes/index";
+import { Brand } from "@/components/brand";
+import { ChildArchiveApp } from "@/routes/index";
 
 export const Route = createFileRoute("/$familySlug/kids/$childSlug")({ component: ChildAccess });
 

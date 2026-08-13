@@ -17,8 +17,9 @@ export const Route = createRootRoute({
         name: "description",
         content: "A private family memory archive and time capsule.",
       },
-      { name: "theme-color", content: "#f7f1e7" },
-      { name: "color-scheme", content: "light" },
+      { name: "theme-color", content: "#eef1ed", media: "(prefers-color-scheme: light)" },
+      { name: "theme-color", content: "#111a17", media: "(prefers-color-scheme: dark)" },
+      { name: "color-scheme", content: "light dark" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
       { name: "apple-mobile-web-app-title", content: "Everlittle" },
@@ -219,7 +220,7 @@ function PwaExperience() {
           </span>
           <div>
             <strong>Keep Everlittle on your Home Screen</strong>
-            <small>Open Diki’s archive like an app, without searching for the website.</small>
+            <small>Open your family archive like an app, without searching for the website.</small>
           </div>
           <button
             className="pwa-prompt-action"

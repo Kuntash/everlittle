@@ -22,9 +22,9 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [x] Register the domain.
 - [ ] Enable registrar account MFA.
 - [ ] Add the domain to Cloudflare and enable DNSSEC.
-- [ ] Decide whether family routes live at `domain.com/:familySlug` or
+- [x] Decide whether family routes live at `domain.com/:familySlug` or
       `app.domain.com/:familySlug`.
-- [ ] Reserve platform route names such as `sign-in`, `sign-up`, `pricing`, `invite`, `share`,
+- [x] Reserve platform route names such as `sign-in`, `sign-up`, `pricing`, `invite`, `share`,
       `settings`, `admin`, `api`, and `support`.
 
 ### Domain candidates checked on 2026-08-14
@@ -54,15 +54,15 @@ guarantee; availability must be confirmed with a registrar.
 - [x] Define `defaultArchiveSlug` for optional self-hosted root redirects.
 - [x] Add configuration validation that fails deployment with actionable errors.
 - [x] Add hosted and self-hosted local environment fixtures.
-- [ ] Add dedicated deployed hosted and self-hosted Wrangler environment fixtures.
+- [x] Add dedicated deployed hosted and self-hosted Wrangler environment fixtures.
 - [x] Document every required and optional deployment-policy environment variable.
 
 ## Phase 2: Remove installation-specific assumptions
 
-- [ ] Replace every hardcoded `Diki` and `Diki Choetso` string with archive or child data.
-- [ ] Make invitation emails archive-aware and child-aware.
-- [ ] Make PWA installation copy archive-aware.
-- [ ] Replace Dikichoetso-specific empty states, labels, placeholders, and errors.
+- [x] Replace every hardcoded `Diki` and `Diki Choetso` string with archive or child data.
+- [x] Make invitation emails archive-aware.
+- [x] Make PWA installation copy installation-neutral.
+- [x] Replace Dikichoetso-specific empty states, labels, placeholders, and errors.
 - [ ] Move demo memories and production bootstrap data outside the canonical product path.
 - [ ] Remove Dikichoetso Cloudflare resource IDs and domains from canonical defaults.
 - [ ] Keep generic sample configuration safe to commit.
@@ -105,7 +105,7 @@ guarantee; availability must be confirmed with a registrar.
 - [x] Add `/:familySlug/kids` as the child profile chooser.
 - [x] Add `/:familySlug/kids/:childSlug` as the selected child entrance.
 - [x] Show only the selected family's child profiles.
-- [ ] Change the entrance copy from `I am Diki Choetso` to a profile-choice question.
+- [x] Change the entrance copy from `I am Diki Choetso` to a profile-choice question.
 - [x] After profile selection, ask for that child's PIN.
 - [x] Call it `your PIN` instead of `the family PIN`.
 - [x] Keep one PIN per child, even if a family chooses the same digits for siblings.
@@ -132,15 +132,15 @@ guarantee; availability must be confirmed with a registrar.
 - [x] Add family-name and slug selection with live validation.
 - [x] Add the first child profile step.
 - [x] Add privacy, audience, timezone, and child-access defaults.
-- [ ] Support joining an existing family instead of creating one.
+- [x] Support joining an existing family instead of creating one.
 - [x] Make onboarding resumable without persisting a plaintext child PIN.
 - [x] Add complete loading, empty, validation, error, and recovery states.
 - [ ] Verify mobile keyboard, safe-area, and back-navigation behavior.
 
 ## Phase 7: Hosted application routes
 
-- [ ] Add the marketing site at `/` in hosted mode.
-- [ ] Add `/sign-up`, `/sign-in`, `/invite/:token`, and `/share/:token` (`/onboarding` is complete).
+- [x] Add the marketing site at `/` in hosted mode.
+- [x] Add `/sign-up`, `/sign-in`, `/invite/:token`, and `/share/:token` (`/onboarding` is complete).
 - [x] Move the family application under `/:familySlug`.
 - [ ] Move timeline, capsules, family, and settings under the family route.
 - [ ] Preserve deep links after authentication.
@@ -152,15 +152,15 @@ guarantee; availability must be confirmed with a registrar.
 
 ## Phase 8: Landing page and product presentation
 
-- [ ] Create the hosted landing page using the `design-taste-frontend` direction.
-- [ ] Use a private, intimate, trustworthy family-product visual language.
-- [ ] Generate real, section-specific family-memory imagery.
-- [ ] Keep one consistent light/dark token system and one accent color.
-- [ ] Build an asymmetric hero with one primary signup intent.
-- [ ] Explain memories, child views, capsules, privacy, ownership, and self-hosting.
+- [x] Create the hosted landing page using the `design-taste-frontend` direction.
+- [x] Use a private, intimate, trustworthy family-product visual language.
+- [x] Generate real, section-specific family-memory imagery.
+- [x] Keep one consistent light/dark token system and one accent color.
+- [x] Build an asymmetric hero with one primary signup intent.
+- [x] Explain memories, child views, capsules, privacy, ownership, and self-hosting.
 - [ ] Add honest hosted pricing only after costs and limits are known.
-- [ ] Add a self-hosting path without competing with the hosted signup CTA.
-- [ ] Honor reduced motion and reduced transparency.
+- [x] Add a self-hosting path without competing with the hosted signup CTA.
+- [x] Honor reduced motion and reduced transparency.
 - [ ] Verify mobile, tablet, desktop, light mode, and dark mode.
 - [ ] Run accessibility, Lighthouse, and real-device checks.
 
