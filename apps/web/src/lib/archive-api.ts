@@ -33,6 +33,24 @@ const capsuleSchema = z.object({
   audience: z.enum(["family", "child"]),
 });
 const childPinSchema = z.object({ pin: z.string().regex(/^\d{6}$/) });
+const onboardingDraftSchema = z.object({
+  familyName: z.string().trim().min(1).max(100).optional(),
+  familySlug: familySlugSchema.optional(),
+  childName: z.string().trim().min(1).max(100).optional(),
+  childBirthDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .optional(),
+  timezone: z.string().trim().min(1).max(100).optional(),
+});
+const onboardingCompletionSchema = z.object({
+  familyName: z.string().trim().min(1).max(100),
+  familySlug: familySlugSchema,
+  childName: z.string().trim().min(1).max(100),
+  childBirthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  timezone: z.string().trim().min(1).max(100),
+  childPin: z.union([z.literal(""), z.string().regex(/^\d{6}$/)]),
+});
 
 const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
 const CHILD_SESSION_COOKIE = "everlittle.child_session";
@@ -142,6 +160,19 @@ type PublicMemory = {
 
 export async function handleArchiveApi(request: Request): Promise<Response | null> {
   const url = new URL(request.url);
+
+  if (url.pathname === "/api/onboarding" && request.method === "GET") {
+    return getOnboarding(request);
+  }
+  if (url.pathname === "/api/onboarding" && request.method === "PATCH") {
+    return saveOnboardingDraft(request);
+  }
+  if (url.pathname === "/api/onboarding" && request.method === "POST") {
+    return completeOnboarding(request);
+  }
+  if (url.pathname === "/api/onboarding/slug" && request.method === "GET") {
+    return checkOnboardingSlug(request);
+  }
   const scopedApiMatch = url.pathname.match(/^\/api\/families\/([^/]+)(\/.*)$/);
   if (scopedApiMatch) {
     const slug = decodeURIComponent(scopedApiMatch[1]);
@@ -472,6 +503,163 @@ async function listUserArchives(request: Request): Promise<Response> {
     .bind(user.id)
     .all<{ id: string; name: string; slug: string; role: FamilyRole }>();
   return Response.json({ archives: archives.results });
+}
+
+async function getOnboarding(request: Request): Promise<Response> {
+  const runtime = getRuntimeEnv();
+  if (getDeploymentConfig(runtime).mode !== "hosted") return notFound();
+  const user = await getSessionUser(request);
+  if (!user) return unauthorized();
+
+  const membership = await runtime.DB.prepare(
+    `SELECT a.slug FROM family_member fm
+     JOIN family_archive a ON a.id = fm.archive_id
+     WHERE fm.user_id = ? ORDER BY fm.created_at LIMIT 1`,
+  )
+    .bind(user.id)
+    .first<{ slug: string }>();
+  if (membership) return Response.json({ complete: true, archiveSlug: membership.slug });
+
+  const draft = await runtime.DB.prepare(
+    `SELECT family_name AS familyName, family_slug AS familySlug,
+            child_name AS childName, child_birth_date AS childBirthDate, timezone
+     FROM onboarding_draft WHERE user_id = ?`,
+  )
+    .bind(user.id)
+    .first<{
+      familyName: string | null;
+      familySlug: string | null;
+      childName: string | null;
+      childBirthDate: string | null;
+      timezone: string | null;
+    }>();
+  return Response.json({ complete: false, draft: draft ?? null });
+}
+
+async function saveOnboardingDraft(request: Request): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  if (getDeploymentConfig(runtime).mode !== "hosted") return notFound();
+  const user = await getSessionUser(request);
+  if (!user) return unauthorized();
+  const parsed = onboardingDraftSchema.safeParse(await readJson(request));
+  if (!parsed.success) {
+    return Response.json({ error: "Check the details you entered." }, { status: 400 });
+  }
+  const current = await runtime.DB.prepare(
+    `SELECT family_name AS familyName, family_slug AS familySlug,
+            child_name AS childName, child_birth_date AS childBirthDate, timezone
+     FROM onboarding_draft WHERE user_id = ?`,
+  )
+    .bind(user.id)
+    .first<Record<string, string | null>>();
+  const draft = { ...current, ...parsed.data };
+  await runtime.DB.prepare(
+    `INSERT INTO onboarding_draft
+       (user_id, family_name, family_slug, child_name, child_birth_date, timezone, updated_at)
+     VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+     ON CONFLICT(user_id) DO UPDATE SET
+       family_name = excluded.family_name,
+       family_slug = excluded.family_slug,
+       child_name = excluded.child_name,
+       child_birth_date = excluded.child_birth_date,
+       timezone = excluded.timezone,
+       updated_at = CURRENT_TIMESTAMP`,
+  )
+    .bind(
+      user.id,
+      draft.familyName ?? null,
+      draft.familySlug ?? null,
+      draft.childName ?? null,
+      draft.childBirthDate ?? null,
+      draft.timezone ?? null,
+    )
+    .run();
+  return Response.json({ saved: true });
+}
+
+async function checkOnboardingSlug(request: Request): Promise<Response> {
+  const runtime = getRuntimeEnv();
+  if (getDeploymentConfig(runtime).mode !== "hosted") return notFound();
+  if (!(await getSessionUser(request))) return unauthorized();
+  const slug = new URL(request.url).searchParams.get("slug") ?? "";
+  if (!familySlugSchema.safeParse(slug).success) {
+    return Response.json({ available: false, reason: "Choose 3-48 letters, numbers, or hyphens." });
+  }
+  const existing = await runtime.DB.prepare("SELECT 1 FROM family_archive WHERE slug = ?")
+    .bind(slug)
+    .first();
+  return Response.json({ available: !existing });
+}
+
+async function completeOnboarding(request: Request): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  if (getDeploymentConfig(runtime).mode !== "hosted") return notFound();
+  const user = await getSessionUser(request);
+  if (!user) return unauthorized();
+  const parsed = onboardingCompletionSchema.safeParse(await readJson(request));
+  if (
+    !parsed.success ||
+    !isValidTimezone(parsed.data.timezone) ||
+    !isValidBirthDate(parsed.data.childBirthDate)
+  ) {
+    return Response.json({ error: "Check your family and child details." }, { status: 400 });
+  }
+  const existingMembership = await runtime.DB.prepare(
+    "SELECT 1 FROM family_member WHERE user_id = ? LIMIT 1",
+  )
+    .bind(user.id)
+    .first();
+  if (existingMembership) {
+    return Response.json({ error: "This account already belongs to a family." }, { status: 409 });
+  }
+  const slugTaken = await runtime.DB.prepare("SELECT 1 FROM family_archive WHERE slug = ?")
+    .bind(parsed.data.familySlug)
+    .first();
+  if (slugTaken) {
+    return Response.json({ error: "That family address is already taken." }, { status: 409 });
+  }
+
+  const archiveId = crypto.randomUUID();
+  const childId = crypto.randomUUID();
+  const childSlug = await uniqueChildSlug(
+    runtime.DB,
+    archiveId,
+    slugify(parsed.data.childName, `child-${childId.slice(0, 8)}`),
+  );
+  const pinHash = parsed.data.childPin
+    ? await keyedHash(runtime.BETTER_AUTH_SECRET, `${childId}:${parsed.data.childPin}`)
+    : null;
+  try {
+    await runtime.DB.batch([
+      runtime.DB.prepare(
+        "INSERT INTO family_archive (id, name, slug, timezone) VALUES (?, ?, ?, ?)",
+      ).bind(archiveId, parsed.data.familyName, parsed.data.familySlug, parsed.data.timezone),
+      runtime.DB.prepare(
+        "INSERT INTO family_member (id, archive_id, user_id, role) VALUES (?, ?, ?, 'owner')",
+      ).bind(crypto.randomUUID(), archiveId, user.id),
+      runtime.DB.prepare(
+        `INSERT INTO child_profile
+          (id, archive_id, slug, display_name, birth_date, access_pin_hash)
+         VALUES (?, ?, ?, ?, ?, ?)`,
+      ).bind(
+        childId,
+        archiveId,
+        childSlug,
+        parsed.data.childName,
+        parsed.data.childBirthDate,
+        pinHash,
+      ),
+      runtime.DB.prepare("DELETE FROM onboarding_draft WHERE user_id = ?").bind(user.id),
+    ]);
+  } catch {
+    return Response.json(
+      { error: "We could not create that family. Try another address." },
+      { status: 409 },
+    );
+  }
+  return Response.json({ archiveSlug: parsed.data.familySlug }, { status: 201 });
 }
 
 async function previewInvitation(request: Request): Promise<Response> {
@@ -1984,4 +2172,13 @@ function isValidBirthDate(value: string): boolean {
   return (
     !Number.isNaN(date.valueOf()) && date.toISOString().slice(0, 10) === value && value <= today
   );
+}
+
+function isValidTimezone(value: string): boolean {
+  try {
+    new Intl.DateTimeFormat("en", { timeZone: value }).format();
+    return true;
+  } catch {
+    return false;
+  }
 }

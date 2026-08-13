@@ -94,7 +94,7 @@ async function handleAuthRequest(request: Request): Promise<Response> {
     const payload = (await response.clone().json()) as SignUpPayload;
     if (payload.user?.id && invitation) {
       await acceptInvitation(runtime.DB, invitation, payload.user.id);
-    } else if (payload.user?.id && (isOwnerBootstrap || isHostedSignup)) {
+    } else if (payload.user?.id && isOwnerBootstrap) {
       await bootstrapFamily(runtime.DB, payload.user.id, payload.user.name ?? "Our family");
     }
   }

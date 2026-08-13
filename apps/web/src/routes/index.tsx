@@ -200,7 +200,10 @@ function ArchiveRedirect() {
       })
       .then(({ archives }) => {
         const first = archives[0];
-        if (!first) throw new Error("Create a family archive to continue.");
+        if (!first) {
+          location.replace("/onboarding");
+          return;
+        }
         location.replace(`/${encodeURIComponent(first.slug)}`);
       })
       .catch((reason: Error) => setError(reason.message));
@@ -285,7 +288,9 @@ function AccessScreen({
       }
     }
 
-    window.location.assign("/");
+    window.location.assign(
+      mode === "setup" && allowsPublicSignup && !isInvitation ? "/onboarding" : "/",
+    );
   }
 
   return (

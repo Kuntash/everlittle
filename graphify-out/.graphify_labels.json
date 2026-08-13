@@ -176,5 +176,6 @@
   "174": "0003_memory_media_guards.sql",
   "175": "0006_invitation_email.sql",
   "176": "Everlittle hosted and self-hosted migration checklist",
-  "177": "Everlittle preliminary trademark knockout search"
+  "177": "Everlittle preliminary trademark knockout search",
+  "178": "invitation-email.ts"
 }

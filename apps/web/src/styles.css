@@ -376,6 +376,256 @@ h3,
   display: flex;
   gap: 0.6rem;
 }
+
+.onboarding-shell {
+  background:
+    radial-gradient(circle at 90% 10%, rgb(23 59 50 / 8%), transparent 32rem), var(--paper-deep);
+  min-height: 100svh;
+  min-height: 100dvh;
+  padding: max(1rem, env(safe-area-inset-top)) max(1.25rem, env(safe-area-inset-right))
+    max(1.25rem, env(safe-area-inset-bottom)) max(1.25rem, env(safe-area-inset-left));
+}
+.onboarding-shell > header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1080px;
+}
+.onboarding-shell > header > span {
+  color: var(--muted-ink);
+  font-size: 0.72rem;
+}
+.onboarding-layout {
+  display: grid;
+  gap: clamp(2rem, 6vw, 6rem);
+  grid-template-columns: minmax(170px, 0.34fr) minmax(0, 0.66fr);
+  margin: clamp(4rem, 10vh, 7rem) auto 2rem;
+  max-width: 900px;
+}
+.onboarding-progress {
+  align-self: start;
+  display: grid;
+  gap: 0.35rem;
+}
+.onboarding-progress button {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-left: 2px solid var(--line);
+  color: var(--muted-ink);
+  display: flex;
+  font-size: 0.76rem;
+  gap: 0.45rem;
+  min-height: 42px;
+  padding: 0.6rem 0.9rem;
+  text-align: left;
+}
+.onboarding-progress button[aria-current="step"] {
+  border-left-color: var(--forest);
+  color: var(--forest);
+  font-weight: 750;
+}
+.onboarding-progress button:disabled {
+  cursor: default;
+}
+.onboarding-panel {
+  max-width: 560px;
+  min-width: 0;
+}
+.onboarding-panel h1 {
+  color: var(--forest);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 560;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  margin: 0.55rem 0 1rem;
+}
+.onboarding-intro {
+  color: var(--muted-ink);
+  line-height: 1.6;
+  margin: 0 0 2rem;
+  max-width: 52ch;
+}
+.onboarding-fields {
+  display: grid;
+  gap: 1.2rem;
+}
+.onboarding-fields > label:not(.onboarding-choice) {
+  color: var(--ink);
+  display: grid;
+  font-size: 0.78rem;
+  font-weight: 700;
+  gap: 0.5rem;
+}
+.onboarding-fields input:not([type="checkbox"]) {
+  background: rgb(255 253 248 / 82%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--ink);
+  font-size: 1rem;
+  min-height: 50px;
+  outline: 0;
+  padding: 0.8rem 0.9rem;
+  width: 100%;
+}
+.onboarding-fields input:not([type="checkbox"]):focus {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgb(23 59 50 / 10%);
+}
+.onboarding-fields small {
+  color: var(--muted-ink);
+  font-size: 0.68rem;
+  font-weight: 450;
+}
+.onboarding-panel > .primary-button,
+.onboarding-fields > .primary-button {
+  margin-top: 1.35rem;
+}
+.slug-field {
+  align-items: center;
+  background: rgb(255 253 248 / 82%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  display: flex;
+  overflow: hidden;
+}
+.slug-field:focus-within {
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgb(23 59 50 / 10%);
+}
+.slug-field > span {
+  color: var(--muted-ink);
+  font-size: 0.72rem;
+  padding-left: 0.9rem;
+  white-space: nowrap;
+}
+.slug-field > input {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  min-width: 100px;
+  padding-left: 0.15rem !important;
+}
+.field-status {
+  min-height: 1em;
+}
+.field-status.error {
+  color: #8b402c;
+}
+.onboarding-back {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--muted-ink);
+  display: inline-flex;
+  font-size: 0.72rem;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+}
+.onboarding-choice {
+  align-items: center;
+  background: rgb(23 59 50 / 5%);
+  border: 1px solid rgb(23 59 50 / 18%);
+  border-radius: var(--radius-sm);
+  display: grid;
+  gap: 0.8rem;
+  grid-template-columns: auto 1fr auto;
+  padding: 1rem;
+}
+.onboarding-choice input {
+  accent-color: var(--forest);
+  height: 18px;
+  width: 18px;
+}
+.onboarding-choice span {
+  display: grid;
+  gap: 0.2rem;
+}
+.onboarding-choice strong {
+  color: var(--forest);
+  font-size: 0.82rem;
+}
+.onboarding-choice > svg {
+  color: var(--forest);
+}
+.privacy-note {
+  align-items: flex-start;
+  color: var(--muted-ink);
+  display: flex;
+  font-size: 0.76rem;
+  gap: 0.7rem;
+  line-height: 1.5;
+}
+.privacy-note svg {
+  color: var(--forest);
+  flex: 0 0 auto;
+}
+.privacy-note p {
+  margin: 0;
+}
+.privacy-note strong {
+  color: var(--ink);
+}
+.onboarding-skeleton {
+  background: linear-gradient(
+    100deg,
+    rgb(23 59 50 / 5%) 30%,
+    rgb(23 59 50 / 10%) 50%,
+    rgb(23 59 50 / 5%) 70%
+  );
+  background-size: 200% 100%;
+  border-radius: var(--radius-sm);
+  height: 360px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .onboarding-skeleton {
+    animation: onboarding-shimmer 1.4s ease-in-out infinite;
+  }
+}
+@keyframes onboarding-shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+@media (max-width: 700px) {
+  .onboarding-shell > header > span {
+    display: none;
+  }
+  .onboarding-layout {
+    grid-template-columns: 1fr;
+    margin-top: 2.5rem;
+  }
+  .onboarding-progress {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .onboarding-progress button {
+    border-bottom: 2px solid var(--line);
+    border-left: 0;
+    font-size: 0.66rem;
+    justify-content: center;
+    padding-inline: 0.2rem;
+  }
+  .onboarding-progress button[aria-current="step"] {
+    border-bottom-color: var(--forest);
+    border-left-color: transparent;
+  }
+  .onboarding-panel h1 {
+    font-size: clamp(2.4rem, 13vw, 3.4rem);
+  }
+  .slug-field {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .slug-field > span {
+    padding: 0.65rem 0.9rem 0;
+  }
+  .slug-field > input {
+    min-height: 40px !important;
+    padding-left: 0.9rem !important;
+  }
+}
 .form-error {
   background: rgb(185 110 85 / 10%);
   border-radius: 0.6rem;

@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1786653477.630591,
-    "ast_hash": "fe67fa23be959cc2bba199cfeead16c2",
+    "mtime": 1786654486.8425107,
+    "ast_hash": "541ea1ef9194f7befe17d387faa61de3",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -45,13 +45,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786653637.4810505,
-    "ast_hash": "eb474103d971341bb47f6d10550e73fc",
+    "mtime": 1786654486.8461254,
+    "ast_hash": "1cbd8d3ee64020c3674328d176d25f9d",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1786653504.2430089,
-    "ast_hash": "4f609e7373250bc7ef9766bbe1d866d8",
+    "mtime": 1786654338.2864897,
+    "ast_hash": "6eee196a680741232ae2c7280b240d0b",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786653619.3651621,
-    "ast_hash": "62a3c3eccd97f5c1bef3175b53d7e877",
+    "mtime": 1786654529.2359626,
+    "ast_hash": "bf17e0deb055f29a47d943aac5405978",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -302,6 +302,16 @@
   "apps/web/src/routes/$familySlug.tsx": {
     "mtime": 1786653186.6512768,
     "ast_hash": "4d648d60181136902085f97c3813ef1c",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0009_onboarding_drafts.sql": {
+    "mtime": 1786654338.2861476,
+    "ast_hash": "8cbcd1a408188a1d8fb9704bb4c6314b",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/onboarding.tsx": {
+    "mtime": 1786654529.2356176,
+    "ast_hash": "9a66e8d51f274c024fa3675d16db5a99",
     "semantic_hash": ""
   }
 }

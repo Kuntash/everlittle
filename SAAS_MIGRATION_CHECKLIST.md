@@ -123,25 +123,25 @@ guarantee; availability must be confirmed with a registrar.
 
 ## Phase 6: Hosted authentication and onboarding
 
-- [ ] Allow public adult signup only in hosted mode.
-- [ ] Keep first-owner bootstrap plus invitation-only signup in self-hosted mode.
+- [x] Allow public adult signup only in hosted mode.
+- [x] Keep first-owner bootstrap plus invitation-only signup in self-hosted mode.
 - [ ] Add email verification.
 - [ ] Add password reset and recovery email delivery.
 - [ ] Add optional passkeys and two-factor authentication for owners and parents.
-- [ ] Build family creation after hosted account creation.
-- [ ] Add family-name and slug selection with live validation.
-- [ ] Add the first child profile step.
-- [ ] Add privacy, audience, timezone, and child-access defaults.
+- [x] Build family creation after hosted account creation.
+- [x] Add family-name and slug selection with live validation.
+- [x] Add the first child profile step.
+- [x] Add privacy, audience, timezone, and child-access defaults.
 - [ ] Support joining an existing family instead of creating one.
-- [ ] Make onboarding resumable.
-- [ ] Add complete loading, empty, validation, error, and recovery states.
+- [x] Make onboarding resumable without persisting a plaintext child PIN.
+- [x] Add complete loading, empty, validation, error, and recovery states.
 - [ ] Verify mobile keyboard, safe-area, and back-navigation behavior.
 
 ## Phase 7: Hosted application routes
 
 - [ ] Add the marketing site at `/` in hosted mode.
-- [ ] Add `/sign-up`, `/sign-in`, `/onboarding`, `/invite/:token`, and `/share/:token`.
-- [ ] Move the family application under `/:familySlug`.
+- [ ] Add `/sign-up`, `/sign-in`, `/invite/:token`, and `/share/:token` (`/onboarding` is complete).
+- [x] Move the family application under `/:familySlug`.
 - [ ] Move timeline, capsules, family, and settings under the family route.
 - [ ] Preserve deep links after authentication.
 - [ ] Make unauthorized family routes return a privacy-preserving response.

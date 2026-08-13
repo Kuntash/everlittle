@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-14)
 
 ## Corpus Check
-- 42 files · ~399,401 words
+- 44 files · ~401,183 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2178 nodes · 2581 edges · 178 communities (32 shown, 146 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 5 edges (avg confidence: 0.56)
+- 2195 nodes · 2638 edges · 179 communities (33 shown, 146 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 6 edges (avg confidence: 0.55)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6bbc8393`
+- Built from commit: `f7227c40`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -186,35 +186,36 @@
 - family_archive
 - Everlittle hosted and self-hosted migration checklist
 - Everlittle preliminary trademark knockout search
+- invitation-email.ts
 
 ## God Nodes (most connected - your core abstractions)
-1. `getRuntimeEnv()` - 37 edges
-2. `handleArchiveApi()` - 33 edges
-3. `Event` - 25 edges
-4. `getMembershipContext()` - 23 edges
-5. `unauthorized()` - 22 edges
-6. `isSameOrigin()` - 21 edges
-7. `forbidden()` - 21 edges
+1. `getRuntimeEnv()` - 41 edges
+2. `handleArchiveApi()` - 37 edges
+3. `unauthorized()` - 26 edges
+4. `Event` - 25 edges
+5. `getMembershipContext()` - 23 edges
+6. `isSameOrigin()` - 23 edges
+7. `forbidden()` - 23 edges
 8. `Console` - 21 edges
 9. `auditStatement()` - 19 edges
-10. `compilerOptions` - 17 edges
+10. `getDeploymentConfig()` - 19 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `completeOnboarding()` --calls--> `slugify()`  [EXTRACTED]
+  apps/web/src/lib/archive-api.ts → packages/domain/src/index.ts
 - `createChildProfile()` --calls--> `slugify()`  [EXTRACTED]
   apps/web/src/lib/archive-api.ts → packages/domain/src/index.ts
 - `bootstrapFamily()` --calls--> `slugify()`  [EXTRACTED]
   apps/web/src/server.ts → packages/domain/src/index.ts
+- `onboarding_draft` --references--> `"user"`  [EXTRACTED]
+  apps/web/migrations/0009_onboarding_drafts.sql → apps/web/migrations/0001_foundation.sql
 - `child_access_session` --references--> `child_profile`  [EXTRACTED]
   apps/web/migrations/0005_child_access.sql → apps/web/migrations/0001_foundation.sql
-- `audit_event` --references--> `"user"`  [EXTRACTED]
-  apps/web/migrations/0002_family_access.sql → apps/web/migrations/0001_foundation.sql
-- `family_invitation` --references--> `"user"`  [EXTRACTED]
-  apps/web/migrations/0002_family_access.sql → apps/web/migrations/0001_foundation.sql
 
 ## Import Cycles
 - None detected.
 
-## Communities (178 total, 146 thin omitted)
+## Communities (179 total, 146 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -222,11 +223,11 @@ Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentM
 
 ### Community 1 - "archive-api.ts"
 Cohesion: 0.06
-Nodes (108): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, ChildAccessContext, childPinSchema, childSchema, childSessionCookie() (+100 more)
+Nodes (109): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, checkOnboardingSlug(), ChildAccessContext, childPinSchema, childSchema (+101 more)
 
 ### Community 2 - "index.tsx"
-Cohesion: 0.06
-Nodes (62): authClient, ChildSession, Route, PublicChild, Route, Route, AccessScreen(), apiFetch() (+54 more)
+Cohesion: 0.05
+Nodes (68): authClient, ChildSession, Route, PublicChild, Route, Route, AccessScreen(), apiFetch() (+60 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -305,8 +306,8 @@ Cohesion: 0.11
 Nodes (16): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Authentication, Deployment (+8 more)
 
 ### Community 171 - "family_archive"
-Cohesion: 0.18
-Nodes (19): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+11 more)
+Cohesion: 0.16
+Nodes (20): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+12 more)
 
 ### Community 176 - "Everlittle hosted and self-hosted migration checklist"
 Cohesion: 0.11
@@ -316,25 +317,29 @@ Nodes (17): Decisions already made, Domain candidates checked on 2026-08-14, Eve
 Cohesion: 0.15
 Nodes (12): EverLittle 3D, United States, Everlittle Baby domain, EverLittle Co., United States-facing marketplace use, Everlittle, India, Everlittle preliminary trademark knockout search, Material commercial uses found, Practical domain decision, Preliminary assessment (+4 more)
 
+### Community 178 - "invitation-email.ts"
+Cohesion: 0.43
+Nodes (6): buildInvitationEmail(), escapeHtml(), InvitationEmailInput, roleDescriptions, sendInvitationEmail(), titleCase()
+
 ## Knowledge Gaps
-- **1061 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1056 more)
+- **1066 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1061 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **146 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.025) - this node is a cross-community bridge._
-- **Why does `DurableObjectState` connect `DurableObjectState` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `Flagship` connect `Flagship` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `WritableStreamDefaultWriter` connect `WritableStreamDefaultWriter` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.037) - this node is a cross-community bridge._
+- **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+- **Why does `FormData` connect `FormData` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1061 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1066 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.057513348588863464 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.062090007627765065 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.05738615327656423 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05058717253839205 - nodes in this community are weakly interconnected._
