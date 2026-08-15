@@ -1,7 +1,7 @@
 {
   "apps/web/package.json": {
-    "mtime": 1786655440.0664694,
-    "ast_hash": "9464837f572655481680a6463b974375",
+    "mtime": 1786820063.2240896,
+    "ast_hash": "d2173782b19dcb43d3f728f942cce4a8",
     "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786655875.1136513,
-    "ast_hash": "becccfe2e97d19e92045484ff009c1ce",
+    "mtime": 1786820150.773582,
+    "ast_hash": "cf2d1a98d4c12bf5f9097d47769c27f8",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -65,13 +65,13 @@
     "semantic_hash": ""
   },
   "apps/web/worker-configuration.d.ts": {
-    "mtime": 1786655455.6671226,
-    "ast_hash": "38d972634a4bb8f03d783a07b070639a",
+    "mtime": 1786820116.0615811,
+    "ast_hash": "fc86736e67a40ab01c7daf37a3099a08",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1786655440.0668204,
-    "ast_hash": "c68dca2dc5899386e06695ae7f61b391",
+    "mtime": 1786820063.2236292,
+    "ast_hash": "caa84fde2e75e369eae4847d5554658c",
     "semantic_hash": ""
   },
   "packages/domain/package.json": {
@@ -104,29 +104,19 @@
     "ast_hash": "0e84940d41d0bb420f5e2081c4d848b8",
     "semantic_hash": "0e84940d41d0bb420f5e2081c4d848b8"
   },
-  "apps/web/fixtures/media/video-sample.mp4": {
-    "mtime": 1785957559.8362403,
-    "ast_hash": "0afed13f0c84da28751b42c12c6d344b",
-    "semantic_hash": "0afed13f0c84da28751b42c12c6d344b"
-  },
-  "apps/web/fixtures/media/voice-sample.m4a": {
-    "mtime": 1785955587.0746152,
-    "ast_hash": "b8dc91992826a638d3243d4df6c3f1ec",
-    "semantic_hash": "b8dc91992826a638d3243d4df6c3f1ec"
-  },
   ".githooks/pre-commit": {
     "mtime": 1786393522.9844866,
     "ast_hash": "f6eaa2857492c792535cbf955c58bdeb",
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1786652928.5741758,
-    "ast_hash": "8a11031f2981be5673d876f2f7a9bd75",
+    "mtime": 1786820063.2249134,
+    "ast_hash": "7b3a8e63ea45b4e566af702608cff8e8",
     "semantic_hash": ""
   },
   "TODO.md": {
-    "mtime": 1786819794.2417233,
-    "ast_hash": "a68995cd38943deb1fd31dc65e7770bd",
+    "mtime": 1786820063.2255504,
+    "ast_hash": "9e2980c061fe470da4278a532abfd050",
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
@@ -209,16 +199,6 @@
     "ast_hash": "6c59e455c29e424872964adb04fe3cd6",
     "semantic_hash": ""
   },
-  "apps/web/fixtures/clear-demo-memories.sql": {
-    "mtime": 1785955434.441288,
-    "ast_hash": "32c5bd6f58ad473fffc2f1a7dd6d93e0",
-    "semantic_hash": ""
-  },
-  "apps/web/fixtures/demo-memories.sql": {
-    "mtime": 1785957548.297159,
-    "ast_hash": "33559986e83d4631b0768cfd978a6912",
-    "semantic_hash": ""
-  },
   "apps/web/migrations/0001_foundation.sql": {
     "mtime": 1785948314.09172,
     "ast_hash": "d3fe225680a17ef7cbd51b221fbc99f8",
@@ -270,8 +250,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786819794.2410803,
-    "ast_hash": "4d39bba7957eb878db30814dffd0407c",
+    "mtime": 1786820063.2258878,
+    "ast_hash": "3569d17cacd0c33119c06ba879885e31",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -280,8 +260,8 @@
     "semantic_hash": ""
   },
   "docs/deployment-modes.md": {
-    "mtime": 1786819807.9613042,
-    "ast_hash": "d30b8dc0df68b4d75db5ca06babeefe7",
+    "mtime": 1786820063.2252512,
+    "ast_hash": "d3dcab188b74ff543c3078f3baa7d1ca",
     "semantic_hash": ""
   },
   "apps/web/migrations/0008_tenant_slugs.sql": {
@@ -355,8 +335,8 @@
     "semantic_hash": ""
   },
   "artifacts/launch-video/storyboard.html": {
-    "mtime": 1786819808.0320559,
-    "ast_hash": "99aaa87b3b83547d11fc78d6bb65772f",
+    "mtime": 1786820063.2263107,
+    "ast_hash": "630a69097039a17ab2719fab02baae50",
     "semantic_hash": ""
   },
   "assets/design/LANDING_DESIGN_DIRECTION.md": {

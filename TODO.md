@@ -4,8 +4,8 @@ This file tracks product gaps between the current scaffold and a safe, usable fa
 
 ## P0 — Claim the reference installation
 
-- [x] Create the first owner account at [dikichoetso.com](https://dikichoetso.com).
-- [x] Create Diki Choetso’s child profile and replace the demo name, dates, and content.
+- [x] Create the first owner account in the reference installation.
+- [x] Create the real child profile and replace all demo names, dates, and content.
 
 ## P1 — Family invitation and ownership handover
 
@@ -68,7 +68,7 @@ ownership to a parent, and then leave without weakening access control.
 - [x] Show private range-streamed playback controls for voice and video memories.
 - [x] Store private media in R2 and serve it only through authorized requests.
 - [x] Accept iPhone HEIC/HEIF photos, MOV/HEVC video, and audio files without forcing camera capture.
-- [x] Add an explicit all-access audience for memories visible to family members and Diki.
+- [x] Add an explicit all-access audience for memories visible to family members and the child.
 - [x] Restrict memory edits, deletion, media attachment, and public-link creation to the author.
 - [x] Add expiring, revocable public links for sharing one memory through the native share sheet or
       WhatsApp without exposing the archive.

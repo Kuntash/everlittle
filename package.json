@@ -12,11 +12,7 @@
     "cf-typegen": "vp run @everlittle/web#cf-typegen",
     "db:migrate:local": "vp run @everlittle/web#db:migrate:local",
     "db:migrate:remote": "vp run @everlittle/web#db:migrate:remote",
-    "db:migrate:production": "vp run @everlittle/web#db:migrate:production",
     "db:migrate:hosted": "vp run @everlittle/web#db:migrate:hosted",
-    "db:fixtures:production": "pnpm --filter @everlittle/web db:fixtures:production",
-    "db:fixtures:clear:production": "pnpm --filter @everlittle/web db:fixtures:clear:production",
-    "deploy:production": "vp run @everlittle/web#deploy:production",
     "deploy:hosted": "vp run @everlittle/web#deploy:hosted",
     "setup:hooks": "git config core.hooksPath .githooks",
     "setup:vp": "vp config"

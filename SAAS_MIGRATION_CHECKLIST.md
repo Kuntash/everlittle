@@ -49,10 +49,10 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [x] Make invitation emails archive-aware.
 - [x] Make PWA installation copy installation-neutral.
 - [x] Replace Dikichoetso-specific empty states, labels, placeholders, and errors.
-- [ ] Move demo memories and production bootstrap data outside the canonical product path.
-- [ ] Remove Dikichoetso Cloudflare resource IDs and domains from canonical defaults.
-- [ ] Keep generic sample configuration safe to commit.
-- [ ] Verify the generic product can start with no child profiles or memories.
+- [x] Move demo memories and production bootstrap data outside the canonical product path.
+- [x] Remove Dikichoetso Cloudflare resource IDs and domains from canonical defaults.
+- [x] Keep generic sample configuration safe to commit.
+- [x] Verify the generic product can start with no child profiles or memories.
 
 ## Phase 3: Tenant model and readable slugs
 
@@ -60,8 +60,8 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [x] Add `child_profile.slug`.
 - [x] Add a unique index for child slugs within an archive.
 - [x] Add reserved-slug validation.
-- [ ] Decide whether family slugs can be changed after creation.
-- [ ] Add slug-history redirects if family or child slugs can change.
+- [x] Keep family slugs immutable after creation so installed routes and bookmarks remain stable.
+- [x] Do not add slug-history redirects while family and child slugs remain immutable.
 - [x] Resolve family slugs to immutable archive UUIDs on the server.
 - [x] Resolve child slugs only within the already resolved archive.
 - [x] Never accept a browser-provided archive UUID as authorization.
@@ -69,7 +69,7 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [x] Replace the current first-membership lookup with route-scoped membership resolution in
       hosted mode while retaining a temporary self-hosted compatibility fallback.
 - [x] Support one adult account belonging to multiple family archives at the data and API layer.
-- [ ] Add a family switcher when an adult has more than one membership.
+- [x] Add a family switcher when an adult has more than one membership.
 
 ## Phase 4: Tenant-isolation audit
 

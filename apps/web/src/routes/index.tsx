@@ -123,6 +123,12 @@ type ArchiveState = {
   capsules: Capsule[];
   invitations: PendingInvitation[];
 };
+type ArchiveMembership = {
+  id: string;
+  name: string;
+  slug: string;
+  role: FamilyRole;
+};
 type View = "parent" | "timeline" | "capsules" | "child" | "family";
 
 export function Everlittle() {
@@ -551,6 +557,7 @@ export function InvitationAcceptance({
 function ArchiveApp({ name }: { name: string }) {
   const [view, setView] = useState<View>("parent");
   const [state, setState] = useState<ArchiveState | null>(null);
+  const [archives, setArchives] = useState<ArchiveMembership[]>([]);
   const [error, setError] = useState("");
 
   async function refresh() {
@@ -565,6 +572,13 @@ function ArchiveApp({ name }: { name: string }) {
 
   useEffect(() => {
     void refresh();
+    void fetch("/api/archives")
+      .then(async (response) => {
+        if (!response.ok) throw new Error(await responseError(response));
+        return response.json() as Promise<{ archives: ArchiveMembership[] }>;
+      })
+      .then(({ archives: memberships }) => setArchives(memberships))
+      .catch(() => setArchives([]));
   }, []);
 
   if (!state) {
@@ -581,7 +595,25 @@ function ArchiveApp({ name }: { name: string }) {
   return (
     <main className="app-shell">
       <header className="app-header">
-        <Brand compact />
+        <div className="archive-header-identity">
+          <Brand compact />
+          {archives.length > 1 ? (
+            <label className="family-switcher">
+              <span>Family</span>
+              <select
+                aria-label="Switch family archive"
+                onChange={(event) => location.assign(`/${encodeURIComponent(event.target.value)}`)}
+                value={state.archive.slug}
+              >
+                {archives.map((archive) => (
+                  <option key={archive.id} value={archive.slug}>
+                    {archive.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          ) : null}
+        </div>
         <div className="header-actions">
           <div className="view-switch" aria-label="Archive view">
             <button className={view === "parent" ? "active" : ""} onClick={() => setView("parent")}>
@@ -770,9 +802,7 @@ function ParentView({
           <article className="featured-memory">
             <MemoryMedia memory={featured} featured />
             <div className="memory-copy">
-              <p className="eyebrow">
-                {isDemoMemory(featured) ? "Sample · " : ""}Latest {kindLabel(featured.kind)}
-              </p>
+              <p className="eyebrow">Latest {kindLabel(featured.kind)}</p>
               <h2>{featured.title}</h2>
               {featured.body ? <p>{featured.body}</p> : null}
               {featured.kind === "voice" ? <MemoryPlayback memory={featured} /> : null}
@@ -928,7 +958,6 @@ function ChildView({
               {memory.mediaType === "image" ? <MemoryMedia memory={memory} featured /> : null}
               {memory.mediaType === "video" ? <MemoryMedia memory={memory} featured /> : null}
               <p className="eyebrow">
-                {isDemoMemory(memory) ? "Sample · " : ""}
                 {kindLabel(memory.kind)} from {memory.authorName ?? "your family"}
               </p>
               <h2>{memory.title}</h2>
@@ -1056,7 +1085,6 @@ function TimelineView({
                       type="button"
                     >
                       <small>
-                        {isDemoMemory(memory) ? "Sample · " : ""}
                         {kindLabel(memory.kind)} · {audienceLabel(memory.audience)}
                       </small>
                       <strong>{memory.title}</strong>
@@ -1217,7 +1245,6 @@ function MemoryDetail({
         <header className="composer-header detail-header">
           <div>
             <p className="eyebrow">
-              {isDemoMemory(memory) ? "Sample · " : ""}
               {kindLabel(memory.kind)} · {audienceLabel(memory.audience)}
             </p>
             <h2 id="memory-detail-title">{editing ? "Edit this memory" : memory.title}</h2>
@@ -2691,7 +2718,6 @@ function MemoryRow({ memory, onOpen }: { memory: Memory; onOpen: () => void }) {
         <p>
           {formatMemoryDate(memory.happenedAt)} · {memory.authorName ?? "Family"} ·{" "}
           {audienceLabel(memory.audience)}
-          {isDemoMemory(memory) ? " · Sample" : ""}
         </p>
       </div>
       <Heart size={18} />
@@ -2983,8 +3009,4 @@ function memoryBodyPlaceholder(kind: MemoryKind) {
 function formatFileSize(bytes: number) {
   if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-}
-
-function isDemoMemory(memory: Memory) {
-  return memory.id.startsWith("demo-memory-");
 }

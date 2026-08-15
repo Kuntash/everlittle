@@ -74,43 +74,5 @@
         },
       ],
     },
-    "production": {
-      "name": "everlittle-dikichoetso",
-      "secrets": {
-        "required": ["BETTER_AUTH_SECRET"],
-      },
-      "routes": [
-        {
-          "pattern": "dikichoetso.com",
-          "custom_domain": true,
-        },
-      ],
-      "vars": {
-        "APP_NAME": "Everlittle",
-        "DEPLOYMENT_MODE": "self-hosted",
-        "INVITATION_FROM_EMAIL": "invites@dikichoetso.com",
-        "PUBLIC_APP_URL": "https://dikichoetso.com",
-      },
-      "send_email": [
-        {
-          "name": "EMAIL",
-          "allowed_sender_addresses": ["invites@dikichoetso.com"],
-        },
-      ],
-      "d1_databases": [
-        {
-          "binding": "DB",
-          "database_name": "everlittle-dikichoetso-db",
-          "database_id": "09349ff2-e49b-4656-a48d-a3b6d9b74437",
-          "migrations_dir": "migrations",
-        },
-      ],
-      "r2_buckets": [
-        {
-          "binding": "MEDIA",
-          "bucket_name": "everlittle-dikichoetso-media",
-        },
-      ],
-    },
   },
 }

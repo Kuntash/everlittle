@@ -40,8 +40,7 @@ THS school-management system:
 2. Users and sessions are stored in Cloudflare D1.
 3. In self-hosted mode, the first successful signup bootstraps a family archive and owner
    membership.
-4. In hosted mode, public signup creates a starter archive until the dedicated onboarding flow is
-   complete.
+4. In hosted mode, public signup continues into resumable family and child onboarding.
 5. Self-hosted public signup closes after the owner exists; additional adults join through
    invitations.
 6. Child profiles use parent-managed access rather than public email accounts.
@@ -81,25 +80,25 @@ pnpm ready
 
 ## Deployment
 
-The reference self-hosted installation runs at [dikichoetso.com](https://dikichoetso.com). Its
-Cloudflare environment is configured under `env.production` in `apps/web/wrangler.jsonc`.
+The canonical repository contains the hosted Everlittle environment and safe placeholder defaults
+for local or self-hosted use.
 
 ```sh
-pnpm db:migrate:production
-pnpm deploy:production
+pnpm db:migrate:hosted
+pnpm deploy:hosted
 ```
 
-The Cloudflare Vite plugin selects that environment at build time with
-`CLOUDFLARE_ENV=production`; passing `--env production` only to the final `wrangler deploy` command
-is not sufficient.
+Installation-specific domains, Cloudflare resource IDs, bootstrap data, and operational scripts
+belong in the installation's deployment repository rather than this canonical product repository.
 
 For another self-hosted installation:
 
 1. Create a D1 database and private R2 bucket.
-2. Add a separate Wrangler environment with its resource identifiers and custom domain.
+2. Create a deployment-owned Wrangler configuration with its resource identifiers and custom
+   domain.
 3. Apply migrations against that environment.
 4. Add a unique `BETTER_AUTH_SECRET` with `wrangler secret put`.
-5. Build with `CLOUDFLARE_ENV=<environment>` and deploy the generated Worker configuration.
+5. Build with the deployment configuration and deploy the generated Worker configuration.
 
 ## Privacy posture
 

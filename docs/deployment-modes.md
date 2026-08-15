@@ -15,12 +15,12 @@ PUBLIC_APP_URL=https://geteverlittle.com
 Hosted mode currently:
 
 - allows public adult signup;
-- creates a starter family archive for each direct signup;
-- supports the future marketing, billing, and multiple-archive surfaces; and
+- sends each direct signup through resumable family onboarding;
+- supports marketing, billing, and multiple-archive surfaces; and
 - rejects `DEFAULT_ARCHIVE_SLUG`, because tenant selection must come from the request route.
 
-The starter archive is transitional. Phase 6 will replace automatic creation with resumable family
-onboarding and explicit slug selection.
+Family slugs are selected during onboarding and are immutable. This keeps installed PWA routes,
+bookmarks, and shared family links stable without requiring slug-history redirects.
 
 ## Self-hosted
 
