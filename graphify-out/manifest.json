@@ -510,8 +510,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/reset-password.tsx": {
-    "mtime": 1786822765.8157644,
-    "ast_hash": "fd6d40dc0d9f8e4de38ea66e4b4ec48e",
+    "mtime": 1786823309.85114,
+    "ast_hash": "683c9be275deba61f3c78fea996c57a1",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-email.ts": {

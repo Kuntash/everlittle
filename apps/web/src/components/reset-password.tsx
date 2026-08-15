@@ -1,20 +1,37 @@
 import { ArrowRight, LockKeyhole } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
 import { Brand } from "@/components/brand";
 
 export function ResetPassword() {
-  const search = new URLSearchParams(location.search);
-  const token = search.get("token") ?? "";
-  const invalid = Boolean(search.get("error")) || !token;
+  const [link, setLink] = useState<{ invalid: boolean; token: string } | null>(null);
   const [password, setPassword] = useState("");
   const [confirmation, setConfirmation] = useState("");
-  const [error, setError] = useState(
-    invalid ? "This reset link is invalid or has expired. Request a new one from sign in." : "",
-  );
+  const [error, setError] = useState("");
   const [complete, setComplete] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    const search = new URLSearchParams(location.search);
+    const token = search.get("token") ?? "";
+    const invalid = Boolean(search.get("error")) || !token;
+    setLink({ invalid, token });
+    if (invalid) {
+      setError("This reset link is invalid or has expired. Request a new one from sign in.");
+    }
+  }, []);
+
+  if (!link) {
+    return (
+      <main className="loading-shell">
+        <Brand />
+        <span className="loading-dot" aria-label="Loading" />
+      </main>
+    );
+  }
+
+  const { invalid, token } = link;
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
