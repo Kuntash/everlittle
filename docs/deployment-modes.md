@@ -59,6 +59,7 @@ checking the raw environment variable in components or route handlers.
 
 The Worker refuses to serve requests when:
 
+- `BETTER_AUTH_SECRET` or the independent `CHILD_PIN_PEPPER` secret is missing;
 - `DEPLOYMENT_MODE` is missing or unknown;
 - `PUBLIC_APP_URL` is missing, is not an origin, or uses insecure HTTP outside localhost;
 - `DEFAULT_ARCHIVE_SLUG` is malformed; or
@@ -81,5 +82,6 @@ or:
 cp apps/web/.dev.vars.hosted.example apps/web/.dev.vars
 ```
 
-Generate a unique secret instead of committing a real one. D1, R2, email, routes, and custom
-domains remain Wrangler bindings and must be configured for each deployment environment.
+Generate unique, independent values for `BETTER_AUTH_SECRET` and `CHILD_PIN_PEPPER` instead of
+committing real secrets. D1, R2, email, routes, and custom domains remain Wrangler bindings and
+must be configured for each deployment environment.

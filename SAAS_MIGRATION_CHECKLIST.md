@@ -96,16 +96,16 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [x] Call it `your PIN` instead of `the family PIN`.
 - [x] Keep one PIN per child, even if a family chooses the same digits for siblings.
 - [x] Replace global PIN scanning with one archive-and-child-scoped lookup.
-- [ ] Add a dedicated `CHILD_PIN_PEPPER` separate from `BETTER_AUTH_SECRET`.
-- [ ] Evaluate a deliberately slow Worker-compatible PIN hash.
+- [x] Add a dedicated `CHILD_PIN_PEPPER` separate from `BETTER_AUTH_SECRET`.
+- [x] Evaluate a deliberately slow Worker-compatible PIN hash.
 - [x] Rate-limit by archive, child, IP, and device signal.
-- [ ] Add progressive delays or temporary lockouts after repeated failures.
+- [x] Add progressive delays or temporary lockouts after repeated failures.
 - [x] Scope child sessions to both `archive_id` and `child_id`.
 - [x] Revoke all sessions for that child when their PIN changes.
-- [ ] Add a parent action to disable child access and revoke every child session.
-- [ ] Show parents the last child-access time and active-device count.
+- [x] Add a parent action to disable child access and revoke every child session.
+- [x] Show parents the last child-access time and active-device count.
 - [x] Require reauthentication before switching from one child's space to another.
-- [ ] Preserve a future path to passkeys, trusted devices, and adult-account transition.
+- [x] Preserve a future path to passkeys, trusted devices, and adult-account transition.
 
 ## Phase 6: Hosted authentication and onboarding
 

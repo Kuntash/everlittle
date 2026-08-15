@@ -74,6 +74,8 @@ type Child = {
   birthDate: string;
   avatarAssetKey?: string | null;
   childAccessEnabled?: 0 | 1;
+  childLastAccessAt?: string | null;
+  childActiveDeviceCount?: number;
 };
 type MemoryKind = "photo" | "story" | "voice" | "video" | "milestone" | "letter";
 type Memory = {
@@ -2341,6 +2343,22 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
     }
   }
 
+  async function disableChildSignIn() {
+    const child = state.children[0];
+    if (!child) return;
+    if (
+      !confirm(
+        `Turn off child sign-in for ${childName}? Every signed-in child device will lose access.`,
+      )
+    )
+      return;
+    await mutate(
+      `/api/archive/children/${child.id}/access-pin`,
+      { method: "DELETE" },
+      `${childName}’s child sign-in was turned off and every child session was revoked.`,
+    );
+  }
+
   async function copyInvite() {
     await navigator.clipboard.writeText(inviteUrl);
     setCopied(true);
@@ -2581,6 +2599,15 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                         <Check size={15} /> Child sign-in is ready
                       </span>
                       <p>
+                        {state.children[0].childActiveDeviceCount ?? 0} active{" "}
+                        {(state.children[0].childActiveDeviceCount ?? 0) === 1
+                          ? "device"
+                          : "devices"}
+                        {state.children[0].childLastAccessAt
+                          ? ` · Last used ${formatDateTime(state.children[0].childLastAccessAt)}`
+                          : " · Not used yet"}
+                      </p>
+                      <p>
                         Test the exact screen {childName} will use. You will stay signed in as a
                         parent.
                       </p>
@@ -2590,6 +2617,13 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                         type="button"
                       >
                         Test {childName}’s sign-in <ArrowRight size={15} />
+                      </button>
+                      <button
+                        className="disable-child-access"
+                        onClick={() => void disableChildSignIn()}
+                        type="button"
+                      >
+                        Turn off child sign-in
                       </button>
                     </div>
                   ) : null}
@@ -2802,6 +2836,13 @@ function initials(name: string) {
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date(value));
+}
+
+function formatDateTime(value: string) {
+  const normalized = value.includes("T") ? value : `${value.replace(" ", "T")}Z`;
+  return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", timeStyle: "short" }).format(
+    new Date(normalized),
+  );
 }
 
 function formatMemoryDate(value: string) {

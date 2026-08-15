@@ -1,3 +1,4 @@
 BETTER_AUTH_SECRET=replace-with-at-least-32-random-characters
+CHILD_PIN_PEPPER=replace-with-a-different-32-character-random-secret
 DEPLOYMENT_MODE=hosted
 PUBLIC_APP_URL=http://localhost:3000

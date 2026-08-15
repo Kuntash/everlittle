@@ -16,6 +16,7 @@ export default defineConfig({
         bindings: {
           APP_NAME: "Everlittle",
           BETTER_AUTH_SECRET: "test-secret-at-least-32-characters-long",
+          CHILD_PIN_PEPPER: "independent-test-pin-pepper-at-least-32-characters",
           DEPLOYMENT_MODE: "hosted",
           INVITATION_FROM_EMAIL: "invites@example.com",
           PUBLIC_APP_URL: "http://localhost:3000",

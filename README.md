@@ -63,6 +63,7 @@ Use a strong local secret in `apps/web/.dev.vars`:
 
 ```text
 BETTER_AUTH_SECRET=at-least-32-random-characters
+CHILD_PIN_PEPPER=a-different-random-secret-at-least-32-characters
 DEPLOYMENT_MODE=self-hosted
 PUBLIC_APP_URL=http://localhost:3000
 ```
@@ -97,7 +98,8 @@ For another self-hosted installation:
 2. Create a deployment-owned Wrangler configuration with its resource identifiers and custom
    domain.
 3. Apply migrations against that environment.
-4. Add a unique `BETTER_AUTH_SECRET` with `wrangler secret put`.
+4. Add unique, independent `BETTER_AUTH_SECRET` and `CHILD_PIN_PEPPER` values with
+   `wrangler secret put`.
 5. Build with the deployment configuration and deploy the generated Worker configuration.
 
 ## Privacy posture

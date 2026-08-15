@@ -187,5 +187,6 @@
   "185": "apply-migrations.ts",
   "186": "migration-upgrade.test.ts",
   "187": "tenant-isolation.test.ts",
-  "188": "vitest.config.ts"
+  "188": "vitest.config.ts",
+  "189": "Child access security"
 }

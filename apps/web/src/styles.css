@@ -4120,6 +4120,19 @@ h3,
   margin: 0;
   padding: 0.3rem 0 0;
 }
+.disable-child-access {
+  background: transparent;
+  border: 0;
+  color: #8b402c;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.67rem;
+  justify-self: flex-start;
+  margin-top: 0.2rem;
+  padding: 0.25rem 0;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
 .settings-form {
   display: grid;
   gap: 0.9rem;

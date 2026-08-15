@@ -5,7 +5,7 @@
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
   "secrets": {
-    "required": ["BETTER_AUTH_SECRET"],
+    "required": ["BETTER_AUTH_SECRET", "CHILD_PIN_PEPPER"],
   },
   "assets": {
     "not_found_handling": "single-page-application",
@@ -39,7 +39,7 @@
     "hosted": {
       "name": "everlittle-hosted",
       "secrets": {
-        "required": ["BETTER_AUTH_SECRET"],
+        "required": ["BETTER_AUTH_SECRET", "CHILD_PIN_PEPPER"],
       },
       "routes": [
         {

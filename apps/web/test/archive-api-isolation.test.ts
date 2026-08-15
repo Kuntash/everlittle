@@ -277,6 +277,107 @@ describe("role permission regressions", () => {
   });
 });
 
+describe("child access security", () => {
+  it("stores new PINs with the versioned slow derivation", async () => {
+    const row = await env.DB.prepare(
+      "SELECT access_pin_hash AS pinHash FROM child_profile WHERE id = ? AND archive_id = ?",
+    )
+      .bind(familyA.childId, familyA.archiveId)
+      .first<{ pinHash: string }>();
+    expect(row?.pinHash).toMatch(/^pbkdf2-sha256\$120000\$/);
+  });
+
+  it("upgrades a valid legacy PIN after sign-in", async () => {
+    const legacyPin = "654321";
+    const legacyHash = await legacyChildPinHash(familyB.childId, legacyPin);
+    await env.DB.prepare(
+      "UPDATE child_profile SET access_pin_hash = ? WHERE id = ? AND archive_id = ?",
+    )
+      .bind(legacyHash, familyB.childId, familyB.archiveId)
+      .run();
+
+    const response = await childSignIn(familyB, legacyPin);
+    expect(response.status).toBe(200);
+    const row = await env.DB.prepare(
+      "SELECT access_pin_hash AS pinHash FROM child_profile WHERE id = ? AND archive_id = ?",
+    )
+      .bind(familyB.childId, familyB.archiveId)
+      .first<{ pinHash: string }>();
+    expect(row?.pinHash).toMatch(/^pbkdf2-sha256\$120000\$/);
+    expect(row?.pinHash).not.toBe(legacyHash);
+  });
+
+  it("temporarily locks repeated failures and returns retry guidance", async () => {
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const response = await exports.default.fetch(
+        new Request(`${ORIGIN}/api/families/${familyA.slug}/children/missing-child/sign-in`, {
+          body: JSON.stringify({ pin: "000000" }),
+          headers: {
+            "content-type": "application/json",
+            "user-agent": "lockout-test-device",
+            origin: ORIGIN,
+          },
+          method: "POST",
+        }),
+      );
+      expect(response.status).toBe(401);
+    }
+    const locked = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/families/${familyA.slug}/children/missing-child/sign-in`, {
+        body: JSON.stringify({ pin: "000000" }),
+        headers: {
+          "content-type": "application/json",
+          "user-agent": "lockout-test-device",
+          origin: ORIGIN,
+        },
+        method: "POST",
+      }),
+    );
+    expect(locked.status).toBe(429);
+    expect(Number(locked.headers.get("retry-after"))).toBeGreaterThan(0);
+  });
+
+  it("shows session activity and lets a parent disable all child access", async () => {
+    const before = await api(familyA, `/api/families/${familyA.slug}/archive`);
+    expect(before.status).toBe(200);
+    const beforeState = (await before.json()) as {
+      children: Array<{
+        childAccessEnabled: number;
+        childActiveDeviceCount: number;
+        childLastAccessAt: string | null;
+      }>;
+    };
+    expect(beforeState.children[0]).toMatchObject({
+      childAccessEnabled: 1,
+      childActiveDeviceCount: 1,
+    });
+    expect(beforeState.children[0].childLastAccessAt).toBeTruthy();
+
+    const disabled = await api(
+      { ...familyA, cookie: parent.cookie },
+      `/api/families/${familyA.slug}/archive/children/${familyA.childId}/access-pin`,
+      { method: "DELETE" },
+    );
+    expect(disabled.status).toBe(200);
+
+    const childArchive = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/families/${familyA.slug}/children/${familyA.childSlug}/archive`, {
+        headers: { cookie: childCookie },
+      }),
+    );
+    expect(childArchive.status).toBe(401);
+
+    const after = await api(familyA, `/api/families/${familyA.slug}/archive`);
+    const afterState = (await after.json()) as {
+      children: Array<{ childAccessEnabled: number; childActiveDeviceCount: number }>;
+    };
+    expect(afterState.children[0]).toMatchObject({
+      childAccessEnabled: 0,
+      childActiveDeviceCount: 0,
+    });
+  });
+});
+
 async function createFamily(email: string, name: string, slug: string): Promise<TestFamily> {
   const account = await signUpAccount(email, name);
 
@@ -365,5 +466,30 @@ function api(
         ...init.headers,
       },
     }),
+  );
+}
+
+function childSignIn(family: TestFamily, pin: string) {
+  return exports.default.fetch(
+    new Request(`${ORIGIN}/api/families/${family.slug}/children/${family.childSlug}/sign-in`, {
+      body: JSON.stringify({ pin }),
+      headers: { "content-type": "application/json", origin: ORIGIN },
+      method: "POST",
+    }),
+  );
+}
+
+async function legacyChildPinHash(childId: string, pin: string) {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode("test-secret-at-least-32-characters-long"),
+    { name: "HMAC", hash: "SHA-256" },
+    false,
+    ["sign"],
+  );
+  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode(`${childId}:${pin}`));
+  return Array.from(new Uint8Array(signature), (byte) => byte.toString(16).padStart(2, "0")).join(
+    "",
   );
 }

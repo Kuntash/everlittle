@@ -55,6 +55,8 @@ const onboardingCompletionSchema = z.object({
 const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
 const CHILD_SESSION_COOKIE = "everlittle.child_session";
 const CHILD_SESSION_SECONDS = 60 * 60 * 24 * 7;
+const CHILD_PIN_HASH_VERSION = "pbkdf2-sha256";
+const CHILD_PIN_ITERATIONS = 120_000;
 const FAMILY_SLUG_HEADER = "x-everlittle-family-slug";
 const CHILD_SLUG_HEADER = "x-everlittle-child-slug";
 const MEDIA_TYPES: ReadonlyMap<
@@ -309,6 +311,9 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
   if (childPinMatch && request.method === "PUT") {
     return setChildAccessPin(request, childPinMatch[1]);
   }
+  if (childPinMatch && request.method === "DELETE") {
+    return disableChildAccess(request, childPinMatch[1]);
+  }
 
   const invitationMatch = url.pathname.match(/^\/api\/archive\/invitations\/([^/]+)$/);
   if (invitationMatch && request.method === "DELETE") {
@@ -418,7 +423,16 @@ async function getArchiveState(request: Request): Promise<Response> {
       .prepare(
         `SELECT id, slug, display_name AS displayName, birth_date AS birthDate,
                 avatar_asset_key AS avatarAssetKey,
-                CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS childAccessEnabled
+                CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS childAccessEnabled,
+                (SELECT MAX(COALESCE(cas.last_seen_at, cas.created_at))
+                 FROM child_access_session cas
+                 WHERE cas.archive_id = child_profile.archive_id
+                   AND cas.child_id = child_profile.id) AS childLastAccessAt,
+                (SELECT COUNT(*) FROM child_access_session cas
+                 WHERE cas.archive_id = child_profile.archive_id
+                   AND cas.child_id = child_profile.id
+                   AND cas.revoked_at IS NULL
+                   AND datetime(cas.expires_at) > CURRENT_TIMESTAMP) AS childActiveDeviceCount
          FROM child_profile WHERE archive_id = ? ORDER BY created_at`,
       )
       .bind(context.archiveId)
@@ -630,7 +644,7 @@ async function completeOnboarding(request: Request): Promise<Response> {
     slugify(parsed.data.childName, `child-${childId.slice(0, 8)}`),
   );
   const pinHash = parsed.data.childPin
-    ? await keyedHash(runtime.BETTER_AUTH_SECRET, `${childId}:${parsed.data.childPin}`)
+    ? await hashChildPin(runtime.CHILD_PIN_PEPPER, parsed.data.childPin)
     : null;
   try {
     await runtime.DB.batch([
@@ -1114,7 +1128,7 @@ async function setChildAccessPin(request: Request, childId: string): Promise<Res
     .first();
   if (!child) return Response.json({ error: "Child profile not found." }, { status: 404 });
 
-  const pinHash = await keyedHash(runtime.BETTER_AUTH_SECRET, `${childId}:${parsed.data.pin}`);
+  const pinHash = await hashChildPin(runtime.CHILD_PIN_PEPPER, parsed.data.pin);
   await runtime.DB.batch([
     runtime.DB.prepare(
       `UPDATE child_profile SET access_pin_hash = ?, updated_at = CURRENT_TIMESTAMP
@@ -1136,6 +1150,41 @@ async function setChildAccessPin(request: Request, childId: string): Promise<Res
   return Response.json({ updated: true });
 }
 
+async function disableChildAccess(request: Request, childId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role !== "owner" && context.role !== "parent") return forbidden();
+
+  const child = await runtime.DB.prepare(
+    "SELECT id FROM child_profile WHERE id = ? AND archive_id = ?",
+  )
+    .bind(childId, context.archiveId)
+    .first();
+  if (!child) return Response.json({ error: "Child profile not found." }, { status: 404 });
+
+  await runtime.DB.batch([
+    runtime.DB.prepare(
+      `UPDATE child_profile SET access_pin_hash = NULL, updated_at = CURRENT_TIMESTAMP
+       WHERE id = ? AND archive_id = ?`,
+    ).bind(childId, context.archiveId),
+    runtime.DB.prepare(
+      `UPDATE child_access_session SET revoked_at = CURRENT_TIMESTAMP
+       WHERE child_id = ? AND archive_id = ? AND revoked_at IS NULL`,
+    ).bind(childId, context.archiveId),
+    auditStatement(runtime.DB, {
+      id: crypto.randomUUID(),
+      archiveId: context.archiveId,
+      actorUserId: context.user.id,
+      action: "child_access.disabled",
+      entityType: "child_profile",
+      entityId: childId,
+    }),
+  ]);
+  return Response.json({ disabled: true });
+}
+
 async function signInChild(request: Request): Promise<Response> {
   if (!isSameOrigin(request)) return forbidden();
   const runtime = getRuntimeEnv();
@@ -1153,15 +1202,23 @@ async function signInChild(request: Request): Promise<Response> {
   }`;
   const attemptKey = await keyedHash(runtime.BETTER_AUTH_SECRET, clientIdentity);
   const recent = await runtime.DB.prepare(
-    `SELECT COUNT(*) AS count FROM child_access_attempt
-     WHERE attempt_key = ? AND attempted_at > datetime('now', '-15 minutes')`,
+    `SELECT COUNT(*) AS count, MAX(attempted_at) AS lastAttemptAt
+     FROM child_access_attempt
+     WHERE attempt_key = ? AND succeeded = 0
+       AND attempted_at > datetime('now', '-15 minutes')
+       AND attempted_at > COALESCE(
+         (SELECT MAX(attempted_at) FROM child_access_attempt
+          WHERE attempt_key = ? AND succeeded = 1),
+         '1970-01-01 00:00:00'
+       )`,
   )
-    .bind(attemptKey)
-    .first<{ count: number }>();
-  if (Number(recent?.count ?? 0) >= 8) {
+    .bind(attemptKey, attemptKey)
+    .first<{ count: number; lastAttemptAt: string | null }>();
+  const retryAfter = childPinRetryAfter(Number(recent?.count ?? 0), recent?.lastAttemptAt ?? null);
+  if (retryAfter > 0) {
     return Response.json(
       { error: "Too many tries. Ask a parent and wait a little." },
-      { status: 429 },
+      { headers: { "retry-after": String(retryAfter) }, status: 429 },
     );
   }
 
@@ -1173,10 +1230,16 @@ async function signInChild(request: Request): Promise<Response> {
   )
     .bind(familySlug, childSlug)
     .first<{ id: string; archiveId: string; pinHash: string }>();
-  const candidate = profile
-    ? await keyedHash(runtime.BETTER_AUTH_SECRET, `${profile.id}:${parsed.data.pin}`)
-    : "";
-  const matched = profile && safeEqual(candidate, profile.pinHash) ? profile : null;
+  const usesCurrentHash = profile?.pinHash.startsWith(`${CHILD_PIN_HASH_VERSION}$`) ?? false;
+  const candidateMatches = profile
+    ? usesCurrentHash
+      ? await verifyChildPin(runtime.CHILD_PIN_PEPPER, parsed.data.pin, profile.pinHash)
+      : safeEqual(
+          await keyedHash(runtime.BETTER_AUTH_SECRET, `${profile.id}:${parsed.data.pin}`),
+          profile.pinHash,
+        )
+    : false;
+  const matched = profile && candidateMatches ? profile : null;
 
   const attemptId = crypto.randomUUID();
   if (!matched) {
@@ -1192,7 +1255,7 @@ async function signInChild(request: Request): Promise<Response> {
   const tokenHash = await hashToken(rawToken);
   const sessionId = crypto.randomUUID();
   const expiresAt = new Date(Date.now() + CHILD_SESSION_SECONDS * 1000).toISOString();
-  await runtime.DB.batch([
+  const statements = [
     runtime.DB.prepare(
       `INSERT INTO child_access_session (id, archive_id, child_id, token_hash, expires_at)
        VALUES (?, ?, ?, ?, ?)`,
@@ -1200,7 +1263,21 @@ async function signInChild(request: Request): Promise<Response> {
     runtime.DB.prepare(
       "INSERT INTO child_access_attempt (id, attempt_key, succeeded) VALUES (?, ?, 1)",
     ).bind(attemptId, attemptKey),
-  ]);
+  ];
+  if (!usesCurrentHash) {
+    statements.push(
+      runtime.DB.prepare(
+        `UPDATE child_profile SET access_pin_hash = ?, updated_at = CURRENT_TIMESTAMP
+         WHERE id = ? AND archive_id = ? AND access_pin_hash = ?`,
+      ).bind(
+        await hashChildPin(runtime.CHILD_PIN_PEPPER, parsed.data.pin),
+        matched.id,
+        matched.archiveId,
+        matched.pinHash,
+      ),
+    );
+  }
+  await runtime.DB.batch(statements);
 
   return Response.json(
     { signedIn: true },
@@ -1982,8 +2059,9 @@ async function getChildAccessContext(request: Request): Promise<ChildAccessConte
   const rawToken = readCookie(request, CHILD_SESSION_COOKIE);
   if (!rawToken) return null;
   const tokenHash = await hashToken(rawToken);
-  return getRuntimeEnv()
-    .DB.prepare(
+  const database = getRuntimeEnv().DB;
+  const context = await database
+    .prepare(
       `SELECT cas.id AS sessionId, c.id AS childId, c.archive_id AS archiveId,
               c.display_name AS displayName, c.birth_date AS birthDate,
               c.slug AS childSlug, a.slug AS familySlug
@@ -1994,15 +2072,21 @@ async function getChildAccessContext(request: Request): Promise<ChildAccessConte
          AND datetime(cas.expires_at) > CURRENT_TIMESTAMP`,
     )
     .bind(tokenHash)
-    .first<ChildAccessContext>()
-    .then((context) => {
-      if (!context) return null;
-      const familySlug = request.headers.get(FAMILY_SLUG_HEADER);
-      const childSlug = request.headers.get(CHILD_SLUG_HEADER);
-      if (familySlug && familySlug !== context.familySlug) return null;
-      if (childSlug && childSlug !== context.childSlug) return null;
-      return context;
-    });
+    .first<ChildAccessContext>();
+  if (!context) return null;
+  const familySlug = request.headers.get(FAMILY_SLUG_HEADER);
+  const childSlug = request.headers.get(CHILD_SLUG_HEADER);
+  if (familySlug && familySlug !== context.familySlug) return null;
+  if (childSlug && childSlug !== context.childSlug) return null;
+  await database
+    .prepare(
+      `UPDATE child_access_session SET last_seen_at = CURRENT_TIMESTAMP
+       WHERE id = ? AND archive_id = ?
+         AND last_seen_at < datetime('now', '-5 minutes')`,
+    )
+    .bind(context.sessionId, context.archiveId)
+    .run();
+  return context;
 }
 
 async function getSessionUser(request: Request): Promise<SessionUser | null> {
@@ -2146,6 +2230,83 @@ async function keyedHash(secret: string, value: string): Promise<string> {
   return Array.from(new Uint8Array(signature), (byte) => byte.toString(16).padStart(2, "0")).join(
     "",
   );
+}
+
+async function hashChildPin(pepper: string, pin: string): Promise<string> {
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const digest = await deriveChildPin(pepper, pin, salt, CHILD_PIN_ITERATIONS);
+  return `${CHILD_PIN_HASH_VERSION}$${CHILD_PIN_ITERATIONS}$${bytesToBase64Url(salt)}$${bytesToBase64Url(digest)}`;
+}
+
+async function verifyChildPin(pepper: string, pin: string, encoded: string): Promise<boolean> {
+  const [version, iterationsValue, saltValue, expectedValue] = encoded.split("$");
+  const iterations = Number(iterationsValue);
+  if (
+    version !== CHILD_PIN_HASH_VERSION ||
+    !Number.isSafeInteger(iterations) ||
+    iterations < 100_000 ||
+    iterations > 1_000_000 ||
+    !saltValue ||
+    !expectedValue
+  ) {
+    return false;
+  }
+  try {
+    const candidate = await deriveChildPin(pepper, pin, base64UrlToBytes(saltValue), iterations);
+    return safeEqual(bytesToBase64Url(candidate), expectedValue);
+  } catch {
+    return false;
+  }
+}
+
+async function deriveChildPin(
+  pepper: string,
+  pin: string,
+  salt: Uint8Array<ArrayBuffer>,
+  iterations: number,
+): Promise<Uint8Array> {
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(`${pepper}:${pin}`),
+    "PBKDF2",
+    false,
+    ["deriveBits"],
+  );
+  const bits = await crypto.subtle.deriveBits(
+    { hash: "SHA-256", iterations, name: "PBKDF2", salt },
+    key,
+    256,
+  );
+  return new Uint8Array(bits);
+}
+
+function bytesToBase64Url(bytes: Uint8Array): string {
+  return btoa(String.fromCharCode(...bytes))
+    .replaceAll("+", "-")
+    .replaceAll("/", "_")
+    .replaceAll("=", "");
+}
+
+function base64UrlToBytes(value: string): Uint8Array<ArrayBuffer> {
+  const padded = value
+    .replaceAll("-", "+")
+    .replaceAll("_", "/")
+    .padEnd(Math.ceil(value.length / 4) * 4, "=");
+  const decoded = atob(padded);
+  const bytes = new Uint8Array(decoded.length);
+  for (let index = 0; index < decoded.length; index += 1) {
+    bytes[index] = decoded.charCodeAt(index);
+  }
+  return bytes;
+}
+
+function childPinRetryAfter(failures: number, lastAttemptAt: string | null): number {
+  const delay = failures >= 8 ? 15 * 60 : failures >= 5 ? 60 : failures >= 3 ? 15 : 0;
+  if (!delay || !lastAttemptAt) return 0;
+  const attemptedAt = Date.parse(`${lastAttemptAt.replace(" ", "T")}Z`);
+  if (!Number.isFinite(attemptedAt)) return delay;
+  return Math.max(0, Math.ceil(delay - (Date.now() - attemptedAt) / 1000));
 }
 
 function safeEqual(left: string, right: string): boolean {
