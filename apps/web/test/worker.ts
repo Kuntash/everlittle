@@ -9,6 +9,8 @@ export default {
         baseURL: env.PUBLIC_APP_URL,
         database: env.DB,
         secret: env.BETTER_AUTH_SECRET,
+        requireEmailVerification: false,
+        sendAuthEmail: async () => undefined,
       }).handler(request);
     }
 

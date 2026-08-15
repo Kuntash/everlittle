@@ -111,8 +111,8 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 
 - [x] Allow public adult signup only in hosted mode.
 - [x] Keep first-owner bootstrap plus invitation-only signup in self-hosted mode.
-- [ ] Add email verification.
-- [ ] Add password reset and recovery email delivery.
+- [x] Add email verification.
+- [x] Add password reset and recovery email delivery.
 - [ ] Add optional passkeys and two-factor authentication for owners and parents.
 - [x] Build family creation after hosted account creation.
 - [x] Add family-name and slug selection with live validation.

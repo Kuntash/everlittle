@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1786822483.3098187,
-    "ast_hash": "711022397912d7d76d2388f60eea3e2a",
+    "mtime": 1786822705.6464627,
+    "ast_hash": "bf99a9273de1ec716abfc784d90c74a9",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -25,9 +25,9 @@
     "semantic_hash": "7e5ffd0852aee321277975c6e0ef14a2"
   },
   "apps/web/src/lib/auth.ts": {
-    "mtime": 1785948599.479412,
-    "ast_hash": "8af0ae726ad539e8c91541ed17498ce9",
-    "semantic_hash": "8af0ae726ad539e8c91541ed17498ce9"
+    "mtime": 1786822705.6451046,
+    "ast_hash": "b58e872aef2623b8a06e5f7d443ebf69",
+    "semantic_hash": ""
   },
   "apps/web/src/lib/runtime-env.ts": {
     "mtime": 1786822368.3709579,
@@ -45,13 +45,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786822463.4048872,
-    "ast_hash": "bf6327777761d89dd1f1c249bb37e283",
+    "mtime": 1786822805.2322416,
+    "ast_hash": "b31187a66500d9bdb6d3777a98345c15",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1786654338.2864897,
-    "ast_hash": "6eee196a680741232ae2c7280b240d0b",
+    "mtime": 1786822705.6458106,
+    "ast_hash": "51e6216ad699ccecebe68c43714fcdfa",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786822403.9214861,
-    "ast_hash": "ea840ccf767eacc10fd87a24a30dec00",
+    "mtime": 1786822791.3718543,
+    "ast_hash": "389ddaab052e7826a2b1f09e3b80f233",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -475,8 +475,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1786822439.6935344,
-    "ast_hash": "4c6b5dd8ee4acb4113702856d2279c85",
+    "mtime": 1786822820.7340472,
+    "ast_hash": "ccd786a7344bd029372698b06e19d165",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
@@ -490,8 +490,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/worker.ts": {
-    "mtime": 1786821760.8271184,
-    "ast_hash": "1124a4dbdf499b949dca095f7bba8bc1",
+    "mtime": 1786822705.6467772,
+    "ast_hash": "073f87462fbb9f6deb816350000b5072",
     "semantic_hash": ""
   },
   "apps/web/vitest.config.ts": {
@@ -507,6 +507,26 @@
   "docs/child-access.md": {
     "mtime": 1786822403.9212258,
     "ast_hash": "78bd3382904c711fb171740e829651f1",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/reset-password.tsx": {
+    "mtime": 1786822765.8157644,
+    "ast_hash": "fd6d40dc0d9f8e4de38ea66e4b4ec48e",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/auth-email.ts": {
+    "mtime": 1786822805.2288706,
+    "ast_hash": "1ee653bb51418e28c1b6eee79216cc11",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/reset-password.tsx": {
+    "mtime": 1786822765.8159926,
+    "ast_hash": "0d06f09b093806ac0a2126e4e573939b",
+    "semantic_hash": ""
+  },
+  "apps/web/test/auth-email.test.ts": {
+    "mtime": 1786822791.371102,
+    "ast_hash": "7d8e15fb6eadb32a82170296422d7bb7",
     "semantic_hash": ""
   }
 }

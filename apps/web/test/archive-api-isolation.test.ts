@@ -378,6 +378,44 @@ describe("child access security", () => {
   });
 });
 
+describe("adult account recovery", () => {
+  it("resets a password and revokes existing sessions", async () => {
+    const requested = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/auth/request-password-reset`, {
+        body: JSON.stringify({
+          email: "parent-api@example.com",
+          redirectTo: "/reset-password",
+        }),
+        headers: { "content-type": "application/json", origin: ORIGIN },
+        method: "POST",
+      }),
+    );
+    expect(requested.status).toBe(200);
+    const verification = await env.DB.prepare(
+      `SELECT identifier FROM verification
+       WHERE identifier LIKE 'reset-password:%' ORDER BY createdAt DESC LIMIT 1`,
+    ).first<{ identifier: string }>();
+    const token = verification?.identifier.split(":").at(-1);
+    expect(token).toBeTruthy();
+
+    const reset = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/auth/reset-password`, {
+        body: JSON.stringify({ newPassword: "a-new-secure-password", token }),
+        headers: { "content-type": "application/json", origin: ORIGIN },
+        method: "POST",
+      }),
+    );
+    expect(reset.status).toBe(200);
+
+    const sessions = await env.DB.prepare(
+      'SELECT COUNT(*) AS count FROM "session" WHERE "userId" = ?',
+    )
+      .bind(parent.userId)
+      .first<{ count: number }>();
+    expect(Number(sessions?.count ?? 0)).toBe(0);
+  });
+});
+
 async function createFamily(email: string, name: string, slug: string): Promise<TestFamily> {
   const account = await signUpAccount(email, name);
 

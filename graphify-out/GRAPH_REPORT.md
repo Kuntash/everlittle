@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-16)
 
 ## Corpus Check
-- 58 files · ~1,660,426 words
+- 62 files · ~1,661,549 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2254 nodes · 2728 edges · 190 communities (43 shown, 147 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.54)
+- 2264 nodes · 2745 edges · 190 communities (43 shown, 147 thin omitted)
+- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.57)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `022089da`
+- Built from commit: `10481c5a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -181,7 +181,7 @@
 - WebSearch
 - web/vite.config.ts
 - Everlittle
-- $familySlug.kids.$childSlug.tsx
+- brand.tsx
 - pre-commit
 - family_archive
 - archive-api-isolation.test.ts
@@ -233,12 +233,12 @@ Cohesion: 0.00
 Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentMemoryIncomingMemory, AgentMemoryIngestOptions, AgentMemoryListMemoriesOptions, AgentMemoryListMemoriesResult, AgentMemoryMemory, AgentMemoryMemoryListEntry (+840 more)
 
 ### Community 1 - "archive-api.ts"
-Cohesion: 0.06
-Nodes (117): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), base64UrlToBytes(), bytesToBase64Url(), capsuleSchema, checkOnboardingSlug(), ChildAccessContext (+109 more)
+Cohesion: 0.05
+Nodes (121): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), base64UrlToBytes(), bytesToBase64Url(), capsuleSchema, checkOnboardingSlug(), ChildAccessContext (+113 more)
 
 ### Community 2 - "index.tsx"
 Cohesion: 0.10
-Nodes (21): Route, ArchiveMembership, ArchiveState, Capsule, Child, ChildSession, currentFamilySlug(), Everlittle() (+13 more)
+Nodes (16): Route, ArchiveMembership, ArchiveState, Capsule, Child, ChildSession, currentFamilySlug(), Everlittle() (+8 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -316,9 +316,9 @@ Nodes (3): RequestInitCfPropertiesVaryAcceptHeader, RequestInitCfPropertiesVaryA
 Cohesion: 0.11
 Nodes (16): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Authentication, Deployment (+8 more)
 
-### Community 169 - "$familySlug.kids.$childSlug.tsx"
-Cohesion: 0.16
-Nodes (8): Brand(), MarketingHome(), waveform, ChildSession, Route, PublicChild, Route, ChildArchiveApp()
+### Community 169 - "brand.tsx"
+Cohesion: 0.13
+Nodes (10): Brand(), MarketingHome(), waveform, ResetPassword(), ChildSession, Route, PublicChild, Route (+2 more)
 
 ### Community 171 - "family_archive"
 Cohesion: 0.14
@@ -349,8 +349,8 @@ Cohesion: 0.21
 Nodes (7): AuthRoute(), InvitationPreview, Loading(), PlatformState, Route, Route, Route
 
 ### Community 180 - "responseError"
-Cohesion: 0.24
-Nodes (13): AccessScreen(), apiFetch(), ArchiveApp(), ArchiveRedirect(), CapsulesView(), FamilySettings(), formatDate(), formatDateTime() (+5 more)
+Cohesion: 0.18
+Nodes (18): AccessScreen(), apiFetch(), ArchiveApp(), ArchiveRedirect(), CapsulesView(), FamilySettings(), formatDate(), formatDateTime() (+10 more)
 
 ### Community 181 - "MemoryComposer"
 Cohesion: 0.29
@@ -373,24 +373,24 @@ Cohesion: 0.40
 Nodes (4): Attempt controls, Child access security, PIN storage and compatibility, Session visibility and future credentials
 
 ## Knowledge Gaps
-- **1083 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1078 more)
+- **1085 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1080 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **147 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `ReadableStream` connect `ReadableStream` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.028) - this node is a cross-community bridge._
 - **Why does `Event` connect `Event` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.023) - this node is a cross-community bridge._
-- **Why does `ReadableStreamBYOBReader` connect `ReadableStreamBYOBReader` to `worker-configuration.d.ts`?**
+- **Why does `WritableStreamDefaultWriter` connect `WritableStreamDefaultWriter` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
-- **Why does `Global` connect `Global` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1083 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1085 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05730396013637556 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.053428741800834824 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.09686609686609686 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09956709956709957 - nodes in this community are weakly interconnected._

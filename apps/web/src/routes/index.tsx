@@ -267,6 +267,8 @@ export function AccessScreen({
   const [name, setName] = useState("");
   const [email, setEmail] = useState(invitation?.email ?? "");
   const [password, setPassword] = useState("");
+  const [recovering, setRecovering] = useState(false);
+  const [notice, setNotice] = useState("");
   const [error, setError] = useState(
     inviteToken && !invitation ? "This invitation is invalid or has expired." : "",
   );
@@ -275,18 +277,35 @@ export function AccessScreen({
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
+    setNotice("");
     setSubmitting(true);
+
+    const callbackURL = isInvitation
+      ? `/invite/${encodeURIComponent(inviteToken)}`
+      : mode === "setup"
+        ? "/onboarding"
+        : "/";
 
     const result =
       mode === "setup"
         ? await authClient.signUp.email(
-            { name, email, password },
+            { callbackURL, name, email, password },
             isInvitation ? { headers: { "x-everlittle-invitation": inviteToken } } : undefined,
           )
-        : await authClient.signIn.email({ email, password });
+        : await authClient.signIn.email({ callbackURL, email, password });
 
     if (result.error) {
-      setError(result.error.message ?? "We could not open your archive.");
+      if (result.error.code === "EMAIL_NOT_VERIFIED") {
+        setNotice("Check your email for a fresh verification link before signing in.");
+      } else {
+        setError(result.error.message ?? "We could not open your archive.");
+      }
+      setSubmitting(false);
+      return;
+    }
+
+    if (mode === "setup" && allowsPublicSignup) {
+      setNotice(`We sent a verification link to ${email}. Open it to continue.`);
       setSubmitting(false);
       return;
     }
@@ -306,6 +325,24 @@ export function AccessScreen({
     window.location.assign(
       mode === "setup" && allowsPublicSignup && !isInvitation ? "/onboarding" : "/",
     );
+  }
+
+  async function requestRecovery(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setNotice("");
+    setSubmitting(true);
+    const response = await fetch("/api/auth/request-password-reset", {
+      body: JSON.stringify({ email, redirectTo: "/reset-password" }),
+      headers: { "content-type": "application/json" },
+      method: "POST",
+    });
+    setSubmitting(false);
+    if (!response.ok) {
+      setError("We could not send a recovery email. Please try again.");
+      return;
+    }
+    setNotice("If that email belongs to an account, a private reset link is on its way.");
   }
 
   return (
@@ -419,74 +456,128 @@ export function AccessScreen({
                     : "Sign in to return to your family archive."}
               </p>
 
-              <form onSubmit={submit}>
-                {mode === "setup" ? (
+              {notice ? <p className="status-message">{notice}</p> : null}
+              {recovering ? (
+                <form onSubmit={requestRecovery}>
                   <label>
-                    Your name
+                    Email address
                     <input
-                      autoComplete="name"
-                      onChange={(event) => setName(event.target.value)}
+                      autoComplete="email"
+                      inputMode="email"
+                      onChange={(event) => setEmail(event.target.value)}
                       required
-                      value={name}
+                      type="email"
+                      value={email}
                     />
                   </label>
-                ) : null}
-                <label>
-                  Email address
-                  <input
-                    autoComplete="email"
-                    disabled={isInvitation}
-                    inputMode="email"
-                    onChange={(event) => setEmail(event.target.value)}
-                    required
-                    type="email"
-                    value={email}
-                  />
-                </label>
-                <label>
-                  Password
-                  <input
-                    autoComplete={mode === "setup" ? "new-password" : "current-password"}
-                    minLength={10}
-                    onChange={(event) => setPassword(event.target.value)}
-                    required
-                    type="password"
-                    value={password}
-                  />
-                  {mode === "setup" ? <small>At least 10 characters</small> : null}
-                </label>
-                {error ? (
-                  <p className="form-error" role="alert">
-                    {error}
-                  </p>
-                ) : null}
-                <button
-                  className="primary-button"
-                  disabled={submitting || Boolean(inviteToken && !invitation)}
-                  type="submit"
-                >
-                  {submitting
-                    ? "Opening…"
-                    : isInvitation
-                      ? mode === "setup"
-                        ? "Create account & join"
-                        : "Sign in & join"
-                      : mode === "setup"
-                        ? "Begin our story"
-                        : "Enter Everlittle"}
-                  <ArrowRight size={18} />
-                </button>
-              </form>
-              {isInvitation || allowsPublicSignup ? (
+                  {error ? (
+                    <p className="form-error" role="alert">
+                      {error}
+                    </p>
+                  ) : null}
+                  <button className="primary-button" disabled={submitting} type="submit">
+                    {submitting ? "Sending…" : "Send recovery link"} <ArrowRight size={18} />
+                  </button>
+                </form>
+              ) : (
+                <form onSubmit={submit}>
+                  {mode === "setup" ? (
+                    <label>
+                      Your name
+                      <input
+                        autoComplete="name"
+                        onChange={(event) => setName(event.target.value)}
+                        required
+                        value={name}
+                      />
+                    </label>
+                  ) : null}
+                  <label>
+                    Email address
+                    <input
+                      autoComplete="email"
+                      disabled={isInvitation}
+                      inputMode="email"
+                      onChange={(event) => setEmail(event.target.value)}
+                      required
+                      type="email"
+                      value={email}
+                    />
+                  </label>
+                  <label>
+                    Password
+                    <input
+                      autoComplete={mode === "setup" ? "new-password" : "current-password"}
+                      minLength={10}
+                      onChange={(event) => setPassword(event.target.value)}
+                      required
+                      type="password"
+                      value={password}
+                    />
+                    {mode === "setup" ? <small>At least 10 characters</small> : null}
+                  </label>
+                  {error ? (
+                    <p className="form-error" role="alert">
+                      {error}
+                    </p>
+                  ) : null}
+                  <button
+                    className="primary-button"
+                    disabled={submitting || Boolean(inviteToken && !invitation)}
+                    type="submit"
+                  >
+                    {submitting
+                      ? "Opening…"
+                      : isInvitation
+                        ? mode === "setup"
+                          ? "Create account & join"
+                          : "Sign in & join"
+                        : mode === "setup"
+                          ? "Begin our story"
+                          : "Enter Everlittle"}
+                    <ArrowRight size={18} />
+                  </button>
+                </form>
+              )}
+              {mode === "sign-in" && !recovering ? (
                 <button
                   className="text-button"
-                  onClick={() => setMode(mode === "setup" ? "sign-in" : "setup")}
+                  onClick={() => {
+                    setRecovering(true);
+                    setError("");
+                    setNotice("");
+                  }}
+                  type="button"
+                >
+                  Forgot your password?
+                </button>
+              ) : null}
+              {recovering ? (
+                <button
+                  className="text-button"
+                  onClick={() => {
+                    setRecovering(false);
+                    setError("");
+                    setNotice("");
+                  }}
+                  type="button"
+                >
+                  Back to sign in
+                </button>
+              ) : isInvitation || allowsPublicSignup ? (
+                <button
+                  className="text-button"
+                  onClick={() => {
+                    setMode(mode === "setup" ? "sign-in" : "setup");
+                    setError("");
+                    setNotice("");
+                  }}
                   type="button"
                 >
                   {mode === "setup" ? "I already have an account" : "Create a family archive"}
                 </button>
               ) : null}
-              {!isInvitation && childAccess?.enabled ? (
+              {!recovering && !isInvitation && childAccess?.enabled ? (
                 <div className="child-entrance">
                   <span>or</span>
                   <button

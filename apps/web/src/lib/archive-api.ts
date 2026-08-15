@@ -2096,6 +2096,8 @@ async function getSessionUser(request: Request): Promise<SessionUser | null> {
     secret: runtime.BETTER_AUTH_SECRET,
     baseURL: getDeploymentConfig(runtime).publicAppUrl,
     allowSignUp: false,
+    requireEmailVerification: getDeploymentConfig(runtime).mode === "hosted",
+    sendAuthEmail: async () => undefined,
   });
   const session = await auth.api.getSession({ headers: request.headers });
   if (!session?.user.id || !session.user.email) return null;

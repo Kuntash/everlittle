@@ -4,6 +4,7 @@ import { slugify } from "@everlittle/domain";
 
 import { acceptInvitation, findValidInvitation, handleArchiveApi } from "@/lib/archive-api";
 import { createAuth } from "@/lib/auth";
+import { sendAuthEmail } from "@/lib/auth-email";
 import { getDeploymentConfig } from "@/lib/deployment";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 
@@ -87,6 +88,8 @@ async function handleAuthRequest(request: Request): Promise<Response> {
     secret: runtime.BETTER_AUTH_SECRET,
     baseURL: deployment.publicAppUrl,
     allowSignUp: isOwnerBootstrap || isHostedSignup || Boolean(invitation),
+    requireEmailVerification: deployment.mode === "hosted",
+    sendAuthEmail: (input) => sendAuthEmail(runtime, input),
   });
   const response = await auth.handler(request);
 
