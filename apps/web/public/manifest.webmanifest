@@ -3,7 +3,7 @@
   "short_name": "Everlittle",
   "description": "A private family memory archive and time capsule.",
   "id": "/",
-  "start_url": "/",
+  "start_url": "/?source=pwa",
   "scope": "/",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],

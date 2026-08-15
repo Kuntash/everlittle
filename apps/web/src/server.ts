@@ -61,7 +61,14 @@ export default createServerEntry({
       });
     }
 
-    return handler.fetch(request);
+    const response = await handler.fetch(request);
+    if (url.pathname !== "/") {
+      const headers = new Headers(response.headers);
+      headers.set("cache-control", "private, no-store");
+      headers.set("x-robots-tag", "noindex, nofollow, noarchive");
+      return new Response(response.body, { headers, status: response.status });
+    }
+    return response;
   },
 });
 

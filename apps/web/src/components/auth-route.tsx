@@ -42,7 +42,7 @@ export function AuthRoute({
     return <InvitationAcceptance invitation={invitation} token={inviteToken} />;
   }
   if (session.data?.user) {
-    location.replace("/");
+    location.replace(safeRedirect());
     return <Loading />;
   }
   if (platform.deploymentMode === "self-hosted" && !inviteToken) {
@@ -60,4 +60,9 @@ export function AuthRoute({
       needsSetup={platform.needsSetup}
     />
   );
+}
+
+function safeRedirect() {
+  const value = new URLSearchParams(location.search).get("redirect") ?? "/";
+  return value.startsWith("/") && !value.startsWith("//") ? value : "/";
 }

@@ -128,13 +128,13 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [x] Add the marketing site at `/` in hosted mode.
 - [x] Add `/sign-up`, `/sign-in`, `/invite/:token`, and `/share/:token` (`/onboarding` is complete).
 - [x] Move the family application under `/:familySlug`.
-- [ ] Move timeline, capsules, family, and settings under the family route.
-- [ ] Preserve deep links after authentication.
-- [ ] Make unauthorized family routes return a privacy-preserving response.
-- [ ] Store the last active family without making it an authorization source.
-- [ ] Ensure installed PWA launches restore a valid family route.
+- [x] Move timeline, capsules, family, and settings under the family route.
+- [x] Preserve deep links after authentication.
+- [x] Make unauthorized family routes return a privacy-preserving response.
+- [x] Store the last active family without making it an authorization source.
+- [x] Ensure installed PWA launches restore a valid family route.
 - [ ] Add canonical metadata and social preview images for public pages only.
-- [ ] Prevent authenticated archive pages from being indexed or broadly cached.
+- [x] Prevent authenticated archive pages from being indexed or broadly cached.
 
 ## Phase 8: Landing page and product presentation
 

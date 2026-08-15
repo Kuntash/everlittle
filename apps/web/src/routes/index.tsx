@@ -170,6 +170,11 @@ export function Everlittle() {
   }, [inviteToken]);
 
   if (session.isPending || !platform || !childSession || !invitationChecked) return <Loading />;
+  if (platform.deploymentMode === "hosted" && !session.data?.user && currentFamilySlug()) {
+    const destination = `${location.pathname}${location.search}`;
+    location.replace(`/sign-in?redirect=${encodeURIComponent(destination)}`);
+    return <Loading />;
+  }
   if (platform.deploymentMode === "hosted" && !session.data?.user && !inviteToken) {
     return <MarketingHome />;
   }
@@ -212,7 +217,8 @@ function ArchiveRedirect() {
         return response.json() as Promise<{ archives: Array<{ slug: string }> }>;
       })
       .then(({ archives }) => {
-        const first = archives[0];
+        const remembered = localStorage.getItem("everlittle.last-family");
+        const first = archives.find((archive) => archive.slug === remembered) ?? archives[0];
         if (!first) {
           location.replace("/onboarding");
           return;
@@ -280,11 +286,12 @@ export function AccessScreen({
     setNotice("");
     setSubmitting(true);
 
+    const redirect = requestedRedirect();
     const callbackURL = isInvitation
       ? `/invite/${encodeURIComponent(inviteToken)}`
       : mode === "setup"
         ? "/onboarding"
-        : "/";
+        : redirect;
 
     const result =
       mode === "setup"
@@ -323,7 +330,7 @@ export function AccessScreen({
     }
 
     window.location.assign(
-      mode === "setup" && allowsPublicSignup && !isInvitation ? "/onboarding" : "/",
+      mode === "setup" && allowsPublicSignup && !isInvitation ? "/onboarding" : redirect,
     );
   }
 
@@ -355,7 +362,7 @@ export function AccessScreen({
       setError(result.error.message ?? "That passkey could not sign you in.");
       return;
     }
-    window.location.assign("/");
+    window.location.assign(requestedRedirect());
   }
 
   return (
@@ -671,7 +678,7 @@ export function InvitationAcceptance({
 }
 
 function ArchiveApp({ name }: { name: string }) {
-  const [view, setView] = useState<View>("parent");
+  const [view, setView] = useState<View>(currentArchiveView);
   const [state, setState] = useState<ArchiveState | null>(null);
   const [archives, setArchives] = useState<ArchiveMembership[]>([]);
   const [error, setError] = useState("");
@@ -696,6 +703,22 @@ function ArchiveApp({ name }: { name: string }) {
       .then(({ archives: memberships }) => setArchives(memberships))
       .catch(() => setArchives([]));
   }, []);
+
+  useEffect(() => {
+    const slug = currentFamilySlug();
+    if (slug) localStorage.setItem("everlittle.last-family", slug);
+    const syncView = () => setView(currentArchiveView());
+    window.addEventListener("popstate", syncView);
+    return () => window.removeEventListener("popstate", syncView);
+  }, []);
+
+  function navigateView(next: View) {
+    const slug = currentFamilySlug();
+    if (!slug) return;
+    const segment = next === "parent" ? "" : `/${next}`;
+    window.history.pushState({}, "", `/${encodeURIComponent(slug)}${segment}`);
+    setView(next);
+  }
 
   if (!state) {
     return error ? (
@@ -732,25 +755,34 @@ function ArchiveApp({ name }: { name: string }) {
         </div>
         <div className="header-actions">
           <div className="view-switch" aria-label="Archive view">
-            <button className={view === "parent" ? "active" : ""} onClick={() => setView("parent")}>
+            <button
+              className={view === "parent" ? "active" : ""}
+              onClick={() => navigateView("parent")}
+            >
               Parent
             </button>
             <button
               className={view === "timeline" ? "active" : ""}
-              onClick={() => setView("timeline")}
+              onClick={() => navigateView("timeline")}
             >
               Timeline
             </button>
             <button
               className={view === "capsules" ? "active" : ""}
-              onClick={() => setView("capsules")}
+              onClick={() => navigateView("capsules")}
             >
               Capsules
             </button>
-            <button className={view === "child" ? "active" : ""} onClick={() => setView("child")}>
+            <button
+              className={view === "child" ? "active" : ""}
+              onClick={() => navigateView("child")}
+            >
               Child
             </button>
-            <button className={view === "family" ? "active" : ""} onClick={() => setView("family")}>
+            <button
+              className={view === "family" ? "active" : ""}
+              onClick={() => navigateView("family")}
+            >
               Family
             </button>
           </div>
@@ -769,7 +801,7 @@ function ArchiveApp({ name }: { name: string }) {
           currentUserId={state.currentMember.userId}
           memories={state.memories}
           name={name}
-          onNavigate={setView}
+          onNavigate={navigateView}
           refresh={refresh}
           role={state.currentMember.role}
         />
@@ -802,7 +834,7 @@ function ArchiveApp({ name }: { name: string }) {
         />
       ) : null}
       {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
-      <MobileNav active={view} onNavigate={setView} />
+      <MobileNav active={view} onNavigate={navigateView} />
     </main>
   );
 }
@@ -3121,6 +3153,20 @@ function currentFamilySlug() {
   if (typeof window === "undefined") return "";
   const [first = ""] = window.location.pathname.split("/").filter(Boolean);
   return first;
+}
+
+function currentArchiveView(): View {
+  if (typeof window === "undefined") return "parent";
+  const [, section = ""] = window.location.pathname.split("/").filter(Boolean);
+  if (section === "timeline" || section === "capsules" || section === "child") return section;
+  if (section === "family" || section === "settings") return "family";
+  return "parent";
+}
+
+function requestedRedirect() {
+  if (typeof window === "undefined") return "/";
+  const value = new URLSearchParams(location.search).get("redirect") ?? "/";
+  return value.startsWith("/") && !value.startsWith("//") ? value : "/";
 }
 
 async function responseError(response: Response) {
