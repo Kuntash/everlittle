@@ -1,7 +1,7 @@
 # Graph Report - everlittle  (2026-08-16)
 
 ## Corpus Check
-- 70 files · ~1,663,137 words
+- 70 files · ~1,536,912 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9770e24d`
+- Built from commit: `24e9c4eb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -198,7 +198,7 @@
 - apply-migrations.ts
 - migration-upgrade.test.ts
 - Child access security
-- @fontsource-variable/inter
+- @fontsource-variable/cormorant-garamond
 - auth-email.ts
 
 ## God Nodes (most connected - your core abstractions)
@@ -240,7 +240,7 @@ Nodes (117): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatemen
 
 ### Community 2 - "index.tsx"
 Cohesion: 0.09
-Nodes (22): ArchiveApp(), ArchiveMembership, ArchiveState, Capsule, Child, ChildSession, currentArchiveView(), currentFamilySlug() (+14 more)
+Nodes (23): ArchiveApp(), ArchiveMembership, ArchiveState, Capsule, Child, ChildSession, currentArchiveView(), currentFamilySlug() (+15 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -260,7 +260,7 @@ Nodes (24): devDependencies, vite-plus, engines, node, license, name, packageMan
 
 ### Community 7 - "dependencies"
 Cohesion: 0.09
-Nodes (23): dependencies, better-auth, @better-auth/passkey, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, lucide-react, react (+15 more)
+Nodes (23): dependencies, better-auth, @better-auth/passkey, @everlittle/domain, @everlittle/ui, @fontsource-variable/inter, lucide-react, react (+15 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10
@@ -355,8 +355,8 @@ Cohesion: 0.15
 Nodes (7): Route, Route, Route, Route, Route, Route, Everlittle()
 
 ### Community 181 - "MemoryComposer"
-Cohesion: 0.17
-Nodes (20): audienceLabel(), CapsuleComposer(), ChildView(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), formatMemoryDate(), kindLabel() (+12 more)
+Cohesion: 0.18
+Nodes (19): audienceLabel(), CapsuleComposer(), ChildView(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), formatMemoryDate(), kindLabel() (+11 more)
 
 ### Community 182 - "onboarding.tsx"
 Cohesion: 0.20
@@ -399,4 +399,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.05730396013637556 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.09259259259259259 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09113300492610837 - nodes in this community are weakly interconnected._

@@ -722,8 +722,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_fontsource_variable_cormorant_garamond",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 190,
+      "community_name": "@fontsource-variable/cormorant-garamond",
       "norm_label": "@fontsource-variable/cormorant-garamond"
     },
     {
@@ -733,8 +733,8 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "fontsource_variable_cormorant_garamond",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 190,
+      "community_name": "@fontsource-variable/cormorant-garamond",
       "norm_label": "@fontsource-variable/cormorant-garamond"
     },
     {
@@ -744,8 +744,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_fontsource_variable_inter",
-      "community": 190,
-      "community_name": "@fontsource-variable/inter",
+      "community": 7,
+      "community_name": "dependencies",
       "norm_label": "@fontsource-variable/inter"
     },
     {
@@ -755,8 +755,8 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "fontsource_variable_inter",
-      "community": 190,
-      "community_name": "@fontsource-variable/inter",
+      "community": 7,
+      "community_name": "dependencies",
       "norm_label": "@fontsource-variable/inter"
     },
     {
@@ -1261,7 +1261,8 @@
       "label": "waveform",
       "file_type": "code",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L14",
+      "source_location": "L20",
+      "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_waveform",
       "community": 169,
@@ -1269,22 +1270,22 @@
       "norm_label": "waveform"
     },
     {
-      "label": "StarMark()",
+      "label": "Star()",
       "file_type": "code",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L19",
+      "source_location": "L25",
       "_callable": true,
       "_origin": "ast",
-      "id": "apps_web_src_components_marketing_home_starmark",
+      "id": "apps_web_src_components_marketing_home_star",
       "community": 169,
       "community_name": "brand.tsx",
-      "norm_label": "starmark()"
+      "norm_label": "star()"
     },
     {
       "label": "MarketingHome()",
       "file_type": "code",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L23",
+      "source_location": "L49",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketinghome",
@@ -3395,8 +3396,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memorymedia",
-      "community": 181,
-      "community_name": "MemoryComposer",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "memorymedia()"
     },
     {
@@ -29854,7 +29855,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L12",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -29938,7 +29939,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L12",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -30021,7 +30022,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L23",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -30032,18 +30033,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L19",
+      "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
-      "target": "apps_web_src_components_marketing_home_starmark",
+      "target": "apps_web_src_components_marketing_home_star",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L14",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -59350,5 +59351,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "9770e24d5e8f5b603dca75d08fed46de5b0c087f"
+  "built_at_commit": "24e9c4eb43f5ede164816f2b884d9e822a93fba8"
 }

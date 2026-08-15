@@ -45,7 +45,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786823647.5895975,
+    "mtime": 1786825733.0134938,
     "ast_hash": "4deb4c27b9d8129f6c1f18ddedd73719",
     "semantic_hash": ""
   },
@@ -305,8 +305,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/marketing-home.tsx": {
-    "mtime": 1786819807.8675253,
-    "ast_hash": "1ce0043a632555569bd48bb217e1e6bc",
+    "mtime": 1786825582.1010575,
+    "ast_hash": "588ad9a1795701dc4837dfb7083a6b4e",
     "semantic_hash": ""
   },
   "apps/web/src/routes/invite.$token.tsx": {
@@ -334,11 +334,6 @@
     "ast_hash": "b3be7bef8c94e1739168f435a76d92ad",
     "semantic_hash": ""
   },
-  "artifacts/launch-video/storyboard.html": {
-    "mtime": 1786820063.2263107,
-    "ast_hash": "630a69097039a17ab2719fab02baae50",
-    "semantic_hash": ""
-  },
   "assets/design/LANDING_DESIGN_DIRECTION.md": {
     "mtime": 1786657399.126831,
     "ast_hash": "1f97a17d8219673339a4792e1fe0b2e2",
@@ -362,31 +357,6 @@
   "apps/web/public/marketing/objects/sealed-envelope.png": {
     "mtime": 1786658685.95912,
     "ast_hash": "436465180c7d83f3cdc7f96c568ab88c",
-    "semantic_hash": ""
-  },
-  "artifacts/landing-frontend-design-artifacts.png": {
-    "mtime": 1786658130.2431293,
-    "ast_hash": "28c189213d547cf2b5ea0e4a1503f638",
-    "semantic_hash": ""
-  },
-  "artifacts/landing-frontend-design-desktop.png": {
-    "mtime": 1786658169.1779644,
-    "ast_hash": "9394f7cc33ede0e2dcc22b1f068a1fdb",
-    "semantic_hash": ""
-  },
-  "artifacts/landing-frontend-design-mobile.png": {
-    "mtime": 1786658156.0016418,
-    "ast_hash": "b0718964d7829bbd28b6aba11c2565f9",
-    "semantic_hash": ""
-  },
-  "artifacts/landing-frontend-design-product.png": {
-    "mtime": 1786658132.4982026,
-    "ast_hash": "a84fb2a8d6dd791b4587ce7f0a0e2db1",
-    "semantic_hash": ""
-  },
-  "artifacts/launch-video/everlittle-launch-poster.jpg": {
-    "mtime": 1786656050.6632273,
-    "ast_hash": "c1c2ca40e4a40e8286cbc4e27cba5192",
     "semantic_hash": ""
   },
   "assets/design/landing-assets/chroma/archival-photo-bundle-green.png": {
@@ -452,16 +422,6 @@
   "assets/design/landing-web/06-final-cta.png": {
     "mtime": 1786657383.79812,
     "ast_hash": "9ec62dbd486d742c07d2c70c8f1f265f",
-    "semantic_hash": ""
-  },
-  "artifacts/launch-video/everlittle-launch-vertical.mp4": {
-    "mtime": 1786656050.6648827,
-    "ast_hash": "b839afd44849712c2cee255b52f60288",
-    "semantic_hash": ""
-  },
-  "artifacts/launch-video/everlittle-launch-whatsapp.mp4": {
-    "mtime": 1786656050.665892,
-    "ast_hash": "3fd1a6a5abcfed8a541ad216677f2abd",
     "semantic_hash": ""
   },
   "apps/web/migrations/0010_tenant_isolation.sql": {
@@ -567,6 +527,11 @@
   "apps/web/src/routes/$familySlug.timeline.tsx": {
     "mtime": 1786823517.6209083,
     "ast_hash": "dc908cd97de84112ed29a3f20cf13f4c",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/objects/archive-stack-v2.png": {
+    "mtime": 1786824457.1545458,
+    "ast_hash": "f2dba90e721d7c22eda50e1763817016",
     "semantic_hash": ""
   }
 }

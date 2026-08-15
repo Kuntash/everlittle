@@ -1,304 +1,473 @@
 import {
   ArrowRight,
-  BookOpen,
+  Baby,
+  Boxes,
   Cloud,
   Code2,
+  Database,
+  Globe2,
   KeyRound,
   LockKeyhole,
   Play,
+  ServerCog,
   ShieldCheck,
+  UserRound,
+  UsersRound,
 } from "lucide-react";
 
 import { Brand } from "@/components/brand";
 
 const waveform = [
-  12, 24, 17, 34, 21, 42, 28, 16, 37, 49, 23, 31, 44, 18, 29, 38, 22, 14, 30, 46, 25, 35, 20, 41,
-  27, 16, 32, 24,
+  12, 25, 18, 33, 21, 39, 27, 15, 34, 43, 22, 29, 41, 17, 27, 36, 21, 14, 28, 40, 24, 32, 19, 38,
+  26, 15, 30, 23, 35, 18, 28, 41,
 ];
 
-function StarMark() {
-  return <span aria-hidden="true">✦</span>;
+function Star({ className = "" }: { className?: string }) {
+  return (
+    <span className={`heirloom-star ${className}`} aria-hidden="true">
+      ✦
+    </span>
+  );
+}
+
+function Waveform() {
+  return (
+    <div className="heirloom-wave" aria-label="Voice memory, one minute and thirty-four seconds">
+      <button type="button" aria-label="Play voice memory">
+        <Play size={14} fill="currentColor" />
+      </button>
+      <span aria-hidden="true">
+        {waveform.map((height, index) => (
+          <i key={`${height}-${index}`} style={{ height }} />
+        ))}
+      </span>
+      <small>01:34</small>
+    </div>
+  );
 }
 
 export function MarketingHome() {
   return (
-    <main className="atelier-shell">
-      <nav className="atelier-nav" aria-label="Main navigation">
-        <a className="atelier-home" href="/" aria-label="Everlittle home">
-          <Brand compact />
-        </a>
-        <span className="atelier-nav-index">PRIVATE FAMILY ARCHIVE</span>
-        <div className="atelier-nav-links">
-          <a href="#keeps">What you keep</a>
-          <a href="#privacy">Privacy</a>
-          <a href="#hosting">Self-host</a>
-          <a href="/sign-in">Sign in</a>
-          <a className="atelier-nav-cta" href="/sign-up">
-            Begin your archive
-          </a>
-        </div>
-      </nav>
-
-      <section className="atelier-hero">
+    <main className="heirloom-shell">
+      <section className="heirloom-hero">
         <img
-          className="atelier-hero-image"
+          className="heirloom-hero-photo"
           src="/marketing/family-album.jpg"
-          alt="A child, parent, and grandparent looking through a family album"
+          alt="Three generations looking through a family album"
           width="1536"
           height="1024"
           fetchPriority="high"
         />
-        <div className="atelier-hero-wash" />
-        <p className="atelier-hero-index">
-          <span>EST. 2026</span>
-          <span>Owned by your family</span>
-        </p>
-        <div className="atelier-hero-copy">
-          <p className="atelier-kicker">A living family archive</p>
-          <h1>
-            Keep the <em>little</em> things.
-          </h1>
-          <p className="atelier-hero-intro">
-            Photographs, voices, stories, and letters they'll grow into.
-          </p>
-          <div className="atelier-actions">
-            <a className="atelier-button" href="/sign-up">
-              Create your archive <ArrowRight size={18} />
+        <div className="heirloom-hero-shade" />
+
+        <nav className="heirloom-nav" aria-label="Main navigation">
+          <a href="/" aria-label="Everlittle home">
+            <Brand compact />
+          </a>
+          <div>
+            <a href="#keeps">What you keep</a>
+            <a href="#privacy">Privacy</a>
+            <a href="#hosting">Self-host</a>
+            <a href="/sign-in">Sign in</a>
+            <a className="heirloom-nav-cta" href="/sign-up">
+              Create your archive
             </a>
-            <a className="atelier-underlink" href="#keeps">
+          </div>
+        </nav>
+
+        <div className="heirloom-hero-copy">
+          <h1>
+            <span>Keep the</span>
+            <span>little things.</span>
+          </h1>
+          <p>Photographs, voices, stories, and letters they’ll grow into.</p>
+          <div className="heirloom-hero-actions">
+            <a className="heirloom-button heirloom-button-dark" href="/sign-up">
+              Create your archive
+            </a>
+            <a className="heirloom-button heirloom-button-outline" href="#keeps">
               See what belongs here
             </a>
           </div>
+          <a className="heirloom-mobile-signin" href="/sign-in">
+            I already have an account
+          </a>
         </div>
-        <p className="atelier-hero-caption">Three generations, one quiet place to remember.</p>
       </section>
 
-      <section className="atelier-principles" aria-label="Everlittle principles">
-        <span>
-          <LockKeyhole size={16} />
-        </span>
-        <p>Private by default</p>
-        <span>
-          <ShieldCheck size={16} />
-        </span>
-        <p>Shared only by your family</p>
-        <span>
-          <Cloud size={16} />
-        </span>
-        <p>Hosted or self-hosted</p>
-      </section>
-
-      <section className="atelier-keeps" id="keeps">
-        <header className="atelier-section-lead">
-          <p className="atelier-kicker">What you keep</p>
-          <h2>Childhood is more than a camera roll.</h2>
+      <section className="heirloom-keeps" id="keeps">
+        <header className="heirloom-section-heading">
           <p>
+            What you keep <Star />
+          </p>
+          <h2>Childhood is more than a camera roll.</h2>
+          <span>
             Keep the sound of their voice, the story behind the photograph, and words meant for a
             future day.
-          </p>
+          </span>
         </header>
 
-        <div className="atelier-artifacts">
-          <figure className="atelier-photo-artifact">
-            <img
-              src="/marketing/family-album.jpg"
-              alt="A family sharing stories over an album"
-              width="1536"
-              height="1024"
-              loading="lazy"
-            />
+        <div className="heirloom-keeps-grid">
+          <figure className="heirloom-photo-memory">
+            <div className="heirloom-photo-frame">
+              <img
+                src="/marketing/family-album.jpg"
+                alt="A family photograph kept with its story"
+                width="1536"
+                height="1024"
+                loading="lazy"
+              />
+              <span>IMG_0047 · TAWANG</span>
+              <small>
+                APR 14
+                <br />
+                2016
+              </small>
+            </div>
             <figcaption>
-              <span>01</span>
-              <strong>A photograph, with its story</strong>
-              <small>Faces, places, dates, and the people who were there</small>
+              <b>01</b>
+              <i />A photograph, with its story
+              <i />
             </figcaption>
           </figure>
 
-          <article className="atelier-voice-artifact">
-            <span className="atelier-artifact-number">02</span>
-            <p className="atelier-kicker">Voice memory</p>
-            <h3>Their voice, exactly as it was.</h3>
-            <p>Save a laugh, a bedtime song, or a message in the voices they know.</p>
-            <div className="atelier-waveform" aria-label="Voice memory preview">
-              <button type="button" aria-label="Play voice memory">
-                <Play size={15} fill="currentColor" />
-              </button>
-              <div aria-hidden="true">
-                {waveform.map((height, index) => (
-                  <i key={`${height}-${index}`} style={{ height }} />
-                ))}
-              </div>
+          <article className="heirloom-voice-memory">
+            <div className="heirloom-memory-index">
+              <span>02</span>
+              <i />
+              <small>JUN 03, 2018</small>
+            </div>
+            <h3>Their voice, exactly as it was</h3>
+            <Waveform />
+            <div className="heirloom-letter-note">
+              <span>STORY · LHASA</span>
+              <p>
+                You were born the morning
+                <br />
+                the mountains turned gold.
+                <br />
+                Your grandfather lit butter lamps
+                <br />
+                for your long life.
+              </p>
+              <Star />
             </div>
           </article>
 
-          <article className="atelier-letter-artifact">
-            <span className="atelier-artifact-number">03</span>
-            <div className="atelier-seal">
-              <BookOpen size={24} />
+          <article className="heirloom-capsule-memory">
+            <div className="heirloom-memory-index">
+              <span>03</span>
+              <i />
+              <small>JAN 01, 2035</small>
             </div>
-            <p className="atelier-kicker">Time capsule</p>
-            <h3>A letter for later.</h3>
-            <p>Seal words that open when the moment is right.</p>
-            <small>TO BE OPENED ON THEIR 18TH BIRTHDAY</small>
+            <h3>A letter for later</h3>
+            <div className="heirloom-envelope-wrap">
+              <img
+                src="/marketing/objects/sealed-envelope.png"
+                alt="A sealed letter to open in the future"
+                width="1254"
+                height="1254"
+                loading="lazy"
+              />
+              <span>
+                TO BE OPENED BY YOU
+                <br />
+                ON YOUR 18TH BIRTHDAY
+              </span>
+            </div>
           </article>
         </div>
       </section>
 
-      <section className="atelier-product">
-        <div className="atelier-product-copy">
-          <p className="atelier-kicker">The archive</p>
-          <h2>Every memory keeps its context.</h2>
+      <section className="heirloom-product" aria-labelledby="archive-heading">
+        <aside className="heirloom-product-rail" aria-hidden="true">
+          <Star />
           <p>
-            Not a feed. A quiet, chronological home for the people and moments that made your
-            family.
+            These are the small moments.
+            <br />
+            They build the story that lasts.
           </p>
-          <a className="atelier-underlink atelier-underlink-light" href="/sign-up">
-            Start with one memory <ArrowRight size={16} />
+          <small>
+            FILED WITH CARE
+            <br />
+            <Star /> FOR THE FUTURE
+          </small>
+        </aside>
+
+        <div className="heirloom-product-stage" aria-label="Everlittle archive product preview">
+          <div className="heirloom-app-window">
+            <aside>
+              <Brand compact />
+              <span className="is-current">Timeline</span>
+              <span>Memories</span>
+              <span>Capsules</span>
+              <span>Family</span>
+              <small>
+                The Norbu Family
+                <br />6 members
+              </small>
+            </aside>
+            <div className="heirloom-timeline">
+              <h3>Timeline</h3>
+              <p>All time</p>
+              <article>
+                <i />
+                <img src="/marketing/family-album.jpg" alt="" />
+                <div>
+                  <small>MAY 14, 2016</small>
+                  <b>A rainy afternoon together</b>
+                  <span>You loved puddles, paper boats, and wearing your red boots.</span>
+                </div>
+              </article>
+              <article>
+                <i />
+                <img src="/marketing/voice-memory.jpg" alt="" />
+                <div>
+                  <small>AUG 2, 2018</small>
+                  <b>First day of school</b>
+                  <span>Big backpack, bigger smile. You were ready.</span>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <article className="heirloom-memory-window">
+            <small>MAY 14, 2016 · CHILDHOOD</small>
+            <h3>A rainy afternoon together</h3>
+            <p>
+              You found every puddle. We stayed out longer than planned and came home soaked and
+              laughing.
+            </p>
+            <Waveform />
+            <img src="/marketing/family-album.jpg" alt="A family memory shown inside Everlittle" />
+          </article>
+
+          <article className="heirloom-capsule-window">
+            <LockKeyhole size={16} />
+            <span className="heirloom-wax">
+              <Star />
+            </span>
+            <h3>For your child</h3>
+            <p>To be opened on May 14, 2046</p>
+            <small>SEALED WITH LOVE</small>
+          </article>
+        </div>
+
+        <div className="heirloom-product-copy">
+          <p>The archive</p>
+          <h2 id="archive-heading">Every memory keeps its context.</h2>
+          <Star />
+          <span>Dates, voices, photographs, and the people who were there stay together.</span>
+          <a href="/sign-up">
+            See how Everlittle works <ArrowRight size={18} />
           </a>
         </div>
-
-        <div
-          className="atelier-product-stage"
-          aria-label="A preview of the Everlittle family archive"
-        >
-          <aside className="atelier-product-sidebar">
-            <Brand compact />
-            <span className="is-active">Timeline</span>
-            <span>Memories</span>
-            <span>Capsules</span>
-            <span>Family</span>
-          </aside>
-          <article className="atelier-product-timeline">
-            <small>PEMA'S STORY · 14 MAY 2026</small>
-            <h3>A rainy afternoon together</h3>
-            <p>We stayed out longer than planned and came home soaked and laughing.</p>
-            <div className="atelier-product-meta">
-              <span>KEPT BY MAMA</span>
-              <span>FAMILY</span>
-            </div>
-          </article>
-          <img
-            src="/marketing/voice-memory.jpg"
-            alt="A parent recording a family voice memory"
-            width="1536"
-            height="1152"
-            loading="lazy"
-          />
-          <div className="atelier-product-audio">
-            <span>
-              <Play size={13} fill="currentColor" />
-            </span>
-            <div>
-              <small>MAMA'S VOICE</small>
-              <b>Bedtime story · 01:28</b>
-            </div>
-          </div>
-          <div className="atelier-product-capsule">
-            <StarMark />
-            <small>SEALED FOR LATER</small>
-            <strong>For the person you become.</strong>
-          </div>
-        </div>
       </section>
 
-      <section className="atelier-privacy" id="privacy">
-        <div className="atelier-privacy-image">
+      <section className="heirloom-privacy" id="privacy">
+        <div className="heirloom-privacy-photo">
           <img
             src="/marketing/voice-memory.jpg"
-            alt="A parent saving a quiet memory beside a resting child"
+            alt="A parent recording a private voice memory beside a sleeping child"
             width="1536"
             height="1152"
             loading="lazy"
           />
-          <span>PRIVATE LIVES · KEPT PRIVATE</span>
         </div>
-        <div className="atelier-privacy-copy">
-          <p className="atelier-kicker">Your family decides</p>
-          <h2>Your child is not the product.</h2>
+        <div className="heirloom-privacy-copy">
           <p>
-            There is no public profile, no child email account, and no attention-hungry feed. Adults
-            decide who joins and what each person can see.
+            <Star /> Private by default
           </p>
-          <ol>
+          <h2>Your child is not the product.</h2>
+          <span>
+            Adults decide who joins, what each person can see, and when a child is ready for their
+            own view.
+          </span>
+
+          <div className="heirloom-family-tree" aria-label="Owner-managed family access">
+            <div className="heirloom-tree-owner">
+              <i>
+                <UserRound />
+              </i>
+              <b>Owner</b>
+            </div>
+            <div className="heirloom-tree-branches">
+              <span>
+                <i>
+                  <UserRound />
+                </i>
+                <b>Parent</b>
+              </span>
+              <span>
+                <i>
+                  <UsersRound />
+                </i>
+                <b>Family</b>
+              </span>
+              <span>
+                <i>
+                  <Baby />
+                </i>
+                <b>Child</b>
+                <small>••••••</small>
+              </span>
+            </div>
+          </div>
+
+          <ul className="heirloom-privacy-promises">
             <li>
-              <span>01</span>
-              <div>
-                <strong>Family invitations expire</strong>
-                <p>Adults invite trusted people, and access stays deliberate.</p>
-              </div>
+              <Star /> Invitations expire
             </li>
             <li>
-              <span>02</span>
-              <div>
-                <strong>Child access is parent-managed</strong>
-                <p>A simple PIN can unlock a child-friendly view without requiring email.</p>
-              </div>
+              <Star /> Sharing is deliberate
             </li>
             <li>
-              <span>03</span>
-              <div>
-                <strong>Public links are intentional</strong>
-                <p>Shared memories are explicit and revocable.</p>
-              </div>
+              <Star /> Access can be revoked
             </li>
-          </ol>
+          </ul>
+          <a href="#hosting">
+            Read our privacy promise <ArrowRight size={18} />
+          </a>
         </div>
       </section>
 
-      <section className="atelier-hosting" id="hosting">
+      <section className="heirloom-hosting" id="hosting">
         <header>
-          <p className="atelier-kicker">One application</p>
+          <Star />
+          <p>One application</p>
           <h2>Use our home, or run your own.</h2>
         </header>
-        <div className="atelier-hosting-grid">
-          <article className="atelier-hosted">
-            <span>HOSTED</span>
+
+        <div className="heirloom-hosting-halves">
+          <article className="heirloom-hosted">
             <h3>Hosted</h3>
-            <p>We handle setup, updates, and storage so your family can begin right away.</p>
+            <div className="heirloom-rule">
+              <i />
+              <Star />
+              <i />
+            </div>
+            <p>We handle setup, updates, and storage.</p>
+            <div className="heirloom-stack-wrap">
+              <img
+                src="/marketing/objects/archive-stack-v2.png"
+                alt="A bundle of family archive documents tied with a green ribbon"
+                width="1537"
+                height="1023"
+                loading="lazy"
+              />
+              <span>
+                <Star /> EVERLITTLE
+                <small>
+                  ARCHIVE
+                  <br />
+                  EST. 2026
+                </small>
+              </span>
+            </div>
             <a href="/sign-up">
-              Create your archive <ArrowRight size={18} />
+              Create your archive <Star />
             </a>
+            <ul>
+              <li>
+                <Cloud /> No server management
+              </li>
+              <li>
+                <ServerCog /> Automatic updates
+              </li>
+              <li>
+                <Database /> Built-in backups
+              </li>
+              <li>
+                <ShieldCheck /> Secure by default
+              </li>
+            </ul>
           </article>
-          <article className="atelier-self-hosted">
-            <span>SELF-HOSTED</span>
+
+          <article className="heirloom-self-hosted">
             <h3>Self-hosted</h3>
-            <p>Keep Everlittle and its data inside infrastructure you control.</p>
+            <div className="heirloom-rule">
+              <i />
+              <Star />
+              <i />
+            </div>
+            <p>Keep Everlittle in infrastructure you control.</p>
+            <div className="heirloom-infra" aria-label="Self-hosted architecture">
+              <b>
+                EVERLITTLE
+                <br />
+                APPLICATION
+              </b>
+              <i />
+              <strong>
+                <Star /> CLOUDFLARE WORKERS
+              </strong>
+              <div>
+                <span>
+                  <Database />
+                  D1<small>SQLite</small>
+                </span>
+                <span>
+                  <Boxes />
+                  R2<small>Object storage</small>
+                </span>
+                <span>
+                  <Code2 />
+                  WORKER<small>Background jobs</small>
+                </span>
+              </div>
+            </div>
             <a href="https://github.com/Kuntash/everlittle">
-              View the source <ArrowRight size={18} />
+              View the source <ArrowRight size={17} />
             </a>
+            <ul>
+              <li>
+                <KeyRound /> Full data ownership
+              </li>
+              <li>
+                <ServerCog /> Your infrastructure
+              </li>
+              <li>
+                <Code2 /> Transparent and open
+              </li>
+              <li>
+                <Globe2 /> Deploy anywhere
+              </li>
+            </ul>
           </article>
         </div>
-        <p className="atelier-hosting-note">
-          <Code2 size={15} /> Same codebase, two ways to run it.
+        <p className="heirloom-same-code">
+          <Star /> The same Everlittle code, in either home.
         </p>
       </section>
 
-      <section className="atelier-closing">
+      <section className="heirloom-closing">
         <img
           src="/marketing/family-album.jpg"
-          alt="Three generations sharing a family album"
+          alt="A family holding onto their shared memories"
           width="1536"
           height="1024"
           loading="lazy"
         />
         <div>
-          <KeyRound size={28} />
+          <Star />
           <h2>Begin with one memory.</h2>
-          <p>The ordinary moments are often the ones they'll want most.</p>
-          <a className="atelier-button atelier-button-light" href="/sign-up">
-            Create your archive <ArrowRight size={18} />
+          <p>The ordinary moments are often the ones they’ll want most.</p>
+          <a href="/sign-up">
+            Create your archive <ArrowRight />
           </a>
         </div>
       </section>
 
-      <footer className="atelier-footer">
+      <footer className="heirloom-footer">
         <Brand compact />
-        <p>A private place for the memories they'll grow into.</p>
-        <div>
+        <p>A private place for the memories they’ll grow into.</p>
+        <nav aria-label="Footer navigation">
           <a href="/sign-in">Sign in</a>
+          <i />
           <a href="#hosting">Self-host</a>
+          <i />
           <a href="#privacy">Privacy</a>
-        </div>
+        </nav>
       </footer>
     </main>
   );

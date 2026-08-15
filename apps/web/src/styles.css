@@ -2143,6 +2143,1477 @@ h3,
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Everlittle heirloom landing — rebuilt from the supplied desktop and mobile art direction. */
+.heirloom-shell {
+  --heirloom-paper: #f2efe7;
+  --heirloom-paper-bright: #faf8f1;
+  --heirloom-green: #072d24;
+  --heirloom-green-soft: #0d3b30;
+  --heirloom-ink: #0e2f27;
+  --heirloom-rust: #aa5846;
+  --heirloom-line: rgb(14 47 39 / 28%);
+  background: var(--heirloom-paper);
+  color: var(--heirloom-ink);
+  color-scheme: light;
+  font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+  min-height: 100dvh;
+  overflow: clip;
+}
+.heirloom-shell::before {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+  content: "";
+  inset: 0;
+  opacity: 0.045;
+  pointer-events: none;
+  position: fixed;
+  z-index: 30;
+}
+.heirloom-shell h1,
+.heirloom-shell h2,
+.heirloom-shell h3,
+.heirloom-shell .brand strong {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-weight: 460;
+  text-wrap: balance;
+}
+.heirloom-shell a {
+  color: inherit;
+}
+.heirloom-star {
+  color: var(--heirloom-rust);
+}
+
+.heirloom-hero {
+  background: var(--heirloom-green);
+  color: var(--heirloom-paper-bright);
+  isolation: isolate;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+.heirloom-hero-photo {
+  animation: heirloom-photo-in 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center 48%;
+  position: absolute;
+  width: 100%;
+  z-index: -2;
+}
+.heirloom-hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgb(242 239 231 / 99%) 0%,
+      rgb(242 239 231 / 96%) 18%,
+      rgb(242 239 231 / 52%) 35%,
+      transparent 57%
+    ),
+    linear-gradient(180deg, rgb(3 20 16 / 45%), transparent 22%);
+  inset: 0;
+  position: absolute;
+  z-index: -1;
+}
+.heirloom-nav {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  padding: clamp(1.5rem, 3vw, 3rem) clamp(1.5rem, 4vw, 4.25rem);
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+.heirloom-nav > a {
+  text-decoration: none;
+}
+.heirloom-nav .brand {
+  gap: 0.7rem;
+}
+.heirloom-nav .brand-mark {
+  color: var(--heirloom-green);
+  height: 38px;
+  width: 36px;
+}
+.heirloom-nav .brand-mark > span {
+  border-color: var(--heirloom-green);
+}
+.heirloom-nav .brand strong {
+  color: var(--heirloom-green);
+  font-size: clamp(2.1rem, 3vw, 3rem);
+  font-weight: 480;
+}
+.heirloom-nav > div {
+  align-items: center;
+  display: flex;
+  gap: clamp(1.5rem, 3vw, 3.6rem);
+}
+.heirloom-nav > div a {
+  color: var(--heirloom-paper-bright);
+  font-size: 0.94rem;
+  text-decoration: none;
+  text-shadow: 0 1px 18px rgb(0 0 0 / 50%);
+}
+.heirloom-nav > div a:not(.heirloom-nav-cta) {
+  position: relative;
+}
+.heirloom-nav > div a:not(.heirloom-nav-cta)::after {
+  background: currentcolor;
+  bottom: -0.45rem;
+  content: "";
+  height: 1px;
+  left: 0;
+  position: absolute;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms ease;
+  width: 100%;
+}
+.heirloom-nav > div a:not(.heirloom-nav-cta):hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+.heirloom-nav-cta {
+  background: rgb(3 51 39 / 90%);
+  border-radius: 0.2rem;
+  padding: 1.15rem 1.8rem;
+}
+.heirloom-hero-copy {
+  align-items: flex-start;
+  animation: heirloom-copy-in 900ms 100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 100svh;
+  min-height: 100dvh;
+  padding: 8rem clamp(1.5rem, 4vw, 4.25rem) clamp(3.5rem, 6vw, 5.5rem);
+  width: min(48rem, 48vw);
+}
+.heirloom-hero-copy h1 {
+  color: var(--heirloom-green);
+  font-size: clamp(5.3rem, 8.4vw, 8.75rem);
+  letter-spacing: -0.055em;
+  line-height: 0.78;
+  margin: 0;
+  max-width: 8ch;
+}
+.heirloom-hero-copy h1 span {
+  display: block;
+  white-space: nowrap;
+}
+.heirloom-hero-copy > p {
+  color: var(--heirloom-ink);
+  font-size: clamp(1rem, 1.35vw, 1.35rem);
+  line-height: 1.45;
+  margin: 2rem 0 0;
+  max-width: 30ch;
+}
+.heirloom-hero-actions {
+  display: flex;
+  gap: 1.4rem;
+  margin-top: 1.8rem;
+}
+.heirloom-button {
+  align-items: center;
+  border-radius: 0.2rem;
+  display: inline-flex;
+  font-size: 1rem;
+  justify-content: center;
+  min-height: 66px;
+  padding: 1rem 2.6rem;
+  text-decoration: none;
+  transition:
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+.heirloom-button:hover {
+  transform: translateY(-2px);
+}
+.heirloom-button-dark {
+  background: var(--heirloom-green);
+  color: var(--heirloom-paper-bright) !important;
+}
+.heirloom-button-dark:hover {
+  background: #021d17;
+}
+.heirloom-button-outline {
+  border: 1px solid var(--heirloom-green);
+  color: var(--heirloom-green) !important;
+}
+.heirloom-button-outline:hover {
+  background: rgb(7 45 36 / 8%);
+}
+.heirloom-mobile-signin {
+  display: none;
+}
+
+.heirloom-keeps {
+  margin: 0 auto;
+  max-width: 1672px;
+  min-height: 940px;
+  padding: clamp(5rem, 7vw, 7.2rem) clamp(2rem, 6.5vw, 7rem) clamp(4rem, 6vw, 6rem);
+}
+.heirloom-section-heading {
+  max-width: 760px;
+}
+.heirloom-section-heading > p,
+.heirloom-product-copy > p,
+.heirloom-privacy-copy > p,
+.heirloom-hosting header > p {
+  font-size: 0.8rem;
+  font-weight: 650;
+  letter-spacing: 0.27em;
+  text-transform: uppercase;
+}
+.heirloom-section-heading > p {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+.heirloom-section-heading h2 {
+  font-size: clamp(4rem, 5.2vw, 5.5rem);
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+  margin: 0;
+}
+.heirloom-section-heading > span {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.45;
+  margin-top: 1.3rem;
+  max-width: 48ch;
+}
+.heirloom-keeps-grid {
+  align-items: end;
+  display: grid;
+  gap: clamp(1.5rem, 2.3vw, 2.5rem);
+  grid-template-columns: 1.1fr 0.88fr 0.88fr;
+  margin-top: 2.4rem;
+}
+.heirloom-keeps-grid article,
+.heirloom-keeps-grid figure {
+  min-width: 0;
+}
+.heirloom-photo-memory {
+  margin: 0;
+}
+.heirloom-photo-frame {
+  height: 460px;
+  margin-left: 1.2rem;
+  position: relative;
+}
+.heirloom-photo-frame img {
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.heirloom-photo-frame > span {
+  bottom: 2.5rem;
+  font-size: 0.55rem;
+  left: -2.8rem;
+  letter-spacing: 0.16em;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left;
+}
+.heirloom-photo-frame > small {
+  bottom: 0.5rem;
+  font-size: 0.55rem;
+  left: -3.5rem;
+  line-height: 1.7;
+  position: absolute;
+  text-align: center;
+}
+.heirloom-photo-memory figcaption,
+.heirloom-memory-index {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+.heirloom-photo-memory figcaption {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.35rem;
+  padding-top: 0.8rem;
+}
+.heirloom-photo-memory figcaption b,
+.heirloom-memory-index span,
+.heirloom-memory-index small {
+  font-family: "Avenir Next", sans-serif;
+  font-size: 0.6rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+}
+.heirloom-photo-memory figcaption i,
+.heirloom-memory-index i {
+  background: var(--heirloom-line);
+  flex: 1;
+  height: 1px;
+}
+.heirloom-keeps-grid h3 {
+  font-size: 1.55rem;
+  line-height: 1;
+  margin: 0.9rem 0 1.4rem;
+}
+.heirloom-wave {
+  align-items: center;
+  background: var(--heirloom-paper-bright);
+  box-shadow: 0 10px 24px rgb(30 29 24 / 13%);
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: auto 1fr auto;
+  min-height: 72px;
+  padding: 0.8rem 1rem;
+}
+.heirloom-wave button {
+  align-items: center;
+  background: var(--heirloom-green);
+  border: 0;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  height: 38px;
+  justify-content: center;
+  padding-left: 0.2rem;
+  width: 38px;
+}
+.heirloom-wave > span {
+  align-items: center;
+  display: flex;
+  gap: 2px;
+  height: 42px;
+}
+.heirloom-wave i {
+  background: var(--heirloom-green);
+  display: block;
+  flex: 1;
+  max-width: 3px;
+}
+.heirloom-wave small {
+  font-size: 0.62rem;
+}
+.heirloom-letter-note {
+  background: #e9e4d9;
+  box-shadow: 0 10px 26px rgb(30 29 24 / 14%);
+  margin-top: 1.5rem;
+  min-height: 300px;
+  padding: 2.4rem 2rem 1.5rem 4.3rem;
+  position: relative;
+}
+.heirloom-letter-note > span {
+  font-size: 0.55rem;
+  left: 1.2rem;
+  letter-spacing: 0.16em;
+  position: absolute;
+  top: 50%;
+  transform: rotate(-90deg) translateY(-50%);
+  transform-origin: top left;
+}
+.heirloom-letter-note p {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+  transform: rotate(-1deg);
+}
+.heirloom-letter-note .heirloom-star {
+  bottom: 1rem;
+  left: 50%;
+  position: absolute;
+}
+.heirloom-envelope-wrap {
+  height: 405px;
+  position: relative;
+}
+.heirloom-envelope-wrap img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+.heirloom-envelope-wrap span {
+  bottom: 4.8rem;
+  font-size: 0.52rem;
+  left: 1rem;
+  letter-spacing: 0.12em;
+  line-height: 1.55;
+  position: absolute;
+  transform: rotate(-90deg);
+  transform-origin: left bottom;
+}
+
+.heirloom-product {
+  background: var(--heirloom-green);
+  color: var(--heirloom-paper-bright);
+  display: grid;
+  grid-template-columns: 120px minmax(560px, 1.55fr) minmax(320px, 0.9fr);
+  min-height: 940px;
+  overflow: hidden;
+}
+.heirloom-product-rail {
+  border-right: 1px solid rgb(250 248 241 / 28%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3.8rem 1.6rem 3rem;
+}
+.heirloom-product-rail > .heirloom-star {
+  font-size: 2rem;
+}
+.heirloom-product-rail > p {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+  transform: rotate(-90deg) translateX(-20%);
+  white-space: nowrap;
+}
+.heirloom-product-rail > small {
+  font-size: 0.45rem;
+  letter-spacing: 0.11em;
+  line-height: 3.2;
+}
+.heirloom-product-stage {
+  align-self: center;
+  min-height: 760px;
+  position: relative;
+  transform: scale(0.92);
+  transform-origin: left center;
+}
+.heirloom-app-window,
+.heirloom-memory-window,
+.heirloom-capsule-window {
+  background: var(--heirloom-paper-bright);
+  box-shadow: 0 30px 70px rgb(0 0 0 / 26%);
+  color: var(--heirloom-ink);
+}
+.heirloom-app-window {
+  border-radius: 0.6rem;
+  display: grid;
+  grid-template-columns: 155px 1fr;
+  height: 680px;
+  left: 1.8rem;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  width: min(700px, 83%);
+}
+.heirloom-app-window > aside {
+  background: #eeebe3;
+  border-right: 1px solid var(--heirloom-line);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1.8rem 0.75rem;
+}
+.heirloom-app-window .brand {
+  margin-bottom: 1.8rem;
+  transform: scale(0.62);
+  transform-origin: left;
+}
+.heirloom-app-window aside > span {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 0.8rem;
+  padding: 0.7rem;
+}
+.heirloom-app-window aside .is-current {
+  background: #dfdbd0;
+}
+.heirloom-app-window aside small {
+  font-size: 0.52rem;
+  line-height: 1.6;
+  margin-top: auto;
+  padding: 0.7rem;
+}
+.heirloom-timeline {
+  padding: 2.5rem;
+}
+.heirloom-timeline > h3 {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+}
+.heirloom-timeline > p {
+  border-bottom: 1px solid var(--heirloom-line);
+  font-size: 0.56rem;
+  padding-bottom: 1rem;
+}
+.heirloom-timeline article {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 6px 82px 1fr;
+  margin-top: 1.6rem;
+  position: relative;
+}
+.heirloom-timeline article > i {
+  background: #ad9d68;
+  border-radius: 50%;
+  height: 6px;
+  margin-top: 0.3rem;
+  width: 6px;
+}
+.heirloom-timeline article img {
+  border-radius: 0.4rem;
+  height: 92px;
+  object-fit: cover;
+  width: 82px;
+}
+.heirloom-timeline article div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.heirloom-timeline article small {
+  font-size: 0.45rem;
+}
+.heirloom-timeline article b {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 0.9rem;
+}
+.heirloom-timeline article span {
+  font-size: 0.5rem;
+  line-height: 1.5;
+}
+.heirloom-memory-window {
+  border-radius: 0.5rem;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  left: 42%;
+  min-height: 500px;
+  overflow: hidden;
+  padding: 3.3rem 2rem 2rem;
+  position: absolute;
+  width: min(650px, 71%);
+  z-index: 2;
+}
+.heirloom-memory-window > small {
+  font-size: 0.48rem;
+  letter-spacing: 0.1em;
+}
+.heirloom-memory-window > h3 {
+  font-size: 2.4rem;
+  grid-column: 1;
+  line-height: 0.92;
+  margin: 1.4rem 1rem 1rem 0;
+}
+.heirloom-memory-window > p {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 0.8rem;
+  grid-column: 1;
+  line-height: 1.5;
+  margin-right: 1rem;
+}
+.heirloom-memory-window > .heirloom-wave {
+  align-self: end;
+  grid-column: 1;
+  transform: scale(0.86);
+  transform-origin: left bottom;
+}
+.heirloom-memory-window > img {
+  grid-column: 2;
+  grid-row: 1 / 5;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+.heirloom-capsule-window {
+  align-items: center;
+  bottom: -1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
+  padding: 1.5rem;
+  position: absolute;
+  right: -1.5rem;
+  text-align: center;
+  width: 260px;
+  z-index: 3;
+}
+.heirloom-capsule-window > svg {
+  align-self: flex-end;
+}
+.heirloom-wax {
+  align-items: center;
+  background: #8f342d;
+  border: 6px double #a84b3e;
+  border-radius: 50%;
+  color: #d8a48f;
+  display: flex;
+  height: 72px;
+  justify-content: center;
+  margin: 0.8rem;
+  transform: rotate(-8deg);
+  width: 72px;
+}
+.heirloom-capsule-window h3 {
+  font-size: 1.6rem;
+  margin: 0.3rem 0;
+}
+.heirloom-capsule-window p {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 0.75rem;
+  margin: 0;
+}
+.heirloom-capsule-window > small {
+  font-size: 0.42rem;
+  letter-spacing: 0.15em;
+  margin-top: 0.75rem;
+}
+.heirloom-product-copy {
+  align-self: center;
+  padding: 4rem clamp(2rem, 6vw, 7rem) 4rem clamp(2rem, 4vw, 4rem);
+}
+.heirloom-product-copy > p {
+  color: #d7c8b9;
+}
+.heirloom-product-copy h2 {
+  color: var(--heirloom-paper-bright);
+  font-size: clamp(4rem, 5vw, 5.8rem);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: 1.5rem 0 1.6rem;
+}
+.heirloom-product-copy > .heirloom-star {
+  display: block;
+  font-size: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.heirloom-product-copy > span {
+  color: rgb(250 248 241 / 76%);
+  display: block;
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.55rem;
+  line-height: 1.35;
+  max-width: 24ch;
+}
+.heirloom-product-copy > a,
+.heirloom-privacy-copy > a {
+  align-items: center;
+  border-bottom: 1px solid var(--heirloom-rust);
+  display: inline-flex;
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.25rem;
+  gap: 0.7rem;
+  margin-top: 10rem;
+  padding-bottom: 0.25rem;
+  text-decoration: none;
+}
+
+.heirloom-privacy {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 880px;
+}
+.heirloom-privacy-photo {
+  overflow: hidden;
+}
+.heirloom-privacy-photo img {
+  height: 100%;
+  object-fit: cover;
+  object-position: 48% center;
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+}
+.heirloom-privacy:hover .heirloom-privacy-photo img {
+  transform: scale(1.018);
+}
+.heirloom-privacy-copy {
+  align-self: center;
+  padding: clamp(4rem, 6.8vw, 7rem);
+}
+.heirloom-privacy-copy > p {
+  align-items: center;
+  display: flex;
+  gap: 2rem;
+}
+.heirloom-privacy-copy h2 {
+  font-size: clamp(3.9rem, 4.7vw, 5.2rem);
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+  margin: 2rem 0 1.3rem;
+}
+.heirloom-privacy-copy > span {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5;
+  max-width: 48ch;
+}
+.heirloom-family-tree {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  margin: 2rem 0;
+  max-width: 600px;
+}
+.heirloom-family-tree i {
+  align-items: center;
+  border: 1px solid var(--heirloom-ink);
+  border-radius: 50%;
+  display: inline-flex;
+  height: 54px;
+  justify-content: center;
+  width: 54px;
+}
+.heirloom-family-tree svg {
+  height: 25px;
+  stroke-width: 1.3;
+  width: 25px;
+}
+.heirloom-family-tree b {
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+.heirloom-tree-owner {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  padding-top: 0.5rem;
+  position: relative;
+}
+.heirloom-tree-owner::after {
+  border-bottom: 1px solid var(--heirloom-line);
+  border-left: 1px solid var(--heirloom-line);
+  border-top: 1px solid var(--heirloom-line);
+  content: "";
+  height: 120px;
+  left: 28px;
+  position: absolute;
+  top: 62px;
+  width: calc(100% - 28px);
+}
+.heirloom-tree-branches {
+  display: grid;
+  gap: 1rem;
+  padding-top: 4rem;
+}
+.heirloom-tree-branches > span {
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: auto 1fr auto;
+  position: relative;
+}
+.heirloom-tree-branches small {
+  border: 1px solid var(--heirloom-ink);
+  border-radius: 0.35rem;
+  letter-spacing: 0.4em;
+  padding: 0.25rem 0.35rem 0.25rem 0.7rem;
+}
+.heirloom-privacy-promises {
+  border-bottom: 1px solid var(--heirloom-line);
+  border-top: 1px solid var(--heirloom-line);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 1rem 0;
+}
+.heirloom-privacy-promises li {
+  align-items: center;
+  display: flex;
+  font-size: 0.7rem;
+  gap: 0.65rem;
+  padding: 0.25rem 0.7rem;
+}
+.heirloom-privacy-promises li + li {
+  border-left: 1px solid var(--heirloom-line);
+}
+.heirloom-privacy-copy > a {
+  margin-top: 3rem;
+}
+
+.heirloom-hosting {
+  min-height: 940px;
+  position: relative;
+}
+.heirloom-hosting > header {
+  left: 50%;
+  position: absolute;
+  text-align: center;
+  top: 2.2rem;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 3;
+}
+.heirloom-hosting > header > .heirloom-star {
+  color: var(--heirloom-green);
+  display: block;
+  font-size: 2rem;
+}
+.heirloom-hosting header > p {
+  background: linear-gradient(
+    90deg,
+    var(--heirloom-paper-bright) 49.8%,
+    var(--heirloom-green) 50.2%
+  );
+  background-clip: text;
+  color: transparent;
+  margin: 0.7rem 0;
+}
+.heirloom-hosting header h2 {
+  background: linear-gradient(
+    90deg,
+    var(--heirloom-paper-bright) 49.8%,
+    var(--heirloom-green) 50.2%
+  );
+  background-clip: text;
+  color: transparent;
+  font-size: clamp(3.2rem, 4vw, 4.5rem);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: 0;
+}
+.heirloom-hosting-halves {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 940px;
+}
+.heirloom-hosting-halves > article {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 12rem clamp(2rem, 5vw, 6rem) 2rem;
+  text-align: center;
+}
+.heirloom-hosted {
+  background: var(--heirloom-green);
+  color: var(--heirloom-paper-bright);
+}
+.heirloom-self-hosted {
+  background: var(--heirloom-paper-bright);
+}
+.heirloom-hosting-halves h3 {
+  font-size: clamp(3.8rem, 5vw, 5.5rem);
+  margin: 0;
+}
+.heirloom-rule {
+  align-items: center;
+  display: flex;
+  gap: 0.7rem;
+  margin: 0.8rem 0 1rem;
+  max-width: 390px;
+  width: 75%;
+}
+.heirloom-rule i {
+  background: currentcolor;
+  height: 1px;
+  opacity: 0.45;
+  width: 100%;
+}
+.heirloom-rule .heirloom-star {
+  color: inherit;
+}
+.heirloom-hosting-halves article > p {
+  font-size: 1rem;
+  margin: 0;
+}
+.heirloom-stack-wrap {
+  height: 300px;
+  margin-top: 0.4rem;
+  max-width: 570px;
+  position: relative;
+  width: 100%;
+}
+.heirloom-stack-wrap img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+.heirloom-stack-wrap > span {
+  color: var(--heirloom-green);
+  font-size: 0.65rem;
+  left: 48%;
+  letter-spacing: 0.15em;
+  line-height: 2;
+  position: absolute;
+  top: 45%;
+  transform: translate(-50%, -50%);
+}
+.heirloom-stack-wrap > span small {
+  display: block;
+  font-size: 0.42rem;
+  letter-spacing: 0.1em;
+  line-height: 1.3;
+}
+.heirloom-hosting-halves article > a {
+  align-items: center;
+  border-bottom: 1px solid currentcolor;
+  display: inline-flex;
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.1rem;
+  gap: 1rem;
+  padding: 0.4rem 0.2rem;
+  text-decoration: none;
+}
+.heirloom-hosted > a {
+  background: var(--heirloom-paper-bright);
+  border: 0 !important;
+  color: var(--heirloom-green);
+  font-size: 1.5rem !important;
+  justify-content: space-between;
+  max-width: 440px;
+  padding: 1.4rem 2rem !important;
+  width: 100%;
+}
+.heirloom-hosting-halves ul {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  margin: auto 0 0;
+  padding: 2rem 0 0;
+  width: 100%;
+}
+.heirloom-hosting-halves li {
+  align-items: center;
+  display: flex;
+  font-size: 0.68rem;
+  gap: 0.65rem;
+  justify-content: center;
+  line-height: 1.35;
+  padding: 0 0.55rem;
+}
+.heirloom-hosting-halves li + li {
+  border-left: 1px solid currentcolor;
+}
+.heirloom-hosting-halves li svg {
+  flex: 0 0 auto;
+  height: 18px;
+  stroke-width: 1.4;
+  width: 18px;
+}
+.heirloom-infra {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 315px;
+  justify-content: center;
+  width: 100%;
+}
+.heirloom-infra > b {
+  border: 1px solid var(--heirloom-line);
+  font-size: 0.55rem;
+  letter-spacing: 0.12em;
+  line-height: 1.5;
+  padding: 0.7rem 1rem;
+}
+.heirloom-infra > i {
+  border-left: 1px dashed var(--heirloom-ink);
+  height: 35px;
+}
+.heirloom-infra > strong {
+  font-size: 0.55rem;
+  font-weight: 550;
+  letter-spacing: 0.08em;
+}
+.heirloom-infra > div {
+  display: flex;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+.heirloom-infra > div span {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.55rem;
+}
+.heirloom-infra > div svg {
+  border: 1px dashed var(--heirloom-line);
+  border-radius: 50%;
+  height: 52px;
+  margin-bottom: 0.35rem;
+  padding: 0.8rem;
+  width: 52px;
+}
+.heirloom-infra > div small {
+  display: block;
+}
+.heirloom-same-code {
+  background: var(--heirloom-paper);
+  border: 1px solid var(--heirloom-line);
+  bottom: 1.8rem;
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.1rem;
+  left: 50%;
+  margin: 0;
+  padding: 0.65rem 2rem;
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.heirloom-closing {
+  align-items: flex-end;
+  color: var(--heirloom-paper-bright);
+  display: flex;
+  justify-content: center;
+  min-height: 830px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+}
+.heirloom-closing::after {
+  background: linear-gradient(0deg, rgb(3 31 24 / 99%) 0%, rgb(3 31 24 / 83%) 25%, transparent 72%);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+.heirloom-closing > img {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: 50% 58%;
+  position: absolute;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+  width: 100%;
+}
+.heirloom-closing:hover > img {
+  transform: scale(1.02);
+}
+.heirloom-closing > div {
+  padding: 3rem 1.5rem 3.4rem;
+  position: relative;
+  z-index: 2;
+}
+.heirloom-closing > div > .heirloom-star {
+  display: block;
+  font-size: 2rem;
+}
+.heirloom-closing h2 {
+  color: var(--heirloom-paper-bright);
+  font-size: clamp(4rem, 5.5vw, 6rem);
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  margin: 1rem 0;
+}
+.heirloom-closing p {
+  font-size: 1.05rem;
+  margin: 0 0 1.7rem;
+}
+.heirloom-closing a {
+  align-items: center;
+  border: 1px solid var(--heirloom-rust);
+  border-radius: 0.5rem;
+  display: inline-flex;
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.45rem;
+  gap: 3rem;
+  justify-content: space-between;
+  min-width: 390px;
+  padding: 1.2rem 1.8rem;
+  text-decoration: none;
+}
+.heirloom-footer {
+  align-items: center;
+  background: var(--heirloom-green);
+  border-top: 1px solid rgb(250 248 241 / 24%);
+  color: var(--heirloom-paper-bright);
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  min-height: 115px;
+  padding: 1.5rem clamp(2rem, 4vw, 4.5rem);
+}
+.heirloom-footer .brand strong {
+  color: var(--heirloom-paper-bright);
+  font-size: 2rem;
+}
+.heirloom-footer .brand-mark {
+  color: var(--heirloom-paper-bright);
+}
+.heirloom-footer .brand-mark > span {
+  border-color: var(--heirloom-paper-bright);
+}
+.heirloom-footer > p {
+  font-family: "Cormorant Garamond Variable", serif;
+  margin: 0;
+  text-align: center;
+}
+.heirloom-footer nav {
+  align-items: center;
+  display: flex;
+  gap: 1.6rem;
+  justify-self: end;
+}
+.heirloom-footer nav a {
+  font-family: "Cormorant Garamond Variable", serif;
+  text-decoration: none;
+}
+.heirloom-footer nav i {
+  background: rgb(250 248 241 / 38%);
+  height: 1rem;
+  width: 1px;
+}
+
+@keyframes heirloom-photo-in {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+@keyframes heirloom-copy-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+
+@media (max-width: 1180px) {
+  .heirloom-product {
+    grid-template-columns: 86px minmax(500px, 1.4fr) minmax(300px, 0.8fr);
+  }
+  .heirloom-product-copy {
+    padding-inline: 2.5rem;
+  }
+  .heirloom-product-copy > a {
+    margin-top: 5rem;
+  }
+  .heirloom-keeps {
+    padding-inline: 3rem;
+  }
+  .heirloom-privacy-copy {
+    padding: 4rem;
+  }
+  .heirloom-privacy-promises {
+    grid-template-columns: 1fr;
+  }
+  .heirloom-privacy-promises li + li {
+    border-left: 0;
+    border-top: 1px solid var(--heirloom-line);
+  }
+  .heirloom-hosting-halves > article {
+    padding-inline: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .heirloom-nav > div {
+    gap: 1.4rem;
+  }
+  .heirloom-nav > div a[href="#keeps"],
+  .heirloom-nav > div a[href="#privacy"],
+  .heirloom-nav > div a[href="#hosting"] {
+    display: none;
+  }
+  .heirloom-hero-copy {
+    width: 62vw;
+  }
+  .heirloom-keeps-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .heirloom-photo-memory {
+    grid-column: 1 / -1;
+  }
+  .heirloom-photo-frame {
+    height: 560px;
+  }
+  .heirloom-product {
+    grid-template-columns: 70px 1fr;
+    padding-bottom: 5rem;
+  }
+  .heirloom-product-stage {
+    margin-right: 2rem;
+  }
+  .heirloom-product-copy {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 6rem 3rem 1rem;
+  }
+  .heirloom-product-copy > a {
+    margin-top: 2rem;
+  }
+  .heirloom-product-stage {
+    grid-column: 2;
+    grid-row: 2;
+    transform: none;
+  }
+  .heirloom-product-rail {
+    grid-row: 1 / 3;
+  }
+  .heirloom-privacy {
+    grid-template-columns: 1fr;
+  }
+  .heirloom-privacy-photo {
+    height: 620px;
+  }
+  .heirloom-hosting > header {
+    color: var(--heirloom-paper-bright);
+  }
+  .heirloom-hosting header h2 {
+    color: var(--heirloom-paper-bright);
+  }
+  .heirloom-hosting-halves {
+    grid-template-columns: 1fr;
+  }
+  .heirloom-hosting-halves > article {
+    min-height: 850px;
+  }
+  .heirloom-hosting > header {
+    top: 2.5rem;
+  }
+  .heirloom-self-hosted {
+    padding-top: 6rem !important;
+  }
+  .heirloom-same-code {
+    bottom: 1rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 680px) {
+  .heirloom-hero {
+    min-height: 100svh;
+  }
+  .heirloom-nav {
+    justify-content: center;
+    padding-top: 3.6rem;
+  }
+  .heirloom-nav .brand {
+    flex-direction: column;
+    gap: 0;
+  }
+  .heirloom-nav .brand-mark {
+    height: 28px;
+  }
+  .heirloom-nav .brand-mark > span {
+    display: none;
+  }
+  .heirloom-nav .brand strong {
+    color: var(--heirloom-paper-bright);
+    font-size: 2.25rem;
+  }
+  .heirloom-nav .brand-mark {
+    color: var(--heirloom-paper-bright);
+  }
+  .heirloom-nav .brand-mark > span {
+    border-color: var(--heirloom-paper-bright);
+  }
+  .heirloom-nav > div {
+    display: none;
+  }
+  .heirloom-hero-photo {
+    object-position: 53% center;
+  }
+  .heirloom-hero-shade {
+    background: linear-gradient(
+      0deg,
+      rgb(3 39 30 / 99%) 0%,
+      rgb(3 39 30 / 91%) 28%,
+      rgb(3 39 30 / 28%) 55%,
+      transparent 72%
+    );
+  }
+  .heirloom-hero-copy {
+    align-items: stretch;
+    justify-content: flex-end;
+    padding: 20rem 1.5rem 3rem;
+    text-align: left;
+    width: 100%;
+  }
+  .heirloom-hero-copy h1 {
+    color: var(--heirloom-paper-bright);
+    font-size: clamp(4.2rem, 20.5vw, 6.4rem);
+    line-height: 0.78;
+    max-width: 7.2ch;
+  }
+  .heirloom-hero-copy > p {
+    color: rgb(250 248 241 / 84%);
+    font-size: 1rem;
+    margin-top: 1.4rem;
+  }
+  .heirloom-hero-actions {
+    margin-top: 1.5rem;
+  }
+  .heirloom-hero-actions .heirloom-button-dark {
+    background: var(--heirloom-paper-bright);
+    color: var(--heirloom-green) !important;
+    flex: 1;
+    font-family: "Cormorant Garamond Variable", serif;
+    font-size: 1.35rem;
+  }
+  .heirloom-hero-actions .heirloom-button-outline {
+    display: none;
+  }
+  .heirloom-mobile-signin {
+    align-self: center;
+    color: #dfb08f !important;
+    display: block;
+    font-size: 0.9rem;
+    margin-top: 1.25rem;
+    text-decoration: none;
+  }
+  .heirloom-keeps {
+    padding: 5rem 1.25rem;
+  }
+  .heirloom-section-heading h2 {
+    font-size: clamp(3.6rem, 16vw, 5rem);
+  }
+  .heirloom-keeps-grid {
+    grid-template-columns: 1fr;
+  }
+  .heirloom-photo-frame {
+    height: 440px;
+  }
+  .heirloom-envelope-wrap {
+    height: 360px;
+  }
+  .heirloom-product {
+    display: block;
+    padding: 5rem 1.25rem;
+  }
+  .heirloom-product-rail {
+    display: none;
+  }
+  .heirloom-product-copy {
+    padding: 0 0 4rem;
+  }
+  .heirloom-product-copy h2 {
+    font-size: clamp(3.7rem, 16vw, 5rem);
+  }
+  .heirloom-product-copy > a {
+    margin-top: 2.5rem;
+  }
+  .heirloom-product-stage {
+    min-height: 650px;
+    margin: 0;
+    transform: scale(0.94);
+    transform-origin: top center;
+  }
+  .heirloom-app-window {
+    grid-template-columns: 86px 1fr;
+    left: 0;
+    width: 96%;
+  }
+  .heirloom-app-window > aside {
+    padding-inline: 0.3rem;
+  }
+  .heirloom-app-window .brand {
+    transform: scale(0.45);
+  }
+  .heirloom-timeline {
+    padding: 1.3rem;
+  }
+  .heirloom-timeline article {
+    grid-template-columns: 6px 58px 1fr;
+  }
+  .heirloom-timeline article img {
+    height: 70px;
+    width: 58px;
+  }
+  .heirloom-memory-window {
+    display: block;
+    left: 18%;
+    min-height: 390px;
+    padding: 2rem 1.4rem;
+    width: 78%;
+  }
+  .heirloom-memory-window > img {
+    display: block;
+    height: 150px;
+    margin-top: 1rem;
+  }
+  .heirloom-memory-window > .heirloom-wave {
+    display: none;
+  }
+  .heirloom-capsule-window {
+    bottom: -1.5rem;
+    min-height: 225px;
+    right: -1rem;
+    transform: scale(0.8);
+    transform-origin: bottom right;
+  }
+  .heirloom-privacy-photo {
+    height: 520px;
+  }
+  .heirloom-privacy-copy {
+    padding: 5rem 1.25rem;
+  }
+  .heirloom-privacy-copy h2 {
+    font-size: clamp(3.6rem, 15.5vw, 5rem);
+  }
+  .heirloom-family-tree {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+  .heirloom-tree-owner::after {
+    width: calc(100% - 10px);
+  }
+  .heirloom-family-tree b {
+    font-size: 1.05rem;
+  }
+  .heirloom-tree-branches small {
+    display: none;
+  }
+  .heirloom-hosting {
+    min-height: 0;
+  }
+  .heirloom-hosting > header {
+    padding-inline: 1rem;
+  }
+  .heirloom-hosting header h2 {
+    font-size: 3.2rem;
+  }
+  .heirloom-hosting-halves > article {
+    min-height: 800px;
+    padding: 13rem 1.25rem 5rem;
+  }
+  .heirloom-self-hosted {
+    min-height: 780px !important;
+    padding-top: 5rem !important;
+  }
+  .heirloom-hosting-halves h3 {
+    font-size: 4rem;
+  }
+  .heirloom-stack-wrap {
+    height: 260px;
+  }
+  .heirloom-hosting-halves ul {
+    gap: 1.2rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  .heirloom-hosting-halves li:nth-child(3) {
+    border-left: 0;
+  }
+  .heirloom-infra > div {
+    gap: 1.6rem;
+  }
+  .heirloom-same-code {
+    bottom: 0.8rem;
+    font-size: 0.9rem;
+    padding: 0.6rem 1rem;
+  }
+  .heirloom-closing {
+    min-height: 700px;
+  }
+  .heirloom-closing h2 {
+    font-size: clamp(3.7rem, 16vw, 5.2rem);
+  }
+  .heirloom-closing a {
+    gap: 1rem;
+    min-width: min(100%, 340px);
+  }
+  .heirloom-footer {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    padding: 2.5rem 1.25rem;
+  }
+  .heirloom-footer nav {
+    justify-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heirloom-shell *,
+  .heirloom-shell *::before,
+  .heirloom-shell *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 .form-error {
   background: rgb(185 110 85 / 10%);
   border-radius: 0.6rem;
