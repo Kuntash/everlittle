@@ -374,9 +374,9 @@ export async function acceptInvitation(
       .prepare(
         `UPDATE family_invitation
          SET accepted_by_user_id = ?, accepted_at = CURRENT_TIMESTAMP
-         WHERE id = ? AND accepted_at IS NULL AND revoked_at IS NULL`,
+         WHERE id = ? AND archive_id = ? AND accepted_at IS NULL AND revoked_at IS NULL`,
       )
-      .bind(userId, invitation.id),
+      .bind(userId, invitation.id, invitation.archiveId),
     auditStatement(database, {
       id: auditId,
       archiveId: invitation.archiveId,
@@ -434,7 +434,8 @@ async function getArchiveState(request: Request): Promise<Response> {
          LEFT JOIN "user" u ON u.id = m.created_by_user_id
          LEFT JOIN media_asset ma ON ma.id = (
            SELECT first_asset.id FROM media_asset first_asset
-           WHERE first_asset.memory_id = m.id ORDER BY first_asset.created_at LIMIT 1
+           WHERE first_asset.memory_id = m.id AND first_asset.archive_id = m.archive_id
+           ORDER BY first_asset.created_at LIMIT 1
          )
          WHERE m.archive_id = ?
            AND (m.audience != 'parents' OR ? IN ('owner', 'parent'))
@@ -453,7 +454,7 @@ async function getArchiveState(request: Request): Promise<Response> {
          FROM time_capsule tc
          JOIN child_profile c ON c.id = tc.child_id
          LEFT JOIN "user" u ON u.id = tc.created_by_user_id
-         WHERE c.archive_id = ?
+         WHERE tc.archive_id = ? AND c.archive_id = tc.archive_id
          ORDER BY datetime(tc.unlocks_at), tc.created_at DESC`,
       )
       .bind(context.archiveId)
@@ -814,8 +815,8 @@ async function resendInvitation(request: Request, invitationId: string): Promise
   await runtime.DB.batch([
     runtime.DB.prepare(
       `UPDATE family_invitation SET token_hash = ?, expires_at = ?, email_status = 'not_sent'
-       WHERE id = ?`,
-    ).bind(await hashToken(rawToken), expiresAt, invitationId),
+       WHERE id = ? AND archive_id = ?`,
+    ).bind(await hashToken(rawToken), expiresAt, invitationId, context.archiveId),
     auditStatement(runtime.DB, {
       id: crypto.randomUUID(),
       archiveId: context.archiveId,
@@ -869,8 +870,8 @@ async function deliverInvitation(
       runtime.DB.prepare(
         `UPDATE family_invitation SET email_status = 'sent', email_message_id = ?,
          email_sent_at = CURRENT_TIMESTAMP, email_last_attempt_at = CURRENT_TIMESTAMP,
-         email_attempt_count = email_attempt_count + 1 WHERE id = ?`,
-      ).bind(messageId, input.invitationId),
+         email_attempt_count = email_attempt_count + 1 WHERE id = ? AND archive_id = ?`,
+      ).bind(messageId, input.invitationId, input.archiveId),
       auditStatement(runtime.DB, {
         id: crypto.randomUUID(),
         archiveId: input.archiveId,
@@ -888,8 +889,8 @@ async function deliverInvitation(
     await runtime.DB.batch([
       runtime.DB.prepare(
         `UPDATE family_invitation SET email_status = 'failed', email_last_attempt_at = CURRENT_TIMESTAMP,
-         email_attempt_count = email_attempt_count + 1 WHERE id = ?`,
-      ).bind(input.invitationId),
+         email_attempt_count = email_attempt_count + 1 WHERE id = ? AND archive_id = ?`,
+      ).bind(input.invitationId, input.archiveId),
       auditStatement(runtime.DB, {
         id: crypto.randomUUID(),
         archiveId: input.archiveId,
@@ -938,8 +939,11 @@ async function revokeInvitation(request: Request, invitationId: string): Promise
 
   await database.batch([
     database
-      .prepare("UPDATE family_invitation SET revoked_at = CURRENT_TIMESTAMP WHERE id = ?")
-      .bind(invitationId),
+      .prepare(
+        `UPDATE family_invitation SET revoked_at = CURRENT_TIMESTAMP
+         WHERE id = ? AND archive_id = ?`,
+      )
+      .bind(invitationId, context.archiveId),
     auditStatement(database, {
       id: crypto.randomUUID(),
       archiveId: context.archiveId,
@@ -972,8 +976,8 @@ async function updateMemberRole(request: Request, memberId: string): Promise<Res
 
   await database.batch([
     database
-      .prepare("UPDATE family_member SET role = ? WHERE id = ?")
-      .bind(parsed.data.role, memberId),
+      .prepare("UPDATE family_member SET role = ? WHERE id = ? AND archive_id = ?")
+      .bind(parsed.data.role, memberId, context.archiveId),
     auditStatement(database, {
       id: crypto.randomUUID(),
       archiveId: context.archiveId,
@@ -1006,16 +1010,32 @@ async function transferOwnership(request: Request, targetMemberId: string): Prom
         `UPDATE family_member
          SET role = CASE WHEN id = ? THEN 'owner' ELSE 'parent' END
          WHERE archive_id = ? AND id IN (?, ?)
-           AND EXISTS (SELECT 1 FROM family_member WHERE id = ? AND role = 'owner')`,
+           AND EXISTS (
+             SELECT 1 FROM family_member
+             WHERE id = ? AND archive_id = ? AND role = 'owner'
+           )`,
       )
-      .bind(targetMemberId, context.archiveId, targetMemberId, context.memberId, context.memberId),
+      .bind(
+        targetMemberId,
+        context.archiveId,
+        targetMemberId,
+        context.memberId,
+        context.memberId,
+        context.archiveId,
+      ),
     database
       .prepare(
         `INSERT INTO audit_event
           (id, archive_id, actor_user_id, action, entity_type, entity_id, metadata_json)
          SELECT ?, ?, ?, 'ownership.transferred', 'family_member', ?, ?
-         WHERE EXISTS (SELECT 1 FROM family_member WHERE id = ? AND role = 'owner')
-           AND EXISTS (SELECT 1 FROM family_member WHERE id = ? AND role = 'parent')`,
+         WHERE EXISTS (
+           SELECT 1 FROM family_member
+           WHERE id = ? AND archive_id = ? AND role = 'owner'
+         )
+           AND EXISTS (
+             SELECT 1 FROM family_member
+             WHERE id = ? AND archive_id = ? AND role = 'parent'
+           )`,
       )
       .bind(
         crypto.randomUUID(),
@@ -1024,7 +1044,9 @@ async function transferOwnership(request: Request, targetMemberId: string): Prom
         targetMemberId,
         JSON.stringify({ previousOwnerMemberId: context.memberId }),
         targetMemberId,
+        context.archiveId,
         context.memberId,
+        context.archiveId,
       ),
   ]);
 
@@ -1058,7 +1080,9 @@ async function removeMember(request: Request, targetMemberId: string): Promise<R
   }
 
   await database.batch([
-    database.prepare("DELETE FROM family_member WHERE id = ?").bind(targetMemberId),
+    database
+      .prepare("DELETE FROM family_member WHERE id = ? AND archive_id = ?")
+      .bind(targetMemberId, context.archiveId),
     auditStatement(database, {
       id: crypto.randomUUID(),
       archiveId: context.archiveId,
@@ -1093,11 +1117,13 @@ async function setChildAccessPin(request: Request, childId: string): Promise<Res
   const pinHash = await keyedHash(runtime.BETTER_AUTH_SECRET, `${childId}:${parsed.data.pin}`);
   await runtime.DB.batch([
     runtime.DB.prepare(
-      "UPDATE child_profile SET access_pin_hash = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
-    ).bind(pinHash, childId),
+      `UPDATE child_profile SET access_pin_hash = ?, updated_at = CURRENT_TIMESTAMP
+       WHERE id = ? AND archive_id = ?`,
+    ).bind(pinHash, childId, context.archiveId),
     runtime.DB.prepare(
-      "UPDATE child_access_session SET revoked_at = CURRENT_TIMESTAMP WHERE child_id = ? AND revoked_at IS NULL",
-    ).bind(childId),
+      `UPDATE child_access_session SET revoked_at = CURRENT_TIMESTAMP
+       WHERE child_id = ? AND archive_id = ? AND revoked_at IS NULL`,
+    ).bind(childId, context.archiveId),
     auditStatement(runtime.DB, {
       id: crypto.randomUUID(),
       archiveId: context.archiveId,
@@ -1168,9 +1194,9 @@ async function signInChild(request: Request): Promise<Response> {
   const expiresAt = new Date(Date.now() + CHILD_SESSION_SECONDS * 1000).toISOString();
   await runtime.DB.batch([
     runtime.DB.prepare(
-      `INSERT INTO child_access_session (id, child_id, token_hash, expires_at)
-       VALUES (?, ?, ?, ?)`,
-    ).bind(sessionId, matched.id, tokenHash, expiresAt),
+      `INSERT INTO child_access_session (id, archive_id, child_id, token_hash, expires_at)
+       VALUES (?, ?, ?, ?, ?)`,
+    ).bind(sessionId, matched.archiveId, matched.id, tokenHash, expiresAt),
     runtime.DB.prepare(
       "INSERT INTO child_access_attempt (id, attempt_key, succeeded) VALUES (?, ?, 1)",
     ).bind(attemptId, attemptKey),
@@ -1246,7 +1272,8 @@ async function getChildArchive(request: Request): Promise<Response> {
        LEFT JOIN "user" u ON u.id = m.created_by_user_id
        LEFT JOIN media_asset ma ON ma.id = (
          SELECT first_asset.id FROM media_asset first_asset
-         WHERE first_asset.memory_id = m.id ORDER BY first_asset.created_at LIMIT 1
+         WHERE first_asset.memory_id = m.id AND first_asset.archive_id = m.archive_id
+         ORDER BY first_asset.created_at LIMIT 1
        )
        WHERE m.child_id = ? AND m.archive_id = ? AND m.audience IN ('child', 'all')
        ORDER BY m.happened_at DESC, m.created_at DESC LIMIT 100`,
@@ -1259,11 +1286,11 @@ async function getChildArchive(request: Request): Promise<Response> {
               tc.created_by_user_id AS createdByUserId, u.name AS authorName, 0 AS locked
        FROM time_capsule tc
        LEFT JOIN "user" u ON u.id = tc.created_by_user_id
-       WHERE tc.child_id = ? AND tc.audience = 'child'
+       WHERE tc.child_id = ? AND tc.archive_id = ? AND tc.audience = 'child'
          AND datetime(tc.unlocks_at) <= CURRENT_TIMESTAMP
        ORDER BY datetime(tc.unlocks_at) DESC`,
     )
-      .bind(context.childId)
+      .bind(context.childId, context.archiveId)
       .all(),
   ]);
 
@@ -1355,8 +1382,8 @@ async function createPublicMemoryShare(request: Request, memoryId: string): Prom
   await runtime.DB.batch([
     runtime.DB.prepare(
       `UPDATE memory_public_share SET revoked_at = CURRENT_TIMESTAMP
-       WHERE memory_id = ? AND revoked_at IS NULL`,
-    ).bind(memoryId),
+       WHERE memory_id = ? AND archive_id = ? AND revoked_at IS NULL`,
+    ).bind(memoryId, context.archiveId),
     runtime.DB.prepare(
       `INSERT INTO memory_public_share
         (id, archive_id, memory_id, token_hash, created_by_user_id, expires_at)
@@ -1427,12 +1454,13 @@ async function getPublicMemory(token: string): Promise<PublicMemory | null> {
             ma.id AS mediaId, ma.object_key AS objectKey,
             ma.media_type AS mediaType, ma.content_type AS contentType
      FROM memory_public_share s
-     JOIN memory m ON m.id = s.memory_id
-     JOIN child_profile c ON c.id = m.child_id
+     JOIN memory m ON m.id = s.memory_id AND m.archive_id = s.archive_id
+     JOIN child_profile c ON c.id = m.child_id AND c.archive_id = m.archive_id
      LEFT JOIN "user" u ON u.id = m.created_by_user_id
      LEFT JOIN media_asset ma ON ma.id = (
        SELECT first_asset.id FROM media_asset first_asset
-       WHERE first_asset.memory_id = m.id ORDER BY first_asset.created_at LIMIT 1
+       WHERE first_asset.memory_id = m.id AND first_asset.archive_id = m.archive_id
+       ORDER BY first_asset.created_at LIMIT 1
      )
      WHERE s.token_hash = ? AND s.revoked_at IS NULL
        AND datetime(s.expires_at) > CURRENT_TIMESTAMP`,
@@ -1503,11 +1531,12 @@ async function createCapsule(request: Request): Promise<Response> {
     database
       .prepare(
         `INSERT INTO time_capsule
-          (id, child_id, title, body, unlocks_at, audience, created_by_user_id)
-         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+          (id, archive_id, child_id, title, body, unlocks_at, audience, created_by_user_id)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
       )
       .bind(
         capsuleId,
+        context.archiveId,
         parsed.data.childId,
         parsed.data.title,
         parsed.data.body,
@@ -1540,8 +1569,8 @@ async function deleteCapsule(request: Request, capsuleId: string): Promise<Respo
     .prepare(
       `SELECT tc.id, tc.created_by_user_id AS createdByUserId
        FROM time_capsule tc
-       JOIN child_profile c ON c.id = tc.child_id
-       WHERE tc.id = ? AND c.archive_id = ?`,
+       JOIN child_profile c ON c.id = tc.child_id AND c.archive_id = tc.archive_id
+       WHERE tc.id = ? AND tc.archive_id = ?`,
     )
     .bind(capsuleId, context.archiveId)
     .first<{ id: string; createdByUserId: string | null }>();
@@ -1553,7 +1582,9 @@ async function deleteCapsule(request: Request, capsuleId: string): Promise<Respo
   if (!canDelete) return forbidden();
 
   await database.batch([
-    database.prepare("DELETE FROM time_capsule WHERE id = ?").bind(capsuleId),
+    database
+      .prepare("DELETE FROM time_capsule WHERE id = ? AND archive_id = ?")
+      .bind(capsuleId, context.archiveId),
     auditStatement(database, {
       id: crypto.randomUUID(),
       archiveId: context.archiveId,
@@ -1612,14 +1643,14 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   }
 
   const existing = await runtime.DB.prepare(
-    "SELECT id FROM media_asset WHERE memory_id = ? LIMIT 1",
+    "SELECT id FROM media_asset WHERE memory_id = ? AND archive_id = ? LIMIT 1",
   )
-    .bind(memoryId)
+    .bind(memoryId, context.archiveId)
     .first();
   if (existing) return Response.json({ error: "This memory already has media." }, { status: 409 });
 
   const assetId = crypto.randomUUID();
-  const objectKey = `${context.archiveId}/${memoryId}/${assetId}.${media.extension}`;
+  const objectKey = `archives/${context.archiveId}/${memoryId}/${assetId}.${media.extension}`;
   await runtime.MEDIA.put(objectKey, request.body, {
     httpMetadata: { contentType },
     customMetadata: {
@@ -1735,7 +1766,7 @@ async function serveMedia(request: Request, assetId: string): Promise<Response> 
     ? await runtime.DB.prepare(
         `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
          FROM media_asset ma
-         JOIN memory m ON m.id = ma.memory_id
+         JOIN memory m ON m.id = ma.memory_id AND m.archive_id = ma.archive_id
          WHERE ma.id = ? AND ma.archive_id = ?
            AND (m.audience != 'parents' OR ? IN ('owner', 'parent'))`,
       )
@@ -1744,11 +1775,11 @@ async function serveMedia(request: Request, assetId: string): Promise<Response> 
     : await runtime.DB.prepare(
         `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
          FROM media_asset ma
-         JOIN memory m ON m.id = ma.memory_id
-         WHERE ma.id = ? AND m.child_id = ? AND m.archive_id = ?
+         JOIN memory m ON m.id = ma.memory_id AND m.archive_id = ma.archive_id
+         WHERE ma.id = ? AND ma.archive_id = ? AND m.child_id = ? AND m.archive_id = ?
            AND m.audience IN ('child', 'all')`,
       )
-        .bind(assetId, child?.childId, child?.archiveId)
+        .bind(assetId, child?.archiveId, child?.childId, child?.archiveId)
         .first<{ objectKey: string; contentType: string }>();
   if (!asset) return Response.json({ error: "Media not found." }, { status: 404 });
 
@@ -1810,9 +1841,9 @@ async function deleteMemory(request: Request, memoryId: string): Promise<Respons
   if (memory.createdByUserId !== context.user.id) return forbidden();
 
   const assets = await runtime.DB.prepare(
-    "SELECT object_key AS objectKey FROM media_asset WHERE memory_id = ?",
+    "SELECT object_key AS objectKey FROM media_asset WHERE memory_id = ? AND archive_id = ?",
   )
-    .bind(memoryId)
+    .bind(memoryId, context.archiveId)
     .all<{ objectKey: string }>();
   const objectKeys = assets.results.map((asset) => asset.objectKey);
   if (objectKeys.length) await runtime.MEDIA.delete(objectKeys);
@@ -1889,9 +1920,9 @@ async function updateChildProfile(request: Request, childId: string): Promise<Re
     database
       .prepare(
         `UPDATE child_profile SET display_name = ?, birth_date = ?, updated_at = CURRENT_TIMESTAMP
-         WHERE id = ?`,
+         WHERE id = ? AND archive_id = ?`,
       )
-      .bind(parsed.data.displayName, parsed.data.birthDate, childId),
+      .bind(parsed.data.displayName, parsed.data.birthDate, childId, context.archiveId),
     auditStatement(database, {
       id: crypto.randomUUID(),
       archiveId: context.archiveId,
@@ -1959,7 +1990,7 @@ async function getChildAccessContext(request: Request): Promise<ChildAccessConte
        FROM child_access_session cas
        JOIN child_profile c ON c.id = cas.child_id
        JOIN family_archive a ON a.id = c.archive_id
-       WHERE cas.token_hash = ? AND cas.revoked_at IS NULL
+       WHERE cas.token_hash = ? AND cas.archive_id = c.archive_id AND cas.revoked_at IS NULL
          AND datetime(cas.expires_at) > CURRENT_TIMESTAMP`,
     )
     .bind(tokenHash)

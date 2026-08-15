@@ -13,6 +13,7 @@
     "generate-routes": "tsr generate",
     "build": "vp build",
     "preview": "vp preview",
+    "test": "vitest run",
     "deploy": "vp run build && wrangler deploy",
     "deploy:hosted": "CLOUDFLARE_ENV=hosted vp build && wrangler deploy --env hosted",
     "typecheck": "tsr generate && tsc --noEmit",
@@ -36,6 +37,7 @@
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.26.0",
+    "@cloudflare/vitest-pool-workers": "catalog:",
     "@tanstack/router-cli": "1.167.22",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
@@ -43,6 +45,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "typescript": "catalog:",
     "vite": "catalog:",
+    "vitest": "catalog:",
     "wrangler": "^4.70.0"
   }
 }

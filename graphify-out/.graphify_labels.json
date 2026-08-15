@@ -171,7 +171,8 @@
   "169": "$familySlug.kids.$childSlug.tsx",
   "170": "pre-commit",
   "171": "family_archive",
-  "172": "@tanstack/react-start",
+  "172": "archive-api-isolation.test.ts",
+  "173": "Tenant-isolation inventory",
   "174": "0003_memory_media_guards.sql",
   "175": "0006_invitation_email.sql",
   "176": "Everlittle hosted and self-hosted migration checklist",
@@ -182,5 +183,9 @@
   "181": "MemoryComposer",
   "182": "onboarding.tsx",
   "183": "formatMemoryDate",
-  "184": "Everlittle landing design direction"
+  "184": "Everlittle landing design direction",
+  "185": "apply-migrations.ts",
+  "186": "migration-upgrade.test.ts",
+  "187": "tenant-isolation.test.ts",
+  "188": "vitest.config.ts"
 }

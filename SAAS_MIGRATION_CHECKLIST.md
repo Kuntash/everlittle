@@ -73,18 +73,18 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 
 ## Phase 4: Tenant-isolation audit
 
-- [ ] Inventory every archive, child, memory, capsule, invitation, member, media, and share query.
-- [ ] Require `archive_id` in every applicable read, update, and delete.
-- [ ] Add `archive_id` directly to records where indirect scoping is fragile.
-- [ ] Verify child IDs cannot cross archive boundaries.
-- [ ] Verify member IDs cannot cross archive boundaries.
-- [ ] Verify invitation tokens resolve to exactly one archive.
-- [ ] Verify public shares expose only one authorized memory and its authorized media.
-- [ ] Store new media under `archives/{archiveId}/...` R2 keys.
-- [ ] Authorize media before opening an R2 object stream.
-- [ ] Add negative tests for cross-family reads, writes, uploads, invitations, and shares.
-- [ ] Add regression tests for owner, parent, contributor, viewer, and child permissions.
-- [ ] Treat tenant-isolation test failures as deployment blockers.
+- [x] Inventory every archive, child, memory, capsule, invitation, member, media, and share query.
+- [x] Require `archive_id` in every applicable read, update, and delete.
+- [x] Add `archive_id` directly to records where indirect scoping is fragile.
+- [x] Verify child IDs cannot cross archive boundaries.
+- [x] Verify member IDs cannot cross archive boundaries.
+- [x] Verify invitation tokens resolve to exactly one archive.
+- [x] Verify public shares expose only one authorized memory and its authorized media.
+- [x] Store new media under `archives/{archiveId}/...` R2 keys.
+- [x] Authorize media before opening an R2 object stream.
+- [x] Add negative tests for cross-family reads, writes, uploads, invitations, and shares.
+- [x] Add regression tests for owner, parent, contributor, viewer, and child permissions.
+- [x] Treat tenant-isolation test failures as deployment blockers.
 
 ## Phase 5: Child identity and PIN access
 

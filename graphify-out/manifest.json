@@ -1,7 +1,7 @@
 {
   "apps/web/package.json": {
-    "mtime": 1786820063.2240896,
-    "ast_hash": "d2173782b19dcb43d3f728f942cce4a8",
+    "mtime": 1786821676.0667279,
+    "ast_hash": "4c557792e74c82612231757dfd8d8021",
     "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1786655190.4588058,
-    "ast_hash": "ef694c35cb3f562f443c317765536926",
+    "mtime": 1786821556.9461312,
+    "ast_hash": "b9bf8fbbb4e3bfef5cd8ab12e99c12b0",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -55,9 +55,9 @@
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
-    "mtime": 1785948599.4798284,
-    "ast_hash": "31e855991386f0ac36f9520c43d24144",
-    "semantic_hash": "31e855991386f0ac36f9520c43d24144"
+    "mtime": 1786821865.9180324,
+    "ast_hash": "21a9cc53e3a91cdef24c45682c7ebec2",
+    "semantic_hash": ""
   },
   "apps/web/vite.config.ts": {
     "mtime": 1786435857.6031904,
@@ -70,8 +70,8 @@
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1786820063.2236292,
-    "ast_hash": "caa84fde2e75e369eae4847d5554658c",
+    "mtime": 1786821645.83833,
+    "ast_hash": "297ce8ba59c22321d118c8643374fbdf",
     "semantic_hash": ""
   },
   "packages/domain/package.json": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1785948599.5415146,
-    "ast_hash": "2cfd264db0d6b8a7391154b72832b9bc",
+    "mtime": 1786821856.1804228,
+    "ast_hash": "2dd5dbe3df8e707498eef5819755a446",
     "semantic_hash": ""
   },
   "apps/web/public/apple-touch-icon.png": {
@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786820063.2258878,
-    "ast_hash": "3569d17cacd0c33119c06ba879885e31",
+    "mtime": 1786822040.753305,
+    "ast_hash": "724b93341c7b746173a09e94b5637102",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -462,6 +462,46 @@
   "artifacts/launch-video/everlittle-launch-whatsapp.mp4": {
     "mtime": 1786656050.665892,
     "ast_hash": "3fd1a6a5abcfed8a541ad216677f2abd",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0010_tenant_isolation.sql": {
+    "mtime": 1786821501.2580705,
+    "ast_hash": "f46f499d7e1b6fae7a0bbd610496343d",
+    "semantic_hash": ""
+  },
+  "apps/web/test/apply-migrations.ts": {
+    "mtime": 1786821929.2213662,
+    "ast_hash": "b2cb04d5f875ea899a06feb667055df6",
+    "semantic_hash": ""
+  },
+  "apps/web/test/archive-api-isolation.test.ts": {
+    "mtime": 1786822094.6795504,
+    "ast_hash": "8eaba8c75e989e55553742593411262d",
+    "semantic_hash": ""
+  },
+  "apps/web/test/migration-upgrade.test.ts": {
+    "mtime": 1786822018.1633925,
+    "ast_hash": "770c76913d7d1d49b941e2b56cedf888",
+    "semantic_hash": ""
+  },
+  "apps/web/test/tenant-isolation.test.ts": {
+    "mtime": 1786821711.980553,
+    "ast_hash": "bd7914e4e6d97fdbdeecab85179f03a2",
+    "semantic_hash": ""
+  },
+  "apps/web/test/worker.ts": {
+    "mtime": 1786821760.8271184,
+    "ast_hash": "1124a4dbdf499b949dca095f7bba8bc1",
+    "semantic_hash": ""
+  },
+  "apps/web/vitest.config.ts": {
+    "mtime": 1786822018.1629279,
+    "ast_hash": "c363cc69dbe56e71850c63b3cfccdbea",
+    "semantic_hash": ""
+  },
+  "docs/tenant-isolation.md": {
+    "mtime": 1786822067.8053362,
+    "ast_hash": "21b3ff95c531ed02d98c5011eb104040",
     "semantic_hash": ""
   }
 }

@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-16)
 
 ## Corpus Check
-- 49 files · ~1,655,803 words
+- 57 files · ~1,659,077 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2208 nodes · 2662 edges · 184 communities (38 shown, 146 thin omitted)
+- 2239 nodes · 2697 edges · 189 communities (42 shown, 147 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.54)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `798cf1bb`
+- Built from commit: `36b3922d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -184,7 +184,8 @@
 - $familySlug.kids.$childSlug.tsx
 - pre-commit
 - family_archive
-- @tanstack/react-start
+- archive-api-isolation.test.ts
+- Tenant-isolation inventory
 - Everlittle hosted and self-hosted migration checklist
 - Everlittle preliminary trademark knockout search
 - invitation-email.ts
@@ -194,10 +195,12 @@
 - onboarding.tsx
 - formatMemoryDate
 - Everlittle landing design direction
+- apply-migrations.ts
+- migration-upgrade.test.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 41 edges
-2. `handleArchiveApi()` - 37 edges
+2. `handleArchiveApi()` - 39 edges
 3. `unauthorized()` - 26 edges
 4. `Event` - 25 edges
 5. `getMembershipContext()` - 23 edges
@@ -222,7 +225,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (184 total, 146 thin omitted)
+## Communities (189 total, 147 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -230,7 +233,7 @@ Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentM
 
 ### Community 1 - "archive-api.ts"
 Cohesion: 0.06
-Nodes (109): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, checkOnboardingSlug(), ChildAccessContext, childPinSchema, childSchema (+101 more)
+Nodes (110): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), capsuleSchema, checkOnboardingSlug(), ChildAccessContext, childPinSchema, childSchema (+102 more)
 
 ### Community 2 - "index.tsx"
 Cohesion: 0.10
@@ -246,27 +249,27 @@ Nodes (12): CloseEvent, CustomEvent, EmailEvent, ErrorEvent, Event, ExtendableEv
 
 ### Community 5 - "compilerOptions"
 Cohesion: 0.08
-Nodes (24): compilerOptions, allowImportingTsExtensions, jsx, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+16 more)
+Nodes (25): compilerOptions, allowImportingTsExtensions, jsx, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+17 more)
 
 ### Community 6 - "scripts"
 Cohesion: 0.08
-Nodes (23): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+15 more)
+Nodes (24): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+16 more)
 
 ### Community 7 - "dependencies"
-Cohesion: 0.10
-Nodes (21): dependencies, better-auth, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/inter, lucide-react, react (+13 more)
+Cohesion: 0.09
+Nodes (23): dependencies, better-auth, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/inter, lucide-react, react (+15 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10
 Nodes (7): CompressionStream, DecompressionStream, FixedLengthStream, IdentityTransformStream, TextDecoderStream, TextEncoderStream, TransformStream
 
 ### Community 11 - "devDependencies"
-Cohesion: 0.11
-Nodes (19): devDependencies, @cloudflare/vite-plugin, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript, vite (+11 more)
+Cohesion: 0.09
+Nodes (23): devDependencies, @cloudflare/vite-plugin, @cloudflare/vitest-pool-workers, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript (+15 more)
 
 ### Community 13 - "scripts"
-Cohesion: 0.17
-Nodes (12): scripts, build, cf-typegen, db:migrate:hosted, db:migrate:local, db:migrate:remote, deploy, deploy:hosted (+4 more)
+Cohesion: 0.15
+Nodes (13): scripts, build, cf-typegen, db:migrate:hosted, db:migrate:local, db:migrate:remote, deploy, deploy:hosted (+5 more)
 
 ### Community 20 - "Body"
 Cohesion: 0.15
@@ -317,8 +320,16 @@ Cohesion: 0.16
 Nodes (8): Brand(), MarketingHome(), waveform, ChildSession, Route, PublicChild, Route, ChildArchiveApp()
 
 ### Community 171 - "family_archive"
-Cohesion: 0.16
-Nodes (20): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+12 more)
+Cohesion: 0.14
+Nodes (22): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+14 more)
+
+### Community 172 - "archive-api-isolation.test.ts"
+Cohesion: 0.29
+Nodes (4): createFamily(), signUpAccount(), TestAccount, TestFamily
+
+### Community 173 - "Tenant-isolation inventory"
+Cohesion: 0.40
+Nodes (4): Deployment gate, Query rules, Tenant-isolation inventory, Tenant-owned records
 
 ### Community 176 - "Everlittle hosted and self-hosted migration checklist"
 Cohesion: 0.12
@@ -357,24 +368,24 @@ Cohesion: 0.33
 Nodes (5): Design bible, Everlittle landing design direction, Generation prompt spine, Mobile sequence, Web sequence
 
 ## Knowledge Gaps
-- **1068 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1063 more)
+- **1080 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1075 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **146 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **147 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `ServiceWorkerGlobalScope` connect `ServiceWorkerGlobalScope` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `WritableStream` connect `WritableStream` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.027) - this node is a cross-community bridge._
 - **Why does `Console` connect `Console` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
+- **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.032) - this node is a cross-community bridge._
+- **Why does `ReadableStreamBYOBRequest` connect `ReadableStreamBYOBRequest` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1068 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1080 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.062090007627765065 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.0610079575596817 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
   _Cohesion score 0.09686609686609686 - nodes in this community are weakly interconnected._
