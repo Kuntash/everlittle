@@ -20,12 +20,25 @@ common-law search, or a guarantee that the mark can be registered or used safely
       children, babies, keepsakes, and archives.
 - [x] Search official-register-indexed results for the United States, India, United Kingdom,
       European Union, and WIPO.
+- [x] Search app stores, social handles, package registries, and major source/package indexes.
 - [ ] Have trademark counsel run a complete clearance search directly in each target register,
       including phonetic, design-mark, owner, class, and goods-and-services variants.
 
 No exact `EVERLITTLE` registration or pending application surfaced in the accessible searches.
 Some official search systems are interactive, CAPTCHA-protected, or incompletely indexed by public
 search engines, so this is not proof that no filing exists.
+
+### Namespace screening update on 2026-08-16 Asia/Kolkata
+
+- Verisign RDAP reports `geteverlittle.com` registered through Cloudflare on
+  `2026-08-13T20:23:00Z`.
+- Apple iTunes Search API returned zero App Store software results for `everlittle`.
+- npm registry lookup returned 404 for the exact package name `everlittle`.
+- GitHub repository search returned one exact repository result: the current
+  `Kuntash/everlittle` repository.
+- Public social/web search still surfaced adjacent uses including `everlittle.boutique`,
+  `Everlittle` keepsake pages, `Everlittle Studios`, `EverLittle Co.`, and `Ever Little` Etsy use.
+  These reinforce the existing conclusion that the mark is not cleared for public launch.
 
 ## Material commercial uses found
 

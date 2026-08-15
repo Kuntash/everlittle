@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Everlittle launch film</title>
+    <style>
+      :root {
+        --paper: #f7f1e7;
+        --white: #fffdf8;
+        --forest: #173b32;
+        --ink: #24362f;
+        --muted: #6d786f;
+        --gold: #b78b42;
+        --clay: #a96142;
+        --sage: #dbe4d9;
+        --line: #ded6c8;
+        --ease: cubic-bezier(0.19, 1, 0.22, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+
+      body {
+        background: #000;
+        color: var(--ink);
+        font-family:
+          Inter,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      .film {
+        background:
+          radial-gradient(circle at 82% 12%, rgb(183 139 66 / 20%), transparent 28%),
+          radial-gradient(circle at 12% 88%, rgb(79 112 92 / 14%), transparent 30%), var(--paper);
+        height: 960px;
+        overflow: hidden;
+        position: relative;
+        width: 540px;
+      }
+
+      .film::after {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+        content: "";
+        inset: 0;
+        opacity: 0.11;
+        pointer-events: none;
+        position: absolute;
+        z-index: 20;
+      }
+
+      .scene {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        inset: 0;
+        justify-content: center;
+        opacity: 0;
+        padding: 58px 34px;
+        position: absolute;
+      }
+
+      .playing .scene-1 {
+        animation: scene-one 3.3s var(--ease) both;
+      }
+
+      .playing .scene-2 {
+        animation: scene-app 4.2s var(--ease) 2.9s both;
+      }
+
+      .playing .scene-3 {
+        animation: scene-app 4.2s var(--ease) 6.7s both;
+      }
+
+      .playing .scene-4 {
+        animation: scene-four 4.5s var(--ease) 10.5s both;
+      }
+
+      @keyframes scene-one {
+        0% {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        14%,
+        76% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-12px);
+        }
+      }
+
+      @keyframes scene-app {
+        0% {
+          opacity: 0;
+          transform: translateY(28px) scale(0.985);
+        }
+        10%,
+        88% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-18px) scale(0.99);
+        }
+      }
+
+      @keyframes scene-four {
+        0% {
+          opacity: 0;
+          transform: scale(0.98);
+        }
+        12%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .wordmark {
+        color: var(--forest);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 28px;
+        letter-spacing: -0.04em;
+      }
+
+      .scene-1 .wordmark {
+        font-size: 43px;
+        margin-bottom: 30px;
+      }
+
+      .scene-1 h1,
+      .scene-4 h2 {
+        color: var(--forest);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 53px;
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        line-height: 0.97;
+        margin: 0;
+        max-width: 450px;
+        text-align: center;
+      }
+
+      .scene-1 p,
+      .scene-4 p {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
+        margin: 25px 0 0;
+        max-width: 350px;
+        text-align: center;
+      }
+
+      .keepsake {
+        align-items: center;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        box-shadow: 0 16px 44px rgb(23 59 50 / 10%);
+        display: flex;
+        height: 75px;
+        justify-content: center;
+        margin-bottom: 30px;
+        width: 75px;
+      }
+
+      .keepsake img {
+        height: 62px;
+        object-fit: contain;
+        width: 62px;
+      }
+
+      .phone {
+        background: var(--white);
+        border: 7px solid #22352e;
+        border-radius: 40px;
+        box-shadow: 0 34px 80px rgb(23 45 36 / 23%);
+        height: 748px;
+        overflow: hidden;
+        position: relative;
+        width: 368px;
+      }
+
+      .phone::before {
+        background: #22352e;
+        border-radius: 999px;
+        content: "";
+        height: 23px;
+        left: 50%;
+        position: absolute;
+        top: 10px;
+        transform: translateX(-50%);
+        width: 94px;
+        z-index: 8;
+      }
+
+      .screen {
+        background:
+          radial-gradient(circle at 90% 4%, rgb(183 139 66 / 14%), transparent 25%), var(--paper);
+        height: 100%;
+        overflow: hidden;
+        padding: 43px 19px 74px;
+        position: relative;
+      }
+
+      .app-top {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .avatar {
+        align-items: center;
+        background: var(--forest);
+        border-radius: 50%;
+        color: var(--white);
+        display: flex;
+        font-size: 11px;
+        height: 32px;
+        justify-content: center;
+        width: 32px;
+      }
+
+      .eyebrow {
+        color: var(--muted);
+        font-size: 9px;
+        font-weight: 750;
+        letter-spacing: 0.13em;
+        margin: 29px 0 9px;
+        text-transform: uppercase;
+      }
+
+      .screen h2 {
+        color: var(--forest);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 35px;
+        font-weight: 500;
+        letter-spacing: -0.055em;
+        line-height: 0.95;
+        margin: 0;
+      }
+
+      .screen .lede {
+        color: var(--muted);
+        font-size: 11px;
+        line-height: 1.5;
+        margin: 10px 0 18px;
+      }
+
+      .memory-card {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: 0 14px 38px rgb(23 59 50 / 8%);
+        overflow: hidden;
+      }
+
+      .memory-art {
+        align-items: center;
+        background:
+          radial-gradient(circle at 62% 35%, rgb(255 253 248 / 60%), transparent 18%), #dfceb2;
+        display: flex;
+        height: 170px;
+        justify-content: center;
+      }
+
+      .memory-art img {
+        height: 128px;
+        object-fit: contain;
+        width: 128px;
+      }
+
+      .memory-copy {
+        padding: 16px;
+      }
+
+      .memory-copy small {
+        color: var(--muted);
+        font-size: 9px;
+      }
+
+      .memory-copy h3 {
+        color: var(--forest);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 1;
+        margin: 6px 0;
+      }
+
+      .memory-copy p {
+        color: var(--muted);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 13px;
+        line-height: 1.45;
+        margin: 0;
+      }
+
+      .plus {
+        align-items: center;
+        background: var(--forest);
+        border-radius: 50%;
+        bottom: 82px;
+        box-shadow: 0 12px 28px rgb(23 59 50 / 28%);
+        color: var(--white);
+        display: flex;
+        font-size: 30px;
+        height: 53px;
+        justify-content: center;
+        position: absolute;
+        right: 22px;
+        width: 53px;
+        z-index: 4;
+      }
+
+      .playing .scene-2 .plus {
+        animation: press 700ms var(--ease) 1.15s both;
+      }
+
+      @keyframes press {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        45% {
+          transform: scale(0.9);
+        }
+      }
+
+      .sheet {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 28px 28px 0 0;
+        bottom: 0;
+        box-shadow: 0 -22px 60px rgb(16 31 26 / 22%);
+        left: 0;
+        padding: 21px 17px 24px;
+        position: absolute;
+        right: 0;
+        transform: translateY(102%);
+        z-index: 6;
+      }
+
+      .playing .scene-2 .sheet {
+        animation: sheet-up 900ms var(--ease) 1.55s forwards;
+      }
+
+      @keyframes sheet-up {
+        to {
+          transform: translateY(0);
+        }
+      }
+
+      .sheet .handle {
+        background: #d8d0c5;
+        border-radius: 999px;
+        height: 4px;
+        margin: -8px auto 16px;
+        width: 43px;
+      }
+
+      .sheet h3 {
+        color: var(--forest);
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 25px;
+        font-weight: 500;
+        margin: 0 0 14px;
+      }
+
+      .types {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .type {
+        align-items: center;
+        background: #faf7f1;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        color: var(--muted);
+        display: flex;
+        flex-direction: column;
+        font-size: 8px;
+        gap: 2px;
+        justify-content: center;
+        min-height: 72px;
+      }
+
+      .type:first-child {
+        background: var(--forest);
+        border-color: var(--forest);
+        color: var(--white);
+      }
+
+      .type img {
+        height: 47px;
+        object-fit: contain;
+        width: 47px;
+      }
+
+      .bottom-nav {
+        align-items: center;
+        backdrop-filter: blur(16px);
+        background: rgb(255 253 248 / 94%);
+        border-top: 1px solid var(--line);
+        bottom: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        height: 63px;
+        left: 0;
+        position: absolute;
+        right: 0;
+      }
+
+      .nav-item {
+        color: var(--muted);
+        font-size: 8px;
+        text-align: center;
+      }
+
+      .nav-item::before {
+        content: "♡";
+        display: block;
+        font-family: Georgia, serif;
+        font-size: 18px;
+        margin-bottom: 2px;
+      }
+
+      .nav-item.active {
+        color: var(--forest);
+        font-weight: 700;
+      }
+
+      .child-screen {
+        background:
+          radial-gradient(circle at 14% 8%, rgb(183 139 66 / 20%), transparent 30%),
+          radial-gradient(circle at 88% 80%, rgb(74 112 91 / 14%), transparent 28%), var(--paper);
+      }
+
+      .child-hero {
+        padding-top: 14px;
+      }
+
+      .child-hero h2 {
+        font-size: 47px;
+      }
+
+      .child-hero .lede {
+        font-size: 12px;
+        max-width: 275px;
+      }
+
+      .child-grid {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: 1.2fr 0.8fr;
+      }
+
+      .child-tile {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        min-height: 148px;
+        overflow: hidden;
+        padding: 12px;
+      }
+
+      .child-tile:first-child {
+        grid-row: span 2;
+        min-height: 306px;
+      }
+
+      .child-tile img {
+        display: block;
+        height: 92px;
+        margin: 8px auto 15px;
+        object-fit: contain;
+        width: 92px;
+      }
+
+      .child-tile:first-child img {
+        height: 150px;
+        margin-top: 20px;
+        width: 150px;
+      }
+
+      .child-tile small {
+        color: var(--muted);
+        font-size: 8px;
+      }
+
+      .child-tile h3 {
+        color: var(--forest);
+        font-family: Georgia, serif;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 1.05;
+        margin: 5px 0;
+      }
+
+      .playing .scene-3 .child-tile {
+        animation: tile-in 750ms var(--ease) both;
+      }
+
+      .playing .scene-3 .child-tile:nth-child(1) {
+        animation-delay: 7.2s;
+      }
+
+      .playing .scene-3 .child-tile:nth-child(2) {
+        animation-delay: 7.35s;
+      }
+
+      .playing .scene-3 .child-tile:nth-child(3) {
+        animation-delay: 7.5s;
+      }
+
+      @keyframes tile-in {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .scene-4 {
+        text-align: center;
+      }
+
+      .scene-4 .app-icon {
+        border-radius: 27px;
+        box-shadow: 0 20px 50px rgb(23 59 50 / 18%);
+        height: 112px;
+        margin-bottom: 34px;
+        width: 112px;
+      }
+
+      .scene-4 .url {
+        color: var(--forest);
+        font-size: 13px;
+        font-weight: 750;
+        letter-spacing: 0.08em;
+        margin-top: 36px;
+        text-transform: uppercase;
+      }
+
+      .scene-label {
+        color: var(--forest);
+        font-family: Georgia, serif;
+        font-size: 25px;
+        font-weight: 500;
+        margin-bottom: 21px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="film" id="film">
+      <section class="scene scene-1">
+        <div class="keepsake">
+          <img src="/apps/web/public/memory-icons/story.png" alt="" />
+        </div>
+        <div class="wordmark">everlittle</div>
+        <h1>The little things become the whole story.</h1>
+        <p>A private family archive for the memories a child will one day grow into.</p>
+      </section>
+
+      <section class="scene scene-2">
+        <p class="scene-label">Keep a moment while it is still small.</p>
+        <div class="phone">
+          <div class="screen">
+            <div class="app-top">
+              <span class="wordmark">everlittle</span><span class="avatar">KC</span>
+            </div>
+            <p class="eyebrow">Good morning</p>
+            <h2>Diki Choetso’s story</h2>
+            <p class="lede">A private archive, kept with love by her family.</p>
+            <article class="memory-card">
+              <div class="memory-art">
+                <img src="/apps/web/public/memory-icons/photo.png" alt="" />
+              </div>
+              <div class="memory-copy">
+                <small>Today · Kept by family</small>
+                <h3>That sleepy afternoon smile</h3>
+                <p>The kind of moment we never want time to blur.</p>
+              </div>
+            </article>
+            <span class="plus">+</span>
+            <nav class="bottom-nav">
+              <span class="nav-item active">Home</span><span class="nav-item">Timeline</span
+              ><span class="nav-item">Capsules</span><span class="nav-item">Family</span>
+            </nav>
+            <div class="sheet">
+              <div class="handle"></div>
+              <h3>A new memory for Diki</h3>
+              <div class="types">
+                <span class="type"
+                  ><img src="/apps/web/public/memory-icons/photo.png" alt="" />Photo</span
+                >
+                <span class="type"
+                  ><img src="/apps/web/public/memory-icons/story.png" alt="" />Story</span
+                >
+                <span class="type"
+                  ><img src="/apps/web/public/memory-icons/voice.png" alt="" />Voice</span
+                >
+                <span class="type"
+                  ><img src="/apps/web/public/memory-icons/video.png" alt="" />Video</span
+                >
+                <span class="type"
+                  ><img src="/apps/web/public/memory-icons/milestone.png" alt="" />Milestone</span
+                >
+                <span class="type"
+                  ><img src="/apps/web/public/memory-icons/letter.png" alt="" />Letter</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-3">
+        <p class="scene-label">And one day, give the story back to her.</p>
+        <div class="phone">
+          <div class="screen child-screen">
+            <div class="app-top">
+              <span class="wordmark">everlittle</span><span class="avatar">DC</span>
+            </div>
+            <div class="child-hero">
+              <p class="eyebrow">This story is yours</p>
+              <h2>Hi, Diki.</h2>
+              <p class="lede">Here are the moments your family kept for you.</p>
+            </div>
+            <div class="child-grid">
+              <article class="child-tile">
+                <img src="/apps/web/public/memory-icons/story.png" alt="" />
+                <small>A tiny story</small>
+                <h3>The sound of your first laugh</h3>
+              </article>
+              <article class="child-tile">
+                <img src="/apps/web/public/memory-icons/video.png" alt="" />
+                <small>In motion</small>
+                <h3>First steps</h3>
+              </article>
+              <article class="child-tile">
+                <img src="/apps/web/public/memory-icons/letter.png" alt="" />
+                <small>For later</small>
+                <h3>A letter from Mum</h3>
+              </article>
+            </div>
+            <nav class="bottom-nav">
+              <span class="nav-item active">My story</span><span class="nav-item">Timeline</span
+              ><span class="nav-item">Letters</span><span class="nav-item">Capsules</span>
+            </nav>
+          </div>
+        </div>
+      </section>
+
+      <section class="scene scene-4">
+        <img class="app-icon" src="/apps/web/public/icon-512.png" alt="Everlittle" />
+        <h2>Memories to grow into.</h2>
+        <p>Photos, voices, videos, letters and time capsules—kept privately by family.</p>
+        <div class="url">dikichoetso.com</div>
+      </section>
+    </main>
+    <script>
+      window.startLaunchVideo = () => {
+        const film = document.querySelector("#film");
+        film.classList.remove("playing");
+        void film.offsetWidth;
+        film.classList.add("playing");
+      };
+    </script>
+  </body>
+</html>

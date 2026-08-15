@@ -105,6 +105,8 @@ ownership to a parent, and then leave without weakening access control.
 ## P2 — PWA and device polish
 
 - [x] Add platform-specific installation guidance for iOS and Android.
+- [ ] Add receiver PWA push notifications for new memories, invitations, capsule unlocks, and
+      other relevant family activity, with per-device opt-in and notification preferences.
 - [ ] Add an offline read-only library for explicitly downloaded memories.
 - [x] Define safe caching rules so authenticated HTML and private media are never broadly cached.
 - [ ] Test standalone mode, safe areas, camera capture, microphone permissions, and uploads.

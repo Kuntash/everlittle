@@ -16,30 +16,16 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 ## Phase 0: Naming and domain
 
 - [x] Choose the hosted-product domain: `geteverlittle.com`.
-- [ ] Confirm the domain is available at registrar checkout immediately before purchase.
-- [ ] Perform trademark and brand-conflict searches in intended launch markets.
-- [ ] Check app stores, social handles, package registries, and major search engines.
+- [x] Confirm the domain is available at registrar checkout immediately before purchase.
+- [x] Perform trademark and brand-conflict searches in intended launch markets.
+- [x] Check app stores, social handles, package registries, and major search engines.
 - [x] Register the domain.
-- [ ] Enable registrar account MFA.
-- [ ] Add the domain to Cloudflare and enable DNSSEC.
+- [x] Enable registrar account MFA.
+- [x] Add the domain to Cloudflare and enable DNSSEC.
 - [x] Decide whether family routes live at `domain.com/:familySlug` or
       `app.domain.com/:familySlug`.
 - [x] Reserve platform route names such as `sign-in`, `sign-up`, `pricing`, `invite`, `share`,
       `settings`, `admin`, `api`, and `support`.
-
-### Domain candidates checked on 2026-08-14
-
-The following names returned no `.com` registry record during the check. This is not a purchase
-guarantee; availability must be confirmed with a registrar.
-
-- [ ] `geteverlittle.com` - recommended; short, memorable, and keeps the product name intact.
-- [ ] `myeverlittle.com` - warmer and more personal, but slightly less natural as a platform URL.
-- [ ] `everlittlefamily.com` - descriptive, but longer and more restrictive.
-- [ ] `everlittleapp.com` - clear, but generic and less emotionally distinctive.
-- [ ] `everlittlehome.com` - warm, but may imply home-management software.
-- [ ] `everlittlearchive.com` - precise, but sounds more institutional.
-- [ ] `everlittlememories.com` - clear, but long.
-- [ ] `everlittlefamilies.com` - descriptive, but less elegant when spoken.
 
 ## Phase 1: Deployment-mode foundation
 

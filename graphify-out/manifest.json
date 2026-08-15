@@ -125,8 +125,8 @@
     "semantic_hash": ""
   },
   "TODO.md": {
-    "mtime": 1786435765.9215403,
-    "ast_hash": "efa79071689ae6b9390f60d6d024489e",
+    "mtime": 1786819794.2417233,
+    "ast_hash": "a68995cd38943deb1fd31dc65e7770bd",
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
@@ -270,18 +270,18 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786656000.3565161,
-    "ast_hash": "a3bfa816fc68a1b619b1279f4ff351b2",
+    "mtime": 1786819794.2410803,
+    "ast_hash": "4d39bba7957eb878db30814dffd0407c",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
-    "mtime": 1786651937.6135046,
-    "ast_hash": "dcecf67bc2db36f90155edd7862a7435",
+    "mtime": 1786819357.5512965,
+    "ast_hash": "7c534e71c76046418e60ec2c9e7db22a",
     "semantic_hash": ""
   },
   "docs/deployment-modes.md": {
-    "mtime": 1786652928.5738065,
-    "ast_hash": "8dc89761404493f598ca715e768b437b",
+    "mtime": 1786819807.9613042,
+    "ast_hash": "d30b8dc0df68b4d75db5ca06babeefe7",
     "semantic_hash": ""
   },
   "apps/web/migrations/0008_tenant_slugs.sql": {
@@ -325,8 +325,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/marketing-home.tsx": {
-    "mtime": 1786656004.677179,
-    "ast_hash": "8e9eb15a5aedd9a4c453d3980f9253f0",
+    "mtime": 1786819807.8675253,
+    "ast_hash": "1ce0043a632555569bd48bb217e1e6bc",
     "semantic_hash": ""
   },
   "apps/web/src/routes/invite.$token.tsx": {
@@ -352,6 +352,136 @@
   "apps/web/public/marketing/voice-memory.jpg": {
     "mtime": 1786655096.9736836,
     "ast_hash": "b3be7bef8c94e1739168f435a76d92ad",
+    "semantic_hash": ""
+  },
+  "artifacts/launch-video/storyboard.html": {
+    "mtime": 1786819808.0320559,
+    "ast_hash": "99aaa87b3b83547d11fc78d6bb65772f",
+    "semantic_hash": ""
+  },
+  "assets/design/LANDING_DESIGN_DIRECTION.md": {
+    "mtime": 1786657399.126831,
+    "ast_hash": "1f97a17d8219673339a4792e1fe0b2e2",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/objects/archival-photo-bundle.png": {
+    "mtime": 1786658691.5441186,
+    "ast_hash": "4ea732b1550753dc3178b7c3d4a8f4c4",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/objects/archive-stack.png": {
+    "mtime": 1786658683.2816164,
+    "ast_hash": "dbcb75f899ee30bdfad3f61ca6109756",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/objects/open-family-album.png": {
+    "mtime": 1786658688.8445425,
+    "ast_hash": "6992f4c4b2ca368ba57e9836faea264b",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/objects/sealed-envelope.png": {
+    "mtime": 1786658685.95912,
+    "ast_hash": "436465180c7d83f3cdc7f96c568ab88c",
+    "semantic_hash": ""
+  },
+  "artifacts/landing-frontend-design-artifacts.png": {
+    "mtime": 1786658130.2431293,
+    "ast_hash": "28c189213d547cf2b5ea0e4a1503f638",
+    "semantic_hash": ""
+  },
+  "artifacts/landing-frontend-design-desktop.png": {
+    "mtime": 1786658169.1779644,
+    "ast_hash": "9394f7cc33ede0e2dcc22b1f068a1fdb",
+    "semantic_hash": ""
+  },
+  "artifacts/landing-frontend-design-mobile.png": {
+    "mtime": 1786658156.0016418,
+    "ast_hash": "b0718964d7829bbd28b6aba11c2565f9",
+    "semantic_hash": ""
+  },
+  "artifacts/landing-frontend-design-product.png": {
+    "mtime": 1786658132.4982026,
+    "ast_hash": "a84fb2a8d6dd791b4587ce7f0a0e2db1",
+    "semantic_hash": ""
+  },
+  "artifacts/launch-video/everlittle-launch-poster.jpg": {
+    "mtime": 1786656050.6632273,
+    "ast_hash": "c1c2ca40e4a40e8286cbc4e27cba5192",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-assets/chroma/archival-photo-bundle-green.png": {
+    "mtime": 1786658656.54734,
+    "ast_hash": "4b09b626a62d6af7c7a78b72d6f63929",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-assets/chroma/archive-stack-magenta.png": {
+    "mtime": 1786658656.5378666,
+    "ast_hash": "0acd74bb9428e500ba84e7fc271418fb",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-assets/chroma/open-family-album-magenta.png": {
+    "mtime": 1786658656.5449939,
+    "ast_hash": "8bac172aeaf5f318e3613e448dbefc98",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-assets/chroma/sealed-envelope-green.png": {
+    "mtime": 1786658656.5414374,
+    "ast_hash": "13345ae1e1d673cc19ff6f88a1493d1c",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-mobile/01-welcome.png": {
+    "mtime": 1786657383.8008096,
+    "ast_hash": "c293dcae8d7574138b0865af30453f05",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-mobile/02-sign-up.png": {
+    "mtime": 1786657383.8034594,
+    "ast_hash": "3aace4426e1d736925c6689f580e9e39",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-mobile/03-archive-setup.png": {
+    "mtime": 1786657383.8059676,
+    "ast_hash": "721dce4011a420947dfc12a275b6e62f",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-web/01-hero.png": {
+    "mtime": 1786657383.7825193,
+    "ast_hash": "3eb7c41a2f581012ee723aa25611105c",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-web/02-what-you-keep.png": {
+    "mtime": 1786657383.7861238,
+    "ast_hash": "f583e78329ae22e8dddcea9e5d8af3f4",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-web/03-product-showcase.png": {
+    "mtime": 1786657383.7891762,
+    "ast_hash": "77f76c96b673738b026eee0800bb5bcf",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-web/04-privacy.png": {
+    "mtime": 1786657383.792239,
+    "ast_hash": "cd6509fabaa21e45e4726a29eb766f9c",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-web/05-hosting-choice.png": {
+    "mtime": 1786657383.7953036,
+    "ast_hash": "4386fa5c52314c9abcf9232a01995cdf",
+    "semantic_hash": ""
+  },
+  "assets/design/landing-web/06-final-cta.png": {
+    "mtime": 1786657383.79812,
+    "ast_hash": "9ec62dbd486d742c07d2c70c8f1f265f",
+    "semantic_hash": ""
+  },
+  "artifacts/launch-video/everlittle-launch-vertical.mp4": {
+    "mtime": 1786656050.6648827,
+    "ast_hash": "b839afd44849712c2cee255b52f60288",
+    "semantic_hash": ""
+  },
+  "artifacts/launch-video/everlittle-launch-whatsapp.mp4": {
+    "mtime": 1786656050.665892,
+    "ast_hash": "3fd1a6a5abcfed8a541ad216677f2abd",
     "semantic_hash": ""
   }
 }

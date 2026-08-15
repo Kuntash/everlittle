@@ -1,16 +1,16 @@
-# Graph Report - everlittle  (2026-08-14)
+# Graph Report - everlittle  (2026-08-16)
 
 ## Corpus Check
-- 50 files · ~427,451 words
+- 51 files · ~1,656,557 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2212 nodes · 2670 edges · 184 communities (39 shown, 145 thin omitted)
+- 2220 nodes · 2677 edges · 185 communities (40 shown, 145 thin omitted)
 - Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 7 edges (avg confidence: 0.54)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `672ee8fb`
+- Built from commit: `e3a55f35`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -192,6 +192,7 @@
 - MemoryComposer
 - onboarding.tsx
 - formatMemoryDate
+- Everlittle landing design direction
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 41 edges
@@ -220,7 +221,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (184 total, 145 thin omitted)
+## Communities (185 total, 145 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -311,20 +312,20 @@ Cohesion: 0.11
 Nodes (16): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Authentication, Deployment (+8 more)
 
 ### Community 169 - "$familySlug.kids.$childSlug.tsx"
-Cohesion: 0.19
-Nodes (7): Brand(), MarketingHome(), ChildSession, Route, PublicChild, Route, ChildArchiveApp()
+Cohesion: 0.16
+Nodes (8): Brand(), MarketingHome(), waveform, ChildSession, Route, PublicChild, Route, ChildArchiveApp()
 
 ### Community 171 - "family_archive"
 Cohesion: 0.16
 Nodes (20): "account", child_profile, family_archive, family_member, media_asset, memory, "session", time_capsule (+12 more)
 
 ### Community 176 - "Everlittle hosted and self-hosted migration checklist"
-Cohesion: 0.11
-Nodes (17): Decisions already made, Domain candidates checked on 2026-08-14, Everlittle hosted and self-hosted migration checklist, Launch gates, Phase 0: Naming and domain, Phase 10: Create `everlittle-dikichoetso`, Phase 11: Migrate `dikichoetso.com`, Phase 12: Operations, privacy, and release readiness (+9 more)
+Cohesion: 0.12
+Nodes (16): Decisions already made, Everlittle hosted and self-hosted migration checklist, Launch gates, Phase 0: Naming and domain, Phase 10: Create `everlittle-dikichoetso`, Phase 11: Migrate `dikichoetso.com`, Phase 12: Operations, privacy, and release readiness, Phase 1: Deployment-mode foundation (+8 more)
 
 ### Community 177 - "Everlittle preliminary trademark knockout search"
-Cohesion: 0.15
-Nodes (12): EverLittle 3D, United States, Everlittle Baby domain, EverLittle Co., United States-facing marketplace use, Everlittle, India, Everlittle preliminary trademark knockout search, Material commercial uses found, Practical domain decision, Preliminary assessment (+4 more)
+Cohesion: 0.14
+Nodes (13): EverLittle 3D, United States, Everlittle Baby domain, EverLittle Co., United States-facing marketplace use, Everlittle, India, Everlittle preliminary trademark knockout search, Material commercial uses found, Namespace screening update on 2026-08-16 Asia/Kolkata, Practical domain decision (+5 more)
 
 ### Community 178 - "invitation-email.ts"
 Cohesion: 0.43
@@ -350,8 +351,12 @@ Nodes (7): authClient, Draft, Onboarding(), responseMessage(), Route, sections, 
 Cohesion: 0.36
 Nodes (10): audienceLabel(), ChildView(), formatMemoryDate(), isDemoMemory(), kindLabel(), memoryIcon(), MemoryMedia(), MemoryRow() (+2 more)
 
+### Community 184 - "Everlittle landing design direction"
+Cohesion: 0.33
+Nodes (5): Design bible, Everlittle landing design direction, Generation prompt spine, Mobile sequence, Web sequence
+
 ## Knowledge Gaps
-- **1072 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1067 more)
+- **1077 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1072 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **145 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -360,12 +365,12 @@ _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `URLSearchParams` connect `URLSearchParams` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Why does `Console` connect `Console` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.024) - this node is a cross-community bridge._
 - **Why does `Container` connect `Container` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `D1PreparedStatement` connect `D1PreparedStatement` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.027) - this node is a cross-community bridge._
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1072 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1077 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0023446658851113715 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**

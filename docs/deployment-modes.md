@@ -47,13 +47,13 @@ Self-hosted mode currently:
 Application code should consume semantic capabilities from `src/lib/deployment.ts` rather than
 checking the raw environment variable in components or route handlers.
 
-| Capability | Hosted | Self-hosted |
-| --- | --- | --- |
-| `allowsPublicSignup` | yes | no |
-| `allowsInitialOwnerBootstrap` | no | yes |
-| `supportsMultipleArchives` | yes | no |
-| `showsMarketingSite` | yes | no |
-| `requiresBilling` | yes | no |
+| Capability                    | Hosted | Self-hosted |
+| ----------------------------- | ------ | ----------- |
+| `allowsPublicSignup`          | yes    | no          |
+| `allowsInitialOwnerBootstrap` | no     | yes         |
+| `supportsMultipleArchives`    | yes    | no          |
+| `showsMarketingSite`          | yes    | no          |
+| `requiresBilling`             | yes    | no          |
 
 ## Runtime validation
 
