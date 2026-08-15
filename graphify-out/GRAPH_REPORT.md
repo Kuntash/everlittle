@@ -1,7 +1,7 @@
 # Graph Report - everlittle  (2026-08-16)
 
 ## Corpus Check
-- 70 files · ~1,663,041 words
+- 70 files · ~1,663,137 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c53f79d5`
+- Built from commit: `9770e24d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -198,7 +198,7 @@
 - apply-migrations.ts
 - migration-upgrade.test.ts
 - Child access security
-- @fontsource-variable/cormorant-garamond
+- @fontsource-variable/inter
 - auth-email.ts
 
 ## God Nodes (most connected - your core abstractions)
@@ -260,7 +260,7 @@ Nodes (24): devDependencies, vite-plus, engines, node, license, name, packageMan
 
 ### Community 7 - "dependencies"
 Cohesion: 0.09
-Nodes (23): dependencies, better-auth, @better-auth/passkey, @everlittle/domain, @everlittle/ui, @fontsource-variable/inter, lucide-react, react (+15 more)
+Nodes (23): dependencies, better-auth, @better-auth/passkey, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, lucide-react, react (+15 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10

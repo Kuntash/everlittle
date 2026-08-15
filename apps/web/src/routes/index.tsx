@@ -36,7 +36,29 @@ import { Brand } from "@/components/brand";
 import { authClient } from "@/lib/auth-client";
 import { MarketingHome } from "@/components/marketing-home";
 
-export const Route = createFileRoute("/")({ component: Everlittle });
+export const Route = createFileRoute("/")({
+  component: Everlittle,
+  head: () => ({
+    links: [{ href: "/", rel: "canonical" }],
+    meta: [
+      { title: "Everlittle — Memories to grow into" },
+      {
+        name: "description",
+        content:
+          "A private family archive for photographs, voices, everyday stories, and letters for the future.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:title", content: "Everlittle — Memories to grow into" },
+      {
+        property: "og:description",
+        content: "Keep the little things in a private family archive your child can grow into.",
+      },
+      { property: "og:image", content: "/marketing/family-album.jpg" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "robots", content: "index,follow" },
+    ],
+  }),
+});
 
 export type PlatformState = {
   allowsPublicSignup: boolean;

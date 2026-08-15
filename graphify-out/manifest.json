@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786823537.5538363,
-    "ast_hash": "b605d50b44073ac2904d1e8c9cd5eb2c",
+    "mtime": 1786823647.5895975,
+    "ast_hash": "4deb4c27b9d8129f6c1f18ddedd73719",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786823537.554274,
-    "ast_hash": "b619b5813ea89025ffca653d446d177e",
+    "mtime": 1786823647.5899413,
+    "ast_hash": "d844d2b6163e04891dd5ee1b291e2475",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {

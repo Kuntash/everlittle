@@ -133,7 +133,7 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [x] Make unauthorized family routes return a privacy-preserving response.
 - [x] Store the last active family without making it an authorization source.
 - [x] Ensure installed PWA launches restore a valid family route.
-- [ ] Add canonical metadata and social preview images for public pages only.
+- [x] Add canonical metadata and social preview images for public pages only.
 - [x] Prevent authenticated archive pages from being indexed or broadly cached.
 
 ## Phase 8: Landing page and product presentation
