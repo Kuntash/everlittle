@@ -345,6 +345,19 @@ export function AccessScreen({
     setNotice("If that email belongs to an account, a private reset link is on its way.");
   }
 
+  async function signInWithPasskey() {
+    setError("");
+    setNotice("");
+    setSubmitting(true);
+    const result = await authClient.signIn.passkey();
+    setSubmitting(false);
+    if (result?.error) {
+      setError(result.error.message ?? "That passkey could not sign you in.");
+      return;
+    }
+    window.location.assign("/");
+  }
+
   return (
     <main className="access-shell">
       <section className="access-story" aria-labelledby="access-heading">
@@ -540,17 +553,27 @@ export function AccessScreen({
                 </form>
               )}
               {mode === "sign-in" && !recovering ? (
-                <button
-                  className="text-button"
-                  onClick={() => {
-                    setRecovering(true);
-                    setError("");
-                    setNotice("");
-                  }}
-                  type="button"
-                >
-                  Forgot your password?
-                </button>
+                <div className="auth-alternatives">
+                  <button
+                    className="soft-button"
+                    disabled={submitting}
+                    onClick={() => void signInWithPasskey()}
+                    type="button"
+                  >
+                    <LockKeyhole size={16} /> Sign in with a passkey
+                  </button>
+                  <button
+                    className="text-button"
+                    onClick={() => {
+                      setRecovering(true);
+                      setError("");
+                      setNotice("");
+                    }}
+                    type="button"
+                  >
+                    Forgot your password?
+                  </button>
+                </div>
               ) : null}
               {recovering ? (
                 <button
@@ -2726,6 +2749,8 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
           )}
         </section>
 
+        {canEditChild ? <AccountSecurity /> : null}
+
         {isOwner ? (
           <section className="settings-card invite-card">
             <div className="settings-heading">
@@ -2831,6 +2856,206 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
         ) : null}
       </div>
     </div>
+  );
+}
+
+type ManagedPasskey = { createdAt?: string | Date | null; id: string; name?: string | null };
+
+function AccountSecurity() {
+  const session = authClient.useSession();
+  const twoFactorEnabled = Boolean(session.data?.user.twoFactorEnabled);
+  const [passkeys, setPasskeys] = useState<ManagedPasskey[]>([]);
+  const [password, setPassword] = useState("");
+  const [totpCode, setTotpCode] = useState("");
+  const [totpUri, setTotpUri] = useState("");
+  const [backupCodes, setBackupCodes] = useState<string[]>([]);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const refreshPasskeys = useCallback(async () => {
+    const result = await authClient.passkey.listUserPasskeys();
+    if (!result.error) setPasskeys((result.data ?? []) as ManagedPasskey[]);
+  }, []);
+
+  useEffect(() => {
+    void refreshPasskeys();
+  }, [refreshPasskeys]);
+
+  async function addPasskey() {
+    setBusy(true);
+    setError("");
+    setMessage("");
+    const result = await authClient.passkey.addPasskey({ name: "Everlittle passkey" });
+    setBusy(false);
+    if (result?.error) {
+      setError(result.error.message ?? "The passkey could not be added.");
+      return;
+    }
+    setMessage("Passkey added. You can now use it from the sign-in screen.");
+    await refreshPasskeys();
+  }
+
+  async function removePasskey(id: string) {
+    setError("");
+    const result = await authClient.passkey.deletePasskey({ id });
+    if (result.error) {
+      setError(result.error.message ?? "The passkey could not be removed.");
+      return;
+    }
+    setMessage("Passkey removed.");
+    await refreshPasskeys();
+  }
+
+  async function beginTwoFactor(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusy(true);
+    setError("");
+    setMessage("");
+    const result = await authClient.twoFactor.enable({ issuer: "Everlittle", password });
+    setBusy(false);
+    if (result.error) {
+      setError(result.error.message ?? "Two-factor setup could not begin.");
+      return;
+    }
+    setTotpUri(result.data.totpURI);
+    setBackupCodes(result.data.backupCodes);
+    setPassword("");
+  }
+
+  async function confirmTwoFactor(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setBusy(true);
+    setError("");
+    const result = await authClient.twoFactor.verifyTotp({ code: totpCode, trustDevice: true });
+    setBusy(false);
+    if (result.error) {
+      setError(result.error.message ?? "That authenticator code was not accepted.");
+      return;
+    }
+    setTotpCode("");
+    setTotpUri("");
+    setMessage("Two-factor authentication is now on. Save the backup codes somewhere private.");
+    await session.refetch();
+  }
+
+  async function disableTwoFactor(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!confirm("Turn off two-factor authentication for your account?")) return;
+    setBusy(true);
+    setError("");
+    const result = await authClient.twoFactor.disable({ password });
+    setBusy(false);
+    if (result.error) {
+      setError(result.error.message ?? "Two-factor authentication could not be turned off.");
+      return;
+    }
+    setPassword("");
+    setBackupCodes([]);
+    setMessage("Two-factor authentication is off.");
+    await session.refetch();
+  }
+
+  return (
+    <section className="settings-card account-security-card">
+      <div className="settings-heading">
+        <span>
+          <ShieldCheck />
+        </span>
+        <div>
+          <p className="eyebrow">Your account</p>
+          <h2>Sign-in security</h2>
+        </div>
+      </div>
+      <p className="card-intro">
+        Passkeys resist phishing. An authenticator code adds protection when you use your password.
+      </p>
+      {message ? <p className="status-message">{message}</p> : null}
+      {error ? <p className="form-error">{error}</p> : null}
+
+      <div className="security-method">
+        <div>
+          <strong>Passkeys</strong>
+          <small>{passkeys.length ? `${passkeys.length} registered` : "None registered yet"}</small>
+        </div>
+        <button
+          className="soft-button"
+          disabled={busy}
+          onClick={() => void addPasskey()}
+          type="button"
+        >
+          Add this device
+        </button>
+      </div>
+      {passkeys.map((item) => (
+        <div className="passkey-row" key={item.id}>
+          <span>{item.name || "Passkey"}</span>
+          <button onClick={() => void removePasskey(item.id)} type="button">
+            Remove
+          </button>
+        </div>
+      ))}
+
+      <div className="security-method">
+        <div>
+          <strong>Authenticator app</strong>
+          <small>
+            {twoFactorEnabled ? "Two-factor authentication is on" : "Optional extra step"}
+          </small>
+        </div>
+      </div>
+      {totpUri ? (
+        <form className="settings-form" onSubmit={confirmTwoFactor}>
+          <p className="field-note">
+            Open this setup link in your authenticator, then enter its six-digit code.
+          </p>
+          <a className="text-button" href={totpUri}>
+            Open authenticator setup
+          </a>
+          <label>
+            Authenticator code
+            <input
+              autoComplete="one-time-code"
+              inputMode="numeric"
+              maxLength={6}
+              onChange={(event) => setTotpCode(event.target.value.replace(/\D/g, ""))}
+              pattern="[0-9]{6}"
+              required
+              value={totpCode}
+            />
+          </label>
+          <button className="soft-button" disabled={busy || totpCode.length !== 6} type="submit">
+            Confirm and turn on
+          </button>
+        </form>
+      ) : (
+        <form
+          className="settings-form security-password-form"
+          onSubmit={twoFactorEnabled ? disableTwoFactor : beginTwoFactor}
+        >
+          <label>
+            Current password
+            <input
+              autoComplete="current-password"
+              minLength={10}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              type="password"
+              value={password}
+            />
+          </label>
+          <button className="soft-button" disabled={busy || password.length < 10} type="submit">
+            {twoFactorEnabled ? "Turn off two-factor" : "Set up authenticator"}
+          </button>
+        </form>
+      )}
+      {backupCodes.length ? (
+        <div className="backup-codes">
+          <strong>Save these one-time backup codes</strong>
+          <code>{backupCodes.join("\n")}</code>
+        </div>
+      ) : null}
+    </section>
   );
 }
 

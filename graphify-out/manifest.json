@@ -1,7 +1,7 @@
 {
   "apps/web/package.json": {
-    "mtime": 1786821676.0667279,
-    "ast_hash": "4c557792e74c82612231757dfd8d8021",
+    "mtime": 1786823019.0379007,
+    "ast_hash": "674a3f453c6bac7db52f64b9bcfa7d3a",
     "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
@@ -20,13 +20,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
-    "mtime": 1785948599.4791975,
-    "ast_hash": "7e5ffd0852aee321277975c6e0ef14a2",
-    "semantic_hash": "7e5ffd0852aee321277975c6e0ef14a2"
+    "mtime": 1786823078.3759367,
+    "ast_hash": "b91496c9431f2ffa2c54d8f7c477f53e",
+    "semantic_hash": ""
   },
   "apps/web/src/lib/auth.ts": {
-    "mtime": 1786822705.6451046,
-    "ast_hash": "b58e872aef2623b8a06e5f7d443ebf69",
+    "mtime": 1786823078.3756604,
+    "ast_hash": "ffffafc4afbe4999c5f763b4202ef2e1",
     "semantic_hash": ""
   },
   "apps/web/src/lib/runtime-env.ts": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786822805.2322416,
-    "ast_hash": "b31187a66500d9bdb6d3777a98345c15",
+    "mtime": 1786823194.6189773,
+    "ast_hash": "c91ab158343e8be632884c7c8a8f8b60",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1786821856.1804228,
-    "ast_hash": "2dd5dbe3df8e707498eef5819755a446",
+    "mtime": 1786823194.6563332,
+    "ast_hash": "d780e55ea732c486542d41dd72f3f39d",
     "semantic_hash": ""
   },
   "apps/web/public/apple-touch-icon.png": {
@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786822791.3718543,
-    "ast_hash": "389ddaab052e7826a2b1f09e3b80f233",
+    "mtime": 1786823182.061269,
+    "ast_hash": "a7aea1972760bfdbba58402488b2f165",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -475,13 +475,13 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1786822820.7340472,
-    "ast_hash": "ccd786a7344bd029372698b06e19d165",
+    "mtime": 1786823194.6156776,
+    "ast_hash": "a43eb88eb07ac11ff502814fd2620544",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
-    "mtime": 1786822018.1633925,
-    "ast_hash": "770c76913d7d1d49b941e2b56cedf888",
+    "mtime": 1786823218.174261,
+    "ast_hash": "e3311cf8bf80b453b63788cb09e11db2",
     "semantic_hash": ""
   },
   "apps/web/test/tenant-isolation.test.ts": {
@@ -527,6 +527,21 @@
   "apps/web/test/auth-email.test.ts": {
     "mtime": 1786822791.371102,
     "ast_hash": "7d8e15fb6eadb32a82170296422d7bb7",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0011_adult_account_security.sql": {
+    "mtime": 1786823078.376086,
+    "ast_hash": "8c70ec3e59db3e5f1a06d221e7844754",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/two-factor.tsx": {
+    "mtime": 1786823148.7103884,
+    "ast_hash": "92f0f80b78d416f1ac8b4c7be91c5ff8",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/two-factor.tsx": {
+    "mtime": 1786823148.710635,
+    "ast_hash": "afe2b3f84decaedf39477c8f2cd86705",
     "semantic_hash": ""
   }
 }

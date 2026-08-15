@@ -23,6 +23,7 @@
     "db:migrate:hosted": "wrangler d1 migrations apply DB --remote --env hosted"
   },
   "dependencies": {
+    "@better-auth/passkey": "catalog:",
     "@everlittle/domain": "workspace:*",
     "@everlittle/ui": "workspace:*",
     "@fontsource-variable/cormorant-garamond": "^5.2.6",

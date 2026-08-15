@@ -416,6 +416,41 @@ describe("adult account recovery", () => {
   });
 });
 
+describe("optional adult account factors", () => {
+  it("initializes TOTP enrollment without enabling it before verification", async () => {
+    const response = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/auth/two-factor/enable`, {
+        body: JSON.stringify({ issuer: "Everlittle", password: PASSWORD }),
+        headers: {
+          "content-type": "application/json",
+          cookie: familyA.cookie,
+          origin: ORIGIN,
+        },
+        method: "POST",
+      }),
+    );
+    expect(response.status).toBe(200);
+    const payload = (await response.json()) as { backupCodes: string[]; totpURI: string };
+    expect(payload.totpURI).toMatch(/^otpauth:\/\/totp\//);
+    expect(payload.backupCodes.length).toBeGreaterThan(0);
+
+    const row = await env.DB.prepare('SELECT verified FROM "twoFactor" WHERE "userId" = ?')
+      .bind(familyA.userId)
+      .first<{ verified: number }>();
+    expect(row?.verified).toBe(0);
+  });
+
+  it("lists an authenticated user's passkeys", async () => {
+    const response = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/auth/passkey/list-user-passkeys`, {
+        headers: { cookie: familyA.cookie },
+      }),
+    );
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual([]);
+  });
+});
+
 async function createFamily(email: string, name: string, slug: string): Promise<TestFamily> {
   const account = await signUpAccount(email, name);
 

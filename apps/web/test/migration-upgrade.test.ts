@@ -8,8 +8,12 @@ const testEnv = env as typeof env & {
 };
 
 it("backfills tenant ownership for existing capsules and child sessions", async () => {
-  const earlierMigrations = testEnv.TEST_MIGRATIONS.slice(0, -1);
-  const isolationMigration = testEnv.TEST_MIGRATIONS.slice(-1);
+  const isolationIndex = testEnv.TEST_MIGRATIONS.findIndex((migration) =>
+    migration.name.includes("0010_tenant_isolation"),
+  );
+  expect(isolationIndex).toBeGreaterThan(0);
+  const earlierMigrations = testEnv.TEST_MIGRATIONS.slice(0, isolationIndex);
+  const isolationAndLaterMigrations = testEnv.TEST_MIGRATIONS.slice(isolationIndex);
   await applyD1Migrations(testEnv.UPGRADE_DB, earlierMigrations);
 
   await testEnv.UPGRADE_DB.batch([
@@ -30,7 +34,7 @@ it("backfills tenant ownership for existing capsules and child sessions", async 
     ),
   ]);
 
-  await applyD1Migrations(testEnv.UPGRADE_DB, isolationMigration);
+  await applyD1Migrations(testEnv.UPGRADE_DB, isolationAndLaterMigrations);
 
   const capsule = await testEnv.UPGRADE_DB.prepare(
     "SELECT archive_id AS archiveId FROM time_capsule WHERE id = 'capsule'",

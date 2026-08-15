@@ -4093,6 +4093,82 @@ h3,
   justify-content: center;
   margin: 0;
 }
+.auth-alternatives {
+  display: grid;
+  gap: 0.45rem;
+}
+.auth-alternatives .soft-button {
+  justify-content: center;
+  margin: 0.2rem 0 0;
+}
+.account-security-card {
+  align-content: start;
+}
+.security-method {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+.security-method strong,
+.security-method small {
+  display: block;
+}
+.security-method strong {
+  color: var(--forest);
+  font-size: 0.78rem;
+}
+.security-method small {
+  color: var(--muted-ink);
+  font-size: 0.65rem;
+  margin-top: 0.2rem;
+}
+.security-method .soft-button {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.passkey-row {
+  align-items: center;
+  background: rgb(76 119 96 / 7%);
+  border-radius: 0.65rem;
+  display: flex;
+  font-size: 0.68rem;
+  justify-content: space-between;
+  margin-top: 0.45rem;
+  padding: 0.6rem 0.7rem;
+}
+.passkey-row button {
+  background: transparent;
+  border: 0;
+  color: #8b402c;
+  cursor: pointer;
+  font: inherit;
+}
+.security-password-form {
+  margin-top: 0.8rem;
+}
+.backup-codes {
+  background: rgb(183 139 66 / 10%);
+  border: 1px solid rgb(183 139 66 / 20%);
+  border-radius: var(--radius-sm);
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+}
+.backup-codes strong {
+  color: var(--forest);
+  font-size: 0.72rem;
+}
+.backup-codes code {
+  color: var(--ink);
+  font-size: 0.7rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
 .child-access-test {
   background: rgb(76 119 96 / 9%);
   border: 1px solid rgb(76 119 96 / 16%);
