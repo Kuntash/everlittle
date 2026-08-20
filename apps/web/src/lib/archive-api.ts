@@ -42,12 +42,17 @@ const onboardingDraftSchema = z.object({
     .regex(/^\d{4}-\d{2}-\d{2}$/)
     .optional(),
   timezone: z.string().trim().min(1).max(100).optional(),
+  profileKind: z.enum(["child", "vault"]).optional(),
 });
 const onboardingCompletionSchema = z.object({
   familyName: z.string().trim().min(1).max(100),
   familySlug: familySlugSchema,
-  childName: z.string().trim().min(1).max(100),
-  childBirthDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
+  profileKind: z.enum(["child", "vault"]).optional().default("child"),
+  childName: z.string().trim().min(1).max(100).optional(),
+  childBirthDate: z
+    .string()
+    .regex(/^\d{4}-\d{2}-\d{2}$/)
+    .optional(),
   timezone: z.string().trim().min(1).max(100),
   childPin: z.union([z.literal(""), z.string().regex(/^\d{6}$/)]),
 });
@@ -422,6 +427,7 @@ async function getArchiveState(request: Request): Promise<Response> {
     database
       .prepare(
         `SELECT id, slug, display_name AS displayName, birth_date AS birthDate,
+                profile_kind AS profileKind,
                 avatar_asset_key AS avatarAssetKey,
                 CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS childAccessEnabled,
                 (SELECT MAX(COALESCE(cas.last_seen_at, cas.created_at))
@@ -537,7 +543,8 @@ async function getOnboarding(request: Request): Promise<Response> {
 
   const draft = await runtime.DB.prepare(
     `SELECT family_name AS familyName, family_slug AS familySlug,
-            child_name AS childName, child_birth_date AS childBirthDate, timezone
+            child_name AS childName, child_birth_date AS childBirthDate, timezone,
+            profile_kind AS profileKind
      FROM onboarding_draft WHERE user_id = ?`,
   )
     .bind(user.id)
@@ -547,6 +554,7 @@ async function getOnboarding(request: Request): Promise<Response> {
       childName: string | null;
       childBirthDate: string | null;
       timezone: string | null;
+      profileKind: "child" | "vault" | null;
     }>();
   return Response.json({ complete: false, draft: draft ?? null });
 }
@@ -563,7 +571,8 @@ async function saveOnboardingDraft(request: Request): Promise<Response> {
   }
   const current = await runtime.DB.prepare(
     `SELECT family_name AS familyName, family_slug AS familySlug,
-            child_name AS childName, child_birth_date AS childBirthDate, timezone
+            child_name AS childName, child_birth_date AS childBirthDate, timezone,
+            profile_kind AS profileKind
      FROM onboarding_draft WHERE user_id = ?`,
   )
     .bind(user.id)
@@ -571,14 +580,15 @@ async function saveOnboardingDraft(request: Request): Promise<Response> {
   const draft = { ...current, ...parsed.data };
   await runtime.DB.prepare(
     `INSERT INTO onboarding_draft
-       (user_id, family_name, family_slug, child_name, child_birth_date, timezone, updated_at)
-     VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+       (user_id, family_name, family_slug, child_name, child_birth_date, timezone, profile_kind, updated_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
      ON CONFLICT(user_id) DO UPDATE SET
        family_name = excluded.family_name,
        family_slug = excluded.family_slug,
        child_name = excluded.child_name,
        child_birth_date = excluded.child_birth_date,
        timezone = excluded.timezone,
+       profile_kind = excluded.profile_kind,
        updated_at = CURRENT_TIMESTAMP`,
   )
     .bind(
@@ -588,6 +598,7 @@ async function saveOnboardingDraft(request: Request): Promise<Response> {
       draft.childName ?? null,
       draft.childBirthDate ?? null,
       draft.timezone ?? null,
+      draft.profileKind ?? "child",
     )
     .run();
   return Response.json({ saved: true });
@@ -614,12 +625,14 @@ async function completeOnboarding(request: Request): Promise<Response> {
   const user = await getSessionUser(request);
   if (!user) return unauthorized();
   const parsed = onboardingCompletionSchema.safeParse(await readJson(request));
-  if (
-    !parsed.success ||
-    !isValidTimezone(parsed.data.timezone) ||
-    !isValidBirthDate(parsed.data.childBirthDate)
-  ) {
-    return Response.json({ error: "Check your family and child details." }, { status: 400 });
+  const childDetailsInvalid =
+    parsed.success &&
+    parsed.data.profileKind === "child" &&
+    (!parsed.data.childName ||
+      !parsed.data.childBirthDate ||
+      !isValidBirthDate(parsed.data.childBirthDate));
+  if (!parsed.success || !isValidTimezone(parsed.data.timezone) || childDetailsInvalid) {
+    return Response.json({ error: "Check your archive details and try again." }, { status: 400 });
   }
   const existingMembership = await runtime.DB.prepare(
     "SELECT 1 FROM family_member WHERE user_id = ? LIMIT 1",
@@ -638,14 +651,20 @@ async function completeOnboarding(request: Request): Promise<Response> {
 
   const archiveId = crypto.randomUUID();
   const childId = crypto.randomUUID();
+  const profileName = parsed.data.profileKind === "vault" ? "Our memories" : parsed.data.childName!;
+  const profileBirthDate =
+    parsed.data.profileKind === "vault"
+      ? new Date().toISOString().slice(0, 10)
+      : parsed.data.childBirthDate!;
   const childSlug = await uniqueChildSlug(
     runtime.DB,
     archiveId,
-    slugify(parsed.data.childName, `child-${childId.slice(0, 8)}`),
+    slugify(profileName, `child-${childId.slice(0, 8)}`),
   );
-  const pinHash = parsed.data.childPin
-    ? await hashChildPin(runtime.CHILD_PIN_PEPPER, parsed.data.childPin)
-    : null;
+  const pinHash =
+    parsed.data.profileKind === "child" && parsed.data.childPin
+      ? await hashChildPin(runtime.CHILD_PIN_PEPPER, parsed.data.childPin)
+      : null;
   try {
     await runtime.DB.batch([
       runtime.DB.prepare(
@@ -656,15 +675,16 @@ async function completeOnboarding(request: Request): Promise<Response> {
       ).bind(crypto.randomUUID(), archiveId, user.id),
       runtime.DB.prepare(
         `INSERT INTO child_profile
-          (id, archive_id, slug, display_name, birth_date, access_pin_hash)
-         VALUES (?, ?, ?, ?, ?, ?)`,
+          (id, archive_id, slug, display_name, birth_date, access_pin_hash, profile_kind)
+         VALUES (?, ?, ?, ?, ?, ?, ?)`,
       ).bind(
         childId,
         archiveId,
         childSlug,
-        parsed.data.childName,
-        parsed.data.childBirthDate,
+        profileName,
+        profileBirthDate,
         pinHash,
+        parsed.data.profileKind,
       ),
       runtime.DB.prepare("DELETE FROM onboarding_draft WHERE user_id = ?").bind(user.id),
     ]);

@@ -1,7 +1,5 @@
 import { betterAuth } from "better-auth";
-import { twoFactor } from "better-auth/plugins";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
-import { passkey } from "@better-auth/passkey";
 
 type AuthOptions = {
   sendAuthEmail: (input: {
@@ -58,10 +56,6 @@ export function createAuth({
       cookiePrefix: "everlittle",
       useSecureCookies: baseURL.startsWith("https://"),
     },
-    plugins: [
-      twoFactor({ issuer: "Everlittle" }),
-      passkey({ origin: baseURL, rpID: new URL(baseURL).hostname, rpName: "Everlittle" }),
-      tanstackStartCookies(),
-    ],
+    plugins: [tanstackStartCookies()],
   });
 }

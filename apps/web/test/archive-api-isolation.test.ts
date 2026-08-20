@@ -416,38 +416,80 @@ describe("adult account recovery", () => {
   });
 });
 
-describe("optional adult account factors", () => {
-  it("initializes TOTP enrollment without enabling it before verification", async () => {
+describe("onboarding archive focus", () => {
+  it("creates child access when a PIN is enabled during onboarding", async () => {
+    const account = await signUpAccount("onboarding-pin@example.com", "PIN Parent");
     const response = await exports.default.fetch(
-      new Request(`${ORIGIN}/api/auth/two-factor/enable`, {
-        body: JSON.stringify({ issuer: "Everlittle", password: PASSWORD }),
-        headers: {
-          "content-type": "application/json",
-          cookie: familyA.cookie,
-          origin: ORIGIN,
-        },
+      new Request(`${ORIGIN}/api/onboarding`, {
+        body: JSON.stringify({
+          childBirthDate: "2021-04-05",
+          childName: "Mina",
+          childPin: "482913",
+          familyName: "PIN Family",
+          familySlug: "pin-family",
+          profileKind: "child",
+          timezone: "UTC",
+        }),
+        headers: { "content-type": "application/json", cookie: account.cookie, origin: ORIGIN },
         method: "POST",
       }),
     );
-    expect(response.status).toBe(200);
-    const payload = (await response.json()) as { backupCodes: string[]; totpURI: string };
-    expect(payload.totpURI).toMatch(/^otpauth:\/\/totp\//);
-    expect(payload.backupCodes.length).toBeGreaterThan(0);
+    expect(response.status).toBe(201);
 
-    const row = await env.DB.prepare('SELECT verified FROM "twoFactor" WHERE "userId" = ?')
-      .bind(familyA.userId)
-      .first<{ verified: number }>();
-    expect(row?.verified).toBe(0);
+    const profile = await env.DB.prepare(
+      `SELECT access_pin_hash AS pinHash, profile_kind AS profileKind
+       FROM child_profile WHERE archive_id = (
+         SELECT archive_id FROM family_member WHERE user_id = ? LIMIT 1
+       )`,
+    )
+      .bind(account.userId)
+      .first<{ pinHash: string; profileKind: string }>();
+    expect(profile?.profileKind).toBe("child");
+    expect(profile?.pinHash).toMatch(/^pbkdf2-sha256\$120000\$/);
   });
 
-  it("lists an authenticated user's passkeys", async () => {
+  it("creates a usable memory vault without child details", async () => {
+    const account = await signUpAccount("couple-vault@example.com", "Vault Owner");
     const response = await exports.default.fetch(
-      new Request(`${ORIGIN}/api/auth/passkey/list-user-passkeys`, {
-        headers: { cookie: familyA.cookie },
+      new Request(`${ORIGIN}/api/onboarding`, {
+        body: JSON.stringify({
+          childPin: "",
+          familyName: "Our Years",
+          familySlug: "our-years",
+          profileKind: "vault",
+          timezone: "UTC",
+        }),
+        headers: { "content-type": "application/json", cookie: account.cookie, origin: ORIGIN },
+        method: "POST",
       }),
     );
-    expect(response.status).toBe(200);
-    expect(await response.json()).toEqual([]);
+    expect(response.status).toBe(201);
+
+    const archiveResponse = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/families/our-years/archive`, {
+        headers: { cookie: account.cookie },
+      }),
+    );
+    expect(archiveResponse.status).toBe(200);
+    const archive = (await archiveResponse.json()) as {
+      children: Array<{ id: string; profileKind: string }>;
+    };
+    expect(archive.children[0]?.profileKind).toBe("vault");
+
+    const memory = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/families/our-years/archive/memories`, {
+        body: JSON.stringify({
+          audience: "family",
+          childId: archive.children[0]?.id,
+          happenedAt: new Date().toISOString(),
+          kind: "story",
+          title: "The beginning",
+        }),
+        headers: { "content-type": "application/json", cookie: account.cookie, origin: ORIGIN },
+        method: "POST",
+      }),
+    );
+    expect(memory.status).toBe(201);
   });
 });
 

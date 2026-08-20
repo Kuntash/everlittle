@@ -14,9 +14,10 @@ type Draft = {
   childName: string | null;
   childBirthDate: string | null;
   timezone: string | null;
+  profileKind?: "child" | "vault" | null;
 };
 
-const sections = ["Your family", "Their story", "Privacy"] as const;
+const sections = ["Your archive", "Memory focus", "Privacy"] as const;
 
 function Onboarding() {
   const session = authClient.useSession();
@@ -27,6 +28,7 @@ function Onboarding() {
   const [slugAvailable, setSlugAvailable] = useState<boolean | null>(null);
   const [childName, setChildName] = useState("");
   const [childBirthDate, setChildBirthDate] = useState("");
+  const [profileKind, setProfileKind] = useState<"child" | "vault">("child");
   const [timezone, setTimezone] = useState(
     () => Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
   );
@@ -60,10 +62,16 @@ function Onboarding() {
           setSlugEdited(Boolean(state.draft.familySlug));
           setChildName(state.draft.childName ?? "");
           setChildBirthDate(state.draft.childBirthDate ?? "");
+          setProfileKind(state.draft.profileKind ?? "child");
+          if (state.draft.profileKind === "vault") setEnablePin(false);
           setTimezone(
             state.draft.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone ?? "UTC",
           );
-          if (state.draft.childName && state.draft.childBirthDate) setSection(2);
+          if (
+            state.draft.profileKind === "vault" ||
+            (state.draft.childName && state.draft.childBirthDate)
+          )
+            setSection(2);
           else if (state.draft.familyName && state.draft.familySlug) setSection(1);
         }
       })
@@ -109,6 +117,7 @@ function Onboarding() {
         familySlug: familySlug || undefined,
         childName: childName || undefined,
         childBirthDate: childBirthDate || undefined,
+        profileKind,
         timezone: timezone || undefined,
       }),
     });
@@ -131,10 +140,11 @@ function Onboarding() {
       body: JSON.stringify({
         familyName,
         familySlug,
-        childName,
-        childBirthDate,
+        profileKind,
+        childName: profileKind === "child" ? childName : undefined,
+        childBirthDate: profileKind === "child" ? childBirthDate : undefined,
         timezone,
-        childPin: enablePin ? childPin : "",
+        childPin: profileKind === "child" && enablePin ? childPin : "",
       }),
     });
     if (!response.ok) {
@@ -225,7 +235,7 @@ function Onboarding() {
             onClick={() => void saveDraft(1)}
             type="button"
           >
-            {saving ? "Saving…" : "Add a child"} <ArrowRight size={18} />
+            {saving ? "Saving…" : "Choose what to keep"} <ArrowRight size={18} />
           </button>
         </section>
       ) : null}
@@ -235,28 +245,69 @@ function Onboarding() {
           <button className="onboarding-back" onClick={() => setSection(0)} type="button">
             <ArrowLeft size={15} /> Family details
           </button>
-          <p className="eyebrow">The first story</p>
-          <h1>Who are you saving memories for?</h1>
-          <p className="onboarding-intro">You can add siblings and other children later.</p>
+          <p className="eyebrow">Make it yours</p>
+          <h1>What kind of archive are you beginning?</h1>
+          <p className="onboarding-intro">
+            Everlittle can hold a child’s story or simply be a private memory vault for the two of
+            you. You can add a child later.
+          </p>
           <div className="onboarding-fields">
-            <label>
-              Child’s name
+            <label className="onboarding-choice">
               <input
-                autoFocus
-                onChange={(event) => setChildName(event.target.value)}
-                placeholder="Their name"
-                value={childName}
+                checked={profileKind === "vault"}
+                name="profile-kind"
+                onChange={() => {
+                  setProfileKind("vault");
+                  setEnablePin(false);
+                }}
+                type="radio"
               />
+              <span>
+                <strong>Our memory vault</strong>
+                <small>
+                  A shared place for the moments, trips, notes, and years you keep together.
+                </small>
+              </span>
+              <HeartIcon />
             </label>
-            <label>
-              Date of birth
+            <label className="onboarding-choice">
               <input
-                max={new Date().toISOString().slice(0, 10)}
-                onChange={(event) => setChildBirthDate(event.target.value)}
-                type="date"
-                value={childBirthDate}
+                checked={profileKind === "child"}
+                name="profile-kind"
+                onChange={() => {
+                  setProfileKind("child");
+                  setEnablePin(true);
+                }}
+                type="radio"
               />
+              <span>
+                <strong>A child’s story</strong>
+                <small>Keep memories for a child to explore now or grow into later.</small>
+              </span>
+              <ChildIcon />
             </label>
+            {profileKind === "child" ? (
+              <>
+                <label>
+                  Child’s name
+                  <input
+                    autoFocus
+                    onChange={(event) => setChildName(event.target.value)}
+                    placeholder="Their name"
+                    value={childName}
+                  />
+                </label>
+                <label>
+                  Date of birth
+                  <input
+                    max={new Date().toISOString().slice(0, 10)}
+                    onChange={(event) => setChildBirthDate(event.target.value)}
+                    type="date"
+                    value={childBirthDate}
+                  />
+                </label>
+              </>
+            ) : null}
           </div>
           {error ? (
             <p className="form-error" role="alert">
@@ -265,7 +316,7 @@ function Onboarding() {
           ) : null}
           <button
             className="primary-button"
-            disabled={saving || !childName || !childBirthDate}
+            disabled={saving || (profileKind === "child" && (!childName || !childBirthDate))}
             onClick={() => void saveDraft(2)}
             type="button"
           >
@@ -277,27 +328,35 @@ function Onboarding() {
       {section === 2 ? (
         <section className="onboarding-panel">
           <button className="onboarding-back" onClick={() => setSection(1)} type="button">
-            <ArrowLeft size={15} /> Child details
+            <ArrowLeft size={15} /> Memory focus
           </button>
           <p className="eyebrow">Private by default</p>
-          <h1>Choose how {childName || "your child"} enters</h1>
+          <h1>
+            {profileKind === "child"
+              ? `Choose how ${childName || "your child"} enters`
+              : "Set your archive privacy"}
+          </h1>
           <p className="onboarding-intro">
-            Adults sign in with email. A child can use a private six-digit PIN without an account.
+            {profileKind === "child"
+              ? "Adults sign in with email. A child can use a private six-digit PIN without an account."
+              : "Only invited adults can enter your memory vault. You can change sharing choices later."}
           </p>
           <form className="onboarding-fields" onSubmit={complete}>
-            <label className="onboarding-choice">
-              <input
-                checked={enablePin}
-                onChange={(event) => setEnablePin(event.target.checked)}
-                type="checkbox"
-              />
-              <span>
-                <strong>Enable child access</strong>
-                <small>Only memories shared with children will appear.</small>
-              </span>
-              <LockKeyhole size={20} />
-            </label>
-            {enablePin ? (
+            {profileKind === "child" ? (
+              <label className="onboarding-choice">
+                <input
+                  checked={enablePin}
+                  onChange={(event) => setEnablePin(event.target.checked)}
+                  type="checkbox"
+                />
+                <span>
+                  <strong>Enable child access</strong>
+                  <small>Only memories shared with children will appear.</small>
+                </span>
+                <LockKeyhole size={20} />
+              </label>
+            ) : null}
+            {profileKind === "child" && enablePin ? (
               <label>
                 {childName || "Child"}’s PIN
                 <input
@@ -334,7 +393,7 @@ function Onboarding() {
             ) : null}
             <button
               className="primary-button"
-              disabled={saving || (enablePin && childPin.length !== 6)}
+              disabled={saving || (profileKind === "child" && enablePin && childPin.length !== 6)}
               type="submit"
             >
               {saving ? "Creating your archive…" : "Create family archive"} <ArrowRight size={18} />
@@ -343,6 +402,22 @@ function Onboarding() {
         </section>
       ) : null}
     </OnboardingShell>
+  );
+}
+
+function HeartIcon() {
+  return (
+    <span aria-hidden="true" className="choice-symbol">
+      ♥
+    </span>
+  );
+}
+
+function ChildIcon() {
+  return (
+    <span aria-hidden="true" className="choice-symbol">
+      ✶
+    </span>
   );
 }
 

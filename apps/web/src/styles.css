@@ -458,7 +458,7 @@ h3,
   font-weight: 700;
   gap: 0.5rem;
 }
-.onboarding-fields input:not([type="checkbox"]) {
+.onboarding-fields input:not([type="checkbox"]):not([type="radio"]) {
   background: rgb(255 253 248 / 82%);
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
@@ -469,7 +469,7 @@ h3,
   padding: 0.8rem 0.9rem;
   width: 100%;
 }
-.onboarding-fields input:not([type="checkbox"]):focus {
+.onboarding-fields input:not([type="checkbox"]):not([type="radio"]):focus {
   border-color: var(--forest);
   box-shadow: 0 0 0 3px rgb(23 59 50 / 10%);
 }
@@ -549,6 +549,36 @@ h3,
 }
 .onboarding-choice > svg {
   color: var(--forest);
+}
+.onboarding-choice .choice-symbol {
+  color: var(--forest);
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.verification-sent {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.35rem;
+}
+.verification-sent h3,
+.verification-sent p {
+  margin: 0;
+}
+.verification-sent small {
+  color: var(--muted-ink);
+}
+.verification-sent-icon {
+  align-items: center;
+  background: rgb(64 112 80 / 12%);
+  border-radius: 999px;
+  color: var(--forest);
+  display: inline-flex;
+  height: 2.75rem;
+  justify-content: center;
+  width: 2.75rem;
 }
 .privacy-note {
   align-items: flex-start;
@@ -5032,9 +5062,15 @@ h3,
 .composer-scroll {
   min-height: 0;
   overscroll-behavior-y: contain;
+  overflow-x: clip;
   overflow-y: auto;
   scrollbar-gutter: stable;
   touch-action: pan-y;
+  width: 100%;
+}
+.composer-scroll > * {
+  max-width: 100%;
+  min-width: 0;
 }
 .composer-backdrop.is-closing {
   animation: sheet-backdrop-out 180ms var(--ease-leave) both;
@@ -5824,74 +5860,6 @@ h3,
 .auth-alternatives .soft-button {
   justify-content: center;
   margin: 0.2rem 0 0;
-}
-.account-security-card {
-  align-content: start;
-}
-.security-method {
-  align-items: center;
-  border-top: 1px solid var(--line);
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-  margin-top: 1rem;
-  padding-top: 1rem;
-}
-.security-method strong,
-.security-method small {
-  display: block;
-}
-.security-method strong {
-  color: var(--forest);
-  font-size: 0.78rem;
-}
-.security-method small {
-  color: var(--muted-ink);
-  font-size: 0.65rem;
-  margin-top: 0.2rem;
-}
-.security-method .soft-button {
-  flex: 0 0 auto;
-  margin: 0;
-}
-.passkey-row {
-  align-items: center;
-  background: rgb(76 119 96 / 7%);
-  border-radius: 0.65rem;
-  display: flex;
-  font-size: 0.68rem;
-  justify-content: space-between;
-  margin-top: 0.45rem;
-  padding: 0.6rem 0.7rem;
-}
-.passkey-row button {
-  background: transparent;
-  border: 0;
-  color: #8b402c;
-  cursor: pointer;
-  font: inherit;
-}
-.security-password-form {
-  margin-top: 0.8rem;
-}
-.backup-codes {
-  background: rgb(183 139 66 / 10%);
-  border: 1px solid rgb(183 139 66 / 20%);
-  border-radius: var(--radius-sm);
-  display: grid;
-  gap: 0.6rem;
-  margin-top: 0.8rem;
-  padding: 0.8rem;
-}
-.backup-codes strong {
-  color: var(--forest);
-  font-size: 0.72rem;
-}
-.backup-codes code {
-  color: var(--ink);
-  font-size: 0.7rem;
-  line-height: 1.7;
-  white-space: pre-wrap;
 }
 .child-access-test {
   background: rgb(76 119 96 / 9%);

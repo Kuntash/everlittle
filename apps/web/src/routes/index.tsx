@@ -98,6 +98,7 @@ type Child = {
   childAccessEnabled?: 0 | 1;
   childLastAccessAt?: string | null;
   childActiveDeviceCount?: number;
+  profileKind?: "child" | "vault";
 };
 type MemoryKind = "photo" | "story" | "voice" | "video" | "milestone" | "letter";
 type Memory = {
@@ -296,6 +297,7 @@ export function AccessScreen({
   const [email, setEmail] = useState(invitation?.email ?? "");
   const [password, setPassword] = useState("");
   const [recovering, setRecovering] = useState(false);
+  const [verificationEmail, setVerificationEmail] = useState("");
   const [notice, setNotice] = useState("");
   const [error, setError] = useState(
     inviteToken && !invitation ? "This invitation is invalid or has expired." : "",
@@ -334,7 +336,7 @@ export function AccessScreen({
     }
 
     if (mode === "setup" && allowsPublicSignup) {
-      setNotice(`We sent a verification link to ${email}. Open it to continue.`);
+      setVerificationEmail(email);
       setSubmitting(false);
       return;
     }
@@ -372,19 +374,6 @@ export function AccessScreen({
       return;
     }
     setNotice("If that email belongs to an account, a private reset link is on its way.");
-  }
-
-  async function signInWithPasskey() {
-    setError("");
-    setNotice("");
-    setSubmitting(true);
-    const result = await authClient.signIn.passkey();
-    setSubmitting(false);
-    if (result?.error) {
-      setError(result.error.message ?? "That passkey could not sign you in.");
-      return;
-    }
-    window.location.assign(requestedRedirect());
   }
 
   return (
@@ -499,7 +488,29 @@ export function AccessScreen({
               </p>
 
               {notice ? <p className="status-message">{notice}</p> : null}
-              {recovering ? (
+              {verificationEmail ? (
+                <div className="verification-sent" role="status">
+                  <span className="verification-sent-icon">
+                    <Check size={22} />
+                  </span>
+                  <h3>Check your inbox</h3>
+                  <p>
+                    We sent a verification email to <strong>{verificationEmail}</strong>. Open the
+                    link inside to confirm your address and begin your private archive.
+                  </p>
+                  <small>The link is valid for 24 hours. It may take a minute to arrive.</small>
+                  <button
+                    className="text-button"
+                    onClick={() => {
+                      setVerificationEmail("");
+                      setMode("sign-in");
+                    }}
+                    type="button"
+                  >
+                    Back to sign in
+                  </button>
+                </div>
+              ) : recovering ? (
                 <form onSubmit={requestRecovery}>
                   <label>
                     Email address
@@ -569,7 +580,9 @@ export function AccessScreen({
                     type="submit"
                   >
                     {submitting
-                      ? "Opening…"
+                      ? mode === "setup"
+                        ? "Sending verification email…"
+                        : "Signing in…"
                       : isInvitation
                         ? mode === "setup"
                           ? "Create account & join"
@@ -581,16 +594,8 @@ export function AccessScreen({
                   </button>
                 </form>
               )}
-              {mode === "sign-in" && !recovering ? (
+              {!verificationEmail && mode === "sign-in" && !recovering ? (
                 <div className="auth-alternatives">
-                  <button
-                    className="soft-button"
-                    disabled={submitting}
-                    onClick={() => void signInWithPasskey()}
-                    type="button"
-                  >
-                    <LockKeyhole size={16} /> Sign in with a passkey
-                  </button>
                   <button
                     className="text-button"
                     onClick={() => {
@@ -604,7 +609,7 @@ export function AccessScreen({
                   </button>
                 </div>
               ) : null}
-              {recovering ? (
+              {verificationEmail ? null : recovering ? (
                 <button
                   className="text-button"
                   onClick={() => {
@@ -629,7 +634,7 @@ export function AccessScreen({
                   {mode === "setup" ? "I already have an account" : "Create a family archive"}
                 </button>
               ) : null}
-              {!recovering && !isInvitation && childAccess?.enabled ? (
+              {!verificationEmail && !recovering && !isInvitation && childAccess?.enabled ? (
                 <div className="child-entrance">
                   <span>or</span>
                   <button
@@ -734,6 +739,10 @@ function ArchiveApp({ name }: { name: string }) {
     return () => window.removeEventListener("popstate", syncView);
   }, []);
 
+  useEffect(() => {
+    if (state?.children[0]?.profileKind === "vault" && view === "child") setView("parent");
+  }, [state?.children, view]);
+
   function navigateView(next: View) {
     const slug = currentFamilySlug();
     if (!slug) return;
@@ -795,12 +804,14 @@ function ArchiveApp({ name }: { name: string }) {
             >
               Capsules
             </button>
-            <button
-              className={view === "child" ? "active" : ""}
-              onClick={() => navigateView("child")}
-            >
-              Child
-            </button>
+            {state.children[0]?.profileKind !== "vault" ? (
+              <button
+                className={view === "child" ? "active" : ""}
+                onClick={() => navigateView("child")}
+              >
+                Child
+              </button>
+            ) : null}
             <button
               className={view === "family" ? "active" : ""}
               onClick={() => navigateView("family")}
@@ -938,6 +949,7 @@ function ParentView({
   const [composerKind, setComposerKind] = useState<MemoryKind | null>(null);
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
   const canCreate = role !== "viewer";
+  const isVault = child?.profileKind === "vault";
   const childName = child?.displayName ?? "your child";
   const featured = memories[0];
 
@@ -951,7 +963,7 @@ function ParentView({
         <p className="eyebrow">Good morning, {name}</p>
         <div className="page-title-row">
           <div>
-            <h1>{childName}’s story</h1>
+            <h1>{isVault ? "Our memory vault" : `${childName}’s story`}</h1>
             <p>
               A private family archive · {memories.length}{" "}
               {memories.length === 1 ? "memory" : "memories"}
@@ -995,7 +1007,11 @@ function ParentView({
             </span>
             <p className="eyebrow">The first page is waiting</p>
             <h2>Keep the small thing you don’t want to forget.</h2>
-            <p>A sleepy expression, a new sound, a photograph, or simply what today felt like.</p>
+            <p>
+              {isVault
+                ? "A trip, an ordinary afternoon, a note to each other, or simply what today felt like."
+                : "A sleepy expression, a new sound, a photograph, or simply what today felt like."}
+            </p>
             {canCreate && child ? (
               <button
                 className="primary-button"
@@ -1045,8 +1061,12 @@ function ParentView({
             <Sparkles />
           </span>
           <p className="eyebrow">Future capsule</p>
-          <h3>For when you’re 18</h3>
-          <p>Write a note now for {childName} to open one day.</p>
+          <h3>{isVault ? "For another day" : "For when you’re 18"}</h3>
+          <p>
+            {isVault
+              ? "Seal a note for the two of you to open on a day you choose."
+              : `Write a note now for ${childName} to open one day.`}
+          </p>
           <button onClick={() => onNavigate("capsules")} type="button">
             Add a note <ArrowRight size={16} />
           </button>
@@ -1207,9 +1227,19 @@ function TimelineView({
   return (
     <div className="timeline-page">
       <section className="timeline-hero">
-        <p className="eyebrow">Their days, kept gently</p>
-        <h1>{child?.displayName ?? "Your child"}’s timeline</h1>
-        <p>Every small beginning, in the order your family remembers it.</p>
+        <p className="eyebrow">
+          {child?.profileKind === "vault" ? "Your days, kept gently" : "Their days, kept gently"}
+        </p>
+        <h1>
+          {child?.profileKind === "vault"
+            ? "Your shared timeline"
+            : `${child?.displayName ?? "Your child"}’s timeline`}
+        </h1>
+        <p>
+          {child?.profileKind === "vault"
+            ? "The moments you want to carry with you, in the order they happened."
+            : "Every small beginning, in the order your family remembers it."}
+        </p>
       </section>
       <div className="timeline-filters" aria-label="Filter memories">
         <button
@@ -1655,7 +1685,11 @@ function MemoryComposer({
         <header className="composer-header">
           <div>
             <p className="eyebrow">Keep this moment</p>
-            <h2 id="composer-title">A new memory for {child.displayName}</h2>
+            <h2 id="composer-title">
+              {child.profileKind === "vault"
+                ? "A new memory for your vault"
+                : `A new memory for ${child.displayName}`}
+            </h2>
           </div>
           <button
             aria-label="Close"
@@ -1770,11 +1804,15 @@ function MemoryComposer({
                   value={audience}
                 >
                   <option value="family">Family archive</option>
-                  <option value="all">Everyone — family + {child.displayName}</option>
+                  {child.profileKind !== "vault" ? (
+                    <option value="all">Everyone — family + {child.displayName}</option>
+                  ) : null}
                   {role === "owner" || role === "parent" ? (
                     <option value="parents">Parents only</option>
                   ) : null}
-                  <option value="child">For {child.displayName}</option>
+                  {child.profileKind !== "vault" ? (
+                    <option value="child">For {child.displayName}</option>
+                  ) : null}
                 </select>
               </label>
             </div>
@@ -2403,6 +2441,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   const [inviteUrl, setInviteUrl] = useState("");
   const [copied, setCopied] = useState(false);
   const [inviteBusy, setInviteBusy] = useState(false);
+  const isVault = state.children[0]?.profileKind === "vault";
   const [childName, setChildName] = useState(state.children[0]?.displayName ?? "Your child");
   const [birthDate, setBirthDate] = useState(state.children[0]?.birthDate ?? "");
   const [childPin, setChildPin] = useState("");
@@ -2539,8 +2578,9 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
         <p className="eyebrow">Private family circle</p>
         <h1>{state.archive.name}</h1>
         <p>
-          Invite the people who will help keep {childName}’s story. You can change roles or hand
-          ownership to another adult whenever your family needs.
+          {isVault
+            ? "Invite the people you trust with this memory vault. You can change roles or hand ownership to another adult whenever you need."
+            : `Invite the people who will help keep ${childName}’s story. You can change roles or hand ownership to another adult whenever your family needs.`}
         </p>
       </section>
       {message ? (
@@ -2658,152 +2698,154 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
           )}
         </section>
 
-        <section className="settings-card">
-          <div className="settings-heading">
-            <span>
-              <Baby />
-            </span>
-            <div>
-              <p className="eyebrow">Child profile</p>
-              <h2>{childName}’s profile</h2>
+        {!isVault ? (
+          <section className="settings-card">
+            <div className="settings-heading">
+              <span>
+                <Baby />
+              </span>
+              <div>
+                <p className="eyebrow">Child profile</p>
+                <h2>{childName}’s profile</h2>
+              </div>
             </div>
-          </div>
-          {canEditChild ? (
-            <>
-              <form className="settings-form" onSubmit={saveChild}>
-                <label>
-                  Child’s full name
-                  <input
-                    onChange={(event) => setChildName(event.target.value)}
-                    required
-                    value={childName}
-                  />
-                </label>
-                <label>
-                  Date of birth
-                  <input
-                    onChange={(event) => setBirthDate(event.target.value)}
-                    required
-                    type="date"
-                    value={birthDate}
-                  />
-                </label>
-                {!state.children.length ? (
-                  <p className="field-note">
-                    We kept this blank so their age and future capsules are calculated from the
-                    correct date.
-                  </p>
-                ) : null}
-                <button className="primary-button" type="submit">
-                  {state.children.length ? "Save profile" : "Create child profile"}
-                </button>
-              </form>
-              {state.children[0] ? (
-                <form className="settings-form child-access-settings" onSubmit={saveChildPin}>
-                  <div className="child-access-heading">
-                    <span>
-                      <LockKeyhole size={16} />
-                    </span>
-                    <div>
-                      <strong>
-                        {state.children[0].childAccessEnabled
-                          ? "Child sign-in is on"
-                          : "Set up child sign-in"}
-                      </strong>
-                      <small>
-                        {childName} uses this PIN instead of an email and sees only items marked for
-                        their child view.
-                      </small>
-                    </div>
-                  </div>
+            {canEditChild ? (
+              <>
+                <form className="settings-form" onSubmit={saveChild}>
                   <label>
-                    {state.children[0].childAccessEnabled
-                      ? "Choose a new six-digit PIN"
-                      : "Six-digit family PIN"}
+                    Child’s full name
                     <input
-                      autoComplete="off"
-                      inputMode="numeric"
-                      maxLength={6}
-                      minLength={6}
-                      onChange={(event) => setChildPin(event.target.value.replace(/\D/g, ""))}
-                      pattern="[0-9]{6}"
-                      placeholder="••••••"
+                      onChange={(event) => setChildName(event.target.value)}
                       required
-                      type="password"
-                      value={childPin}
+                      value={childName}
                     />
                   </label>
                   <label>
-                    Confirm the six-digit PIN
+                    Date of birth
                     <input
-                      autoComplete="off"
-                      inputMode="numeric"
-                      maxLength={6}
-                      minLength={6}
-                      onChange={(event) =>
-                        setChildPinConfirmation(event.target.value.replace(/\D/g, ""))
-                      }
-                      pattern="[0-9]{6}"
-                      placeholder="••••••"
+                      onChange={(event) => setBirthDate(event.target.value)}
                       required
-                      type="password"
-                      value={childPinConfirmation}
+                      type="date"
+                      value={birthDate}
                     />
                   </label>
-                  <button
-                    className="soft-button"
-                    disabled={
-                      childPin.length !== 6 ||
-                      childPinConfirmation.length !== 6 ||
-                      childPin !== childPinConfirmation
-                    }
-                    type="submit"
-                  >
-                    {state.children[0].childAccessEnabled ? "Change PIN" : "Turn on child sign-in"}
-                  </button>
-                  {state.children[0].childAccessEnabled ? (
-                    <div className="child-access-test">
-                      <span>
-                        <Check size={15} /> Child sign-in is ready
-                      </span>
-                      <p>
-                        {state.children[0].childActiveDeviceCount ?? 0} active{" "}
-                        {(state.children[0].childActiveDeviceCount ?? 0) === 1
-                          ? "device"
-                          : "devices"}
-                        {state.children[0].childLastAccessAt
-                          ? ` · Last used ${formatDateTime(state.children[0].childLastAccessAt)}`
-                          : " · Not used yet"}
-                      </p>
-                      <p>
-                        Test the exact screen {childName} will use. You will stay signed in as a
-                        parent.
-                      </p>
-                      <button
-                        className="text-button"
-                        onClick={() => window.location.assign("/?child=1")}
-                        type="button"
-                      >
-                        Test {childName}’s sign-in <ArrowRight size={15} />
-                      </button>
-                      <button
-                        className="disable-child-access"
-                        onClick={() => void disableChildSignIn()}
-                        type="button"
-                      >
-                        Turn off child sign-in
-                      </button>
-                    </div>
+                  {!state.children.length ? (
+                    <p className="field-note">
+                      We kept this blank so their age and future capsules are calculated from the
+                      correct date.
+                    </p>
                   ) : null}
+                  <button className="primary-button" type="submit">
+                    {state.children.length ? "Save profile" : "Create child profile"}
+                  </button>
                 </form>
-              ) : null}
-            </>
-          ) : (
-            <p className="card-intro">An owner or parent can update the child profile.</p>
-          )}
-        </section>
-
-        {canEditChild ? <AccountSecurity /> : null}
+                {state.children[0] ? (
+                  <form className="settings-form child-access-settings" onSubmit={saveChildPin}>
+                    <div className="child-access-heading">
+                      <span>
+                        <LockKeyhole size={16} />
+                      </span>
+                      <div>
+                        <strong>
+                          {state.children[0].childAccessEnabled
+                            ? "Child sign-in is on"
+                            : "Set up child sign-in"}
+                        </strong>
+                        <small>
+                          {childName} uses this PIN instead of an email and sees only items marked
+                          for their child view.
+                        </small>
+                      </div>
+                    </div>
+                    <label>
+                      {state.children[0].childAccessEnabled
+                        ? "Choose a new six-digit PIN"
+                        : "Six-digit family PIN"}
+                      <input
+                        autoComplete="off"
+                        inputMode="numeric"
+                        maxLength={6}
+                        minLength={6}
+                        onChange={(event) => setChildPin(event.target.value.replace(/\D/g, ""))}
+                        pattern="[0-9]{6}"
+                        placeholder="••••••"
+                        required
+                        type="password"
+                        value={childPin}
+                      />
+                    </label>
+                    <label>
+                      Confirm the six-digit PIN
+                      <input
+                        autoComplete="off"
+                        inputMode="numeric"
+                        maxLength={6}
+                        minLength={6}
+                        onChange={(event) =>
+                          setChildPinConfirmation(event.target.value.replace(/\D/g, ""))
+                        }
+                        pattern="[0-9]{6}"
+                        placeholder="••••••"
+                        required
+                        type="password"
+                        value={childPinConfirmation}
+                      />
+                    </label>
+                    <button
+                      className="soft-button"
+                      disabled={
+                        childPin.length !== 6 ||
+                        childPinConfirmation.length !== 6 ||
+                        childPin !== childPinConfirmation
+                      }
+                      type="submit"
+                    >
+                      {state.children[0].childAccessEnabled
+                        ? "Change PIN"
+                        : "Turn on child sign-in"}
+                    </button>
+                    {state.children[0].childAccessEnabled ? (
+                      <div className="child-access-test">
+                        <span>
+                          <Check size={15} /> Child sign-in is ready
+                        </span>
+                        <p>
+                          {state.children[0].childActiveDeviceCount ?? 0} active{" "}
+                          {(state.children[0].childActiveDeviceCount ?? 0) === 1
+                            ? "device"
+                            : "devices"}
+                          {state.children[0].childLastAccessAt
+                            ? ` · Last used ${formatDateTime(state.children[0].childLastAccessAt)}`
+                            : " · Not used yet"}
+                        </p>
+                        <p>
+                          Test the exact screen {childName} will use. You will stay signed in as a
+                          parent.
+                        </p>
+                        <button
+                          className="text-button"
+                          onClick={() => window.location.assign("/?child=1")}
+                          type="button"
+                        >
+                          Test {childName}’s sign-in <ArrowRight size={15} />
+                        </button>
+                        <button
+                          className="disable-child-access"
+                          onClick={() => void disableChildSignIn()}
+                          type="button"
+                        >
+                          Turn off child sign-in
+                        </button>
+                      </div>
+                    ) : null}
+                  </form>
+                ) : null}
+              </>
+            ) : (
+              <p className="card-intro">An owner or parent can update the child profile.</p>
+            )}
+          </section>
+        ) : null}
 
         {isOwner ? (
           <section className="settings-card invite-card">
@@ -2910,206 +2952,6 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
         ) : null}
       </div>
     </div>
-  );
-}
-
-type ManagedPasskey = { createdAt?: string | Date | null; id: string; name?: string | null };
-
-function AccountSecurity() {
-  const session = authClient.useSession();
-  const twoFactorEnabled = Boolean(session.data?.user.twoFactorEnabled);
-  const [passkeys, setPasskeys] = useState<ManagedPasskey[]>([]);
-  const [password, setPassword] = useState("");
-  const [totpCode, setTotpCode] = useState("");
-  const [totpUri, setTotpUri] = useState("");
-  const [backupCodes, setBackupCodes] = useState<string[]>([]);
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
-  const [busy, setBusy] = useState(false);
-
-  const refreshPasskeys = useCallback(async () => {
-    const result = await authClient.passkey.listUserPasskeys();
-    if (!result.error) setPasskeys((result.data ?? []) as ManagedPasskey[]);
-  }, []);
-
-  useEffect(() => {
-    void refreshPasskeys();
-  }, [refreshPasskeys]);
-
-  async function addPasskey() {
-    setBusy(true);
-    setError("");
-    setMessage("");
-    const result = await authClient.passkey.addPasskey({ name: "Everlittle passkey" });
-    setBusy(false);
-    if (result?.error) {
-      setError(result.error.message ?? "The passkey could not be added.");
-      return;
-    }
-    setMessage("Passkey added. You can now use it from the sign-in screen.");
-    await refreshPasskeys();
-  }
-
-  async function removePasskey(id: string) {
-    setError("");
-    const result = await authClient.passkey.deletePasskey({ id });
-    if (result.error) {
-      setError(result.error.message ?? "The passkey could not be removed.");
-      return;
-    }
-    setMessage("Passkey removed.");
-    await refreshPasskeys();
-  }
-
-  async function beginTwoFactor(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setBusy(true);
-    setError("");
-    setMessage("");
-    const result = await authClient.twoFactor.enable({ issuer: "Everlittle", password });
-    setBusy(false);
-    if (result.error) {
-      setError(result.error.message ?? "Two-factor setup could not begin.");
-      return;
-    }
-    setTotpUri(result.data.totpURI);
-    setBackupCodes(result.data.backupCodes);
-    setPassword("");
-  }
-
-  async function confirmTwoFactor(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setBusy(true);
-    setError("");
-    const result = await authClient.twoFactor.verifyTotp({ code: totpCode, trustDevice: true });
-    setBusy(false);
-    if (result.error) {
-      setError(result.error.message ?? "That authenticator code was not accepted.");
-      return;
-    }
-    setTotpCode("");
-    setTotpUri("");
-    setMessage("Two-factor authentication is now on. Save the backup codes somewhere private.");
-    await session.refetch();
-  }
-
-  async function disableTwoFactor(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    if (!confirm("Turn off two-factor authentication for your account?")) return;
-    setBusy(true);
-    setError("");
-    const result = await authClient.twoFactor.disable({ password });
-    setBusy(false);
-    if (result.error) {
-      setError(result.error.message ?? "Two-factor authentication could not be turned off.");
-      return;
-    }
-    setPassword("");
-    setBackupCodes([]);
-    setMessage("Two-factor authentication is off.");
-    await session.refetch();
-  }
-
-  return (
-    <section className="settings-card account-security-card">
-      <div className="settings-heading">
-        <span>
-          <ShieldCheck />
-        </span>
-        <div>
-          <p className="eyebrow">Your account</p>
-          <h2>Sign-in security</h2>
-        </div>
-      </div>
-      <p className="card-intro">
-        Passkeys resist phishing. An authenticator code adds protection when you use your password.
-      </p>
-      {message ? <p className="status-message">{message}</p> : null}
-      {error ? <p className="form-error">{error}</p> : null}
-
-      <div className="security-method">
-        <div>
-          <strong>Passkeys</strong>
-          <small>{passkeys.length ? `${passkeys.length} registered` : "None registered yet"}</small>
-        </div>
-        <button
-          className="soft-button"
-          disabled={busy}
-          onClick={() => void addPasskey()}
-          type="button"
-        >
-          Add this device
-        </button>
-      </div>
-      {passkeys.map((item) => (
-        <div className="passkey-row" key={item.id}>
-          <span>{item.name || "Passkey"}</span>
-          <button onClick={() => void removePasskey(item.id)} type="button">
-            Remove
-          </button>
-        </div>
-      ))}
-
-      <div className="security-method">
-        <div>
-          <strong>Authenticator app</strong>
-          <small>
-            {twoFactorEnabled ? "Two-factor authentication is on" : "Optional extra step"}
-          </small>
-        </div>
-      </div>
-      {totpUri ? (
-        <form className="settings-form" onSubmit={confirmTwoFactor}>
-          <p className="field-note">
-            Open this setup link in your authenticator, then enter its six-digit code.
-          </p>
-          <a className="text-button" href={totpUri}>
-            Open authenticator setup
-          </a>
-          <label>
-            Authenticator code
-            <input
-              autoComplete="one-time-code"
-              inputMode="numeric"
-              maxLength={6}
-              onChange={(event) => setTotpCode(event.target.value.replace(/\D/g, ""))}
-              pattern="[0-9]{6}"
-              required
-              value={totpCode}
-            />
-          </label>
-          <button className="soft-button" disabled={busy || totpCode.length !== 6} type="submit">
-            Confirm and turn on
-          </button>
-        </form>
-      ) : (
-        <form
-          className="settings-form security-password-form"
-          onSubmit={twoFactorEnabled ? disableTwoFactor : beginTwoFactor}
-        >
-          <label>
-            Current password
-            <input
-              autoComplete="current-password"
-              minLength={10}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-              type="password"
-              value={password}
-            />
-          </label>
-          <button className="soft-button" disabled={busy || password.length < 10} type="submit">
-            {twoFactorEnabled ? "Turn off two-factor" : "Set up authenticator"}
-          </button>
-        </form>
-      )}
-      {backupCodes.length ? (
-        <div className="backup-codes">
-          <strong>Save these one-time backup codes</strong>
-          <code>{backupCodes.join("\n")}</code>
-        </div>
-      ) : null}
-    </section>
   );
 }
 

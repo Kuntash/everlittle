@@ -16,7 +16,6 @@ catalog:
   zod: ^4.4.3
   vitest: ^4.1.10
   "@cloudflare/vitest-pool-workers": ^0.21.3
-  "@better-auth/passkey": 1.6.25
 
 overrides:
   vite: "catalog:"
