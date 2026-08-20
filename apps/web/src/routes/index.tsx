@@ -62,6 +62,7 @@ export const Route = createFileRoute("/")({
 
 export type PlatformState = {
   allowsPublicSignup: boolean;
+  defaultArchiveSlug: string | null;
   deploymentMode: "hosted" | "self-hosted";
   needsSetup: boolean;
   childAccess: {
@@ -223,14 +224,14 @@ export function Everlittle() {
     return <InvitationAcceptance invitation={invitation} token={inviteToken} />;
   }
 
-  if (platform.deploymentMode === "hosted" && !currentFamilySlug()) {
-    return <ArchiveRedirect />;
+  if (!currentFamilySlug()) {
+    return <ArchiveRedirect defaultArchiveSlug={platform.defaultArchiveSlug} />;
   }
 
   return <ArchiveApp name={session.data.user.name} />;
 }
 
-function ArchiveRedirect() {
+function ArchiveRedirect({ defaultArchiveSlug }: { defaultArchiveSlug: string | null }) {
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -241,7 +242,10 @@ function ArchiveRedirect() {
       })
       .then(({ archives }) => {
         const remembered = localStorage.getItem("everlittle.last-family");
-        const first = archives.find((archive) => archive.slug === remembered) ?? archives[0];
+        const first =
+          archives.find((archive) => archive.slug === defaultArchiveSlug) ??
+          archives.find((archive) => archive.slug === remembered) ??
+          archives[0];
         if (!first) {
           location.replace("/onboarding");
           return;
@@ -249,7 +253,7 @@ function ArchiveRedirect() {
         location.replace(`/${encodeURIComponent(first.slug)}`);
       })
       .catch((reason: Error) => setError(reason.message));
-  }, []);
+  }, [defaultArchiveSlug]);
 
   return error ? (
     <main className="loading-shell">

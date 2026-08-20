@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { tanstackStartCookies } from "better-auth/tanstack-start";
 
 type AuthOptions = {
+  appName?: string;
   sendAuthEmail: (input: {
     email: string;
     name: string;
@@ -16,6 +17,7 @@ type AuthOptions = {
 };
 
 export function createAuth({
+  appName = "Everlittle",
   database,
   secret,
   baseURL,
@@ -24,7 +26,7 @@ export function createAuth({
   sendAuthEmail,
 }: AuthOptions) {
   return betterAuth({
-    appName: "Everlittle",
+    appName,
     database,
     secret,
     baseURL,

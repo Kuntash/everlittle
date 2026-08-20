@@ -9,6 +9,7 @@ import { defineConfig, type Plugin } from "vite";
 
 const projectRoot = fileURLToPath(new URL(".", import.meta.url));
 const buildId = process.env.EVERLITTLE_BUILD_ID ?? hashApplicationSource();
+const wranglerConfigPath = process.env.EVERLITTLE_WRANGLER_CONFIG;
 
 function hashApplicationSource() {
   const hash = createHash("sha256");
@@ -55,7 +56,10 @@ export default defineConfig({
   resolve: { tsconfigPaths: true },
   plugins: [
     releaseManifest(),
-    cloudflare({ viteEnvironment: { name: "ssr" } }),
+    cloudflare({
+      ...(wranglerConfigPath ? { configPath: wranglerConfigPath } : {}),
+      viteEnvironment: { name: "ssr" },
+    }),
     tanstackStart(),
     viteReact(),
   ],

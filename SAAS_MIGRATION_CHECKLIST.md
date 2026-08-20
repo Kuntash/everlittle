@@ -150,21 +150,25 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [ ] Verify mobile, tablet, desktop, light mode, and dark mode.
 - [ ] Run accessibility, Lighthouse, and real-device checks.
 
-## Phase 9: Cloudflare self-hosting template
+## Phase 9: Manual Cloudflare self-hosting
 
 - [ ] Define the minimum required Cloudflare account permissions.
-- [ ] Create generic D1, R2, Worker, asset, and optional email configuration.
+- [x] Create generic D1, R2, Worker, asset, and email configuration.
 - [ ] Add an interactive setup command.
 - [ ] Provision D1 and R2 with collision-safe names.
 - [ ] Generate `BETTER_AUTH_SECRET` and `CHILD_PIN_PEPPER` securely.
 - [ ] Apply all D1 migrations automatically.
 - [ ] Configure an optional custom domain.
-- [ ] Configure invitation email or clearly disable email-dependent features.
-- [ ] Add a post-deployment first-owner setup flow.
+- [x] Configure invitation, verification, and recovery email as required services.
+- [x] Add a post-deployment first-owner setup flow.
 - [ ] Add a GitHub Actions deployment workflow.
-- [ ] Add backup, restore, upgrade, and rollback documentation.
+- [x] Add backup, upgrade, and Worker rollback documentation.
+- [ ] Rehearse and document a complete D1 and R2 restore.
 - [ ] Test the template against a clean Cloudflare account.
 - [ ] Target a setup experience close to `npx create-everlittle` followed by `pnpm deploy`.
+
+The interactive command and one-click template are deferred. The supported first release is the
+reviewable manual runbook in `docs/self-hosting.md`.
 
 ## Phase 10: Create `everlittle-dikichoetso`
 

@@ -1,0 +1,50 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "everlittle-family",
+  "main": "src/server.ts",
+  "compatibility_date": "2026-08-18",
+  "compatibility_flags": ["nodejs_compat"],
+  "secrets": {
+    "required": ["BETTER_AUTH_SECRET", "CHILD_PIN_PEPPER"],
+  },
+  "assets": {
+    "not_found_handling": "single-page-application",
+  },
+  "observability": {
+    "enabled": true,
+    "logs": { "head_sampling_rate": 1 },
+  },
+  "routes": [
+    {
+      "pattern": "family.example.com",
+      "custom_domain": true,
+    },
+  ],
+  "vars": {
+    "APP_NAME": "Everlittle",
+    "DEPLOYMENT_MODE": "self-hosted",
+    "DEFAULT_ARCHIVE_SLUG": "your-family",
+    "INVITATION_FROM_EMAIL": "invites@family.example.com",
+    "PUBLIC_APP_URL": "https://family.example.com",
+  },
+  "send_email": [
+    {
+      "name": "EMAIL",
+      "allowed_sender_addresses": ["invites@family.example.com"],
+    },
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "everlittle-family-db",
+      "database_id": "replace-with-your-d1-database-id",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "r2_buckets": [
+    {
+      "binding": "MEDIA",
+      "bucket_name": "everlittle-family-media",
+    },
+  ],
+}

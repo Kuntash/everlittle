@@ -24,7 +24,7 @@ export default defineConfig({
             fileURLToPath(new URL("./migrations", import.meta.url)),
           ),
         },
-        compatibilityDate: "2026-08-05",
+        compatibilityDate: "2026-08-18",
         compatibilityFlags: ["nodejs_compat"],
         d1Databases: ["DB", "UPGRADE_DB"],
         r2Buckets: ["MEDIA"],

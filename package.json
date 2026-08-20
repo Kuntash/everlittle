@@ -13,7 +13,11 @@
     "cf-typegen": "vp run @everlittle/web#cf-typegen",
     "db:migrate:local": "vp run @everlittle/web#db:migrate:local",
     "db:migrate:remote": "vp run @everlittle/web#db:migrate:remote",
+    "db:migrate:self-hosted": "vp run @everlittle/web#db:migrate:self-hosted",
     "db:migrate:hosted": "vp run @everlittle/web#db:migrate:hosted",
+    "self-host:check": "vp run @everlittle/web#self-host:check",
+    "build:self-hosted": "vp run @everlittle/web#build:self-hosted",
+    "deploy:self-hosted": "vp run @everlittle/web#deploy:self-hosted",
     "deploy:hosted": "vp run @everlittle/web#deploy:hosted",
     "setup:hooks": "git config core.hooksPath .githooks",
     "setup:vp": "vp config"

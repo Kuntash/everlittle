@@ -6,6 +6,7 @@ dist/
 .dev.vars
 .env
 .DS_Store
+apps/web/wrangler.self-hosted.jsonc
 apps/web/src/routeTree.gen.ts
 
 # Graphify keeps these as machine-local or temporary incremental-build state.

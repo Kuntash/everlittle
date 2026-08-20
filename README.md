@@ -45,9 +45,6 @@ THS school-management system:
    invitations.
 6. Child profiles use parent-managed access rather than public email accounts.
 
-The invitation and child-PIN interfaces are represented in the schema and design references; their
-server endpoints are the next implementation milestone.
-
 ## Local development
 
 Requirements: Node.js 22.12+, pnpm 11, and a Cloudflare account for deployed D1/R2 resources.
@@ -68,8 +65,9 @@ DEPLOYMENT_MODE=self-hosted
 PUBLIC_APP_URL=http://localhost:3000
 ```
 
-See [`docs/deployment-modes.md`](docs/deployment-modes.md) for hosted and self-hosted policy,
-validation, and configuration fixtures.
+See [`docs/deployment-modes.md`](docs/deployment-modes.md) for product policy and
+[`docs/self-hosting.md`](docs/self-hosting.md) for the complete deployment and downstream-upgrade
+runbook.
 
 ## Validation
 
@@ -91,16 +89,18 @@ pnpm deploy:hosted
 
 Installation-specific domains, Cloudflare resource IDs, bootstrap data, and operational scripts
 belong in the installation's deployment repository rather than this canonical product repository.
+The manual self-hosting path is:
 
-For another self-hosted installation:
+```sh
+cp apps/web/wrangler.self-hosted.example.jsonc apps/web/wrangler.self-hosted.jsonc
+pnpm self-host:check
+pnpm db:migrate:self-hosted
+pnpm deploy:self-hosted
+```
 
-1. Create a D1 database and private R2 bucket.
-2. Create a deployment-owned Wrangler configuration with its resource identifiers and custom
-   domain.
-3. Apply migrations against that environment.
-4. Add unique, independent `BETTER_AUTH_SECRET` and `CHILD_PIN_PEPPER` values with
-   `wrangler secret put`.
-5. Build with the deployment configuration and deploy the generated Worker configuration.
+Complete resource creation, secrets, email, backups, and downstream updates are documented in
+[`docs/self-hosting.md`](docs/self-hosting.md). A one-click Cloudflare template is intentionally not
+part of this phase.
 
 ## Privacy posture
 

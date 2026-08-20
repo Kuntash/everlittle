@@ -38,9 +38,11 @@ Self-hosted mode currently:
 - closes public signup after the first owner exists;
 - continues to allow accounts created through valid invitations;
 - does not require billing; and
-- may define a default archive slug for a future root redirect.
+- redirects the signed-in root to `DEFAULT_ARCHIVE_SLUG`, then a remembered or first accessible
+  archive as a fallback.
 
-`DEFAULT_ARCHIVE_SLUG` is optional until slug-based routing is implemented.
+`DEFAULT_ARCHIVE_SLUG` is optional, but recommended for a single-family installation. It must name
+an archive the signed-in user can access; it is routing preference, never authorization.
 
 ## Capability policy
 
@@ -84,4 +86,5 @@ cp apps/web/.dev.vars.hosted.example apps/web/.dev.vars
 
 Generate unique, independent values for `BETTER_AUTH_SECRET` and `CHILD_PIN_PEPPER` instead of
 committing real secrets. D1, R2, email, routes, and custom domains remain Wrangler bindings and
-must be configured for each deployment environment.
+must be configured for each deployment environment. See [`self-hosting.md`](self-hosting.md) for
+the production configuration, verification, backup, and downstream update workflow.

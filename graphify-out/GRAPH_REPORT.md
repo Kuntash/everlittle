@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-21)
 
 ## Corpus Check
-- 72 files · ~1,537,199 words
+- 74 files · ~1,538,309 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2293 nodes · 2793 edges · 190 communities (43 shown, 147 thin omitted)
+- 2314 nodes · 2811 edges · 195 communities (43 shown, 152 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.66)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6a039fd1`
+- Built from commit: `e2004d1b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -117,7 +117,7 @@
 - WebSocketRequestResponsePair
 - Workflow
 - WorkflowEntrypoint
-- __root.tsx
+- onboarding.tsx
 - AgentMemoryNamespace
 - BasicImageTransformations
 - BrowserRun
@@ -180,7 +180,7 @@
 - UnsafeTraceMetrics
 - WebSearch
 - web/vite.config.ts
-- Everlittle
+- Self-hosting Everlittle on Cloudflare
 - brand.tsx
 - pre-commit
 - "user"
@@ -192,12 +192,16 @@
 - auth-route.tsx
 - Everlittle
 - MemoryComposer
-- onboarding.tsx
+- ExtendableEvent
+- ErrorEvent
 - Everlittle landing design direction
 - apply-migrations.ts
 - migration-upgrade.test.ts
 - Child access security
-- @fontsource-variable/cormorant-garamond
+- check-self-host-config.mjs
+- CustomEvent
+- CloseEvent
+- MessageEvent
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 42 edges
@@ -209,7 +213,7 @@
 7. `forbidden()` - 24 edges
 8. `Console` - 21 edges
 9. `auditStatement()` - 20 edges
-10. `getDeploymentConfig()` - 19 edges
+10. `getDeploymentConfig()` - 20 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `completeOnboarding()` --calls--> `slugify()`  [EXTRACTED]
@@ -226,7 +230,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (190 total, 147 thin omitted)
+## Communities (195 total, 152 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -238,27 +242,23 @@ Nodes (121): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatemen
 
 ### Community 2 - "index.tsx"
 Cohesion: 0.09
-Nodes (35): AccessScreen(), apiFetch(), ArchiveApp(), ArchiveMembership, ArchiveRedirect(), ArchiveState, Capsule, CapsulesView() (+27 more)
+Nodes (33): AccessScreen(), apiFetch(), ArchiveApp(), ArchiveMembership, ArchiveRedirect(), ArchiveState, Capsule, CapsulesView() (+25 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
 Nodes (7): AbortSignal, EventSource, EventTarget, MessagePort, ServiceWorkerGlobalScope, WebSocket, WorkerGlobalScope
-
-### Community 4 - "Event"
-Cohesion: 0.04
-Nodes (12): CloseEvent, CustomEvent, EmailEvent, ErrorEvent, Event, ExtendableEvent, FetchEvent, MessageEvent (+4 more)
 
 ### Community 5 - "compilerOptions"
 Cohesion: 0.08
 Nodes (25): compilerOptions, allowImportingTsExtensions, jsx, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+17 more)
 
 ### Community 6 - "scripts"
-Cohesion: 0.08
-Nodes (24): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+16 more)
+Cohesion: 0.07
+Nodes (28): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+20 more)
 
 ### Community 7 - "dependencies"
-Cohesion: 0.09
-Nodes (23): dependencies, better-auth, @better-auth/passkey, @everlittle/domain, @everlittle/ui, @fontsource-variable/inter, lucide-react, react (+15 more)
+Cohesion: 0.08
+Nodes (25): dependencies, better-auth, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/geist, @fontsource-variable/geist-mono, lucide-react (+17 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10
@@ -269,8 +269,8 @@ Cohesion: 0.09
 Nodes (23): devDependencies, @cloudflare/vite-plugin, @cloudflare/vitest-pool-workers, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript (+15 more)
 
 ### Community 13 - "scripts"
-Cohesion: 0.15
-Nodes (13): scripts, build, cf-typegen, db:migrate:hosted, db:migrate:local, db:migrate:remote, deploy, deploy:hosted (+5 more)
+Cohesion: 0.12
+Nodes (17): scripts, build, build:self-hosted, cf-typegen, db:migrate:hosted, db:migrate:local, db:migrate:remote, db:migrate:self-hosted (+9 more)
 
 ### Community 20 - "Body"
 Cohesion: 0.15
@@ -304,9 +304,9 @@ Nodes (6): imports, license, name, private, type, version
 Cohesion: 0.14
 Nodes (13): Current invitation UX gaps, Everlittle TODO, P0 — Claim the reference installation, P1 — Family invitation and ownership handover, P1 — Privacy and durability, P1 — Real archive data, P2 — Child experience, P2 — Deferred account recovery (+5 more)
 
-### Community 103 - "__root.tsx"
-Cohesion: 0.27
-Nodes (6): PwaInstallContext, shouldOfferPwaInstall(), InstallPromptEvent, PwaExperience(), Route, eligibleContext
+### Community 103 - "onboarding.tsx"
+Cohesion: 0.12
+Nodes (13): authClient, PwaInstallContext, shouldOfferPwaInstall(), Draft, Onboarding(), responseMessage(), Route, sections (+5 more)
 
 ### Community 105 - "BasicImageTransformations"
 Cohesion: 0.67
@@ -316,9 +316,9 @@ Nodes (3): BasicImageTransformations, RequestInitCfPropertiesImage, RequestInitC
 Cohesion: 0.67
 Nodes (3): RequestInitCfPropertiesVaryAcceptHeader, RequestInitCfPropertiesVaryAcceptLanguageHeader, RequestInitCfPropertiesVaryHeader
 
-### Community 168 - "Everlittle"
-Cohesion: 0.11
-Nodes (16): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Authentication, Deployment (+8 more)
+### Community 168 - "Self-hosting Everlittle on Cloudflare"
+Cohesion: 0.07
+Nodes (26): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, 1. Install and create the resources, 2. Create the deployment configuration (+18 more)
 
 ### Community 169 - "brand.tsx"
 Cohesion: 0.13
@@ -353,16 +353,16 @@ Cohesion: 0.21
 Nodes (8): AuthRoute(), safeRedirect(), InvitationPreview, Loading(), PlatformState, Route, Route, Route
 
 ### Community 180 - "Everlittle"
-Cohesion: 0.15
-Nodes (7): Route, Route, Route, Route, Route, Route, Everlittle()
+Cohesion: 0.14
+Nodes (8): Route, Route, Route, Route, Route, Route, currentFamilySlug(), Everlittle()
 
 ### Community 181 - "MemoryComposer"
 Cohesion: 0.17
 Nodes (20): audienceLabel(), CapsuleComposer(), ChildView(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), formatMemoryDate(), kindLabel() (+12 more)
 
-### Community 182 - "onboarding.tsx"
-Cohesion: 0.20
-Nodes (9): TwoFactorChallenge(), authClient, Draft, Onboarding(), responseMessage(), Route, sections, toSlug() (+1 more)
+### Community 182 - "ExtendableEvent"
+Cohesion: 0.17
+Nodes (6): EmailEvent, ExtendableEvent, FetchEvent, QueueEvent, ScheduledEvent, TailEvent
 
 ### Community 184 - "Everlittle landing design direction"
 Cohesion: 0.33
@@ -373,24 +373,24 @@ Cohesion: 0.40
 Nodes (4): Attempt controls, Child access security, PIN storage and compatibility, Session visibility and future credentials
 
 ## Knowledge Gaps
-- **1095 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1090 more)
+- **1112 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1107 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **147 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **152 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
+- **Why does `URLSearchParams` connect `URLSearchParams` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `R2ObjectBody` connect `R2ObjectBody` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.027) - this node is a cross-community bridge._
-- **Why does `EventSource` connect `ServiceWorkerGlobalScope` to `worker-configuration.d.ts`?**
+- **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `DurableObjectTransaction` connect `DurableObjectTransaction` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1095 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1112 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.053428741800834824 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05284791544333529 - nodes in this community are weakly interconnected._
 - **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.08658536585365853 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09388335704125178 - nodes in this community are weakly interconnected._

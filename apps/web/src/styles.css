@@ -1,8 +1,12 @@
 @import "@everlittle/ui/theme.css";
 @import "@fontsource-variable/cormorant-garamond";
-@import "@fontsource-variable/inter";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/geist-mono";
 
 :root {
+  --font-ui: "Geist Variable", "Helvetica Neue", sans-serif;
+  --font-story: "Cormorant Garamond Variable", Georgia, serif;
+  --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", monospace;
   --motion-quick: 100ms;
   --motion-fast: 140ms;
   --motion-sheet: 260ms;
@@ -18,7 +22,7 @@
 html {
   background: var(--paper);
   color: var(--ink);
-  font-family: "Inter Variable", sans-serif;
+  font-family: var(--font-ui);
   overscroll-behavior-y: none;
   -webkit-tap-highlight-color: transparent;
   text-rendering: optimizeLegibility;
@@ -58,9 +62,11 @@ p {
 }
 h1,
 h2,
-h3,
+h3 {
+  font-family: var(--font-ui);
+}
 .brand strong {
-  font-family: "Cormorant Garamond Variable", serif;
+  font-family: var(--font-story);
 }
 
 .loading-shell {
@@ -283,7 +289,7 @@ h3,
   min-height: 48px;
 }
 .pin-input {
-  font-family: "Cormorant Garamond Variable", serif;
+  font-family: var(--font-mono);
   font-size: 2rem !important;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.45em;
@@ -1130,7 +1136,7 @@ h3,
     var(--atelier-paper);
   color: var(--atelier-ink);
   color-scheme: light;
-  font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+  font-family: var(--font-ui);
   min-height: 100dvh;
   overflow: clip;
 }
@@ -2186,7 +2192,7 @@ h3,
   background: var(--heirloom-paper);
   color: var(--heirloom-ink);
   color-scheme: light;
-  font-family: "Avenir Next", "Helvetica Neue", sans-serif;
+  font-family: var(--font-ui);
   min-height: 100dvh;
   overflow: clip;
 }
@@ -4536,7 +4542,7 @@ h3,
   width: 34px;
 }
 .memory-row h3 {
-  font-family: "Inter Variable", sans-serif;
+  font-family: var(--font-ui);
   font-size: 0.82rem;
   margin: 0 0 0.2rem;
 }
@@ -5585,8 +5591,10 @@ h3,
 }
 .timeline-card-copy > strong {
   color: var(--forest);
-  font-family: "Cormorant Garamond Variable", serif;
+  font-family: var(--font-ui);
   font-size: 1.55rem;
+  font-weight: 620;
+  letter-spacing: -0.025em;
   line-height: 1;
   margin: 0.45rem 0;
 }

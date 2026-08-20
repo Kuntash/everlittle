@@ -1,7 +1,7 @@
 {
   "apps/web/package.json": {
-    "mtime": 1786823019.0379007,
-    "ast_hash": "674a3f453c6bac7db52f64b9bcfa7d3a",
+    "mtime": 1787263922.1989899,
+    "ast_hash": "2315a79d2c9d39933d6943d591e57f60",
     "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
@@ -15,18 +15,18 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1786822705.6464627,
-    "ast_hash": "bf99a9273de1ec716abfc784d90c74a9",
+    "mtime": 1787263149.2699604,
+    "ast_hash": "fe3ce17aacb74d02fd942c167e0140d2",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
-    "mtime": 1786823078.3759367,
-    "ast_hash": "b91496c9431f2ffa2c54d8f7c477f53e",
+    "mtime": 1787263922.1985736,
+    "ast_hash": "7e5ffd0852aee321277975c6e0ef14a2",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth.ts": {
-    "mtime": 1786823078.3756604,
-    "ast_hash": "ffffafc4afbe4999c5f763b4202ef2e1",
+    "mtime": 1787263922.198779,
+    "ast_hash": "a0f4443c471469c8eb4fa5ed56c5a702",
     "semantic_hash": ""
   },
   "apps/web/src/lib/runtime-env.ts": {
@@ -45,13 +45,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787258531.369096,
-    "ast_hash": "4deb4c27b9d8129f6c1f18ddedd73719",
+    "mtime": 1787263922.198204,
+    "ast_hash": "8e2358935382dd91257d1faf16b38f3e",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1786823517.620066,
-    "ast_hash": "8b91a1412ce4af85d8f5ac9506655a90",
+    "mtime": 1787263380.4566956,
+    "ast_hash": "793f1460fa2b8084b4ecfc1f07cfda9d",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -60,18 +60,18 @@
     "semantic_hash": ""
   },
   "apps/web/vite.config.ts": {
-    "mtime": 1786435857.6031904,
-    "ast_hash": "5d015121b145c9fd3d893fa911777850",
+    "mtime": 1787262971.0398417,
+    "ast_hash": "069aa4ae817e292261701d24bbaa0e9f",
     "semantic_hash": ""
   },
   "apps/web/worker-configuration.d.ts": {
-    "mtime": 1786822445.942399,
-    "ast_hash": "eb4201474123468036b05031c4ef8b36",
+    "mtime": 1787263317.4388752,
+    "ast_hash": "2b6333d402050f15fd599cad644e0ea1",
     "semantic_hash": ""
   },
   "package.json": {
-    "mtime": 1786821645.83833,
-    "ast_hash": "297ce8ba59c22321d118c8643374fbdf",
+    "mtime": 1787263042.7478278,
+    "ast_hash": "45965eeef67d470835f85a0c3c8fefed",
     "semantic_hash": ""
   },
   "packages/domain/package.json": {
@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1786822403.9206834,
-    "ast_hash": "bb5a53422eb19c56e8c0a3bc4d5ec629",
+    "mtime": 1787263207.2372432,
+    "ast_hash": "876b771431db27989c643d35c948ee0d",
     "semantic_hash": ""
   },
   "TODO.md": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1786823194.6563332,
-    "ast_hash": "d780e55ea732c486542d41dd72f3f39d",
+    "mtime": 1787263922.1991441,
+    "ast_hash": "e1b212aeab4b7f175594a039464c889f",
     "semantic_hash": ""
   },
   "apps/web/public/apple-touch-icon.png": {
@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1786823647.5899413,
-    "ast_hash": "d844d2b6163e04891dd5ee1b291e2475",
+    "mtime": 1787263207.237939,
+    "ast_hash": "d098bf8026ef8e46a9a9b904a481a22b",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -260,8 +260,8 @@
     "semantic_hash": ""
   },
   "docs/deployment-modes.md": {
-    "mtime": 1786822403.9209929,
-    "ast_hash": "b0da945c4229254aaba5b06c246225e9",
+    "mtime": 1787263207.2376137,
+    "ast_hash": "ac6b99e2fde379452147a3ea319b3b06",
     "semantic_hash": ""
   },
   "apps/web/migrations/0008_tenant_slugs.sql": {
@@ -290,8 +290,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/onboarding.tsx": {
-    "mtime": 1786655907.9423413,
-    "ast_hash": "3412ae667a64b9d4309d5e36c889ee3d",
+    "mtime": 1787260042.4837892,
+    "ast_hash": "141c83b7f2af6e7d40131e64e7c81a8e",
     "semantic_hash": ""
   },
   "apps/web/src/components/auth-route.tsx": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1786823194.6156776,
-    "ast_hash": "a43eb88eb07ac11ff502814fd2620544",
+    "mtime": 1787263932.655353,
+    "ast_hash": "696ad4cc6379f0e2d58e6d132b759765",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
@@ -455,8 +455,8 @@
     "semantic_hash": ""
   },
   "apps/web/vitest.config.ts": {
-    "mtime": 1786822368.3711982,
-    "ast_hash": "7764ebd27d32f598aff035689fcd0d2a",
+    "mtime": 1787263310.9459941,
+    "ast_hash": "38c975fb10be2e9d9867c8eaa4e78f9b",
     "semantic_hash": ""
   },
   "docs/tenant-isolation.md": {
@@ -492,16 +492,6 @@
   "apps/web/migrations/0011_adult_account_security.sql": {
     "mtime": 1786823078.376086,
     "ast_hash": "8c70ec3e59db3e5f1a06d221e7844754",
-    "semantic_hash": ""
-  },
-  "apps/web/src/components/two-factor.tsx": {
-    "mtime": 1786823148.7103884,
-    "ast_hash": "92f0f80b78d416f1ac8b4c7be91c5ff8",
-    "semantic_hash": ""
-  },
-  "apps/web/src/routes/two-factor.tsx": {
-    "mtime": 1786823148.710635,
-    "ast_hash": "afe2b3f84decaedf39477c8f2cd86705",
     "semantic_hash": ""
   },
   "apps/web/src/routes/$familySlug.capsules.tsx": {
@@ -542,6 +532,26 @@
   "apps/web/test/pwa-install.test.ts": {
     "mtime": 1787257770.0169837,
     "ast_hash": "c861abdbc9637737793e61b1e047f858",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0012_optional_child_archives.sql": {
+    "mtime": 1787259962.704354,
+    "ast_hash": "e7164f29fe2d46103a369ca960f82927",
+    "semantic_hash": ""
+  },
+  "apps/web/scripts/check-self-host-config.mjs": {
+    "mtime": 1787263216.2775419,
+    "ast_hash": "4eaa510689227b423aa0fb8e329bca5e",
+    "semantic_hash": ""
+  },
+  "apps/web/test/deployment.test.ts": {
+    "mtime": 1787263042.749154,
+    "ast_hash": "c5bb43480dbc6d124dcb1c32b70c8cd3",
+    "semantic_hash": ""
+  },
+  "docs/self-hosting.md": {
+    "mtime": 1787263233.9292831,
+    "ast_hash": "4ff8603aac953ea91e6ef42b2e5cfcf6",
     "semantic_hash": ""
   }
 }

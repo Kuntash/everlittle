@@ -47,6 +47,7 @@ export default createServerEntry({
 
       return Response.json({
         allowsPublicSignup: deployment.capabilities.allowsPublicSignup,
+        defaultArchiveSlug: deployment.defaultArchiveSlug,
         deploymentMode: deployment.mode,
         needsSetup:
           deployment.capabilities.allowsInitialOwnerBootstrap && Number(row?.count ?? 0) === 0,
@@ -62,7 +63,8 @@ export default createServerEntry({
     }
 
     const response = await handler.fetch(request);
-    if (url.pathname !== "/") {
+    const deployment = getDeploymentConfig(getRuntimeEnv());
+    if (url.pathname !== "/" || deployment.mode === "self-hosted") {
       const headers = new Headers(response.headers);
       headers.set("cache-control", "private, no-store");
       headers.set("x-robots-tag", "noindex, nofollow, noarchive");
@@ -91,6 +93,7 @@ async function handleAuthRequest(request: Request): Promise<Response> {
     isFirstUser && deployment.capabilities.allowsInitialOwnerBootstrap && !invitation;
   const isHostedSignup = deployment.capabilities.allowsPublicSignup && !invitation;
   const auth = createAuth({
+    appName: deployment.appName,
     database: runtime.DB,
     secret: runtime.BETTER_AUTH_SECRET,
     baseURL: deployment.publicAppUrl,
@@ -105,7 +108,12 @@ async function handleAuthRequest(request: Request): Promise<Response> {
     if (payload.user?.id && invitation) {
       await acceptInvitation(runtime.DB, invitation, payload.user.id);
     } else if (payload.user?.id && isOwnerBootstrap) {
-      await bootstrapFamily(runtime.DB, payload.user.id, payload.user.name ?? "Our family");
+      await bootstrapFamily(
+        runtime.DB,
+        payload.user.id,
+        payload.user.name ?? "Our family",
+        deployment.defaultArchiveSlug,
+      );
     }
   }
 
@@ -120,11 +128,16 @@ async function readSignUpInput(request: { json(): Promise<unknown> }): Promise<S
   }
 }
 
-async function bootstrapFamily(database: D1Database, userId: string, ownerName: string) {
+async function bootstrapFamily(
+  database: D1Database,
+  userId: string,
+  ownerName: string,
+  defaultArchiveSlug: string | null,
+) {
   const archiveId = crypto.randomUUID();
   const archiveSlug = await uniqueArchiveSlug(
     database,
-    slugify(`${ownerName}-family`, `family-${archiveId.slice(0, 8)}`),
+    defaultArchiveSlug ?? slugify(`${ownerName}-family`, `family-${archiveId.slice(0, 8)}`),
   );
   await database.batch([
     database

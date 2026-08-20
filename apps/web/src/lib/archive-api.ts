@@ -2111,12 +2111,14 @@ async function getChildAccessContext(request: Request): Promise<ChildAccessConte
 
 async function getSessionUser(request: Request): Promise<SessionUser | null> {
   const runtime = getRuntimeEnv();
+  const deployment = getDeploymentConfig(runtime);
   const auth = createAuth({
+    appName: deployment.appName,
     database: runtime.DB,
     secret: runtime.BETTER_AUTH_SECRET,
-    baseURL: getDeploymentConfig(runtime).publicAppUrl,
+    baseURL: deployment.publicAppUrl,
     allowSignUp: false,
-    requireEmailVerification: getDeploymentConfig(runtime).mode === "hosted",
+    requireEmailVerification: deployment.mode === "hosted",
     sendAuthEmail: async () => undefined,
   });
   const session = await auth.api.getSession({ headers: request.headers });
