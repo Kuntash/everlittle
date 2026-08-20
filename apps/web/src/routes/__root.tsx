@@ -2,6 +2,9 @@ import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { Download, RefreshCw, Share, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import { authClient } from "@/lib/auth-client";
+import { shouldOfferPwaInstall } from "@/lib/pwa-install";
+
 import appCss from "../styles.css?url";
 
 export const Route = createRootRoute({
@@ -58,6 +61,7 @@ const PWA_DISMISSED_KEY = "everlittle.pwa-install-dismissed";
 const PWA_REMINDER_MS = 30 * 24 * 60 * 60 * 1000;
 
 function PwaExperience() {
+  const session = authClient.useSession();
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const [showIosGuide, setShowIosGuide] = useState(false);
   const [updateWorker, setUpdateWorker] = useState<ServiceWorker | null>(null);
@@ -209,7 +213,14 @@ function PwaExperience() {
     setInstallPrompt(null);
   }
 
-  const showInstall = !standalone && !dismissed && (Boolean(installPrompt) || isIos);
+  const isAuthenticated = Boolean(session.data?.user);
+  const showInstall = shouldOfferPwaInstall({
+    dismissed,
+    hasInstallPrompt: Boolean(installPrompt),
+    isAuthenticated,
+    isIos,
+    standalone,
+  });
 
   return (
     <>

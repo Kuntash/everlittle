@@ -40,12 +40,12 @@
     "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1786655875.1130521,
-    "ast_hash": "656ca77bf4186bc64391500a799ce50f",
+    "mtime": 1787257764.314461,
+    "ast_hash": "709be889ef48d2d00a37fb8b314ede5b",
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1786825733.0134938,
+    "mtime": 1787258531.369096,
     "ast_hash": "4deb4c27b9d8129f6c1f18ddedd73719",
     "semantic_hash": ""
   },
@@ -305,8 +305,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/marketing-home.tsx": {
-    "mtime": 1786825582.1010575,
-    "ast_hash": "588ad9a1795701dc4837dfb7083a6b4e",
+    "mtime": 1787258499.8595796,
+    "ast_hash": "7147418063fc5fa6bfc2fc8da8234dc8",
     "semantic_hash": ""
   },
   "apps/web/src/routes/invite.$token.tsx": {
@@ -532,6 +532,16 @@
   "apps/web/public/marketing/objects/archive-stack-v2.png": {
     "mtime": 1786824457.1545458,
     "ast_hash": "f2dba90e721d7c22eda50e1763817016",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/pwa-install.ts": {
+    "mtime": 1787257770.0105295,
+    "ast_hash": "4c68cf5b1609d51754f0e84a8ff1ecab",
+    "semantic_hash": ""
+  },
+  "apps/web/test/pwa-install.test.ts": {
+    "mtime": 1787257770.0169837,
+    "ast_hash": "c861abdbc9637737793e61b1e047f858",
     "semantic_hash": ""
   }
 }

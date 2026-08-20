@@ -1261,7 +1261,7 @@
       "label": "waveform",
       "file_type": "code",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_waveform",
@@ -1273,7 +1273,7 @@
       "label": "Star()",
       "file_type": "code",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L25",
+      "source_location": "L26",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_star",
@@ -1285,7 +1285,7 @@
       "label": "MarketingHome()",
       "file_type": "code",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L49",
+      "source_location": "L50",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketinghome",
@@ -2417,8 +2417,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_email",
-      "community": 191,
-      "community_name": "auth-email.ts",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "auth-email.ts"
     },
     {
@@ -2430,8 +2430,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_email_authemailinput",
-      "community": 191,
-      "community_name": "auth-email.ts",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "authemailinput"
     },
     {
@@ -2442,8 +2442,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_email_sendauthemail",
-      "community": 191,
-      "community_name": "auth-email.ts",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "sendauthemail()"
     },
     {
@@ -2454,8 +2454,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_email_buildauthemail",
-      "community": 191,
-      "community_name": "auth-email.ts",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "buildauthemail()"
     },
     {
@@ -2466,8 +2466,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_email_escapehtml",
-      "community": 191,
-      "community_name": "auth-email.ts",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "escapehtml()"
     },
     {
@@ -2697,6 +2697,42 @@
       "community": 178,
       "community_name": "invitation-email.ts",
       "norm_label": "titlecase()"
+    },
+    {
+      "label": "pwa-install.ts",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/pwa-install.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_lib_pwa_install",
+      "community": 103,
+      "community_name": "__root.tsx",
+      "norm_label": "pwa-install.ts"
+    },
+    {
+      "label": "PwaInstallContext",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/pwa-install.ts",
+      "source_location": "L1",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "apps_web_src_lib_pwa_install_pwainstallcontext",
+      "community": 103,
+      "community_name": "__root.tsx",
+      "norm_label": "pwainstallcontext"
+    },
+    {
+      "label": "shouldOfferPwaInstall()",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/pwa-install.ts",
+      "source_location": "L9",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_src_lib_pwa_install_shouldofferpwainstall",
+      "community": 103,
+      "community_name": "__root.tsx",
+      "norm_label": "shouldofferpwainstall()"
     },
     {
       "label": "runtime-env.ts",
@@ -3009,7 +3045,7 @@
       "label": "Route",
       "file_type": "code",
       "source_file": "apps/web/src/routes/__root.tsx",
-      "source_location": "L7",
+      "source_location": "L10",
       "_origin": "ast",
       "id": "apps_web_src_routes_root_route",
       "community": 103,
@@ -3020,7 +3056,7 @@
       "label": "RootDocument()",
       "file_type": "code",
       "source_file": "apps/web/src/routes/__root.tsx",
-      "source_location": "L37",
+      "source_location": "L40",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_root_rootdocument",
@@ -3032,7 +3068,7 @@
       "label": "InstallPromptEvent",
       "file_type": "code",
       "source_file": "apps/web/src/routes/__root.tsx",
-      "source_location": "L52",
+      "source_location": "L55",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
@@ -3045,7 +3081,7 @@
       "label": "PwaExperience()",
       "file_type": "code",
       "source_file": "apps/web/src/routes/__root.tsx",
-      "source_location": "L60",
+      "source_location": "L63",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_root_pwaexperience",
@@ -3264,8 +3300,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_archiveredirect",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "archiveredirect()"
     },
     {
@@ -3288,8 +3324,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_accessscreen",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "accessscreen()"
     },
     {
@@ -3300,8 +3336,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_invitationacceptance",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "invitationacceptance()"
     },
     {
@@ -3396,8 +3432,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memorymedia",
-      "community": 2,
-      "community_name": "index.tsx",
+      "community": 181,
+      "community_name": "MemoryComposer",
       "norm_label": "memorymedia()"
     },
     {
@@ -3455,8 +3491,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_capsulesview",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "capsulesview()"
     },
     {
@@ -3479,8 +3515,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_familysettings",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "familysettings()"
     },
     {
@@ -3540,8 +3576,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_apifetch",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "apifetch()"
     },
     {
@@ -3588,8 +3624,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_requestedredirect",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "requestedredirect()"
     },
     {
@@ -3600,8 +3636,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_responseerror",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "responseerror()"
     },
     {
@@ -3612,8 +3648,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_rolelabel",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "rolelabel()"
     },
     {
@@ -3624,8 +3660,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_roledescription",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "roledescription()"
     },
     {
@@ -3636,8 +3672,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_initials",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "initials()"
     },
     {
@@ -3648,8 +3684,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatdate",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "formatdate()"
     },
     {
@@ -3660,8 +3696,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatdatetime",
-      "community": 183,
-      "community_name": "responseError",
+      "community": 2,
+      "community_name": "index.tsx",
       "norm_label": "formatdatetime()"
     },
     {
@@ -4319,8 +4355,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_test_auth_email_test",
-      "community": 191,
-      "community_name": "auth-email.ts",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "auth-email.test.ts"
     },
     {
@@ -4344,6 +4380,28 @@
       "community": 186,
       "community_name": "migration-upgrade.test.ts",
       "norm_label": "testenv"
+    },
+    {
+      "label": "pwa-install.test.ts",
+      "file_type": "code",
+      "source_file": "apps/web/test/pwa-install.test.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_test_pwa_install_test",
+      "community": 103,
+      "community_name": "__root.tsx",
+      "norm_label": "pwa-install.test.ts"
+    },
+    {
+      "label": "eligibleContext",
+      "file_type": "code",
+      "source_file": "apps/web/test/pwa-install.test.ts",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "apps_web_test_pwa_install_test_eligiblecontext",
+      "community": 103,
+      "community_name": "__root.tsx",
+      "norm_label": "eligiblecontext"
     },
     {
       "label": "tenant-isolation.test.ts",
@@ -29855,7 +29913,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -29939,7 +29997,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -30022,7 +30080,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -30033,7 +30091,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -30044,7 +30102,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/marketing-home.tsx",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_marketing_home",
@@ -34703,6 +34761,18 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/__root.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_root",
+      "target": "apps_web_src_lib_auth_client",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -34723,6 +34793,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_routes_onboarding",
+      "target": "apps_web_src_lib_auth_client_authclient",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/__root.tsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_root",
       "target": "apps_web_src_lib_auth_client_authclient",
       "confidence_score": 1.0
     },
@@ -35261,6 +35343,88 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/pwa-install.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_pwa_install",
+      "target": "apps_web_src_lib_pwa_install_pwainstallcontext",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/pwa-install.ts",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_pwa_install",
+      "target": "apps_web_src_lib_pwa_install_shouldofferpwainstall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/__root.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_root",
+      "target": "apps_web_src_lib_pwa_install",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/test/pwa-install.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_test_pwa_install_test",
+      "target": "apps_web_src_lib_pwa_install",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/__root.tsx",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_root",
+      "target": "apps_web_src_lib_pwa_install_shouldofferpwainstall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/__root.tsx",
+      "source_location": "L217",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_root_pwaexperience",
+      "target": "apps_web_src_lib_pwa_install_shouldofferpwainstall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/test/pwa-install.test.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_test_pwa_install_test",
+      "target": "apps_web_src_lib_pwa_install_shouldofferpwainstall",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/runtime-env.ts",
       "source_location": "L5",
       "weight": 1.0,
@@ -35656,7 +35820,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/routes/__root.tsx",
-      "source_location": "L52",
+      "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_routes_root",
@@ -35667,7 +35831,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/routes/__root.tsx",
-      "source_location": "L60",
+      "source_location": "L63",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_routes_root",
@@ -35678,7 +35842,7 @@
       "relation": "indirect_call",
       "confidence": "INFERRED",
       "source_file": "apps/web/src/routes/__root.tsx",
-      "source_location": "L34",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "context": "collection",
@@ -35690,7 +35854,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/routes/__root.tsx",
-      "source_location": "L7",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_routes_root",
@@ -37795,6 +37959,17 @@
       "_origin": "ast",
       "source": "apps_web_test_migration_upgrade_test",
       "target": "apps_web_test_migration_upgrade_test_testenv",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/test/pwa-install.test.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_test_pwa_install_test",
+      "target": "apps_web_test_pwa_install_test_eligiblecontext",
       "confidence_score": 1.0
     },
     {
@@ -59351,5 +59526,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "24e9c4eb43f5ede164816f2b884d9e822a93fba8"
+  "built_at_commit": "6a039fd1a3f4eb662f15fbfabf7ac7c49dc38bfe"
 }

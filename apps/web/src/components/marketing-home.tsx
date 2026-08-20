@@ -14,6 +14,7 @@ import {
   UserRound,
   UsersRound,
 } from "lucide-react";
+import { useEffect } from "react";
 
 import { Brand } from "@/components/brand";
 
@@ -47,6 +48,45 @@ function Waveform() {
 }
 
 export function MarketingHome() {
+  useEffect(() => {
+    const root = document.querySelector<HTMLElement>(".heirloom-shell");
+    if (!root) return;
+
+    const motionTargets = [...root.querySelectorAll<HTMLElement>("[data-motion]")];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    root.classList.add("is-motion-ready");
+
+    if (reducedMotion || !("IntersectionObserver" in window)) {
+      motionTargets.forEach((target) => target.classList.add("is-revealed"));
+      return () => root.classList.remove("is-motion-ready");
+    }
+
+    const targetsByTrigger = new Map<Element, HTMLElement[]>();
+    motionTargets.forEach((target) => {
+      const trigger = target.parentElement ?? target;
+      targetsByTrigger.set(trigger, [...(targetsByTrigger.get(trigger) ?? []), target]);
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          targetsByTrigger
+            .get(entry.target)
+            ?.forEach((target) => target.classList.add("is-revealed"));
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -12%", threshold: 0.14 },
+    );
+
+    targetsByTrigger.forEach((_, trigger) => observer.observe(trigger));
+    return () => {
+      observer.disconnect();
+      root.classList.remove("is-motion-ready");
+    };
+  }, []);
+
   return (
     <main className="heirloom-shell">
       <section className="heirloom-hero">
@@ -59,6 +99,7 @@ export function MarketingHome() {
           fetchPriority="high"
         />
         <div className="heirloom-hero-shade" />
+        <div className="heirloom-hero-curtain" aria-hidden="true" />
 
         <nav className="heirloom-nav" aria-label="Main navigation">
           <a href="/" aria-label="Everlittle home">
@@ -96,7 +137,7 @@ export function MarketingHome() {
       </section>
 
       <section className="heirloom-keeps" id="keeps">
-        <header className="heirloom-section-heading">
+        <header className="heirloom-section-heading" data-motion="heading">
           <p>
             What you keep <Star />
           </p>
@@ -108,7 +149,7 @@ export function MarketingHome() {
         </header>
 
         <div className="heirloom-keeps-grid">
-          <figure className="heirloom-photo-memory">
+          <figure className="heirloom-photo-memory" data-motion="keepsake-left">
             <div className="heirloom-photo-frame">
               <img
                 src="/marketing/family-album.jpg"
@@ -131,7 +172,7 @@ export function MarketingHome() {
             </figcaption>
           </figure>
 
-          <article className="heirloom-voice-memory">
+          <article className="heirloom-voice-memory" data-motion="keepsake-center">
             <div className="heirloom-memory-index">
               <span>02</span>
               <i />
@@ -154,7 +195,7 @@ export function MarketingHome() {
             </div>
           </article>
 
-          <article className="heirloom-capsule-memory">
+          <article className="heirloom-capsule-memory" data-motion="keepsake-right">
             <div className="heirloom-memory-index">
               <span>03</span>
               <i />
@@ -194,7 +235,11 @@ export function MarketingHome() {
           </small>
         </aside>
 
-        <div className="heirloom-product-stage" aria-label="Everlittle archive product preview">
+        <div
+          className="heirloom-product-stage"
+          aria-label="Everlittle archive product preview"
+          data-motion="archive-stage"
+        >
           <div className="heirloom-app-window">
             <aside>
               <Brand compact />
@@ -253,7 +298,7 @@ export function MarketingHome() {
           </article>
         </div>
 
-        <div className="heirloom-product-copy">
+        <div className="heirloom-product-copy" data-motion="archive-copy">
           <p>The archive</p>
           <h2 id="archive-heading">Every memory keeps its context.</h2>
           <Star />
@@ -265,7 +310,7 @@ export function MarketingHome() {
       </section>
 
       <section className="heirloom-privacy" id="privacy">
-        <div className="heirloom-privacy-photo">
+        <div className="heirloom-privacy-photo" data-motion="privacy-photo">
           <img
             src="/marketing/voice-memory.jpg"
             alt="A parent recording a private voice memory beside a sleeping child"
@@ -274,7 +319,7 @@ export function MarketingHome() {
             loading="lazy"
           />
         </div>
-        <div className="heirloom-privacy-copy">
+        <div className="heirloom-privacy-copy" data-motion="privacy-copy">
           <p>
             <Star /> Private by default
           </p>
@@ -332,14 +377,14 @@ export function MarketingHome() {
       </section>
 
       <section className="heirloom-hosting" id="hosting">
-        <header>
+        <header data-motion="hosting-heading">
           <Star />
           <p>One application</p>
           <h2>Use our home, or run your own.</h2>
         </header>
 
         <div className="heirloom-hosting-halves">
-          <article className="heirloom-hosted">
+          <article className="heirloom-hosted" data-motion="hosting-left">
             <h3>Hosted</h3>
             <div className="heirloom-rule">
               <i />
@@ -383,7 +428,7 @@ export function MarketingHome() {
             </ul>
           </article>
 
-          <article className="heirloom-self-hosted">
+          <article className="heirloom-self-hosted" data-motion="hosting-right">
             <h3>Self-hosted</h3>
             <div className="heirloom-rule">
               <i />
@@ -448,7 +493,7 @@ export function MarketingHome() {
           height="1024"
           loading="lazy"
         />
-        <div>
+        <div data-motion="closing-copy">
           <Star />
           <h2>Begin with one memory.</h2>
           <p>The ordinary moments are often the ones they’ll want most.</p>
