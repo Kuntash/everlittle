@@ -64,7 +64,9 @@ export default createServerEntry({
 
     const response = await handler.fetch(request);
     const deployment = getDeploymentConfig(getRuntimeEnv());
-    if (url.pathname !== "/" || deployment.mode === "self-hosted") {
+    const isPublicMarketingPage =
+      deployment.mode === "hosted" && (url.pathname === "/" || url.pathname === "/pricing");
+    if (!isPublicMarketingPage) {
       const headers = new Headers(response.headers);
       headers.set("cache-control", "private, no-store");
       headers.set("x-robots-tag", "noindex, nofollow, noarchive");
