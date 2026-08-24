@@ -4,6 +4,7 @@ import { childSlugSchema, familySlugSchema, slugify } from "@everlittle/domain";
 import { createAuth } from "@/lib/auth";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 import { getDeploymentConfig } from "@/lib/deployment";
+import { canStoreMedia, FAMILY_PLAN } from "@/lib/plans";
 import { sendInvitationEmail } from "@/lib/invitation-email";
 
 const invitationSchema = z.object({
@@ -417,7 +418,7 @@ async function getArchiveState(request: Request): Promise<Response> {
   const context = await getMembershipContext(request);
   if (!context) return unauthorized();
 
-  const [archive, members, children, memories, capsules, invitations] = await Promise.all([
+  const [archive, members, children, memories, capsules, invitations, storage] = await Promise.all([
     database
       .prepare(
         `SELECT id, name, slug, timezone, created_at AS createdAt
@@ -506,6 +507,7 @@ async function getArchiveState(request: Request): Promise<Response> {
           .bind(context.archiveId)
           .all()
       : Promise.resolve({ results: [] }),
+    getArchiveStorage(database, context.archiveId),
   ]);
 
   return Response.json({
@@ -520,6 +522,7 @@ async function getArchiveState(request: Request): Promise<Response> {
     memories: memories.results,
     capsules: capsules.results,
     invitations: invitations.results,
+    billing: storage,
   });
 }
 
@@ -686,6 +689,11 @@ async function completeOnboarding(request: Request): Promise<Response> {
       runtime.DB.prepare(
         "INSERT INTO family_member (id, archive_id, user_id, role) VALUES (?, ?, ?, 'owner')",
       ).bind(crypto.randomUUID(), archiveId, user.id),
+      runtime.DB.prepare(
+        `INSERT INTO archive_subscription
+          (archive_id, plan_key, status, storage_limit_bytes)
+         VALUES (?, 'family', 'complimentary', ?)`,
+      ).bind(archiveId, FAMILY_PLAN.storageLimitBytes),
       runtime.DB.prepare(
         `INSERT INTO child_profile
           (id, archive_id, slug, display_name, birth_date, access_pin_hash, profile_kind)
@@ -1743,6 +1751,8 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   if (byteSize > MAX_MEDIA_BYTES) {
     return Response.json({ error: "Media files must be 50 MB or smaller." }, { status: 413 });
   }
+  const storageResponse = await enforceArchiveStorage(runtime.DB, context.archiveId, byteSize);
+  if (storageResponse) return storageResponse;
   if (
     (memory.kind === "photo" && media.mediaType !== "image") ||
     (memory.kind === "voice" && media.mediaType !== "audio") ||
@@ -1837,6 +1847,15 @@ async function uploadVideoThumbnail(request: Request, memoryId: string): Promise
     return Response.json({ error: "Video thumbnails must be 2 MB or smaller." }, { status: 413 });
   }
 
+  const existingThumbnail = await runtime.MEDIA.head(thumbnailObjectKey(asset.objectKey));
+  const additionalBytes = Math.max(0, thumbnail.byteLength - (existingThumbnail?.size ?? 0));
+  const storageResponse = await enforceArchiveStorage(
+    runtime.DB,
+    context.archiveId,
+    additionalBytes,
+  );
+  if (storageResponse) return storageResponse;
+
   await runtime.MEDIA.put(thumbnailObjectKey(asset.objectKey), thumbnail, {
     httpMetadata: { contentType },
     customMetadata: {
@@ -1846,6 +1865,11 @@ async function uploadVideoThumbnail(request: Request, memoryId: string): Promise
       variant: "thumbnail",
     },
   });
+  await runtime.DB.prepare(
+    "UPDATE media_asset SET thumbnail_byte_size = ? WHERE id = ? AND archive_id = ?",
+  )
+    .bind(thumbnail.byteLength, asset.id, context.archiveId)
+    .run();
   return Response.json({ saved: true }, { status: 201 });
 }
 
@@ -2046,6 +2070,84 @@ function resolveByteRange(range: ByteRange, objectSize: number) {
 
 function thumbnailObjectKey(objectKey: string) {
   return `${objectKey}.thumbnail.jpg`;
+}
+
+type ArchiveStorage = {
+  plan: "family" | "self-hosted";
+  status: "active" | "canceled" | "complimentary" | "past_due" | "trialing";
+  usedBytes: number;
+  limitBytes: number | null;
+  trialEndsAt: string | null;
+  currentPeriodEndsAt: string | null;
+};
+
+async function getArchiveStorage(database: D1Database, archiveId: string): Promise<ArchiveStorage> {
+  const deployment = getDeploymentConfig(getRuntimeEnv());
+  const usage = await database
+    .prepare(
+      `SELECT COALESCE(SUM(byte_size + thumbnail_byte_size), 0) AS usedBytes
+       FROM media_asset WHERE archive_id = ?`,
+    )
+    .bind(archiveId)
+    .first<{ usedBytes: number }>();
+  const usedBytes = Number(usage?.usedBytes ?? 0);
+
+  if (deployment.mode === "self-hosted") {
+    return {
+      plan: "self-hosted",
+      status: "active",
+      usedBytes,
+      limitBytes: null,
+      trialEndsAt: null,
+      currentPeriodEndsAt: null,
+    };
+  }
+
+  const subscription = await database
+    .prepare(
+      `SELECT status, storage_limit_bytes AS storageLimitBytes,
+              trial_ends_at AS trialEndsAt, current_period_ends_at AS currentPeriodEndsAt
+       FROM archive_subscription WHERE archive_id = ?`,
+    )
+    .bind(archiveId)
+    .first<{
+      status: ArchiveStorage["status"];
+      storageLimitBytes: number;
+      trialEndsAt: string | null;
+      currentPeriodEndsAt: string | null;
+    }>();
+
+  return {
+    plan: "family",
+    status: subscription?.status ?? "complimentary",
+    usedBytes,
+    limitBytes: Number(subscription?.storageLimitBytes ?? FAMILY_PLAN.storageLimitBytes),
+    trialEndsAt: subscription?.trialEndsAt ?? null,
+    currentPeriodEndsAt: subscription?.currentPeriodEndsAt ?? null,
+  };
+}
+
+async function enforceArchiveStorage(
+  database: D1Database,
+  archiveId: string,
+  additionalBytes: number,
+): Promise<Response | null> {
+  if (additionalBytes <= 0) return null;
+  const storage = await getArchiveStorage(database, archiveId);
+  if (storage.plan === "self-hosted") return null;
+  if (!canStoreMedia(storage.status, storage.trialEndsAt)) {
+    return Response.json(
+      { error: "Your hosted plan needs attention before you can add more media." },
+      { status: 402 },
+    );
+  }
+  if (storage.limitBytes !== null && storage.usedBytes + additionalBytes > storage.limitBytes) {
+    return Response.json(
+      { error: "This upload would exceed your family's 25 GB storage allowance." },
+      { status: 413 },
+    );
+  }
+  return null;
 }
 
 async function deleteMemory(request: Request, memoryId: string): Promise<Response> {

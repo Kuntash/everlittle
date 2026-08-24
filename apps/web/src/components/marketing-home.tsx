@@ -2,6 +2,7 @@ import {
   ArrowRight,
   Baby,
   Boxes,
+  Check,
   Cloud,
   Code2,
   Database,
@@ -44,6 +45,109 @@ function Waveform() {
       </span>
       <small>01:34</small>
     </div>
+  );
+}
+
+export function PricingSection() {
+  return (
+    <section className="heirloom-pricing" id="pricing">
+      <div className="heirloom-pricing-intro" data-motion="pricing-heading">
+        <p>
+          <Star /> Simple family pricing
+        </p>
+        <h2>One home for all the little things.</h2>
+        <p>
+          No advertising, no audience-building, and no charge for inviting the people your family
+          trusts.
+        </p>
+      </div>
+
+      <article className="heirloom-price-card" data-motion="pricing-card">
+        <div className="heirloom-price-name">
+          <small>EVERLITTLE</small>
+          <h3>Family archive</h3>
+          <p>Everything a family needs to keep a private history together.</p>
+        </div>
+        <div className="heirloom-price-amount" aria-label="Six US dollars per month">
+          <span>$</span>
+          <strong>6</strong>
+          <small>
+            USD
+            <br />
+            per month
+          </small>
+        </div>
+        <p className="heirloom-price-annual">or $60 yearly — two months kept for you</p>
+        <ul>
+          <li>
+            <Check /> 25 GB of photographs, voices, and video
+          </li>
+          <li>
+            <Check /> Unlimited invited family members
+          </li>
+          <li>
+            <Check /> Child spaces and future capsules
+          </li>
+          <li>
+            <Check /> Private sharing and full data ownership
+          </li>
+          <li>
+            <Check /> Managed updates and point-in-time recovery
+          </li>
+        </ul>
+        <a href="/sign-up">
+          Start your family archive <ArrowRight />
+        </a>
+        <p className="heirloom-founding-note">
+          Founding access is complimentary while hosted billing opens. No card required today.
+        </p>
+      </article>
+
+      <aside className="heirloom-price-self-hosted" data-motion="pricing-self-hosted">
+        <div>
+          <Code2 />
+          <p>
+            <strong>Prefer your own infrastructure?</strong> Everlittle is free and open source.
+          </p>
+        </div>
+        <a href="https://github.com/Kuntash/everlittle">
+          Self-host Everlittle <ArrowRight />
+        </a>
+      </aside>
+    </section>
+  );
+}
+
+export function MarketingPricingPage() {
+  return (
+    <main className="heirloom-shell heirloom-pricing-page">
+      <nav className="heirloom-nav heirloom-nav-paper" aria-label="Main navigation">
+        <a href="/" aria-label="Everlittle home">
+          <Brand compact />
+        </a>
+        <div>
+          <a href="/#keeps">What you keep</a>
+          <a href="/#privacy">Privacy</a>
+          <a href="/#hosting">Self-host</a>
+          <a href="/sign-in">Sign in</a>
+          <a className="heirloom-nav-cta" href="/sign-up">
+            Create your archive
+          </a>
+        </div>
+      </nav>
+      <PricingSection />
+      <footer className="heirloom-footer">
+        <Brand compact />
+        <p>A private place for the memories they’ll grow into.</p>
+        <nav aria-label="Footer navigation">
+          <a href="/">Home</a>
+          <i />
+          <a href="/sign-in">Sign in</a>
+          <i />
+          <a href="/#hosting">Self-host</a>
+        </nav>
+      </footer>
+    </main>
   );
 }
 
@@ -108,6 +212,7 @@ export function MarketingHome() {
           <div>
             <a href="#keeps">What you keep</a>
             <a href="#privacy">Privacy</a>
+            <a href="/pricing">Pricing</a>
             <a href="#hosting">Self-host</a>
             <a href="/sign-in">Sign in</a>
             <a className="heirloom-nav-cta" href="/sign-up">
@@ -376,6 +481,8 @@ export function MarketingHome() {
         </div>
       </section>
 
+      <PricingSection />
+
       <section className="heirloom-hosting" id="hosting">
         <header data-motion="hosting-heading">
           <Star />
@@ -420,7 +527,7 @@ export function MarketingHome() {
                 <ServerCog /> Automatic updates
               </li>
               <li>
-                <Database /> Built-in backups
+                <Database /> Point-in-time recovery
               </li>
               <li>
                 <ShieldCheck /> Secure by default
@@ -508,6 +615,8 @@ export function MarketingHome() {
         <p>A private place for the memories they’ll grow into.</p>
         <nav aria-label="Footer navigation">
           <a href="/sign-in">Sign in</a>
+          <i />
+          <a href="/pricing">Pricing</a>
           <i />
           <a href="#hosting">Self-host</a>
           <i />

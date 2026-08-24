@@ -31,6 +31,14 @@ The workspace follows the Vite+ and pnpm monorepo shape used by `ai-native-portf
 - **Installable app:** web app manifest, standalone mode, safe-area layout, Apple touch icon, and a
   small offline shell are included.
 
+## Hosted and self-hosted
+
+The canonical codebase powers both products. `geteverlittle.com` runs in hosted mode with a $6/month
+or $60/year Family plan and a 25 GiB archive allowance; founding access remains complimentary until
+checkout opens. Self-hosted deployments use the same application without hosted billing or an
+Everlittle storage limit. See [`docs/hosted-billing.md`](docs/hosted-billing.md) for the entitlement
+and payment-provider boundary.
+
 ## Authentication
 
 Everlittle uses [Better Auth](https://www.better-auth.com/) with the same self-hosted pattern as the

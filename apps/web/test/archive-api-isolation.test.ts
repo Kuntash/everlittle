@@ -215,6 +215,61 @@ describe("route-scoped tenant isolation", () => {
 
     const hidden = await api(familyA, `/api/families/${familyA.slug}/media/${mediaId}/thumbnail`);
     expect(hidden.status).toBe(404);
+
+    const archive = await api(familyB, `/api/families/${familyB.slug}/archive`);
+    const state = (await archive.json()) as {
+      billing: { limitBytes: number; plan: string; status: string; usedBytes: number };
+    };
+    expect(state.billing).toMatchObject({
+      limitBytes: 25 * 1024 * 1024 * 1024,
+      plan: "family",
+      status: "complimentary",
+      usedBytes: 10,
+    });
+  });
+
+  it("rejects hosted media that would exceed the archive allowance", async () => {
+    const usage = await env.DB.prepare(
+      "SELECT COALESCE(SUM(byte_size + thumbnail_byte_size), 0) AS bytes FROM media_asset WHERE archive_id = ?",
+    )
+      .bind(familyB.archiveId)
+      .first<{ bytes: number }>();
+    await env.DB.prepare(
+      "UPDATE archive_subscription SET storage_limit_bytes = ? WHERE archive_id = ?",
+    )
+      .bind(Number(usage?.bytes ?? 0) + 1, familyB.archiveId)
+      .run();
+
+    const memory = await api(familyB, `/api/families/${familyB.slug}/archive/memories`, {
+      body: JSON.stringify({
+        audience: "family",
+        childId: familyB.childId,
+        happenedAt: new Date().toISOString(),
+        kind: "photo",
+        title: "Over quota",
+      }),
+      method: "POST",
+    });
+    const memoryId = ((await memory.json()) as { id: string }).id;
+    const upload = await api(
+      familyB,
+      `/api/families/${familyB.slug}/archive/memories/${memoryId}/media`,
+      {
+        body: new Uint8Array([1, 2]),
+        headers: { "content-length": "2", "content-type": "image/jpeg" },
+        method: "PUT",
+      },
+    );
+    expect(upload.status).toBe(413);
+    expect(await upload.json()).toEqual({
+      error: "This upload would exceed your family's 25 GB storage allowance.",
+    });
+
+    await env.DB.prepare(
+      "UPDATE archive_subscription SET storage_limit_bytes = ? WHERE archive_id = ?",
+    )
+      .bind(25 * 1024 * 1024 * 1024, familyB.archiveId)
+      .run();
   });
 
   it("resolves every invitation token to one exact archive", async () => {

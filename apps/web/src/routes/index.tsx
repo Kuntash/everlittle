@@ -11,6 +11,7 @@ import {
   Crown,
   FileAudio,
   Heart,
+  HardDrive,
   Home,
   Image,
   LockKeyhole,
@@ -149,6 +150,14 @@ type ArchiveState = {
   memories: Memory[];
   capsules: Capsule[];
   invitations: PendingInvitation[];
+  billing: {
+    plan: "family" | "self-hosted";
+    status: "active" | "canceled" | "complimentary" | "past_due" | "trialing";
+    usedBytes: number;
+    limitBytes: number | null;
+    trialEndsAt: string | null;
+    currentPeriodEndsAt: string | null;
+  };
 };
 type ArchiveMembership = {
   id: string;
@@ -2618,6 +2627,50 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
       {error ? <p className="form-error">{error}</p> : null}
 
       <div className="family-grid">
+        <section className="settings-card storage-card">
+          <div className="settings-heading">
+            <span>
+              <HardDrive />
+            </span>
+            <div>
+              <p className="eyebrow">Storage</p>
+              <h2>
+                {state.billing.plan === "self-hosted" ? "Your infrastructure" : "Family plan"}
+              </h2>
+            </div>
+          </div>
+          <div className="storage-summary">
+            <strong>{formatFileSize(state.billing.usedBytes)} used</strong>
+            <span>
+              {state.billing.limitBytes === null
+                ? "No Everlittle limit"
+                : `${formatFileSize(state.billing.limitBytes)} included`}
+            </span>
+          </div>
+          {state.billing.limitBytes !== null ? (
+            <div
+              aria-label={`${Math.min(100, (state.billing.usedBytes / state.billing.limitBytes) * 100).toFixed(1)} percent of storage used`}
+              className="storage-meter"
+              role="progressbar"
+              aria-valuemin={0}
+              aria-valuemax={state.billing.limitBytes}
+              aria-valuenow={state.billing.usedBytes}
+            >
+              <i
+                style={{
+                  width: `${Math.min(100, (state.billing.usedBytes / state.billing.limitBytes) * 100)}%`,
+                }}
+              />
+            </div>
+          ) : null}
+          <p className="storage-note">
+            {state.billing.plan === "self-hosted"
+              ? "Media stays in the R2 bucket owned by this installation."
+              : state.billing.status === "complimentary"
+                ? "Founding access is complimentary. Your 25 GB allowance is already active."
+                : "Photographs, audio, video, and generated thumbnails count toward this total."}
+          </p>
+        </section>
         <section className="settings-card">
           <div className="settings-heading">
             <span>
@@ -3352,6 +3405,8 @@ function memoryBodyPlaceholder(kind: MemoryKind) {
 }
 
 function formatFileSize(bytes: number) {
+  if (bytes === 0) return "0 KB";
   if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  if (bytes >= 1024 * 1024 * 1024) return `${(bytes / (1024 * 1024 * 1024)).toFixed(0)} GB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }

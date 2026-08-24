@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1787572224.7737525,
-    "ast_hash": "d490b944dcafa5530519f96638bb2126",
+    "mtime": 1787573180.123278,
+    "ast_hash": "1a17a3cd57353ab70830da75de16f60b",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787572224.7747648,
-    "ast_hash": "7eff1ea1abd08c11584d97ee0afd26b9",
+    "mtime": 1787573180.1227043,
+    "ast_hash": "42d82a23e8371304a2154707b2c8766a",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -110,8 +110,8 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1787264667.0894206,
-    "ast_hash": "876b771431db27989c643d35c948ee0d",
+    "mtime": 1787573322.171156,
+    "ast_hash": "25a8f1e6189ea151ee6ff12ce557c255",
     "semantic_hash": ""
   },
   "TODO.md": {
@@ -250,8 +250,8 @@
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
-    "mtime": 1787264667.0895967,
-    "ast_hash": "d098bf8026ef8e46a9a9b904a481a22b",
+    "mtime": 1787573322.1715965,
+    "ast_hash": "632aba425354b66b22fe5fad472e8f8e",
     "semantic_hash": ""
   },
   "TRADEMARK_KNOCKOUT.md": {
@@ -305,8 +305,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/marketing-home.tsx": {
-    "mtime": 1787258499.8595796,
-    "ast_hash": "7147418063fc5fa6bfc2fc8da8234dc8",
+    "mtime": 1787573180.1176252,
+    "ast_hash": "adec5c5741c7ae7b532dc0b7179d09e6",
     "semantic_hash": ""
   },
   "apps/web/src/routes/invite.$token.tsx": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1787572092.5526216,
-    "ast_hash": "0a0a792b8519a10322922a0cd82395db",
+    "mtime": 1787573172.4029412,
+    "ast_hash": "2e11c124ecd446b44474bdf4897ddffb",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
@@ -562,6 +562,26 @@
   "apps/web/test/archive-navigation.test.ts": {
     "mtime": 1787570786.9237616,
     "ast_hash": "5d1e0d4f32bb44c293e7da2cd45478d4",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0013_hosted_billing.sql": {
+    "mtime": 1787573019.8414216,
+    "ast_hash": "2d0d99c0e40c214ecceb3281d53d992e",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/plans.ts": {
+    "mtime": 1787573019.8410664,
+    "ast_hash": "eea11997c42a1164354906f48d8b2d5b",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/pricing.tsx": {
+    "mtime": 1787573094.9770129,
+    "ast_hash": "3917132afc32fbeafb1aa892096e1711",
+    "semantic_hash": ""
+  },
+  "docs/hosted-billing.md": {
+    "mtime": 1787573322.17016,
+    "ast_hash": "9794e87de48d56668b829a105b072943",
     "semantic_hash": ""
   }
 }

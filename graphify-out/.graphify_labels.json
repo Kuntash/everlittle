@@ -1,7 +1,7 @@
 {
   "0": "worker-configuration.d.ts",
   "1": "archive-api.ts",
-  "2": "responseError",
+  "2": "getRuntimeEnv",
   "3": "ServiceWorkerGlobalScope",
   "4": "Event",
   "5": "compilerOptions",
@@ -168,9 +168,9 @@
   "166": "web/vite.config.ts",
   "167": "vite.config.ts",
   "168": "Self-hosting Everlittle on Cloudflare",
-  "169": "brand.tsx",
+  "169": "marketing-home.tsx",
   "170": "pre-commit",
-  "171": "\"user\"",
+  "171": "family_archive",
   "172": "archive-api-isolation.test.ts",
   "173": "Tenant-isolation inventory",
   "174": "0003_memory_media_guards.sql",
@@ -196,6 +196,8 @@
   "194": "0012_optional_child_archives.sql",
   "195": "archive-navigation.ts",
   "196": "MemoryComposer",
-  "197": "auth-email.ts",
-  "198": "__root.tsx"
+  "197": "server.ts",
+  "198": "getDeploymentConfig",
+  "199": "index.ts",
+  "200": "signInChild"
 }

@@ -2987,6 +2987,188 @@ h3 {
   min-height: 940px;
   position: relative;
 }
+
+.heirloom-pricing {
+  background:
+    radial-gradient(circle at 78% 14%, rgb(177 119 83 / 11%), transparent 28rem),
+    var(--heirloom-paper);
+  border-block: 1px solid var(--heirloom-line);
+  color: var(--heirloom-ink);
+  display: grid;
+  gap: 3rem clamp(2rem, 6vw, 7rem);
+  grid-template-columns: minmax(250px, 0.72fr) minmax(440px, 1fr);
+  padding: clamp(6rem, 10vw, 10rem) clamp(1.5rem, 8vw, 9rem);
+}
+.heirloom-pricing-intro {
+  align-self: start;
+  position: sticky;
+  top: 4rem;
+}
+.heirloom-pricing-intro > p:first-child {
+  color: var(--heirloom-green);
+  font-size: 0.72rem;
+  font-weight: 650;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.heirloom-pricing-intro h2 {
+  font-size: clamp(3.8rem, 6vw, 6.7rem);
+  letter-spacing: -0.055em;
+  line-height: 0.82;
+  margin: 1.5rem 0 2rem;
+  max-width: 7.4ch;
+}
+.heirloom-pricing-intro > p:last-child {
+  color: var(--heirloom-muted);
+  line-height: 1.75;
+  max-width: 36ch;
+}
+.heirloom-price-card {
+  background: var(--heirloom-green);
+  box-shadow: 1.5rem 1.5rem 0 rgb(29 69 52 / 10%);
+  color: var(--heirloom-paper-bright);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: clamp(2rem, 5vw, 4.5rem);
+  position: relative;
+}
+.heirloom-price-card::before {
+  border: 1px solid rgb(250 248 241 / 24%);
+  content: "";
+  inset: 0.75rem;
+  pointer-events: none;
+  position: absolute;
+}
+.heirloom-price-name small {
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+}
+.heirloom-price-name h3 {
+  font-size: clamp(2.6rem, 4vw, 4.4rem);
+  line-height: 0.9;
+  margin: 1rem 0;
+}
+.heirloom-price-name p {
+  color: rgb(250 248 241 / 72%);
+  line-height: 1.6;
+  max-width: 34ch;
+}
+.heirloom-price-amount {
+  align-items: center;
+  display: flex;
+  font-family: "Cormorant Garamond Variable", serif;
+  padding-left: 2rem;
+}
+.heirloom-price-amount > span {
+  align-self: flex-start;
+  font-size: 1.8rem;
+  margin-top: 1rem;
+}
+.heirloom-price-amount strong {
+  font-size: clamp(6rem, 10vw, 9rem);
+  font-weight: 450;
+  letter-spacing: -0.09em;
+  line-height: 0.75;
+}
+.heirloom-price-amount small {
+  font-family: "Geist Variable", sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
+  line-height: 1.5;
+  margin-left: 1rem;
+  text-transform: uppercase;
+}
+.heirloom-price-annual {
+  border-block: 1px solid rgb(250 248 241 / 20%);
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.18rem;
+  grid-column: 1 / -1;
+  margin: 2.5rem 0 0;
+  padding: 1rem 0;
+}
+.heirloom-price-card ul {
+  display: grid;
+  gap: 0.9rem;
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 2rem 0 2.5rem;
+  padding: 0;
+}
+.heirloom-price-card li {
+  align-items: center;
+  display: flex;
+  font-size: 0.86rem;
+  gap: 0.8rem;
+}
+.heirloom-price-card li svg {
+  height: 16px;
+  stroke-width: 1.8;
+  width: 16px;
+}
+.heirloom-price-card > a {
+  align-items: center;
+  background: var(--heirloom-paper-bright);
+  color: var(--heirloom-green);
+  display: flex;
+  font-family: "Cormorant Garamond Variable", serif;
+  font-size: 1.35rem;
+  grid-column: 1 / -1;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  text-decoration: none;
+}
+.heirloom-founding-note {
+  color: rgb(250 248 241 / 62%);
+  font-size: 0.7rem;
+  grid-column: 1 / -1;
+  line-height: 1.5;
+  margin: 1rem 0 0;
+  text-align: center;
+}
+.heirloom-price-self-hosted {
+  align-items: center;
+  border-top: 1px solid var(--heirloom-line);
+  display: flex;
+  grid-column: 2;
+  justify-content: space-between;
+  padding-top: 2rem;
+}
+.heirloom-price-self-hosted > div {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+.heirloom-price-self-hosted p {
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 35ch;
+}
+.heirloom-price-self-hosted strong {
+  display: block;
+}
+.heirloom-price-self-hosted > a {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  font-size: 0.75rem;
+  gap: 0.7rem;
+}
+.heirloom-pricing-page {
+  background: var(--heirloom-paper);
+  padding-top: 8rem;
+}
+.heirloom-pricing-page .heirloom-pricing {
+  min-height: calc(100vh - 8rem);
+}
+.heirloom-nav-paper {
+  color: var(--heirloom-green);
+  position: absolute;
+  top: 0;
+}
+.heirloom-nav-paper .heirloom-nav-cta {
+  border-color: var(--heirloom-green);
+}
 .heirloom-hosting > header {
   left: 50%;
   position: absolute;
@@ -3571,6 +3753,18 @@ h3 {
   .heirloom-nav > div a[href="#hosting"] {
     display: none;
   }
+  .heirloom-pricing {
+    grid-template-columns: 1fr;
+  }
+  .heirloom-pricing-intro {
+    position: static;
+  }
+  .heirloom-pricing-intro h2 {
+    max-width: 9ch;
+  }
+  .heirloom-price-self-hosted {
+    grid-column: 1;
+  }
   .heirloom-hero-copy {
     width: 62vw;
   }
@@ -3827,6 +4021,35 @@ h3 {
   }
   .heirloom-hosting {
     min-height: 0;
+  }
+  .heirloom-pricing {
+    gap: 3rem;
+    padding: 5rem 1.25rem;
+  }
+  .heirloom-pricing-intro h2 {
+    font-size: clamp(3.7rem, 16vw, 5rem);
+  }
+  .heirloom-price-card {
+    display: block;
+    padding: 2.4rem 2rem;
+  }
+  .heirloom-price-amount {
+    justify-content: flex-start;
+    padding: 2.5rem 0 0;
+  }
+  .heirloom-price-amount strong {
+    font-size: 7rem;
+  }
+  .heirloom-price-self-hosted {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .heirloom-pricing-page {
+    padding-top: 0;
+  }
+  .heirloom-pricing-page .heirloom-nav-paper {
+    display: none;
   }
   .heirloom-hosting > header {
     padding-inline: 1rem;
@@ -5696,6 +5919,45 @@ h3 {
 .settings-heading p,
 .settings-heading h2 {
   margin-bottom: 0;
+}
+.storage-card {
+  background:
+    radial-gradient(circle at 92% 0%, rgb(183 139 66 / 13%), transparent 16rem),
+    rgb(255 253 248 / 78%);
+}
+.storage-summary {
+  align-items: baseline;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.4rem 0 0.65rem;
+}
+.storage-summary strong {
+  color: var(--forest);
+  font-size: 0.84rem;
+}
+.storage-summary span {
+  color: var(--muted-ink);
+  font-size: 0.68rem;
+}
+.storage-meter {
+  background: rgb(23 59 50 / 9%);
+  border-radius: 999px;
+  display: block;
+  height: 8px;
+  overflow: hidden;
+}
+.storage-meter i {
+  background: linear-gradient(90deg, var(--forest), #b78b42);
+  border-radius: inherit;
+  display: block;
+  height: 100%;
+  min-width: 2px;
+}
+.storage-note {
+  color: var(--muted-ink);
+  font-size: 0.68rem;
+  line-height: 1.5;
+  margin: 0.75rem 0 0;
 }
 .settings-heading h2 {
   color: var(--forest);

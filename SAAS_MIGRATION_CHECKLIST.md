@@ -144,7 +144,7 @@ codebase that supports hosted SaaS and self-hosted Cloudflare installations.
 - [x] Keep one consistent light/dark token system and one accent color.
 - [x] Build an asymmetric hero with one primary signup intent.
 - [x] Explain memories, child views, capsules, privacy, ownership, and self-hosting.
-- [ ] Add honest hosted pricing only after costs and limits are known.
+- [x] Add honest hosted pricing only after costs and limits are known.
 - [x] Add a self-hosting path without competing with the hosted signup CTA.
 - [x] Honor reduced motion and reduced transparency.
 - [ ] Verify mobile, tablet, desktop, light mode, and dark mode.
