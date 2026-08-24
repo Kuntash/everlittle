@@ -2036,66 +2036,36 @@ function SecureAudioPlayer({ memory }: { memory: Memory }) {
 
 function SecureVideoPlayer({ memory, featured }: { memory: Memory; featured: boolean }) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const objectUrlRef = useRef<string | null>(null);
   const [playing, setPlaying] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [ready, setReady] = useState(false);
   const [error, setError] = useState("");
+  const source = scopedApiPath(`/api/media/${memory.mediaId}`);
 
   useEffect(() => {
-    const controller = new AbortController();
-    let active = true;
-    setLoading(true);
+    setPlaying(false);
+    setLoading(false);
+    setCurrentTime(0);
+    setDuration(0);
     setReady(false);
     setError("");
-    void (async () => {
-      try {
-        const response = await fetch(scopedApiPath(`/api/media/${memory.mediaId}`), {
-          credentials: "same-origin",
-          signal: controller.signal,
-        });
-        if (!response.ok) throw new Error(await responseError(response));
-        const objectUrl = URL.createObjectURL(await response.blob());
-        if (!active) {
-          URL.revokeObjectURL(objectUrl);
-          return;
-        }
-        objectUrlRef.current = objectUrl;
-        if (videoRef.current) videoRef.current.src = objectUrl;
-        setReady(true);
-      } catch (caught) {
-        if (active && !controller.signal.aborted) {
-          setError(
-            caught instanceof Error && caught.message
-              ? caught.message
-              : "The video could not be loaded. Check your connection and try again.",
-          );
-        }
-      } finally {
-        if (active) setLoading(false);
-      }
-    })();
-    return () => {
-      active = false;
-      controller.abort();
-      if (objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current);
-      objectUrlRef.current = null;
-    };
   }, [memory.mediaId]);
 
   async function toggle() {
     const video = videoRef.current;
-    if (!video || !ready) return;
+    if (!video) return;
     if (!video.paused) {
       video.pause();
       return;
     }
     setError("");
+    setLoading(true);
     try {
       await video.play();
     } catch {
+      setLoading(false);
       setError("This video could not be played on this device.");
     }
   }
@@ -2105,19 +2075,36 @@ function SecureVideoPlayer({ memory, featured }: { memory: Memory; featured: boo
       className={`memory-video custom-video ${featured ? "featured" : ""} ${ready ? "is-ready" : ""} ${playing ? "is-playing" : ""}`}
     >
       <video
-        onDurationChange={(event) => setDuration(event.currentTarget.duration || 0)}
+        aria-label={memory.title}
+        onCanPlay={() => {
+          setLoading(false);
+          setReady(true);
+        }}
+        onDurationChange={(event) => {
+          setDuration(event.currentTarget.duration || 0);
+          setReady(true);
+        }}
         onEnded={() => setPlaying(false)}
+        onError={() => {
+          setLoading(false);
+          setError("This video could not be played on this device.");
+        }}
+        onLoadedData={() => setReady(true)}
         onPause={() => setPlaying(false)}
-        onPlay={() => setPlaying(true)}
+        onPlay={() => {
+          setLoading(false);
+          setPlaying(true);
+        }}
         onTimeUpdate={(event) => setCurrentTime(event.currentTarget.currentTime)}
         playsInline
+        preload={featured ? "metadata" : "none"}
         ref={videoRef}
+        src={source}
       />
       {!ready ? <img alt="" src="/memory-icons/video.png" /> : null}
       <button
         aria-label={playing ? "Pause video" : "Play video"}
         className="video-play"
-        disabled={loading || !ready}
         onClick={() => void toggle()}
         type="button"
       >

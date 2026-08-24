@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-24)
 
 ## Corpus Check
-- 76 files · ~1,538,541 words
+- 76 files · ~1,538,697 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2318 nodes · 2818 edges · 196 communities (44 shown, 152 thin omitted)
+- 2321 nodes · 2822 edges · 198 communities (46 shown, 152 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.66)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3ebf7faf`
+- Built from commit: `1db862ce`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -203,6 +203,8 @@
 - CloseEvent
 - MessageEvent
 - archive-navigation.ts
+- MemoryComposer
+- auth-email.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 42 edges
@@ -231,7 +233,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (196 total, 152 thin omitted)
+## Communities (198 total, 152 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -239,11 +241,11 @@ Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentM
 
 ### Community 1 - "archive-api.ts"
 Cohesion: 0.05
-Nodes (121): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), base64UrlToBytes(), bytesToBase64Url(), capsuleSchema, checkOnboardingSlug(), ChildAccessContext (+113 more)
+Nodes (120): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), base64UrlToBytes(), ByteRange, bytesToBase64Url(), capsuleSchema, checkOnboardingSlug() (+112 more)
 
 ### Community 2 - "responseError"
-Cohesion: 0.16
-Nodes (20): AccessScreen(), apiFetch(), ArchiveApp(), CapsulesView(), currentArchiveView(), currentFamilySlug(), FamilySettings(), formatDate() (+12 more)
+Cohesion: 0.20
+Nodes (15): AccessScreen(), apiFetch(), ArchiveApp(), CapsulesView(), currentArchiveView(), currentFamilySlug(), FamilySettings(), formatDate() (+7 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -359,7 +361,7 @@ Nodes (7): Route, Route, Route, Route, Route, Route, Everlittle()
 
 ### Community 181 - "index.tsx"
 Cohesion: 0.10
-Nodes (33): ArchiveMembership, ArchiveState, audienceLabel(), Capsule, CapsuleComposer(), Child, ChildSession, ChildView() (+25 more)
+Nodes (27): ArchiveMembership, ArchiveState, audienceLabel(), Capsule, Child, ChildSession, ChildView(), FamilyRole (+19 more)
 
 ### Community 182 - "ExtendableEvent"
 Cohesion: 0.17
@@ -377,8 +379,16 @@ Nodes (4): Attempt controls, Child access security, PIN storage and compatibilit
 Cohesion: 0.50
 Nodes (3): ArchiveEntry, resolveArchiveEntry(), ArchiveRedirect()
 
+### Community 196 - "MemoryComposer"
+Cohesion: 0.29
+Nodes (11): CapsuleComposer(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), memoryBodyPlaceholder(), MemoryComposer(), MemoryDetail(), memoryTitlePlaceholder() (+3 more)
+
+### Community 197 - "auth-email.ts"
+Cohesion: 0.53
+Nodes (4): AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail()
+
 ## Knowledge Gaps
-- **1113 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1108 more)
+- **1114 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1109 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **152 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -392,10 +402,10 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `Blob` connect `Blob` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1113 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1114 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05284791544333529 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.054625984251968504 - nodes in this community are weakly interconnected._
 - **Should `ServiceWorkerGlobalScope` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._

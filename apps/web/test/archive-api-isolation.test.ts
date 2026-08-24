@@ -160,6 +160,17 @@ describe("route-scoped tenant isolation", () => {
     expect(response.status).toBe(404);
   });
 
+  it("streams only the requested byte range for authorized media", async () => {
+    const response = await api(familyB, `/api/families/${familyB.slug}/media/${familyB.mediaId}`, {
+      headers: { range: "bytes=1-2" },
+    });
+
+    expect(response.status).toBe(206);
+    expect(response.headers.get("accept-ranges")).toBe("bytes");
+    expect(response.headers.get("content-range")).toBe("bytes 1-2/3");
+    expect(new Uint8Array(await response.arrayBuffer())).toEqual(new Uint8Array([2, 3]));
+  });
+
   it("resolves every invitation token to one exact archive", async () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => undefined);
     const tokens: string[] = [];

@@ -1890,9 +1890,13 @@ async function streamMediaObject(
   cacheControl: string,
 ): Promise<Response> {
   const runtime = getRuntimeEnv();
-  const requestedRange = request.headers.has("range");
+  const rangeHeader = request.headers.get("range");
+  const requestedRange = rangeHeader ? parseByteRange(rangeHeader) : null;
+  if (rangeHeader && !requestedRange) {
+    return new Response(null, { status: 416, headers: { "accept-ranges": "bytes" } });
+  }
   const object = requestedRange
-    ? await runtime.MEDIA.get(objectKey, { range: request.headers })
+    ? await runtime.MEDIA.get(objectKey, { range: requestedRange })
     : await runtime.MEDIA.get(objectKey);
   if (!object) return Response.json({ error: "Media not found." }, { status: 404 });
 
@@ -1905,13 +1909,13 @@ async function streamMediaObject(
   headers.set("etag", object.httpEtag);
 
   let status = 200;
-  if (requestedRange && object.range) {
-    const offset =
-      "suffix" in object.range ? object.size - object.range.suffix : (object.range.offset ?? 0);
-    const length =
-      "suffix" in object.range
-        ? object.range.suffix
-        : (object.range.length ?? object.size - offset);
+  if (requestedRange) {
+    const servedRange = resolveByteRange(requestedRange, object.size);
+    if (!servedRange) {
+      headers.set("content-range", `bytes */${object.size}`);
+      return new Response(null, { headers, status: 416 });
+    }
+    const { length, offset } = servedRange;
     headers.set("content-range", `bytes ${offset}-${offset + length - 1}/${object.size}`);
     headers.set("content-length", String(length));
     status = 206;
@@ -1920,6 +1924,46 @@ async function streamMediaObject(
   }
 
   return new Response(object.body, { headers, status });
+}
+
+type ByteRange = { offset: number; length?: number } | { suffix: number };
+
+function parseByteRange(value: string): ByteRange | null {
+  const bounded = /^bytes=(\d+)-(\d+)$/.exec(value);
+  if (bounded) {
+    const start = Number(bounded[1]);
+    const end = Number(bounded[2]);
+    if (Number.isSafeInteger(start) && Number.isSafeInteger(end) && end >= start) {
+      return { offset: start, length: end - start + 1 };
+    }
+    return null;
+  }
+
+  const openEnded = /^bytes=(\d+)-$/.exec(value);
+  if (openEnded) {
+    const offset = Number(openEnded[1]);
+    return Number.isSafeInteger(offset) ? { offset } : null;
+  }
+
+  const suffix = /^bytes=-(\d+)$/.exec(value);
+  if (suffix) {
+    const length = Number(suffix[1]);
+    return Number.isSafeInteger(length) && length > 0 ? { suffix: length } : null;
+  }
+
+  return null;
+}
+
+function resolveByteRange(range: ByteRange, objectSize: number) {
+  if ("suffix" in range) {
+    const length = Math.min(range.suffix, objectSize);
+    return length > 0 ? { length, offset: objectSize - length } : null;
+  }
+
+  if (range.offset >= objectSize) return null;
+  const available = objectSize - range.offset;
+  const length = Math.min(range.length ?? available, available);
+  return length > 0 ? { length, offset: range.offset } : null;
 }
 
 async function deleteMemory(request: Request, memoryId: string): Promise<Response> {
