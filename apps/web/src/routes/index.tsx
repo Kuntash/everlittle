@@ -33,6 +33,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 
 import { Brand } from "@/components/brand";
+import { resolveArchiveEntry } from "@/lib/archive-navigation";
 import { authClient } from "@/lib/auth-client";
 import { MarketingHome } from "@/components/marketing-home";
 
@@ -225,13 +226,24 @@ export function Everlittle() {
   }
 
   if (!currentFamilySlug()) {
-    return <ArchiveRedirect defaultArchiveSlug={platform.defaultArchiveSlug} />;
+    return (
+      <ArchiveRedirect
+        defaultArchiveSlug={platform.defaultArchiveSlug}
+        deploymentMode={platform.deploymentMode}
+      />
+    );
   }
 
   return <ArchiveApp name={session.data.user.name} />;
 }
 
-function ArchiveRedirect({ defaultArchiveSlug }: { defaultArchiveSlug: string | null }) {
+function ArchiveRedirect({
+  defaultArchiveSlug,
+  deploymentMode,
+}: {
+  defaultArchiveSlug: string | null;
+  deploymentMode: PlatformState["deploymentMode"];
+}) {
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -241,19 +253,19 @@ function ArchiveRedirect({ defaultArchiveSlug }: { defaultArchiveSlug: string | 
         return response.json() as Promise<{ archives: Array<{ slug: string }> }>;
       })
       .then(({ archives }) => {
-        const remembered = localStorage.getItem("everlittle.last-family");
-        const first =
-          archives.find((archive) => archive.slug === defaultArchiveSlug) ??
-          archives.find((archive) => archive.slug === remembered) ??
-          archives[0];
-        if (!first) {
-          location.replace("/onboarding");
+        const destination = resolveArchiveEntry(archives, {
+          defaultArchiveSlug,
+          deploymentMode,
+          rememberedArchiveSlug: localStorage.getItem("everlittle.last-family"),
+        });
+        if (!destination) {
+          void authClient.signOut().finally(() => location.replace("/"));
           return;
         }
-        location.replace(`/${encodeURIComponent(first.slug)}`);
+        location.replace(destination);
       })
       .catch((reason: Error) => setError(reason.message));
-  }, [defaultArchiveSlug]);
+  }, [defaultArchiveSlug, deploymentMode]);
 
   return error ? (
     <main className="loading-shell">

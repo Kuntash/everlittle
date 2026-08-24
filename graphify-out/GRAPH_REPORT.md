@@ -1,23 +1,23 @@
-# Graph Report - everlittle  (2026-08-21)
+# Graph Report - everlittle  (2026-08-24)
 
 ## Corpus Check
-- 74 files · ~1,538,309 words
+- 76 files · ~1,538,541 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2314 nodes · 2811 edges · 195 communities (43 shown, 152 thin omitted)
+- 2318 nodes · 2818 edges · 196 communities (44 shown, 152 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.66)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e2004d1b`
+- Built from commit: `3ebf7faf`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - worker-configuration.d.ts
 - archive-api.ts
-- index.tsx
+- responseError
 - ServiceWorkerGlobalScope
 - Event
 - compilerOptions
@@ -191,7 +191,7 @@
 - invitation-email.ts
 - auth-route.tsx
 - Everlittle
-- MemoryComposer
+- index.tsx
 - ExtendableEvent
 - ErrorEvent
 - Everlittle landing design direction
@@ -202,6 +202,7 @@
 - CustomEvent
 - CloseEvent
 - MessageEvent
+- archive-navigation.ts
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 42 edges
@@ -230,7 +231,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (195 total, 152 thin omitted)
+## Communities (196 total, 152 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -240,9 +241,9 @@ Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentM
 Cohesion: 0.05
 Nodes (121): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), base64UrlToBytes(), bytesToBase64Url(), capsuleSchema, checkOnboardingSlug(), ChildAccessContext (+113 more)
 
-### Community 2 - "index.tsx"
-Cohesion: 0.09
-Nodes (33): AccessScreen(), apiFetch(), ArchiveApp(), ArchiveMembership, ArchiveRedirect(), ArchiveState, Capsule, CapsulesView() (+25 more)
+### Community 2 - "responseError"
+Cohesion: 0.16
+Nodes (20): AccessScreen(), apiFetch(), ArchiveApp(), CapsulesView(), currentArchiveView(), currentFamilySlug(), FamilySettings(), formatDate() (+12 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -353,12 +354,12 @@ Cohesion: 0.21
 Nodes (8): AuthRoute(), safeRedirect(), InvitationPreview, Loading(), PlatformState, Route, Route, Route
 
 ### Community 180 - "Everlittle"
-Cohesion: 0.14
-Nodes (8): Route, Route, Route, Route, Route, Route, currentFamilySlug(), Everlittle()
+Cohesion: 0.15
+Nodes (7): Route, Route, Route, Route, Route, Route, Everlittle()
 
-### Community 181 - "MemoryComposer"
-Cohesion: 0.17
-Nodes (20): audienceLabel(), CapsuleComposer(), ChildView(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), formatMemoryDate(), kindLabel() (+12 more)
+### Community 181 - "index.tsx"
+Cohesion: 0.10
+Nodes (33): ArchiveMembership, ArchiveState, audienceLabel(), Capsule, CapsuleComposer(), Child, ChildSession, ChildView() (+25 more)
 
 ### Community 182 - "ExtendableEvent"
 Cohesion: 0.17
@@ -372,8 +373,12 @@ Nodes (5): Design bible, Everlittle landing design direction, Generation prompt 
 Cohesion: 0.40
 Nodes (4): Attempt controls, Child access security, PIN storage and compatibility, Session visibility and future credentials
 
+### Community 195 - "archive-navigation.ts"
+Cohesion: 0.50
+Nodes (3): ArchiveEntry, resolveArchiveEntry(), ArchiveRedirect()
+
 ## Knowledge Gaps
-- **1112 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1107 more)
+- **1113 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1108 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **152 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -384,13 +389,13 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.029) - this node is a cross-community bridge._
 - **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **Why does `DurableObjectTransaction` connect `DurableObjectTransaction` to `worker-configuration.d.ts`?**
+- **Why does `Blob` connect `Blob` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1112 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1113 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.05284791544333529 - nodes in this community are weakly interconnected._
-- **Should `index.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.09388335704125178 - nodes in this community are weakly interconnected._
+- **Should `ServiceWorkerGlobalScope` be split into smaller, more focused modules?**
+  _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._

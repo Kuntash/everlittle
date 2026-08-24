@@ -21,6 +21,7 @@ const sections = ["Your archive", "Memory focus", "Privacy"] as const;
 
 function Onboarding() {
   const session = authClient.useSession();
+  const [deploymentMode, setDeploymentMode] = useState<"hosted" | "self-hosted" | null>(null);
   const [section, setSection] = useState(0);
   const [familyName, setFamilyName] = useState("");
   const [familySlug, setFamilySlug] = useState("");
@@ -39,7 +40,24 @@ function Onboarding() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (session.isPending) return;
+    void fetch("/api/platform")
+      .then(async (response) => {
+        if (!response.ok) throw new Error("We could not check this archive.");
+        return response.json() as Promise<{ deploymentMode: "hosted" | "self-hosted" }>;
+      })
+      .then(({ deploymentMode: mode }) => setDeploymentMode(mode))
+      .catch((reason: Error) => {
+        setError(reason.message);
+        setLoading(false);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (session.isPending || !deploymentMode) return;
+    if (deploymentMode === "self-hosted") {
+      location.replace("/");
+      return;
+    }
     if (!session.data?.user) {
       location.replace("/");
       return;
@@ -77,7 +95,7 @@ function Onboarding() {
       })
       .catch((reason: Error) => setError(reason.message))
       .finally(() => setLoading(false));
-  }, [session.data?.user, session.isPending]);
+  }, [deploymentMode, session.data?.user, session.isPending]);
 
   useEffect(() => {
     if (!familySlug || familySlug.length < 3) {
