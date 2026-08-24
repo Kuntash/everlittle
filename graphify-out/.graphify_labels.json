@@ -196,5 +196,6 @@
   "194": "0012_optional_child_archives.sql",
   "195": "archive-navigation.ts",
   "196": "MemoryComposer",
-  "197": "auth-email.ts"
+  "197": "auth-email.ts",
+  "198": "__root.tsx"
 }

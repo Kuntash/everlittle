@@ -171,6 +171,52 @@ describe("route-scoped tenant isolation", () => {
     expect(new Uint8Array(await response.arrayBuffer())).toEqual(new Uint8Array([2, 3]));
   });
 
+  it("stores and privately serves a generated video thumbnail", async () => {
+    const memory = await api(familyB, `/api/families/${familyB.slug}/archive/memories`, {
+      body: JSON.stringify({
+        audience: "family",
+        childId: familyB.childId,
+        happenedAt: new Date().toISOString(),
+        kind: "video",
+        title: "Video with thumbnail",
+      }),
+      method: "POST",
+    });
+    expect(memory.status).toBe(201);
+    const memoryId = ((await memory.json()) as { id: string }).id;
+
+    const video = await api(
+      familyB,
+      `/api/families/${familyB.slug}/archive/memories/${memoryId}/media`,
+      {
+        body: new Uint8Array([0, 1, 2, 3]),
+        headers: { "content-length": "4", "content-type": "video/mp4" },
+        method: "PUT",
+      },
+    );
+    expect(video.status).toBe(201);
+    const mediaId = ((await video.json()) as { id: string }).id;
+
+    const thumbnail = await api(
+      familyB,
+      `/api/families/${familyB.slug}/archive/memories/${memoryId}/media/thumbnail`,
+      {
+        body: new Uint8Array([4, 5, 6]),
+        headers: { "content-length": "3", "content-type": "image/jpeg" },
+        method: "PUT",
+      },
+    );
+    expect(thumbnail.status).toBe(201);
+
+    const visible = await api(familyB, `/api/families/${familyB.slug}/media/${mediaId}/thumbnail`);
+    expect(visible.status).toBe(200);
+    expect(visible.headers.get("content-type")).toBe("image/jpeg");
+    expect(new Uint8Array(await visible.arrayBuffer())).toEqual(new Uint8Array([4, 5, 6]));
+
+    const hidden = await api(familyA, `/api/families/${familyA.slug}/media/${mediaId}/thumbnail`);
+    expect(hidden.status).toBe(404);
+  });
+
   it("resolves every invitation token to one exact archive", async () => {
     const consoleError = vi.spyOn(console, "error").mockImplementation(() => undefined);
     const tokens: string[] = [];

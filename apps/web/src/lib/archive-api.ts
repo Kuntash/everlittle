@@ -58,6 +58,7 @@ const onboardingCompletionSchema = z.object({
 });
 
 const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
+const MAX_THUMBNAIL_BYTES = 2 * 1024 * 1024;
 const CHILD_SESSION_COOKIE = "everlittle.child_session";
 const CHILD_SESSION_SECONDS = 60 * 60 * 24 * 7;
 const CHILD_PIN_HASH_VERSION = "pbkdf2-sha256";
@@ -281,9 +282,21 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
     return serveMedia(request, mediaViewMatch[1]);
   }
 
+  const mediaThumbnailMatch = url.pathname.match(/^\/api\/media\/([^/]+)\/thumbnail$/);
+  if (mediaThumbnailMatch && request.method === "GET") {
+    return serveMediaThumbnail(request, mediaThumbnailMatch[1]);
+  }
+
   const memoryMediaMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)\/media$/);
   if (memoryMediaMatch && request.method === "PUT") {
     return uploadMemoryMedia(request, memoryMediaMatch[1]);
+  }
+
+  const memoryThumbnailMatch = url.pathname.match(
+    /^\/api\/archive\/memories\/([^/]+)\/media\/thumbnail$/,
+  );
+  if (memoryThumbnailMatch && request.method === "PUT") {
+    return uploadVideoThumbnail(request, memoryThumbnailMatch[1]);
   }
 
   const memoryShareMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)\/share$/);
@@ -1793,6 +1806,49 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   return Response.json({ id: assetId, url: `/api/media/${assetId}` }, { status: 201 });
 }
 
+async function uploadVideoThumbnail(request: Request, memoryId: string): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role === "viewer") return forbidden();
+
+  const asset = await runtime.DB.prepare(
+    `SELECT ma.id, ma.object_key AS objectKey
+     FROM media_asset ma
+     JOIN memory m ON m.id = ma.memory_id AND m.archive_id = ma.archive_id
+     WHERE m.id = ? AND m.archive_id = ? AND m.created_by_user_id = ?
+       AND ma.media_type = 'video'
+     LIMIT 1`,
+  )
+    .bind(memoryId, context.archiveId, context.user.id)
+    .first<{ id: string; objectKey: string }>();
+  if (!asset) return Response.json({ error: "Video not found." }, { status: 404 });
+
+  const contentType = (request.headers.get("content-type") ?? "").split(";", 1)[0].toLowerCase();
+  if (!request.body || contentType !== "image/jpeg") {
+    return Response.json({ error: "Choose a valid video thumbnail." }, { status: 400 });
+  }
+  const thumbnail = await request.arrayBuffer();
+  if (!thumbnail.byteLength) {
+    return Response.json({ error: "Choose a valid video thumbnail." }, { status: 400 });
+  }
+  if (thumbnail.byteLength > MAX_THUMBNAIL_BYTES) {
+    return Response.json({ error: "Video thumbnails must be 2 MB or smaller." }, { status: 413 });
+  }
+
+  await runtime.MEDIA.put(thumbnailObjectKey(asset.objectKey), thumbnail, {
+    httpMetadata: { contentType },
+    customMetadata: {
+      archiveId: context.archiveId,
+      mediaAssetId: asset.id,
+      memoryId,
+      variant: "thumbnail",
+    },
+  });
+  return Response.json({ saved: true }, { status: 201 });
+}
+
 async function updateMemory(request: Request, memoryId: string): Promise<Response> {
   if (!isSameOrigin(request)) return forbidden();
   const database = getRuntimeEnv().DB;
@@ -1854,33 +1910,55 @@ async function updateMemory(request: Request, memoryId: string): Promise<Respons
 }
 
 async function serveMedia(request: Request, assetId: string): Promise<Response> {
+  const asset = await findAuthorizedMedia(request, assetId);
+  if (!asset) return Response.json({ error: "Media not found." }, { status: 404 });
+  return streamMediaObject(request, asset.objectKey, asset.contentType, "private, max-age=3600");
+}
+
+async function serveMediaThumbnail(request: Request, assetId: string): Promise<Response> {
+  const asset = await findAuthorizedMedia(request, assetId);
+  if (!asset || asset.mediaType !== "video") {
+    return Response.json({ error: "Video thumbnail not found." }, { status: 404 });
+  }
+  return streamMediaObject(
+    request,
+    thumbnailObjectKey(asset.objectKey),
+    "image/jpeg",
+    "private, max-age=86400",
+  );
+}
+
+async function findAuthorizedMedia(request: Request, assetId: string) {
   const runtime = getRuntimeEnv();
   const adult = await getMembershipContext(request);
   const child = adult ? null : await getChildAccessContext(request);
-  if (!adult && !child) return unauthorized();
+  if (!adult && !child) return null;
 
-  const asset = adult
+  return adult
     ? await runtime.DB.prepare(
-        `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
+        `SELECT ma.object_key AS objectKey, ma.content_type AS contentType,
+                ma.media_type AS mediaType
          FROM media_asset ma
          JOIN memory m ON m.id = ma.memory_id AND m.archive_id = ma.archive_id
          WHERE ma.id = ? AND ma.archive_id = ?
            AND (m.audience != 'parents' OR ? IN ('owner', 'parent'))`,
       )
         .bind(assetId, adult.archiveId, adult.role)
-        .first<{ objectKey: string; contentType: string }>()
+        .first<{ objectKey: string; contentType: string; mediaType: "image" | "audio" | "video" }>()
     : await runtime.DB.prepare(
-        `SELECT ma.object_key AS objectKey, ma.content_type AS contentType
+        `SELECT ma.object_key AS objectKey, ma.content_type AS contentType,
+                ma.media_type AS mediaType
          FROM media_asset ma
          JOIN memory m ON m.id = ma.memory_id AND m.archive_id = ma.archive_id
          WHERE ma.id = ? AND ma.archive_id = ? AND m.child_id = ? AND m.archive_id = ?
            AND m.audience IN ('child', 'all')`,
       )
         .bind(assetId, child?.archiveId, child?.childId, child?.archiveId)
-        .first<{ objectKey: string; contentType: string }>();
-  if (!asset) return Response.json({ error: "Media not found." }, { status: 404 });
-
-  return streamMediaObject(request, asset.objectKey, asset.contentType, "private, max-age=3600");
+        .first<{
+          objectKey: string;
+          contentType: string;
+          mediaType: "image" | "audio" | "video";
+        }>();
 }
 
 async function streamMediaObject(
@@ -1966,6 +2044,10 @@ function resolveByteRange(range: ByteRange, objectSize: number) {
   return length > 0 ? { length, offset: range.offset } : null;
 }
 
+function thumbnailObjectKey(objectKey: string) {
+  return `${objectKey}.thumbnail.jpg`;
+}
+
 async function deleteMemory(request: Request, memoryId: string): Promise<Response> {
   if (!isSameOrigin(request)) return forbidden();
   const runtime = getRuntimeEnv();
@@ -1987,7 +2069,12 @@ async function deleteMemory(request: Request, memoryId: string): Promise<Respons
     .bind(memoryId, context.archiveId)
     .all<{ objectKey: string }>();
   const objectKeys = assets.results.map((asset) => asset.objectKey);
-  if (objectKeys.length) await runtime.MEDIA.delete(objectKeys);
+  if (objectKeys.length) {
+    await runtime.MEDIA.delete([
+      ...objectKeys,
+      ...objectKeys.map((objectKey) => thumbnailObjectKey(objectKey)),
+    ]);
+  }
 
   await runtime.DB.batch([
     runtime.DB.prepare("DELETE FROM memory WHERE id = ? AND archive_id = ?").bind(

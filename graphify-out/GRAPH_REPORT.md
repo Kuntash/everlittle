@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-24)
 
 ## Corpus Check
-- 76 files · ~1,538,697 words
+- 76 files · ~1,539,411 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2321 nodes · 2822 edges · 198 communities (46 shown, 152 thin omitted)
+- 2327 nodes · 2842 edges · 199 communities (47 shown, 152 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 15 edges (avg confidence: 0.66)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1db862ce`
+- Built from commit: `0b9e60d9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -205,15 +205,16 @@
 - archive-navigation.ts
 - MemoryComposer
 - auth-email.ts
+- __root.tsx
 
 ## God Nodes (most connected - your core abstractions)
-1. `getRuntimeEnv()` - 42 edges
-2. `handleArchiveApi()` - 40 edges
+1. `getRuntimeEnv()` - 43 edges
+2. `handleArchiveApi()` - 42 edges
 3. `unauthorized()` - 27 edges
-4. `Event` - 25 edges
-5. `getMembershipContext()` - 24 edges
-6. `isSameOrigin()` - 24 edges
-7. `forbidden()` - 24 edges
+4. `getMembershipContext()` - 25 edges
+5. `isSameOrigin()` - 25 edges
+6. `forbidden()` - 25 edges
+7. `Event` - 25 edges
 8. `Console` - 21 edges
 9. `auditStatement()` - 20 edges
 10. `getDeploymentConfig()` - 20 edges
@@ -233,7 +234,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (198 total, 152 thin omitted)
+## Communities (199 total, 152 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -241,11 +242,11 @@ Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentM
 
 ### Community 1 - "archive-api.ts"
 Cohesion: 0.05
-Nodes (120): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), base64UrlToBytes(), ByteRange, bytesToBase64Url(), capsuleSchema, checkOnboardingSlug() (+112 more)
+Nodes (124): acceptInvitation(), acceptInvitationForCurrentUser(), auditStatement(), base64UrlToBytes(), ByteRange, bytesToBase64Url(), capsuleSchema, checkOnboardingSlug() (+116 more)
 
 ### Community 2 - "responseError"
-Cohesion: 0.20
-Nodes (15): AccessScreen(), apiFetch(), ArchiveApp(), CapsulesView(), currentArchiveView(), currentFamilySlug(), FamilySettings(), formatDate() (+7 more)
+Cohesion: 0.22
+Nodes (14): AccessScreen(), apiFetch(), ArchiveApp(), CapsulesView(), currentArchiveView(), FamilySettings(), formatDate(), formatDateTime() (+6 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -308,8 +309,8 @@ Cohesion: 0.14
 Nodes (13): Current invitation UX gaps, Everlittle TODO, P0 — Claim the reference installation, P1 — Family invitation and ownership handover, P1 — Privacy and durability, P1 — Real archive data, P2 — Child experience, P2 — Deferred account recovery (+5 more)
 
 ### Community 103 - "onboarding.tsx"
-Cohesion: 0.12
-Nodes (13): authClient, PwaInstallContext, shouldOfferPwaInstall(), Draft, Onboarding(), responseMessage(), Route, sections (+5 more)
+Cohesion: 0.21
+Nodes (7): authClient, Draft, Onboarding(), responseMessage(), Route, sections, toSlug()
 
 ### Community 105 - "BasicImageTransformations"
 Cohesion: 0.67
@@ -361,7 +362,7 @@ Nodes (7): Route, Route, Route, Route, Route, Route, Everlittle()
 
 ### Community 181 - "index.tsx"
 Cohesion: 0.10
-Nodes (27): ArchiveMembership, ArchiveState, audienceLabel(), Capsule, Child, ChildSession, ChildView(), FamilyRole (+19 more)
+Nodes (21): ArchiveMembership, ArchiveState, Capsule, Child, ChildSession, createVideoThumbnail(), currentFamilySlug(), FamilyRole (+13 more)
 
 ### Community 182 - "ExtendableEvent"
 Cohesion: 0.17
@@ -380,12 +381,16 @@ Cohesion: 0.50
 Nodes (3): ArchiveEntry, resolveArchiveEntry(), ArchiveRedirect()
 
 ### Community 196 - "MemoryComposer"
-Cohesion: 0.29
-Nodes (11): CapsuleComposer(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), memoryBodyPlaceholder(), MemoryComposer(), MemoryDetail(), memoryTitlePlaceholder() (+3 more)
+Cohesion: 0.17
+Nodes (20): audienceLabel(), CapsuleComposer(), ChildView(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), formatMemoryDate(), kindLabel() (+12 more)
 
 ### Community 197 - "auth-email.ts"
 Cohesion: 0.53
 Nodes (4): AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail()
+
+### Community 198 - "__root.tsx"
+Cohesion: 0.27
+Nodes (6): PwaInstallContext, shouldOfferPwaInstall(), InstallPromptEvent, PwaExperience(), Route, eligibleContext
 
 ## Knowledge Gaps
 - **1114 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1109 more)
@@ -395,17 +400,17 @@ Nodes (4): AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail()
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `R2Bucket` connect `R2Bucket` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
+- **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **Why does `URLSearchParams` connect `URLSearchParams` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Why does `URLPattern` connect `URLPattern` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
-- **Why does `Blob` connect `Blob` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
   _1114 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.054625984251968504 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.053203793661808926 - nodes in this community are weakly interconnected._
 - **Should `ServiceWorkerGlobalScope` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._

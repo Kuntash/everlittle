@@ -1644,6 +1644,8 @@ function MemoryComposer({
 
     setError("");
     setStage("saving");
+    const videoThumbnail =
+      kind === "video" && file ? await createVideoThumbnail(file).catch(() => null) : null;
     const response = await apiFetch("/api/archive/memories", {
       method: "POST",
       body: JSON.stringify({
@@ -1677,6 +1679,19 @@ function MemoryComposer({
         setError(await responseError(upload));
         setStage("idle");
         return;
+      }
+      if (videoThumbnail) {
+        const thumbnailUpload = await fetch(
+          scopedApiPath(`/api/archive/memories/${created.id}/media/thumbnail`),
+          {
+            method: "PUT",
+            headers: { "content-type": videoThumbnail.type },
+            body: videoThumbnail,
+          },
+        );
+        if (!thumbnailUpload.ok) {
+          console.warn("The video was saved without its generated thumbnail.");
+        }
       }
     }
 
@@ -2041,8 +2056,10 @@ function SecureVideoPlayer({ memory, featured }: { memory: Memory; featured: boo
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [ready, setReady] = useState(false);
+  const [thumbnailFailed, setThumbnailFailed] = useState(false);
   const [error, setError] = useState("");
   const source = scopedApiPath(`/api/media/${memory.mediaId}`);
+  const thumbnailSource = scopedApiPath(`/api/media/${memory.mediaId}/thumbnail`);
 
   useEffect(() => {
     setPlaying(false);
@@ -2050,6 +2067,7 @@ function SecureVideoPlayer({ memory, featured }: { memory: Memory; featured: boo
     setCurrentTime(0);
     setDuration(0);
     setReady(false);
+    setThumbnailFailed(false);
     setError("");
   }, [memory.mediaId]);
 
@@ -2101,7 +2119,13 @@ function SecureVideoPlayer({ memory, featured }: { memory: Memory; featured: boo
         ref={videoRef}
         src={source}
       />
-      {!ready ? <img alt="" src="/memory-icons/video.png" /> : null}
+      {!ready ? (
+        <img
+          alt=""
+          onError={() => setThumbnailFailed(true)}
+          src={thumbnailFailed ? "/memory-icons/video.png" : thumbnailSource}
+        />
+      ) : null}
       <button
         aria-label={playing ? "Pause video" : "Play video"}
         className="video-play"
@@ -3083,6 +3107,57 @@ function formatMediaTime(value: number) {
   const minutes = Math.floor(value / 60);
   const seconds = Math.floor(value % 60);
   return `${minutes}:${seconds.toString().padStart(2, "0")}`;
+}
+
+async function createVideoThumbnail(file: File): Promise<Blob | null> {
+  const objectUrl = URL.createObjectURL(file);
+  const video = document.createElement("video");
+  video.muted = true;
+  video.playsInline = true;
+  video.preload = "auto";
+  video.src = objectUrl;
+
+  try {
+    video.load();
+    await waitForVideoEvent(video, "loadeddata");
+    if (Number.isFinite(video.duration) && video.duration > 0.12) {
+      video.currentTime = 0.1;
+      await waitForVideoEvent(video, "seeked");
+    }
+
+    if (!video.videoWidth || !video.videoHeight) return null;
+    const scale = Math.min(1, 960 / video.videoWidth, 720 / video.videoHeight);
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.max(1, Math.round(video.videoWidth * scale));
+    canvas.height = Math.max(1, Math.round(video.videoHeight * scale));
+    const context = canvas.getContext("2d");
+    if (!context) return null;
+    context.imageSmoothingEnabled = true;
+    context.imageSmoothingQuality = "high";
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    return await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, "image/jpeg", 0.84));
+  } finally {
+    video.removeAttribute("src");
+    video.load();
+    URL.revokeObjectURL(objectUrl);
+  }
+}
+
+function waitForVideoEvent(video: HTMLVideoElement, eventName: "loadeddata" | "seeked") {
+  return new Promise<void>((resolve, reject) => {
+    const timeout = window.setTimeout(() => finish(new Error("Video frame timed out.")), 12_000);
+    const onEvent = () => finish();
+    const onError = () => finish(new Error("This video format cannot provide a thumbnail."));
+    function finish(error?: Error) {
+      window.clearTimeout(timeout);
+      video.removeEventListener(eventName, onEvent);
+      video.removeEventListener("error", onError);
+      if (error) reject(error);
+      else resolve();
+    }
+    video.addEventListener(eventName, onEvent, { once: true });
+    video.addEventListener("error", onError, { once: true });
+  });
 }
 
 async function waveformFromAudio(blob: Blob): Promise<number[]> {

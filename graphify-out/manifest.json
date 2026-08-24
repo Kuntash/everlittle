@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1787571461.9946952,
-    "ast_hash": "e11495fe9343e2a873b2866dd9a94338",
+    "mtime": 1787572224.7737525,
+    "ast_hash": "d490b944dcafa5530519f96638bb2126",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787571359.3578496,
-    "ast_hash": "bcc2e11cb3a1647e05d27df24b9531cb",
+    "mtime": 1787572224.7747648,
+    "ast_hash": "7eff1ea1abd08c11584d97ee0afd26b9",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1787571373.2542002,
-    "ast_hash": "a6ff230401971f7be84d8fb5cc127744",
+    "mtime": 1787572092.5526216,
+    "ast_hash": "0a0a792b8519a10322922a0cd82395db",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
