@@ -1,7 +1,7 @@
 {
   "apps/web/package.json": {
-    "mtime": 1787638304.5861168,
-    "ast_hash": "d99045586a48dff7d8137808675a7b60",
+    "mtime": 1787642815.5777678,
+    "ast_hash": "2e750572db537870f1baeb953a2edd90",
     "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
@@ -580,8 +580,8 @@
     "semantic_hash": ""
   },
   "docs/hosted-billing.md": {
-    "mtime": 1787638606.2544813,
-    "ast_hash": "44eadbe0f13b369ca54178a148e5c7e0",
+    "mtime": 1787642874.000654,
+    "ast_hash": "d46880b8acf99379e28a9e842b2fb772",
     "semantic_hash": ""
   },
   "apps/web/src/components/scrapbook-home.tsx": {
@@ -612,6 +612,11 @@
   "apps/web/test/billing-analytics.test.ts": {
     "mtime": 1787638468.021984,
     "ast_hash": "63d3d8c49c0e4f4dcc1ee5d13bd3e194",
+    "semantic_hash": ""
+  },
+  "apps/web/scripts/setup-dodo-test.mjs": {
+    "mtime": 1787642815.578944,
+    "ast_hash": "13a9f1539d8678181597337fc2db757e",
     "semantic_hash": ""
   }
 }

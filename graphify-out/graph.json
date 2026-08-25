@@ -738,10 +738,21 @@
       "norm_label": "db:migrate:hosted"
     },
     {
+      "label": "billing:setup:test",
+      "file_type": "code",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "_origin": "ast",
+      "id": "apps_web_package_scripts_billing_setup_test",
+      "community": 13,
+      "community_name": "scripts",
+      "norm_label": "billing:setup:test"
+    },
+    {
       "label": "dependencies",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "_origin": "ast",
       "id": "apps_web_package_dependencies",
       "community": 7,
@@ -752,7 +763,7 @@
       "label": "@everlittle/domain",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_everlittle_domain",
       "community": 7,
@@ -763,7 +774,7 @@
       "label": "@everlittle/domain",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "_origin": "ast",
       "id": "everlittle_domain",
       "community": 7,
@@ -774,7 +785,7 @@
       "label": "@everlittle/ui",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_everlittle_ui",
       "community": 7,
@@ -785,7 +796,7 @@
       "label": "@everlittle/ui",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "_origin": "ast",
       "id": "everlittle_ui",
       "community": 7,
@@ -796,7 +807,7 @@
       "label": "@fontsource-variable/cormorant-garamond",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_fontsource_variable_cormorant_garamond",
       "community": 7,
@@ -807,7 +818,7 @@
       "label": "@fontsource-variable/cormorant-garamond",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "_origin": "ast",
       "id": "fontsource_variable_cormorant_garamond",
       "community": 7,
@@ -818,7 +829,7 @@
       "label": "@fontsource-variable/geist",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_fontsource_variable_geist",
       "community": 206,
@@ -829,7 +840,7 @@
       "label": "@fontsource-variable/geist",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L33",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "fontsource_variable_geist",
       "community": 206,
@@ -840,7 +851,7 @@
       "label": "@fontsource-variable/geist-mono",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L34",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_fontsource_variable_geist_mono",
       "community": 7,
@@ -851,7 +862,7 @@
       "label": "@fontsource-variable/geist-mono",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L34",
+      "source_location": "L35",
       "_origin": "ast",
       "id": "fontsource_variable_geist_mono",
       "community": 7,
@@ -862,7 +873,7 @@
       "label": "@posthog/react",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_posthog_react",
       "community": 7,
@@ -873,7 +884,7 @@
       "label": "@posthog/react",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L35",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "posthog_react",
       "community": 7,
@@ -884,7 +895,7 @@
       "label": "@tanstack/react-router",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L36",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_tanstack_react_router",
       "community": 7,
@@ -895,7 +906,7 @@
       "label": "@tanstack/react-router",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L36",
+      "source_location": "L37",
       "_origin": "ast",
       "id": "tanstack_react_router",
       "community": 7,
@@ -906,7 +917,7 @@
       "label": "@tanstack/react-start",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_tanstack_react_start",
       "community": 7,
@@ -917,7 +928,7 @@
       "label": "@tanstack/react-start",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "_origin": "ast",
       "id": "tanstack_react_start",
       "community": 7,
@@ -928,7 +939,7 @@
       "label": "better-auth",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L38",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_better_auth",
       "community": 7,
@@ -939,7 +950,7 @@
       "label": "better-auth",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L38",
+      "source_location": "L39",
       "_origin": "ast",
       "id": "better_auth",
       "community": 7,
@@ -950,7 +961,7 @@
       "label": "dodopayments",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L39",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_dodopayments",
       "community": 7,
@@ -961,7 +972,7 @@
       "label": "dodopayments",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L39",
+      "source_location": "L40",
       "_origin": "ast",
       "id": "dodopayments",
       "community": 7,
@@ -972,29 +983,29 @@
       "label": "lucide-react",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L40",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_lucide_react",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 203,
+      "community_name": "lucide-react",
       "norm_label": "lucide-react"
     },
     {
       "label": "lucide-react",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L40",
+      "source_location": "L41",
       "_origin": "ast",
       "id": "lucide_react",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 203,
+      "community_name": "lucide-react",
       "norm_label": "lucide-react"
     },
     {
       "label": "posthog-js",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L41",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_posthog_js",
       "community": 207,
@@ -1005,7 +1016,7 @@
       "label": "posthog-js",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L41",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "posthog_js",
       "community": 207,
@@ -1016,7 +1027,7 @@
       "label": "react",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L42",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_react",
       "community": 7,
@@ -1027,7 +1038,7 @@
       "label": "react",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L42",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "react",
       "community": 7,
@@ -1038,7 +1049,7 @@
       "label": "react-dom",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L43",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_react_dom",
       "community": 7,
@@ -1049,7 +1060,7 @@
       "label": "react-dom",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L43",
+      "source_location": "L44",
       "_origin": "ast",
       "id": "react_dom",
       "community": 7,
@@ -1060,29 +1071,29 @@
       "label": "zod",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L44",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_zod",
-      "community": 208,
-      "community_name": "zod",
+      "community": 7,
+      "community_name": "dependencies",
       "norm_label": "zod"
     },
     {
       "label": "zod",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L44",
+      "source_location": "L45",
       "_origin": "ast",
       "id": "apps_web_package_json_zod",
-      "community": 208,
-      "community_name": "zod",
+      "community": 7,
+      "community_name": "dependencies",
       "norm_label": "zod"
     },
     {
       "label": "devDependencies",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L46",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies",
       "community": 11,
@@ -1093,7 +1104,7 @@
       "label": "@cloudflare/vite-plugin",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L47",
+      "source_location": "L48",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_cloudflare_vite_plugin",
       "community": 11,
@@ -1104,7 +1115,7 @@
       "label": "@cloudflare/vite-plugin",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L47",
+      "source_location": "L48",
       "_origin": "ast",
       "id": "cloudflare_vite_plugin",
       "community": 11,
@@ -1115,7 +1126,7 @@
       "label": "@cloudflare/vitest-pool-workers",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_cloudflare_vitest_pool_workers",
       "community": 11,
@@ -1126,7 +1137,7 @@
       "label": "@cloudflare/vitest-pool-workers",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L48",
+      "source_location": "L49",
       "_origin": "ast",
       "id": "cloudflare_vitest_pool_workers",
       "community": 11,
@@ -1137,7 +1148,7 @@
       "label": "@tanstack/router-cli",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L49",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_tanstack_router_cli",
       "community": 11,
@@ -1148,7 +1159,7 @@
       "label": "@tanstack/router-cli",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L49",
+      "source_location": "L50",
       "_origin": "ast",
       "id": "tanstack_router_cli",
       "community": 11,
@@ -1159,7 +1170,7 @@
       "label": "@types/node",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L50",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_node",
       "community": 11,
@@ -1170,7 +1181,7 @@
       "label": "@types/node",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L50",
+      "source_location": "L51",
       "_origin": "ast",
       "id": "types_node",
       "community": 11,
@@ -1181,7 +1192,7 @@
       "label": "@types/react",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L51",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_react",
       "community": 11,
@@ -1192,7 +1203,7 @@
       "label": "@types/react",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L51",
+      "source_location": "L52",
       "_origin": "ast",
       "id": "types_react",
       "community": 11,
@@ -1203,7 +1214,7 @@
       "label": "@types/react-dom",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L52",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_react_dom",
       "community": 11,
@@ -1214,7 +1225,7 @@
       "label": "@types/react-dom",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L52",
+      "source_location": "L53",
       "_origin": "ast",
       "id": "types_react_dom",
       "community": 11,
@@ -1225,7 +1236,7 @@
       "label": "@vitejs/plugin-react",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L53",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_vitejs_plugin_react",
       "community": 11,
@@ -1236,7 +1247,7 @@
       "label": "@vitejs/plugin-react",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L53",
+      "source_location": "L54",
       "_origin": "ast",
       "id": "vitejs_plugin_react",
       "community": 11,
@@ -1247,7 +1258,7 @@
       "label": "typescript",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L54",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_typescript",
       "community": 11,
@@ -1258,7 +1269,7 @@
       "label": "typescript",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L54",
+      "source_location": "L55",
       "_origin": "ast",
       "id": "apps_web_package_json_typescript",
       "community": 11,
@@ -1269,7 +1280,7 @@
       "label": "vite",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L55",
+      "source_location": "L56",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_vite",
       "community": 11,
@@ -1280,7 +1291,7 @@
       "label": "vite",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L55",
+      "source_location": "L56",
       "_origin": "ast",
       "id": "vite",
       "community": 11,
@@ -1291,7 +1302,7 @@
       "label": "vitest",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L56",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_vitest",
       "community": 11,
@@ -1302,7 +1313,7 @@
       "label": "vitest",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L56",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "vitest",
       "community": 11,
@@ -1313,7 +1324,7 @@
       "label": "wrangler",
       "file_type": "code",
       "source_file": "apps/web/package.json",
-      "source_location": "L57",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_wrangler",
       "community": 11,
@@ -1324,7 +1335,7 @@
       "label": "wrangler",
       "file_type": "concept",
       "source_file": "apps/web/package.json",
-      "source_location": "L57",
+      "source_location": "L58",
       "_origin": "ast",
       "id": "wrangler",
       "community": 11,
@@ -1399,6 +1410,119 @@
       "norm_label": "fail()"
     },
     {
+      "label": "setup-dodo-test.mjs",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "setup-dodo-test.mjs"
+    },
+    {
+      "label": "WEBHOOK_EVENTS",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_webhook_events",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "webhook_events"
+    },
+    {
+      "label": "variables",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_variables",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "variables"
+    },
+    {
+      "label": "client",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L24",
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_client",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "client"
+    },
+    {
+      "label": "products",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L25",
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_products",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "products"
+    },
+    {
+      "label": "cloudflareSecrets",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L70",
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_cloudflaresecrets",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "cloudflaresecrets"
+    },
+    {
+      "label": "upload",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L76",
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_upload",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "upload"
+    },
+    {
+      "label": "ensureProduct()",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L92",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_ensureproduct",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "ensureproduct()"
+    },
+    {
+      "label": "assertProductConfiguration()",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L127",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_assertproductconfiguration",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "assertproductconfiguration()"
+    },
+    {
+      "label": "readDevVariables()",
+      "file_type": "code",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L143",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_scripts_setup_dodo_test_readdevvariables",
+      "community": 138,
+      "community_name": "setup-dodo-test.mjs",
+      "norm_label": "readdevvariables()"
+    },
+    {
       "label": "analytics-provider.tsx",
       "file_type": "code",
       "source_file": "apps/web/src/components/analytics-provider.tsx",
@@ -1406,7 +1530,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_analytics_provider",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "analytics-provider.tsx"
     },
     {
@@ -1419,7 +1543,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_analytics_provider_analyticsconfig",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "analyticsconfig"
     },
     {
@@ -1431,7 +1555,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_analytics_provider_analyticsprovider",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "analyticsprovider()"
     },
     {
@@ -1476,8 +1600,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_brand",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "brand.tsx"
     },
     {
@@ -1488,8 +1612,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_brand_brand",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "brand()"
     },
     {
@@ -1499,8 +1623,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home",
-      "community": 203,
-      "community_name": "marketing-home.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "marketing-home.tsx"
     },
     {
@@ -1511,8 +1635,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_waveform",
-      "community": 203,
-      "community_name": "marketing-home.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "waveform"
     },
     {
@@ -1523,8 +1647,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_star",
-      "community": 203,
-      "community_name": "marketing-home.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "star()"
     },
     {
@@ -1535,8 +1659,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_pricingsection",
-      "community": 203,
-      "community_name": "marketing-home.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "pricingsection()"
     },
     {
@@ -1547,8 +1671,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketingpricingpage",
-      "community": 203,
-      "community_name": "marketing-home.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "marketingpricingpage()"
     },
     {
@@ -1559,8 +1683,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketinghome",
-      "community": 203,
-      "community_name": "marketing-home.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "marketinghome()"
     },
     {
@@ -1570,8 +1694,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_reset_password",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "components/reset-password.tsx"
     },
     {
@@ -1582,8 +1706,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_reset_password_resetpassword",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "resetpassword()"
     },
     {
@@ -1593,8 +1717,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "scrapbook-home.tsx"
     },
     {
@@ -1605,8 +1729,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home_waveform",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "waveform"
     },
     {
@@ -1617,8 +1741,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home_scrapbookhome",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "scrapbookhome()"
     },
     {
@@ -1640,7 +1764,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_analytics",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "analytics.ts"
     },
     {
@@ -1652,7 +1776,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_analytics_analyticspath",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "analyticspath()"
     },
     {
@@ -2028,8 +2152,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_createinvitation",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "createinvitation()"
     },
     {
@@ -2040,8 +2164,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_resendinvitation",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "resendinvitation()"
     },
     {
@@ -2052,8 +2176,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_deliverinvitation",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "deliverinvitation()"
     },
     {
@@ -2148,8 +2272,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_signinchild",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "signinchild()"
     },
     {
@@ -2450,8 +2574,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_getarchivestorage",
-      "community": 1,
-      "community_name": "archive-api.ts",
+      "community": 200,
+      "community_name": "getArchiveStorage",
       "norm_label": "getarchivestorage()"
     },
     {
@@ -2462,8 +2586,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_enforcearchivestorage",
-      "community": 1,
-      "community_name": "archive-api.ts",
+      "community": 200,
+      "community_name": "getArchiveStorage",
       "norm_label": "enforcearchivestorage()"
     },
     {
@@ -2582,8 +2706,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_createsecuretoken",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "createsecuretoken()"
     },
     {
@@ -2642,8 +2766,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_hashtoken",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "hashtoken()"
     },
     {
@@ -2654,8 +2778,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_keyedhash",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "keyedhash()"
     },
     {
@@ -2666,8 +2790,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_hashchildpin",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "hashchildpin()"
     },
     {
@@ -2678,8 +2802,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_verifychildpin",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "verifychildpin()"
     },
     {
@@ -2690,8 +2814,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_derivechildpin",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "derivechildpin()"
     },
     {
@@ -2702,8 +2826,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_bytestobase64url",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "bytestobase64url()"
     },
     {
@@ -2714,8 +2838,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_base64urltobytes",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "base64urltobytes()"
     },
     {
@@ -2726,8 +2850,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_childpinretryafter",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "childpinretryafter()"
     },
     {
@@ -2738,8 +2862,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_archive_api_safeequal",
-      "community": 200,
-      "community_name": "signInChild",
+      "community": 1,
+      "community_name": "archive-api.ts",
       "norm_label": "safeequal()"
     },
     {
@@ -2894,7 +3018,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_client",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "auth-client.ts"
     },
     {
@@ -2905,7 +3029,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_client_authclient",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "authclient"
     },
     {
@@ -3011,7 +3135,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_billing",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "billing.ts"
     },
@@ -3024,7 +3148,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_dodoenvironment",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "dodoenvironment"
     },
@@ -3037,7 +3161,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_billinginterval",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "billinginterval"
     },
@@ -3050,7 +3174,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_everlittlebillingstatus",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "everlittlebillingstatus"
     },
@@ -3063,7 +3187,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_billingowner",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "billingowner"
     },
@@ -3076,7 +3200,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_subscriptionwebhook",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "subscriptionwebhook"
     },
@@ -3087,7 +3211,7 @@
       "source_location": "L29",
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_subscription_events",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "subscription_events"
     },
@@ -3099,7 +3223,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_getbillingconfig",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "getbillingconfig()"
     },
@@ -3111,7 +3235,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_createbillingcheckout",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "createbillingcheckout()"
     },
@@ -3123,7 +3247,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_createbillingportal",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "createbillingportal()"
     },
@@ -3135,7 +3259,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_handledodowebhook",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "handledodowebhook()"
     },
@@ -3148,7 +3272,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_billingstatusfordodoevent",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "billingstatusfordodoevent()"
     },
     {
@@ -3159,7 +3283,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_createdodoclient",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "createdodoclient()"
     },
@@ -3171,7 +3295,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_stringmetadata",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "stringmetadata()"
     },
@@ -3184,7 +3308,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_billingconfigurationerror",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "billingconfigurationerror"
     },
@@ -3197,7 +3321,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_billing_billingportalunavailableerror",
-      "community": 202,
+      "community": 103,
       "community_name": "billing.ts",
       "norm_label": "billingportalunavailableerror"
     },
@@ -3400,8 +3524,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_plans",
-      "community": 1,
-      "community_name": "archive-api.ts",
+      "community": 200,
+      "community_name": "getArchiveStorage",
       "norm_label": "plans.ts"
     },
     {
@@ -3411,8 +3535,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_plans_family_plan",
-      "community": 1,
-      "community_name": "archive-api.ts",
+      "community": 200,
+      "community_name": "getArchiveStorage",
       "norm_label": "family_plan"
     },
     {
@@ -3424,8 +3548,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_plans_billingstatus",
-      "community": 1,
-      "community_name": "archive-api.ts",
+      "community": 200,
+      "community_name": "getArchiveStorage",
       "norm_label": "billingstatus"
     },
     {
@@ -3436,8 +3560,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_plans_canstoremedia",
-      "community": 1,
-      "community_name": "archive-api.ts",
+      "community": 200,
+      "community_name": "getArchiveStorage",
       "norm_label": "canstoremedia()"
     },
     {
@@ -3448,7 +3572,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "pwa-install.ts"
     },
     {
@@ -3461,7 +3585,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install_pwainstallcontext",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "pwainstallcontext"
     },
     {
@@ -3473,7 +3597,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install_shouldofferpwainstall",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "shouldofferpwainstall()"
     },
     {
@@ -3497,7 +3621,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_runtime_env_runtimeenv",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "runtimeenv"
     },
     {
@@ -3632,8 +3756,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "$familyslug.kids.$childslug.tsx"
     },
     {
@@ -3643,8 +3767,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_route",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "route"
     },
     {
@@ -3656,8 +3780,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_childsession",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "childsession"
     },
     {
@@ -3668,8 +3792,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_childaccess",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "childaccess()"
     },
     {
@@ -3679,8 +3803,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "$familyslug.kids.index.tsx"
     },
     {
@@ -3690,8 +3814,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_route",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "route"
     },
     {
@@ -3703,8 +3827,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_publicchild",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "publicchild"
     },
     {
@@ -3715,8 +3839,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_childchooser",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "childchooser()"
     },
     {
@@ -3793,7 +3917,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "__root.tsx"
     },
     {
@@ -3804,7 +3928,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root_route",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "route"
     },
     {
@@ -3816,7 +3940,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root_rootdocument",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "rootdocument()"
     },
     {
@@ -3829,7 +3953,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root_installpromptevent",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "installpromptevent"
     },
     {
@@ -3841,7 +3965,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root_pwaexperience",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "pwaexperience()"
     },
     {
@@ -4103,8 +4227,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_archiveapp",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 169,
+      "community_name": "scopedApiPath",
       "norm_label": "archiveapp()"
     },
     {
@@ -4115,8 +4239,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_childarchiveapp",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "childarchiveapp()"
     },
     {
@@ -4127,8 +4251,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_parentview",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "parentview()"
     },
     {
@@ -4139,8 +4263,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_childview",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "childview()"
     },
     {
@@ -4151,8 +4275,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_timelineview",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "timelineview()"
     },
     {
@@ -4187,8 +4311,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memorymedia",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "memorymedia()"
     },
     {
@@ -4222,8 +4346,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_secureaudioplayer",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 169,
+      "community_name": "scopedApiPath",
       "norm_label": "secureaudioplayer()"
     },
     {
@@ -4234,8 +4358,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_securevideoplayer",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 169,
+      "community_name": "scopedApiPath",
       "norm_label": "securevideoplayer()"
     },
     {
@@ -4282,8 +4406,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memoryrow",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "memoryrow()"
     },
     {
@@ -4318,8 +4442,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_scopedapipath",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 169,
+      "community_name": "scopedApiPath",
       "norm_label": "scopedapipath()"
     },
     {
@@ -4330,8 +4454,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_currentfamilyslug",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 169,
+      "community_name": "scopedApiPath",
       "norm_label": "currentfamilyslug()"
     },
     {
@@ -4342,8 +4466,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_currentarchiveview",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 169,
+      "community_name": "scopedApiPath",
       "norm_label": "currentarchiveview()"
     },
     {
@@ -4438,8 +4562,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatmemorydate",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "formatmemorydate()"
     },
     {
@@ -4450,8 +4574,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatmediatime",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 169,
+      "community_name": "scopedApiPath",
       "norm_label": "formatmediatime()"
     },
     {
@@ -4486,8 +4610,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_waveformfromaudio",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 169,
+      "community_name": "scopedApiPath",
       "norm_label": "waveformfromaudio()"
     },
     {
@@ -4582,8 +4706,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_kindlabel",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "kindlabel()"
     },
     {
@@ -4594,8 +4718,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_audiencelabel",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "audiencelabel()"
     },
     {
@@ -4606,8 +4730,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memoryicon",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "memoryicon()"
     },
     {
@@ -4687,7 +4811,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "onboarding.tsx"
     },
@@ -4698,7 +4822,7 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_route",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "route"
     },
@@ -4711,7 +4835,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_draft",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "draft"
     },
@@ -4722,7 +4846,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_sections",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "sections"
     },
@@ -4734,7 +4858,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_onboarding",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "onboarding()"
     },
@@ -4746,7 +4870,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_hearticon",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "hearticon()"
     },
@@ -4758,7 +4882,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_childicon",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "childicon()"
     },
@@ -4770,7 +4894,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_onboardingshell",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "onboardingshell()"
     },
@@ -4782,7 +4906,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_toslug",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "toslug()"
     },
@@ -4794,7 +4918,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_responsemessage",
-      "community": 103,
+      "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "responsemessage()"
     },
@@ -4805,8 +4929,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_pricing",
-      "community": 203,
-      "community_name": "marketing-home.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "pricing.tsx"
     },
     {
@@ -4816,8 +4940,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "apps_web_src_routes_pricing_route",
-      "community": 203,
-      "community_name": "marketing-home.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "route"
     },
     {
@@ -4827,8 +4951,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_reset_password",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "routes/reset-password.tsx"
     },
     {
@@ -4838,8 +4962,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "apps_web_src_routes_reset_password_route",
-      "community": 169,
-      "community_name": "brand.tsx",
+      "community": 202,
+      "community_name": "onboarding.tsx",
       "norm_label": "route"
     },
     {
@@ -5156,7 +5280,7 @@
       "_origin": "ast",
       "id": "apps_web_test_billing_analytics_test",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "billing-analytics.test.ts"
     },
     {
@@ -5200,7 +5324,7 @@
       "_origin": "ast",
       "id": "apps_web_test_pwa_install_test",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "pwa-install.test.ts"
     },
     {
@@ -5211,7 +5335,7 @@
       "_origin": "ast",
       "id": "apps_web_test_pwa_install_test_eligiblecontext",
       "community": 202,
-      "community_name": "billing.ts",
+      "community_name": "onboarding.tsx",
       "norm_label": "eligiblecontext"
     },
     {
@@ -6066,8 +6190,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_worker_configuration_d_compileerror",
-      "community": 138,
-      "community_name": "CompileError",
+      "community": 137,
+      "community_name": "CloudflareAccessContext",
       "norm_label": "compileerror"
     },
     {
@@ -6078,8 +6202,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_worker_configuration_d_compileerror_constructor",
-      "community": 138,
-      "community_name": "CompileError",
+      "community": 137,
+      "community_name": "CloudflareAccessContext",
       "norm_label": ".constructor()"
     },
     {
@@ -6091,8 +6215,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_worker_configuration_d_runtimeerror",
-      "community": 157,
-      "community_name": "RuntimeError",
+      "community": 137,
+      "community_name": "CloudflareAccessContext",
       "norm_label": "runtimeerror"
     },
     {
@@ -6103,8 +6227,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_worker_configuration_d_runtimeerror_constructor",
-      "community": 157,
-      "community_name": "RuntimeError",
+      "community": 137,
+      "community_name": "CloudflareAccessContext",
       "norm_label": ".constructor()"
     },
     {
@@ -30003,7 +30127,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package",
@@ -30014,7 +30138,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L46",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package",
@@ -30096,6 +30220,17 @@
       "_origin": "ast",
       "source": "apps_web_package",
       "target": "apps_web_package_version",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/package.json",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_package_scripts",
+      "target": "apps_web_package_scripts_billing_setup_test",
       "confidence_score": 1.0
     },
     {
@@ -30278,7 +30413,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L38",
+      "source_location": "L39",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30289,7 +30424,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L39",
+      "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30300,7 +30435,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30311,7 +30446,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30322,7 +30457,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30333,7 +30468,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30344,7 +30479,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30355,7 +30490,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L40",
+      "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30366,7 +30501,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30377,7 +30512,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L35",
+      "source_location": "L36",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30388,7 +30523,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30399,7 +30534,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L43",
+      "source_location": "L44",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30410,7 +30545,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30421,7 +30556,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30432,7 +30567,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_dependencies",
@@ -30443,7 +30578,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L30",
+      "source_location": "L31",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30455,7 +30590,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L31",
+      "source_location": "L32",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30467,7 +30602,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30479,7 +30614,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L33",
+      "source_location": "L34",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30491,7 +30626,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30503,7 +30638,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L35",
+      "source_location": "L36",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30515,7 +30650,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30527,7 +30662,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L37",
+      "source_location": "L38",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30539,7 +30674,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L38",
+      "source_location": "L39",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30551,7 +30686,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L39",
+      "source_location": "L40",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30563,7 +30698,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L40",
+      "source_location": "L41",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30575,7 +30710,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30587,7 +30722,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30599,7 +30734,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L43",
+      "source_location": "L44",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30611,7 +30746,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30623,7 +30758,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L47",
+      "source_location": "L48",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30634,7 +30769,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30645,7 +30780,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30656,7 +30791,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L50",
+      "source_location": "L51",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30667,7 +30802,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L51",
+      "source_location": "L52",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30678,7 +30813,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30689,7 +30824,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30700,7 +30835,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L55",
+      "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30711,7 +30846,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30722,7 +30857,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30733,7 +30868,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_package_devdependencies",
@@ -30744,7 +30879,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L47",
+      "source_location": "L48",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30756,7 +30891,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30768,7 +30903,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30780,7 +30915,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L50",
+      "source_location": "L51",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30792,7 +30927,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L51",
+      "source_location": "L52",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30804,7 +30939,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30816,7 +30951,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30828,7 +30963,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30840,7 +30975,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L55",
+      "source_location": "L56",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30852,7 +30987,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L56",
+      "source_location": "L57",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30864,7 +30999,7 @@
       "relation": "imports",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/package.json",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0,
       "context": "import",
       "_origin": "ast",
@@ -30927,6 +31062,117 @@
       "_origin": "ast",
       "source": "apps_web_scripts_check_self_host_config",
       "target": "apps_web_worker_configuration_d_errorevent_message"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L127",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_assertproductconfiguration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_client",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L70",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_cloudflaresecrets",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L92",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_ensureproduct",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_products",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L143",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_readdevvariables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L76",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_upload",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_variables",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test",
+      "target": "apps_web_scripts_setup_dodo_test_webhook_events",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/scripts/setup-dodo-test.mjs",
+      "source_location": "L97",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_scripts_setup_dodo_test_ensureproduct",
+      "target": "apps_web_scripts_setup_dodo_test_assertproductconfiguration",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -62471,5 +62717,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "baa6cc4782b1a6e45be348e141b77e4316a28ac0"
+  "built_at_commit": "4cb968a5cbd27ee952d105f5ce99365db6d010b4"
 }

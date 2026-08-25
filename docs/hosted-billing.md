@@ -40,19 +40,25 @@ state. A cancellation scheduled for period end remains active until its reported
 
 ### Test-mode setup
 
-Create monthly and yearly recurring products in the Dodo test dashboard, then set the five Dodo values in
-`.dev.vars.hosted.example`. The hosted Cloudflare environment uses the same names and should be
-configured with `wrangler secret put --env hosted` until a secret manager owns deployment config.
-Register this webhook URL in Dodo:
+Put only `DODO_PAYMENTS_API_KEY` in `apps/web/.dev.vars`, then run:
+
+```sh
+pnpm --filter @everlittle/web billing:setup:test
+```
+
+The idempotent setup command creates or reuses the $6 monthly and $60 yearly recurring SaaS
+products, registers the subscription lifecycle webhook, retrieves its signing secret, and bulk
+stores all four Dodo values in the hosted Cloudflare Worker. It never prints secret values. The
+registered webhook URL is:
 
 ```text
 https://geteverlittle.com/api/webhooks/dodo
 ```
 
-Subscribe it to the `subscription.*` lifecycle events. Keep
-`DODO_PAYMENTS_ENVIRONMENT=test_mode` until checkout, renewal failure, period-end cancellation,
-immediate cancellation, and recovery have all passed end-to-end tests. Archives remain
-`complimentary` when Dodo credentials are absent, so an incomplete setup cannot lock a family out.
+Keep `DODO_PAYMENTS_ENVIRONMENT=test_mode` until checkout, renewal failure, period-end
+cancellation, immediate cancellation, and recovery have all passed end-to-end tests. Archives
+remain `complimentary` when Dodo credentials are absent, so an incomplete setup cannot lock a
+family out.
 
 PostHog is also optional. Set `POSTHOG_PROJECT_TOKEN` and the project-region `POSTHOG_HOST` to enable
 it. Everlittle disables autocapture and session replay, identifies only the internal user ID, and

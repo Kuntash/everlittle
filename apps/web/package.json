@@ -24,7 +24,8 @@
     "db:migrate:remote": "wrangler d1 migrations apply DB --remote",
     "db:migrate:self-hosted": "wrangler d1 migrations apply DB --remote --config wrangler.self-hosted.jsonc",
     "self-host:check": "node scripts/check-self-host-config.mjs && EVERLITTLE_WRANGLER_CONFIG=wrangler.self-hosted.jsonc vp build && wrangler deploy --dry-run --config dist/server/wrangler.json",
-    "db:migrate:hosted": "wrangler d1 migrations apply DB --remote --env hosted"
+    "db:migrate:hosted": "wrangler d1 migrations apply DB --remote --env hosted",
+    "billing:setup:test": "node scripts/setup-dodo-test.mjs"
   },
   "dependencies": {
     "@everlittle/domain": "workspace:*",
