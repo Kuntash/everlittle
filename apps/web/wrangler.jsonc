@@ -54,6 +54,8 @@
         "INVITATION_FROM_EMAIL": "invites@geteverlittle.com",
         "PUBLIC_APP_URL": "https://geteverlittle.com",
         "DODO_PAYMENTS_ENVIRONMENT": "test_mode",
+        "POSTHOG_PROJECT_TOKEN": "phc_moqXcBVhKD9oP7YiYRbHng47QXcjPyZbStYWdHpLTPVu",
+        "POSTHOG_HOST": "https://eu.i.posthog.com",
       },
       "send_email": [
         {

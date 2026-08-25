@@ -1,7 +1,7 @@
 # Graph Report - everlittle  (2026-08-25)
 
 ## Corpus Check
-- 87 files · ~1,544,828 words
+- 87 files · ~1,544,840 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4cb968a5`
+- Built from commit: `6900627a`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -210,7 +210,7 @@
 - getArchiveStorage
 - responseError
 - onboarding.tsx
-- lucide-react
+- @everlittle/ui
 - auth-email.ts
 - 0014_dodo_billing.sql
 - @fontsource-variable/geist
@@ -271,7 +271,7 @@ Nodes (28): devDependencies, vite-plus, engines, node, license, name, packageMan
 
 ### Community 7 - "dependencies"
 Cohesion: 0.08
-Nodes (25): dependencies, better-auth, dodopayments, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/geist-mono, @posthog/react (+17 more)
+Nodes (25): dependencies, better-auth, dodopayments, @everlittle/domain, @fontsource-variable/cormorant-garamond, @fontsource-variable/geist-mono, lucide-react, @posthog/react (+17 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10

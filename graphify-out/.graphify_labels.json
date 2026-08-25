@@ -202,7 +202,7 @@
   "200": "getArchiveStorage",
   "201": "responseError",
   "202": "onboarding.tsx",
-  "203": "lucide-react",
+  "203": "@everlittle/ui",
   "204": "auth-email.ts",
   "205": "0014_dodo_billing.sql",
   "206": "@fontsource-variable/geist",
