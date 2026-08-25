@@ -168,7 +168,7 @@
   "166": "web/vite.config.ts",
   "167": "vite.config.ts",
   "168": "Self-hosting Everlittle on Cloudflare",
-  "169": "marketing-home.tsx",
+  "169": "brand.tsx",
   "170": "pre-commit",
   "171": "family_archive",
   "172": "archive-api-isolation.test.ts",
@@ -199,5 +199,8 @@
   "197": "server.ts",
   "198": "getDeploymentConfig",
   "199": "index.ts",
-  "200": "signInChild"
+  "200": "signInChild",
+  "201": "responseError",
+  "202": "__root.tsx",
+  "203": "marketing-home.tsx"
 }

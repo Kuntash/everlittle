@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787573180.1227043,
-    "ast_hash": "42d82a23e8371304a2154707b2c8766a",
+    "mtime": 1787623287.3042793,
+    "ast_hash": "db048a4be94b0bf6b05967f192856b11",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -582,6 +582,11 @@
   "docs/hosted-billing.md": {
     "mtime": 1787573322.17016,
     "ast_hash": "9794e87de48d56668b829a105b072943",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/scrapbook-home.tsx": {
+    "mtime": 1787636519.9532351,
+    "ast_hash": "44dff5a46be08cae1827d36d3783b47f",
     "semantic_hash": ""
   }
 }

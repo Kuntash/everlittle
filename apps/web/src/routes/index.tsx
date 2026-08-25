@@ -36,7 +36,7 @@ import type { FormEvent } from "react";
 import { Brand } from "@/components/brand";
 import { resolveArchiveEntry } from "@/lib/archive-navigation";
 import { authClient } from "@/lib/auth-client";
-import { MarketingHome } from "@/components/marketing-home";
+import { ScrapbookHome } from "@/components/scrapbook-home";
 
 export const Route = createFileRoute("/")({
   component: Everlittle,
@@ -210,7 +210,7 @@ export function Everlittle() {
     return <Loading />;
   }
   if (platform.deploymentMode === "hosted" && !session.data?.user && !inviteToken) {
-    return <MarketingHome />;
+    return <ScrapbookHome />;
   }
   if (childModeRequested && platform.childAccess?.enabled) {
     location.replace(

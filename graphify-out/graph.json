@@ -1353,7 +1353,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_brand",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "brand.tsx"
     },
     {
@@ -1365,7 +1365,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_brand_brand",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "brand()"
     },
     {
@@ -1375,7 +1375,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home",
-      "community": 169,
+      "community": 203,
       "community_name": "marketing-home.tsx",
       "norm_label": "marketing-home.tsx"
     },
@@ -1387,7 +1387,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_waveform",
-      "community": 169,
+      "community": 203,
       "community_name": "marketing-home.tsx",
       "norm_label": "waveform"
     },
@@ -1399,7 +1399,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_star",
-      "community": 169,
+      "community": 203,
       "community_name": "marketing-home.tsx",
       "norm_label": "star()"
     },
@@ -1411,7 +1411,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_pricingsection",
-      "community": 169,
+      "community": 203,
       "community_name": "marketing-home.tsx",
       "norm_label": "pricingsection()"
     },
@@ -1423,7 +1423,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketingpricingpage",
-      "community": 169,
+      "community": 203,
       "community_name": "marketing-home.tsx",
       "norm_label": "marketingpricingpage()"
     },
@@ -1435,7 +1435,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketinghome",
-      "community": 169,
+      "community": 203,
       "community_name": "marketing-home.tsx",
       "norm_label": "marketinghome()"
     },
@@ -1447,7 +1447,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_reset_password",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "components/reset-password.tsx"
     },
     {
@@ -1459,8 +1459,43 @@
       "_origin": "ast",
       "id": "apps_web_src_components_reset_password_resetpassword",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "resetpassword()"
+    },
+    {
+      "label": "scrapbook-home.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_components_scrapbook_home",
+      "community": 169,
+      "community_name": "brand.tsx",
+      "norm_label": "scrapbook-home.tsx"
+    },
+    {
+      "label": "waveform",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L18",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_src_components_scrapbook_home_waveform",
+      "community": 169,
+      "community_name": "brand.tsx",
+      "norm_label": "waveform"
+    },
+    {
+      "label": "ScrapbookHome()",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L36",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_src_components_scrapbook_home_scrapbookhome",
+      "community": 169,
+      "community_name": "brand.tsx",
+      "norm_label": "scrapbookhome()"
     },
     {
       "label": "env.d.ts",
@@ -3033,8 +3068,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "pwa-install.ts"
     },
     {
@@ -3046,8 +3081,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install_pwainstallcontext",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "pwainstallcontext"
     },
     {
@@ -3058,8 +3093,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install_shouldofferpwainstall",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "shouldofferpwainstall()"
     },
     {
@@ -3206,7 +3241,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "$familyslug.kids.$childslug.tsx"
     },
     {
@@ -3217,7 +3252,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_route",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "route"
     },
     {
@@ -3230,7 +3265,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_childsession",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "childsession"
     },
     {
@@ -3242,7 +3277,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_childaccess",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "childaccess()"
     },
     {
@@ -3253,7 +3288,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "$familyslug.kids.index.tsx"
     },
     {
@@ -3264,7 +3299,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_route",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "route"
     },
     {
@@ -3277,7 +3312,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_publicchild",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "publicchild"
     },
     {
@@ -3289,7 +3324,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_childchooser",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "childchooser()"
     },
     {
@@ -3365,8 +3400,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_root",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "__root.tsx"
     },
     {
@@ -3376,8 +3411,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "apps_web_src_routes_root_route",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "route"
     },
     {
@@ -3388,8 +3423,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_root_rootdocument",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "rootdocument()"
     },
     {
@@ -3401,8 +3436,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_root_installpromptevent",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "installpromptevent"
     },
     {
@@ -3413,8 +3448,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_root_pwaexperience",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "pwaexperience()"
     },
     {
@@ -3652,8 +3687,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_accessscreen",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "accessscreen()"
     },
     {
@@ -3664,8 +3699,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_invitationacceptance",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "invitationacceptance()"
     },
     {
@@ -3689,7 +3724,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_index_childarchiveapp",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "childarchiveapp()"
     },
     {
@@ -3760,8 +3795,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memorymedia",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "memorymedia()"
     },
     {
@@ -3807,8 +3842,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_securevideoplayer",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "securevideoplayer()"
     },
     {
@@ -3819,8 +3854,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_capsulesview",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "capsulesview()"
     },
     {
@@ -3843,8 +3878,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_familysettings",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "familysettings()"
     },
     {
@@ -3879,8 +3914,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_apifetch",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "apifetch()"
     },
     {
@@ -3891,8 +3926,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_scopedapipath",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "scopedapipath()"
     },
     {
@@ -3927,8 +3962,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_requestedredirect",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "requestedredirect()"
     },
     {
@@ -3939,8 +3974,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_responseerror",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "responseerror()"
     },
     {
@@ -3951,8 +3986,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_rolelabel",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "rolelabel()"
     },
     {
@@ -3963,8 +3998,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_roledescription",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "roledescription()"
     },
     {
@@ -3975,8 +4010,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_initials",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "initials()"
     },
     {
@@ -3987,8 +4022,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatdate",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "formatdate()"
     },
     {
@@ -3999,8 +4034,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatdatetime",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "formatdatetime()"
     },
     {
@@ -4023,8 +4058,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatmediatime",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "formatmediatime()"
     },
     {
@@ -4215,8 +4250,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatfilesize",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 201,
+      "community_name": "responseError",
       "norm_label": "formatfilesize()"
     },
     {
@@ -4378,7 +4413,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_pricing",
-      "community": 169,
+      "community": 203,
       "community_name": "marketing-home.tsx",
       "norm_label": "pricing.tsx"
     },
@@ -4389,7 +4424,7 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "apps_web_src_routes_pricing_route",
-      "community": 169,
+      "community": 203,
       "community_name": "marketing-home.tsx",
       "norm_label": "route"
     },
@@ -4401,7 +4436,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_reset_password",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "routes/reset-password.tsx"
     },
     {
@@ -4412,7 +4447,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_reset_password_route",
       "community": 169,
-      "community_name": "marketing-home.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "route"
     },
     {
@@ -4761,8 +4796,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_test_pwa_install_test",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "pwa-install.test.ts"
     },
     {
@@ -4772,8 +4807,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "apps_web_test_pwa_install_test_eligiblecontext",
-      "community": 103,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "__root.tsx",
       "norm_label": "eligiblecontext"
     },
     {
@@ -30640,6 +30675,18 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_scrapbook_home",
+      "target": "apps_web_src_components_brand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "apps/web/src/routes/$familySlug.kids.$childSlug.tsx",
       "source_location": "L6",
       "weight": 1.0,
@@ -30705,6 +30752,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_reset_password",
+      "target": "apps_web_src_components_brand_brand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_scrapbook_home",
       "target": "apps_web_src_components_brand_brand",
       "confidence_score": 1.0
     },
@@ -30815,18 +30874,6 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
-      "source_file": "apps/web/src/routes/index.tsx",
-      "source_location": "L39",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "apps_web_src_routes_index",
-      "target": "apps_web_src_components_marketing_home",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
       "source_file": "apps/web/src/routes/pricing.tsx",
       "source_location": "L3",
       "weight": 1.0,
@@ -30846,18 +30893,6 @@
       "confidence_score": 0.8,
       "source": "apps_web_src_routes_pricing",
       "target": "apps_web_src_components_marketing_home_marketingpricingpage"
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "apps/web/src/routes/index.tsx",
-      "source_location": "L39",
-      "weight": 1.0,
-      "_origin": "ast",
-      "source": "apps_web_src_routes_index",
-      "target": "apps_web_src_components_marketing_home_marketinghome",
-      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -30893,6 +30928,52 @@
       "confidence_score": 0.8,
       "source": "apps_web_src_routes_reset_password",
       "target": "apps_web_src_components_reset_password_resetpassword"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L36",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_scrapbook_home",
+      "target": "apps_web_src_components_scrapbook_home_scrapbookhome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_scrapbook_home",
+      "target": "apps_web_src_components_scrapbook_home_waveform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/index.tsx",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_index",
+      "target": "apps_web_src_components_scrapbook_home",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/index.tsx",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_index",
+      "target": "apps_web_src_components_scrapbook_home_scrapbookhome",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -61007,5 +61088,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "da460275aae04641930ebd64daf3ce9aa651836b"
+  "built_at_commit": "ddf06eb9840b547f52392c99e50462a7d12ae2f2"
 }
