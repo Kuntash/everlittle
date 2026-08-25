@@ -2,6 +2,13 @@ import { z } from "zod";
 import { childSlugSchema, familySlugSchema, slugify } from "@everlittle/domain";
 
 import { createAuth } from "@/lib/auth";
+import {
+  BillingConfigurationError,
+  BillingPortalUnavailableError,
+  createBillingCheckout,
+  createBillingPortal,
+  getBillingConfig,
+} from "@/lib/billing";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 import { getDeploymentConfig } from "@/lib/deployment";
 import { canStoreMedia, FAMILY_PLAN } from "@/lib/plans";
@@ -34,6 +41,7 @@ const capsuleSchema = z.object({
   audience: z.enum(["family", "child"]),
 });
 const childPinSchema = z.object({ pin: z.string().regex(/^\d{6}$/) });
+const billingCheckoutSchema = z.object({ interval: z.enum(["monthly", "yearly"]) });
 const onboardingDraftSchema = z.object({
   familyName: z.string().trim().min(1).max(100).optional(),
   familySlug: familySlugSchema.optional(),
@@ -249,6 +257,14 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
 
   if (url.pathname === "/api/archive" && request.method === "GET") {
     return getArchiveState(request);
+  }
+
+  if (url.pathname === "/api/archive/billing/checkout" && request.method === "POST") {
+    return startBillingCheckout(request);
+  }
+
+  if (url.pathname === "/api/archive/billing/portal" && request.method === "POST") {
+    return openBillingPortal(request);
   }
 
   if (url.pathname === "/api/archives" && request.method === "GET") {
@@ -524,6 +540,72 @@ async function getArchiveState(request: Request): Promise<Response> {
     invitations: invitations.results,
     billing: storage,
   });
+}
+
+async function startBillingCheckout(request: Request): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const deployment = getDeploymentConfig(runtime);
+  if (deployment.mode !== "hosted") return notFound();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role !== "owner") return forbidden();
+  const parsed = billingCheckoutSchema.safeParse(await readJson(request));
+  if (!parsed.success) {
+    return Response.json({ error: "Choose monthly or yearly billing." }, { status: 400 });
+  }
+
+  try {
+    return Response.json(
+      await createBillingCheckout({
+        archiveId: context.archiveId,
+        database: runtime.DB,
+        interval: parsed.data.interval,
+        owner: context.user,
+        publicAppUrl: deployment.publicAppUrl,
+        runtime,
+      }),
+    );
+  } catch (error) {
+    if (error instanceof BillingConfigurationError) {
+      return Response.json({ error: "Test billing is not configured yet." }, { status: 503 });
+    }
+    console.error("Could not create Dodo checkout", error);
+    return Response.json({ error: "Could not open secure checkout." }, { status: 502 });
+  }
+}
+
+async function openBillingPortal(request: Request): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const runtime = getRuntimeEnv();
+  const deployment = getDeploymentConfig(runtime);
+  if (deployment.mode !== "hosted") return notFound();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role !== "owner") return forbidden();
+
+  try {
+    return Response.json(
+      await createBillingPortal({
+        archiveId: context.archiveId,
+        database: runtime.DB,
+        publicAppUrl: deployment.publicAppUrl,
+        runtime,
+      }),
+    );
+  } catch (error) {
+    if (error instanceof BillingConfigurationError) {
+      return Response.json({ error: "Test billing is not configured yet." }, { status: 503 });
+    }
+    if (error instanceof BillingPortalUnavailableError) {
+      return Response.json(
+        { error: "Start a plan before opening the billing portal." },
+        { status: 409 },
+      );
+    }
+    console.error("Could not create Dodo customer portal", error);
+    return Response.json({ error: "Could not open the billing portal." }, { status: 502 });
+  }
 }
 
 async function listUserArchives(request: Request): Promise<Response> {
@@ -2079,6 +2161,9 @@ type ArchiveStorage = {
   limitBytes: number | null;
   trialEndsAt: string | null;
   currentPeriodEndsAt: string | null;
+  checkoutAvailable: boolean;
+  canManage: boolean;
+  environment: "test_mode" | "live_mode" | null;
 };
 
 async function getArchiveStorage(database: D1Database, archiveId: string): Promise<ArchiveStorage> {
@@ -2100,12 +2185,16 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
       limitBytes: null,
       trialEndsAt: null,
       currentPeriodEndsAt: null,
+      checkoutAvailable: false,
+      canManage: false,
+      environment: null,
     };
   }
 
   const subscription = await database
     .prepare(
       `SELECT status, storage_limit_bytes AS storageLimitBytes,
+              provider_customer_id AS providerCustomerId,
               trial_ends_at AS trialEndsAt, current_period_ends_at AS currentPeriodEndsAt
        FROM archive_subscription WHERE archive_id = ?`,
     )
@@ -2115,7 +2204,10 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
       storageLimitBytes: number;
       trialEndsAt: string | null;
       currentPeriodEndsAt: string | null;
+      providerCustomerId: string | null;
     }>();
+
+  const billing = getBillingConfig(getRuntimeEnv());
 
   return {
     plan: "family",
@@ -2124,6 +2216,9 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
     limitBytes: Number(subscription?.storageLimitBytes ?? FAMILY_PLAN.storageLimitBytes),
     trialEndsAt: subscription?.trialEndsAt ?? null,
     currentPeriodEndsAt: subscription?.currentPeriodEndsAt ?? null,
+    checkoutAvailable: billing.checkoutConfigured,
+    canManage: Boolean(billing.checkoutConfigured && subscription?.providerCustomerId),
+    environment: billing.checkoutConfigured ? billing.environment : null,
   };
 }
 

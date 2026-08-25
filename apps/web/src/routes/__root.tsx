@@ -3,6 +3,7 @@ import { Download, RefreshCw, Share, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { authClient } from "@/lib/auth-client";
+import { AnalyticsProvider } from "@/components/analytics-provider";
 import { shouldOfferPwaInstall } from "@/lib/pwa-install";
 
 import appCss from "../styles.css?url";
@@ -44,8 +45,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        {children}
-        <PwaExperience />
+        <AnalyticsProvider>
+          {children}
+          <PwaExperience />
+        </AnalyticsProvider>
         <Scripts />
       </body>
     </html>

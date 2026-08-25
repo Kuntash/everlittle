@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { usePostHog } from "@posthog/react";
 import {
   Archive,
   ArrowRight,
@@ -157,6 +158,9 @@ type ArchiveState = {
     limitBytes: number | null;
     trialEndsAt: string | null;
     currentPeriodEndsAt: string | null;
+    checkoutAvailable: boolean;
+    canManage: boolean;
+    environment: "test_mode" | "live_mode" | null;
   };
 };
 type ArchiveMembership = {
@@ -2470,6 +2474,7 @@ function CapsuleComposer({
 }
 
 function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () => Promise<void> }) {
+  const posthog = usePostHog();
   const isOwner = state.currentMember.role === "owner";
   const canEditChild = isOwner || state.currentMember.role === "parent";
   const [inviteEmail, setInviteEmail] = useState("");
@@ -2484,6 +2489,30 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   const [childPinConfirmation, setChildPinConfirmation] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [billingBusy, setBillingBusy] = useState<"monthly" | "yearly" | "portal" | null>(null);
+
+  async function openBilling(destination: "monthly" | "yearly" | "portal") {
+    setBillingBusy(destination);
+    setError("");
+    const response = await apiFetch(
+      destination === "portal" ? "/api/archive/billing/portal" : "/api/archive/billing/checkout",
+      {
+        method: "POST",
+        body: destination === "portal" ? undefined : JSON.stringify({ interval: destination }),
+      },
+    );
+    if (!response.ok) {
+      setError(await responseError(response));
+      setBillingBusy(null);
+      return;
+    }
+    const result = (await response.json()) as { url: string };
+    posthog?.capture(
+      destination === "portal" ? "billing_portal_opened" : "billing_checkout_started",
+      destination === "portal" ? undefined : { billing_interval: destination },
+    );
+    window.location.assign(result.url);
+  }
 
   async function mutate(path: string, init: RequestInit, success: string) {
     setError("");
@@ -2670,6 +2699,42 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                 ? "Founding access is complimentary. Your 25 GB allowance is already active."
                 : "Photographs, audio, video, and generated thumbnails count toward this total."}
           </p>
+          {isOwner && state.billing.plan === "family" && state.billing.checkoutAvailable ? (
+            <div className="billing-actions">
+              {state.billing.canManage ? (
+                <button
+                  className="secondary-button"
+                  disabled={billingBusy !== null}
+                  onClick={() => void openBilling("portal")}
+                  type="button"
+                >
+                  {billingBusy === "portal" ? "Opening…" : "Manage billing"}
+                </button>
+              ) : (
+                <>
+                  <button
+                    className="secondary-button"
+                    disabled={billingBusy !== null}
+                    onClick={() => void openBilling("monthly")}
+                    type="button"
+                  >
+                    {billingBusy === "monthly" ? "Opening…" : "$6 monthly"}
+                  </button>
+                  <button
+                    className="primary-button"
+                    disabled={billingBusy !== null}
+                    onClick={() => void openBilling("yearly")}
+                    type="button"
+                  >
+                    {billingBusy === "yearly" ? "Opening…" : "$60 yearly"}
+                  </button>
+                </>
+              )}
+              {state.billing.environment === "test_mode" ? (
+                <small>Dodo test mode · no real charge</small>
+              ) : null}
+            </div>
+          ) : null}
         </section>
         <section className="settings-card">
           <div className="settings-heading">

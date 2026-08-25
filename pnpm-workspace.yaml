@@ -18,11 +18,15 @@ catalog:
   "@cloudflare/vitest-pool-workers": ^0.21.3
   "@fontsource-variable/geist": ^5.3.0
   "@fontsource-variable/geist-mono": ^5.3.0
+  dodopayments: 2.48.0
+  posthog-js: 1.418.16
+  "@posthog/react": 1.10.4
 
 overrides:
   vite: "catalog:"
 
 allowBuilds:
+  core-js: false
   esbuild: true
   lightningcss: true
   sharp: true

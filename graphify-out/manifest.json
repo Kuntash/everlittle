@@ -1,7 +1,7 @@
 {
   "apps/web/package.json": {
-    "mtime": 1787264667.089881,
-    "ast_hash": "2315a79d2c9d39933d6943d591e57f60",
+    "mtime": 1787638304.5861168,
+    "ast_hash": "d99045586a48dff7d8137808675a7b60",
     "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1787573180.123278,
-    "ast_hash": "1a17a3cd57353ab70830da75de16f60b",
+    "mtime": 1787638201.149484,
+    "ast_hash": "028d8a79e757ff354e4eb62f51db7d1d",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -30,8 +30,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/runtime-env.ts": {
-    "mtime": 1786822368.3709579,
-    "ast_hash": "12a2aaa4cc772f840077fd3ef201f8a8",
+    "mtime": 1787638328.3747394,
+    "ast_hash": "70adc194bbf50f1982a35186492cb2f6",
     "semantic_hash": ""
   },
   "apps/web/src/router.tsx": {
@@ -40,18 +40,18 @@
     "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1787257764.314461,
-    "ast_hash": "709be889ef48d2d00a37fb8b314ede5b",
+    "mtime": 1787638252.867543,
+    "ast_hash": "8bea9009248dd3aaa036db0e51f4d728",
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787623287.3042793,
-    "ast_hash": "db048a4be94b0bf6b05967f192856b11",
+    "mtime": 1787638295.515573,
+    "ast_hash": "12b79e645a7b3da31ef4256cbf942aca",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1787573499.3572571,
-    "ast_hash": "c797ed88eceba5a0f292f1f9ad8d6697",
+    "mtime": 1787638216.9326246,
+    "ast_hash": "482102960fb4796d5f629e803ac2116a",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -65,8 +65,8 @@
     "semantic_hash": ""
   },
   "apps/web/worker-configuration.d.ts": {
-    "mtime": 1787264667.0928862,
-    "ast_hash": "2b6333d402050f15fd599cad644e0ea1",
+    "mtime": 1787638337.027112,
+    "ast_hash": "4f0ef59ad5cdba98eb06a730834e4e8e",
     "semantic_hash": ""
   },
   "package.json": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1787264667.098375,
-    "ast_hash": "e1b212aeab4b7f175594a039464c889f",
+    "mtime": 1787638468.0676916,
+    "ast_hash": "32df2304a96d64b9c2f65e56d93b6b0d",
     "semantic_hash": ""
   },
   "apps/web/public/apple-touch-icon.png": {
@@ -580,13 +580,38 @@
     "semantic_hash": ""
   },
   "docs/hosted-billing.md": {
-    "mtime": 1787573322.17016,
-    "ast_hash": "9794e87de48d56668b829a105b072943",
+    "mtime": 1787638606.2544813,
+    "ast_hash": "44eadbe0f13b369ca54178a148e5c7e0",
     "semantic_hash": ""
   },
   "apps/web/src/components/scrapbook-home.tsx": {
     "mtime": 1787637271.594382,
     "ast_hash": "a9ab8842dd52655698a31bb0135f2a23",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0014_dodo_billing.sql": {
+    "mtime": 1787638151.2934308,
+    "ast_hash": "464685680e2d048ed19eea874e48d8e2",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/analytics-provider.tsx": {
+    "mtime": 1787638540.6922596,
+    "ast_hash": "6a80d51d0ea09cf79d59f6da1cdf7300",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/analytics.ts": {
+    "mtime": 1787638407.7399592,
+    "ast_hash": "90168a4a06a5a3b41d6e564fd6aad420",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/billing.ts": {
+    "mtime": 1787638577.12233,
+    "ast_hash": "c97ffd2a209d075c3e5ae8b2ad3f8708",
+    "semantic_hash": ""
+  },
+  "apps/web/test/billing-analytics.test.ts": {
+    "mtime": 1787638468.021984,
+    "ast_hash": "63d3d8c49c0e4f4dcc1ee5d13bd3e194",
     "semantic_hash": ""
   }
 }

@@ -19,6 +19,7 @@
     "DEPLOYMENT_MODE": "self-hosted",
     "INVITATION_FROM_EMAIL": "invites@example.com",
     "PUBLIC_APP_URL": "http://localhost:3000",
+    "DODO_PAYMENTS_ENVIRONMENT": "test_mode",
   },
   "send_email": [{ "name": "EMAIL" }],
   "d1_databases": [
@@ -52,6 +53,7 @@
         "DEPLOYMENT_MODE": "hosted",
         "INVITATION_FROM_EMAIL": "invites@geteverlittle.com",
         "PUBLIC_APP_URL": "https://geteverlittle.com",
+        "DODO_PAYMENTS_ENVIRONMENT": "test_mode",
       },
       "send_email": [
         {

@@ -5959,6 +5959,18 @@ h3 {
   line-height: 1.5;
   margin: 0.75rem 0 0;
 }
+.billing-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+.billing-actions small {
+  color: var(--muted-ink);
+  flex-basis: 100%;
+  font-size: 0.62rem;
+}
 .settings-heading h2 {
   color: var(--forest);
   font-size: 1.8rem;

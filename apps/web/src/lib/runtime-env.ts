@@ -2,8 +2,18 @@ import { env } from "cloudflare:workers";
 
 import { getDeploymentConfig } from "@/lib/deployment";
 
+export type RuntimeEnv = Env & {
+  DODO_PAYMENTS_API_KEY?: string;
+  DODO_PAYMENTS_WEBHOOK_KEY?: string;
+  DODO_PAYMENTS_ENVIRONMENT?: string;
+  DODO_PRODUCT_ID_MONTHLY?: string;
+  DODO_PRODUCT_ID_YEARLY?: string;
+  POSTHOG_PROJECT_TOKEN?: string;
+  POSTHOG_HOST?: string;
+};
+
 export function getRuntimeEnv() {
-  const runtime = env as Env;
+  const runtime = env as RuntimeEnv;
 
   if (!runtime.BETTER_AUTH_SECRET) {
     throw new Error(

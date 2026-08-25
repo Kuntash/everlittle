@@ -32,10 +32,13 @@
     "@fontsource-variable/cormorant-garamond": "^5.2.6",
     "@fontsource-variable/geist": "catalog:",
     "@fontsource-variable/geist-mono": "catalog:",
+    "@posthog/react": "catalog:",
     "@tanstack/react-router": "1.170.19",
     "@tanstack/react-start": "1.168.36",
     "better-auth": "^1.6.25",
+    "dodopayments": "catalog:",
     "lucide-react": "^0.468.0",
+    "posthog-js": "catalog:",
     "react": "catalog:",
     "react-dom": "catalog:",
     "zod": "catalog:"

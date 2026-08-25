@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-25)
 
 ## Corpus Check
-- 81 files · ~1,542,205 words
+- 86 files · ~1,544,338 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2348 nodes · 2875 edges · 204 communities (52 shown, 152 thin omitted)
+- 2383 nodes · 2958 edges · 209 communities (53 shown, 156 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `ddf06eb9`
+- Built from commit: `baa6cc47`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -209,18 +209,23 @@
 - index.ts
 - signInChild
 - responseError
-- __root.tsx
+- billing.ts
 - marketing-home.tsx
+- auth-email.ts
+- 0014_dodo_billing.sql
+- @fontsource-variable/geist
+- posthog-js
+- zod
 
 ## God Nodes (most connected - your core abstractions)
-1. `getRuntimeEnv()` - 44 edges
-2. `handleArchiveApi()` - 42 edges
-3. `unauthorized()` - 27 edges
-4. `getMembershipContext()` - 25 edges
-5. `isSameOrigin()` - 25 edges
-6. `forbidden()` - 25 edges
+1. `getRuntimeEnv()` - 46 edges
+2. `handleArchiveApi()` - 44 edges
+3. `unauthorized()` - 29 edges
+4. `getMembershipContext()` - 27 edges
+5. `isSameOrigin()` - 27 edges
+6. `forbidden()` - 27 edges
 7. `Event` - 25 edges
-8. `getDeploymentConfig()` - 21 edges
+8. `getDeploymentConfig()` - 23 edges
 9. `Console` - 21 edges
 10. `auditStatement()` - 20 edges
 
@@ -239,7 +244,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (204 total, 152 thin omitted)
+## Communities (209 total, 156 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -247,11 +252,11 @@ Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentM
 
 ### Community 1 - "archive-api.ts"
 Cohesion: 0.06
-Nodes (47): ArchiveStorage, ByteRange, capsuleSchema, ChildAccessContext, childPinSchema, childSchema, childSessionCookie(), decodeFileName() (+39 more)
+Nodes (45): ArchiveStorage, billingCheckoutSchema, ByteRange, capsuleSchema, ChildAccessContext, childPinSchema, childSchema, childSessionCookie() (+37 more)
 
 ### Community 2 - "getRuntimeEnv"
 Cohesion: 0.32
-Nodes (32): acceptInvitationForCurrentUser(), auditStatement(), createCapsule(), createChildProfile(), createInvitation(), createMemory(), createPublicMemoryShare(), deleteCapsule() (+24 more)
+Nodes (32): acceptInvitationForCurrentUser(), auditStatement(), createCapsule(), createChildProfile(), createMemory(), createPublicMemoryShare(), deleteCapsule(), deleteMemory() (+24 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -267,7 +272,7 @@ Nodes (28): devDependencies, vite-plus, engines, node, license, name, packageMan
 
 ### Community 7 - "dependencies"
 Cohesion: 0.08
-Nodes (25): dependencies, better-auth, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/geist, @fontsource-variable/geist-mono, lucide-react (+17 more)
+Nodes (25): dependencies, better-auth, dodopayments, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/geist-mono, lucide-react (+17 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10
@@ -314,8 +319,8 @@ Cohesion: 0.14
 Nodes (13): Current invitation UX gaps, Everlittle TODO, P0 — Claim the reference installation, P1 — Family invitation and ownership handover, P1 — Privacy and durability, P1 — Real archive data, P2 — Child experience, P2 — Deferred account recovery (+5 more)
 
 ### Community 103 - "onboarding.tsx"
-Cohesion: 0.21
-Nodes (7): authClient, Draft, Onboarding(), responseMessage(), Route, sections, toSlug()
+Cohesion: 0.24
+Nodes (6): Draft, Onboarding(), responseMessage(), Route, sections, toSlug()
 
 ### Community 105 - "BasicImageTransformations"
 Cohesion: 0.67
@@ -327,7 +332,7 @@ Nodes (3): RequestInitCfPropertiesVaryAcceptHeader, RequestInitCfPropertiesVaryA
 
 ### Community 168 - "Self-hosting Everlittle on Cloudflare"
 Cohesion: 0.06
-Nodes (30): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Current founding access, Hosted plans and storage (+22 more)
+Nodes (31): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Current founding access, Dodo Payments boundary (+23 more)
 
 ### Community 169 - "brand.tsx"
 Cohesion: 0.14
@@ -366,8 +371,8 @@ Cohesion: 0.15
 Nodes (7): Route, Route, Route, Route, Route, Route, Everlittle()
 
 ### Community 181 - "index.tsx"
-Cohesion: 0.09
-Nodes (24): ArchiveApp(), ArchiveMembership, ArchiveState, Capsule, Child, ChildSession, createVideoThumbnail(), currentArchiveView() (+16 more)
+Cohesion: 0.10
+Nodes (23): ArchiveApp(), ArchiveMembership, ArchiveState, Capsule, Child, ChildSession, createVideoThumbnail(), currentArchiveView() (+15 more)
 
 ### Community 182 - "ExtendableEvent"
 Cohesion: 0.17
@@ -386,56 +391,60 @@ Cohesion: 0.50
 Nodes (3): ArchiveEntry, resolveArchiveEntry(), ArchiveRedirect()
 
 ### Community 196 - "MemoryComposer"
-Cohesion: 0.20
-Nodes (18): audienceLabel(), CapsuleComposer(), ChildView(), currentLocalDateTime(), defaultCapsuleDate(), formatMemoryDate(), kindLabel(), memoryBodyPlaceholder() (+10 more)
+Cohesion: 0.19
+Nodes (19): audienceLabel(), CapsuleComposer(), ChildView(), currentLocalDateTime(), defaultCapsuleDate(), formatMemoryDate(), kindLabel(), memoryBodyPlaceholder() (+11 more)
 
 ### Community 197 - "server.ts"
-Cohesion: 0.17
-Nodes (16): acceptInvitation(), AuthOptions, createAuth(), AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail(), bootstrapFamily() (+8 more)
+Cohesion: 0.20
+Nodes (14): acceptInvitation(), findValidInvitation(), previewInvitation(), AuthOptions, createAuth(), bootstrapFamily(), fetch(), handleAuthRequest() (+6 more)
 
 ### Community 198 - "getDeploymentConfig"
 Cohesion: 0.15
-Nodes (18): checkOnboardingSlug(), completeOnboarding(), getOnboarding(), getSessionUser(), isValidBirthDate(), isValidTimezone(), listPublicChildren(), notFound() (+10 more)
+Nodes (17): checkOnboardingSlug(), completeOnboarding(), getOnboarding(), getSessionUser(), isValidBirthDate(), isValidTimezone(), listPublicChildren(), notFound() (+9 more)
 
 ### Community 199 - "index.ts"
 Cohesion: 0.17
 Nodes (11): Audience, audienceSchema, ChildProfile, childSlugSchema, FamilyRole, familyRoleSchema, familySlugSchema, Memory (+3 more)
 
 ### Community 200 - "signInChild"
-Cohesion: 0.27
-Nodes (10): base64UrlToBytes(), bytesToBase64Url(), childPinRetryAfter(), createSecureToken(), deriveChildPin(), hashChildPin(), keyedHash(), safeEqual() (+2 more)
+Cohesion: 0.21
+Nodes (14): base64UrlToBytes(), bytesToBase64Url(), childPinRetryAfter(), createInvitation(), createSecureToken(), deliverInvitation(), deriveChildPin(), hashChildPin() (+6 more)
 
 ### Community 201 - "responseError"
 Cohesion: 0.23
 Nodes (13): AccessScreen(), apiFetch(), CapsulesView(), FamilySettings(), formatDate(), formatDateTime(), formatFileSize(), initials() (+5 more)
 
-### Community 202 - "__root.tsx"
-Cohesion: 0.27
-Nodes (6): PwaInstallContext, shouldOfferPwaInstall(), InstallPromptEvent, PwaExperience(), Route, eligibleContext
+### Community 202 - "billing.ts"
+Cohesion: 0.09
+Nodes (26): AnalyticsConfig, AnalyticsProvider(), analyticsPath(), authClient, BillingConfigurationError, BillingInterval, BillingOwner, BillingPortalUnavailableError (+18 more)
 
 ### Community 203 - "marketing-home.tsx"
 Cohesion: 0.29
 Nodes (3): MarketingPricingPage(), waveform, Route
 
+### Community 204 - "auth-email.ts"
+Cohesion: 0.53
+Nodes (4): AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail()
+
 ## Knowledge Gaps
-- **1121 isolated node(s):** `"verification"`, `child_access_attempt`, `name`, `version`, `private` (+1116 more)
+- **1133 isolated node(s):** `"verification"`, `child_access_attempt`, `billing_webhook_event`, `name`, `version` (+1128 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **152 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **156 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.038) - this node is a cross-community bridge._
-- **Why does `WebSocket` connect `ServiceWorkerGlobalScope` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
-- **Why does `TransformStreamDefaultController` connect `TransformStreamDefaultController` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.017) - this node is a cross-community bridge._
-- **What connects `"verification"`, `child_access_attempt`, `name` to the rest of the system?**
-  _1121 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `authClient` connect `billing.ts` to `auth-route.tsx`, `index.tsx`, `onboarding.tsx`?**
+  _High betweenness centrality (0.062) - this node is a cross-community bridge._
+- **Why does `URLSearchParams` connect `URLSearchParams` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.023) - this node is a cross-community bridge._
+- **What connects `"verification"`, `child_access_attempt`, `billing_webhook_event` to the rest of the system?**
+  _1133 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06462585034013606 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06382978723404255 - nodes in this community are weakly interconnected._
 - **Should `ServiceWorkerGlobalScope` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
+- **Should `Event` be split into smaller, more focused modules?**
+  _Cohesion score 0.1 - nodes in this community are weakly interconnected._

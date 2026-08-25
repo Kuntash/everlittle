@@ -5,6 +5,7 @@ import { slugify } from "@everlittle/domain";
 import { acceptInvitation, findValidInvitation, handleArchiveApi } from "@/lib/archive-api";
 import { createAuth } from "@/lib/auth";
 import { sendAuthEmail } from "@/lib/auth-email";
+import { handleDodoWebhook } from "@/lib/billing";
 import { getDeploymentConfig } from "@/lib/deployment";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 
@@ -17,6 +18,10 @@ export default createServerEntry({
 
     if (url.pathname.startsWith("/api/auth/")) {
       return handleAuthRequest(request);
+    }
+
+    if (url.pathname === "/api/webhooks/dodo" && request.method === "POST") {
+      return handleDodoWebhook(request, getRuntimeEnv());
     }
 
     const archiveResponse = await handleArchiveApi(request);
@@ -51,6 +56,15 @@ export default createServerEntry({
         deploymentMode: deployment.mode,
         needsSetup:
           deployment.capabilities.allowsInitialOwnerBootstrap && Number(row?.count ?? 0) === 0,
+        analytics:
+          deployment.mode === "hosted" && runtime.POSTHOG_PROJECT_TOKEN && runtime.POSTHOG_HOST
+            ? {
+                posthog: {
+                  host: runtime.POSTHOG_HOST,
+                  token: runtime.POSTHOG_PROJECT_TOKEN,
+                },
+              }
+            : null,
         childAccess: child
           ? {
               displayName: child.displayName,
