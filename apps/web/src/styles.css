@@ -6942,7 +6942,7 @@ h3 {
   padding-left: 0.15rem;
   width: 34px;
 }
-.scrapbook-wave > span:not(.scrapbook-wave-play) {
+.scrapbook-wave > div {
   align-items: center;
   display: flex;
   flex: 1;

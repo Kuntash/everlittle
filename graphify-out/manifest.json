@@ -585,8 +585,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/scrapbook-home.tsx": {
-    "mtime": 1787637271.594382,
-    "ast_hash": "a9ab8842dd52655698a31bb0135f2a23",
+    "mtime": 1787639040.338988,
+    "ast_hash": "c31df2a4e492383c4aa0f4f8c04d3492",
     "semantic_hash": ""
   },
   "apps/web/migrations/0014_dodo_billing.sql": {

@@ -23,11 +23,11 @@ function Waveform() {
       <span className="scrapbook-wave-play" aria-hidden="true">
         <Play size={13} fill="currentColor" />
       </span>
-      <span aria-hidden="true">
+      <div aria-hidden="true">
         {waveform.map((height, index) => (
           <i key={`${height}-${index}`} style={{ height }} />
         ))}
-      </span>
+      </div>
       <small>1:34</small>
     </div>
   );
