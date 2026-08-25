@@ -409,12 +409,6 @@ export function ScrapbookHome() {
           </a>
           <small>Founding access is free while billing opens. No card required today.</small>
         </article>
-        <p className="scrapbook-self-host" id="hosting">
-          Prefer to run it yourself? Everlittle is open source.{" "}
-          <a href="https://github.com/Kuntash/everlittle">
-            View the code <ArrowRight />
-          </a>
-        </p>
       </section>
 
       <section className="scrapbook-closing">
