@@ -12,7 +12,7 @@ import {
 } from "@/lib/billing";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 import { getDeploymentConfig } from "@/lib/deployment";
-import { canStoreMedia, FAMILY_PLAN } from "@/lib/plans";
+import { canCreateArchiveContent, canStoreMedia, FAMILY_PLAN } from "@/lib/plans";
 import { sendInvitationEmail } from "@/lib/invitation-email";
 
 const invitationSchema = z.object({
@@ -1508,6 +1508,8 @@ async function createMemory(request: Request): Promise<Response> {
   const context = await getMembershipContext(request);
   if (!context) return unauthorized();
   if (context.role === "viewer") return forbidden();
+  const creationBlocked = await enforceArchiveCreation(database, context.archiveId);
+  if (creationBlocked) return creationBlocked;
 
   const parsed = memorySchema.safeParse(await readJson(request));
   if (!parsed.success) {
@@ -1707,6 +1709,8 @@ async function createCapsule(request: Request): Promise<Response> {
   const context = await getMembershipContext(request);
   if (!context) return unauthorized();
   if (context.role === "viewer") return forbidden();
+  const creationBlocked = await enforceArchiveCreation(database, context.archiveId);
+  if (creationBlocked) return creationBlocked;
 
   const parsed = capsuleSchema.safeParse(await readJson(request));
   if (!parsed.success) {
@@ -2167,6 +2171,7 @@ type ArchiveStorage = {
   checkoutAvailable: boolean;
   canManage: boolean;
   environment: "test_mode" | "live_mode" | null;
+  canCreateContent: boolean;
 };
 
 async function getArchiveStorage(database: D1Database, archiveId: string): Promise<ArchiveStorage> {
@@ -2193,6 +2198,7 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
       checkoutAvailable: false,
       canManage: false,
       environment: null,
+      canCreateContent: true,
     };
   }
 
@@ -2219,12 +2225,15 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
 
   const billing = getBillingConfig(getRuntimeEnv());
 
+  const status = subscription?.status ?? "complimentary";
+  const trialEndsAt = subscription?.trialEndsAt ?? null;
+
   return {
     plan: "family",
-    status: subscription?.status ?? "complimentary",
+    status,
     usedBytes,
     limitBytes: Number(subscription?.storageLimitBytes ?? FAMILY_PLAN.storageLimitBytes),
-    trialEndsAt: subscription?.trialEndsAt ?? null,
+    trialEndsAt,
     currentPeriodEndsAt: subscription?.currentPeriodEndsAt ?? null,
     interval: subscription?.interval ?? null,
     cancelAtPeriodEnd: subscription?.cancelAtPeriodEnd === 1,
@@ -2234,7 +2243,20 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
       subscription?.providerSubscriptionId,
     ),
     environment: billing.checkoutConfigured ? billing.environment : null,
+    canCreateContent: canCreateArchiveContent(status, trialEndsAt),
   };
+}
+
+async function enforceArchiveCreation(
+  database: D1Database,
+  archiveId: string,
+): Promise<Response | null> {
+  const storage = await getArchiveStorage(database, archiveId);
+  if (storage.canCreateContent) return null;
+  return Response.json(
+    { error: "Start a family subscription before adding new memories or time capsules." },
+    { status: 402 },
+  );
 }
 
 async function enforceArchiveStorage(

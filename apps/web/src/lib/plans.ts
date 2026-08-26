@@ -7,8 +7,15 @@ export const FAMILY_PLAN = {
 
 export type BillingStatus = "active" | "canceled" | "complimentary" | "past_due" | "trialing";
 
-export function canStoreMedia(status: BillingStatus, trialEndsAt: string | null): boolean {
-  if (status === "active" || status === "complimentary") return true;
+export function canCreateArchiveContent(
+  status: BillingStatus,
+  trialEndsAt: string | null,
+): boolean {
+  if (status === "active") return true;
   if (status !== "trialing" || !trialEndsAt) return false;
   return new Date(trialEndsAt).valueOf() > Date.now();
+}
+
+export function canStoreMedia(status: BillingStatus, trialEndsAt: string | null): boolean {
+  return canCreateArchiveContent(status, trialEndsAt);
 }

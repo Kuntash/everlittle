@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1787733438.5035164,
-    "ast_hash": "9259d025176986e00b72d24666c86201",
+    "mtime": 1787742406.472002,
+    "ast_hash": "5db4ee987407c5600d92229509b9b7ce",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787733461.29553,
-    "ast_hash": "23cc23a1a0c1f3b21ab27250d2ab33f2",
+    "mtime": 1787742494.021995,
+    "ast_hash": "34706686a3b3c157db2b33e131c70e53",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -305,8 +305,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/marketing-home.tsx": {
-    "mtime": 1787573180.1176252,
-    "ast_hash": "adec5c5741c7ae7b532dc0b7179d09e6",
+    "mtime": 1787742468.7683725,
+    "ast_hash": "fc332517163355e34338a17d20fe724a",
     "semantic_hash": ""
   },
   "apps/web/src/routes/invite.$token.tsx": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1787732666.5772667,
-    "ast_hash": "7ce1c6329528d6cf198f3be4c089c716",
+    "mtime": 1787742494.0162165,
+    "ast_hash": "db4728b46b4d294a26ace3adee11ad21",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
@@ -570,8 +570,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/plans.ts": {
-    "mtime": 1787573019.8410664,
-    "ast_hash": "eea11997c42a1164354906f48d8b2d5b",
+    "mtime": 1787742406.4711623,
+    "ast_hash": "56df7cd2ea6fe1798a1723c726aefc46",
     "semantic_hash": ""
   },
   "apps/web/src/routes/pricing.tsx": {
@@ -585,8 +585,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/scrapbook-home.tsx": {
-    "mtime": 1787639040.338988,
-    "ast_hash": "c31df2a4e492383c4aa0f4f8c04d3492",
+    "mtime": 1787742468.7673042,
+    "ast_hash": "c15d7d6581327374fadf51cb097e6f55",
     "semantic_hash": ""
   },
   "apps/web/migrations/0014_dodo_billing.sql": {
@@ -610,8 +610,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/billing-analytics.test.ts": {
-    "mtime": 1787733438.505705,
-    "ast_hash": "6834ac234c28c7e386de56a124990cf9",
+    "mtime": 1787742441.3516552,
+    "ast_hash": "5ced9f34f8a16e75aba9feca1bb10090",
     "semantic_hash": ""
   },
   "apps/web/scripts/setup-dodo-test.mjs": {

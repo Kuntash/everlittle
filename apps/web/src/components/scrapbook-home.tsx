@@ -407,7 +407,7 @@ export function ScrapbookHome() {
           <a href="/sign-up">
             Start our family archive <ArrowRight />
           </a>
-          <small>Founding access is free while billing opens. No card required today.</small>
+          <small>Create your account free. Choose a plan before adding memories.</small>
         </article>
       </section>
 

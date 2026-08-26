@@ -164,6 +164,7 @@ type ArchiveState = {
     cancelAtPeriodEnd: boolean;
     checkoutAvailable: boolean;
     canManage: boolean;
+    canCreateContent: boolean;
     environment: "test_mode" | "live_mode" | null;
   };
 };
@@ -876,6 +877,7 @@ function ArchiveApp({ name }: { name: string }) {
           onNavigate={navigateView}
           refresh={refresh}
           role={state.currentMember.role}
+          canCreateContent={state.billing.canCreateContent}
         />
       ) : null}
       {view === "timeline" ? (
@@ -894,6 +896,7 @@ function ArchiveApp({ name }: { name: string }) {
           currentUserId={state.currentMember.userId}
           refresh={refresh}
           role={state.currentMember.role}
+          canCreateContent={state.billing.canCreateContent}
         />
       ) : null}
       {view === "child" ? (
@@ -976,6 +979,7 @@ function ParentView({
   onNavigate,
   refresh,
   role,
+  canCreateContent,
 }: {
   name: string;
   child?: Child;
@@ -984,10 +988,11 @@ function ParentView({
   onNavigate: (view: View) => void;
   refresh: () => Promise<void>;
   role: FamilyRole;
+  canCreateContent: boolean;
 }) {
   const [composerKind, setComposerKind] = useState<MemoryKind | null>(null);
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
-  const canCreate = role !== "viewer";
+  const canCreate = role !== "viewer" && canCreateContent;
   const isVault = child?.profileKind === "vault";
   const childName = child?.displayName ?? "your child";
   const featured = memories[0];
@@ -1094,6 +1099,11 @@ function ParentView({
         </div>
         {!child ? (
           <p className="capture-note">Create a child profile in Family before adding memories.</p>
+        ) : !canCreateContent && role !== "viewer" ? (
+          <p className="capture-note">
+            Start a family subscription to add new memories. Everything already here stays available
+            to view.
+          </p>
         ) : null}
         <div className="capsule-card">
           <span className="capsule-seal">
@@ -1107,7 +1117,7 @@ function ParentView({
               : `Write a note now for ${childName} to open one day.`}
           </p>
           <button onClick={() => onNavigate("capsules")} type="button">
-            Add a note <ArrowRight size={16} />
+            {canCreate ? "Add a note" : "View capsules"} <ArrowRight size={16} />
           </button>
         </div>
       </aside>
@@ -2199,18 +2209,20 @@ function CapsulesView({
   currentUserId,
   refresh,
   role,
+  canCreateContent,
 }: {
   capsules: Capsule[];
   child?: Child;
   currentUserId: string;
   refresh: () => Promise<void>;
   role: FamilyRole;
+  canCreateContent: boolean;
 }) {
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState("");
   const locked = capsules.filter((capsule) => capsule.locked);
   const opened = capsules.filter((capsule) => !capsule.locked);
-  const canCreate = role !== "viewer";
+  const canCreate = role !== "viewer" && canCreateContent;
 
   async function remove(capsule: Capsule) {
     if (!confirm(`Delete the capsule “${capsule.title}”?`)) return;
@@ -2238,6 +2250,12 @@ function CapsulesView({
           </button>
         ) : null}
       </section>
+
+      {!canCreateContent && role !== "viewer" ? (
+        <p className="capture-note">
+          Start a family subscription to seal new capsules. Existing capsules remain available.
+        </p>
+      ) : null}
 
       {error ? <p className="form-error capsule-page-error">{error}</p> : null}
       {capsules.length ? (
@@ -2706,7 +2724,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
             {state.billing.plan === "self-hosted"
               ? "Media stays in the R2 bucket owned by this installation."
               : state.billing.status === "complimentary"
-                ? "Founding access is complimentary. Your 25 GB allowance is already active."
+                ? "Your archive stays available to view. Start a subscription to add new memories or capsules."
                 : "Photographs, audio, video, and generated thumbnails count toward this total."}
           </p>
           {isOwner && state.billing.plan === "family" && state.billing.checkoutAvailable ? (

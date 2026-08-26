@@ -245,7 +245,7 @@ describe("route-scoped tenant isolation", () => {
     expect(state.billing).toMatchObject({
       limitBytes: 25 * 1024 * 1024 * 1024,
       plan: "family",
-      status: "complimentary",
+      status: "active",
       usedBytes: 10,
     });
   });
@@ -352,6 +352,50 @@ describe("route-scoped tenant isolation", () => {
       method: "POST",
     });
     expect(memory.status).toBe(201);
+  });
+
+  it("keeps unsubscribed families read-only while preserving existing content", async () => {
+    await env.DB.prepare(
+      "UPDATE archive_subscription SET status = 'complimentary' WHERE archive_id = ?",
+    )
+      .bind(familyA.archiveId)
+      .run();
+
+    try {
+      const archiveResponse = await api(familyA, `/api/families/${familyA.slug}/archive`);
+      expect(archiveResponse.status).toBe(200);
+      const archive = (await archiveResponse.json()) as {
+        billing: { canCreateContent: boolean; status: string };
+        memories: Array<{ id: string }>;
+      };
+      expect(archive.billing).toMatchObject({ canCreateContent: false, status: "complimentary" });
+      expect(archive.memories.length).toBeGreaterThan(0);
+
+      const memory = await api(familyA, `/api/families/${familyA.slug}/archive/memories`, {
+        body: memoryBody("family", "Blocked without a subscription"),
+        method: "POST",
+      });
+      expect(memory.status).toBe(402);
+      await expect(memory.json()).resolves.toEqual({
+        error: "Start a family subscription before adding new memories or time capsules.",
+      });
+
+      const capsule = await api(familyA, `/api/families/${familyA.slug}/archive/capsules`, {
+        body: JSON.stringify({
+          audience: "child",
+          body: "Open this later",
+          childId: familyA.childId,
+          title: "Blocked capsule",
+          unlocksAt: new Date(Date.now() + 86_400_000).toISOString(),
+        }),
+        method: "POST",
+      });
+      expect(capsule.status).toBe(402);
+    } finally {
+      await env.DB.prepare("UPDATE archive_subscription SET status = 'active' WHERE archive_id = ?")
+        .bind(familyA.archiveId)
+        .run();
+    }
   });
 });
 
@@ -610,6 +654,13 @@ describe("onboarding archive focus", () => {
     };
     expect(archive.children[0]?.profileKind).toBe("vault");
 
+    await env.DB.prepare(
+      `UPDATE archive_subscription SET status = 'active'
+       WHERE archive_id = (SELECT archive_id FROM family_member WHERE user_id = ? LIMIT 1)`,
+    )
+      .bind(account.userId)
+      .run();
+
     const memory = await exports.default.fetch(
       new Request(`${ORIGIN}/api/families/our-years/archive/memories`, {
         body: JSON.stringify({
@@ -655,6 +706,10 @@ async function createFamily(email: string, name: string, slug: string): Promise<
     .bind(account.userId, slug)
     .first<{ archiveId: string; id: string; memberId: string; slug: string }>();
   expect(child?.id).toBeTruthy();
+
+  await env.DB.prepare("UPDATE archive_subscription SET status = 'active' WHERE archive_id = ?")
+    .bind(child!.archiveId)
+    .run();
 
   return {
     archiveId: child!.archiveId,

@@ -99,7 +99,7 @@ export function PricingSection() {
           Start your family archive <ArrowRight />
         </a>
         <p className="heirloom-founding-note">
-          Founding access is complimentary while hosted billing opens. No card required today.
+          Create your account free. Choose a plan before adding memories.
         </p>
       </article>
 

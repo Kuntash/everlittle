@@ -7,6 +7,7 @@ import {
   getBillingConfig,
   hasManageableSubscription,
 } from "@/lib/billing";
+import { canCreateArchiveContent, canStoreMedia } from "@/lib/plans";
 import type { RuntimeEnv } from "@/lib/runtime-env";
 
 describe("Dodo billing", () => {
@@ -36,6 +37,16 @@ describe("Dodo billing", () => {
     expect(hasManageableSubscription(true, null)).toBe(false);
     expect(hasManageableSubscription(true, "sub_test")).toBe(true);
     expect(hasManageableSubscription(false, "sub_test")).toBe(false);
+  });
+
+  it("keeps unsubscribed hosted archives read-only", () => {
+    expect(canCreateArchiveContent("active", null)).toBe(true);
+    expect(canCreateArchiveContent("complimentary", null)).toBe(false);
+    expect(canCreateArchiveContent("past_due", null)).toBe(false);
+    expect(canCreateArchiveContent("canceled", null)).toBe(false);
+    expect(canStoreMedia("complimentary", null)).toBe(false);
+    expect(canCreateArchiveContent("trialing", "2099-01-01T00:00:00Z")).toBe(true);
+    expect(canCreateArchiveContent("trialing", "2000-01-01T00:00:00Z")).toBe(false);
   });
 });
 

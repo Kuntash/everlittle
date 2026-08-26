@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-26)
 
 ## Corpus Check
-- 92 files · ~1,545,601 words
+- 92 files · ~1,545,973 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2408 nodes · 2997 edges · 210 communities (54 shown, 156 thin omitted)
+- 2410 nodes · 3008 edges · 206 communities (53 shown, 153 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `eb1249f6`
+- Built from commit: `debd177c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -26,9 +26,9 @@
 - Console
 - TransformStream
 - URL
-- devDependencies
+- scripts
 - URLSearchParams
-- brand.tsx
+- $familySlug.kids.$childSlug.tsx
 - DurableObjectStorage
 - Container
 - Element
@@ -59,7 +59,7 @@
 - SqlStorageCursor
 - Vectorize
 - ui/package.json
-- scripts
+- responseError
 - Ai
 - AiSearchNamespace
 - ReadableStreamBYOBReader
@@ -170,7 +170,7 @@
 - RateLimit
 - ResponseFunctionToolCall
 - RpcTarget
-- marketing-home.tsx
+- formatMemoryDate
 - ScheduledController
 - Scheduler
 - SecretsStoreSecret
@@ -181,7 +181,6 @@
 - WebSearch
 - web/vite.config.ts
 - Self-hosting Everlittle on Cloudflare
-- web/package.json
 - pre-commit
 - family_archive
 - archive-api-isolation.test.ts
@@ -208,14 +207,11 @@
 - getDeploymentConfig
 - CompileError
 - RuntimeError
-- responseError
+- apiFetch
 - onboarding.tsx
 - index.ts
 - auth-email.ts
 - 0014_dodo_billing.sql
-- @fontsource-variable/cormorant-garamond
-- lucide-react
-- @tanstack/react-router
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 46 edges
@@ -244,19 +240,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (210 total, 156 thin omitted)
+## Communities (206 total, 153 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
 Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentMemoryIncomingMemory, AgentMemoryIngestOptions, AgentMemoryListMemoriesOptions, AgentMemoryListMemoriesResult, AgentMemoryMemory, AgentMemoryMemoryListEntry (+840 more)
 
 ### Community 1 - "archive-api.ts"
-Cohesion: 0.06
-Nodes (55): ArchiveStorage, base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url(), capsuleSchema, ChildAccessContext, childPinRetryAfter() (+47 more)
+Cohesion: 0.07
+Nodes (50): ArchiveStorage, base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url(), capsuleSchema, ChildAccessContext, childPinRetryAfter() (+42 more)
 
 ### Community 2 - "getRuntimeEnv"
 Cohesion: 0.30
-Nodes (35): acceptInvitationForCurrentUser(), auditStatement(), createCapsule(), createChildProfile(), createInvitation(), createMemory(), createPublicMemoryShare(), deleteCapsule() (+27 more)
+Nodes (35): acceptInvitationForCurrentUser(), auditStatement(), createCapsule(), createChildProfile(), createInvitation(), createMemory(), createPublicMemoryShare(), createSecureToken() (+27 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -271,20 +267,20 @@ Cohesion: 0.07
 Nodes (28): devDependencies, vite-plus, engines, node, license, name, packageManager, private (+20 more)
 
 ### Community 7 - "dependencies"
-Cohesion: 0.07
-Nodes (27): dependencies, better-auth, dodopayments, @everlittle/domain, @everlittle/ui, @fontsource-variable/geist, @fontsource-variable/geist-mono, posthog-js (+19 more)
+Cohesion: 0.06
+Nodes (33): dependencies, better-auth, dodopayments, @everlittle/domain, @everlittle/ui, @fontsource-variable/cormorant-garamond, @fontsource-variable/geist, @fontsource-variable/geist-mono (+25 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10
 Nodes (7): CompressionStream, DecompressionStream, FixedLengthStream, IdentityTransformStream, TextDecoderStream, TextEncoderStream, TransformStream
 
-### Community 11 - "devDependencies"
-Cohesion: 0.09
-Nodes (23): devDependencies, @cloudflare/vite-plugin, @cloudflare/vitest-pool-workers, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript (+15 more)
+### Community 11 - "scripts"
+Cohesion: 0.04
+Nodes (47): devDependencies, @cloudflare/vite-plugin, @cloudflare/vitest-pool-workers, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript (+39 more)
 
-### Community 13 - "brand.tsx"
-Cohesion: 0.14
-Nodes (10): Brand(), ResetPassword(), ScrapbookHome(), waveform, ChildSession, Route, PublicChild, Route (+2 more)
+### Community 13 - "$familySlug.kids.$childSlug.tsx"
+Cohesion: 0.40
+Nodes (3): ChildSession, Route, ChildArchiveApp()
 
 ### Community 20 - "Body"
 Cohesion: 0.15
@@ -310,17 +306,17 @@ Nodes (3): ByteLengthQueuingStrategy, CountQueuingStrategy, QueuingStrategy
 Cohesion: 0.25
 Nodes (7): exports, ./theme.css, license, name, private, type, version
 
-### Community 45 - "scripts"
-Cohesion: 0.11
-Nodes (18): scripts, billing:setup:test, build, build:self-hosted, cf-typegen, db:migrate:hosted, db:migrate:local, db:migrate:remote (+10 more)
+### Community 45 - "responseError"
+Cohesion: 0.28
+Nodes (9): ArchiveApp(), currentArchiveView(), currentFamilySlug(), formatMediaTime(), responseError(), scopedApiPath(), SecureAudioPlayer(), SecureVideoPlayer() (+1 more)
 
 ### Community 78 - "Everlittle TODO"
 Cohesion: 0.14
 Nodes (13): Current invitation UX gaps, Everlittle TODO, P0 — Claim the reference installation, P1 — Family invitation and ownership handover, P1 — Privacy and durability, P1 — Real archive data, P2 — Child experience, P2 — Deferred account recovery (+5 more)
 
 ### Community 103 - "billing.ts"
-Cohesion: 0.17
-Nodes (18): getArchiveStorage(), BillingConfigurationError, BillingInterval, BillingOwner, BillingPortalUnavailableError, billingStatusForDodoEvent(), createBillingCheckout(), createBillingPortal() (+10 more)
+Cohesion: 0.12
+Nodes (24): enforceArchiveCreation(), enforceArchiveStorage(), getArchiveStorage(), BillingConfigurationError, BillingInterval, BillingOwner, BillingPortalUnavailableError, billingStatusForDodoEvent() (+16 more)
 
 ### Community 105 - "BasicImageTransformations"
 Cohesion: 0.67
@@ -334,17 +330,13 @@ Nodes (3): RequestInitCfPropertiesVaryAcceptHeader, RequestInitCfPropertiesVaryA
 Cohesion: 0.22
 Nodes (8): assertProductConfiguration(), client, cloudflareSecrets, ensureProduct(), products, upload, variables, WEBHOOK_EVENTS
 
-### Community 157 - "marketing-home.tsx"
-Cohesion: 0.29
-Nodes (3): MarketingPricingPage(), waveform, Route
+### Community 157 - "formatMemoryDate"
+Cohesion: 0.33
+Nodes (9): audienceLabel(), ChildView(), formatMemoryDate(), kindLabel(), memoryIcon(), MemoryMedia(), MemoryRow(), ParentView() (+1 more)
 
 ### Community 168 - "Self-hosting Everlittle on Cloudflare"
 Cohesion: 0.06
 Nodes (31): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Current founding access, Dodo Payments boundary (+23 more)
-
-### Community 169 - "web/package.json"
-Cohesion: 0.29
-Nodes (6): imports, license, name, private, type, version
 
 ### Community 171 - "family_archive"
 Cohesion: 0.11
@@ -399,24 +391,24 @@ Cohesion: 0.50
 Nodes (3): ArchiveEntry, resolveArchiveEntry(), ArchiveRedirect()
 
 ### Community 196 - "MemoryComposer"
-Cohesion: 0.19
-Nodes (19): audienceLabel(), CapsuleComposer(), ChildView(), currentLocalDateTime(), defaultCapsuleDate(), formatMemoryDate(), kindLabel(), memoryBodyPlaceholder() (+11 more)
+Cohesion: 0.33
+Nodes (10): CapsuleComposer(), currentLocalDateTime(), defaultCapsuleDate(), memoryBodyPlaceholder(), MemoryComposer(), MemoryDetail(), memoryTitlePlaceholder(), toLocalDateTime() (+2 more)
 
 ### Community 197 - "server.ts"
 Cohesion: 0.20
 Nodes (15): acceptInvitation(), findValidInvitation(), previewInvitation(), AuthOptions, createAuth(), existingAccountSignUpResponse(), bootstrapFamily(), fetch() (+7 more)
 
 ### Community 198 - "getDeploymentConfig"
-Cohesion: 0.16
-Nodes (17): checkOnboardingSlug(), completeOnboarding(), getOnboarding(), getSessionUser(), isValidBirthDate(), isValidTimezone(), listPublicChildren(), notFound() (+9 more)
-
-### Community 201 - "responseError"
 Cohesion: 0.15
-Nodes (17): AuthClientError, isExistingAccountError(), AccessScreen(), apiFetch(), ArchiveApp(), currentArchiveView(), currentFamilySlug(), formatMediaTime() (+9 more)
+Nodes (18): checkOnboardingSlug(), completeOnboarding(), getOnboarding(), getSessionUser(), isValidBirthDate(), isValidTimezone(), listPublicChildren(), listUserArchives() (+10 more)
+
+### Community 201 - "apiFetch"
+Cohesion: 0.24
+Nodes (8): AuthClientError, isExistingAccountError(), AccessScreen(), apiFetch(), InvitationAcceptance(), requestedRedirect(), roleDescription(), roleLabel()
 
 ### Community 202 - "onboarding.tsx"
-Cohesion: 0.10
-Nodes (17): AnalyticsConfig, AnalyticsProvider(), Toaster(), analyticsPath(), authClient, PwaInstallContext, shouldOfferPwaInstall(), Draft (+9 more)
+Cohesion: 0.06
+Nodes (27): AnalyticsConfig, AnalyticsProvider(), Brand(), MarketingPricingPage(), waveform, ResetPassword(), ScrapbookHome(), waveform (+19 more)
 
 ### Community 203 - "index.ts"
 Cohesion: 0.17
@@ -429,7 +421,7 @@ Nodes (4): AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail()
 ## Knowledge Gaps
 - **1142 isolated node(s):** `"verification"`, `child_access_attempt`, `billing_webhook_event`, `name`, `version` (+1137 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **156 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **153 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -437,14 +429,14 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `analyticsPath()` connect `onboarding.tsx` to `billing.ts`?**
   _High betweenness centrality (0.053) - this node is a cross-community bridge._
 - **Why does `authClient` connect `onboarding.tsx` to `auth-route.tsx`, `index.tsx`?**
-  _High betweenness centrality (0.049) - this node is a cross-community bridge._
-- **Why does `Headers` connect `Headers` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+  _High betweenness centrality (0.050) - this node is a cross-community bridge._
+- **Why does `DurableObjectStorage` connect `DurableObjectStorage` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `billing_webhook_event` to the rest of the system?**
   _1142 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05952380952380952 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06666666666666667 - nodes in this community are weakly interconnected._
 - **Should `ServiceWorkerGlobalScope` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._
