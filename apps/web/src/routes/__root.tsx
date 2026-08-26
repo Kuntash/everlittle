@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { authClient } from "@/lib/auth-client";
 import { AnalyticsProvider } from "@/components/analytics-provider";
+import { Toaster } from "@/components/ui/sonner";
 import { shouldOfferPwaInstall } from "@/lib/pwa-install";
 
 import appCss from "../styles.css?url";
@@ -48,6 +49,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <AnalyticsProvider>
           {children}
           <PwaExperience />
+          <Toaster />
         </AnalyticsProvider>
         <Scripts />
       </body>

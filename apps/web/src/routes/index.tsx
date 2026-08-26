@@ -33,10 +33,12 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
+import { toast } from "sonner";
 
 import { Brand } from "@/components/brand";
 import { resolveArchiveEntry } from "@/lib/archive-navigation";
 import { authClient } from "@/lib/auth-client";
+import { isExistingAccountError } from "@/lib/auth-feedback";
 import { ScrapbookHome } from "@/components/scrapbook-home";
 
 export const Route = createFileRoute("/")({
@@ -355,7 +357,13 @@ export function AccessScreen({
         : await authClient.signIn.email({ callbackURL, email, password });
 
     if (result.error) {
-      if (result.error.code === "EMAIL_NOT_VERIFIED") {
+      if (isExistingAccountError(result.error)) {
+        setMode("sign-in");
+        setPassword("");
+        toast("You already have an account", {
+          description: "Please sign in instead.",
+        });
+      } else if (result.error.code === "EMAIL_NOT_VERIFIED") {
         setNotice("Check your email for a fresh verification link before signing in.");
       } else {
         setError(result.error.message ?? "We could not open your archive.");

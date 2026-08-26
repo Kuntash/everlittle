@@ -21,6 +21,7 @@ catalog:
   dodopayments: 2.48.0
   posthog-js: 1.418.16
   "@posthog/react": 1.10.4
+  sonner: ^2.0.8
 
 overrides:
   vite: "catalog:"

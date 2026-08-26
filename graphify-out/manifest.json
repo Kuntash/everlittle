@@ -1,7 +1,7 @@
 {
   "apps/web/package.json": {
-    "mtime": 1787642815.5777678,
-    "ast_hash": "2e750572db537870f1baeb953a2edd90",
+    "mtime": 1787732265.3226733,
+    "ast_hash": "b018ce4a6d77f545c037e8701ee74c8a",
     "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
@@ -40,13 +40,13 @@
     "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1787638252.867543,
-    "ast_hash": "8bea9009248dd3aaa036db0e51f4d728",
+    "mtime": 1787732303.7226536,
+    "ast_hash": "c68d5d4834cb3c992d7a5c01b6cc6376",
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787638295.515573,
-    "ast_hash": "12b79e645a7b3da31ef4256cbf942aca",
+    "mtime": 1787732303.7242525,
+    "ast_hash": "d84e05db7de8ea59a8073072f9e61808",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -120,8 +120,8 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1787638468.0676916,
-    "ast_hash": "32df2304a96d64b9c2f65e56d93b6b0d",
+    "mtime": 1787732265.3227143,
+    "ast_hash": "6fecc20d5fc210283132083b6fdcafae",
     "semantic_hash": ""
   },
   "apps/web/public/apple-touch-icon.png": {
@@ -295,8 +295,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/auth-route.tsx": {
-    "mtime": 1786823517.6196535,
-    "ast_hash": "d8e90ad3764b6c8762b29e5fec1c6be6",
+    "mtime": 1787732314.1034389,
+    "ast_hash": "78239b89f536b6418bcd9ccfb5418fe4",
     "semantic_hash": ""
   },
   "apps/web/src/components/brand.tsx": {
@@ -617,6 +617,21 @@
   "apps/web/scripts/setup-dodo-test.mjs": {
     "mtime": 1787642815.578944,
     "ast_hash": "13a9f1539d8678181597337fc2db757e",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/ui/sonner.tsx": {
+    "mtime": 1787732303.7217207,
+    "ast_hash": "7c191be56e75c51389ab82a9d168748f",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/auth-feedback.ts": {
+    "mtime": 1787732303.7221682,
+    "ast_hash": "5ed1f5a1d7a627b7377e2787d1e6a212",
+    "semantic_hash": ""
+  },
+  "apps/web/test/auth-feedback.test.ts": {
+    "mtime": 1787732325.7681477,
+    "ast_hash": "07737821f00ed1e166bc5bbd8ef03142",
     "semantic_hash": ""
   }
 }

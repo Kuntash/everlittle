@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 import { authClient } from "@/lib/auth-client";
 import {
@@ -37,14 +38,29 @@ export function AuthRoute({
       .finally(() => setChecked(true));
   }, [inviteToken]);
 
+  const shouldRedirectSignedInUser = Boolean(session.data?.user && checked && !invitation);
+
+  useEffect(() => {
+    if (!shouldRedirectSignedInUser) return;
+
+    if (mode === "setup") {
+      toast("You already have an account", {
+        description: "You’re already signed in. Opening your private archive.",
+      });
+    }
+
+    const redirect = window.setTimeout(
+      () => location.replace(safeRedirect()),
+      mode === "setup" ? 900 : 0,
+    );
+    return () => window.clearTimeout(redirect);
+  }, [mode, shouldRedirectSignedInUser]);
+
   if (session.isPending || !platform || !checked) return <Loading />;
   if (session.data?.user && invitation) {
     return <InvitationAcceptance invitation={invitation} token={inviteToken} />;
   }
-  if (session.data?.user) {
-    location.replace(safeRedirect());
-    return <Loading />;
-  }
+  if (session.data?.user) return <Loading />;
   if (platform.deploymentMode === "self-hosted" && !inviteToken) {
     location.replace("/");
     return <Loading />;
