@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1787638201.149484,
-    "ast_hash": "028d8a79e757ff354e4eb62f51db7d1d",
+    "mtime": 1787733438.5035164,
+    "ast_hash": "9259d025176986e00b72d24666c86201",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787732303.7242525,
-    "ast_hash": "d84e05db7de8ea59a8073072f9e61808",
+    "mtime": 1787733461.29553,
+    "ast_hash": "23cc23a1a0c1f3b21ab27250d2ab33f2",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -605,13 +605,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/billing.ts": {
-    "mtime": 1787638577.12233,
-    "ast_hash": "c97ffd2a209d075c3e5ae8b2ad3f8708",
+    "mtime": 1787733438.502591,
+    "ast_hash": "57f46e9666c8ccb80dcb4a61e040a08b",
     "semantic_hash": ""
   },
   "apps/web/test/billing-analytics.test.ts": {
-    "mtime": 1787638468.021984,
-    "ast_hash": "63d3d8c49c0e4f4dcc1ee5d13bd3e194",
+    "mtime": 1787733438.505705,
+    "ast_hash": "6834ac234c28c7e386de56a124990cf9",
     "semantic_hash": ""
   },
   "apps/web/scripts/setup-dodo-test.mjs": {
@@ -637,6 +637,11 @@
   "apps/web/src/lib/signup-guard.ts": {
     "mtime": 1787732714.8182762,
     "ast_hash": "118dd721b2e1560a60c7843dd5627680",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0015_subscription_details.sql": {
+    "mtime": 1787733438.5019035,
+    "ast_hash": "cc284860ecbc6a660cd33a4d6592f55e",
     "semantic_hash": ""
   }
 }

@@ -4167,7 +4167,8 @@ h3 {
   padding: 0.7rem 0.8rem;
 }
 .primary-button,
-.soft-button {
+.soft-button,
+.secondary-button {
   align-items: center;
   border: 0;
   border-radius: var(--radius-sm);
@@ -4185,6 +4186,20 @@ h3 {
   color: var(--white);
 }
 .primary-button:disabled {
+  opacity: 0.6;
+}
+.secondary-button {
+  background: var(--paper);
+  border: 1px solid rgb(23 59 50 / 22%);
+  color: var(--forest);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 75%) inset;
+}
+.secondary-button:hover:not(:disabled) {
+  background: rgb(23 59 50 / 6%);
+  border-color: rgb(23 59 50 / 34%);
+}
+.secondary-button:disabled {
+  cursor: wait;
   opacity: 0.6;
 }
 .soft-button {
@@ -5997,6 +6012,39 @@ h3 {
   flex-wrap: wrap;
   gap: 0.55rem;
   margin-top: 1rem;
+}
+.billing-panel {
+  border-top: 1px solid var(--line);
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+}
+.billing-state {
+  align-items: flex-start;
+  display: flex;
+  gap: 0.55rem;
+}
+.billing-state-dot {
+  background: #b78b42;
+  border: 3px solid rgb(183 139 66 / 15%);
+  border-radius: 999px;
+  box-sizing: content-box;
+  flex: 0 0 auto;
+  height: 6px;
+  margin-top: 0.3rem;
+  width: 6px;
+}
+.billing-state div {
+  display: grid;
+  gap: 0.15rem;
+}
+.billing-state strong {
+  color: var(--forest);
+  font-size: 0.72rem;
+}
+.billing-state span:last-child {
+  color: var(--muted-ink);
+  font-size: 0.65rem;
+  line-height: 1.45;
 }
 .billing-actions small {
   color: var(--muted-ink);

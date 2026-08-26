@@ -160,6 +160,8 @@ type ArchiveState = {
     limitBytes: number | null;
     trialEndsAt: string | null;
     currentPeriodEndsAt: string | null;
+    interval: "monthly" | "yearly" | null;
+    cancelAtPeriodEnd: boolean;
     checkoutAvailable: boolean;
     canManage: boolean;
     environment: "test_mode" | "live_mode" | null;
@@ -2708,39 +2710,52 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                 : "Photographs, audio, video, and generated thumbnails count toward this total."}
           </p>
           {isOwner && state.billing.plan === "family" && state.billing.checkoutAvailable ? (
-            <div className="billing-actions">
-              {state.billing.canManage ? (
-                <button
-                  className="secondary-button"
-                  disabled={billingBusy !== null}
-                  onClick={() => void openBilling("portal")}
-                  type="button"
-                >
-                  {billingBusy === "portal" ? "Opening…" : "Manage billing"}
-                </button>
-              ) : (
-                <>
+            <div className="billing-panel">
+              <div className="billing-state">
+                <span aria-hidden="true" className="billing-state-dot" />
+                <div>
+                  <strong>{billingStatusTitle(state.billing)}</strong>
+                  <span>{billingStatusDetail(state.billing)}</span>
+                </div>
+              </div>
+              <div className="billing-actions">
+                {state.billing.canManage ? (
                   <button
                     className="secondary-button"
                     disabled={billingBusy !== null}
-                    onClick={() => void openBilling("monthly")}
+                    onClick={() => void openBilling("portal")}
                     type="button"
                   >
-                    {billingBusy === "monthly" ? "Opening…" : "$6 monthly"}
+                    {billingBusy === "portal"
+                      ? "Opening…"
+                      : state.billing.status === "active" || state.billing.status === "trialing"
+                        ? "Manage or cancel"
+                        : "View billing history"}
                   </button>
-                  <button
-                    className="primary-button"
-                    disabled={billingBusy !== null}
-                    onClick={() => void openBilling("yearly")}
-                    type="button"
-                  >
-                    {billingBusy === "yearly" ? "Opening…" : "$60 yearly"}
-                  </button>
-                </>
-              )}
-              {state.billing.environment === "test_mode" ? (
-                <small>Dodo test mode · no real charge</small>
-              ) : null}
+                ) : (
+                  <>
+                    <button
+                      className="secondary-button"
+                      disabled={billingBusy !== null}
+                      onClick={() => void openBilling("monthly")}
+                      type="button"
+                    >
+                      {billingBusy === "monthly" ? "Opening…" : "$6 monthly"}
+                    </button>
+                    <button
+                      className="primary-button"
+                      disabled={billingBusy !== null}
+                      onClick={() => void openBilling("yearly")}
+                      type="button"
+                    >
+                      {billingBusy === "yearly" ? "Opening…" : "$60 yearly"}
+                    </button>
+                  </>
+                )}
+                {state.billing.environment === "test_mode" ? (
+                  <small>Dodo test mode · no real charge</small>
+                ) : null}
+              </div>
             </div>
           ) : null}
         </section>
@@ -3215,6 +3230,30 @@ function initials(name: string) {
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(new Date(value));
+}
+
+function billingStatusTitle(billing: ArchiveState["billing"]) {
+  if (!billing.canManage) return "No paid subscription";
+  if (billing.cancelAtPeriodEnd) return "Cancellation scheduled";
+  if (billing.status === "past_due") return "Payment needs attention";
+  if (billing.status === "canceled") return "Subscription ended";
+  if (billing.status === "trialing") return "Trial active";
+  const price = billing.interval === "monthly" ? "$6 monthly" : "$60 yearly";
+  return billing.interval ? `${price} · Active` : "Subscription active";
+}
+
+function billingStatusDetail(billing: ArchiveState["billing"]) {
+  if (!billing.canManage) return "No charges or invoices. Choose a plan when you’re ready.";
+  if (billing.cancelAtPeriodEnd && billing.currentPeriodEndsAt) {
+    return `Access continues until ${formatDate(billing.currentPeriodEndsAt)}.`;
+  }
+  if (billing.status === "active" && billing.currentPeriodEndsAt) {
+    return `Renews ${formatDate(billing.currentPeriodEndsAt)}. Dodo handles invoices and cancellation.`;
+  }
+  if (billing.status === "trialing" && billing.trialEndsAt) {
+    return `Trial ends ${formatDate(billing.trialEndsAt)}.`;
+  }
+  return "Open Dodo’s secure portal for invoices, payment methods, and plan controls.";
 }
 
 function formatDateTime(value: string) {

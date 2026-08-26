@@ -8,6 +8,7 @@ import {
   createBillingCheckout,
   createBillingPortal,
   getBillingConfig,
+  hasManageableSubscription,
 } from "@/lib/billing";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 import { getDeploymentConfig } from "@/lib/deployment";
@@ -2161,6 +2162,8 @@ type ArchiveStorage = {
   limitBytes: number | null;
   trialEndsAt: string | null;
   currentPeriodEndsAt: string | null;
+  interval: "monthly" | "yearly" | null;
+  cancelAtPeriodEnd: boolean;
   checkoutAvailable: boolean;
   canManage: boolean;
   environment: "test_mode" | "live_mode" | null;
@@ -2185,6 +2188,8 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
       limitBytes: null,
       trialEndsAt: null,
       currentPeriodEndsAt: null,
+      interval: null,
+      cancelAtPeriodEnd: false,
       checkoutAvailable: false,
       canManage: false,
       environment: null,
@@ -2195,7 +2200,9 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
     .prepare(
       `SELECT status, storage_limit_bytes AS storageLimitBytes,
               provider_customer_id AS providerCustomerId,
-              trial_ends_at AS trialEndsAt, current_period_ends_at AS currentPeriodEndsAt
+              provider_subscription_id AS providerSubscriptionId,
+              trial_ends_at AS trialEndsAt, current_period_ends_at AS currentPeriodEndsAt,
+              billing_interval AS interval, cancel_at_period_end AS cancelAtPeriodEnd
        FROM archive_subscription WHERE archive_id = ?`,
     )
     .bind(archiveId)
@@ -2205,6 +2212,9 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
       trialEndsAt: string | null;
       currentPeriodEndsAt: string | null;
       providerCustomerId: string | null;
+      providerSubscriptionId: string | null;
+      interval: "monthly" | "yearly" | null;
+      cancelAtPeriodEnd: 0 | 1;
     }>();
 
   const billing = getBillingConfig(getRuntimeEnv());
@@ -2216,8 +2226,13 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
     limitBytes: Number(subscription?.storageLimitBytes ?? FAMILY_PLAN.storageLimitBytes),
     trialEndsAt: subscription?.trialEndsAt ?? null,
     currentPeriodEndsAt: subscription?.currentPeriodEndsAt ?? null,
+    interval: subscription?.interval ?? null,
+    cancelAtPeriodEnd: subscription?.cancelAtPeriodEnd === 1,
     checkoutAvailable: billing.checkoutConfigured,
-    canManage: Boolean(billing.checkoutConfigured && subscription?.providerCustomerId),
+    canManage: hasManageableSubscription(
+      billing.checkoutConfigured,
+      subscription?.providerSubscriptionId,
+    ),
     environment: billing.checkoutConfigured ? billing.environment : null,
   };
 }

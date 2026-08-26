@@ -130,14 +130,19 @@ export async function createBillingPortal(input: {
   if (!config.checkoutConfigured) throw new BillingConfigurationError();
   const subscription = await input.database
     .prepare(
-      `SELECT a.slug, s.provider_customer_id AS providerCustomerId
+      `SELECT a.slug, s.provider_customer_id AS providerCustomerId,
+              s.provider_subscription_id AS providerSubscriptionId
        FROM archive_subscription s
        JOIN family_archive a ON a.id = s.archive_id
        WHERE s.archive_id = ?`,
     )
     .bind(input.archiveId)
-    .first<{ slug: string; providerCustomerId: string | null }>();
-  if (!subscription?.providerCustomerId) {
+    .first<{
+      slug: string;
+      providerCustomerId: string | null;
+      providerSubscriptionId: string | null;
+    }>();
+  if (!subscription?.providerCustomerId || !subscription.providerSubscriptionId) {
     throw new BillingPortalUnavailableError();
   }
 
@@ -189,6 +194,8 @@ export async function handleDodoWebhook(request: Request, runtime: RuntimeEnv) {
     event.data.cancel_at_next_billing_date,
     event.data.next_billing_date,
   );
+  const interval: BillingInterval =
+    event.data.product_id === config.monthlyProductId ? "monthly" : "yearly";
   await runtime.DB.batch([
     runtime.DB.prepare(
       `INSERT OR IGNORE INTO billing_webhook_event
@@ -198,7 +205,8 @@ export async function handleDodoWebhook(request: Request, runtime: RuntimeEnv) {
     runtime.DB.prepare(
       `UPDATE archive_subscription
        SET status = ?, provider_customer_id = ?, provider_subscription_id = ?,
-           current_period_ends_at = ?, provider_event_at = ?, updated_at = CURRENT_TIMESTAMP
+           current_period_ends_at = ?, provider_event_at = ?, billing_interval = ?,
+           cancel_at_period_end = ?, updated_at = CURRENT_TIMESTAMP
        WHERE archive_id = ?
          AND (provider_event_at IS NULL OR datetime(provider_event_at) <= datetime(?))
          AND EXISTS (
@@ -211,6 +219,8 @@ export async function handleDodoWebhook(request: Request, runtime: RuntimeEnv) {
       event.data.subscription_id,
       event.data.next_billing_date || null,
       event.timestamp,
+      interval,
+      event.data.cancel_at_next_billing_date ? 1 : 0,
       archiveId,
       event.timestamp,
       eventId,
@@ -248,6 +258,13 @@ export function billingStatusForDodoEvent(
     return "canceled";
   }
   return "active";
+}
+
+export function hasManageableSubscription(
+  checkoutConfigured: boolean,
+  providerSubscriptionId: string | null | undefined,
+) {
+  return Boolean(checkoutConfigured && providerSubscriptionId);
 }
 
 function createDodoClient(config: ReturnType<typeof getBillingConfig>) {

@@ -2,7 +2,11 @@ import { env } from "cloudflare:workers";
 import { describe, expect, it } from "vitest";
 
 import { analyticsPath } from "@/lib/analytics";
-import { billingStatusForDodoEvent, getBillingConfig } from "@/lib/billing";
+import {
+  billingStatusForDodoEvent,
+  getBillingConfig,
+  hasManageableSubscription,
+} from "@/lib/billing";
 import type { RuntimeEnv } from "@/lib/runtime-env";
 
 describe("Dodo billing", () => {
@@ -26,6 +30,12 @@ describe("Dodo billing", () => {
       "SELECT name FROM sqlite_master WHERE type = 'table' AND name = 'billing_webhook_event'",
     ).first<{ name: string }>();
     expect(table?.name).toBe("billing_webhook_event");
+  });
+
+  it("does not mistake an abandoned checkout customer for a subscription", () => {
+    expect(hasManageableSubscription(true, null)).toBe(false);
+    expect(hasManageableSubscription(true, "sub_test")).toBe(true);
+    expect(hasManageableSubscription(false, "sub_test")).toBe(false);
   });
 });
 
