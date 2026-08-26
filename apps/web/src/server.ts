@@ -7,6 +7,7 @@ import { createAuth } from "@/lib/auth";
 import { sendAuthEmail } from "@/lib/auth-email";
 import { handleDodoWebhook } from "@/lib/billing";
 import { getDeploymentConfig } from "@/lib/deployment";
+import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 
 type SignUpPayload = { user?: { id?: string; name?: string } };
@@ -96,6 +97,10 @@ async function handleAuthRequest(request: Request): Promise<Response> {
   const url = new URL(request.url);
   const isEmailSignUp = url.pathname.endsWith("/sign-up/email");
   const signUpInput = isEmailSignUp ? await readSignUpInput(request.clone()) : null;
+  const existingAccountResponse = isEmailSignUp
+    ? await existingAccountSignUpResponse(runtime.DB, signUpInput?.email)
+    : null;
+  if (existingAccountResponse) return existingAccountResponse;
   const invitationToken = isEmailSignUp ? request.headers.get("x-everlittle-invitation") : null;
   const invitation =
     invitationToken && signUpInput?.email

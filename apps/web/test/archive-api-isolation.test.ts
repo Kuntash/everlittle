@@ -97,6 +97,28 @@ beforeAll(async () => {
 });
 
 describe("route-scoped tenant isolation", () => {
+  it("rejects a second signup for an existing account", async () => {
+    const existing = await env.DB.prepare('SELECT id FROM "user" WHERE lower(email) = ?')
+      .bind("parent-api@example.com")
+      .first<{ id: string }>();
+    expect(existing?.id).toBe(parent.userId);
+
+    const response = await exports.default.fetch(
+      new Request(`${ORIGIN}/api/auth/sign-up/email`, {
+        body: JSON.stringify({
+          email: "PARENT-API@example.com",
+          name: "Another Parent",
+          password: PASSWORD,
+        }),
+        headers: { "content-type": "application/json", origin: ORIGIN },
+        method: "POST",
+      }),
+    );
+
+    expect(response.status).toBe(409);
+    await expect(response.json()).resolves.toMatchObject({ code: "ACCOUNT_ALREADY_EXISTS" });
+  });
+
   it("does not let an adult read another family archive", async () => {
     const response = await api(familyA, `/api/families/${familyB.slug}/archive`);
     expect(response.status).toBe(401);

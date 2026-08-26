@@ -50,8 +50,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1787638216.9326246,
-    "ast_hash": "482102960fb4796d5f629e803ac2116a",
+    "mtime": 1787732714.818652,
+    "ast_hash": "94b6759f6f9cc9801310bb974a5cf8f6",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -435,8 +435,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1787573172.4029412,
-    "ast_hash": "2e11c124ecd446b44474bdf4897ddffb",
+    "mtime": 1787732666.5772667,
+    "ast_hash": "7ce1c6329528d6cf198f3be4c089c716",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
@@ -450,8 +450,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/worker.ts": {
-    "mtime": 1786822705.6467772,
-    "ast_hash": "073f87462fbb9f6deb816350000b5072",
+    "mtime": 1787732714.819352,
+    "ast_hash": "f4ae8e70b8544bcd8a29a4642a5add87",
     "semantic_hash": ""
   },
   "apps/web/vitest.config.ts": {
@@ -625,13 +625,18 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-feedback.ts": {
-    "mtime": 1787732303.7221682,
-    "ast_hash": "5ed1f5a1d7a627b7377e2787d1e6a212",
+    "mtime": 1787732630.1954353,
+    "ast_hash": "3fb458939f4014c0e41a0fdcbad5de2c",
     "semantic_hash": ""
   },
   "apps/web/test/auth-feedback.test.ts": {
-    "mtime": 1787732325.7681477,
-    "ast_hash": "07737821f00ed1e166bc5bbd8ef03142",
+    "mtime": 1787732630.1968298,
+    "ast_hash": "2f961d11b546d5b5d87cc27281a7e693",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/signup-guard.ts": {
+    "mtime": 1787732714.8182762,
+    "ast_hash": "118dd721b2e1560a60c7843dd5627680",
     "semantic_hash": ""
   }
 }

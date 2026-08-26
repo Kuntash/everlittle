@@ -1,9 +1,16 @@
 import { handleArchiveApi } from "@/lib/archive-api";
 import { createAuth } from "@/lib/auth";
+import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 
 export default {
   async fetch(request, env): Promise<Response> {
-    if (new URL(request.url).pathname.startsWith("/api/auth/")) {
+    const pathname = new URL(request.url).pathname;
+    if (pathname.startsWith("/api/auth/")) {
+      if (pathname.endsWith("/sign-up/email")) {
+        const input = (await request.clone().json()) as { email?: string };
+        const existingAccountResponse = await existingAccountSignUpResponse(env.DB, input.email);
+        if (existingAccountResponse) return existingAccountResponse;
+      }
       return createAuth({
         allowSignUp: true,
         baseURL: env.PUBLIC_APP_URL,

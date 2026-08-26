@@ -10,6 +10,12 @@ describe("auth feedback", () => {
         message: "User already exists. Use another email.",
       }),
     ).toBe(true);
+    expect(
+      isExistingAccountError({
+        code: "ACCOUNT_ALREADY_EXISTS",
+        message: "You already have an account. Please sign in instead.",
+      }),
+    ).toBe(true);
   });
 
   it("does not treat unrelated signup failures as an existing account", () => {

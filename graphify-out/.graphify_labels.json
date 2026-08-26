@@ -202,6 +202,7 @@
   "200": "RuntimeError",
   "201": "responseError",
   "202": "onboarding.tsx",
+  "203": "index.ts",
   "204": "auth-email.ts",
   "205": "0014_dodo_billing.sql"
 }
