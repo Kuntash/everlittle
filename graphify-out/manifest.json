@@ -50,8 +50,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1787732714.818652,
-    "ast_hash": "94b6759f6f9cc9801310bb974a5cf8f6",
+    "mtime": 1787768598.3965533,
+    "ast_hash": "ece31ccc00779a96cfacb9fb4fbd22a6",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/deployment.ts": {
-    "mtime": 1786653238.917105,
-    "ast_hash": "256010a3c9e8e83410180f18e54e20fa",
+    "mtime": 1787768598.396334,
+    "ast_hash": "e90f18e33d4822028211dee95b222227",
     "semantic_hash": ""
   },
   "SAAS_MIGRATION_CHECKLIST.md": {
@@ -545,8 +545,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/deployment.test.ts": {
-    "mtime": 1787264667.0919404,
-    "ast_hash": "c5bb43480dbc6d124dcb1c32b70c8cd3",
+    "mtime": 1787768598.3967667,
+    "ast_hash": "03d5262223dd54bd5a730b66ccddab74",
     "semantic_hash": ""
   },
   "docs/self-hosting.md": {

@@ -53,6 +53,21 @@ export function getDeploymentConfig(runtime: DeploymentEnvironment): DeploymentC
   };
 }
 
+export function getCanonicalHostedUrl(
+  deployment: DeploymentConfig,
+  requestUrl: string,
+): string | null {
+  if (deployment.mode !== "hosted") return null;
+
+  const incoming = new URL(requestUrl);
+  if (incoming.origin === deployment.publicAppUrl) return null;
+
+  const canonical = new URL(deployment.publicAppUrl);
+  canonical.pathname = incoming.pathname;
+  canonical.search = incoming.search;
+  return canonical.toString();
+}
+
 function parseDeploymentMode(value: string | undefined): DeploymentMode {
   if (value === "hosted" || value === "self-hosted") return value;
   throw new Error('DEPLOYMENT_MODE must be either "hosted" or "self-hosted".');

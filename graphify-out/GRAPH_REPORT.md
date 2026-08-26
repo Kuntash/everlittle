@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-26)
 
 ## Corpus Check
-- 92 files · ~1,545,973 words
+- 92 files · ~1,546,064 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2410 nodes · 3008 edges · 206 communities (53 shown, 153 thin omitted)
+- 2411 nodes · 3012 edges · 206 communities (53 shown, 153 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `debd177c`
+- Built from commit: `67e2e988`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -204,7 +204,7 @@
 - archive-navigation.ts
 - MemoryComposer
 - server.ts
-- getDeploymentConfig
+- completeOnboarding
 - CompileError
 - RuntimeError
 - apiFetch
@@ -247,12 +247,12 @@ Cohesion: 0.00
 Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentMemoryIncomingMemory, AgentMemoryIngestOptions, AgentMemoryListMemoriesOptions, AgentMemoryListMemoriesResult, AgentMemoryMemory, AgentMemoryMemoryListEntry (+840 more)
 
 ### Community 1 - "archive-api.ts"
-Cohesion: 0.07
-Nodes (50): ArchiveStorage, base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url(), capsuleSchema, ChildAccessContext, childPinRetryAfter() (+42 more)
+Cohesion: 0.06
+Nodes (52): ArchiveStorage, base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url(), capsuleSchema, ChildAccessContext, childPinRetryAfter() (+44 more)
 
 ### Community 2 - "getRuntimeEnv"
-Cohesion: 0.30
-Nodes (35): acceptInvitationForCurrentUser(), auditStatement(), createCapsule(), createChildProfile(), createInvitation(), createMemory(), createPublicMemoryShare(), createSecureToken() (+27 more)
+Cohesion: 0.29
+Nodes (36): acceptInvitationForCurrentUser(), auditStatement(), createCapsule(), createChildProfile(), createInvitation(), createMemory(), createPublicMemoryShare(), createSecureToken() (+28 more)
 
 ### Community 3 - "ServiceWorkerGlobalScope"
 Cohesion: 0.04
@@ -395,12 +395,12 @@ Cohesion: 0.33
 Nodes (10): CapsuleComposer(), currentLocalDateTime(), defaultCapsuleDate(), memoryBodyPlaceholder(), MemoryComposer(), MemoryDetail(), memoryTitlePlaceholder(), toLocalDateTime() (+2 more)
 
 ### Community 197 - "server.ts"
-Cohesion: 0.20
-Nodes (15): acceptInvitation(), findValidInvitation(), previewInvitation(), AuthOptions, createAuth(), existingAccountSignUpResponse(), bootstrapFamily(), fetch() (+7 more)
+Cohesion: 0.14
+Nodes (22): acceptInvitation(), AuthOptions, createAuth(), DEPLOYMENT_MODES, DeploymentConfig, DeploymentEnvironment, DeploymentMode, getCanonicalHostedUrl() (+14 more)
 
-### Community 198 - "getDeploymentConfig"
-Cohesion: 0.15
-Nodes (18): checkOnboardingSlug(), completeOnboarding(), getOnboarding(), getSessionUser(), isValidBirthDate(), isValidTimezone(), listPublicChildren(), listUserArchives() (+10 more)
+### Community 198 - "completeOnboarding"
+Cohesion: 0.28
+Nodes (9): checkOnboardingSlug(), completeOnboarding(), getOnboarding(), getSessionUser(), isValidBirthDate(), isValidTimezone(), listPublicChildren(), notFound() (+1 more)
 
 ### Community 201 - "apiFetch"
 Cohesion: 0.24
@@ -427,9 +427,9 @@ Nodes (4): AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `analyticsPath()` connect `onboarding.tsx` to `billing.ts`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
+  _High betweenness centrality (0.059) - this node is a cross-community bridge._
 - **Why does `authClient` connect `onboarding.tsx` to `auth-route.tsx`, `index.tsx`?**
-  _High betweenness centrality (0.050) - this node is a cross-community bridge._
+  _High betweenness centrality (0.046) - this node is a cross-community bridge._
 - **Why does `DurableObjectStorage` connect `DurableObjectStorage` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `billing_webhook_event` to the rest of the system?**
@@ -437,6 +437,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06666666666666667 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06458635703918723 - nodes in this community are weakly interconnected._
 - **Should `ServiceWorkerGlobalScope` be split into smaller, more focused modules?**
   _Cohesion score 0.043478260869565216 - nodes in this community are weakly interconnected._

@@ -196,7 +196,7 @@
   "195": "archive-navigation.ts",
   "196": "MemoryComposer",
   "197": "server.ts",
-  "198": "getDeploymentConfig",
+  "198": "completeOnboarding",
   "199": "CompileError",
   "200": "RuntimeError",
   "201": "apiFetch",

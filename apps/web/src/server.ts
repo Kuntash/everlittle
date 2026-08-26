@@ -6,7 +6,7 @@ import { acceptInvitation, findValidInvitation, handleArchiveApi } from "@/lib/a
 import { createAuth } from "@/lib/auth";
 import { sendAuthEmail } from "@/lib/auth-email";
 import { handleDodoWebhook } from "@/lib/billing";
-import { getDeploymentConfig } from "@/lib/deployment";
+import { getCanonicalHostedUrl, getDeploymentConfig } from "@/lib/deployment";
 import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 
@@ -16,21 +16,26 @@ type SignUpInput = { email?: string };
 export default createServerEntry({
   async fetch(request) {
     const url = new URL(request.url);
+    const runtime = getRuntimeEnv();
+    const deployment = getDeploymentConfig(runtime);
+    const canonicalUrl =
+      request.method === "GET" || request.method === "HEAD"
+        ? getCanonicalHostedUrl(deployment, request.url)
+        : null;
+    if (canonicalUrl) return Response.redirect(canonicalUrl, 308);
 
     if (url.pathname.startsWith("/api/auth/")) {
       return handleAuthRequest(request);
     }
 
     if (url.pathname === "/api/webhooks/dodo" && request.method === "POST") {
-      return handleDodoWebhook(request, getRuntimeEnv());
+      return handleDodoWebhook(request, runtime);
     }
 
     const archiveResponse = await handleArchiveApi(request);
     if (archiveResponse) return archiveResponse;
 
     if (url.pathname === "/api/platform" && request.method === "GET") {
-      const runtime = getRuntimeEnv();
-      const deployment = getDeploymentConfig(runtime);
       const row = await runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"').first<{
         count: number;
       }>();
@@ -78,7 +83,6 @@ export default createServerEntry({
     }
 
     const response = await handler.fetch(request);
-    const deployment = getDeploymentConfig(getRuntimeEnv());
     const isPublicMarketingPage =
       deployment.mode === "hosted" && (url.pathname === "/" || url.pathname === "/pricing");
     if (!isPublicMarketingPage) {

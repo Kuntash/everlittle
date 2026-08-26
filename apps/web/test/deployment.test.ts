@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { getDeploymentConfig } from "@/lib/deployment";
+import { getCanonicalHostedUrl, getDeploymentConfig } from "@/lib/deployment";
 
 describe("deployment policy", () => {
   it("accepts a self-hosted installation with a default archive", () => {
@@ -34,5 +34,20 @@ describe("deployment policy", () => {
         PUBLIC_APP_URL: "https://geteverlittle.com",
       }),
     ).toThrow("DEFAULT_ARCHIVE_SLUG is only supported in self-hosted mode");
+  });
+
+  it("redirects hosted page requests to the configured public origin", () => {
+    const deployment = getDeploymentConfig({
+      DEPLOYMENT_MODE: "hosted",
+      PUBLIC_APP_URL: "https://geteverlittle.com",
+    });
+
+    expect(
+      getCanonicalHostedUrl(
+        deployment,
+        "https://everlittle-hosted.example.workers.dev/sign-in?redirect=%2Ffamily",
+      ),
+    ).toBe("https://geteverlittle.com/sign-in?redirect=%2Ffamily");
+    expect(getCanonicalHostedUrl(deployment, "https://geteverlittle.com/sign-in")).toBeNull();
   });
 });
