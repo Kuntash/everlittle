@@ -749,6 +749,7 @@ function ArchiveApp({ name }: { name: string }) {
   const [state, setState] = useState<ArchiveState | null>(null);
   const [archives, setArchives] = useState<ArchiveMembership[]>([]);
   const [error, setError] = useState("");
+  const [showSubscription, setShowSubscription] = useState(false);
 
   async function refresh() {
     const response = await apiFetch("/api/archive");
@@ -878,6 +879,7 @@ function ArchiveApp({ name }: { name: string }) {
           refresh={refresh}
           role={state.currentMember.role}
           canCreateContent={state.billing.canCreateContent}
+          onSubscriptionRequired={() => setShowSubscription(true)}
         />
       ) : null}
       {view === "timeline" ? (
@@ -897,6 +899,7 @@ function ArchiveApp({ name }: { name: string }) {
           refresh={refresh}
           role={state.currentMember.role}
           canCreateContent={state.billing.canCreateContent}
+          onSubscriptionRequired={() => setShowSubscription(true)}
         />
       ) : null}
       {view === "child" ? (
@@ -910,6 +913,13 @@ function ArchiveApp({ name }: { name: string }) {
       ) : null}
       {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
       <MobileNav active={view} onNavigate={navigateView} />
+      {showSubscription ? (
+        <SubscriptionSheet
+          billing={state.billing}
+          isOwner={state.currentMember.role === "owner"}
+          onClose={() => setShowSubscription(false)}
+        />
+      ) : null}
     </main>
   );
 }
@@ -980,6 +990,7 @@ function ParentView({
   refresh,
   role,
   canCreateContent,
+  onSubscriptionRequired,
 }: {
   name: string;
   child?: Child;
@@ -989,16 +1000,22 @@ function ParentView({
   refresh: () => Promise<void>;
   role: FamilyRole;
   canCreateContent: boolean;
+  onSubscriptionRequired: () => void;
 }) {
   const [composerKind, setComposerKind] = useState<MemoryKind | null>(null);
   const [selectedMemory, setSelectedMemory] = useState<Memory | null>(null);
-  const canCreate = role !== "viewer" && canCreateContent;
+  const canCreate = role !== "viewer";
   const isVault = child?.profileKind === "vault";
   const childName = child?.displayName ?? "your child";
   const featured = memories[0];
 
   function openComposer(kind: MemoryKind) {
-    if (child) setComposerKind(kind);
+    if (!child) return;
+    if (!canCreateContent) {
+      onSubscriptionRequired();
+      return;
+    }
+    setComposerKind(kind);
   }
 
   return (
@@ -1099,11 +1116,6 @@ function ParentView({
         </div>
         {!child ? (
           <p className="capture-note">Create a child profile in Family before adding memories.</p>
-        ) : !canCreateContent && role !== "viewer" ? (
-          <p className="capture-note">
-            Start a family subscription to add new memories. Everything already here stays available
-            to view.
-          </p>
         ) : null}
         <div className="capsule-card">
           <span className="capsule-seal">
@@ -1116,7 +1128,12 @@ function ParentView({
               ? "Seal a note for the two of you to open on a day you choose."
               : `Write a note now for ${childName} to open one day.`}
           </p>
-          <button onClick={() => onNavigate("capsules")} type="button">
+          <button
+            onClick={() =>
+              canCreate && !canCreateContent ? onSubscriptionRequired() : onNavigate("capsules")
+            }
+            type="button"
+          >
             {canCreate ? "Add a note" : "View capsules"} <ArrowRight size={16} />
           </button>
         </div>
@@ -2210,6 +2227,7 @@ function CapsulesView({
   refresh,
   role,
   canCreateContent,
+  onSubscriptionRequired,
 }: {
   capsules: Capsule[];
   child?: Child;
@@ -2217,12 +2235,22 @@ function CapsulesView({
   refresh: () => Promise<void>;
   role: FamilyRole;
   canCreateContent: boolean;
+  onSubscriptionRequired: () => void;
 }) {
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState("");
   const locked = capsules.filter((capsule) => capsule.locked);
   const opened = capsules.filter((capsule) => !capsule.locked);
-  const canCreate = role !== "viewer" && canCreateContent;
+  const canCreate = role !== "viewer";
+
+  function startCreating() {
+    if (!child) return;
+    if (!canCreateContent) {
+      onSubscriptionRequired();
+      return;
+    }
+    setCreating(true);
+  }
 
   async function remove(capsule: Capsule) {
     if (!confirm(`Delete the capsule “${capsule.title}”?`)) return;
@@ -2245,17 +2273,11 @@ function CapsulesView({
           </p>
         </div>
         {canCreate ? (
-          <button className="primary-button" disabled={!child} onClick={() => setCreating(true)}>
+          <button className="primary-button" disabled={!child} onClick={startCreating}>
             <Plus size={17} /> New capsule
           </button>
         ) : null}
       </section>
-
-      {!canCreateContent && role !== "viewer" ? (
-        <p className="capture-note">
-          Start a family subscription to seal new capsules. Existing capsules remain available.
-        </p>
-      ) : null}
 
       {error ? <p className="form-error capsule-page-error">{error}</p> : null}
       {capsules.length ? (
@@ -2336,7 +2358,7 @@ function CapsulesView({
           <h2>Write something {child?.displayName ?? "your child"} should meet later.</h2>
           <p>A birthday letter, a family story, or a few words for the person they are becoming.</p>
           {canCreate && child ? (
-            <button className="primary-button" onClick={() => setCreating(true)}>
+            <button className="primary-button" onClick={startCreating}>
               Create the first capsule <ArrowRight size={17} />
             </button>
           ) : null}
@@ -2501,8 +2523,162 @@ function CapsuleComposer({
   );
 }
 
-function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () => Promise<void> }) {
+type BillingDestination = "monthly" | "yearly" | "portal";
+
+function useBillingNavigation() {
   const posthog = usePostHog();
+  const [billingBusy, setBillingBusy] = useState<BillingDestination | null>(null);
+  const [billingError, setBillingError] = useState("");
+
+  const openBilling = useCallback(
+    async (destination: BillingDestination) => {
+      setBillingBusy(destination);
+      setBillingError("");
+      const response = await apiFetch(
+        destination === "portal" ? "/api/archive/billing/portal" : "/api/archive/billing/checkout",
+        {
+          method: "POST",
+          body: destination === "portal" ? undefined : JSON.stringify({ interval: destination }),
+        },
+      );
+      if (!response.ok) {
+        setBillingError(await responseError(response));
+        setBillingBusy(null);
+        return;
+      }
+      const result = (await response.json()) as { url: string };
+      posthog?.capture(
+        destination === "portal" ? "billing_portal_opened" : "billing_checkout_started",
+        destination === "portal" ? undefined : { billing_interval: destination },
+      );
+      window.location.assign(result.url);
+    },
+    [posthog],
+  );
+
+  return { billingBusy, billingError, openBilling };
+}
+
+function SubscriptionSheet({
+  billing,
+  isOwner,
+  onClose,
+}: {
+  billing: ArchiveState["billing"];
+  isOwner: boolean;
+  onClose: () => void;
+}) {
+  const { billingBusy, billingError, openBilling } = useBillingNavigation();
+  const { closing, requestClose } = useSheetTransition(onClose, billingBusy !== null);
+  const canCheckout = isOwner && billing.checkoutAvailable;
+  useDocumentScrollLock();
+
+  function choosePlan(interval: "monthly" | "yearly") {
+    if (!canCheckout) return;
+    void openBilling(billing.canManage ? "portal" : interval);
+  }
+
+  return (
+    <div
+      className={`composer-backdrop subscription-backdrop${closing ? " is-closing" : ""}`}
+      onClick={() => requestClose()}
+      role="presentation"
+    >
+      <section
+        aria-labelledby="subscription-title"
+        aria-modal="true"
+        className="subscription-sheet"
+        onClick={(event) => event.stopPropagation()}
+        role="dialog"
+      >
+        <span aria-hidden="true" className="subscription-grab" />
+        <header className="subscription-header">
+          <div>
+            <p className="eyebrow">Keep the story growing</p>
+            <h2 id="subscription-title">Choose your family plan</h2>
+            <p>
+              Everything already in your archive stays safe and viewable. A plan lets your family
+              add new memories, media, and future capsules.
+            </p>
+          </div>
+          <button
+            aria-label="Close family plan options"
+            className="composer-close"
+            disabled={billingBusy !== null}
+            onClick={() => requestClose()}
+            type="button"
+          >
+            <X size={18} />
+          </button>
+        </header>
+
+        <div className="subscription-plans">
+          <button
+            className="subscription-plan"
+            disabled={!canCheckout || billingBusy !== null}
+            onClick={() => choosePlan("monthly")}
+            type="button"
+          >
+            <span className="subscription-plan-name">Monthly</span>
+            <strong>
+              <sup>$</sup>6<small>/month</small>
+            </strong>
+            <span>Simple month-to-month access</span>
+            <b>{billingBusy !== null ? "Opening…" : "Choose monthly"}</b>
+          </button>
+          <button
+            className="subscription-plan featured"
+            disabled={!canCheckout || billingBusy !== null}
+            onClick={() => choosePlan("yearly")}
+            type="button"
+          >
+            <span className="subscription-plan-badge">2 months free</span>
+            <span className="subscription-plan-name">Yearly</span>
+            <strong>
+              <sup>$</sup>60<small>/year</small>
+            </strong>
+            <span>The best value for your family</span>
+            <b>{billingBusy !== null ? "Opening…" : "Choose yearly"}</b>
+          </button>
+        </div>
+
+        <ul className="subscription-benefits">
+          <li>
+            <Check size={16} /> 25 GB for photographs, voices, and video
+          </li>
+          <li>
+            <Check size={16} /> Unlimited invited family members
+          </li>
+          <li>
+            <Check size={16} /> Memories, child spaces, and future capsules
+          </li>
+        </ul>
+
+        {!isOwner ? (
+          <p className="subscription-note">
+            <ShieldCheck size={16} /> Ask the family owner to start or manage the subscription.
+          </p>
+        ) : !billing.checkoutAvailable ? (
+          <p className="subscription-note">Secure checkout is temporarily unavailable.</p>
+        ) : billing.canManage ? (
+          <p className="subscription-note">
+            Choosing a plan will open your secure billing portal so you can restore access.
+          </p>
+        ) : null}
+        {billing.environment === "test_mode" ? (
+          <small className="subscription-environment">Dodo test mode · no real charge</small>
+        ) : null}
+        {billingError ? (
+          <p className="form-error" role="alert">
+            {billingError}
+          </p>
+        ) : null}
+      </section>
+    </div>
+  );
+}
+
+function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () => Promise<void> }) {
   const isOwner = state.currentMember.role === "owner";
   const canEditChild = isOwner || state.currentMember.role === "parent";
   const [inviteEmail, setInviteEmail] = useState("");
@@ -2517,30 +2693,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   const [childPinConfirmation, setChildPinConfirmation] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const [billingBusy, setBillingBusy] = useState<"monthly" | "yearly" | "portal" | null>(null);
-
-  async function openBilling(destination: "monthly" | "yearly" | "portal") {
-    setBillingBusy(destination);
-    setError("");
-    const response = await apiFetch(
-      destination === "portal" ? "/api/archive/billing/portal" : "/api/archive/billing/checkout",
-      {
-        method: "POST",
-        body: destination === "portal" ? undefined : JSON.stringify({ interval: destination }),
-      },
-    );
-    if (!response.ok) {
-      setError(await responseError(response));
-      setBillingBusy(null);
-      return;
-    }
-    const result = (await response.json()) as { url: string };
-    posthog?.capture(
-      destination === "portal" ? "billing_portal_opened" : "billing_checkout_started",
-      destination === "portal" ? undefined : { billing_interval: destination },
-    );
-    window.location.assign(result.url);
-  }
+  const { billingBusy, billingError, openBilling } = useBillingNavigation();
 
   async function mutate(path: string, init: RequestInit, success: string) {
     setError("");
@@ -2681,7 +2834,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
           <Check size={16} /> {message}
         </p>
       ) : null}
-      {error ? <p className="form-error">{error}</p> : null}
+      {error || billingError ? <p className="form-error">{error || billingError}</p> : null}
 
       <div className="family-grid">
         <section className="settings-card storage-card">
