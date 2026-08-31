@@ -8,6 +8,7 @@ import { sendAuthEmail } from "@/lib/auth-email";
 import { handleDodoWebhook } from "@/lib/billing";
 import { getCanonicalHostedUrl, getDeploymentConfig } from "@/lib/deployment";
 import {
+  isIndexablePath,
   isKnownPagePath,
   notFoundResponse,
   robotsResponse,
@@ -108,8 +109,7 @@ export default createServerEntry({
     }
 
     const response = await handler.fetch(request);
-    const isPublicMarketingPage =
-      deployment.mode === "hosted" && (url.pathname === "/" || url.pathname === "/pricing");
+    const isPublicMarketingPage = deployment.mode === "hosted" && isIndexablePath(url.pathname);
     if (!isPublicMarketingPage) {
       const headers = new Headers(response.headers);
       headers.set("cache-control", "private, no-store");

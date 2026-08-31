@@ -50,8 +50,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1788140097.7844121,
-    "ast_hash": "2e6063a59b49d90b47c406311971a52a",
+    "mtime": 1788141184.4540143,
+    "ast_hash": "762f64982e48e6cf84452248a9d7a7c7",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -585,8 +585,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/scrapbook-home.tsx": {
-    "mtime": 1787742468.7673042,
-    "ast_hash": "c15d7d6581327374fadf51cb097e6f55",
+    "mtime": 1788141728.5462675,
+    "ast_hash": "6861afe8afff0655c976e21260893d30",
     "semantic_hash": ""
   },
   "apps/web/migrations/0014_dodo_billing.sql": {
@@ -650,13 +650,63 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/public-web.ts": {
-    "mtime": 1788139706.8079047,
-    "ast_hash": "67700cb0e44ae06949ec52d8b7339c0e",
+    "mtime": 1788141728.545679,
+    "ast_hash": "af853a207dfb59d7f4192261bf5d35e2",
     "semantic_hash": ""
   },
   "apps/web/test/public-web.test.ts": {
-    "mtime": 1788140097.7843108,
-    "ast_hash": "3096e22ff8d88864ff5736309eb3dbab",
+    "mtime": 1788141414.8465204,
+    "ast_hash": "ccc3ab5addf066b11cce3bdfdd48b710",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/seo-landing-page.tsx": {
+    "mtime": 1788141152.5845275,
+    "ast_hash": "cd1781656e9c5ef360702ad241857789",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/seo-page-paths.ts": {
+    "mtime": 1788141728.5446982,
+    "ast_hash": "a48420b06754da17beac5bb43f528d4c",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/seo-pages.ts": {
+    "mtime": 1788141728.545163,
+    "ast_hash": "1f5344816ee993b2a086da757fbf5b68",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/baby-memory-journal.tsx": {
+    "mtime": 1788141173.7545228,
+    "ast_hash": "7938bc83591c5c30b98c15291a14a69e",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/digital-time-capsule-for-kids.tsx": {
+    "mtime": 1788141173.753794,
+    "ast_hash": "ec071bd61769c770a2f2693f84473e99",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/family-memory-app.tsx": {
+    "mtime": 1788141173.7535195,
+    "ast_hash": "eb295064e8d08e34e55d8b8fb91ddeea",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/grandparents-memory-project.tsx": {
+    "mtime": 1788141173.7548213,
+    "ast_hash": "d981e3502d5ba3807a3f9c2a12bf8864",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/letters-to-your-future-child.tsx": {
+    "mtime": 1788141173.7540202,
+    "ast_hash": "486d6f50d4a28fbd7475c5556277d787",
+    "semantic_hash": ""
+  },
+  "apps/web/src/routes/private-family-photo-sharing.tsx": {
+    "mtime": 1788141173.7542815,
+    "ast_hash": "226ef3400cee0c71c20bc136e2f6af54",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md": {
+    "mtime": 1788141698.450878,
+    "ast_hash": "86f472e0f8de51309190f4a6a32cc6b3",
     "semantic_hash": ""
   }
 }

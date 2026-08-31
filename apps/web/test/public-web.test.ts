@@ -2,6 +2,8 @@ import { describe, expect, it, vi } from "vitest";
 
 import type { DeploymentConfig } from "@/lib/deployment";
 import {
+  INDEXABLE_PATHS,
+  isIndexablePath,
   isKnownPagePath,
   notFoundResponse,
   robotsResponse,
@@ -37,7 +39,15 @@ describe("public web crawler responses", () => {
     expect(response.headers.get("content-type")).toBe("application/xml; charset=utf-8");
     expect(body).toContain("<loc>https://geteverlittle.com/</loc>");
     expect(body).toContain("<loc>https://geteverlittle.com/pricing</loc>");
+    expect(body).toContain("<loc>https://geteverlittle.com/family-memory-app</loc>");
+    expect(body).toContain("<loc>https://geteverlittle.com/digital-time-capsule-for-kids</loc>");
+    expect(body.match(/<url>/g)).toHaveLength(INDEXABLE_PATHS.length);
     expect(body).not.toContain("sign-in");
+  });
+
+  it("uses the same indexable-page list for server response headers", () => {
+    expect(isIndexablePath("/baby-memory-journal")).toBe(true);
+    expect(isIndexablePath("/sign-in")).toBe(false);
   });
 
   it("keeps self-hosted installations out of public search", async () => {
@@ -64,6 +74,7 @@ describe("public web crawler responses", () => {
 
     await expect(isKnownPagePath("/wp-login.php", database)).resolves.toBe(false);
     await expect(isKnownPagePath("/.env", database)).resolves.toBe(false);
+    await expect(isKnownPagePath("/grandparents-memory-project", database)).resolves.toBe(true);
     await expect(isKnownPagePath("/norbu-family/timeline", database)).resolves.toBe(true);
     expect(bind).toHaveBeenCalledWith("norbu-family");
   });

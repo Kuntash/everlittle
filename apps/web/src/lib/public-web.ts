@@ -1,6 +1,11 @@
 import type { DeploymentConfig } from "@/lib/deployment";
+import { SEO_PAGE_PATHS } from "@/lib/seo-page-paths";
 
-const INDEXABLE_PATHS = ["/", "/pricing"] as const;
+export const INDEXABLE_PATHS = ["/", "/pricing", ...SEO_PAGE_PATHS] as const;
+
+export function isIndexablePath(pathname: string): boolean {
+  return INDEXABLE_PATHS.includes(pathname as (typeof INDEXABLE_PATHS)[number]);
+}
 
 export function robotsResponse(deployment: DeploymentConfig): Response {
   const body =
@@ -40,7 +45,7 @@ export function sitemapResponse(deployment: DeploymentConfig): Response {
 }
 
 export async function isKnownPagePath(pathname: string, database: D1Database): Promise<boolean> {
-  if (INDEXABLE_PATHS.includes(pathname as (typeof INDEXABLE_PATHS)[number])) return true;
+  if (isIndexablePath(pathname)) return true;
   if (["/onboarding", "/reset-password", "/sign-in", "/sign-up"].includes(pathname)) {
     return true;
   }

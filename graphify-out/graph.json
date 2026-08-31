@@ -491,8 +491,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_package",
-      "community": 11,
-      "community_name": "scripts",
+      "community": 169,
+      "community_name": "web/package.json",
       "norm_label": "web/package.json"
     },
     {
@@ -502,8 +502,8 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "apps_web_package_name",
-      "community": 11,
-      "community_name": "scripts",
+      "community": 169,
+      "community_name": "web/package.json",
       "norm_label": "name"
     },
     {
@@ -513,8 +513,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "apps_web_package_version",
-      "community": 11,
-      "community_name": "scripts",
+      "community": 169,
+      "community_name": "web/package.json",
       "norm_label": "version"
     },
     {
@@ -524,8 +524,8 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "apps_web_package_private",
-      "community": 11,
-      "community_name": "scripts",
+      "community": 169,
+      "community_name": "web/package.json",
       "norm_label": "private"
     },
     {
@@ -535,8 +535,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "apps_web_package_license",
-      "community": 11,
-      "community_name": "scripts",
+      "community": 169,
+      "community_name": "web/package.json",
       "norm_label": "license"
     },
     {
@@ -546,8 +546,8 @@
       "source_location": "L6",
       "_origin": "ast",
       "id": "apps_web_package_type",
-      "community": 11,
-      "community_name": "scripts",
+      "community": 169,
+      "community_name": "web/package.json",
       "norm_label": "type"
     },
     {
@@ -557,8 +557,8 @@
       "source_location": "L7",
       "_origin": "ast",
       "id": "apps_web_package_imports",
-      "community": 11,
-      "community_name": "scripts",
+      "community": 169,
+      "community_name": "web/package.json",
       "norm_label": "imports"
     },
     {
@@ -568,7 +568,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "apps_web_package_scripts",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "scripts"
     },
@@ -579,7 +579,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "apps_web_package_scripts_dev",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "dev"
     },
@@ -590,7 +590,7 @@
       "source_location": "L13",
       "_origin": "ast",
       "id": "apps_web_package_scripts_generate_routes",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "generate-routes"
     },
@@ -601,7 +601,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "apps_web_package_scripts_build",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "build"
     },
@@ -612,7 +612,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "apps_web_package_scripts_build_self_hosted",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "build:self-hosted"
     },
@@ -623,7 +623,7 @@
       "source_location": "L16",
       "_origin": "ast",
       "id": "apps_web_package_scripts_preview",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "preview"
     },
@@ -634,7 +634,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "apps_web_package_scripts_test",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "test"
     },
@@ -645,7 +645,7 @@
       "source_location": "L18",
       "_origin": "ast",
       "id": "apps_web_package_scripts_deploy",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "deploy"
     },
@@ -656,7 +656,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "apps_web_package_scripts_deploy_self_hosted",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "deploy:self-hosted"
     },
@@ -667,7 +667,7 @@
       "source_location": "L20",
       "_origin": "ast",
       "id": "apps_web_package_scripts_deploy_hosted",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "deploy:hosted"
     },
@@ -678,7 +678,7 @@
       "source_location": "L21",
       "_origin": "ast",
       "id": "apps_web_package_scripts_typecheck",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "typecheck"
     },
@@ -689,7 +689,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "apps_web_package_scripts_cf_typegen",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "cf-typegen"
     },
@@ -700,7 +700,7 @@
       "source_location": "L23",
       "_origin": "ast",
       "id": "apps_web_package_scripts_db_migrate_local",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "db:migrate:local"
     },
@@ -711,7 +711,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "apps_web_package_scripts_db_migrate_remote",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "db:migrate:remote"
     },
@@ -722,7 +722,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "apps_web_package_scripts_db_migrate_self_hosted",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "db:migrate:self-hosted"
     },
@@ -733,7 +733,7 @@
       "source_location": "L26",
       "_origin": "ast",
       "id": "apps_web_package_scripts_self_host_check",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "self-host:check"
     },
@@ -744,7 +744,7 @@
       "source_location": "L27",
       "_origin": "ast",
       "id": "apps_web_package_scripts_db_migrate_hosted",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "db:migrate:hosted"
     },
@@ -755,7 +755,7 @@
       "source_location": "L28",
       "_origin": "ast",
       "id": "apps_web_package_scripts_billing_setup_test",
-      "community": 11,
+      "community": 2,
       "community_name": "scripts",
       "norm_label": "billing:setup:test"
     },
@@ -821,8 +821,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_fontsource_variable_cormorant_garamond",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 204,
+      "community_name": "@fontsource-variable/cormorant-garamond",
       "norm_label": "@fontsource-variable/cormorant-garamond"
     },
     {
@@ -832,8 +832,8 @@
       "source_location": "L33",
       "_origin": "ast",
       "id": "fontsource_variable_cormorant_garamond",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 204,
+      "community_name": "@fontsource-variable/cormorant-garamond",
       "norm_label": "@fontsource-variable/cormorant-garamond"
     },
     {
@@ -909,8 +909,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_tanstack_react_router",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 207,
+      "community_name": "@tanstack/react-router",
       "norm_label": "@tanstack/react-router"
     },
     {
@@ -920,8 +920,8 @@
       "source_location": "L37",
       "_origin": "ast",
       "id": "tanstack_react_router",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 207,
+      "community_name": "@tanstack/react-router",
       "norm_label": "@tanstack/react-router"
     },
     {
@@ -997,8 +997,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_lucide_react",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 206,
+      "community_name": "lucide-react",
       "norm_label": "lucide-react"
     },
     {
@@ -1008,8 +1008,8 @@
       "source_location": "L41",
       "_origin": "ast",
       "id": "lucide_react",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 206,
+      "community_name": "lucide-react",
       "norm_label": "lucide-react"
     },
     {
@@ -1130,7 +1130,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "devdependencies"
     },
     {
@@ -1141,7 +1141,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_cloudflare_vite_plugin",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@cloudflare/vite-plugin"
     },
     {
@@ -1152,7 +1152,7 @@
       "_origin": "ast",
       "id": "cloudflare_vite_plugin",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@cloudflare/vite-plugin"
     },
     {
@@ -1163,7 +1163,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_cloudflare_vitest_pool_workers",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@cloudflare/vitest-pool-workers"
     },
     {
@@ -1174,7 +1174,7 @@
       "_origin": "ast",
       "id": "cloudflare_vitest_pool_workers",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@cloudflare/vitest-pool-workers"
     },
     {
@@ -1185,7 +1185,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_tanstack_router_cli",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@tanstack/router-cli"
     },
     {
@@ -1196,7 +1196,7 @@
       "_origin": "ast",
       "id": "tanstack_router_cli",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@tanstack/router-cli"
     },
     {
@@ -1207,7 +1207,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_node",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@types/node"
     },
     {
@@ -1218,7 +1218,7 @@
       "_origin": "ast",
       "id": "types_node",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@types/node"
     },
     {
@@ -1229,7 +1229,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_react",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@types/react"
     },
     {
@@ -1240,7 +1240,7 @@
       "_origin": "ast",
       "id": "types_react",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@types/react"
     },
     {
@@ -1251,7 +1251,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_types_react_dom",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@types/react-dom"
     },
     {
@@ -1262,7 +1262,7 @@
       "_origin": "ast",
       "id": "types_react_dom",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@types/react-dom"
     },
     {
@@ -1273,7 +1273,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_vitejs_plugin_react",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@vitejs/plugin-react"
     },
     {
@@ -1284,7 +1284,7 @@
       "_origin": "ast",
       "id": "vitejs_plugin_react",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "@vitejs/plugin-react"
     },
     {
@@ -1295,7 +1295,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_typescript",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "typescript"
     },
     {
@@ -1306,7 +1306,7 @@
       "_origin": "ast",
       "id": "apps_web_package_json_typescript",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "typescript"
     },
     {
@@ -1317,7 +1317,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_vite",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "vite"
     },
     {
@@ -1328,7 +1328,7 @@
       "_origin": "ast",
       "id": "vite",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "vite"
     },
     {
@@ -1339,7 +1339,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_vitest",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "vitest"
     },
     {
@@ -1350,7 +1350,7 @@
       "_origin": "ast",
       "id": "vitest",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "vitest"
     },
     {
@@ -1361,7 +1361,7 @@
       "_origin": "ast",
       "id": "apps_web_package_devdependencies_wrangler",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "wrangler"
     },
     {
@@ -1372,7 +1372,7 @@
       "_origin": "ast",
       "id": "wrangler",
       "community": 11,
-      "community_name": "scripts",
+      "community_name": "devDependencies",
       "norm_label": "wrangler"
     },
     {
@@ -1634,7 +1634,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_brand",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "brand.tsx"
     },
     {
@@ -1646,7 +1646,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_brand_brand",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "brand()"
     },
     {
@@ -1657,7 +1657,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "marketing-home.tsx"
     },
     {
@@ -1669,7 +1669,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_waveform",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "waveform"
     },
     {
@@ -1681,7 +1681,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_star",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "star()"
     },
     {
@@ -1693,7 +1693,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_pricingsection",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "pricingsection()"
     },
     {
@@ -1705,7 +1705,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketingpricingpage",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "marketingpricingpage()"
     },
     {
@@ -1717,7 +1717,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketinghome",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "marketinghome()"
     },
     {
@@ -1728,7 +1728,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_reset_password",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "components/reset-password.tsx"
     },
     {
@@ -1740,7 +1740,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_reset_password_resetpassword",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "resetpassword()"
     },
     {
@@ -1751,32 +1751,79 @@
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "scrapbook-home.tsx"
     },
     {
       "label": "waveform",
       "file_type": "code",
       "source_file": "apps/web/src/components/scrapbook-home.tsx",
-      "source_location": "L18",
+      "source_location": "L19",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home_waveform",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "waveform"
     },
     {
       "label": "ScrapbookHome()",
       "file_type": "code",
       "source_file": "apps/web/src/components/scrapbook-home.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home_scrapbookhome",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "scrapbookhome()"
+    },
+    {
+      "label": "seo-landing-page.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_components_seo_landing_page",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seo-landing-page.tsx"
+    },
+    {
+      "label": "SeoLandingPage()",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L19",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_src_components_seo_landing_page_seolandingpage",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seolandingpage()"
+    },
+    {
+      "label": "MarketingNav()",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L222",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_src_components_seo_landing_page_marketingnav",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "marketingnav()"
+    },
+    {
+      "label": "MarketingFooter()",
+      "file_type": "code",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L240",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_src_components_seo_landing_page_marketingfooter",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "marketingfooter()"
     },
     {
       "label": "sonner.tsx",
@@ -3719,7 +3766,7 @@
       "label": "INDEXABLE_PATHS",
       "file_type": "code",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L3",
+      "source_location": "L4",
       "_origin": "ast",
       "id": "apps_web_src_lib_public_web_indexable_paths",
       "community": 197,
@@ -3727,10 +3774,22 @@
       "norm_label": "indexable_paths"
     },
     {
+      "label": "isIndexablePath()",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/public-web.ts",
+      "source_location": "L6",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_src_lib_public_web_isindexablepath",
+      "community": 197,
+      "community_name": "server.ts",
+      "norm_label": "isindexablepath()"
+    },
+    {
       "label": "robotsResponse()",
       "file_type": "code",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L5",
+      "source_location": "L10",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_public_web_robotsresponse",
@@ -3742,7 +3801,7 @@
       "label": "sitemapResponse()",
       "file_type": "code",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L22",
+      "source_location": "L27",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_public_web_sitemapresponse",
@@ -3754,7 +3813,7 @@
       "label": "isKnownPagePath()",
       "file_type": "code",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L42",
+      "source_location": "L47",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_public_web_isknownpagepath",
@@ -3766,7 +3825,7 @@
       "label": "notFoundResponse()",
       "file_type": "code",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L59",
+      "source_location": "L64",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_public_web_notfoundresponse",
@@ -3778,7 +3837,7 @@
       "label": "isArchiveRouteShape()",
       "file_type": "code",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L71",
+      "source_location": "L76",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_public_web_isarchiverouteshape",
@@ -3790,7 +3849,7 @@
       "label": "publicTextHeaders()",
       "file_type": "code",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L81",
+      "source_location": "L86",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_public_web_publictextheaders",
@@ -3802,7 +3861,7 @@
       "label": "escapeXml()",
       "file_type": "code",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L89",
+      "source_location": "L94",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_public_web_escapexml",
@@ -3881,6 +3940,125 @@
       "community": 1,
       "community_name": "archive-api.ts",
       "norm_label": "getruntimeenv()"
+    },
+    {
+      "label": "seo-page-paths.ts",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-page-paths.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_page_paths",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seo-page-paths.ts"
+    },
+    {
+      "label": "SEO_PAGE_LINKS",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-page-paths.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_page_paths_seo_page_links",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seo_page_links"
+    },
+    {
+      "label": "SeoPagePath",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-page-paths.ts",
+      "source_location": "L10",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_page_paths_seopagepath",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seopagepath"
+    },
+    {
+      "label": "SEO_PAGE_PATHS",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-page-paths.ts",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_page_paths_seo_page_paths",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seo_page_paths"
+    },
+    {
+      "label": "seo-pages.ts",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_pages",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seo-pages.ts"
+    },
+    {
+      "label": "SeoPageSection",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L3",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_pages_seopagesection",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seopagesection"
+    },
+    {
+      "label": "SeoPageFaq",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L8",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_pages_seopagefaq",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seopagefaq"
+    },
+    {
+      "label": "SeoLandingPageContent",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L13",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_pages_seolandingpagecontent",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seolandingpagecontent"
+    },
+    {
+      "label": "seoLandingPages",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L39",
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_pages_seolandingpages",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seolandingpages"
+    },
+    {
+      "label": "seoLandingPageHead()",
+      "file_type": "code",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L532",
+      "_callable": true,
+      "_origin": "ast",
+      "id": "apps_web_src_lib_seo_pages_seolandingpagehead",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "seolandingpagehead()"
     },
     {
       "label": "signup-guard.ts",
@@ -4025,8 +4203,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug",
-      "community": 13,
-      "community_name": "brand.tsx",
+      "community": 203,
+      "community_name": "$familySlug.kids.$childSlug.tsx",
       "norm_label": "$familyslug.kids.$childslug.tsx"
     },
     {
@@ -4036,8 +4214,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_route",
-      "community": 13,
-      "community_name": "brand.tsx",
+      "community": 203,
+      "community_name": "$familySlug.kids.$childSlug.tsx",
       "norm_label": "route"
     },
     {
@@ -4049,8 +4227,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_childsession",
-      "community": 13,
-      "community_name": "brand.tsx",
+      "community": 203,
+      "community_name": "$familySlug.kids.$childSlug.tsx",
       "norm_label": "childsession"
     },
     {
@@ -4061,8 +4239,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_childaccess",
-      "community": 13,
-      "community_name": "brand.tsx",
+      "community": 203,
+      "community_name": "$familySlug.kids.$childSlug.tsx",
       "norm_label": "childaccess()"
     },
     {
@@ -4073,7 +4251,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "$familyslug.kids.index.tsx"
     },
     {
@@ -4084,7 +4262,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_route",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -4097,7 +4275,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_publicchild",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "publicchild"
     },
     {
@@ -4109,7 +4287,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_childchooser",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "childchooser()"
     },
     {
@@ -4236,6 +4414,94 @@
       "community": 202,
       "community_name": "onboarding.tsx",
       "norm_label": "pwaexperience()"
+    },
+    {
+      "label": "baby-memory-journal.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_baby_memory_journal",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "baby-memory-journal.tsx"
+    },
+    {
+      "label": "Route",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_baby_memory_journal_route",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "route"
+    },
+    {
+      "label": "digital-time-capsule-for-kids.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_digital_time_capsule_for_kids",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "digital-time-capsule-for-kids.tsx"
+    },
+    {
+      "label": "Route",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_digital_time_capsule_for_kids_route",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "route"
+    },
+    {
+      "label": "family-memory-app.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_family_memory_app",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "family-memory-app.tsx"
+    },
+    {
+      "label": "Route",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_family_memory_app_route",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "route"
+    },
+    {
+      "label": "grandparents-memory-project.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_grandparents_memory_project",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "grandparents-memory-project.tsx"
+    },
+    {
+      "label": "Route",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_grandparents_memory_project_route",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "route"
     },
     {
       "label": "index.tsx",
@@ -4472,8 +4738,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_accessscreen",
-      "community": 179,
-      "community_name": "auth-route.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "accessscreen()"
     },
     {
@@ -4484,8 +4750,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_invitationacceptance",
-      "community": 179,
-      "community_name": "auth-route.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "invitationacceptance()"
     },
     {
@@ -4496,8 +4762,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_archiveapp",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "archiveapp()"
     },
     {
@@ -4508,8 +4774,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_childarchiveapp",
-      "community": 13,
-      "community_name": "brand.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "childarchiveapp()"
     },
     {
@@ -4615,8 +4881,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_secureaudioplayer",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "secureaudioplayer()"
     },
     {
@@ -4627,8 +4893,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_securevideoplayer",
-      "community": 157,
-      "community_name": "formatMemoryDate",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "securevideoplayer()"
     },
     {
@@ -4639,8 +4905,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_capsulesview",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "capsulesview()"
     },
     {
@@ -4676,8 +4942,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_usebillingnavigation",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "usebillingnavigation()"
     },
     {
@@ -4700,8 +4966,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_familysettings",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "familysettings()"
     },
     {
@@ -4736,8 +5002,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_apifetch",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "apifetch()"
     },
     {
@@ -4748,8 +5014,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_scopedapipath",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "scopedapipath()"
     },
     {
@@ -4760,8 +5026,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_currentfamilyslug",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "currentfamilyslug()"
     },
     {
@@ -4772,8 +5038,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_currentarchiveview",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "currentarchiveview()"
     },
     {
@@ -4784,8 +5050,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_requestedredirect",
-      "community": 179,
-      "community_name": "auth-route.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "requestedredirect()"
     },
     {
@@ -4796,8 +5062,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_responseerror",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "responseerror()"
     },
     {
@@ -4808,8 +5074,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_rolelabel",
-      "community": 179,
-      "community_name": "auth-route.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "rolelabel()"
     },
     {
@@ -4820,8 +5086,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_roledescription",
-      "community": 179,
-      "community_name": "auth-route.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "roledescription()"
     },
     {
@@ -4832,8 +5098,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_initials",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "initials()"
     },
     {
@@ -4844,8 +5110,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatdate",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "formatdate()"
     },
     {
@@ -4856,8 +5122,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_billingstatustitle",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "billingstatustitle()"
     },
     {
@@ -4868,8 +5134,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_billingstatusdetail",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "billingstatusdetail()"
     },
     {
@@ -4880,8 +5146,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatdatetime",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "formatdatetime()"
     },
     {
@@ -4904,8 +5170,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatmediatime",
-      "community": 157,
-      "community_name": "formatMemoryDate",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "formatmediatime()"
     },
     {
@@ -4940,8 +5206,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_waveformfromaudio",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "waveformfromaudio()"
     },
     {
@@ -5135,6 +5401,28 @@
       "norm_label": "invitationroute()"
     },
     {
+      "label": "letters-to-your-future-child.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_letters_to_your_future_child",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "letters-to-your-future-child.tsx"
+    },
+    {
+      "label": "Route",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_letters_to_your_future_child_route",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "route"
+    },
+    {
       "label": "onboarding.tsx",
       "file_type": "code",
       "source_file": "apps/web/src/routes/onboarding.tsx",
@@ -5260,7 +5548,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_pricing",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "pricing.tsx"
     },
     {
@@ -5271,7 +5559,29 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_pricing_route",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "route"
+    },
+    {
+      "label": "private-family-photo-sharing.tsx",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_private_family_photo_sharing",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
+      "norm_label": "private-family-photo-sharing.tsx"
+    },
+    {
+      "label": "Route",
+      "file_type": "code",
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L8",
+      "_origin": "ast",
+      "id": "apps_web_src_routes_private_family_photo_sharing_route",
+      "community": 13,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -5282,7 +5592,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_reset_password",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "routes/reset-password.tsx"
     },
     {
@@ -5293,7 +5603,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_reset_password_route",
       "community": 13,
-      "community_name": "brand.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -5355,7 +5665,7 @@
       "label": "SignUpPayload",
       "file_type": "code",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L19",
+      "source_location": "L20",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
@@ -5368,7 +5678,7 @@
       "label": "SignUpInput",
       "file_type": "code",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L20",
+      "source_location": "L21",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
@@ -5381,7 +5691,7 @@
       "label": "fetch()",
       "file_type": "code",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L23",
+      "source_location": "L24",
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_server_fetch",
@@ -5672,7 +5982,7 @@
       "label": "hostedDeployment",
       "file_type": "code",
       "source_file": "apps/web/test/public-web.test.ts",
-      "source_location": "L11",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "apps_web_test_public_web_test_hosteddeployment",
       "community": 197,
@@ -29812,6 +30122,61 @@
       "community": 45,
       "community_name": "Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time",
       "norm_label": "source nodes"
+    },
+    {
+      "label": "query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with",
+      "community": 198,
+      "community_name": "Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?",
+      "norm_label": "query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md"
+    },
+    {
+      "label": "Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_q_how_should_public_seo_landing_pages_integrate_with_the_existing_ssr_routing_metadata_sitemap_server_indexability_and_marketing_styles",
+      "community": 198,
+      "community_name": "Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?",
+      "norm_label": "q: how should public seo landing pages integrate with the existing ssr routing, metadata, sitemap, server indexability, and marketing styles?"
+    },
+    {
+      "label": "Answer",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_answer",
+      "community": 198,
+      "community_name": "Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?",
+      "norm_label": "answer"
+    },
+    {
+      "label": "Outcome",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_outcome",
+      "community": 198,
+      "community_name": "Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?",
+      "norm_label": "outcome"
+    },
+    {
+      "label": "Source Nodes",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_source_nodes",
+      "community": 198,
+      "community_name": "Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?",
+      "norm_label": "source nodes"
     }
   ],
   "links": [
@@ -31974,6 +32339,18 @@
       "relation": "imports_from",
       "context": "import",
       "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_seo_landing_page",
+      "target": "apps_web_src_components_brand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
       "source_file": "apps/web/src/routes/$familySlug.kids.$childSlug.tsx",
       "source_location": "L6",
       "weight": 1.0,
@@ -32051,6 +32428,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_scrapbook_home",
+      "target": "apps_web_src_components_brand_brand",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_seo_landing_page",
       "target": "apps_web_src_components_brand_brand",
       "confidence_score": 1.0
     },
@@ -32220,7 +32609,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/scrapbook-home.tsx",
-      "source_location": "L36",
+      "source_location": "L37",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_scrapbook_home",
@@ -32231,11 +32620,35 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/components/scrapbook-home.tsx",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_components_scrapbook_home",
       "target": "apps_web_src_components_scrapbook_home_waveform",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_scrapbook_home",
+      "target": "apps_web_src_lib_seo_page_paths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/scrapbook-home.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_scrapbook_home",
+      "target": "apps_web_src_lib_seo_page_paths_seo_page_links",
       "confidence_score": 1.0
     },
     {
@@ -32260,6 +32673,219 @@
       "_origin": "ast",
       "source": "apps_web_src_routes_index",
       "target": "apps_web_src_components_scrapbook_home_scrapbookhome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L240",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_seo_landing_page",
+      "target": "apps_web_src_components_seo_landing_page_marketingfooter",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L222",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_seo_landing_page",
+      "target": "apps_web_src_components_seo_landing_page_marketingnav",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_seo_landing_page",
+      "target": "apps_web_src_components_seo_landing_page_seolandingpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_seo_landing_page",
+      "target": "apps_web_src_lib_seo_pages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L17",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_seo_landing_page",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagecontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/components/seo-landing-page.tsx",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_components_seo_landing_page",
+      "target": "apps_web_src_lib_seo_pages_seolandingpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_baby_memory_journal",
+      "target": "apps_web_src_components_seo_landing_page",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_digital_time_capsule_for_kids",
+      "target": "apps_web_src_components_seo_landing_page",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_family_memory_app",
+      "target": "apps_web_src_components_seo_landing_page",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_grandparents_memory_project",
+      "target": "apps_web_src_components_seo_landing_page",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_letters_to_your_future_child",
+      "target": "apps_web_src_components_seo_landing_page",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_private_family_photo_sharing",
+      "target": "apps_web_src_components_seo_landing_page",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_baby_memory_journal",
+      "target": "apps_web_src_components_seo_landing_page_seolandingpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_digital_time_capsule_for_kids",
+      "target": "apps_web_src_components_seo_landing_page_seolandingpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_family_memory_app",
+      "target": "apps_web_src_components_seo_landing_page_seolandingpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_grandparents_memory_project",
+      "target": "apps_web_src_components_seo_landing_page_seolandingpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_letters_to_your_future_child",
+      "target": "apps_web_src_components_seo_landing_page_seolandingpage",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_private_family_photo_sharing",
+      "target": "apps_web_src_components_seo_landing_page_seolandingpage",
       "confidence_score": 1.0
     },
     {
@@ -34218,7 +34844,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -38487,7 +39113,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -38778,7 +39404,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L26",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -38826,7 +39452,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L29",
+      "source_location": "L30",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -39042,7 +39668,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L89",
+      "source_location": "L94",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web",
@@ -39053,7 +39679,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web",
@@ -39064,7 +39690,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L71",
+      "source_location": "L76",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web",
@@ -39075,7 +39701,18 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L42",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_public_web",
+      "target": "apps_web_src_lib_public_web_isindexablepath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/public-web.ts",
+      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web",
@@ -39086,7 +39723,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L59",
+      "source_location": "L64",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web",
@@ -39097,7 +39734,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L81",
+      "source_location": "L86",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web",
@@ -39108,7 +39745,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L5",
+      "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web",
@@ -39119,11 +39756,35 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L22",
+      "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web",
       "target": "apps_web_src_lib_public_web_sitemapresponse",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/public-web.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_public_web",
+      "target": "apps_web_src_lib_seo_page_paths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/public-web.ts",
+      "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_public_web",
+      "target": "apps_web_src_lib_seo_page_paths_seo_page_paths",
       "confidence_score": 1.0
     },
     {
@@ -39151,11 +39812,71 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/test/public-web.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_test_public_web_test",
+      "target": "apps_web_src_lib_public_web_indexable_paths",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L18",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_public_web_isknownpagepath",
+      "target": "apps_web_src_lib_public_web_isindexablepath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/server.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_server",
+      "target": "apps_web_src_lib_public_web_isindexablepath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/server.ts",
+      "source_location": "L112",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_server_fetch",
+      "target": "apps_web_src_lib_public_web_isindexablepath"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/test/public-web.test.ts",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_test_public_web_test",
+      "target": "apps_web_src_lib_public_web_isindexablepath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/public-web.ts",
+      "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web_robotsresponse",
@@ -39180,7 +39901,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -39203,7 +39924,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L27",
+      "source_location": "L32",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web_sitemapresponse",
@@ -39215,7 +39936,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L23",
+      "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web_sitemapresponse",
@@ -39227,7 +39948,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L38",
+      "source_location": "L43",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web_sitemapresponse",
@@ -39252,7 +39973,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L41",
+      "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -39275,7 +39996,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/public-web.ts",
-      "source_location": "L50",
+      "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_lib_public_web_isknownpagepath",
@@ -39300,7 +40021,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L106",
+      "source_location": "L107",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -39336,7 +40057,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L103",
+      "source_location": "L104",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -39463,7 +40184,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server",
@@ -39499,7 +40220,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L17",
+      "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server",
@@ -39512,7 +40233,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L25",
+      "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -39533,6 +40254,406 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-page-paths.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_page_paths",
+      "target": "apps_web_src_lib_seo_page_paths_seo_page_links",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-page-paths.ts",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_page_paths",
+      "target": "apps_web_src_lib_seo_page_paths_seo_page_paths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-page-paths.ts",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_page_paths",
+      "target": "apps_web_src_lib_seo_page_paths_seopagepath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_pages",
+      "target": "apps_web_src_lib_seo_page_paths",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_pages",
+      "target": "apps_web_src_lib_seo_page_paths_seopagepath",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L13",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_pages",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagecontent",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L532",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_pages",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L39",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_pages",
+      "target": "apps_web_src_lib_seo_pages_seolandingpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_pages",
+      "target": "apps_web_src_lib_seo_pages_seopagefaq",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/lib/seo-pages.ts",
+      "source_location": "L3",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_lib_seo_pages",
+      "target": "apps_web_src_lib_seo_pages_seopagesection",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_baby_memory_journal",
+      "target": "apps_web_src_lib_seo_pages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_digital_time_capsule_for_kids",
+      "target": "apps_web_src_lib_seo_pages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_family_memory_app",
+      "target": "apps_web_src_lib_seo_pages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_grandparents_memory_project",
+      "target": "apps_web_src_lib_seo_pages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_letters_to_your_future_child",
+      "target": "apps_web_src_lib_seo_pages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_private_family_photo_sharing",
+      "target": "apps_web_src_lib_seo_pages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_baby_memory_journal",
+      "target": "apps_web_src_lib_seo_pages_seolandingpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_digital_time_capsule_for_kids",
+      "target": "apps_web_src_lib_seo_pages_seolandingpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_family_memory_app",
+      "target": "apps_web_src_lib_seo_pages_seolandingpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_grandparents_memory_project",
+      "target": "apps_web_src_lib_seo_pages_seolandingpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_letters_to_your_future_child",
+      "target": "apps_web_src_lib_seo_pages_seolandingpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_private_family_photo_sharing",
+      "target": "apps_web_src_lib_seo_pages_seolandingpages",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_baby_memory_journal",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_baby_memory_journal_route",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_digital_time_capsule_for_kids",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_digital_time_capsule_for_kids_route",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_family_memory_app",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_family_memory_app_route",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_grandparents_memory_project",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_grandparents_memory_project_route",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_letters_to_your_future_child",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_letters_to_your_future_child_route",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_private_family_photo_sharing",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "calls",
+      "context": "call",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_private_family_photo_sharing_route",
+      "target": "apps_web_src_lib_seo_pages_seolandingpagehead"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "apps/web/src/lib/signup-guard.ts",
       "source_location": "L1",
       "weight": 1.0,
@@ -39546,7 +40667,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server",
@@ -39570,7 +40691,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L16",
+      "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server",
@@ -39991,6 +41112,50 @@
       "_origin": "ast",
       "source": "apps_web_src_routes_root",
       "target": "apps_web_src_routes_root_route",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/baby-memory-journal.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_baby_memory_journal",
+      "target": "apps_web_src_routes_baby_memory_journal_route",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/digital-time-capsule-for-kids.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_digital_time_capsule_for_kids",
+      "target": "apps_web_src_routes_digital_time_capsule_for_kids_route",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/family-memory-app.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_family_memory_app",
+      "target": "apps_web_src_routes_family_memory_app_route",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/grandparents-memory-project.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_grandparents_memory_project",
+      "target": "apps_web_src_routes_grandparents_memory_project_route",
       "confidence_score": 1.0
     },
     {
@@ -41834,6 +42999,17 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/letters-to-your-future-child.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_letters_to_your_future_child",
+      "target": "apps_web_src_routes_letters_to_your_future_child_route",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "apps/web/src/routes/onboarding.tsx",
       "source_location": "L434",
       "weight": 1.0,
@@ -41969,6 +43145,17 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "apps/web/src/routes/private-family-photo-sharing.tsx",
+      "source_location": "L8",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "apps_web_src_routes_private_family_photo_sharing",
+      "target": "apps_web_src_routes_private_family_photo_sharing_route",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "apps/web/src/routes/reset-password.tsx",
       "source_location": "L5",
       "weight": 1.0,
@@ -42014,7 +43201,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L23",
+      "source_location": "L24",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server",
@@ -42047,7 +43234,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L20",
+      "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server",
@@ -42058,7 +43245,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L19",
+      "source_location": "L20",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server",
@@ -42114,7 +43301,7 @@
       "context": "call",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/src/server.ts",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_src_server_fetch",
@@ -42306,7 +43493,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "apps/web/test/public-web.test.ts",
-      "source_location": "L11",
+      "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
       "source": "apps_web_test_public_web_test",
@@ -64161,8 +65348,52 @@
       "source": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_q_how_would_you_market_this_to_get_the_initial_customers_as_fast_as_possible_which_funnels_organic_might_take_too_much_time",
       "target": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_source_nodes",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with",
+      "target": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_q_how_should_public_seo_landing_pages_integrate_with_the_existing_ssr_routing_metadata_sitemap_server_indexability_and_marketing_styles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_q_how_should_public_seo_landing_pages_integrate_with_the_existing_ssr_routing_metadata_sitemap_server_indexability_and_marketing_styles",
+      "target": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_answer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_q_how_should_public_seo_landing_pages_integrate_with_the_existing_ssr_routing_metadata_sitemap_server_indexability_and_marketing_styles",
+      "target": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_outcome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_q_how_should_public_seo_landing_pages_integrate_with_the_existing_ssr_routing_metadata_sitemap_server_indexability_and_marketing_styles",
+      "target": "graphify_out_memory_query_20260831_020138_how_should_public_seo_landing_pages_integrate_with_source_nodes",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "fccd16203905f6751ee576484f3729f5ffc0b6f6"
+  "built_at_commit": "8b0d73ff4a4feca664985a5e6ff2e7ab105bbc5f"
 }

@@ -14,6 +14,7 @@ import {
 import { useEffect } from "react";
 
 import { Brand } from "@/components/brand";
+import { SEO_PAGE_LINKS } from "@/lib/seo-page-paths";
 
 const waveform = [12, 25, 18, 33, 21, 39, 27, 15, 34, 43, 22, 29, 41, 17, 27, 36, 21, 14];
 
@@ -409,6 +410,26 @@ export function ScrapbookHome() {
           </a>
           <small>Create your account free. Choose a plan before adding memories.</small>
         </article>
+      </section>
+
+      <section className="scrapbook-guides">
+        <header className="scrapbook-section-heading" data-reveal>
+          <p className="scrapbook-kicker">A place to begin</p>
+          <h2>Six ways to start keeping the family story.</h2>
+          <p>
+            Choose the project that feels closest to your family today. Each guide gives you a
+            small, practical first step.
+          </p>
+        </header>
+        <nav className="scrapbook-guide-grid" aria-label="Family memory guides" data-reveal>
+          {SEO_PAGE_LINKS.map((page, index) => (
+            <a href={page.path} key={page.path}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{page.label}</strong>
+              <ArrowRight aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
       </section>
 
       <section className="scrapbook-closing">
