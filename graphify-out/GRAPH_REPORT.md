@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-31)
 
 ## Corpus Check
-- 105 files · ~1,552,374 words
+- 108 files · ~1,616,835 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2462 nodes · 3131 edges · 209 communities (51 shown, 158 thin omitted)
+- 2478 nodes · 3162 edges · 214 communities (57 shown, 157 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `8b0d73ff`
+- Built from commit: `b0581b9f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -117,7 +117,7 @@
 - WebSocketRequestResponsePair
 - Workflow
 - WorkflowEntrypoint
-- responseError
+- AccessScreen
 - AgentMemoryNamespace
 - BasicImageTransformations
 - BrowserRun
@@ -208,13 +208,18 @@
 - Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?
 - CompileError
 - RuntimeError
-- auth-feedback.ts
-- onboarding.tsx
+- getRuntimeEnv
+- __root.tsx
 - $familySlug.kids.$childSlug.tsx
 - @fontsource-variable/cormorant-garamond
 - 0014_dodo_billing.sql
 - lucide-react
 - @tanstack/react-router
+- billing.ts
+- index.ts
+- scopedApiPath
+- Q: How should PostHog campaign attribution and conversion events integrate with signup, onboarding, memory creation, and billing?
+- Q: Make sure icon-512.png is actually the logo on the landing page and not something else
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 46 edges
@@ -229,12 +234,12 @@
 10. `auditStatement()` - 20 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `bootstrapFamily()` --calls--> `slugify()`  [EXTRACTED]
-  apps/web/src/server.ts → packages/domain/src/index.ts
 - `completeOnboarding()` --calls--> `slugify()`  [EXTRACTED]
   apps/web/src/lib/archive-api.ts → packages/domain/src/index.ts
 - `createChildProfile()` --calls--> `slugify()`  [EXTRACTED]
   apps/web/src/lib/archive-api.ts → packages/domain/src/index.ts
+- `bootstrapFamily()` --calls--> `slugify()`  [EXTRACTED]
+  apps/web/src/server.ts → packages/domain/src/index.ts
 - `onboarding_draft` --references--> `"user"`  [EXTRACTED]
   apps/web/migrations/0009_onboarding_drafts.sql → apps/web/migrations/0001_foundation.sql
 - `"passkey"` --references--> `"user"`  [EXTRACTED]
@@ -243,7 +248,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (209 total, 158 thin omitted)
+## Communities (214 total, 157 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -251,7 +256,7 @@ Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentM
 
 ### Community 1 - "archive-api.ts"
 Cohesion: 0.06
-Nodes (124): acceptInvitation(), acceptInvitationForCurrentUser(), ArchiveStorage, auditStatement(), base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url() (+116 more)
+Nodes (52): ArchiveStorage, base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url(), capsuleSchema, ChildAccessContext, childPinRetryAfter() (+44 more)
 
 ### Community 2 - "scripts"
 Cohesion: 0.11
@@ -282,8 +287,8 @@ Cohesion: 0.09
 Nodes (23): devDependencies, @cloudflare/vite-plugin, @cloudflare/vitest-pool-workers, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript (+15 more)
 
 ### Community 13 - "seo-landing-page.tsx"
-Cohesion: 0.08
-Nodes (25): Brand(), MarketingPricingPage(), waveform, ResetPassword(), ScrapbookHome(), waveform, SeoLandingPage(), SEO_PAGE_LINKS (+17 more)
+Cohesion: 0.06
+Nodes (32): Brand(), MarketingHome(), MarketingPricingPage(), waveform, ResetPassword(), ScrapbookHome(), waveform, SeoLandingPage() (+24 more)
 
 ### Community 20 - "Body"
 Cohesion: 0.15
@@ -317,9 +322,9 @@ Nodes (4): Answer, Outcome, Q: How would you market this to get the initial cust
 Cohesion: 0.14
 Nodes (13): Current invitation UX gaps, Everlittle TODO, P0 — Claim the reference installation, P1 — Family invitation and ownership handover, P1 — Privacy and durability, P1 — Real archive data, P2 — Child experience, P2 — Deferred account recovery (+5 more)
 
-### Community 103 - "responseError"
-Cohesion: 0.21
-Nodes (16): AccessScreen(), apiFetch(), billingStatusDetail(), billingStatusTitle(), CapsulesView(), ChildArchiveApp(), FamilySettings(), formatDate() (+8 more)
+### Community 103 - "AccessScreen"
+Cohesion: 0.25
+Nodes (7): AuthClientError, isExistingAccountError(), AccessScreen(), InvitationAcceptance(), requestedRedirect(), roleDescription(), roleLabel()
 
 ### Community 105 - "BasicImageTransformations"
 Cohesion: 0.67
@@ -370,8 +375,8 @@ Cohesion: 0.43
 Nodes (6): buildInvitationEmail(), escapeHtml(), InvitationEmailInput, roleDescriptions, sendInvitationEmail(), titleCase()
 
 ### Community 179 - "auth-route.tsx"
-Cohesion: 0.21
-Nodes (8): AuthRoute(), safeRedirect(), InvitationPreview, Loading(), PlatformState, Route, Route, Route
+Cohesion: 0.18
+Nodes (9): AuthRoute(), safeRedirect(), authClient, InvitationPreview, Loading(), PlatformState, Route, Route (+1 more)
 
 ### Community 180 - "Everlittle"
 Cohesion: 0.15
@@ -379,7 +384,7 @@ Nodes (7): Route, Route, Route, Route, Route, Route, Everlittle()
 
 ### Community 181 - "index.tsx"
 Cohesion: 0.09
-Nodes (24): ArchiveApp(), ArchiveMembership, ArchiveState, BillingDestination, Capsule, Child, ChildSession, createVideoThumbnail() (+16 more)
+Nodes (23): ArchiveMembership, ArchiveState, BillingDestination, billingStatusDetail(), billingStatusTitle(), Capsule, Child, ChildSession (+15 more)
 
 ### Community 182 - "ExtendableEvent"
 Cohesion: 0.17
@@ -398,40 +403,64 @@ Cohesion: 0.50
 Nodes (3): ArchiveEntry, resolveArchiveEntry(), ArchiveRedirect()
 
 ### Community 196 - "MemoryComposer"
-Cohesion: 0.27
-Nodes (12): CapsuleComposer(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize(), memoryBodyPlaceholder(), MemoryComposer(), MemoryDetail(), memoryTitlePlaceholder() (+4 more)
+Cohesion: 0.25
+Nodes (16): apiFetch(), CapsuleComposer(), CapsulesView(), ChildArchiveApp(), currentLocalDateTime(), defaultCapsuleDate(), memoryBodyPlaceholder(), MemoryComposer() (+8 more)
 
 ### Community 197 - "server.ts"
-Cohesion: 0.07
-Nodes (44): AuthOptions, createAuth(), AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail(), DEPLOYMENT_MODES, DeploymentConfig (+36 more)
+Cohesion: 0.10
+Nodes (36): acceptInvitation(), AuthOptions, createAuth(), AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail(), DEPLOYMENT_MODES (+28 more)
 
 ### Community 198 - "Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?, Source Nodes
 
-### Community 202 - "onboarding.tsx"
-Cohesion: 0.10
-Nodes (17): AnalyticsConfig, AnalyticsProvider(), Toaster(), analyticsPath(), authClient, PwaInstallContext, shouldOfferPwaInstall(), Draft (+9 more)
+### Community 201 - "getRuntimeEnv"
+Cohesion: 0.22
+Nodes (45): acceptInvitationForCurrentUser(), auditStatement(), checkOnboardingSlug(), completeOnboarding(), createCapsule(), createChildProfile(), createInvitation(), createMemory() (+37 more)
+
+### Community 202 - "__root.tsx"
+Cohesion: 0.16
+Nodes (15): AnalyticsConfig, AnalyticsProvider(), resolveMarketingAttribution(), Toaster(), analyticsPath(), MARKETING_ATTRIBUTION_STORAGE_KEY, marketingAttribution, readMarketingAttribution() (+7 more)
+
+### Community 208 - "billing.ts"
+Cohesion: 0.12
+Nodes (24): enforceArchiveCreation(), enforceArchiveStorage(), getArchiveStorage(), BillingConfigurationError, BillingInterval, BillingOwner, BillingPortalUnavailableError, billingStatusForDodoEvent() (+16 more)
+
+### Community 210 - "index.ts"
+Cohesion: 0.17
+Nodes (11): Audience, audienceSchema, ChildProfile, childSlugSchema, FamilyRole, familyRoleSchema, familySlugSchema, Memory (+3 more)
+
+### Community 211 - "scopedApiPath"
+Cohesion: 0.29
+Nodes (8): ArchiveApp(), currentArchiveView(), currentFamilySlug(), formatMediaTime(), scopedApiPath(), SecureAudioPlayer(), SecureVideoPlayer(), waveformFromAudio()
+
+### Community 212 - "Q: How should PostHog campaign attribution and conversion events integrate with signup, onboarding, memory creation, and billing?"
+Cohesion: 0.40
+Nodes (4): Answer, Outcome, Q: How should PostHog campaign attribution and conversion events integrate with signup, onboarding, memory creation, and billing?, Source Nodes
+
+### Community 213 - "Q: Make sure icon-512.png is actually the logo on the landing page and not something else"
+Cohesion: 0.40
+Nodes (4): Answer, Outcome, Q: Make sure icon-512.png is actually the logo on the landing page and not something else, Source Nodes
 
 ## Knowledge Gaps
-- **1151 isolated node(s):** `"verification"`, `child_access_attempt`, `billing_webhook_event`, `name`, `version` (+1146 more)
+- **1157 isolated node(s):** `"verification"`, `child_access_attempt`, `billing_webhook_event`, `name`, `version` (+1152 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **158 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **157 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `URL` connect `URL` to `worker-configuration.d.ts`?**
+- **Why does `Console` connect `Console` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.024) - this node is a cross-community bridge._
-- **Why does `VectorizeIndex` connect `VectorizeIndex` to `worker-configuration.d.ts`?**
+- **Why does `Headers` connect `Headers` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.021) - this node is a cross-community bridge._
+- **Why does `DurableObject` connect `DurableObject` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
-- **Why does `HTMLRewriterDocumentContentHandlers` connect `HTMLRewriterDocumentContentHandlers` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `billing_webhook_event` to the rest of the system?**
-  _1151 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1157 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05777616279069767 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06458635703918723 - nodes in this community are weakly interconnected._
 - **Should `scripts` be split into smaller, more focused modules?**
   _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._

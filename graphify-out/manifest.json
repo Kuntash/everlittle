@@ -45,8 +45,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1788139780.4938917,
-    "ast_hash": "e4f43acfa208d2c6516784712ab6361e",
+    "mtime": 1788143443.5541363,
+    "ast_hash": "969825d86d0a0ebf80dfe949735c28f0",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -290,8 +290,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/onboarding.tsx": {
-    "mtime": 1787570786.9234345,
-    "ast_hash": "a8f4d84888edc050dad7e5bc6df86d57",
+    "mtime": 1788143456.2576964,
+    "ast_hash": "32582f3280964e41754148c5a7386c87",
     "semantic_hash": ""
   },
   "apps/web/src/components/auth-route.tsx": {
@@ -300,8 +300,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/brand.tsx": {
-    "mtime": 1786655752.641179,
-    "ast_hash": "93804cb2f202aae132a9a619eb4a4f4d",
+    "mtime": 1788144908.2541552,
+    "ast_hash": "fec698f9d86826e76011d77119c84f4c",
     "semantic_hash": ""
   },
   "apps/web/src/components/marketing-home.tsx": {
@@ -595,13 +595,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/analytics-provider.tsx": {
-    "mtime": 1787638540.6922596,
-    "ast_hash": "6a80d51d0ea09cf79d59f6da1cdf7300",
+    "mtime": 1788143423.2299712,
+    "ast_hash": "578aef11ab6c1bc66944aaf6930b0f90",
     "semantic_hash": ""
   },
   "apps/web/src/lib/analytics.ts": {
-    "mtime": 1787638407.7399592,
-    "ast_hash": "90168a4a06a5a3b41d6e564fd6aad420",
+    "mtime": 1788143623.7638087,
+    "ast_hash": "46fba71532910076b4aaf7e5a284b27f",
     "semantic_hash": ""
   },
   "apps/web/src/lib/billing.ts": {
@@ -610,8 +610,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/billing-analytics.test.ts": {
-    "mtime": 1787742441.3516552,
-    "ast_hash": "5ced9f34f8a16e75aba9feca1bb10090",
+    "mtime": 1788143581.841607,
+    "ast_hash": "bdbd6b429a08caf8ef757d1a800edc33",
     "semantic_hash": ""
   },
   "apps/web/scripts/setup-dodo-test.mjs": {
@@ -707,6 +707,26 @@
   "graphify-out/memory/query_20260831_020138_how_should_public_seo_landing_pages_integrate_with.md": {
     "mtime": 1788141698.450878,
     "ast_hash": "86f472e0f8de51309190f4a6a32cc6b3",
+    "semantic_hash": ""
+  },
+  "apps/web/test/brand.test.tsx": {
+    "mtime": 1788145191.133608,
+    "ast_hash": "3799e65d63d4cff18c0eef678bfdf920",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260831_023421_how_should_posthog_campaign_attribution_and_conver.md": {
+    "mtime": 1788143661.2123675,
+    "ast_hash": "102338bb333045811a4f9a8e81b1379c",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20260831_030022_make_sure_icon_512_png_is_actually_the_logo_on_the.md": {
+    "mtime": 1788145222.1755297,
+    "ast_hash": "f095a23dddabf42a62369a2c5e934fb8",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/meta-page-cover.png": {
+    "mtime": 1788145048.7528486,
+    "ast_hash": "6d0f4b047e9f620772e39c33da5701e2",
     "semantic_hash": ""
   }
 }

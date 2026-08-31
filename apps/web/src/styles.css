@@ -132,22 +132,15 @@ h3 {
   gap: 0.8rem;
 }
 .brand-mark {
-  color: var(--gold);
-  display: grid;
+  display: block;
+  flex: 0 0 auto;
   height: 46px;
-  place-items: start center;
-  position: relative;
-  width: 38px;
+  width: 46px;
 }
-.brand-mark > span {
-  border-bottom: 1.5px solid var(--gold);
-  border-left: 1.5px solid var(--gold);
-  border-radius: 100% 0 100% 0;
-  height: 18px;
-  position: absolute;
-  top: 20px;
-  transform: rotate(-45deg);
-  width: 18px;
+.brand-mark img {
+  display: block;
+  height: 100%;
+  width: 100%;
 }
 .brand strong {
   color: var(--forest);
@@ -167,9 +160,7 @@ h3 {
 }
 .brand.compact .brand-mark {
   height: 36px;
-  transform: scale(0.8);
-  transform-origin: left center;
-  width: 30px;
+  width: 36px;
 }
 .brand.compact strong {
   font-size: 2rem;
@@ -2923,10 +2914,6 @@ h3 {
 .seo-story-footer .brand strong {
   color: var(--seo-paper-light);
 }
-.seo-story-footer .brand-mark,
-.seo-story-footer .brand-mark > span {
-  color: var(--seo-yellow);
-}
 .seo-story-footer > div p {
   color: rgb(255 250 240 / 65%);
   font-family: var(--font-story);
@@ -3358,12 +3345,8 @@ h3 {
   gap: 0.7rem;
 }
 .heirloom-nav .brand-mark {
-  color: var(--heirloom-green);
   height: 38px;
-  width: 36px;
-}
-.heirloom-nav .brand-mark > span {
-  border-color: var(--heirloom-green);
+  width: 38px;
 }
 .heirloom-nav .brand strong {
   color: var(--heirloom-green);
@@ -4532,12 +4515,6 @@ h3 {
   color: var(--heirloom-paper-bright);
   font-size: 2rem;
 }
-.heirloom-footer .brand-mark {
-  color: var(--heirloom-paper-bright);
-}
-.heirloom-footer .brand-mark > span {
-  border-color: var(--heirloom-paper-bright);
-}
 .heirloom-footer > p {
   font-family: "Cormorant Garamond Variable", serif;
   margin: 0;
@@ -4920,19 +4897,11 @@ h3 {
   }
   .heirloom-nav .brand-mark {
     height: 28px;
-  }
-  .heirloom-nav .brand-mark > span {
-    display: none;
+    width: 28px;
   }
   .heirloom-nav .brand strong {
     color: var(--heirloom-paper-bright);
     font-size: 2.25rem;
-  }
-  .heirloom-nav .brand-mark {
-    color: var(--heirloom-paper-bright);
-  }
-  .heirloom-nav .brand-mark > span {
-    border-color: var(--heirloom-paper-bright);
   }
   .heirloom-nav > div {
     display: none;
@@ -9100,10 +9069,6 @@ h3 {
 }
 .scrapbook-footer .brand strong {
   color: #fffaf0;
-}
-.scrapbook-footer .brand-mark,
-.scrapbook-footer .brand-mark > span {
-  color: var(--scrapbook-yellow);
 }
 .scrapbook-footer p {
   color: rgb(255 250 240 / 67%);

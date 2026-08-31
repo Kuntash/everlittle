@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { usePostHog } from "@posthog/react";
 import { ArrowLeft, ArrowRight, Check, LockKeyhole, ShieldCheck } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
@@ -20,6 +21,7 @@ type Draft = {
 const sections = ["Your archive", "Memory focus", "Privacy"] as const;
 
 function Onboarding() {
+  const posthog = usePostHog();
   const session = authClient.useSession();
   const [deploymentMode, setDeploymentMode] = useState<"hosted" | "self-hosted" | null>(null);
   const [section, setSection] = useState(0);
@@ -171,6 +173,10 @@ function Onboarding() {
       return;
     }
     const result = (await response.json()) as { archiveSlug: string };
+    posthog?.capture("archive_onboarding_completed", {
+      archive_profile_kind: profileKind,
+      child_pin_enabled: profileKind === "child" && enablePin,
+    });
     location.assign(`/${encodeURIComponent(result.archiveSlug)}`);
   }
 

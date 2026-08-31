@@ -1,11 +1,8 @@
-import { Sparkles } from "lucide-react";
-
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <div className={`brand ${compact ? "compact" : ""}`}>
       <span className="brand-mark" aria-hidden="true">
-        <Sparkles size={14} />
-        <span />
+        <img src="/icon-512.png" alt="" />
       </span>
       <div>
         <strong>Everlittle</strong>

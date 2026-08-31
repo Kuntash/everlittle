@@ -366,6 +366,7 @@ export function AccessScreen({
   inviteToken: string;
   needsSetup: boolean;
 }) {
+  const posthog = usePostHog();
   const isInvitation = Boolean(invitation && inviteToken);
   const [mode, setMode] = useState<"sign-in" | "setup">(
     initialMode ?? (needsSetup || isInvitation || allowsPublicSignup ? "setup" : "sign-in"),
@@ -395,6 +396,10 @@ export function AccessScreen({
       : mode === "setup"
         ? "/onboarding"
         : redirect;
+    const isAcquisitionSignup = mode === "setup" && allowsPublicSignup && !isInvitation;
+    if (isAcquisitionSignup) {
+      posthog?.capture("account_signup_started", { signup_method: "email" });
+    }
 
     const result =
       mode === "setup"
@@ -418,6 +423,13 @@ export function AccessScreen({
       }
       setSubmitting(false);
       return;
+    }
+
+    if (isAcquisitionSignup) {
+      posthog?.capture("account_signup_completed", {
+        signup_method: "email",
+        email_verification_required: true,
+      });
     }
 
     if (mode === "setup" && allowsPublicSignup) {
@@ -1701,6 +1713,7 @@ function MemoryComposer({
   onCreated: () => Promise<void>;
   role: FamilyRole;
 }) {
+  const posthog = usePostHog();
   const [kind, setKind] = useState<MemoryKind>(initialKind);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -1790,6 +1803,11 @@ function MemoryComposer({
       }
     }
 
+    posthog?.capture("memory_created", {
+      memory_kind: kind,
+      has_media: Boolean(file),
+      memory_audience: audience,
+    });
     await onCreated();
     requestClose(true);
   }

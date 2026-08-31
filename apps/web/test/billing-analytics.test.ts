@@ -1,7 +1,7 @@
 import { env } from "cloudflare:workers";
 import { describe, expect, it } from "vitest";
 
-import { analyticsPath } from "@/lib/analytics";
+import { analyticsPath, marketingAttribution, readMarketingAttribution } from "@/lib/analytics";
 import {
   billingStatusForDodoEvent,
   getBillingConfig,
@@ -55,5 +55,40 @@ describe("privacy-safe analytics paths", () => {
     expect(analyticsPath("/the-johnson-family/timeline")).toBe("/:familySlug/timeline");
     expect(analyticsPath("/share/private-token-value")).toBe("/share/:token");
     expect(analyticsPath("/the-johnson-family/memories/private-id")).toBe("/:familySlug/home");
+  });
+
+  it("keeps public campaign landing pages distinct", () => {
+    expect(analyticsPath("/digital-time-capsule-for-kids")).toBe("/digital-time-capsule-for-kids");
+    expect(analyticsPath("/family-memory-app")).toBe("/family-memory-app");
+  });
+
+  it("allowlists campaign fields without retaining click identifiers or arbitrary queries", () => {
+    expect(
+      marketingAttribution(
+        "?utm_source=meta&utm_medium=paid_social&utm_campaign=first_test&utm_content=time_capsule&fbclid=private-click-id&email=person%40example.com",
+      ),
+    ).toEqual({
+      campaign_source: "meta",
+      campaign_medium: "paid_social",
+      campaign_name: "first_test",
+      campaign_content: "time_capsule",
+    });
+    expect(marketingAttribution("?fbclid=private-click-id")).toBeNull();
+  });
+
+  it("validates stored attribution before restoring it", () => {
+    expect(
+      readMarketingAttribution(
+        JSON.stringify({
+          campaign_source: "meta",
+          campaign_landing_path: "/family-memory-app",
+          email: "person@example.com",
+        }),
+      ),
+    ).toEqual({
+      campaign_source: "meta",
+      campaign_landing_path: "/family-memory-app",
+    });
+    expect(readMarketingAttribution("not-json")).toBeNull();
   });
 });

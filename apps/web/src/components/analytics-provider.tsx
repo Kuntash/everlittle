@@ -4,7 +4,13 @@ import posthog from "posthog-js";
 import { useEffect, useRef, useState } from "react";
 
 import { authClient } from "@/lib/auth-client";
-import { analyticsPath } from "@/lib/analytics";
+import {
+  MARKETING_ATTRIBUTION_STORAGE_KEY,
+  analyticsPath,
+  marketingAttribution,
+  readMarketingAttribution,
+} from "@/lib/analytics";
+import type { MarketingAttribution } from "@/lib/analytics";
 
 type AnalyticsConfig = {
   analytics?: { posthog?: { host?: string; token?: string } } | null;
@@ -16,6 +22,7 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
   const session = authClient.useSession();
   const identifiedUser = useRef<string | null>(null);
+  const capturedCampaignLanding = useRef<string | null>(null);
   const [ready, setReady] = useState(initialized);
 
   useEffect(() => {
@@ -49,6 +56,8 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
           person_profiles: "identified_only",
           persistence: "localStorage",
         });
+        const attribution = resolveMarketingAttribution(window.location.pathname);
+        if (attribution) posthog.register(attribution);
         initialized = true;
         setReady(true);
       })
@@ -62,8 +71,45 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!ready) return;
-    posthog.capture("$pageview", { $current_url: analyticsPath(pathname) });
+    const safePath = analyticsPath(pathname);
+    const directCampaign = marketingAttribution(window.location.search);
+    const attribution = resolveMarketingAttribution(pathname);
+    if (attribution) posthog.register(attribution);
+    posthog.capture("$pageview", { $current_url: safePath });
+
+    if (directCampaign) {
+      const campaignKey = JSON.stringify({ ...directCampaign, campaign_landing_path: safePath });
+      if (capturedCampaignLanding.current !== campaignKey) {
+        posthog.capture("campaign_landing_view", {
+          ...directCampaign,
+          landing_path: safePath,
+        });
+        capturedCampaignLanding.current = campaignKey;
+      }
+    }
   }, [pathname, ready]);
+
+  useEffect(() => {
+    if (!ready) return;
+
+    function captureMarketingClick(event: MouseEvent) {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const link = target.closest<HTMLAnchorElement>("a[href]");
+      if (!link) return;
+      const destination = new URL(link.href, window.location.origin);
+      if (destination.origin !== window.location.origin || destination.pathname !== "/sign-up") {
+        return;
+      }
+      posthog.capture("marketing_signup_cta_clicked", {
+        source_path: analyticsPath(window.location.pathname),
+        destination_path: "/sign-up",
+      });
+    }
+
+    document.addEventListener("click", captureMarketingClick);
+    return () => document.removeEventListener("click", captureMarketingClick);
+  }, [ready]);
 
   useEffect(() => {
     const userId = session.data?.user.id ?? null;
@@ -78,4 +124,26 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   }, [ready, session.data?.user.id]);
 
   return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
+}
+
+function resolveMarketingAttribution(pathname: string): MarketingAttribution | null {
+  const direct = marketingAttribution(window.location.search);
+  if (direct) {
+    const attribution = {
+      ...direct,
+      campaign_landing_path: analyticsPath(pathname),
+    };
+    try {
+      localStorage.setItem(MARKETING_ATTRIBUTION_STORAGE_KEY, JSON.stringify(attribution));
+    } catch {
+      // Attribution is optional and must not interfere with the app.
+    }
+    return attribution;
+  }
+
+  try {
+    return readMarketingAttribution(localStorage.getItem(MARKETING_ATTRIBUTION_STORAGE_KEY));
+  } catch {
+    return null;
+  }
 }
