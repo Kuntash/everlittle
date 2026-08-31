@@ -1,16 +1,16 @@
 # Graph Report - everlittle  (2026-08-31)
 
 ## Corpus Check
-- 93 files · ~1,546,598 words
+- 93 files · ~1,546,631 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2419 nodes · 3025 edges · 206 communities (52 shown, 154 thin omitted)
+- 2419 nodes · 3025 edges · 207 communities (53 shown, 154 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `2341a74d`
+- Built from commit: `9a8b7ba1`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -181,6 +181,7 @@
 - WebSearch
 - web/vite.config.ts
 - Self-hosting Everlittle on Cloudflare
+- scopedApiPath
 - pre-commit
 - family_archive
 - archive-api-isolation.test.ts
@@ -240,7 +241,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (206 total, 154 thin omitted)
+## Communities (207 total, 154 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -331,12 +332,16 @@ Cohesion: 0.22
 Nodes (8): assertProductConfiguration(), client, cloudflareSecrets, ensureProduct(), products, upload, variables, WEBHOOK_EVENTS
 
 ### Community 157 - "formatMemoryDate"
-Cohesion: 0.25
-Nodes (11): audienceLabel(), ChildView(), formatMediaTime(), formatMemoryDate(), kindLabel(), memoryIcon(), MemoryMedia(), MemoryRow() (+3 more)
+Cohesion: 0.33
+Nodes (9): audienceLabel(), ChildView(), formatMemoryDate(), kindLabel(), memoryIcon(), MemoryMedia(), MemoryRow(), ParentView() (+1 more)
 
 ### Community 168 - "Self-hosting Everlittle on Cloudflare"
 Cohesion: 0.06
 Nodes (31): Capability policy, Everlittle deployment modes, Hosted, Local fixtures, Runtime validation, Self-hosted, Current founding access, Dodo Payments boundary (+23 more)
+
+### Community 169 - "scopedApiPath"
+Cohesion: 0.40
+Nodes (6): currentFamilySlug(), formatMediaTime(), scopedApiPath(), SecureAudioPlayer(), SecureVideoPlayer(), waveformFromAudio()
 
 ### Community 171 - "family_archive"
 Cohesion: 0.11
@@ -363,8 +368,8 @@ Cohesion: 0.43
 Nodes (6): buildInvitationEmail(), escapeHtml(), InvitationEmailInput, roleDescriptions, sendInvitationEmail(), titleCase()
 
 ### Community 179 - "auth-route.tsx"
-Cohesion: 0.14
-Nodes (13): AuthRoute(), safeRedirect(), AccessScreen(), InvitationAcceptance(), InvitationPreview, Loading(), PlatformState, requestedRedirect() (+5 more)
+Cohesion: 0.21
+Nodes (8): AuthRoute(), safeRedirect(), InvitationPreview, Loading(), PlatformState, Route, Route, Route
 
 ### Community 180 - "Everlittle"
 Cohesion: 0.15
@@ -391,8 +396,8 @@ Cohesion: 0.50
 Nodes (3): ArchiveEntry, resolveArchiveEntry(), ArchiveRedirect()
 
 ### Community 196 - "MemoryComposer"
-Cohesion: 0.18
-Nodes (21): apiFetch(), ArchiveApp(), CapsuleComposer(), currentArchiveView(), currentFamilySlug(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize() (+13 more)
+Cohesion: 0.16
+Nodes (22): AccessScreen(), apiFetch(), ArchiveApp(), CapsuleComposer(), currentArchiveView(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize() (+14 more)
 
 ### Community 197 - "server.ts"
 Cohesion: 0.14

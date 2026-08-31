@@ -83,23 +83,35 @@ export async function createBillingCheckout(input: {
   const client = createDodoClient(config);
   let customerId = archive.providerCustomerId;
   if (!customerId) {
+    customerId = await createProviderCustomer();
+  } else {
+    try {
+      await client.customers.retrieve(customerId);
+    } catch (error) {
+      if (!(error instanceof DodoPayments.NotFoundError)) throw error;
+      customerId = await createProviderCustomer();
+    }
+  }
+
+  async function createProviderCustomer() {
     const customer = await client.customers.create(
       {
         email: input.owner.email,
         name: input.owner.name,
         metadata: { archive_id: input.archiveId, owner_user_id: input.owner.id },
       },
-      { idempotencyKey: `everlittle-customer-${input.archiveId}` },
+      { idempotencyKey: `everlittle-customer-${config.environment}-${input.archiveId}` },
     );
-    customerId = customer.customer_id;
     await input.database
       .prepare(
         `UPDATE archive_subscription
          SET provider_customer_id = ?, updated_at = CURRENT_TIMESTAMP
-         WHERE archive_id = ? AND provider_customer_id IS NULL`,
+         WHERE archive_id = ?
+           AND (provider_customer_id IS NULL OR provider_customer_id = ?)`,
       )
-      .bind(customerId, input.archiveId)
+      .bind(customer.customer_id, input.archiveId, customerId)
       .run();
+    return customer.customer_id;
   }
 
   const familyUrl = `${input.publicAppUrl}/${encodeURIComponent(archive.slug)}/settings`;

@@ -569,7 +569,7 @@ async function startBillingCheckout(request: Request): Promise<Response> {
     );
   } catch (error) {
     if (error instanceof BillingConfigurationError) {
-      return Response.json({ error: "Test billing is not configured yet." }, { status: 503 });
+      return Response.json({ error: "Billing is not configured yet." }, { status: 503 });
     }
     console.error("Could not create Dodo checkout", error);
     return Response.json({ error: "Could not open secure checkout." }, { status: 502 });
@@ -596,7 +596,7 @@ async function openBillingPortal(request: Request): Promise<Response> {
     );
   } catch (error) {
     if (error instanceof BillingConfigurationError) {
-      return Response.json({ error: "Test billing is not configured yet." }, { status: 503 });
+      return Response.json({ error: "Billing is not configured yet." }, { status: 503 });
     }
     if (error instanceof BillingPortalUnavailableError) {
       return Response.json(

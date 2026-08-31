@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1787742406.472002,
-    "ast_hash": "5db4ee987407c5600d92229509b9b7ce",
+    "mtime": 1788139298.811758,
+    "ast_hash": "a2564750eb35348862f40b153281a21d",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -605,8 +605,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/billing.ts": {
-    "mtime": 1787733438.502591,
-    "ast_hash": "57f46e9666c8ccb80dcb4a61e040a08b",
+    "mtime": 1788139298.8097522,
+    "ast_hash": "4f247a3a70b425aeb76576e61c49d57a",
     "semantic_hash": ""
   },
   "apps/web/test/billing-analytics.test.ts": {
