@@ -44,7 +44,7 @@ import { ScrapbookHome } from "@/components/scrapbook-home";
 export const Route = createFileRoute("/")({
   component: Everlittle,
   head: () => ({
-    links: [{ href: "/", rel: "canonical" }],
+    links: [{ href: "https://geteverlittle.com/", rel: "canonical" }],
     meta: [
       { title: "Everlittle — Memories to grow into" },
       {
@@ -53,14 +53,56 @@ export const Route = createFileRoute("/")({
           "A private family archive for photographs, voices, everyday stories, and letters for the future.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Everlittle" },
+      { property: "og:url", content: "https://geteverlittle.com/" },
       { property: "og:title", content: "Everlittle — Memories to grow into" },
       {
         property: "og:description",
         content: "Keep the little things in a private family archive your child can grow into.",
       },
-      { property: "og:image", content: "/marketing/family-album.jpg" },
+      {
+        property: "og:image",
+        content: "https://geteverlittle.com/marketing/family-album.jpg",
+      },
+      { property: "og:image:width", content: "1536" },
+      { property: "og:image:height", content: "1024" },
+      {
+        property: "og:image:alt",
+        content: "Three generations looking through a family album together",
+      },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Everlittle — Memories to grow into" },
+      {
+        name: "twitter:description",
+        content: "Keep the little things in a private family archive your child can grow into.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://geteverlittle.com/marketing/family-album.jpg",
+      },
+      {
+        name: "twitter:image:alt",
+        content: "Three generations looking through a family album together",
+      },
       { name: "robots", content: "index,follow" },
+      {
+        "script:ld+json": {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: "Everlittle",
+          applicationCategory: "LifestyleApplication",
+          operatingSystem: "Web",
+          url: "https://geteverlittle.com/",
+          image: "https://geteverlittle.com/marketing/family-album.jpg",
+          description:
+            "A private family archive for photographs, voices, everyday stories, and letters for the future.",
+          offers: {
+            "@type": "Offer",
+            price: "6",
+            priceCurrency: "USD",
+          },
+        },
+      },
     ],
   }),
 });
@@ -212,7 +254,10 @@ export function Everlittle() {
       .finally(() => setInvitationChecked(true));
   }, [inviteToken]);
 
-  if (session.isPending || !platform || !childSession || !invitationChecked) return <Loading />;
+  if (session.isPending || !platform || !childSession || !invitationChecked) {
+    const isPublicHomepage = !currentFamilySlug() && !inviteToken && !childModeRequested;
+    return isPublicHomepage ? <ScrapbookHome /> : <Loading />;
+  }
   if (platform.deploymentMode === "hosted" && !session.data?.user && currentFamilySlug()) {
     const destination = `${location.pathname}${location.search}`;
     location.replace(`/sign-in?redirect=${encodeURIComponent(destination)}`);

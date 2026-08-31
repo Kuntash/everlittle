@@ -7,6 +7,12 @@ import { createAuth } from "@/lib/auth";
 import { sendAuthEmail } from "@/lib/auth-email";
 import { handleDodoWebhook } from "@/lib/billing";
 import { getCanonicalHostedUrl, getDeploymentConfig } from "@/lib/deployment";
+import {
+  isKnownPagePath,
+  notFoundResponse,
+  robotsResponse,
+  sitemapResponse,
+} from "@/lib/public-web";
 import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 import { getRuntimeEnv } from "@/lib/runtime-env";
 
@@ -23,6 +29,17 @@ export default createServerEntry({
         ? getCanonicalHostedUrl(deployment, request.url)
         : null;
     if (canonicalUrl) return Response.redirect(canonicalUrl, 308);
+
+    if ((request.method === "GET" || request.method === "HEAD") && url.pathname === "/robots.txt") {
+      return robotsResponse(deployment);
+    }
+
+    if (
+      (request.method === "GET" || request.method === "HEAD") &&
+      url.pathname === "/sitemap.xml"
+    ) {
+      return sitemapResponse(deployment);
+    }
 
     if (url.pathname.startsWith("/api/auth/")) {
       return handleAuthRequest(request);
@@ -80,6 +97,14 @@ export default createServerEntry({
             }
           : null,
       });
+    }
+
+    if (request.method !== "GET" && request.method !== "HEAD") {
+      return notFoundResponse();
+    }
+
+    if (!(await isKnownPagePath(url.pathname, runtime.DB))) {
+      return notFoundResponse();
     }
 
     const response = await handler.fetch(request);

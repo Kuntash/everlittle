@@ -45,13 +45,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1787847482.5508451,
-    "ast_hash": "6a97d0947ab6292da48216499ce1d1a6",
+    "mtime": 1788139780.4938917,
+    "ast_hash": "e4f43acfa208d2c6516784712ab6361e",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1787768598.3965533,
-    "ast_hash": "ece31ccc00779a96cfacb9fb4fbd22a6",
+    "mtime": 1788140097.7844121,
+    "ast_hash": "2e6063a59b49d90b47c406311971a52a",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -575,8 +575,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/pricing.tsx": {
-    "mtime": 1787573094.9770129,
-    "ast_hash": "3917132afc32fbeafb1aa892096e1711",
+    "mtime": 1788139706.8109105,
+    "ast_hash": "817b7a7aaf6c1cb08154d7d016bb6d75",
     "semantic_hash": ""
   },
   "docs/hosted-billing.md": {
@@ -647,6 +647,16 @@
   "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md": {
     "mtime": 1787847505.085053,
     "ast_hash": "a98ff6037765ae0439e378d280ccb728",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/public-web.ts": {
+    "mtime": 1788139706.8079047,
+    "ast_hash": "67700cb0e44ae06949ec52d8b7339c0e",
+    "semantic_hash": ""
+  },
+  "apps/web/test/public-web.test.ts": {
+    "mtime": 1788140097.7843108,
+    "ast_hash": "3096e22ff8d88864ff5736309eb3dbab",
     "semantic_hash": ""
   }
 }
