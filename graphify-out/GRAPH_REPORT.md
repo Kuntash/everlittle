@@ -1,16 +1,16 @@
-# Graph Report - everlittle  (2026-08-27)
+# Graph Report - everlittle  (2026-08-31)
 
 ## Corpus Check
-- 92 files · ~1,546,434 words
+- 93 files · ~1,546,598 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2414 nodes · 3021 edges · 206 communities (52 shown, 154 thin omitted)
+- 2419 nodes · 3025 edges · 206 communities (52 shown, 154 thin omitted)
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `99e5b9c8`
+- Built from commit: `2341a74d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -59,7 +59,7 @@
 - SqlStorageCursor
 - Vectorize
 - ui/package.json
-- scopedApiPath
+- Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time
 - Ai
 - AiSearchNamespace
 - ReadableStreamBYOBReader
@@ -306,9 +306,9 @@ Nodes (3): ByteLengthQueuingStrategy, CountQueuingStrategy, QueuingStrategy
 Cohesion: 0.25
 Nodes (7): exports, ./theme.css, license, name, private, type, version
 
-### Community 45 - "scopedApiPath"
+### Community 45 - "Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time"
 Cohesion: 0.40
-Nodes (6): currentFamilySlug(), formatMediaTime(), scopedApiPath(), SecureAudioPlayer(), SecureVideoPlayer(), waveformFromAudio()
+Nodes (4): Answer, Outcome, Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time, Source Nodes
 
 ### Community 78 - "Everlittle TODO"
 Cohesion: 0.14
@@ -331,8 +331,8 @@ Cohesion: 0.22
 Nodes (8): assertProductConfiguration(), client, cloudflareSecrets, ensureProduct(), products, upload, variables, WEBHOOK_EVENTS
 
 ### Community 157 - "formatMemoryDate"
-Cohesion: 0.33
-Nodes (9): audienceLabel(), ChildView(), formatMemoryDate(), kindLabel(), memoryIcon(), MemoryMedia(), MemoryRow(), ParentView() (+1 more)
+Cohesion: 0.25
+Nodes (11): audienceLabel(), ChildView(), formatMediaTime(), formatMemoryDate(), kindLabel(), memoryIcon(), MemoryMedia(), MemoryRow() (+3 more)
 
 ### Community 168 - "Self-hosting Everlittle on Cloudflare"
 Cohesion: 0.06
@@ -363,8 +363,8 @@ Cohesion: 0.43
 Nodes (6): buildInvitationEmail(), escapeHtml(), InvitationEmailInput, roleDescriptions, sendInvitationEmail(), titleCase()
 
 ### Community 179 - "auth-route.tsx"
-Cohesion: 0.21
-Nodes (8): AuthRoute(), safeRedirect(), InvitationPreview, Loading(), PlatformState, Route, Route, Route
+Cohesion: 0.14
+Nodes (13): AuthRoute(), safeRedirect(), AccessScreen(), InvitationAcceptance(), InvitationPreview, Loading(), PlatformState, requestedRedirect() (+5 more)
 
 ### Community 180 - "Everlittle"
 Cohesion: 0.15
@@ -391,8 +391,8 @@ Cohesion: 0.50
 Nodes (3): ArchiveEntry, resolveArchiveEntry(), ArchiveRedirect()
 
 ### Community 196 - "MemoryComposer"
-Cohesion: 0.16
-Nodes (22): AccessScreen(), apiFetch(), ArchiveApp(), CapsuleComposer(), currentArchiveView(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize() (+14 more)
+Cohesion: 0.18
+Nodes (21): apiFetch(), ArchiveApp(), CapsuleComposer(), currentArchiveView(), currentFamilySlug(), currentLocalDateTime(), defaultCapsuleDate(), formatFileSize() (+13 more)
 
 ### Community 197 - "server.ts"
 Cohesion: 0.14
@@ -415,7 +415,7 @@ Cohesion: 0.53
 Nodes (4): AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail()
 
 ## Knowledge Gaps
-- **1143 isolated node(s):** `"verification"`, `child_access_attempt`, `billing_webhook_event`, `name`, `version` (+1138 more)
+- **1146 isolated node(s):** `"verification"`, `child_access_attempt`, `billing_webhook_event`, `name`, `version` (+1141 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **154 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
@@ -429,7 +429,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `WritableStreamDefaultWriter` connect `WritableStreamDefaultWriter` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.020) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `billing_webhook_event` to the rest of the system?**
-  _1143 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1146 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**

@@ -4366,8 +4366,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_accessscreen",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 179,
+      "community_name": "auth-route.tsx",
       "norm_label": "accessscreen()"
     },
     {
@@ -4378,8 +4378,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_invitationacceptance",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 179,
+      "community_name": "auth-route.tsx",
       "norm_label": "invitationacceptance()"
     },
     {
@@ -4509,8 +4509,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_secureaudioplayer",
-      "community": 45,
-      "community_name": "scopedApiPath",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "secureaudioplayer()"
     },
     {
@@ -4521,8 +4521,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_securevideoplayer",
-      "community": 45,
-      "community_name": "scopedApiPath",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "securevideoplayer()"
     },
     {
@@ -4642,8 +4642,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_scopedapipath",
-      "community": 45,
-      "community_name": "scopedApiPath",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "scopedapipath()"
     },
     {
@@ -4654,8 +4654,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_currentfamilyslug",
-      "community": 45,
-      "community_name": "scopedApiPath",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "currentfamilyslug()"
     },
     {
@@ -4678,8 +4678,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_requestedredirect",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 179,
+      "community_name": "auth-route.tsx",
       "norm_label": "requestedredirect()"
     },
     {
@@ -4702,8 +4702,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_rolelabel",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 179,
+      "community_name": "auth-route.tsx",
       "norm_label": "rolelabel()"
     },
     {
@@ -4714,8 +4714,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_roledescription",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 179,
+      "community_name": "auth-route.tsx",
       "norm_label": "roledescription()"
     },
     {
@@ -4798,8 +4798,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatmediatime",
-      "community": 45,
-      "community_name": "scopedApiPath",
+      "community": 157,
+      "community_name": "formatMemoryDate",
       "norm_label": "formatmediatime()"
     },
     {
@@ -4834,8 +4834,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_waveformfromaudio",
-      "community": 45,
-      "community_name": "scopedApiPath",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "waveformfromaudio()"
     },
     {
@@ -29629,6 +29629,61 @@
       "community": 173,
       "community_name": "Tenant-isolation inventory",
       "norm_label": "deployment gate"
+    },
+    {
+      "label": "query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo",
+      "community": 45,
+      "community_name": "Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time",
+      "norm_label": "query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md"
+    },
+    {
+      "label": "Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_q_how_would_you_market_this_to_get_the_initial_customers_as_fast_as_possible_which_funnels_organic_might_take_too_much_time",
+      "community": 45,
+      "community_name": "Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time",
+      "norm_label": "q: how would you market this to get the initial customers as fast as possible? which funnels? organic might take too much time"
+    },
+    {
+      "label": "Answer",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_answer",
+      "community": 45,
+      "community_name": "Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time",
+      "norm_label": "answer"
+    },
+    {
+      "label": "Outcome",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_outcome",
+      "community": 45,
+      "community_name": "Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time",
+      "norm_label": "outcome"
+    },
+    {
+      "label": "Source Nodes",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_source_nodes",
+      "community": 45,
+      "community_name": "Q: How would you market this to get the initial customers as fast as possible? Which funnels? Organic might take too much time",
+      "norm_label": "source nodes"
     }
   ],
   "links": [
@@ -63559,8 +63614,52 @@
       "source": "docs_tenant_isolation_tenant_isolation_inventory",
       "target": "docs_tenant_isolation_tenant_owned_records",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo",
+      "target": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_q_how_would_you_market_this_to_get_the_initial_customers_as_fast_as_possible_which_funnels_organic_might_take_too_much_time",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_q_how_would_you_market_this_to_get_the_initial_customers_as_fast_as_possible_which_funnels_organic_might_take_too_much_time",
+      "target": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_answer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_q_how_would_you_market_this_to_get_the_initial_customers_as_fast_as_possible_which_funnels_organic_might_take_too_much_time",
+      "target": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_outcome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_q_how_would_you_market_this_to_get_the_initial_customers_as_fast_as_possible_which_funnels_organic_might_take_too_much_time",
+      "target": "graphify_out_memory_query_20260827_161825_how_would_you_market_this_to_get_the_initial_custo_source_nodes",
+      "confidence_score": 1.0
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "99e5b9c82f3aa007fd9ccb5d1c0fe3358611f4c4"
+  "built_at_commit": "2341a74dccd03606c00effe8ca22cb3d7e5b229e"
 }

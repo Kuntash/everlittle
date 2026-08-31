@@ -6,6 +6,7 @@ dist/
 .dev.vars
 .env
 .DS_Store
+error.log
 apps/web/wrangler.self-hosted.jsonc
 apps/web/src/routeTree.gen.ts
 
@@ -17,10 +18,14 @@ graphify-out/.graphify_extract.json
 graphify-out/.graphify_ast.json
 graphify-out/.graphify_semantic*.json
 graphify-out/.graphify_incremental.json
+graphify-out/.graphify_learning.json
 graphify-out/.graphify_old.json
 graphify-out/.graphify_chunk_*.json
 graphify-out/.graphify_uncached.txt
 graphify-out/.graphify_cached.json
+graphify-out/.vocab.txt
 graphify-out/.needs_update
 graphify-out/20??-??-??/
 graphify-out/cache/last_query_stamp
+graphify-out/memory/
+graphify-out/reflections/
