@@ -838,5 +838,145 @@
     "mtime": 1788693098.6469698,
     "ast_hash": "74ee83b41c4587df370a835ccbadeec7",
     "semantic_hash": ""
+  },
+  "REDESIGN_STATUS.md": {
+    "mtime": 1788807746.8274984,
+    "ast_hash": "fb544c8932d939dabe981f2c7c01f150",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/README.md": {
+    "mtime": 1788785742.099147,
+    "ast_hash": "fcfaad8599aafd060ede43bc1c85ec62",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/index.html": {
+    "mtime": 1788785742.098454,
+    "ast_hash": "dda82e05e8c1c6c2ad742f5e05ad8445",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-landing-2026-09-07/README.md": {
+    "mtime": 1788807746.8272321,
+    "ast_hash": "7f8b7b0720237248ad307ab23514981d",
+    "semantic_hash": ""
+  },
+  "assets/design/soft-ui-directions-2026-09-07/README.md": {
+    "mtime": 1788780165.0991225,
+    "ast_hash": "dfc94df05abcaac19b69c0ac0d5cb92a",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/meta-ad-time-capsule-feed-v1.png": {
+    "mtime": 1788147472.1605165,
+    "ast_hash": "90480fdb1d42303df74501732f418093",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/01-parent-refined.png": {
+    "mtime": 1788780486.5026894,
+    "ast_hash": "fb55e16e8f904d364bed939eb7a88180",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/01-parent.png": {
+    "mtime": 1788780305.8522446,
+    "ast_hash": "7835d331697db80234dab66c0155079f",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/02-timeline-final.png": {
+    "mtime": 1788782745.4515345,
+    "ast_hash": "5aebf5edef0b067dfe6057f876c19c6a",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/02-timeline-refined.png": {
+    "mtime": 1788780562.3484588,
+    "ast_hash": "06d0b44c177ec49d8bc2bf3c95a08cb5",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/02-timeline.png": {
+    "mtime": 1788780305.855947,
+    "ast_hash": "04fe24dd484d9d185ce4cd7e7cf25bc3",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/03-capsules-refined.png": {
+    "mtime": 1788782745.4549053,
+    "ast_hash": "67d16d7cfc32f7bdc3a995237f13fad4",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/03-capsules.png": {
+    "mtime": 1788780437.7717094,
+    "ast_hash": "2a9d3c22192c72e3c78ed9f8ffa33f06",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/04-child-refined.png": {
+    "mtime": 1788780486.5072427,
+    "ast_hash": "74e3f7a3e287dcc53094a3cffc8c5c6b",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/04-child.png": {
+    "mtime": 1788780378.3993278,
+    "ast_hash": "d6aa23b37fae593e5d5af1c3734bd659",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/05-family-refined.png": {
+    "mtime": 1788782745.4582775,
+    "ast_hash": "9e1cf1e87d4a7e2d4944fa81082bc937",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/05-family.png": {
+    "mtime": 1788780518.819169,
+    "ast_hash": "9f98349d9a42669aea8763ceab0bf9e1",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/06-memory-composer-refined.png": {
+    "mtime": 1788782745.4612858,
+    "ast_hash": "d0455820b9218f71bcee9d07c1784079",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/06-memory-composer.png": {
+    "mtime": 1788780562.3521383,
+    "ast_hash": "29ba3cdce60d794a0b888625eddbd705",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/07-capsule-composer.png": {
+    "mtime": 1788782745.4689002,
+    "ast_hash": "a8b6cfbaf8df45d993befef27b5026f3",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/08-family-settings.png": {
+    "mtime": 1788782745.4758506,
+    "ast_hash": "ba814ad68d52bb65904fe5cfd4495fb2",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/09-memory-detail.png": {
+    "mtime": 1788782745.4794445,
+    "ast_hash": "01e2904341c75eee6120649248869929",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-detailed-2026-09-07/10-button-states.png": {
+    "mtime": 1788782745.481973,
+    "ast_hash": "1cd642758e40a26666fab97e4b364b33",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-landing-2026-09-07/landing-desktop-mobile.png": {
+    "mtime": 1788784892.6134977,
+    "ast_hash": "1c0c5029d71189ed579143107ad62c1a",
+    "semantic_hash": ""
+  },
+  "assets/design/apricot-landing-2026-09-07/landing-spacious-v2.png": {
+    "mtime": 1788785690.9424646,
+    "ast_hash": "d67a5d723025d679c918de87228eb390",
+    "semantic_hash": ""
+  },
+  "assets/design/soft-ui-directions-2026-09-07/a-apricot-moments.png": {
+    "mtime": 1788779656.1575093,
+    "ast_hash": "46701e1607ab8b2ccb489e84b1c8b38f",
+    "semantic_hash": ""
+  },
+  "assets/design/soft-ui-directions-2026-09-07/b-gentle-green.png": {
+    "mtime": 1788779539.786693,
+    "ast_hash": "851011aa2405412e036407d0d18dc984",
+    "semantic_hash": ""
+  },
+  "assets/design/soft-ui-directions-2026-09-07/c-memory-library.png": {
+    "mtime": 1788779516.8578272,
+    "ast_hash": "d80fac3aecc65e769469126a665d5646",
+    "semantic_hash": ""
   }
 }

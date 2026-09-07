@@ -1563,7 +1563,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_analytics_provider",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "analytics-provider.tsx"
     },
     {
@@ -1576,7 +1576,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_analytics_provider_analyticsconfig",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "analyticsconfig"
     },
     {
@@ -1588,7 +1588,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_analytics_provider_analyticsprovider",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "analyticsprovider()"
     },
     {
@@ -1600,7 +1600,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_analytics_provider_resolvemarketingattribution",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "resolvemarketingattribution()"
     },
     {
@@ -1693,7 +1693,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_brand",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "brand.tsx"
     },
     {
@@ -1705,7 +1705,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_brand_brand",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "brand()"
     },
     {
@@ -1716,7 +1716,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "marketing-home.tsx"
     },
     {
@@ -1728,7 +1728,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_waveform",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "waveform"
     },
     {
@@ -1739,8 +1739,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_star",
-      "community": 157,
-      "community_name": "memoryIcon",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "star()"
     },
     {
@@ -1752,7 +1752,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_pricingsection",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "pricingsection()"
     },
     {
@@ -1764,7 +1764,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketingpricingpage",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "marketingpricingpage()"
     },
     {
@@ -1776,7 +1776,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketinghome",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "marketinghome()"
     },
     {
@@ -1787,7 +1787,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_password_input",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "password-input.tsx"
     },
     {
@@ -1800,7 +1800,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_password_input_passwordinputprops",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "passwordinputprops"
     },
     {
@@ -1812,7 +1812,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_password_input_passwordinput",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "passwordinput()"
     },
     {
@@ -1823,7 +1823,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_reset_password",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "components/reset-password.tsx"
     },
     {
@@ -1835,7 +1835,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_reset_password_resetpassword",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "resetpassword()"
     },
     {
@@ -1846,7 +1846,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "scrapbook-home.tsx"
     },
     {
@@ -1858,7 +1858,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home_waveform",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "waveform"
     },
     {
@@ -1869,8 +1869,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_scrapbook_home_scrapbookhome",
-      "community": 181,
-      "community_name": "index.tsx",
+      "community": 13,
+      "community_name": "brand.tsx",
       "norm_label": "scrapbookhome()"
     },
     {
@@ -1880,8 +1880,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_seo_landing_page",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seo-landing-page.tsx"
     },
     {
@@ -1892,8 +1892,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_seo_landing_page_seolandingpage",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seolandingpage()"
     },
     {
@@ -1904,8 +1904,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_seo_landing_page_marketingnav",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "marketingnav()"
     },
     {
@@ -1916,8 +1916,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_seo_landing_page_marketingfooter",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "marketingfooter()"
     },
     {
@@ -1928,7 +1928,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_ui_sonner",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "sonner.tsx"
     },
     {
@@ -1940,7 +1940,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_ui_sonner_toaster",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "toaster()"
     },
     {
@@ -1962,7 +1962,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_analytics",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "analytics.ts"
     },
     {
@@ -1973,7 +1973,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_analytics_marketing_attribution_storage_key",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "marketing_attribution_storage_key"
     },
     {
@@ -1986,7 +1986,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_analytics_marketingattribution",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "marketingattribution"
     },
     {
@@ -1998,7 +1998,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_analytics_analyticspath",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "analyticspath()"
     },
     {
@@ -2010,7 +2010,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_analytics_readmarketingattribution",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "readmarketingattribution()"
     },
     {
@@ -2022,7 +2022,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_analytics_safecampaignvalue",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "safecampaignvalue()"
     },
     {
@@ -3276,7 +3276,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_audio_waveform",
       "community": 217,
-      "community_name": "audio-waveform.ts",
+      "community_name": "scopedApiPath",
       "norm_label": "audio-waveform.ts"
     },
     {
@@ -3289,7 +3289,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_audio_waveform_waveform",
       "community": 217,
-      "community_name": "audio-waveform.ts",
+      "community_name": "scopedApiPath",
       "norm_label": "waveform"
     },
     {
@@ -3300,7 +3300,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_audio_waveform_fallback_waveform",
       "community": 217,
-      "community_name": "audio-waveform.ts",
+      "community_name": "scopedApiPath",
       "norm_label": "fallback_waveform"
     },
     {
@@ -3312,7 +3312,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_audio_waveform_waveformfromchannels",
       "community": 217,
-      "community_name": "audio-waveform.ts",
+      "community_name": "scopedApiPath",
       "norm_label": "waveformfromchannels()"
     },
     {
@@ -3324,7 +3324,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_audio_waveform_waveformfromaudio",
       "community": 217,
-      "community_name": "audio-waveform.ts",
+      "community_name": "scopedApiPath",
       "norm_label": "waveformfromaudio()"
     },
     {
@@ -3334,8 +3334,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_client",
-      "community": 179,
-      "community_name": "auth-route.tsx",
+      "community": 216,
+      "community_name": "onboarding.tsx",
       "norm_label": "auth-client.ts"
     },
     {
@@ -3345,8 +3345,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_client_authclient",
-      "community": 179,
-      "community_name": "auth-route.tsx",
+      "community": 216,
+      "community_name": "onboarding.tsx",
       "norm_label": "authclient"
     },
     {
@@ -3417,7 +3417,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_feedback",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "auth-feedback.ts"
     },
     {
@@ -3430,7 +3430,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_feedback_authclienterror",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "authclienterror"
     },
     {
@@ -3442,7 +3442,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_auth_feedback_isexistingaccounterror",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "isexistingaccounterror()"
     },
     {
@@ -3902,7 +3902,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_memory_paper",
       "community": 157,
-      "community_name": "memoryIcon",
+      "community_name": "memory-paper.ts",
       "norm_label": "memory-paper.ts"
     },
     {
@@ -3915,7 +3915,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_memory_paper_kind",
       "community": 157,
-      "community_name": "memoryIcon",
+      "community_name": "memory-paper.ts",
       "norm_label": "kind"
     },
     {
@@ -3926,7 +3926,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_memory_paper_papers",
       "community": 157,
-      "community_name": "memoryIcon",
+      "community_name": "memory-paper.ts",
       "norm_label": "papers"
     },
     {
@@ -3938,7 +3938,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_memory_paper_memorypaper",
       "community": 157,
-      "community_name": "memoryIcon",
+      "community_name": "memory-paper.ts",
       "norm_label": "memorypaper()"
     },
     {
@@ -4126,7 +4126,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "pwa-install.ts"
     },
     {
@@ -4139,7 +4139,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install_pwainstallcontext",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "pwainstallcontext"
     },
     {
@@ -4151,7 +4151,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_pwa_install_shouldofferpwainstall",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "shouldofferpwainstall()"
     },
     {
@@ -4197,8 +4197,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_page_paths",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seo-page-paths.ts"
     },
     {
@@ -4208,8 +4208,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_page_paths_seo_page_links",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seo_page_links"
     },
     {
@@ -4221,8 +4221,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_page_paths_seopagepath",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seopagepath"
     },
     {
@@ -4233,7 +4233,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_page_paths_seo_page_paths",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seo_page_paths"
     },
     {
@@ -4243,8 +4243,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_pages",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seo-pages.ts"
     },
     {
@@ -4256,8 +4256,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_pages_seopagesection",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seopagesection"
     },
     {
@@ -4269,8 +4269,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_pages_seopagefaq",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seopagefaq"
     },
     {
@@ -4282,8 +4282,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_pages_seolandingpagecontent",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seolandingpagecontent"
     },
     {
@@ -4293,8 +4293,8 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_pages_seolandingpages",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seolandingpages"
     },
     {
@@ -4305,8 +4305,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_lib_seo_pages_seolandingpagehead",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "seolandingpagehead()"
     },
     {
@@ -4453,7 +4453,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "$familyslug.kids.$childslug.tsx"
     },
     {
@@ -4464,7 +4464,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_route",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "route"
     },
     {
@@ -4477,7 +4477,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_childsession",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "childsession"
     },
     {
@@ -4489,7 +4489,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_childslug_childaccess",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "childaccess()"
     },
     {
@@ -4500,7 +4500,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "$familyslug.kids.index.tsx"
     },
     {
@@ -4511,7 +4511,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_route",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "route"
     },
     {
@@ -4524,7 +4524,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_publicchild",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "publicchild"
     },
     {
@@ -4536,7 +4536,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_familyslug_kids_index_childchooser",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "childchooser()"
     },
     {
@@ -4613,7 +4613,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "__root.tsx"
     },
     {
@@ -4624,7 +4624,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root_route",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -4636,7 +4636,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root_rootdocument",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "rootdocument()"
     },
     {
@@ -4649,7 +4649,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root_installpromptevent",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "installpromptevent"
     },
     {
@@ -4661,7 +4661,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_root_pwaexperience",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "pwaexperience()"
     },
     {
@@ -4671,8 +4671,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_baby_memory_journal",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "baby-memory-journal.tsx"
     },
     {
@@ -4682,8 +4682,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "apps_web_src_routes_baby_memory_journal_route",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -4693,8 +4693,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_digital_time_capsule_for_kids",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "digital-time-capsule-for-kids.tsx"
     },
     {
@@ -4704,8 +4704,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "apps_web_src_routes_digital_time_capsule_for_kids_route",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -4715,8 +4715,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_family_memory_app",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "family-memory-app.tsx"
     },
     {
@@ -4726,8 +4726,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "apps_web_src_routes_family_memory_app_route",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -4737,8 +4737,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_grandparents_memory_project",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "grandparents-memory-project.tsx"
     },
     {
@@ -4748,8 +4748,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "apps_web_src_routes_grandparents_memory_project_route",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -4988,7 +4988,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_index_accessscreen",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "accessscreen()"
     },
     {
@@ -5000,7 +5000,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_index_invitationacceptance",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "invitationacceptance()"
     },
     {
@@ -5011,8 +5011,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_archiveapp",
-      "community": 211,
-      "community_name": "scopedApiPath",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "archiveapp()"
     },
     {
@@ -5023,8 +5023,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_childarchiveapp",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 13,
+      "community_name": "brand.tsx",
       "norm_label": "childarchiveapp()"
     },
     {
@@ -5035,8 +5035,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_parentview",
-      "community": 157,
-      "community_name": "memoryIcon",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "parentview()"
     },
     {
@@ -5059,8 +5059,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_timelineview",
-      "community": 157,
-      "community_name": "memoryIcon",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "timelineview()"
     },
     {
@@ -5095,8 +5095,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memorymedia",
-      "community": 211,
-      "community_name": "scopedApiPath",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "memorymedia()"
     },
     {
@@ -5119,7 +5119,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_secureaudioplayer",
-      "community": 211,
+      "community": 217,
       "community_name": "scopedApiPath",
       "norm_label": "secureaudioplayer()"
     },
@@ -5131,7 +5131,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_securevideoplayer",
-      "community": 211,
+      "community": 217,
       "community_name": "scopedApiPath",
       "norm_label": "securevideoplayer()"
     },
@@ -5143,8 +5143,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_capsulesview",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "capsulesview()"
     },
     {
@@ -5204,8 +5204,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_familysettings",
-      "community": 216,
-      "community_name": "FamilySettings",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "familysettings()"
     },
     {
@@ -5216,8 +5216,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memorynote",
-      "community": 157,
-      "community_name": "memoryIcon",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "memorynote()"
     },
     {
@@ -5228,8 +5228,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_apifetch",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "apifetch()"
     },
     {
@@ -5240,7 +5240,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_scopedapipath",
-      "community": 211,
+      "community": 217,
       "community_name": "scopedApiPath",
       "norm_label": "scopedapipath()"
     },
@@ -5252,8 +5252,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_currentfamilyslug",
-      "community": 211,
-      "community_name": "scopedApiPath",
+      "community": 180,
+      "community_name": "Everlittle",
       "norm_label": "currentfamilyslug()"
     },
     {
@@ -5264,8 +5264,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_currentarchiveview",
-      "community": 211,
-      "community_name": "scopedApiPath",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "currentarchiveview()"
     },
     {
@@ -5277,7 +5277,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_index_requestedredirect",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "requestedredirect()"
     },
     {
@@ -5288,8 +5288,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_responseerror",
-      "community": 196,
-      "community_name": "MemoryComposer",
+      "community": 103,
+      "community_name": "responseError",
       "norm_label": "responseerror()"
     },
     {
@@ -5301,7 +5301,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_index_rolelabel",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "rolelabel()"
     },
     {
@@ -5313,7 +5313,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_index_roledescription",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "roledescription()"
     },
     {
@@ -5324,8 +5324,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_initials",
-      "community": 216,
-      "community_name": "FamilySettings",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "initials()"
     },
     {
@@ -5336,8 +5336,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatdate",
-      "community": 216,
-      "community_name": "FamilySettings",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "formatdate()"
     },
     {
@@ -5348,8 +5348,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_billingstatustitle",
-      "community": 216,
-      "community_name": "FamilySettings",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "billingstatustitle()"
     },
     {
@@ -5360,8 +5360,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_billingstatusdetail",
-      "community": 216,
-      "community_name": "FamilySettings",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "billingstatusdetail()"
     },
     {
@@ -5372,8 +5372,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatdatetime",
-      "community": 216,
-      "community_name": "FamilySettings",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "formatdatetime()"
     },
     {
@@ -5384,8 +5384,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatmemorydate",
-      "community": 211,
-      "community_name": "scopedApiPath",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "formatmemorydate()"
     },
     {
@@ -5396,7 +5396,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatmediatime",
-      "community": 211,
+      "community": 217,
       "community_name": "scopedApiPath",
       "norm_label": "formatmediatime()"
     },
@@ -5516,8 +5516,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_kindlabel",
-      "community": 157,
-      "community_name": "memoryIcon",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "kindlabel()"
     },
     {
@@ -5528,8 +5528,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_audiencelabel",
-      "community": 157,
-      "community_name": "memoryIcon",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "audiencelabel()"
     },
     {
@@ -5540,8 +5540,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_memoryicon",
-      "community": 157,
-      "community_name": "memoryIcon",
+      "community": 196,
+      "community_name": "MemoryComposer",
       "norm_label": "memoryicon()"
     },
     {
@@ -5576,8 +5576,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_index_formatfilesize",
-      "community": 216,
-      "community_name": "FamilySettings",
+      "community": 181,
+      "community_name": "index.tsx",
       "norm_label": "formatfilesize()"
     },
     {
@@ -5621,8 +5621,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_letters_to_your_future_child",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "letters-to-your-future-child.tsx"
     },
     {
@@ -5632,8 +5632,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "apps_web_src_routes_letters_to_your_future_child_route",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -5643,7 +5643,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "onboarding.tsx"
     },
@@ -5654,7 +5654,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_route",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "route"
     },
@@ -5667,7 +5667,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_draft",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "draft"
     },
@@ -5678,7 +5678,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_sections",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "sections"
     },
@@ -5690,7 +5690,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_onboarding",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "onboarding()"
     },
@@ -5702,7 +5702,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_hearticon",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "hearticon()"
     },
@@ -5714,7 +5714,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_childicon",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "childicon()"
     },
@@ -5726,7 +5726,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_onboardingshell",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "onboardingshell()"
     },
@@ -5738,7 +5738,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_toslug",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "toslug()"
     },
@@ -5750,7 +5750,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_routes_onboarding_responsemessage",
-      "community": 13,
+      "community": 216,
       "community_name": "onboarding.tsx",
       "norm_label": "responsemessage()"
     },
@@ -5762,7 +5762,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_pricing",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "pricing.tsx"
     },
     {
@@ -5773,7 +5773,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_pricing_route",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "route"
     },
     {
@@ -5783,8 +5783,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_private_family_photo_sharing",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "private-family-photo-sharing.tsx"
     },
     {
@@ -5794,8 +5794,8 @@
       "source_location": "L8",
       "_origin": "ast",
       "id": "apps_web_src_routes_private_family_photo_sharing_route",
-      "community": 13,
-      "community_name": "onboarding.tsx",
+      "community": 202,
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "route"
     },
     {
@@ -5806,7 +5806,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_reset_password",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "routes/reset-password.tsx"
     },
     {
@@ -5817,7 +5817,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_reset_password_route",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "route"
     },
     {
@@ -6123,7 +6123,7 @@
       "_origin": "ast",
       "id": "apps_web_test_audio_waveform_test",
       "community": 217,
-      "community_name": "audio-waveform.ts",
+      "community_name": "scopedApiPath",
       "norm_label": "audio-waveform.test.ts"
     },
     {
@@ -6145,7 +6145,7 @@
       "_origin": "ast",
       "id": "apps_web_test_auth_feedback_test",
       "community": 103,
-      "community_name": "AccessScreen",
+      "community_name": "responseError",
       "norm_label": "auth-feedback.test.ts"
     },
     {
@@ -6167,7 +6167,7 @@
       "_origin": "ast",
       "id": "apps_web_test_brand_test",
       "community": 13,
-      "community_name": "onboarding.tsx",
+      "community_name": "brand.tsx",
       "norm_label": "brand.test.tsx"
     },
     {
@@ -6233,7 +6233,7 @@
       "_origin": "ast",
       "id": "apps_web_test_pwa_install_test",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "pwa-install.test.ts"
     },
     {
@@ -6244,7 +6244,7 @@
       "_origin": "ast",
       "id": "apps_web_test_pwa_install_test_eligiblecontext",
       "community": 202,
-      "community_name": "__root.tsx",
+      "community_name": "seo-landing-page.tsx",
       "norm_label": "eligiblecontext"
     },
     {
@@ -29381,6 +29381,105 @@
       "norm_label": "license"
     },
     {
+      "label": "REDESIGN_STATUS.md",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "redesign_status",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "redesign_status.md"
+    },
+    {
+      "label": "Everlittle redesign status",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "redesign_status_everlittle_redesign_status",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "everlittle redesign status"
+    },
+    {
+      "label": "Current decision",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "redesign_status_current_decision",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "current decision"
+    },
+    {
+      "label": "Recommended references",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "id": "redesign_status_recommended_references",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "recommended references"
+    },
+    {
+      "label": "Visual system",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "id": "redesign_status_visual_system",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "visual system"
+    },
+    {
+      "label": "Product and copy decisions",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L65",
+      "_origin": "ast",
+      "id": "redesign_status_product_and_copy_decisions",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "product and copy decisions"
+    },
+    {
+      "label": "Production files to migrate next",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L85",
+      "_origin": "ast",
+      "id": "redesign_status_production_files_to_migrate_next",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "production files to migrate next"
+    },
+    {
+      "label": "Suggested implementation sequence",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L104",
+      "_origin": "ast",
+      "id": "redesign_status_suggested_implementation_sequence",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "suggested implementation sequence"
+    },
+    {
+      "label": "Scope note",
+      "file_type": "document",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L116",
+      "_origin": "ast",
+      "id": "redesign_status_scope_note",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "scope note"
+    },
+    {
       "label": "SAAS_MIGRATION_CHECKLIST.md",
       "file_type": "document",
       "source_file": "SAAS_MIGRATION_CHECKLIST.md",
@@ -29942,6 +30041,160 @@
       "norm_label": "generation prompt spine"
     },
     {
+      "label": "apricot-detailed-2026-09-07/README.md",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_design_apricot_detailed_2026_09_07_readme",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "apricot-detailed-2026-09-07/readme.md"
+    },
+    {
+      "label": "Everlittle \u2014 Apricot detailed design",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "everlittle \u2014 apricot detailed design"
+    },
+    {
+      "label": "Screen set",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "assets_design_apricot_detailed_2026_09_07_readme_screen_set",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "screen set"
+    },
+    {
+      "label": "Product decisions",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "id": "assets_design_apricot_detailed_2026_09_07_readme_product_decisions",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "product decisions"
+    },
+    {
+      "label": "Raised button specification",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "assets_design_apricot_detailed_2026_09_07_readme_raised_button_specification",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "raised button specification"
+    },
+    {
+      "label": "Async and empty-state behavior",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "id": "assets_design_apricot_detailed_2026_09_07_readme_async_and_empty_state_behavior",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "async and empty-state behavior"
+    },
+    {
+      "label": "Source grounding",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "id": "assets_design_apricot_detailed_2026_09_07_readme_source_grounding",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "source grounding"
+    },
+    {
+      "label": "Generation and review",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L87",
+      "_origin": "ast",
+      "id": "assets_design_apricot_detailed_2026_09_07_readme_generation_and_review",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "generation and review"
+    },
+    {
+      "label": "apricot-landing-2026-09-07/README.md",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_design_apricot_landing_2026_09_07_readme",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "apricot-landing-2026-09-07/readme.md"
+    },
+    {
+      "label": "Everlittle \u2014 Apricot landing concept",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "everlittle \u2014 apricot landing concept"
+    },
+    {
+      "label": "Spacious v2",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "assets_design_apricot_landing_2026_09_07_readme_spacious_v2",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "spacious v2"
+    },
+    {
+      "label": "Concept",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "id": "assets_design_apricot_landing_2026_09_07_readme_concept",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "concept"
+    },
+    {
+      "label": "Original v1 page story",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "id": "assets_design_apricot_landing_2026_09_07_readme_original_v1_page_story",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "original v1 page story"
+    },
+    {
+      "label": "Final generation prompt",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L48",
+      "_origin": "ast",
+      "id": "assets_design_apricot_landing_2026_09_07_readme_final_generation_prompt",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "final generation prompt"
+    },
+    {
       "label": "living-scrapbook-refinement/README.md",
       "file_type": "document",
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
@@ -30127,6 +30380,83 @@
       "community": 214,
       "community_name": "Everlittle product design options",
       "norm_label": "03-everyday-companion"
+    },
+    {
+      "label": "soft-ui-directions-2026-09-07/README.md",
+      "file_type": "document",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_design_soft_ui_directions_2026_09_07_readme",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "soft-ui-directions-2026-09-07/readme.md"
+    },
+    {
+      "label": "Everlittle \u2014 softer UI directions",
+      "file_type": "document",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_design_soft_ui_directions_2026_09_07_readme_everlittle_softer_ui_directions",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "everlittle \u2014 softer ui directions"
+    },
+    {
+      "label": "Reference and interpretation",
+      "file_type": "document",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "id": "assets_design_soft_ui_directions_2026_09_07_readme_reference_and_interpretation",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "reference and interpretation"
+    },
+    {
+      "label": "Three directions",
+      "file_type": "document",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "assets_design_soft_ui_directions_2026_09_07_readme_three_directions",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "three directions"
+    },
+    {
+      "label": "Preview files",
+      "file_type": "document",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "assets_design_soft_ui_directions_2026_09_07_readme_preview_files",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "preview files"
+    },
+    {
+      "label": "Scope and implementation notes",
+      "file_type": "document",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L32",
+      "_origin": "ast",
+      "id": "assets_design_soft_ui_directions_2026_09_07_readme_scope_and_implementation_notes",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "scope and implementation notes"
+    },
+    {
+      "label": "Generation",
+      "file_type": "document",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L41",
+      "_origin": "ast",
+      "id": "assets_design_soft_ui_directions_2026_09_07_readme_generation",
+      "community": 211,
+      "community_name": "Everlittle redesign status",
+      "norm_label": "generation"
     },
     {
       "label": "child-access.md",
@@ -66053,6 +66383,127 @@
       "confidence_score": 1.0
     },
     {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status",
+      "target": "assets_design_apricot_landing_2026_09_07_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L24",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status",
+      "target": "assets_design_soft_ui_directions_2026_09_07_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status",
+      "target": "redesign_status_everlittle_redesign_status",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status_everlittle_redesign_status",
+      "target": "redesign_status_current_decision",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L65",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status_everlittle_redesign_status",
+      "target": "redesign_status_product_and_copy_decisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L85",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status_everlittle_redesign_status",
+      "target": "redesign_status_production_files_to_migrate_next",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status_everlittle_redesign_status",
+      "target": "redesign_status_recommended_references",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L116",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status_everlittle_redesign_status",
+      "target": "redesign_status_scope_note",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L104",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status_everlittle_redesign_status",
+      "target": "redesign_status_suggested_implementation_sequence",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "REDESIGN_STATUS.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "redesign_status_everlittle_redesign_status",
+      "target": "redesign_status_visual_system",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "SAAS_MIGRATION_CHECKLIST.md",
@@ -66583,6 +67034,149 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_detailed_2026_09_07_readme",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_soft_ui_directions_2026_09_07_readme",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme_async_and_empty_state_behavior",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme_generation_and_review",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme_product_decisions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme_raised_button_specification",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme_screen_set",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "assets_design_apricot_detailed_2026_09_07_readme_source_grounding",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_landing_2026_09_07_readme",
+      "target": "assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "assets_design_apricot_landing_2026_09_07_readme_concept",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "assets_design_apricot_landing_2026_09_07_readme_final_generation_prompt",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "assets_design_apricot_landing_2026_09_07_readme_original_v1_page_story",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "assets_design_apricot_landing_2026_09_07_readme_spacious_v2",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
       "source_location": "L1",
       "weight": 1.0,
@@ -66765,6 +67359,72 @@
       "_origin": "ast",
       "source": "assets_design_product_directions_2026_09_06_readme_final_prompts",
       "target": "assets_design_product_directions_2026_09_06_readme_03_everyday_companion",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_soft_ui_directions_2026_09_07_readme",
+      "target": "assets_design_soft_ui_directions_2026_09_07_readme_everlittle_softer_ui_directions",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_soft_ui_directions_2026_09_07_readme_everlittle_softer_ui_directions",
+      "target": "assets_design_soft_ui_directions_2026_09_07_readme_generation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_soft_ui_directions_2026_09_07_readme_everlittle_softer_ui_directions",
+      "target": "assets_design_soft_ui_directions_2026_09_07_readme_preview_files",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_soft_ui_directions_2026_09_07_readme_everlittle_softer_ui_directions",
+      "target": "assets_design_soft_ui_directions_2026_09_07_readme_reference_and_interpretation",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L32",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_soft_ui_directions_2026_09_07_readme_everlittle_softer_ui_directions",
+      "target": "assets_design_soft_ui_directions_2026_09_07_readme_scope_and_implementation_notes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/soft-ui-directions-2026-09-07/README.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_soft_ui_directions_2026_09_07_readme_everlittle_softer_ui_directions",
+      "target": "assets_design_soft_ui_directions_2026_09_07_readme_three_directions",
       "confidence_score": 1.0
     },
     {
@@ -67693,5 +68353,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d89c2a34ca9ccfe84a1c4c96fe9aa6e8c13c23d3"
+  "built_at_commit": "928e47b918ca3273e3eb6e03830ac9892ae674a7"
 }
