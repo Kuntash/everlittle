@@ -9,7 +9,7 @@
   --font-mono: "Geist Mono Variable", ui-monospace, "SFMono-Regular", monospace;
   --motion-quick: 100ms;
   --motion-fast: 140ms;
-  --motion-sheet: 260ms;
+  --motion-sheet: 220ms;
   --ease-responsive: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-arrive: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-leave: cubic-bezier(0.4, 0, 1, 1);
@@ -46,7 +46,7 @@ body {
 .everlittle-toast-title {
   color: var(--forest);
   font-size: 0.95rem;
-  font-weight: 650;
+  font-weight: 500;
   letter-spacing: -0.01em;
 }
 .everlittle-toast-description {
@@ -58,7 +58,7 @@ body {
   background: var(--forest) !important;
   border-radius: var(--radius-sm) !important;
   color: var(--white) !important;
-  font-weight: 650 !important;
+  font-weight: 500 !important;
 }
 .everlittle-toast-close {
   background: var(--paper) !important;
@@ -146,7 +146,7 @@ h3 {
   color: var(--forest);
   display: block;
   font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 570;
+  font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 0.92;
 }
@@ -201,7 +201,7 @@ h3 {
 .story-copy h1 {
   color: var(--forest);
   font-size: clamp(2.8rem, 10vw, 5.6rem);
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.92;
   margin-bottom: 1.5rem;
@@ -215,7 +215,7 @@ h3 {
 .eyebrow {
   color: var(--terracotta);
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.13em;
   margin-bottom: 0.7rem;
   text-transform: uppercase;
@@ -263,7 +263,7 @@ h3 {
 .access-card h2 {
   color: var(--forest);
   font-size: 2.25rem;
-  font-weight: 560;
+  font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1;
   margin-bottom: 0.8rem;
@@ -306,7 +306,7 @@ h3 {
   border-radius: var(--radius-sm);
   color: var(--forest);
   display: flex;
-  font-weight: 700;
+  font-weight: 500;
   gap: 0.55rem;
   justify-content: center;
   min-height: 48px;
@@ -333,7 +333,7 @@ h3 {
   color: var(--ink);
   display: grid;
   font-size: 0.78rem;
-  font-weight: 650;
+  font-weight: 500;
   gap: 0.45rem;
 }
 .access-card input {
@@ -360,7 +360,7 @@ h3 {
 .access-card small {
   color: var(--muted-ink);
   font-size: 0.68rem;
-  font-weight: 450;
+  font-weight: 400;
 }
 .child-access-shell {
   align-items: center;
@@ -395,7 +395,7 @@ h3 {
   border-radius: var(--radius-sm);
   color: var(--forest);
   display: flex;
-  font-weight: 700;
+  font-weight: 500;
   justify-content: space-between;
   min-height: 54px;
   padding: 0.75rem 0.9rem;
@@ -453,7 +453,7 @@ h3 {
 .onboarding-progress button[aria-current="step"] {
   border-left-color: var(--forest);
   color: var(--forest);
-  font-weight: 750;
+  font-weight: 500;
 }
 .onboarding-progress button:disabled {
   cursor: default;
@@ -465,7 +465,7 @@ h3 {
 .onboarding-panel h1 {
   color: var(--forest);
   font-size: clamp(2.5rem, 6vw, 4rem);
-  font-weight: 560;
+  font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 0.98;
   margin: 0.55rem 0 1rem;
@@ -484,7 +484,7 @@ h3 {
   color: var(--ink);
   display: grid;
   font-size: 0.78rem;
-  font-weight: 700;
+  font-weight: 500;
   gap: 0.5rem;
 }
 .onboarding-fields input:not([type="checkbox"]):not([type="radio"]) {
@@ -505,7 +505,7 @@ h3 {
 .onboarding-fields small {
   color: var(--muted-ink);
   font-size: 0.68rem;
-  font-weight: 450;
+  font-weight: 400;
 }
 .onboarding-panel > .primary-button,
 .onboarding-fields > .primary-button {
@@ -721,7 +721,7 @@ h3 {
 .marketing-sign-in {
   color: var(--marketing-muted);
   font-size: 0.76rem;
-  font-weight: 650;
+  font-weight: 500;
 }
 .marketing-nav-actions {
   justify-self: end;
@@ -734,7 +734,7 @@ h3 {
   color: #f8faf7;
   display: inline-flex;
   font-size: 0.78rem;
-  font-weight: 750;
+  font-weight: 500;
   gap: 0.55rem;
   justify-content: center;
   min-height: 46px;
@@ -768,7 +768,7 @@ h3 {
 .marketing-eyebrow {
   color: var(--marketing-accent);
   font-size: 0.68rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.14em;
   margin: 0 0 1.25rem;
   text-transform: uppercase;
@@ -780,7 +780,7 @@ h3 {
 }
 .marketing-hero h1 {
   font-size: clamp(3.5rem, 6.5vw, 6.8rem);
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.87;
   margin: 0;
@@ -802,7 +802,7 @@ h3 {
 .marketing-text-link {
   color: var(--marketing-ink);
   font-size: 0.78rem;
-  font-weight: 720;
+  font-weight: 500;
   text-decoration: underline;
   text-decoration-color: var(--marketing-line);
   text-underline-offset: 4px;
@@ -837,7 +837,7 @@ h3 {
   color: var(--marketing-muted);
   display: flex;
   font-size: 0.78rem;
-  font-weight: 680;
+  font-weight: 500;
   gap: 0.65rem;
   justify-content: center;
   min-height: 84px;
@@ -861,7 +861,7 @@ h3 {
 .marketing-self-host h2,
 .marketing-final-cta h2 {
   font-size: clamp(2.8rem, 5vw, 5rem);
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 0.96;
   margin: 0;
@@ -898,7 +898,7 @@ h3 {
 }
 .marketing-keeps-grid h3 {
   font-size: clamp(1.7rem, 3vw, 2.7rem);
-  font-weight: 540;
+  font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 1;
   margin: 3rem 0 0.8rem;
@@ -939,7 +939,7 @@ h3 {
   border-bottom: 1px solid var(--marketing-line);
   color: var(--marketing-ink);
   font-size: 0.78rem;
-  font-weight: 680;
+  font-weight: 500;
   padding: 1rem 0;
 }
 .marketing-self-host {
@@ -963,7 +963,7 @@ h3 {
   color: var(--marketing-ink);
   font-family: "Cormorant Garamond Variable", serif;
   font-size: 2rem;
-  font-weight: 560;
+  font-weight: 500;
 }
 .marketing-hosting-choice p {
   color: var(--marketing-muted);
@@ -976,7 +976,7 @@ h3 {
   color: var(--marketing-accent);
   display: inline-flex;
   font-size: 0.75rem;
-  font-weight: 760;
+  font-weight: 500;
   gap: 0.45rem;
 }
 .marketing-final-cta {
@@ -1017,7 +1017,7 @@ h3 {
 .marketing-footer a {
   color: var(--marketing-muted);
   font-size: 0.72rem;
-  font-weight: 680;
+  font-weight: 500;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -1226,7 +1226,7 @@ h3 {
 .atelier-nav-links a {
   color: var(--atelier-muted);
   font-size: 0.7rem;
-  font-weight: 650;
+  font-weight: 500;
   text-decoration: none;
 }
 .atelier-nav-links a:not(.atelier-nav-cta) {
@@ -1309,13 +1309,13 @@ h3 {
 .atelier-kicker {
   color: var(--atelier-ember);
   font-size: 0.62rem;
-  font-weight: 760;
+  font-weight: 500;
   margin: 0 0 1.35rem;
 }
 .atelier-hero h1 {
   color: var(--atelier-forest);
   font-size: clamp(5rem, 9.6vw, 10rem);
-  font-weight: 430;
+  font-weight: 400;
   letter-spacing: -0.065em;
   line-height: 0.75;
   margin: 0;
@@ -1323,7 +1323,7 @@ h3 {
 }
 .atelier-hero h1 em {
   color: var(--atelier-ember);
-  font-weight: 430;
+  font-weight: 400;
 }
 .atelier-hero-intro {
   color: var(--atelier-ink);
@@ -1345,7 +1345,7 @@ h3 {
   color: var(--atelier-paper-bright) !important;
   display: inline-flex;
   font-size: 0.76rem;
-  font-weight: 700;
+  font-weight: 500;
   gap: 0.75rem;
   justify-content: center;
   min-height: 52px;
@@ -1366,7 +1366,7 @@ h3 {
   display: inline-flex;
   font-family: "Cormorant Garamond Variable", serif;
   font-size: 1rem;
-  font-weight: 620;
+  font-weight: 500;
   gap: 0.45rem;
   padding-bottom: 0.16rem;
   text-decoration: none;
@@ -1432,7 +1432,7 @@ h3 {
 .atelier-hosting h2,
 .atelier-closing h2 {
   font-size: clamp(3.6rem, 7vw, 7.5rem);
-  font-weight: 430;
+  font-weight: 400;
   letter-spacing: -0.055em;
   line-height: 0.86;
   margin: 0;
@@ -1493,7 +1493,7 @@ h3 {
 .atelier-photo-artifact figcaption strong {
   font-family: "Cormorant Garamond Variable", serif;
   font-size: clamp(2rem, 3.3vw, 4rem);
-  font-weight: 440;
+  font-weight: 400;
 }
 .atelier-voice-artifact,
 .atelier-letter-artifact {
@@ -1521,7 +1521,7 @@ h3 {
 }
 .atelier-artifacts h3 {
   font-size: clamp(2.5rem, 4vw, 4.6rem);
-  font-weight: 440;
+  font-weight: 400;
   line-height: 0.92;
   margin: 0 0 1rem;
 }
@@ -1659,7 +1659,7 @@ h3 {
 }
 .atelier-product-timeline h3 {
   font-size: clamp(2rem, 3vw, 3.8rem);
-  font-weight: 450;
+  font-weight: 400;
   line-height: 0.95;
   margin: 2rem 0 1rem;
 }
@@ -1710,7 +1710,7 @@ h3 {
 }
 .atelier-product-audio b {
   font-size: 0.56rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 .atelier-product-capsule {
   background: #e4ded1;
@@ -1727,7 +1727,7 @@ h3 {
 .atelier-product-capsule strong {
   font-family: "Cormorant Garamond Variable", serif;
   font-size: 1rem;
-  font-weight: 560;
+  font-weight: 500;
 }
 .atelier-privacy {
   display: grid;
@@ -1796,7 +1796,7 @@ h3 {
 .atelier-privacy-copy li strong {
   font-family: "Cormorant Garamond Variable", serif;
   font-size: 1.15rem;
-  font-weight: 650;
+  font-weight: 500;
 }
 .atelier-privacy-copy li p {
   color: var(--atelier-muted);
@@ -1832,7 +1832,7 @@ h3 {
 }
 .atelier-hosting-grid h3 {
   font-size: clamp(3.6rem, 6vw, 6.8rem);
-  font-weight: 430;
+  font-weight: 400;
   margin: 0;
 }
 .atelier-hosting-grid p {
@@ -2276,7 +2276,7 @@ h3 {
 .seo-story-nav > div a {
   color: var(--seo-muted);
   font-size: 0.75rem;
-  font-weight: 680;
+  font-weight: 500;
   text-decoration: none;
 }
 .seo-story-nav .seo-story-nav-cta {
@@ -2306,7 +2306,7 @@ h3 {
   color: var(--seo-red-dark);
   display: flex;
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 500;
   gap: 0.5rem;
   letter-spacing: 0.12em;
   margin: 0 0 1.25rem;
@@ -2319,7 +2319,7 @@ h3 {
 .seo-story-hero-copy h1 {
   color: var(--seo-green);
   font-size: clamp(4rem, 5.75vw, 6.8rem);
-  font-weight: 510;
+  font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 0.92;
   margin: 0;
@@ -2344,7 +2344,7 @@ h3 {
   border-radius: 999px;
   display: inline-flex;
   font-size: 0.75rem;
-  font-weight: 750;
+  font-weight: 500;
   gap: 0.65rem;
   justify-content: center;
   min-height: 52px;
@@ -2449,12 +2449,12 @@ h3 {
 }
 .seo-story-memory-card small {
   font-size: 0.55rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.12em;
 }
 .seo-story-memory-card h2 {
   font-size: clamp(1.65rem, 2.7vw, 2.75rem);
-  font-weight: 560;
+  font-weight: 500;
   line-height: 1;
   margin: 0.8rem 0;
 }
@@ -2561,7 +2561,7 @@ h3 {
 .seo-story-related h2 {
   color: var(--seo-green);
   font-size: clamp(3.2rem, 5.6vw, 6rem);
-  font-weight: 510;
+  font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.96;
   margin: 0;
@@ -2605,7 +2605,7 @@ h3 {
 .seo-story-benefit-grid article > span {
   color: var(--seo-muted);
   font-size: 0.58rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.12em;
   position: absolute;
   right: 1.5rem;
@@ -2620,7 +2620,7 @@ h3 {
 .seo-story-benefit-grid h3 {
   color: var(--seo-green);
   font-size: clamp(2rem, 3vw, 3.1rem);
-  font-weight: 560;
+  font-weight: 500;
   line-height: 0.98;
   margin: 7rem 0 1.2rem;
 }
@@ -2653,7 +2653,7 @@ h3 {
   color: var(--seo-red-dark);
   display: inline-flex;
   font-size: 0.75rem;
-  font-weight: 750;
+  font-weight: 500;
   gap: 0.55rem;
   padding-bottom: 0.25rem;
   text-decoration: none;
@@ -2686,7 +2686,7 @@ h3 {
 .seo-story-guide-steps h3 {
   color: var(--seo-green);
   font-size: 1.7rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   margin: 0 0 0.65rem;
 }
@@ -2797,7 +2797,7 @@ h3 {
   display: flex;
   font-family: var(--font-story);
   font-size: 1.35rem;
-  font-weight: 650;
+  font-weight: 500;
   gap: 1rem;
   justify-content: space-between;
   list-style: none;
@@ -2870,7 +2870,7 @@ h3 {
 .seo-story-closing > p {
   color: var(--seo-red-dark);
   font-size: 0.65rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.12em;
   margin: 1.4rem 0;
   text-transform: uppercase;
@@ -2878,7 +2878,7 @@ h3 {
 .seo-story-closing h2 {
   color: var(--seo-green);
   font-size: clamp(3.6rem, 7vw, 7.5rem);
-  font-weight: 510;
+  font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 0.92;
   margin: 0;
@@ -2891,7 +2891,7 @@ h3 {
   color: var(--seo-paper-light);
   display: inline-flex;
   font-size: 0.75rem;
-  font-weight: 750;
+  font-weight: 500;
   gap: 0.65rem;
   margin-top: 2rem;
   min-height: 52px;
@@ -2966,7 +2966,7 @@ h3 {
 .scrapbook-guide-grid span {
   color: var(--scrapbook-red-dark);
   font-size: 0.58rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.12em;
 }
 .scrapbook-guide-grid strong {
@@ -3270,7 +3270,7 @@ h3 {
 .heirloom-shell h3,
 .heirloom-shell .brand strong {
   font-family: "Cormorant Garamond Variable", serif;
-  font-weight: 460;
+  font-weight: 400;
   text-wrap: balance;
 }
 .heirloom-shell a {
@@ -3351,7 +3351,7 @@ h3 {
 .heirloom-nav .brand strong {
   color: var(--heirloom-green);
   font-size: clamp(2.1rem, 3vw, 3rem);
-  font-weight: 480;
+  font-weight: 400;
 }
 .heirloom-nav > div {
   align-items: center;
@@ -3478,7 +3478,7 @@ h3 {
 .heirloom-privacy-copy > p,
 .heirloom-hosting header > p {
   font-size: 0.8rem;
-  font-weight: 650;
+  font-weight: 500;
   letter-spacing: 0.27em;
   text-transform: uppercase;
 }
@@ -4063,7 +4063,7 @@ h3 {
 .heirloom-pricing-intro > p:first-child {
   color: var(--heirloom-green);
   font-size: 0.72rem;
-  font-weight: 650;
+  font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
@@ -4122,7 +4122,7 @@ h3 {
 }
 .heirloom-price-amount strong {
   font-size: clamp(6rem, 10vw, 9rem);
-  font-weight: 450;
+  font-weight: 400;
   letter-spacing: -0.09em;
   line-height: 0.75;
 }
@@ -4401,7 +4401,7 @@ h3 {
 }
 .heirloom-infra > strong {
   font-size: 0.55rem;
-  font-weight: 550;
+  font-weight: 500;
   letter-spacing: 0.08em;
 }
 .heirloom-infra > div {
@@ -5183,7 +5183,7 @@ h3 {
   border: 0;
   border-radius: var(--radius-sm);
   display: inline-flex;
-  font-weight: 650;
+  font-weight: 500;
   gap: 0.6rem;
   justify-content: center;
   min-height: 48px;
@@ -5272,7 +5272,7 @@ h3 {
   color: var(--forest);
   font-family: inherit;
   font-size: 0.75rem;
-  font-weight: 650;
+  font-weight: 500;
   max-width: min(34vw, 13rem);
   min-height: 24px;
   padding: 0 1.25rem 0 0;
@@ -5341,7 +5341,7 @@ h3 {
 .page-title-row h1 {
   color: var(--forest);
   font-size: 2.65rem;
-  font-weight: 550;
+  font-weight: 500;
   letter-spacing: -0.045em;
   line-height: 0.9;
   margin-bottom: 0.4rem;
@@ -5591,7 +5591,7 @@ h3 {
 .section-heading h2 {
   color: var(--forest);
   font-size: 1.65rem;
-  font-weight: 560;
+  font-weight: 500;
   margin-bottom: 0.4rem;
 }
 .memory-copy > p:not(.eyebrow) {
@@ -5754,7 +5754,7 @@ h3 {
 .memory-empty h2 {
   color: var(--forest);
   font-size: clamp(2rem, 8vw, 3.3rem);
-  font-weight: 530;
+  font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 0.95;
   margin-bottom: 0.8rem;
@@ -5885,7 +5885,7 @@ h3 {
 }
 .capsule-card h3 {
   font-size: 1.8rem;
-  font-weight: 550;
+  font-weight: 500;
   margin-bottom: 0.4rem;
 }
 .capsule-card p:not(.eyebrow) {
@@ -5976,7 +5976,7 @@ h3 {
 }
 .mobile-nav button.active {
   color: var(--forest);
-  font-weight: 700;
+  font-weight: 500;
 }
 .mobile-nav button.active::before {
   opacity: 1;
@@ -6019,7 +6019,7 @@ h3 {
 }
 .capsules-hero h1 {
   font-size: clamp(3rem, 12vw, 5.8rem);
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.85;
   margin: 0 0 1rem;
@@ -6076,7 +6076,7 @@ h3 {
 .capsule-item h3 {
   color: var(--forest);
   font-size: 2rem;
-  font-weight: 540;
+  font-weight: 500;
   line-height: 0.95;
   margin: 0.45rem 0 0.7rem;
 }
@@ -6153,7 +6153,7 @@ h3 {
   color: var(--ink);
   display: grid;
   font-size: 0.75rem;
-  font-weight: 650;
+  font-weight: 500;
   gap: 0.45rem;
 }
 .capsule-date-row .soft-button {
@@ -6213,7 +6213,7 @@ h3 {
 .child-hero h1 {
   color: var(--forest);
   font-size: clamp(3.2rem, 13vw, 6.8rem);
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: -0.06em;
   line-height: 0.82;
   margin-bottom: 0.8rem;
@@ -6263,7 +6263,7 @@ h3 {
 .story-card h2 {
   color: var(--forest);
   font-size: 1.9rem;
-  font-weight: 550;
+  font-weight: 500;
   margin-bottom: 0.55rem;
 }
 .story-card p:not(.eyebrow) {
@@ -6307,7 +6307,7 @@ h3 {
 .child-empty h2 {
   color: var(--forest);
   font-size: clamp(2rem, 8vw, 3.6rem);
-  font-weight: 530;
+  font-weight: 500;
   line-height: 0.95;
   margin-bottom: 0.7rem;
 }
@@ -6439,7 +6439,7 @@ h3 {
   color: var(--forest);
   font-family: var(--font-story);
   font-size: clamp(2.15rem, 9vw, 3rem);
-  font-weight: 590;
+  font-weight: 500;
   letter-spacing: -0.035em;
   line-height: 0.94;
   margin-bottom: 0.7rem;
@@ -6489,7 +6489,7 @@ h3 {
 .subscription-plan-name {
   color: var(--forest);
   font-size: 0.72rem;
-  font-weight: 740;
+  font-weight: 500;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -6497,7 +6497,7 @@ h3 {
   color: var(--forest);
   font-family: var(--font-story);
   font-size: 2.45rem;
-  font-weight: 620;
+  font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1;
   margin: 0.7rem 0 0.25rem;
@@ -6511,7 +6511,7 @@ h3 {
   color: var(--muted-ink);
   font-family: var(--font-ui);
   font-size: 0.72rem;
-  font-weight: 540;
+  font-weight: 500;
   letter-spacing: 0;
   margin-left: 0.3rem;
 }
@@ -6530,7 +6530,7 @@ h3 {
   border-radius: 999px;
   color: var(--white);
   font-size: 0.62rem;
-  font-weight: 720;
+  font-weight: 500;
   letter-spacing: 0.06em;
   padding: 0.3rem 0.52rem;
   position: absolute;
@@ -6588,7 +6588,7 @@ h3 {
 .composer-header h2 {
   color: var(--forest);
   font-size: clamp(2rem, 8vw, 2.8rem);
-  font-weight: 550;
+  font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 0.95;
   margin-bottom: 0;
@@ -6702,7 +6702,7 @@ h3 {
   color: var(--ink);
   display: grid;
   font-size: 0.75rem;
-  font-weight: 650;
+  font-weight: 500;
   gap: 0.45rem;
 }
 .composer-form input,
@@ -6762,7 +6762,7 @@ h3 {
 .media-drop small {
   color: var(--muted-ink);
   font-size: 0.62rem;
-  font-weight: 450;
+  font-weight: 400;
   line-height: 1.4;
   margin-top: 0.3rem;
 }
@@ -6813,12 +6813,8 @@ h3 {
     opacity 90ms var(--ease-leave),
     transform 90ms var(--ease-leave);
 }
-.stage-label.is-out {
-  opacity: 0;
-  transform: translateY(-4px);
-}
-.stage-label.is-in {
-  animation: stage-label-in var(--motion-fast) var(--ease-arrive) both;
+.stage-label-text {
+  animation: stage-label-in 140ms var(--ease-arrive) both;
 }
 @keyframes stage-label-in {
   from {
@@ -6890,7 +6886,7 @@ h3 {
   color: var(--white);
   display: inline-flex;
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 500;
   gap: 0.35rem;
   min-height: 42px;
   padding: 0.55rem 0.7rem;
@@ -6935,7 +6931,7 @@ h3 {
 .timeline-hero h1 {
   color: var(--forest);
   font-size: clamp(2.8rem, 10vw, 5.5rem);
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.96;
   margin-bottom: 0.8rem;
@@ -7000,7 +6996,7 @@ h3 {
 .timeline-group h2 {
   color: var(--forest);
   font-size: 1.75rem;
-  font-weight: 550;
+  font-weight: 500;
   margin: 0;
 }
 .timeline-group header small {
@@ -7046,7 +7042,7 @@ h3 {
 .timeline-card-copy > small {
   color: var(--terracotta);
   font-size: 0.61rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
@@ -7054,7 +7050,7 @@ h3 {
   color: var(--forest);
   font-family: var(--font-ui);
   font-size: 1.55rem;
-  font-weight: 620;
+  font-weight: 500;
   letter-spacing: -0.025em;
   line-height: 1;
   margin: 0.45rem 0;
@@ -7102,7 +7098,7 @@ h3 {
 .family-intro h1 {
   color: var(--forest);
   font-size: clamp(2.7rem, 9vw, 5.2rem);
-  font-weight: 520;
+  font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.9;
   margin-bottom: 0.9rem;
@@ -7245,7 +7241,7 @@ h3 {
 .settings-heading h2 {
   color: var(--forest);
   font-size: 1.8rem;
-  font-weight: 550;
+  font-weight: 500;
 }
 .member-list {
   display: grid;
@@ -7270,7 +7266,7 @@ h3 {
   color: var(--white);
   display: flex;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 500;
   height: 40px;
   justify-content: center;
   width: 40px;
@@ -7320,7 +7316,7 @@ h3 {
   color: var(--forest);
   display: inline-flex;
   font-size: 0.68rem;
-  font-weight: 650;
+  font-weight: 500;
   gap: 0.35rem;
   padding: 0.45rem 0.65rem;
 }
@@ -7427,7 +7423,7 @@ h3 {
   color: var(--forest);
   display: flex;
   font-size: 0.72rem;
-  font-weight: 750;
+  font-weight: 500;
   gap: 0.35rem;
 }
 .child-access-test p {
@@ -7462,7 +7458,7 @@ h3 {
   color: var(--ink);
   display: grid;
   font-size: 0.75rem;
-  font-weight: 650;
+  font-weight: 500;
   gap: 0.4rem;
 }
 .field-note {
@@ -7536,7 +7532,7 @@ h3 {
 .pending-actions button:first-child {
   color: var(--forest);
   font-size: 0.68rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .pwa-prompt,
@@ -7613,7 +7609,7 @@ h3 {
   color: var(--white);
   display: flex;
   font-size: 0.7rem;
-  font-weight: 700;
+  font-weight: 500;
   gap: 0.35rem;
   min-height: 40px;
   padding: 0.55rem 0.7rem;
@@ -7673,7 +7669,7 @@ h3 {
 .pwa-guide h2 {
   color: var(--forest);
   font-size: 2rem;
-  font-weight: 550;
+  font-weight: 500;
   line-height: 1;
   margin-bottom: 1rem;
 }
@@ -7697,7 +7693,7 @@ h3 {
   }
 }
 .delivery-status {
-  font-weight: 700;
+  font-weight: 500;
 }
 .delivery-status.is-sent {
   color: var(--forest);
@@ -7956,7 +7952,7 @@ h3 {
 .scrapbook-nav > div a {
   color: var(--scrapbook-muted);
   font-size: 0.75rem;
-  font-weight: 680;
+  font-weight: 500;
   text-decoration: none;
 }
 .scrapbook-nav > div a:not(.scrapbook-nav-cta) {
@@ -8007,7 +8003,7 @@ h3 {
   color: var(--scrapbook-red-dark);
   display: flex;
   font-size: 0.68rem;
-  font-weight: 780;
+  font-weight: 500;
   gap: 0.48rem;
   letter-spacing: 0.115em;
   margin: 0 0 1.25rem;
@@ -8020,7 +8016,7 @@ h3 {
 .scrapbook-hero-copy h1 {
   color: var(--scrapbook-green);
   font-size: clamp(4.4rem, 6.35vw, 7.25rem);
-  font-weight: 510;
+  font-weight: 500;
   letter-spacing: -0.065em;
   line-height: 0.88;
   margin: 0;
@@ -8051,7 +8047,7 @@ h3 {
   border-radius: 999px;
   display: inline-flex;
   font-size: 0.76rem;
-  font-weight: 730;
+  font-weight: 500;
   gap: 0.65rem;
   justify-content: center;
   min-height: 51px;
@@ -8128,7 +8124,7 @@ h3 {
 .scrapbook-polaroid figcaption b {
   font-family: var(--font-story);
   font-size: 1.08rem;
-  font-weight: 650;
+  font-weight: 500;
 }
 .scrapbook-polaroid figcaption span {
   color: var(--scrapbook-muted);
@@ -8189,7 +8185,7 @@ h3 {
   flex: 0 0 auto;
   font-family: var(--font-story);
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 500;
   height: 38px;
   justify-content: center;
   width: 38px;
@@ -8258,7 +8254,7 @@ h3 {
 .scrapbook-hero-note > span {
   color: var(--scrapbook-red-dark);
   font-size: 0.54rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.12em;
 }
 .scrapbook-hero-note p {
@@ -8292,7 +8288,7 @@ h3 {
   color: #fff8eb;
   display: grid;
   font-size: 0.5rem;
-  font-weight: 800;
+  font-weight: 500;
   gap: 0.28rem;
   letter-spacing: 0.12em;
 }
@@ -8327,7 +8323,7 @@ h3 {
 .scrapbook-closing-copy h2 {
   color: var(--scrapbook-green);
   font-size: clamp(3.4rem, 6.4vw, 7.2rem);
-  font-weight: 510;
+  font-weight: 500;
   letter-spacing: -0.055em;
   line-height: 0.95;
   margin: 0;
@@ -8388,7 +8384,7 @@ h3 {
   display: flex;
   font-family: var(--font-story);
   font-size: 0.8rem;
-  font-weight: 700;
+  font-weight: 500;
   grid-column: 2;
   grid-row: 1;
   height: 58px;
@@ -8439,7 +8435,7 @@ h3 {
 .scrapbook-future-card > span {
   color: var(--scrapbook-muted);
   font-size: 0.57rem;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.08em;
 }
 .scrapbook-audio-card b,
@@ -8537,7 +8533,7 @@ h3 {
   border-bottom: 1px solid currentcolor;
   display: inline-flex;
   font-size: 0.75rem;
-  font-weight: 720;
+  font-weight: 500;
   gap: 0.55rem;
   padding-bottom: 0.25rem;
   text-decoration: none;
@@ -8653,20 +8649,20 @@ h3 {
 }
 .scrapbook-format > small {
   font-size: 0.55rem;
-  font-weight: 800;
+  font-weight: 500;
   letter-spacing: 0.11em;
   margin-bottom: 0.7rem;
 }
 .scrapbook-format h3 {
   font-size: clamp(1.75rem, 3.25vw, 3.5rem);
-  font-weight: 560;
+  font-weight: 500;
   line-height: 0.98;
   margin: 0;
 }
 .format-photo {
   background:
     linear-gradient(0deg, rgb(31 45 35 / 67%), transparent 64%),
-    url("/marketing/family-album.jpg") center / cover;
+    url("/marketing/family-album-us.webp") center / cover;
   color: white;
   grid-column: span 7;
   grid-row: span 2;
@@ -8743,7 +8739,7 @@ h3 {
   color: var(--scrapbook-red-dark);
   display: grid;
   font-size: 0.58rem;
-  font-weight: 800;
+  font-weight: 500;
   gap: 0.3rem;
   left: 12%;
   letter-spacing: 0.11em;
@@ -8758,7 +8754,7 @@ h3 {
   color: var(--scrapbook-muted);
   font-family: var(--font-story);
   font-size: 0.78rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0;
 }
 .scrapbook-capsule-copy > p:not(.scrapbook-kicker),
@@ -8921,7 +8917,7 @@ h3 {
   background: var(--scrapbook-red);
   color: white;
   font-size: 0.58rem;
-  font-weight: 800;
+  font-weight: 500;
   left: -1rem;
   letter-spacing: 0.12em;
   padding: 0.75rem 1rem;
@@ -8946,14 +8942,14 @@ h3 {
   color: var(--scrapbook-green);
   font-family: var(--font-story);
   font-size: clamp(6rem, 10vw, 9rem);
-  font-weight: 550;
+  font-weight: 500;
   letter-spacing: -0.08em;
   line-height: 0.8;
 }
 .scrapbook-price-number > span {
   color: var(--scrapbook-muted);
   font-size: 0.58rem;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.45;
 }
 .scrapbook-price-card > p {
@@ -8988,7 +8984,7 @@ h3 {
   color: white;
   display: flex;
   font-size: 0.76rem;
-  font-weight: 730;
+  font-weight: 500;
   gap: 0.65rem;
   justify-content: center;
   margin-top: 1.6rem;

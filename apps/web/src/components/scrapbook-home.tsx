@@ -114,7 +114,7 @@ export function ScrapbookHome() {
             <figure className="scrapbook-polaroid scrapbook-hero-photo-card">
               <span className="scrapbook-tape" aria-hidden="true" />
               <img
-                src="/marketing/family-album.jpg"
+                src="/marketing/family-album-us.webp"
                 alt="Three generations looking through a family album"
                 width="1536"
                 height="1024"
@@ -122,7 +122,7 @@ export function ScrapbookHome() {
               />
               <figcaption>
                 <b>A rainy afternoon together</b>
-                <span>May 14, 2016 · Mum</span>
+                <span>May 14, 2021 · Mom</span>
               </figcaption>
             </figure>
 
@@ -138,9 +138,9 @@ export function ScrapbookHome() {
             </article>
 
             <article className="scrapbook-hero-note">
-              <span>AGE 4½</span>
-              <p>“When I grow up I’m going to be a moon doctor.”</p>
-              <small>— Lhamo</small>
+              <span>AGE 5</span>
+              <p>“When I grow up I’m going to be a cloud painter.”</p>
+              <small>— Emma</small>
             </article>
 
             <article className="scrapbook-hero-letter">
@@ -173,10 +173,10 @@ export function ScrapbookHome() {
         <div className="scrapbook-timeline">
           <span className="scrapbook-timeline-line" aria-hidden="true" />
           <article className="scrapbook-moment scrapbook-moment-photo" data-reveal>
-            <div className="scrapbook-date-bubble">2016</div>
+            <div className="scrapbook-date-bubble">2021</div>
             <figure className="scrapbook-polaroid">
               <img
-                src="/marketing/family-album.jpg"
+                src="/marketing/family-album-us.webp"
                 alt="A family photograph kept with its story"
                 width="1536"
                 height="1024"
@@ -190,7 +190,7 @@ export function ScrapbookHome() {
           </article>
 
           <article className="scrapbook-moment scrapbook-moment-voice" data-reveal>
-            <div className="scrapbook-date-bubble">2018</div>
+            <div className="scrapbook-date-bubble">2023</div>
             <div className="scrapbook-audio-card">
               <Mic2 />
               <p>
@@ -203,11 +203,11 @@ export function ScrapbookHome() {
           </article>
 
           <article className="scrapbook-moment scrapbook-moment-video" data-reveal>
-            <div className="scrapbook-date-bubble">2021</div>
+            <div className="scrapbook-date-bubble">2026</div>
             <div className="scrapbook-video-card">
               <img
-                src="/marketing/voice-memory.jpg"
-                alt="A short family video memory"
+                src="/marketing/first-bike-us.webp"
+                alt="A dad helping his daughter ride a bicycle in the park"
                 width="1536"
                 height="1152"
                 loading="lazy"
@@ -217,20 +217,20 @@ export function ScrapbookHome() {
               </span>
               <p>
                 <b>Your first very wobbly bicycle ride</b>
-                <span>0:23 · Added by Auntie Tenzin</span>
+                <span>0:23 · Added by Aunt Katie</span>
               </p>
             </div>
           </article>
 
           <article className="scrapbook-moment scrapbook-moment-letter" data-reveal>
-            <div className="scrapbook-date-bubble">2032</div>
+            <div className="scrapbook-date-bubble">2039</div>
             <div className="scrapbook-future-card">
               <LockKeyhole />
               <p>
                 <small>WAITING FOR YOU</small>
-                <b>A letter from Mum for your eighteenth birthday</b>
+                <b>A letter from Mom for your eighteenth birthday</b>
               </p>
-              <span>Opens May 14, 2032</span>
+              <span>Opens May 14, 2039</span>
             </div>
           </article>
         </div>
@@ -241,7 +241,7 @@ export function ScrapbookHome() {
           <p className="scrapbook-kicker">Made by all of you</p>
           <h2>Everyone remembers a different part.</h2>
           <p>
-            Mum has the photographs. Grandpa knows the stories. Your sister remembers what happened
+            Mom has the photographs. Grandpa knows the stories. Your sister remembers what happened
             next. Bring all of it together.
           </p>
           <a href="/sign-up">
@@ -253,7 +253,7 @@ export function ScrapbookHome() {
           <article className="scrapbook-contribution contribution-mum">
             <span className="scrapbook-avatar">M</span>
             <p>
-              <b>Mum</b> added 6 photographs<small>2 minutes ago</small>
+              <b>Mom</b> added 6 photographs<small>2 minutes ago</small>
             </p>
             <Camera />
           </article>
@@ -320,7 +320,7 @@ export function ScrapbookHome() {
             loading="lazy"
           />
           <span className="scrapbook-capsule-label">
-            FOR LHAMO<small>Open on your 18th birthday</small>
+            FOR EMMA<small>Open on your 18th birthday</small>
           </span>
         </div>
         <div className="scrapbook-capsule-copy" data-reveal>
@@ -362,7 +362,7 @@ export function ScrapbookHome() {
           <strong>Your child is not the product.</strong>
         </div>
         <div className="scrapbook-family-circle" data-reveal aria-label="A private family circle">
-          <span className="family-person person-one">Mum</span>
+          <span className="family-person person-one">Mom</span>
           <span className="family-person person-two">Dad</span>
           <span className="family-person person-three">Grandpa</span>
           <span className="family-person person-four">Auntie</span>
@@ -435,7 +435,7 @@ export function ScrapbookHome() {
       <section className="scrapbook-closing">
         <div className="scrapbook-closing-photo" data-reveal>
           <img
-            src="/marketing/family-album.jpg"
+            src="/marketing/family-album-us.webp"
             alt="A family sharing memories together"
             width="1536"
             height="1024"

@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, LockKeyhole } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
+import { PasswordInput } from "@/components/password-input";
 import { Brand } from "@/components/brand";
 import { ChildArchiveApp } from "@/routes/index";
 
@@ -82,7 +83,7 @@ function ChildAccess() {
         <form onSubmit={submit}>
           <label>
             Your PIN
-            <input
+            <PasswordInput
               autoComplete="one-time-code"
               autoFocus
               className="pin-input"
@@ -92,7 +93,7 @@ function ChildAccess() {
               pattern="[0-9]{6}"
               placeholder="••••••"
               required
-              type="password"
+              secretLabel="PIN"
               value={pin}
             />
           </label>

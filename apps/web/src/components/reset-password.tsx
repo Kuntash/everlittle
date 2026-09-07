@@ -2,6 +2,7 @@ import { ArrowRight, LockKeyhole } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
+import { PasswordInput } from "@/components/password-input";
 import { Brand } from "@/components/brand";
 
 export function ResetPassword() {
@@ -74,26 +75,24 @@ export function ResetPassword() {
           <form onSubmit={submit}>
             <label>
               New password
-              <input
+              <PasswordInput
                 autoComplete="new-password"
                 disabled={invalid}
                 minLength={10}
                 onChange={(event) => setPassword(event.target.value)}
                 required
-                type="password"
                 value={password}
               />
               <small>At least 10 characters</small>
             </label>
             <label>
               Confirm new password
-              <input
+              <PasswordInput
                 autoComplete="new-password"
                 disabled={invalid}
                 minLength={10}
                 onChange={(event) => setConfirmation(event.target.value)}
                 required
-                type="password"
                 value={confirmation}
               />
             </label>

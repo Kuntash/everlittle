@@ -46,7 +46,7 @@ export function SeoLandingPage({ page }: { page: SeoLandingPageContent }) {
             <figure className="seo-story-photo">
               <span className="seo-story-tape" aria-hidden="true" />
               <img
-                src="/marketing/family-album.jpg"
+                src="/marketing/family-album-us.webp"
                 alt="A family keeping photographs and stories together"
                 width="1536"
                 height="1024"

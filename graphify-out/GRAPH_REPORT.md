@@ -1,16 +1,16 @@
-# Graph Report - everlittle  (2026-08-31)
+# Graph Report - everlittle  (2026-09-07)
 
 ## Corpus Check
-- 108 files · ~1,616,835 words
+- 117 files · ~2,159,699 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2478 nodes · 3162 edges · 214 communities (57 shown, 157 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 16 edges (avg confidence: 0.67)
+- 2549 nodes · 3248 edges · 219 communities (63 shown, 156 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 17 edges (avg confidence: 0.68)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `b0581b9f`
+- Built from commit: `d89c2a34`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -28,7 +28,7 @@
 - URL
 - devDependencies
 - URLSearchParams
-- seo-landing-page.tsx
+- onboarding.tsx
 - DurableObjectStorage
 - Container
 - Element
@@ -170,7 +170,7 @@
 - RateLimit
 - ResponseFunctionToolCall
 - RpcTarget
-- formatMemoryDate
+- memoryIcon
 - ScheduledController
 - Scheduler
 - SecretsStoreSecret
@@ -208,18 +208,23 @@
 - Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?
 - CompileError
 - RuntimeError
-- getRuntimeEnv
+- Everlittle — Living Scrapbook redesign handoff
 - __root.tsx
-- $familySlug.kids.$childSlug.tsx
+- 12. Continuation log — keep this current
 - @fontsource-variable/cormorant-garamond
 - 0014_dodo_billing.sql
 - lucide-react
 - @tanstack/react-router
-- billing.ts
-- index.ts
+- living-scrapbook-redesign-handoff.md
+- Final generation prompts
 - scopedApiPath
 - Q: How should PostHog campaign attribution and conversion events integrate with signup, onboarding, memory creation, and billing?
 - Q: Make sure icon-512.png is actually the logo on the landing page and not something else
+- Everlittle product design options
+- 9. Step-by-step execution plan
+- FamilySettings
+- audio-waveform.ts
+- 1. User decisions and scope
 
 ## God Nodes (most connected - your core abstractions)
 1. `getRuntimeEnv()` - 46 edges
@@ -234,21 +239,21 @@
 10. `auditStatement()` - 20 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `bootstrapFamily()` --calls--> `slugify()`  [EXTRACTED]
+  apps/web/src/server.ts → packages/domain/src/index.ts
+- `memoryIcon()` --indirect_call--> `Star()`  [INFERRED]
+  apps/web/src/routes/index.tsx → apps/web/src/components/marketing-home.tsx
 - `completeOnboarding()` --calls--> `slugify()`  [EXTRACTED]
   apps/web/src/lib/archive-api.ts → packages/domain/src/index.ts
 - `createChildProfile()` --calls--> `slugify()`  [EXTRACTED]
   apps/web/src/lib/archive-api.ts → packages/domain/src/index.ts
-- `bootstrapFamily()` --calls--> `slugify()`  [EXTRACTED]
-  apps/web/src/server.ts → packages/domain/src/index.ts
 - `onboarding_draft` --references--> `"user"`  [EXTRACTED]
   apps/web/migrations/0009_onboarding_drafts.sql → apps/web/migrations/0001_foundation.sql
-- `"passkey"` --references--> `"user"`  [EXTRACTED]
-  apps/web/migrations/0011_adult_account_security.sql → apps/web/migrations/0001_foundation.sql
 
 ## Import Cycles
 - None detected.
 
-## Communities (214 total, 157 thin omitted)
+## Communities (219 total, 156 thin omitted)
 
 ### Community 0 - "worker-configuration.d.ts"
 Cohesion: 0.00
@@ -256,7 +261,7 @@ Nodes (848): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentM
 
 ### Community 1 - "archive-api.ts"
 Cohesion: 0.06
-Nodes (52): ArchiveStorage, base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url(), capsuleSchema, ChildAccessContext, childPinRetryAfter() (+44 more)
+Nodes (124): acceptInvitation(), acceptInvitationForCurrentUser(), ArchiveStorage, auditStatement(), base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url() (+116 more)
 
 ### Community 2 - "scripts"
 Cohesion: 0.11
@@ -286,9 +291,9 @@ Nodes (7): CompressionStream, DecompressionStream, FixedLengthStream, IdentityTr
 Cohesion: 0.09
 Nodes (23): devDependencies, @cloudflare/vite-plugin, @cloudflare/vitest-pool-workers, @tanstack/router-cli, @types/node, @types/react, @types/react-dom, typescript (+15 more)
 
-### Community 13 - "seo-landing-page.tsx"
+### Community 13 - "onboarding.tsx"
 Cohesion: 0.06
-Nodes (32): Brand(), MarketingHome(), MarketingPricingPage(), waveform, ResetPassword(), ScrapbookHome(), waveform, SeoLandingPage() (+24 more)
+Nodes (34): Brand(), MarketingHome(), MarketingPricingPage(), waveform, PasswordInput(), PasswordInputProps, ResetPassword(), waveform (+26 more)
 
 ### Community 20 - "Body"
 Cohesion: 0.15
@@ -338,9 +343,9 @@ Nodes (3): RequestInitCfPropertiesVaryAcceptHeader, RequestInitCfPropertiesVaryA
 Cohesion: 0.22
 Nodes (8): assertProductConfiguration(), client, cloudflareSecrets, ensureProduct(), products, upload, variables, WEBHOOK_EVENTS
 
-### Community 157 - "formatMemoryDate"
-Cohesion: 0.33
-Nodes (9): audienceLabel(), ChildView(), formatMemoryDate(), kindLabel(), memoryIcon(), MemoryMedia(), MemoryRow(), ParentView() (+1 more)
+### Community 157 - "memoryIcon"
+Cohesion: 0.22
+Nodes (10): Star(), Kind, memoryPaper(), papers, audienceLabel(), kindLabel(), memoryIcon(), MemoryNote() (+2 more)
 
 ### Community 168 - "Self-hosting Everlittle on Cloudflare"
 Cohesion: 0.06
@@ -384,14 +389,14 @@ Nodes (7): Route, Route, Route, Route, Route, Route, Everlittle()
 
 ### Community 181 - "index.tsx"
 Cohesion: 0.09
-Nodes (23): ArchiveMembership, ArchiveState, BillingDestination, billingStatusDetail(), billingStatusTitle(), Capsule, Child, ChildSession (+15 more)
+Nodes (19): ArchiveTabs(), destinations, View, ScrapbookHome(), ArchiveMembership, ArchiveState, BillingDestination, Capsule (+11 more)
 
 ### Community 182 - "ExtendableEvent"
 Cohesion: 0.17
 Nodes (6): EmailEvent, ExtendableEvent, FetchEvent, QueueEvent, ScheduledEvent, TailEvent
 
 ### Community 184 - "Everlittle landing design direction"
-Cohesion: 0.33
+Cohesion: 0.40
 Nodes (5): Design bible, Everlittle landing design direction, Generation prompt spine, Mobile sequence, Web sequence
 
 ### Community 189 - "Child access security"
@@ -407,32 +412,36 @@ Cohesion: 0.25
 Nodes (16): apiFetch(), CapsuleComposer(), CapsulesView(), ChildArchiveApp(), currentLocalDateTime(), defaultCapsuleDate(), memoryBodyPlaceholder(), MemoryComposer() (+8 more)
 
 ### Community 197 - "server.ts"
-Cohesion: 0.10
-Nodes (36): acceptInvitation(), AuthOptions, createAuth(), AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail(), DEPLOYMENT_MODES (+28 more)
+Cohesion: 0.07
+Nodes (44): AuthOptions, createAuth(), AuthEmailInput, buildAuthEmail(), escapeHtml(), sendAuthEmail(), DEPLOYMENT_MODES, DeploymentConfig (+36 more)
 
 ### Community 198 - "Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?"
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?, Source Nodes
 
-### Community 201 - "getRuntimeEnv"
-Cohesion: 0.22
-Nodes (45): acceptInvitationForCurrentUser(), auditStatement(), checkOnboardingSlug(), completeOnboarding(), createCapsule(), createChildProfile(), createInvitation(), createMemory() (+37 more)
+### Community 201 - "Everlittle — Living Scrapbook redesign handoff"
+Cohesion: 0.15
+Nodes (13): 10. Verification and acceptance, 11. Mandatory rollout: hosted geteverlittle AND Dikichoetso, 2. Existing references and evidence, 3. Visual system — warm paper, clear structure, 4. Navigation — approved horizontal folder tabs, 5. US audience content and imagery, 6. Product coverage and behavioral requirements, 7. Motion specification — app and landing page (+5 more)
 
 ### Community 202 - "__root.tsx"
-Cohesion: 0.16
-Nodes (15): AnalyticsConfig, AnalyticsProvider(), resolveMarketingAttribution(), Toaster(), analyticsPath(), MARKETING_ATTRIBUTION_STORAGE_KEY, marketingAttribution, readMarketingAttribution() (+7 more)
+Cohesion: 0.15
+Nodes (16): AnalyticsConfig, AnalyticsProvider(), resolveMarketingAttribution(), Toaster(), analyticsPath(), MARKETING_ATTRIBUTION_STORAGE_KEY, marketingAttribution, readMarketingAttribution() (+8 more)
 
-### Community 208 - "billing.ts"
-Cohesion: 0.12
-Nodes (24): enforceArchiveCreation(), enforceArchiveStorage(), getArchiveStorage(), BillingConfigurationError, BillingInterval, BillingOwner, BillingPortalUnavailableError, billingStatusForDodoEvent() (+16 more)
+### Community 203 - "12. Continuation log — keep this current"
+Cohesion: 0.20
+Nodes (10): 12. Continuation log — keep this current, Completed, Final release record — verified September 7, 2026, In progress / not yet released, Next-thread status template, Outstanding decisions / evidence, Release validation — September 6, 2026, September 6, 2026 — resumed through codex-alt (+2 more)
 
-### Community 210 - "index.ts"
-Cohesion: 0.17
-Nodes (11): Audience, audienceSchema, ChildProfile, childSlugSchema, FamilyRole, familyRoleSchema, familySlugSchema, Memory (+3 more)
+### Community 208 - "living-scrapbook-redesign-handoff.md"
+Cohesion: 0.25
+Nodes (4): Interaction references, Living Scrapbook visual and interaction review, Verification, Visual evidence
+
+### Community 210 - "Final generation prompts"
+Cohesion: 0.25
+Nodes (7): A — Paper index, B — Folder tabs, Compare, Files, Final generation prompts, Living Scrapbook — navigation and mobile refinement, Mobile
 
 ### Community 211 - "scopedApiPath"
-Cohesion: 0.29
-Nodes (8): ArchiveApp(), currentArchiveView(), currentFamilySlug(), formatMediaTime(), scopedApiPath(), SecureAudioPlayer(), SecureVideoPlayer(), waveformFromAudio()
+Cohesion: 0.28
+Nodes (9): ArchiveApp(), currentArchiveView(), currentFamilySlug(), formatMediaTime(), formatMemoryDate(), MemoryMedia(), scopedApiPath(), SecureAudioPlayer() (+1 more)
 
 ### Community 212 - "Q: How should PostHog campaign attribution and conversion events integrate with signup, onboarding, memory creation, and billing?"
 Cohesion: 0.40
@@ -442,25 +451,45 @@ Nodes (4): Answer, Outcome, Q: How should PostHog campaign attribution and conve
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Make sure icon-512.png is actually the logo on the landing page and not something else, Source Nodes
 
+### Community 214 - "Everlittle product design options"
+Cohesion: 0.25
+Nodes (8): 01-quiet-heirloom, 02-living-scrapbook, 03-everyday-companion, Audit and limits, Corrections before implementation, Everlittle product design options, Final prompts, Recommendation
+
+### Community 215 - "9. Step-by-step execution plan"
+Cohesion: 0.25
+Nodes (8): 9. Step-by-step execution plan, Phase 0 — resume and verify, Phase 1 — revised visual checkpoint, Phase 2 — shared foundations, Phase 3 — app first, Phase 4 — public pages and motion, Phase 5 — validation and review, Phase 6 — release both installations
+
+### Community 216 - "FamilySettings"
+Cohesion: 0.33
+Nodes (7): billingStatusDetail(), billingStatusTitle(), FamilySettings(), formatDate(), formatDateTime(), formatFileSize(), initials()
+
+### Community 217 - "audio-waveform.ts"
+Cohesion: 0.53
+Nodes (4): FALLBACK_WAVEFORM, Waveform, waveformFromAudio(), waveformFromChannels()
+
+### Community 218 - "1. User decisions and scope"
+Cohesion: 0.67
+Nodes (3): 1. User decisions and scope, Accepted direction, Not approved or implied
+
 ## Knowledge Gaps
-- **1157 isolated node(s):** `"verification"`, `child_access_attempt`, `billing_webhook_event`, `name`, `version` (+1152 more)
+- **1204 isolated node(s):** `"verification"`, `child_access_attempt`, `billing_webhook_event`, `name`, `version` (+1199 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **157 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **156 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Console` connect `Console` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
-- **Why does `Headers` connect `Headers` to `worker-configuration.d.ts`?**
-  _High betweenness centrality (0.021) - this node is a cross-community bridge._
-- **Why does `DurableObject` connect `DurableObject` to `worker-configuration.d.ts`?**
+- **Why does `FormData` connect `FormData` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `ReadableStream` connect `ReadableStream` to `worker-configuration.d.ts`?**
+  _High betweenness centrality (0.019) - this node is a cross-community bridge._
+- **Why does `WritableStreamDefaultWriter` connect `WritableStreamDefaultWriter` to `worker-configuration.d.ts`?**
   _High betweenness centrality (0.019) - this node is a cross-community bridge._
 - **What connects `"verification"`, `child_access_attempt`, `billing_webhook_event` to the rest of the system?**
-  _1157 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1204 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.002347417840375587 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06458635703918723 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05777616279069767 - nodes in this community are weakly interconnected._
 - **Should `scripts` be split into smaller, more focused modules?**
   _Cohesion score 0.1111111111111111 - nodes in this community are weakly interconnected._

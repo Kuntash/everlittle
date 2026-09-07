@@ -196,7 +196,7 @@ export function MarketingHome() {
       <section className="heirloom-hero">
         <img
           className="heirloom-hero-photo"
-          src="/marketing/family-album.jpg"
+          src="/marketing/family-album-us.webp"
           alt="Three generations looking through a family album"
           width="1536"
           height="1024"
@@ -257,7 +257,7 @@ export function MarketingHome() {
           <figure className="heirloom-photo-memory" data-motion="keepsake-left">
             <div className="heirloom-photo-frame">
               <img
-                src="/marketing/family-album.jpg"
+                src="/marketing/family-album-us.webp"
                 alt="A family photograph kept with its story"
                 width="1536"
                 height="1024"
@@ -362,7 +362,7 @@ export function MarketingHome() {
               <p>All time</p>
               <article>
                 <i />
-                <img src="/marketing/family-album.jpg" alt="" />
+                <img src="/marketing/family-album-us.webp" alt="" />
                 <div>
                   <small>MAY 14, 2016</small>
                   <b>A rainy afternoon together</b>
@@ -371,7 +371,7 @@ export function MarketingHome() {
               </article>
               <article>
                 <i />
-                <img src="/marketing/voice-memory.jpg" alt="" />
+                <img src="/marketing/first-bike-us.webp" alt="" />
                 <div>
                   <small>AUG 2, 2018</small>
                   <b>First day of school</b>
@@ -389,7 +389,10 @@ export function MarketingHome() {
               laughing.
             </p>
             <Waveform />
-            <img src="/marketing/family-album.jpg" alt="A family memory shown inside Everlittle" />
+            <img
+              src="/marketing/family-album-us.webp"
+              alt="A family memory shown inside Everlittle"
+            />
           </article>
 
           <article className="heirloom-capsule-window">
@@ -417,7 +420,7 @@ export function MarketingHome() {
       <section className="heirloom-privacy" id="privacy">
         <div className="heirloom-privacy-photo" data-motion="privacy-photo">
           <img
-            src="/marketing/voice-memory.jpg"
+            src="/marketing/first-bike-us.webp"
             alt="A parent recording a private voice memory beside a sleeping child"
             width="1536"
             height="1152"
@@ -594,7 +597,7 @@ export function MarketingHome() {
 
       <section className="heirloom-closing">
         <img
-          src="/marketing/family-album.jpg"
+          src="/marketing/family-album-us.webp"
           alt="A family holding onto their shared memories"
           width="1536"
           height="1024"

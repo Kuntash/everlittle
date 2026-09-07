@@ -40,13 +40,13 @@
     "semantic_hash": "57ea4f61a1f0b139158fc8e988f2f92a"
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1787732303.7226536,
-    "ast_hash": "c68d5d4834cb3c992d7a5c01b6cc6376",
+    "mtime": 1788700723.2428083,
+    "ast_hash": "4c3a268081986ffe2855a4ca98a9b5d9",
     "semantic_hash": ""
   },
   "apps/web/src/routes/index.tsx": {
-    "mtime": 1788143443.5541363,
-    "ast_hash": "969825d86d0a0ebf80dfe949735c28f0",
+    "mtime": 1788739991.3951702,
+    "ast_hash": "e6b3e9dfb4482a0a242356c583689088",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
@@ -270,8 +270,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/$familySlug.kids.$childSlug.tsx": {
-    "mtime": 1786655907.9417787,
-    "ast_hash": "e794069588f4e7aa67fda1a9afe361ae",
+    "mtime": 1788738458.2824833,
+    "ast_hash": "1863ae62c2d99371897987380723d501",
     "semantic_hash": ""
   },
   "apps/web/src/routes/$familySlug.kids.index.tsx": {
@@ -290,8 +290,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/onboarding.tsx": {
-    "mtime": 1788143456.2576964,
-    "ast_hash": "32582f3280964e41754148c5a7386c87",
+    "mtime": 1788738458.2806587,
+    "ast_hash": "58d079719d800bc7e080c62d5b42f37d",
     "semantic_hash": ""
   },
   "apps/web/src/components/auth-route.tsx": {
@@ -305,8 +305,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/marketing-home.tsx": {
-    "mtime": 1787742468.7683725,
-    "ast_hash": "fc332517163355e34338a17d20fe724a",
+    "mtime": 1788703063.9306235,
+    "ast_hash": "baf81e2cdc762c32f373eb16aa23c518",
     "semantic_hash": ""
   },
   "apps/web/src/routes/invite.$token.tsx": {
@@ -470,8 +470,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/reset-password.tsx": {
-    "mtime": 1786823309.85114,
-    "ast_hash": "683c9be275deba61f3c78fea996c57a1",
+    "mtime": 1788738694.0655055,
+    "ast_hash": "585a97eda3efce7427f1a53cf05411bb",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-email.ts": {
@@ -575,8 +575,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/pricing.tsx": {
-    "mtime": 1788139706.8109105,
-    "ast_hash": "817b7a7aaf6c1cb08154d7d016bb6d75",
+    "mtime": 1788703571.8068328,
+    "ast_hash": "06747d6aa0fa62e4e2395d4310185e36",
     "semantic_hash": ""
   },
   "docs/hosted-billing.md": {
@@ -585,8 +585,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/scrapbook-home.tsx": {
-    "mtime": 1788141728.5462675,
-    "ast_hash": "6861afe8afff0655c976e21260893d30",
+    "mtime": 1788703179.7340436,
+    "ast_hash": "e2fe3c4150325cd63cbdcbf1ed89e12b",
     "semantic_hash": ""
   },
   "apps/web/migrations/0014_dodo_billing.sql": {
@@ -660,8 +660,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/seo-landing-page.tsx": {
-    "mtime": 1788141152.5845275,
-    "ast_hash": "cd1781656e9c5ef360702ad241857789",
+    "mtime": 1788700939.9178412,
+    "ast_hash": "057585762d7e71db262fd36ce08faf80",
     "semantic_hash": ""
   },
   "apps/web/src/lib/seo-page-paths.ts": {
@@ -670,8 +670,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/seo-pages.ts": {
-    "mtime": 1788141728.545163,
-    "ast_hash": "1f5344816ee993b2a086da757fbf5b68",
+    "mtime": 1788700939.9187527,
+    "ast_hash": "e33872cfa112a0489726dc1d5276ed4b",
     "semantic_hash": ""
   },
   "apps/web/src/routes/baby-memory-journal.tsx": {
@@ -727,6 +727,116 @@
   "apps/web/public/marketing/meta-page-cover.png": {
     "mtime": 1788145048.7528486,
     "ast_hash": "6d0f4b047e9f620772e39c33da5701e2",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/archive-tabs.tsx": {
+    "mtime": 1788736719.4976115,
+    "ast_hash": "860f454e59414982bc3d9799086022c1",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/password-input.tsx": {
+    "mtime": 1788738458.279298,
+    "ast_hash": "0e904c8bf17aa84c6ceb77bf15044316",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/audio-waveform.ts": {
+    "mtime": 1788739981.0852537,
+    "ast_hash": "6fa87c7c25eb0a1812dac5d2dd6f319a",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/memory-paper.ts": {
+    "mtime": 1788736943.6190012,
+    "ast_hash": "40eb9eb9e953b99a17ee111c5dc84faf",
+    "semantic_hash": ""
+  },
+  "apps/web/test/audio-waveform.test.ts": {
+    "mtime": 1788739981.0858006,
+    "ast_hash": "196b121e2054c81ee94fd8a8d54dbe0a",
+    "semantic_hash": ""
+  },
+  "assets/design/living-scrapbook-refinement/README.md": {
+    "mtime": 1788736448.0130565,
+    "ast_hash": "7053f476af7aa4819a1b08e029e4f2b9",
+    "semantic_hash": ""
+  },
+  "assets/design/product-directions-2026-09-06/README.md": {
+    "mtime": 1788695001.5070934,
+    "ast_hash": "b08a92153d896c5bcade344ebbc57efc",
+    "semantic_hash": ""
+  },
+  "docs/living-scrapbook-redesign-handoff.md": {
+    "mtime": 1788740080.4190857,
+    "ast_hash": "daf08ca05e1538f7a9cb7aaa1dc743cd",
+    "semantic_hash": ""
+  },
+  "docs/living-scrapbook-visual-review.md": {
+    "mtime": 1788739132.0930383,
+    "ast_hash": "56b1ade58907f757c137012deb6818d7",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/family-album-us.jpg": {
+    "mtime": 1788700940.7476258,
+    "ast_hash": "a5baf6f197aebe2a12564b1ab0b83374",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/family-album-us.webp": {
+    "mtime": 1788700940.7366025,
+    "ast_hash": "cc5413f21c8b3aee7271706661c36afb",
+    "semantic_hash": ""
+  },
+  "apps/web/public/marketing/first-bike-us.webp": {
+    "mtime": 1788700940.891969,
+    "ast_hash": "524310ce29335e80445601f6e89e1ee5",
+    "semantic_hash": ""
+  },
+  "assets/design/living-scrapbook-refinement/01-paper-index.png": {
+    "mtime": 1788695808.1948774,
+    "ast_hash": "93194f77b8d9fefd4979615822645782",
+    "semantic_hash": ""
+  },
+  "assets/design/living-scrapbook-refinement/02-folder-tabs.png": {
+    "mtime": 1788695808.2459025,
+    "ast_hash": "dbf7de53b46721001a92fa42f3f5fa1d",
+    "semantic_hash": ""
+  },
+  "assets/design/living-scrapbook-refinement/03-mobile.png": {
+    "mtime": 1788695808.29306,
+    "ast_hash": "4144d885144e4fe1ee2874a13cb0dc34",
+    "semantic_hash": ""
+  },
+  "assets/design/living-scrapbook-refinement/implementation/everlittle-desktop.png": {
+    "mtime": 1788739131.0839036,
+    "ast_hash": "98f432cdf0a3c6913b20eb9910d990bc",
+    "semantic_hash": ""
+  },
+  "assets/design/living-scrapbook-refinement/implementation/everlittle-mobile.png": {
+    "mtime": 1788739131.0860033,
+    "ast_hash": "abe436357452cb5a28184dd08d597d72",
+    "semantic_hash": ""
+  },
+  "assets/design/living-scrapbook-refinement/implementation/guide-mobile.png": {
+    "mtime": 1788739131.0880222,
+    "ast_hash": "ea530e48848b8f510da7795c6c93b381",
+    "semantic_hash": ""
+  },
+  "assets/design/living-scrapbook-refinement/implementation/pricing-mobile.png": {
+    "mtime": 1788739131.0898776,
+    "ast_hash": "2773669c4ceaab8095862d961483e4e5",
+    "semantic_hash": ""
+  },
+  "assets/design/product-directions-2026-09-06/01-quiet-heirloom.png": {
+    "mtime": 1788693098.5517168,
+    "ast_hash": "7057b5512b96b85b0eb13ebc8538ceb1",
+    "semantic_hash": ""
+  },
+  "assets/design/product-directions-2026-09-06/02-living-scrapbook.png": {
+    "mtime": 1788693098.5992923,
+    "ast_hash": "c2ae3e243d4220a3696c2ae13f02f493",
+    "semantic_hash": ""
+  },
+  "assets/design/product-directions-2026-09-06/03-everyday-companion.png": {
+    "mtime": 1788693098.6469698,
+    "ast_hash": "74ee83b41c4587df370a835ccbadeec7",
     "semantic_hash": ""
   }
 }

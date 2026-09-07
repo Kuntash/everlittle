@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { shouldOfferPwaInstall } from "@/lib/pwa-install";
 
 import appCss from "../styles.css?url";
+import scrapbookCss from "../scrapbook.css?url";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -31,6 +32,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "stylesheet", href: scrapbookCss },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "icon", href: "/icon.svg", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },

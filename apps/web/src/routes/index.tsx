@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useLocation } from "@tanstack/react-router";
 import { usePostHog } from "@posthog/react";
 import {
   Archive,
@@ -11,10 +11,7 @@ import {
   Copy,
   Crown,
   FileAudio,
-  Heart,
   HardDrive,
-  Home,
-  Image,
   LockKeyhole,
   LogOut,
   Plus,
@@ -23,6 +20,10 @@ import {
   Pause,
   Share2,
   Maximize2,
+  Mic,
+  Star,
+  Mail,
+  Play,
   ShieldCheck,
   Sparkles,
   Trash2,
@@ -35,7 +36,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import type { FormEvent } from "react";
 import { toast } from "sonner";
 
+import { PasswordInput } from "@/components/password-input";
 import { Brand } from "@/components/brand";
+import { ArchiveTabs } from "@/components/archive-tabs";
+import { FALLBACK_WAVEFORM, waveformFromAudio } from "@/lib/audio-waveform";
+import { memoryPaper } from "@/lib/memory-paper";
 import { resolveArchiveEntry } from "@/lib/archive-navigation";
 import { authClient } from "@/lib/auth-client";
 import { isExistingAccountError } from "@/lib/auth-feedback";
@@ -62,7 +67,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:image",
-        content: "https://geteverlittle.com/marketing/family-album.jpg",
+        content: "https://geteverlittle.com/marketing/family-album-us.jpg",
       },
       { property: "og:image:width", content: "1536" },
       { property: "og:image:height", content: "1024" },
@@ -78,7 +83,7 @@ export const Route = createFileRoute("/")({
       },
       {
         name: "twitter:image",
-        content: "https://geteverlittle.com/marketing/family-album.jpg",
+        content: "https://geteverlittle.com/marketing/family-album-us.jpg",
       },
       {
         name: "twitter:image:alt",
@@ -93,7 +98,7 @@ export const Route = createFileRoute("/")({
           applicationCategory: "LifestyleApplication",
           operatingSystem: "Web",
           url: "https://geteverlittle.com/",
-          image: "https://geteverlittle.com/marketing/family-album.jpg",
+          image: "https://geteverlittle.com/marketing/family-album-us.jpg",
           description:
             "A private family archive for photographs, voices, everyday stories, and letters for the future.",
           offers: {
@@ -219,15 +224,14 @@ type ArchiveMembership = {
 type View = "parent" | "timeline" | "capsules" | "child" | "family";
 
 export function Everlittle() {
+  const routeLocation = useLocation();
   const session = authClient.useSession();
   const [platform, setPlatform] = useState<PlatformState | null>(null);
   const [childSession, setChildSession] = useState<ChildSession | null>(null);
   const [invitation, setInvitation] = useState<InvitationPreview | null>(null);
   const [invitationChecked, setInvitationChecked] = useState(false);
-  const inviteToken =
-    typeof window === "undefined" ? "" : (new URLSearchParams(location.search).get("invite") ?? "");
-  const childModeRequested =
-    typeof window !== "undefined" && new URLSearchParams(location.search).get("child") === "1";
+  const inviteToken = new URLSearchParams(routeLocation.searchStr).get("invite") ?? "";
+  const childModeRequested = new URLSearchParams(routeLocation.searchStr).get("child") === "1";
 
   useEffect(() => {
     void fetch("/api/platform")
@@ -255,7 +259,7 @@ export function Everlittle() {
   }, [inviteToken]);
 
   if (session.isPending || !platform || !childSession || !invitationChecked) {
-    const isPublicHomepage = !currentFamilySlug() && !inviteToken && !childModeRequested;
+    const isPublicHomepage = routeLocation.pathname === "/" && !inviteToken && !childModeRequested;
     return isPublicHomepage ? <ScrapbookHome /> : <Loading />;
   }
   if (platform.deploymentMode === "hosted" && !session.data?.user && currentFamilySlug()) {
@@ -519,7 +523,7 @@ export function AccessScreen({
               >
                 <label>
                   Family PIN
-                  <input
+                  <PasswordInput
                     autoComplete="one-time-code"
                     autoFocus
                     className="pin-input"
@@ -530,7 +534,7 @@ export function AccessScreen({
                     pattern="[0-9]{6}"
                     placeholder="••••••"
                     required
-                    type="password"
+                    secretLabel="PIN"
                     value={pin}
                   />
                 </label>
@@ -656,12 +660,11 @@ export function AccessScreen({
                   </label>
                   <label>
                     Password
-                    <input
+                    <PasswordInput
                       autoComplete={mode === "setup" ? "new-password" : "current-password"}
                       minLength={10}
                       onChange={(event) => setPassword(event.target.value)}
                       required
-                      type="password"
                       value={password}
                     />
                     {mode === "setup" ? <small>At least 10 characters</small> : null}
@@ -861,10 +864,13 @@ function ArchiveApp({ name }: { name: string }) {
   }
 
   return (
-    <main className="app-shell">
+    <main className="app-shell scrapbook-app">
       <header className="app-header">
         <div className="archive-header-identity">
           <Brand compact />
+          <span className="archive-name">
+            <Users size={18} aria-hidden="true" /> {state.archive.name}
+          </span>
           {archives.length > 1 ? (
             <label className="family-switcher">
               <span>Family</span>
@@ -883,93 +889,72 @@ function ArchiveApp({ name }: { name: string }) {
           ) : null}
         </div>
         <div className="header-actions">
-          <div className="view-switch" aria-label="Archive view">
-            <button
-              className={view === "parent" ? "active" : ""}
-              onClick={() => navigateView("parent")}
-            >
-              Parent
-            </button>
-            <button
-              className={view === "timeline" ? "active" : ""}
-              onClick={() => navigateView("timeline")}
-            >
-              Timeline
-            </button>
-            <button
-              className={view === "capsules" ? "active" : ""}
-              onClick={() => navigateView("capsules")}
-            >
-              Capsules
-            </button>
-            {state.children[0]?.profileKind !== "vault" ? (
-              <button
-                className={view === "child" ? "active" : ""}
-                onClick={() => navigateView("child")}
-              >
-                Child
-              </button>
-            ) : null}
-            <button
-              className={view === "family" ? "active" : ""}
-              onClick={() => navigateView("family")}
-            >
-              Family
-            </button>
-          </div>
           <button
             className="icon-button"
             aria-label="Sign out"
+            title={`Signed in as ${name}`}
             onClick={() => void authClient.signOut().then(() => location.reload())}
           >
             <LogOut size={17} />
           </button>
         </div>
       </header>
-      {view === "parent" ? (
-        <ParentView
-          child={state.children[0]}
-          currentUserId={state.currentMember.userId}
-          memories={state.memories}
-          name={name}
-          onNavigate={navigateView}
-          refresh={refresh}
-          role={state.currentMember.role}
-          canCreateContent={state.billing.canCreateContent}
-          onSubscriptionRequired={() => setShowSubscription(true)}
-        />
-      ) : null}
-      {view === "timeline" ? (
-        <TimelineView
-          child={state.children[0]}
-          currentUserId={state.currentMember.userId}
-          memories={state.memories}
-          refresh={refresh}
-          role={state.currentMember.role}
-        />
-      ) : null}
-      {view === "capsules" ? (
-        <CapsulesView
-          capsules={state.capsules}
-          child={state.children[0]}
-          currentUserId={state.currentMember.userId}
-          refresh={refresh}
-          role={state.currentMember.role}
-          canCreateContent={state.billing.canCreateContent}
-          onSubscriptionRequired={() => setShowSubscription(true)}
-        />
-      ) : null}
-      {view === "child" ? (
-        <ChildView
-          capsules={state.capsules.filter(
-            (capsule) => !capsule.locked && capsule.audience === "child",
-          )}
-          child={state.children[0]}
-          memories={state.memories}
-        />
-      ) : null}
-      {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
-      <MobileNav active={view} onNavigate={navigateView} />
+      <ArchiveTabs
+        active={view}
+        onNavigate={navigateView}
+        showChild={state.children[0]?.profileKind !== "vault"}
+      />
+      <div className="scrapbook-page">
+        {view === "parent" ? (
+          <ParentView
+            child={state.children[0]}
+            currentUserId={state.currentMember.userId}
+            memories={state.memories}
+            capsules={state.capsules}
+            onNavigate={navigateView}
+            refresh={refresh}
+            role={state.currentMember.role}
+            canCreateContent={state.billing.canCreateContent}
+            onSubscriptionRequired={() => setShowSubscription(true)}
+          />
+        ) : null}
+        {view === "timeline" ? (
+          <TimelineView
+            child={state.children[0]}
+            currentUserId={state.currentMember.userId}
+            memories={state.memories}
+            refresh={refresh}
+            role={state.currentMember.role}
+          />
+        ) : null}
+        {view === "capsules" ? (
+          <CapsulesView
+            capsules={state.capsules}
+            child={state.children[0]}
+            currentUserId={state.currentMember.userId}
+            refresh={refresh}
+            role={state.currentMember.role}
+            canCreateContent={state.billing.canCreateContent}
+            onSubscriptionRequired={() => setShowSubscription(true)}
+          />
+        ) : null}
+        {view === "child" ? (
+          <ChildView
+            capsules={state.capsules.filter(
+              (capsule) => !capsule.locked && capsule.audience === "child",
+            )}
+            child={state.children[0]}
+            memories={state.memories}
+          />
+        ) : null}
+        {view === "family" ? <FamilySettings state={state} refresh={refresh} /> : null}
+      </div>
+      <ArchiveTabs
+        mobile
+        active={view}
+        onNavigate={navigateView}
+        showChild={state.children[0]?.profileKind !== "vault"}
+      />
       {showSubscription ? (
         <SubscriptionSheet
           billing={state.billing}
@@ -1026,20 +1011,22 @@ export function ChildArchiveApp({
   }
 
   return (
-    <main className="app-shell child-shell">
+    <main className="app-shell scrapbook-app child-shell">
       <header className="app-header">
         <Brand compact />
         <button className="child-leave" onClick={() => void leave()} type="button">
           <LogOut size={16} /> Leave {state.child.displayName}’s space
         </button>
       </header>
-      <ChildView capsules={state.capsules} child={state.child} memories={state.memories} />
+      <div className="scrapbook-page">
+        <ChildView capsules={state.capsules} child={state.child} memories={state.memories} />
+      </div>
     </main>
   );
 }
 
 function ParentView({
-  name,
+  capsules,
   child,
   currentUserId,
   memories,
@@ -1049,7 +1036,7 @@ function ParentView({
   canCreateContent,
   onSubscriptionRequired,
 }: {
-  name: string;
+  capsules: Capsule[];
   child?: Child;
   currentUserId: string;
   memories: Memory[];
@@ -1064,7 +1051,9 @@ function ParentView({
   const canCreate = role !== "viewer";
   const isVault = child?.profileKind === "vault";
   const childName = child?.displayName ?? "your child";
-  const featured = memories[0];
+  const nextCapsule = capsules
+    .filter((capsule) => capsule.locked)
+    .sort((a, b) => a.unlocksAt.localeCompare(b.unlocksAt))[0];
 
   function openComposer(kind: MemoryKind) {
     if (!child) return;
@@ -1076,125 +1065,91 @@ function ParentView({
   }
 
   return (
-    <div className="archive-layout">
-      <section className="archive-main">
-        <p className="eyebrow">Good morning, {name}</p>
-        <div className="page-title-row">
-          <div>
-            <h1>{isVault ? "Our memory vault" : `${childName}’s story`}</h1>
-            <p>
-              A private family archive · {memories.length}{" "}
-              {memories.length === 1 ? "memory" : "memories"}
-            </p>
-          </div>
-          {canCreate ? (
-            <button
-              className="round-action"
-              aria-label="Add memory"
-              disabled={!child}
-              onClick={() => openComposer("story")}
-            >
-              <Plus />
-            </button>
-          ) : null}
+    <div className="scrapbook-parent">
+      <header className="scrapbook-page-heading">
+        <div>
+          <h1>{isVault ? "Our memory vault" : `${childName}’s scrapbook`}</h1>
+          <p>The little things, kept together.</p>
         </div>
-        {featured ? (
-          <article className="featured-memory">
-            <MemoryMedia memory={featured} featured />
-            <div className="memory-copy">
-              <p className="eyebrow">Latest {kindLabel(featured.kind)}</p>
-              <h2>{featured.title}</h2>
-              {featured.body ? <p>{featured.body}</p> : null}
-              {featured.kind === "voice" ? <MemoryPlayback memory={featured} /> : null}
-              <span className="byline">
-                {formatMemoryDate(featured.happenedAt)} · {featured.authorName ?? "Family"}
-              </span>
-              <button
-                className="memory-open"
-                onClick={() => setSelectedMemory(featured)}
-                type="button"
-              >
-                Open memory <ArrowRight size={15} />
-              </button>
-            </div>
-          </article>
-        ) : (
-          <div className="memory-empty">
-            <span>
-              <Sparkles />
-            </span>
-            <p className="eyebrow">The first page is waiting</p>
-            <h2>Keep the small thing you don’t want to forget.</h2>
-            <p>
-              {isVault
-                ? "A trip, an ordinary afternoon, a note to each other, or simply what today felt like."
-                : "A sleepy expression, a new sound, a photograph, or simply what today felt like."}
-            </p>
-            {canCreate && child ? (
-              <button
-                className="primary-button"
-                onClick={() => openComposer("story")}
-                type="button"
-              >
-                Write the first memory <ArrowRight size={17} />
-              </button>
-            ) : null}
-          </div>
-        )}
-        <div className="section-heading">
-          <h2>Recent memories</h2>
-          {memories.length ? <span>{memories.length} kept</span> : null}
-        </div>
-        <div className="memory-list">
-          {memories.slice(featured ? 1 : 0, 7).map((memory) => (
-            <MemoryRow key={memory.id} memory={memory} onOpen={() => setSelectedMemory(memory)} />
-          ))}
-        </div>
-      </section>
-      <aside className="archive-side">
-        <p className="eyebrow">Quick capture</p>
-        <h2>What happened today?</h2>
-        <div className="capture-grid">
-          <button disabled={!canCreate || !child} onClick={() => openComposer("photo")}>
-            {memoryIcon("photo")} Photo
-          </button>
-          <button disabled={!canCreate || !child} onClick={() => openComposer("story")}>
-            {memoryIcon("story")} Story
-          </button>
-          <button disabled={!canCreate || !child} onClick={() => openComposer("voice")}>
-            {memoryIcon("voice")} Voice
-          </button>
-          <button disabled={!canCreate || !child} onClick={() => openComposer("video")}>
-            {memoryIcon("video")} Video
-          </button>
-          <button disabled={!canCreate || !child} onClick={() => openComposer("milestone")}>
-            {memoryIcon("milestone")} Milestone
-          </button>
-        </div>
-        {!child ? (
-          <p className="capture-note">Create a child profile in Family before adding memories.</p>
-        ) : null}
-        <div className="capsule-card">
-          <span className="capsule-seal">
-            <Sparkles />
-          </span>
-          <p className="eyebrow">Future capsule</p>
-          <h3>{isVault ? "For another day" : "For when you’re 18"}</h3>
-          <p>
-            {isVault
-              ? "Seal a note for the two of you to open on a day you choose."
-              : `Write a note now for ${childName} to open one day.`}
-          </p>
+        {canCreate ? (
           <button
-            onClick={() =>
-              canCreate && !canCreateContent ? onSubscriptionRequired() : onNavigate("capsules")
-            }
+            className="primary-button scrapbook-add"
+            disabled={!child}
+            onClick={() => openComposer("story")}
             type="button"
           >
-            {canCreate ? "Add a note" : "View capsules"} <ArrowRight size={16} />
+            <Plus size={20} /> Add a memory
           </button>
+        ) : null}
+      </header>
+      {canCreate ? (
+        <div className="scrapbook-capture" aria-label="Quick capture">
+          {(["photo", "story", "voice", "video", "milestone"] as MemoryKind[]).map((kind) => (
+            <button key={kind} disabled={!child} onClick={() => openComposer(kind)} type="button">
+              {memoryIcon(kind)}
+              <span>{kindLabel(kind)}</span>
+            </button>
+          ))}
         </div>
-      </aside>
+      ) : null}
+      {!child ? (
+        <p className="capture-note">Create a child profile in Family before adding memories.</p>
+      ) : null}
+      {memories.length ? (
+        <>
+          <div className="scrapbook-notes scrapbook-recent" aria-label="Recent memories">
+            {memories.slice(0, 4).map((memory) => (
+              <MemoryNote
+                key={memory.id}
+                memory={memory}
+                onOpen={() => setSelectedMemory(memory)}
+              />
+            ))}
+            <aside className="scrapbook-envelope scrapbook-capsule-preview">
+              <h2>{nextCapsule?.title ?? "For another day"}</h2>
+              <span className="envelope-stamp" aria-hidden="true">
+                <LockKeyhole size={32} />
+              </span>
+              <p>
+                {nextCapsule
+                  ? `Opens ${formatDate(nextCapsule.unlocksAt)}`
+                  : isVault
+                    ? "A note for a day you choose."
+                    : `A little love for ${childName}’s future.`}
+              </p>
+              <button
+                className="envelope-open"
+                aria-label={nextCapsule ? `View capsule: ${nextCapsule.title}` : "Explore capsules"}
+                onClick={() => onNavigate("capsules")}
+                type="button"
+              />
+            </aside>
+          </div>
+          <div className="scrapbook-collection-footer">
+            <button className="text-button" onClick={() => onNavigate("timeline")} type="button">
+              All {memories.length} memories <ArrowRight size={15} />
+            </button>
+          </div>
+        </>
+      ) : (
+        <section className="memory-empty scrapbook-first-note">
+          <span aria-hidden="true">
+            <PenLine />
+          </span>
+          <p className="eyebrow">The first page is waiting</p>
+          <h2>Keep the small thing you don’t want to forget.</h2>
+          <p>
+            {isVault
+              ? "An ordinary afternoon, a note to each other, or simply what today felt like."
+              : "A sleepy expression, a new sound, a photograph, or simply what today felt like."}
+          </p>
+          {canCreate && child ? (
+            <button className="primary-button" onClick={() => openComposer("story")} type="button">
+              Write the first memory <ArrowRight size={17} />
+            </button>
+          ) : null}
+        </section>
+      )}
       {composerKind && child ? (
         <MemoryComposer
           child={child}
@@ -1262,28 +1217,9 @@ function ChildView({
         </div>
       </section>
       {featured ? (
-        <section className="child-grid real-child-grid" id="child-stories">
-          {childMemories.map((memory, index) => (
-            <article
-              className={`story-card child-story-button ${index === 0 ? "large" : ""}`}
-              key={memory.id}
-            >
-              {memory.mediaType === "image" ? <MemoryMedia memory={memory} featured /> : null}
-              {memory.mediaType === "video" ? <MemoryMedia memory={memory} featured /> : null}
-              <p className="eyebrow">
-                {kindLabel(memory.kind)} from {memory.authorName ?? "your family"}
-              </p>
-              <h2>{memory.title}</h2>
-              {memory.body ? <p>{memory.body}</p> : null}
-              {memory.kind === "voice" ? <MemoryPlayback memory={memory} /> : null}
-              <button
-                className="story-open"
-                onClick={() => setSelectedMemory(memory)}
-                type="button"
-              >
-                Read this memory <ArrowRight size={15} />
-              </button>
-            </article>
+        <section className="scrapbook-notes child-notes" id="child-stories">
+          {childMemories.map((memory) => (
+            <MemoryNote key={memory.id} memory={memory} onOpen={() => setSelectedMemory(memory)} />
           ))}
         </section>
       ) : (
@@ -1367,6 +1303,7 @@ function TimelineView({
       <div className="timeline-filters" aria-label="Filter memories">
         <button
           className={filter === "all" ? "active" : ""}
+          aria-pressed={filter === "all"}
           onClick={() => setFilter("all")}
           type="button"
         >
@@ -1376,6 +1313,7 @@ function TimelineView({
           (kind) => (
             <button
               className={filter === kind ? "active" : ""}
+              aria-pressed={filter === kind}
               key={kind}
               onClick={() => setFilter(kind)}
               type="button"
@@ -1399,21 +1337,11 @@ function TimelineView({
               </header>
               <div className="timeline-cards">
                 {items.map((memory) => (
-                  <article className="timeline-card" key={memory.id}>
-                    <MemoryMedia memory={memory} />
-                    {memory.kind === "voice" ? <MemoryPlayback memory={memory} /> : null}
-                    <button
-                      className="timeline-card-copy"
-                      onClick={() => setSelectedMemory(memory)}
-                      type="button"
-                    >
-                      <small>
-                        {kindLabel(memory.kind)} · {audienceLabel(memory.audience)}
-                      </small>
-                      <strong>{memory.title}</strong>
-                      <span>{memory.body ?? `Kept by ${memory.authorName ?? "family"}`}</span>
-                    </button>
-                  </article>
+                  <MemoryNote
+                    key={memory.id}
+                    memory={memory}
+                    onOpen={() => setSelectedMemory(memory)}
+                  />
                 ))}
               </div>
             </section>
@@ -1560,7 +1488,7 @@ function MemoryDetail({
       }}
     >
       <section
-        className="memory-detail"
+        className={`memory-detail detail-paper-${memory.kind}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="memory-detail-title"
@@ -1821,7 +1749,7 @@ function MemoryComposer({
       }}
     >
       <section
-        className="memory-composer"
+        className={`memory-composer composer-paper-${kind}`}
         role="dialog"
         aria-modal="true"
         aria-labelledby="composer-title"
@@ -1851,6 +1779,7 @@ function MemoryComposer({
               (item) => (
                 <button
                   className={kind === item ? "active" : ""}
+                  aria-pressed={kind === item}
                   key={item}
                   onClick={() => chooseKind(item)}
                   type="button"
@@ -2004,7 +1933,7 @@ function MemoryMedia({ memory, featured = false }: { memory: Memory; featured?: 
     return (
       <div className={`memory-photo real-photo ${featured ? "featured" : ""}`}>
         <img
-          alt=""
+          alt={memory.title}
           loading={featured ? "eager" : "lazy"}
           src={scopedApiPath(`/api/media/${memory.mediaId}`)}
         />
@@ -2030,15 +1959,10 @@ function MemoryPlayback({ memory }: { memory: Memory }) {
       <span aria-hidden="true">
         <PlayCircle />
       </span>
-      <p>No recording is attached to this sample.</p>
+      <p>No recording is attached to this memory.</p>
     </div>
   );
 }
-
-const WAVEFORM_BARS = [
-  9, 15, 21, 13, 27, 35, 22, 17, 31, 39, 25, 14, 20, 33, 42, 29, 18, 24, 36, 30, 16, 12, 26, 38, 28,
-  19, 34, 23, 15, 31, 40, 27, 18, 24, 13, 21,
-];
 
 function SecureAudioPlayer({ memory }: { memory: Memory }) {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -2048,7 +1972,7 @@ function SecureAudioPlayer({ memory }: { memory: Memory }) {
   const [ready, setReady] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [waveform, setWaveform] = useState(WAVEFORM_BARS);
+  const [waveform, setWaveform] = useState(FALLBACK_WAVEFORM);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -2057,6 +1981,10 @@ function SecureAudioPlayer({ memory }: { memory: Memory }) {
     setLoading(true);
     setReady(false);
     setError("");
+    setWaveform(FALLBACK_WAVEFORM);
+    setCurrentTime(0);
+    setDuration(0);
+    setPlaying(false);
     void (async () => {
       try {
         const response = await fetch(scopedApiPath(`/api/media/${memory.mediaId}`), {
@@ -2069,8 +1997,10 @@ function SecureAudioPlayer({ memory }: { memory: Memory }) {
         const objectUrl = URL.createObjectURL(blob);
         objectUrlRef.current = objectUrl;
         if (audioRef.current) audioRef.current.src = objectUrl;
-        setWaveform(await waveformFromAudio(blob));
-        if (active) setReady(true);
+        setReady(true);
+        setLoading(false);
+        const decodedWaveform = await waveformFromAudio(blob);
+        if (active) setWaveform(decodedWaveform);
       } catch (caught) {
         if (active && !controller.signal.aborted) {
           setError(
@@ -2131,13 +2061,23 @@ function SecureAudioPlayer({ memory }: { memory: Memory }) {
         onClick={() => void toggle()}
         type="button"
       >
-        {loading ? <span className="player-loader" /> : playing ? <Pause /> : <PlayCircle />}
+        {loading ? (
+          <span className="player-loader" />
+        ) : playing ? (
+          <Pause />
+        ) : (
+          <Play fill="currentColor" />
+        )}
       </button>
       <div className="waveform-wrap">
-        <div className="waveform" aria-hidden="true">
-          {waveform.map((height, index) => (
+        <div
+          className="waveform"
+          aria-hidden="true"
+          title={waveform.source === "audio" ? "Recording waveform" : "Illustrative waveform"}
+        >
+          {waveform.bars.map((height, index) => (
             <i
-              className={index / waveform.length <= progress ? "played" : ""}
+              className={progress > 0 && index / waveform.bars.length < progress ? "played" : ""}
               key={`${height}-${index}`}
               style={{ height }}
             />
@@ -2353,12 +2293,12 @@ function CapsulesView({
               </header>
               <div className="capsule-grid">
                 {locked.map((capsule) => (
-                  <article className="capsule-item locked" key={capsule.id}>
-                    <span className="capsule-lock">
+                  <article className="capsule-item locked scrapbook-envelope" key={capsule.id}>
+                    <h3>{capsule.title}</h3>
+                    <span className="capsule-lock" aria-hidden="true">
                       <LockKeyhole />
                     </span>
-                    <p className="eyebrow">Opens {formatDate(capsule.unlocksAt)}</p>
-                    <h3>{capsule.title}</h3>
+                    <p className="capsule-date">Opens {formatDate(capsule.unlocksAt)}</p>
                     <p>The note is sealed—even the person who wrote it cannot read it yet.</p>
                     <footer>
                       <small>From {capsule.authorName ?? "family"}</small>
@@ -2386,7 +2326,7 @@ function CapsulesView({
               </header>
               <div className="capsule-grid">
                 {opened.map((capsule) => (
-                  <article className="capsule-item opened" key={capsule.id}>
+                  <article className="capsule-item opened paper-blush" key={capsule.id}>
                     <span className="capsule-lock">
                       <BookHeart />
                     </span>
@@ -3163,7 +3103,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                       {state.children[0].childAccessEnabled
                         ? "Choose a new six-digit PIN"
                         : "Six-digit family PIN"}
-                      <input
+                      <PasswordInput
                         autoComplete="off"
                         inputMode="numeric"
                         maxLength={6}
@@ -3172,13 +3112,13 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                         pattern="[0-9]{6}"
                         placeholder="••••••"
                         required
-                        type="password"
+                        secretLabel="PIN"
                         value={childPin}
                       />
                     </label>
                     <label>
                       Confirm the six-digit PIN
-                      <input
+                      <PasswordInput
                         autoComplete="off"
                         inputMode="numeric"
                         maxLength={6}
@@ -3189,7 +3129,7 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
                         pattern="[0-9]{6}"
                         placeholder="••••••"
                         required
-                        type="password"
+                        secretLabel="PIN"
                         value={childPinConfirmation}
                       />
                     </label>
@@ -3357,48 +3297,54 @@ function FamilySettings({ state, refresh }: { state: ArchiveState; refresh: () =
   );
 }
 
-function MemoryRow({ memory, onOpen }: { memory: Memory; onOpen: () => void }) {
+function MemoryNote({ memory, onOpen }: { memory: Memory; onOpen: () => void }) {
+  const paper = memoryPaper(memory.id, memory.kind);
+  const isPhoto = memory.kind === "photo";
   return (
-    <button className="memory-row" onClick={onOpen} type="button">
-      <span>{memoryIcon(memory.kind)}</span>
-      <div>
-        <h3>{memory.title}</h3>
-        <p>
-          {formatMemoryDate(memory.happenedAt)} · {memory.authorName ?? "Family"} ·{" "}
-          {audienceLabel(memory.audience)}
-        </p>
+    <article
+      className={`memory-note note-${memory.kind} paper-${paper}`}
+      aria-label={`${kindLabel(memory.kind)} memory`}
+    >
+      <span className="note-decoration" aria-hidden="true" />
+      {memory.kind === "milestone" || memory.kind === "voice" ? (
+        <span className="note-stamp" aria-hidden="true">
+          {memoryIcon(memory.kind)}
+        </span>
+      ) : null}
+      {isPhoto ? (
+        <button
+          className="note-photo-open"
+          onClick={onOpen}
+          aria-label={`Open photo: ${memory.title}`}
+          type="button"
+        >
+          <MemoryMedia memory={memory} />
+        </button>
+      ) : null}
+      {memory.kind === "video" ? <MemoryMedia memory={memory} /> : null}
+      <div className="note-content">
+        <h2>
+          <button
+            className="note-open"
+            onClick={onOpen}
+            type="button"
+            aria-label={`Open memory: ${memory.title}`}
+          >
+            {memory.title}
+          </button>
+        </h2>
+        {memory.body ? <p className="note-excerpt">{memory.body}</p> : null}
+        {memory.kind === "voice" ? <MemoryPlayback memory={memory} /> : null}
+        <footer className="note-meta">
+          <span>
+            {formatMemoryDate(memory.happenedAt)} · {memory.authorName ?? "Family"}
+          </span>
+          <span>
+            <LockKeyhole size={14} aria-hidden="true" /> {audienceLabel(memory.audience)}
+          </span>
+        </footer>
       </div>
-      <Heart size={18} />
-    </button>
-  );
-}
-
-function MobileNav({ active, onNavigate }: { active: View; onNavigate: (view: View) => void }) {
-  return (
-    <nav className="mobile-nav" aria-label="Primary">
-      <button className={active === "parent" ? "active" : ""} onClick={() => onNavigate("parent")}>
-        <Home />
-        <span>Home</span>
-      </button>
-      <button
-        className={active === "timeline" ? "active" : ""}
-        onClick={() => onNavigate("timeline")}
-      >
-        <Image />
-        <span>Timeline</span>
-      </button>
-      <button
-        className={active === "capsules" ? "active" : ""}
-        onClick={() => onNavigate("capsules")}
-      >
-        <BookHeart />
-        <span>Capsules</span>
-      </button>
-      <button className={active === "family" ? "active" : ""} onClick={() => onNavigate("family")}>
-        <Users />
-        <span>Family</span>
-      </button>
-    </nav>
+    </article>
   );
 }
 
@@ -3559,28 +3505,6 @@ function waitForVideoEvent(video: HTMLVideoElement, eventName: "loadeddata" | "s
   });
 }
 
-async function waveformFromAudio(blob: Blob): Promise<number[]> {
-  try {
-    const context = new AudioContext();
-    const buffer = await context.decodeAudioData(await blob.arrayBuffer());
-    const samples = buffer.getChannelData(0);
-    const bars = WAVEFORM_BARS.length;
-    const bucketSize = Math.max(1, Math.floor(samples.length / bars));
-    const amplitudes = Array.from({ length: bars }, (_, index) => {
-      const start = index * bucketSize;
-      const end = Math.min(samples.length, start + bucketSize);
-      let sum = 0;
-      for (let sample = start; sample < end; sample += 1) sum += samples[sample] ** 2;
-      return Math.sqrt(sum / Math.max(1, end - start));
-    });
-    const peak = Math.max(...amplitudes, 0.01);
-    await context.close();
-    return amplitudes.map((amplitude) => Math.round(8 + (amplitude / peak) * 34));
-  } catch {
-    return WAVEFORM_BARS;
-  }
-}
-
 function currentLocalDateTime() {
   const now = new Date();
   const local = new Date(now.getTime() - now.getTimezoneOffset() * 60_000);
@@ -3631,6 +3555,50 @@ function useDocumentScrollLock() {
 function useSheetTransition(onClose: () => void, blocked: boolean) {
   const [closing, setClosing] = useState(false);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const returnFocus = useRef<HTMLElement | null>(
+    typeof document === "undefined" ? null : (document.activeElement as HTMLElement | null),
+  );
+
+  useEffect(() => {
+    const dialog = document.querySelector<HTMLElement>('[role="dialog"][aria-modal="true"]');
+    if (!dialog) return;
+    const focusable = () =>
+      [
+        ...dialog.querySelectorAll<HTMLElement>(
+          'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex="0"]',
+        ),
+      ].filter((element) => element.tabIndex >= 0 && element.getClientRects().length > 0);
+    if (!dialog.contains(document.activeElement)) focusable()[0]?.focus();
+    function containFocus(event: KeyboardEvent) {
+      if (event.key !== "Tab") return;
+      const elements = focusable();
+      const first = elements[0];
+      const last = elements.at(-1);
+      if (!first || !last) {
+        event.preventDefault();
+        return;
+      }
+      if (
+        event.shiftKey &&
+        (document.activeElement === first || !dialog?.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        last.focus();
+      } else if (
+        !event.shiftKey &&
+        (document.activeElement === last || !dialog?.contains(document.activeElement))
+      ) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+    document.addEventListener("keydown", containFocus);
+    const trigger = returnFocus.current;
+    return () => {
+      document.removeEventListener("keydown", containFocus);
+      if (trigger?.isConnected) trigger.focus({ preventScroll: true });
+    };
+  }, []);
 
   const requestClose = useCallback(
     (force = false) => {
@@ -3688,32 +3656,12 @@ function AnimatedActionLabel({
   text: string;
   transitionKey: string;
 }) {
-  const [shown, setShown] = useState({ showArrow, text, transitionKey });
-  const [phase, setPhase] = useState<"idle" | "out" | "in">("idle");
-
-  useEffect(() => {
-    if (transitionKey === shown.transitionKey) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      setShown({ showArrow, text, transitionKey });
-      setPhase("idle");
-      return;
-    }
-    setPhase("out");
-    const swap = setTimeout(() => {
-      setShown({ showArrow, text, transitionKey });
-      setPhase("in");
-    }, 90);
-    const settle = setTimeout(() => setPhase("idle"), 230);
-    return () => {
-      clearTimeout(swap);
-      clearTimeout(settle);
-    };
-  }, [transitionKey]);
-
   return (
-    <span aria-live="polite" className={`stage-label is-${phase}`}>
-      {shown.text}
-      {shown.showArrow ? <ArrowRight size={17} /> : null}
+    <span aria-live="polite" className="stage-label">
+      <span key={transitionKey} className="stage-label-text">
+        {text}
+      </span>
+      {showArrow ? <ArrowRight size={17} /> : null}
     </span>
   );
 }
@@ -3730,9 +3678,15 @@ function audienceLabel(audience: Memory["audience"]) {
 }
 
 function memoryIcon(kind: MemoryKind) {
-  return (
-    <img alt="" className="memory-kind-art" draggable={false} src={`/memory-icons/${kind}.png`} />
-  );
+  const Icon = {
+    photo: Camera,
+    story: PenLine,
+    voice: Mic,
+    video: Video,
+    milestone: Star,
+    letter: Mail,
+  }[kind];
+  return <Icon aria-hidden="true" className="memory-kind-art" strokeWidth={1.6} />;
 }
 
 function memoryTitlePlaceholder(kind: MemoryKind) {

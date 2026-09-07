@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 
 import { authClient } from "@/lib/auth-client";
+import { PasswordInput } from "@/components/password-input";
 import { Brand } from "@/components/brand";
 
 export const Route = createFileRoute("/onboarding")({ component: Onboarding });
@@ -383,7 +384,7 @@ function Onboarding() {
             {profileKind === "child" && enablePin ? (
               <label>
                 {childName || "Child"}’s PIN
-                <input
+                <PasswordInput
                   autoComplete="new-password"
                   className="pin-input"
                   inputMode="numeric"
@@ -392,7 +393,7 @@ function Onboarding() {
                   pattern="[0-9]{6}"
                   placeholder="••••••"
                   required
-                  type="password"
+                  secretLabel="PIN"
                   value={childPin}
                 />
                 <small>Keep this separate from your account password.</small>

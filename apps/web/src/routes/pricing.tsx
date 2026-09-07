@@ -22,7 +22,7 @@ export const Route = createFileRoute("/pricing")({
       },
       {
         property: "og:image",
-        content: "https://geteverlittle.com/marketing/family-album.jpg",
+        content: "https://geteverlittle.com/marketing/family-album-us.jpg",
       },
       { property: "og:image:width", content: "1536" },
       { property: "og:image:height", content: "1024" },
@@ -38,7 +38,7 @@ export const Route = createFileRoute("/pricing")({
       },
       {
         name: "twitter:image",
-        content: "https://geteverlittle.com/marketing/family-album.jpg",
+        content: "https://geteverlittle.com/marketing/family-album-us.jpg",
       },
       { name: "robots", content: "index,follow" },
     ],

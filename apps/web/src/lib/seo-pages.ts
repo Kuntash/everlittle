@@ -129,7 +129,7 @@ export const seoLandingPages: Record<SeoPagePath, SeoLandingPageContent> = {
     promise: "Made for birthdays, beginnings, hard days, and the person they are becoming.",
     visualLabel: "SEALED FOR LATER",
     visualTitle: "Open on your eighteenth birthday",
-    visualNote: "A letter from Mum · 14 photographs · Grandpa’s recording",
+    visualNote: "A letter from Mom · 14 photographs · Grandpa’s recording",
     problemTitle: "The best gift may be the part of their childhood they could not remember.",
     problemBody:
       "A child will not remember the sound of their own early laugh, how the house felt when they arrived, or what you hoped for them before they could read. A digital time capsule lets you preserve those pieces now and deliver them at a meaningful moment in the future.",
@@ -451,7 +451,7 @@ export const seoLandingPages: Record<SeoPagePath, SeoLandingPageContent> = {
     promise:
       "Less like an interview. More like making room for the stories that surface when someone feels listened to.",
     visualLabel: "GRANDPA’S STORY · 06:42",
-    visualTitle: "The old house, the blue bicycle, and the monsoon",
+    visualTitle: "The old house, the blue bicycle, and the summer storms",
     visualNote: "Recorded by Maya · photograph dated with Grandpa’s help",
     problemTitle:
       "Names, voices, and everyday family history can disappear in a single generation.",
@@ -527,7 +527,7 @@ export const seoLandingPages: Record<SeoPagePath, SeoLandingPageContent> = {
   },
 };
 
-const SOCIAL_IMAGE = "https://geteverlittle.com/marketing/family-album.jpg";
+const SOCIAL_IMAGE = "https://geteverlittle.com/marketing/family-album-us.jpg";
 
 export function seoLandingPageHead(page: SeoLandingPageContent) {
   const url = `https://geteverlittle.com${page.path}`;
