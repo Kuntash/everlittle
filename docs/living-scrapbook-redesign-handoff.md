@@ -420,3 +420,12 @@ Resumed the interrupted thread in the current conversation. Before release, Clou
 The local sample recording produced 36 identical 42px RMS bars. Audible recordings with less than 5% amplitude variation now use the static illustrative waveform, as does decoding failure. Variable recordings retain measured RMS across all channels and the full sample range; silence remains flat. A tooltip identifies illustrative versus measured waveforms. Playback no longer waits for waveform decoding, stale decode results are ignored after switching memories, audio contexts close on failure, and progress starts with no bars highlighted.
 
 Validation: `pnpm ready` passed all 68 tests, lint/types/formatting and production build. `pnpm self-host:check` passed. Chromium confirmed playback advances, pause works, and seeking reaches 1.5 seconds. Chromium and WebKit showed the varied 9–42px bars without horizontal overflow in the local fictional archive. Production family recordings were not accessed or modified. Existing development-only missing version-manifest warnings remain; production manifests are checked after deployment.
+
+Release completed and verified at 2026-09-07T00:16:43+00:00. Source commit: `c2ce4d1` (pushed to `origin/main`). Both independently built deployments serve application build `a6140f2203b4`.
+
+| Target            | New Worker version                     | Live checks                                                                                                                                    |
+| ----------------- | -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| geteverlittle.com | `85d37de2-de85-488d-9cb0-2785b7a32873` | Homepage, pricing, all six guides and sign-in return 200 and fit 390px. Version manifest matches; hosted mode and public signup retained.      |
+| dikichoetso.com   | `b8c25806-7030-419b-9d90-f2490e540e59` | Root returns 200 and fits 390px. Version manifest matches; self-hosted mode, private signup policy, default archive and child access retained. |
+
+The entire pending shared redesign and interaction-polish pass is now committed, pushed and deployed together with the waveform correction. Authenticated playback validation used the isolated local fictional archive; production authenticated media was not tested. The separate blog source remains unidentified; the six known guide/article routes were verified. No migrations or production data changes were made.
