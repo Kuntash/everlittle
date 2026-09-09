@@ -1,9 +1,9 @@
 import { Input, ShadButton, SlidingTabs } from "@/components/design/controls";
 import { MemoryIllustration } from "@/components/design/memory-illustrations";
 import { Brand, Button } from "@/components/design/shared";
-import { ArrowLeft, ArrowRight, ChevronDown, Clock, Search } from "lucide-react";
+import { ArrowRight, ChevronDown, Clock, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { articles } from "./journal-articles";
+import { articles, articlePaths } from "./journal-articles";
 export function JournalExperience({
   initialArticle = "",
   onStart = () => window.location.assign("/sign-up"),
@@ -18,14 +18,7 @@ export function JournalExperience({
   const root = useRef<HTMLDivElement>(null);
   const article = articles.find((a) => a.id === active);
   const open = (id: string) => {
-    const paths: Record<string, string> = {
-      "little-journal": "/baby-memory-journal",
-      "future-letter": "/letters-to-your-future-child",
-      grandparents: "/grandparents-memory-project",
-      "small-firsts": "/journal/small-firsts",
-      "photo-story": "/journal/photo-story",
-    };
-    window.location.assign(paths[id] ?? "/journal");
+    window.location.assign(articlePaths[id] ?? "/journal");
   };
   useEffect(() => {
     const id = requestAnimationFrame(() =>
@@ -63,111 +56,132 @@ export function JournalExperience({
         </div>
       </header>
       {article ? (
-        <main className="article-reader">
-          <div className="reader-tools">
-            <ShadButton variant="quiet" onClick={() => open("")}>
-              <ArrowLeft size={16} />
-              All stories
-            </ShadButton>
-          </div>
-          <header className="article-heading">
-            <p className="eyebrow">{article.category}</p>
-            <h1>{article.title}</h1>
-            <p>{article.intro}</p>
-            <div className="byline">
-              <span>By the Everlittle journal</span>
-              <span>September 9, 2026</span>
+        <main>
+          <article className="article-reader">
+            <nav className="reader-tools journal-breadcrumbs" aria-label="Breadcrumb">
+              <a href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a href="/journal">Journal</a>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{article.title}</span>
+            </nav>
+            <header className="article-heading">
+              <p className="eyebrow">{article.category}</p>
+              <h1>{article.title}</h1>
+              <p>{article.intro}</p>
+              <div className="byline">
+                <span>By the Everlittle journal</span>
+                <time dateTime={article.published ?? "2026-09-09"}>
+                  {new Intl.DateTimeFormat("en-US", {
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric",
+                    timeZone: "UTC",
+                  }).format(new Date(article.published ?? "2026-09-09"))}
+                </time>
+                <span>
+                  <Clock size={14} />
+                  {article.minutes} min read
+                </span>
+              </div>
+            </header>
+            <div className="article-hero">
+              <MemoryIllustration kind={article.kind} size={310} />
               <span>
-                <Clock size={14} />
-                {article.minutes} min read
+                Their story,
+                <br />
+                in your words.
               </span>
             </div>
-          </header>
-          <div className="article-hero">
-            <MemoryIllustration kind={article.kind} size={310} />
-            <span>
-              Their story,
-              <br />
-              in your words.
-            </span>
-          </div>
-          <div className="reading-layout">
-            <details className="article-contents" suppressHydrationWarning>
-              <summary className="contents-toggle">
-                On this page
-                <ChevronDown size={17} />
-              </summary>
-              <p className="contents-desktop-title">On this page</p>
-              <nav
-                id="article-contents-links"
-                aria-label="Article contents"
-                className="contents-links"
-              >
-                {article.sectionTitles.map((t, i) => (
-                  <a
-                    key={t}
-                    href={`#story-section-${i}`}
-                    aria-current={activeSection === i ? "location" : undefined}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      jumpToSection(i);
-                    }}
-                  >
-                    {t}
-                  </a>
-                ))}
-              </nav>
-            </details>
-            <div className="reading-body">
-              <p className="article-lede">
-                Choose one idea below and try it with a memory you already have.
-              </p>
-              {article.sectionTitles.map((t, i) => (
-                <section id={`story-section-${i}`} key={t}>
-                  <h2>{t}</h2>
-                  {article.paragraphs[i].map((p) => (
-                    <p key={p}>{p}</p>
+            <div className="reading-layout">
+              <details className="article-contents" suppressHydrationWarning>
+                <summary className="contents-toggle">
+                  On this page
+                  <ChevronDown size={17} />
+                </summary>
+                <p className="contents-desktop-title">On this page</p>
+                <nav
+                  id="article-contents-links"
+                  aria-label="Article contents"
+                  className="contents-links"
+                >
+                  {article.sectionTitles.map((t, i) => (
+                    <a
+                      key={t}
+                      href={`#story-section-${i}`}
+                      aria-current={activeSection === i ? "location" : undefined}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        jumpToSection(i);
+                      }}
+                    >
+                      {t}
+                    </a>
                   ))}
-                  {i === 0 && (
-                    <blockquote>
-                      A little detail, kept today, can bring a whole season back.
-                    </blockquote>
-                  )}
-                </section>
-              ))}
-              <div className="reading-prompt">
-                <MemoryIllustration kind={article.kind} size={80} />
-                <div>
-                  <h3>Keep one detail from today.</h3>
-                  <p>Start with a sentence, a photo or a familiar voice.</p>
-                  <Button onClick={onStart}>
-                    Start your archive
-                    <ArrowRight size={15} />
-                  </Button>
+                </nav>
+              </details>
+              <div className="reading-body">
+                <p className="article-lede">
+                  {article.lede ??
+                    "Choose one idea below and try it with a memory you already have."}
+                </p>
+                {article.sectionTitles.map((t, i) => (
+                  <section id={`story-section-${i}`} key={t}>
+                    <h2>{t}</h2>
+                    {article.paragraphs[i].map((p) => (
+                      <p key={p}>{p}</p>
+                    ))}
+                    {article.sectionLinks?.[i]?.map((link) => (
+                      <p key={link.href}>
+                        <a className="article-resource" href={link.href}>
+                          {link.label} <ArrowRight size={14} />
+                        </a>
+                      </p>
+                    ))}
+                    {i === 0 && (
+                      <blockquote>
+                        {article.quote ??
+                          "A little detail, kept today, can bring a whole season back."}
+                      </blockquote>
+                    )}
+                  </section>
+                ))}
+                <div className="reading-prompt">
+                  <MemoryIllustration kind={article.kind} size={80} />
+                  <div>
+                    <h3>Keep one detail from today.</h3>
+                    <p>Start with a sentence, a photo or a familiar voice.</p>
+                    <Button onClick={onStart}>
+                      Start your archive
+                      <ArrowRight size={15} />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <section className="related-stories">
-            <p className="eyebrow">Read next</p>
-            <div>
-              {articles
-                .filter((a) => a.id !== article.id)
-                .slice(0, 2)
-                .map((a) => (
-                  <button onClick={() => open(a.id)} key={a.id}>
-                    <MemoryIllustration kind={a.kind} size={90} />
-                    <div>
-                      <small>{a.category}</small>
-                      <h3>{a.title}</h3>
-                      <span>
-                        Read story <ArrowRight size={15} />
-                      </span>
-                    </div>
-                  </button>
-                ))}
-            </div>
-          </section>
+            <section className="related-stories">
+              <p className="eyebrow">Read next</p>
+              <div>
+                {articles
+                  .filter((a) =>
+                    article.relatedIds ? article.relatedIds.includes(a.id) : a.id !== article.id,
+                  )
+                  .slice(0, 2)
+                  .map((a) => (
+                    <a href={articlePaths[a.id]} key={a.id}>
+                      <MemoryIllustration kind={a.kind} size={90} />
+                      <div>
+                        <small>{a.category}</small>
+                        <h3>{a.title}</h3>
+                        <span>
+                          Read story <ArrowRight size={15} />
+                        </span>
+                      </div>
+                    </a>
+                  ))}
+              </div>
+            </section>
+          </article>
         </main>
       ) : (
         <main className="journal-home">
@@ -184,7 +198,7 @@ export function JournalExperience({
               From first entries to letters for later.
             </p>
           </section>
-          <button className="featured-story" onClick={() => open(articles[0].id)}>
+          <a className="featured-story" href={articlePaths[articles[0].id]}>
             <div className="featured-art">
               <MemoryIllustration kind="Story" size={290} />
             </div>
@@ -195,10 +209,10 @@ export function JournalExperience({
               <span className="story-link">
                 Read the story
                 <ArrowRight size={18} />
-                <small>2 min read</small>
+                <small>{articles[0].minutes} min read</small>
               </span>
             </div>
-          </button>
+          </a>
           <div className="journal-filters">
             <SlidingTabs
               label="Journal categories"
@@ -218,7 +232,7 @@ export function JournalExperience({
           </div>
           <div className="editorial-grid">
             {visible.map((a) => (
-              <button className="editorial-story" onClick={() => open(a.id)} key={a.id}>
+              <a className="editorial-story" href={articlePaths[a.id]} key={a.id}>
                 <div className="story-art">
                   <MemoryIllustration kind={a.kind} size={160} />
                 </div>
@@ -231,7 +245,7 @@ export function JournalExperience({
                   Read story
                   <ArrowRight size={15} />
                 </span>
-              </button>
+              </a>
             ))}
           </div>
           {!visible.length && (

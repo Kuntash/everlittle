@@ -1,15 +1,9 @@
-import journalCss from "@/features/journal/journal.css?url";
 import { createFileRoute } from "@tanstack/react-router";
-
+import journalCss from "@/features/journal/journal.css?url";
 import { JournalExperience } from "@/features/journal/journal-page";
-import { seoLandingPageHead, seoLandingPages } from "@/lib/seo-pages";
-
-const page = seoLandingPages["/letters-to-your-future-child"];
+import { journalArticleHead } from "@/features/journal/journal-head";
 
 export const Route = createFileRoute("/(blog)/letters-to-your-future-child")({
   component: () => <JournalExperience initialArticle="future-letter" />,
-  head: () => {
-    const head = seoLandingPageHead(page);
-    return { ...head, links: [...(head.links ?? []), { rel: "stylesheet", href: journalCss }] };
-  },
+  head: () => journalArticleHead("future-letter", journalCss),
 });

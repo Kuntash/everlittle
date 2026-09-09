@@ -42,6 +42,9 @@ describe("public web crawler responses", () => {
     expect(body).toContain("<loc>https://geteverlittle.com/family-memory-app</loc>");
     expect(body).toContain("<loc>https://geteverlittle.com/digital-time-capsule-for-kids</loc>");
     expect(body.match(/<url>/g)).toHaveLength(INDEXABLE_PATHS.length);
+    expect(body).toContain("<loc>https://geteverlittle.com/sharing-photos-with-grandparents</loc>");
+    expect(isIndexablePath("/sharing-photos-with-grandparents")).toBe(true);
+    expect(isIndexablePath("/share/private-token")).toBe(false);
     expect(body).not.toContain("sign-in");
   });
 

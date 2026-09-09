@@ -9,4 +9,8 @@ export const SEO_PAGE_LINKS = [
 
 export type SeoPagePath = (typeof SEO_PAGE_LINKS)[number]["path"];
 
-export const SEO_PAGE_PATHS = SEO_PAGE_LINKS.map(({ path }) => path) as SeoPagePath[];
+// Journal-only guides share crawler eligibility without requiring legacy landing-page content.
+export const SEO_PAGE_PATHS = [
+  ...SEO_PAGE_LINKS.map(({ path }) => path),
+  "/sharing-photos-with-grandparents",
+] as const;

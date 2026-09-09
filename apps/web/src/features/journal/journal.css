@@ -2042,7 +2042,7 @@ body {
   grid-template-columns: 1fr 1fr;
   gap: 40px;
 }
-.related-stories button {
+.related-stories a {
   border: 0;
   background: none;
   color: inherit;
@@ -2061,7 +2061,7 @@ body {
   line-height: 1.4;
   margin: 7px 0 12px;
 }
-.related-stories button span {
+.related-stories a span {
   display: flex;
   align-items: center;
   gap: 7px;
@@ -2632,8 +2632,7 @@ body {
   scroll-margin-top: 28px;
 }
 .reading-layout .article-contents {
-  position: sticky;
-  top: 24px;
+  position: static;
   align-self: start;
 }
 .contents-links {
@@ -2755,4 +2754,31 @@ body {
   .contents-toggle svg {
     transition: none !important;
   }
+}
+
+.journal-experience :is(.featured-story, .editorial-story, .related-stories a) {
+  text-decoration: none;
+  color: inherit;
+}
+
+.reader-tools.journal-breadcrumbs {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+  color: #786356;
+}
+.journal-breadcrumbs a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+.journal-breadcrumbs [aria-current] {
+  overflow-wrap: anywhere;
+}
+.article-resource {
+  color: #285445;
+  font-weight: 700;
+  text-underline-offset: 4px;
 }

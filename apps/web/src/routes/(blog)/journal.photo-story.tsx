@@ -1,13 +1,9 @@
-import { JournalExperience } from "@/features/journal/journal-page";
-import journalCss from "@/features/journal/journal.css?url";
 import { createFileRoute } from "@tanstack/react-router";
+import journalCss from "@/features/journal/journal.css?url";
+import { JournalExperience } from "@/features/journal/journal-page";
+import { journalArticleHead } from "@/features/journal/journal-head";
+
 export const Route = createFileRoute("/(blog)/journal/photo-story")({
   component: () => <JournalExperience initialArticle="photo-story" />,
-  head: () => ({
-    meta: [{ title: "Everlittle Journal — Ideas for the memories you want to keep" }],
-    links: [
-      { rel: "stylesheet", href: journalCss },
-      { rel: "canonical", href: "https://geteverlittle.com/journal/photo-story" },
-    ],
-  }),
+  head: () => journalArticleHead("photo-story", journalCss),
 });
