@@ -1,3 +1,8 @@
+import {
+  publicMemoryPage,
+  publicShareUnavailablePage,
+  type PublicMemory,
+} from "./public-memory-page";
 import { childSlugSchema, familySlugSchema, slugify } from "@everlittle/domain";
 import { z } from "zod";
 
@@ -160,20 +165,6 @@ type Invitation = {
   role: Exclude<FamilyRole, "owner">;
   expiresAt: string;
   inviterName: string;
-};
-
-type PublicMemory = {
-  id: string;
-  kind: string;
-  title: string;
-  body: string | null;
-  happenedAt: string;
-  childName: string;
-  authorName: string | null;
-  mediaId: string | null;
-  objectKey: string | null;
-  mediaType: "image" | "audio" | "video" | null;
-  contentType: string | null;
 };
 
 export async function handleArchiveApi(request: Request): Promise<Response | null> {
@@ -2573,60 +2564,6 @@ function createSecureToken(): string {
     .replaceAll("+", "-")
     .replaceAll("/", "_")
     .replace(/=+$/, "");
-}
-
-function publicMemoryPage(memory: PublicMemory, shareUrl: string, mediaUrl: string | null) {
-  const title = escapeHtml(memory.title);
-  const childName = escapeHtml(memory.childName);
-  const authorName = escapeHtml(memory.authorName ?? "Family");
-  const description = escapeHtml(
-    memory.body?.slice(0, 180) || `A ${memory.kind} memory kept for ${memory.childName}.`,
-  );
-  const safeShareUrl = escapeHtml(shareUrl);
-  const safeMediaUrl = mediaUrl ? escapeHtml(mediaUrl) : null;
-  const happenedAt = new Intl.DateTimeFormat("en", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(new Date(memory.happenedAt));
-  const media =
-    safeMediaUrl && memory.mediaType === "image"
-      ? `<img class="memory-media" src="${safeMediaUrl}" alt="">`
-      : safeMediaUrl && memory.mediaType === "video"
-        ? `<video class="memory-media" src="${safeMediaUrl}" controls playsinline preload="metadata"></video>`
-        : safeMediaUrl && memory.mediaType === "audio"
-          ? `<audio class="memory-audio" src="${safeMediaUrl}" controls preload="metadata"></audio>`
-          : `<div class="memory-mark" aria-hidden="true">♡</div>`;
-  const ogMedia =
-    safeMediaUrl && memory.mediaType === "image"
-      ? `<meta property="og:image" content="${safeMediaUrl}">`
-      : "";
-  const story = memory.body
-    ? `<p class="story">${escapeHtml(memory.body).replaceAll("\n", "<br>")}</p>`
-    : "";
-  const whatsappText = encodeURIComponent(`${memory.title} — ${shareUrl}`);
-
-  return `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>${title} — Everlittle</title><meta name="description" content="${description}">
-<meta property="og:type" content="article"><meta property="og:title" content="${title}">
-<meta property="og:description" content="${description}"><meta property="og:url" content="${safeShareUrl}">${ogMedia}
-<meta name="robots" content="noindex,nofollow,noarchive"><meta name="theme-color" content="#f7f1e7">
-<style>*{box-sizing:border-box}body{margin:0;background:#f7f1e7;color:#23332d;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.shell{min-height:100svh;padding:clamp(1rem,4vw,2.5rem)}.brand{color:#294f3c;font-family:Georgia,serif;font-size:1.2rem}.card{background:#fffdf8;border:1px solid #ddd6c8;border-radius:24px;box-shadow:0 24px 70px rgb(22 43 34/.12);margin:clamp(2rem,8vh,5rem) auto;max-width:720px;overflow:hidden}.copy{padding:clamp(1.4rem,6vw,3.5rem)}.eyebrow{color:#6b7c73;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}h1{color:#294f3c;font-family:Georgia,serif;font-size:clamp(2.5rem,10vw,5rem);font-weight:500;letter-spacing:-.04em;line-height:.95;margin:.65rem 0 1rem}.story{font-family:Georgia,serif;font-size:1.2rem;line-height:1.65}.byline{color:#6b7c73;font-size:.8rem;margin-top:1.5rem}.memory-media{background:#e9e1d3;display:block;max-height:72svh;object-fit:cover;width:100%}.memory-audio{margin:1rem 0;width:100%}.memory-mark{align-items:center;background:#e8d8bd;color:#9b613e;display:flex;font-family:Georgia,serif;font-size:8rem;justify-content:center;min-height:280px}.actions{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.5rem}.actions a,.actions button{background:#294f3c;border:0;border-radius:12px;color:#fffdf8;font:inherit;font-size:.82rem;font-weight:700;min-height:46px;padding:.75rem 1rem;text-decoration:none}.actions .secondary{background:#edf0eb;color:#294f3c}.privacy{color:#6b7c73;font-size:.7rem;line-height:1.5;margin-top:1rem}@media(max-width:600px){.shell{padding:0}.brand{display:block;padding:1rem 1.1rem}.card{border-radius:24px 24px 0 0;margin:1rem 0 0;min-height:calc(100svh - 4rem)}}
-</style></head><body><main class="shell"><span class="brand">everlittle</span><article class="card">${media}<div class="copy"><p class="eyebrow">A memory for ${childName} · ${escapeHtml(happenedAt)}</p><h1>${title}</h1>${story}<p class="byline">Kept with love by ${authorName}</p><div class="actions"><button id="share" type="button">Share to an app</button><a href="https://wa.me/?text=${whatsappText}" target="_blank" rel="noreferrer">WhatsApp</a><button class="secondary" id="copy" type="button">Copy link</button></div><p class="privacy">This private family chose to share this single memory. The rest of the archive remains protected.</p></div></article></main><script>const share=document.querySelector('#share'),copy=document.querySelector('#copy');share.addEventListener('click',async()=>{if(navigator.share){await navigator.share({url:location.href})}else{await navigator.clipboard.writeText(location.href);share.textContent='Link copied'}});copy.addEventListener('click',async()=>{await navigator.clipboard.writeText(location.href);copy.textContent='Copied'});</script></body></html>`;
-}
-
-function publicShareUnavailablePage() {
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Memory unavailable — Everlittle</title><style>body{align-items:center;background:#f7f1e7;color:#294f3c;display:flex;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;justify-content:center;margin:0;min-height:100svh;padding:2rem;text-align:center}h1{font-family:Georgia,serif;font-size:2.6rem;font-weight:500;margin:.5rem}p{color:#6b7c73;line-height:1.6}</style></head><body><main><small>everlittle</small><h1>This memory is no longer shared.</h1><p>The link may have expired or been disabled by its author.</p></main></body></html>`;
-}
-
-function escapeHtml(value: string) {
-  return value
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
 }
 
 function decodeFileName(value: string | null) {

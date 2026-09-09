@@ -390,6 +390,11 @@ describe("route-scoped tenant isolation", () => {
     const html = await page.text();
     expect(html).toContain("Beta memory");
     expect(html).not.toContain("Alpha memory");
+    expect(html).toContain("Create your family archive");
+    expect(html).toContain("utm_source=memory_share&amp;utm_medium=referral");
+    expect(html).toContain("kept with everlittle");
+    expect(page.headers.get("x-robots-tag")).toBe("noindex, nofollow, noarchive");
+    expect(page.headers.get("referrer-policy")).toBe("no-referrer");
   });
 
   it("keeps valid same-family reads and writes working", async () => {
