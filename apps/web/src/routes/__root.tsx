@@ -1,6 +1,6 @@
 import primaryButtonCss from "@/features/archive/primary-button.css?url";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
-import { Download, RefreshCw, Share, X } from "lucide-react";
+import { Sprout, RefreshCw, Share, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { AnalyticsProvider } from "@/components/analytics-provider";
@@ -9,6 +9,7 @@ import { authClient } from "@/lib/auth-client";
 import { shouldOfferPwaInstall } from "@/lib/pwa-install";
 
 import apricotCss from "../apricot.css?url";
+import pwaCss from "../pwa.css?url";
 import integrationCss from "../integration.css?url";
 import parityCss from "../parity.css?url";
 import appCss from "../styles.css?url";
@@ -39,6 +40,7 @@ export const Route = createRootRoute({
       { rel: "stylesheet", href: integrationCss },
       { rel: "stylesheet", href: parityCss },
       { rel: "stylesheet", href: primaryButtonCss },
+      { rel: "stylesheet", href: pwaCss },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "icon", href: "/icon.svg", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
@@ -252,18 +254,18 @@ function PwaExperience() {
       {showInstall ? (
         <aside className="pwa-prompt" aria-label="Install Everlittle">
           <span className="pwa-prompt-icon">
-            <Download />
+            <Sprout aria-hidden="true" />
           </span>
           <div>
-            <strong>Keep Everlittle on your Home Screen</strong>
-            <small>Open your family archive like an app, without searching for the website.</small>
+            <strong>Your little world, one tap away</strong>
+            <small>Add Everlittle to your Home Screen and come back to the moments that matter.</small>
           </div>
           <button
             className="pwa-prompt-action"
             onClick={() => (isIos ? setShowIosGuide(true) : void install())}
             type="button"
           >
-            {isIos ? "Show me" : "Install"}
+            {isIos ? "Show me how" : "Add to Home Screen"}
           </button>
           <button className="pwa-prompt-close" aria-label="Not now" onClick={dismissInstall}>
             <X />
@@ -299,7 +301,7 @@ function PwaExperience() {
               <li>Scroll down and choose “Add to Home Screen.”</li>
               <li>Tap “Add” to open Everlittle like an app.</li>
             </ol>
-            <button className="primary-button" onClick={dismissInstall} type="button">
+            <button className="pwa-guide-action" onClick={dismissInstall} type="button">
               Got it
             </button>
           </section>
