@@ -1,0 +1,735 @@
+/* Narrow production adapters. Presentation otherwise comes directly from MagicPath. */
+@media (min-width: 701px) {
+  .apricot .landing-footer {
+    display: flex !important;
+    align-items: center;
+    gap: 25px;
+  }
+  .landing-footer .footer-identity {
+    display: contents;
+  }
+  .landing-footer .footer-identity > .brand {
+    font-size: 18px;
+  }
+  .landing-footer .footer-identity > p {
+    margin: 0 !important;
+    max-width: none;
+    font-size: 11px;
+  }
+  .apricot .landing-footer > nav {
+    display: flex !important;
+    gap: 15px;
+    margin-left: auto !important;
+  }
+}
+[hidden] {
+  display: none !important;
+}
+.app-header .archive-header-identity {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.app-header .archive-name {
+  display: none;
+}
+.app-v4 .app-main > .home-page {
+  padding: 0;
+  background: none;
+}
+.home-grid .memory-card .real-photo {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  transform: none;
+  background: none;
+}
+.home-grid .memory-card .real-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.memory-card .real-photo > span {
+  display: none;
+}
+.editor-attributes .date-input {
+  display: inline-flex;
+}
+.editor-attributes .date-input > .date-trigger {
+  margin: 0;
+  width: auto;
+}
+.editor-form > fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+body:has(.apricot-modal) .pwa-prompt {
+  display: none;
+}
+:where(.apricot) :where(h1, h2, h3) {
+  font-family: inherit;
+}
+.people-list .member-list {
+  display: block;
+}
+.person-row .member-identity {
+  min-width: 0;
+  flex: 1;
+}
+.person-row .member-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.person-row .row-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.person-row .row-actions .small-button {
+  font-size: 11px;
+  background: none;
+  border: 0;
+  color: var(--ap-muted);
+}
+.person-row .role-badge {
+  font-size: 12px;
+}
+.people-list .owner-note {
+  font-size: 12px;
+  color: var(--ap-muted);
+  margin-top: 20px;
+}
+.family-invite .settings-form {
+  display: grid;
+  gap: 14px;
+}
+.family-invite .settings-form label {
+  margin: 0;
+}
+.family-invite .settings-form .choice-trigger {
+  width: 100%;
+}
+@media (max-width: 700px) {
+  .person-row .member-controls {
+    display: contents;
+  }
+  .person-row .row-actions {
+    grid-column: 2 / -1;
+    justify-content: flex-start;
+  }
+}
+/* Preserve the reference's disclosure appearance with native, pre-hydration behavior. */
+.journal-experience .contents-toggle {
+  cursor: pointer;
+  list-style: none;
+}
+.journal-experience .contents-toggle::-webkit-details-marker {
+  display: none;
+}
+@media (min-width: 701px) {
+  .journal-experience .article-contents::details-content {
+    content-visibility: visible;
+  }
+  .journal-experience .article-contents > .contents-links {
+    display: grid;
+  }
+}
+@media (max-width: 700px) {
+  .journal-experience .article-contents[open] .contents-links {
+    display: grid;
+  }
+  .journal-experience .article-contents[open] .contents-toggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* Semantic actions: links underline; quiet buttons share the raised button geometry. */
+.apricot.apricot
+  :is(.text-button, .button-link, .article-link, .contents-links a, .child-back-link):is(
+    :hover,
+    :focus-visible,
+    :active
+  ),
+.apricot.apricot .text-button.quiet-control:is(:hover, :focus-visible, :active) {
+  background: transparent !important;
+  box-shadow: none !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.apricot.apricot
+  :is(.button-quiet, .quiet-action, .exit-child-view, .account-signout, .password-toggle),
+.apricot-popover .button-quiet {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 50px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  color: var(--el-control-text, #a85f49);
+  font: inherit;
+  line-height: 1.25;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+.apricot.apricot
+  :is(.button-quiet, .quiet-action, .exit-child-view, .account-signout, .password-toggle):is(
+    :hover,
+    :focus-visible
+  ),
+.apricot-popover .button-quiet:hover {
+  background: #f7e7df !important;
+  text-decoration: none;
+}
+.apricot.apricot :is(.button-quiet, .quiet-action, .exit-child-view, .account-signout):active {
+  background: #f2dcd2 !important;
+}
+.apricot.apricot .sheet-close {
+  width: 38px;
+  height: 38px;
+  min-height: 38px;
+  padding: 0;
+  border-radius: 12px;
+}
+.apricot.apricot .password-field {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+.apricot.apricot .password-field input {
+  width: 100%;
+  min-height: 52px;
+  padding-right: 52px;
+}
+.apricot.apricot .password-field .password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+}
+.apricot.apricot .child-entrance {
+  display: grid;
+  gap: 16px;
+  text-align: center;
+  margin-top: 24px;
+}
+.apricot.apricot .child-entrance > span {
+  font-size: 13px;
+  color: var(--ap-muted);
+}
+.apricot.apricot .stage-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  line-height: 1.25;
+}
+.apricot.apricot .stage-label-text {
+  display: block;
+  line-height: 1.25;
+}
+.apricot.apricot .profile-panel {
+  align-content: start;
+}
+.apricot.apricot .profile-panel form {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+.apricot.apricot .profile-panel :is(.writing-input, .password-field input) {
+  margin: 0;
+  min-height: 48px;
+  padding: 12px 14px;
+}
+.apricot.apricot .profile-panel .password-field input {
+  padding-right: 52px;
+  background: #fff7ea;
+  border: 1px solid #ead8bf;
+  border-radius: 12px;
+  box-shadow: none;
+}
+.apricot.apricot .profile-panel form > .raised {
+  margin-top: 4px;
+}
+.apricot.apricot .child-view-actions {
+  margin-top: 24px;
+  gap: 12px;
+}
+.apricot.apricot .profile-panel .attribute-row {
+  padding: 0;
+  margin: 0;
+}
+.apricot.apricot .real-photo {
+  overflow: hidden;
+  border-radius: 18px;
+}
+.apricot.apricot .real-photo img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.apricot.apricot .memory-reader .real-photo img {
+  max-height: 540px;
+  object-fit: contain;
+  background: #f7eee2;
+}
+.apricot.apricot .attached-preview {
+  overflow: hidden;
+  padding: 12px;
+}
+.apricot.apricot .attached-preview :is(img, video) {
+  max-height: 220px;
+  width: 100%;
+  object-fit: contain;
+}
+.apricot.apricot .custom-video {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #f7eee2;
+  aspect-ratio: 4/3;
+  isolation: isolate;
+}
+.apricot.apricot .custom-video > :is(video, img) {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.apricot.apricot .custom-video > img {
+  object-fit: cover;
+}
+.apricot.apricot .custom-video .video-play {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: #fffaf3e8;
+  color: #c94f35;
+  z-index: 2;
+}
+.apricot.apricot .custom-video.is-playing .video-play {
+  opacity: 0;
+}
+.apricot.apricot .custom-video:hover .video-play {
+  opacity: 1;
+}
+.apricot.apricot .video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #fffaf3ec;
+  z-index: 3;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 160ms;
+}
+.apricot.apricot .custom-video:is(:hover, :focus-within, .is-playing) .video-controls {
+  opacity: 1;
+}
+.apricot.apricot .video-controls button {
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #a85f49;
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+}
+.apricot.apricot .video-controls input {
+  width: 100%;
+  min-width: 0;
+  accent-color: #c94f35;
+}
+.apricot.apricot .video-controls span {
+  white-space: nowrap;
+}
+.apricot.apricot .video-error {
+  position: absolute;
+  top: 0;
+  padding: 12px;
+  background: #fffaf3;
+  z-index: 4;
+}
+.apricot.apricot .video-card-media {
+  height: 210px;
+  overflow: hidden;
+}
+.apricot.apricot .video-card-media .custom-video {
+  height: 100%;
+  border-radius: 0;
+}
+.apricot.apricot .memory-video .card-open {
+  padding-top: 0;
+}
+.apricot.apricot .date-done,
+.apricot-popover .date-done {
+  width: 100%;
+  min-height: 50px;
+  background: #c94f35 !important;
+  color: white !important;
+  border-radius: 14px;
+  border: 0;
+  border-bottom: 5px solid #963c28;
+  padding: 12px 22px;
+  font-weight: 750;
+  line-height: 1.25;
+}
+.apricot.apricot .date-preset,
+.apricot-popover .date-preset {
+  background: #f7e7df !important;
+  color: #a85f49 !important;
+  border-radius: 12px;
+}
+.apricot.apricot .date-preset:hover,
+.apricot-popover .date-preset:hover {
+  background: #f2dcd2 !important;
+}
+.apricot.apricot .journal-search input:is(:focus, :focus-visible) {
+  border-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+.apricot.apricot .contents-links a[aria-current="location"] {
+  background: transparent !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.apricot.apricot .path-visual.illustrated:hover .object-art {
+  transform: translateY(-5px) rotate(-3deg);
+  transition: transform 260ms ease;
+}
+.apricot.apricot .journal-section-intro {
+  grid-column: 1/-1;
+  display: flex;
+  gap: 24px;
+  align-items: end;
+  justify-content: space-between;
+}
+.apricot.apricot .journal-section-intro .eyebrow {
+  display: none;
+}
+.apricot.apricot .journal-section {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+}
+.apricot.apricot .journal-card {
+  height: 100%;
+  align-content: start;
+}
+.memory-menu-body .sharing-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+.memory-menu-body p {
+  font-size: 13px;
+  color: var(--ap-muted);
+  line-height: 1.6;
+}
+.copy-status-icon {
+  display: inline-flex;
+  animation: copy-confirm 180ms ease-out;
+}
+@keyframes copy-confirm {
+  from {
+    opacity: 0;
+    transform: scale(0.65) rotate(-20deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+@media (min-width: 701px) and (max-width: 1100px) {
+  .apricot.apricot .landing-header nav {
+    display: none;
+  }
+  .apricot.apricot .landing-header {
+    gap: 20px;
+  }
+}
+@media (max-width: 700px) {
+  .apricot.apricot .journal-section {
+    grid-template-columns: 1fr;
+  }
+  .apricot.apricot .journal-section-intro {
+    display: block;
+  }
+  .apricot.apricot .memory-reader .real-photo img {
+    max-height: 380px;
+  }
+  .apricot.apricot .video-card-media {
+    height: 220px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .copy-status-icon {
+    animation: none;
+  }
+}
+.apricot.apricot .preview-memories {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 12px;
+}
+.apricot.apricot .product-preview .memory-card {
+  margin: 0;
+}
+.apricot.apricot .product-preview .card-open {
+  padding: 0;
+}
+.apricot.apricot .product-preview .card-copy {
+  padding: 12px;
+}
+.apricot.apricot .product-preview .card-copy h3 {
+  font-size: 14px;
+}
+.apricot.apricot .product-preview .card-copy small {
+  font-size: 10px;
+}
+.apricot.apricot .product-preview .memory-card .photo-art {
+  height: 190px;
+}
+.apricot.apricot .product-preview .memory-card .photo-art .photo-art {
+  height: 100%;
+}
+.apricot.apricot .product-preview .timeline-month {
+  margin-top: 24px;
+}
+.apricot.apricot .product-preview .timeline-month > h3 {
+  margin-bottom: 14px;
+}
+.apricot.apricot .preview-audio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  color: #c94f35;
+  width: 100%;
+}
+.apricot.apricot .preview-alternate .people-list {
+  width: 100%;
+  text-align: left;
+}
+.apricot.apricot .product-preview .person-row {
+  padding: 14px 0;
+}
+.apricot.apricot .product-preview .person-row h3 {
+  font-size: 14px;
+}
+.apricot.apricot .product-preview .sealed-card {
+  margin-top: 18px;
+  text-align: left;
+}
+.apricot.apricot .auth-form-inner > .sliding-tabs {
+  margin: 28px 0;
+}
+.apricot.apricot .auth-form-inner .child-profile-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+.apricot.apricot .child-profile-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  background: #fff7ea;
+  border-radius: 14px;
+}
+.apricot.apricot .child-profile-list a:hover {
+  background: #f7e7df;
+}
+.apricot.apricot .child-pin-form {
+  display: grid;
+  gap: 20px;
+}
+@media (max-width: 700px) {
+  .apricot.apricot .product-preview .memory-card .photo-art {
+    height: 140px;
+  }
+}
+.apricot.apricot .video-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #f7eee2;
+}
+.apricot.apricot :is(.quiet-control, .landing-header nav button, .landing-footer nav button) {
+  border-radius: 14px;
+}
+.apricot.apricot
+  :is(.raised, .primary-button, .button-quiet):not(.sheet-close):not(.password-toggle):not(
+    .memory-more
+  ) {
+  min-height: 50px;
+}
+.apricot.apricot .product-preview .memory-card .photo-art .photo-art {
+  width: 100%;
+  max-width: none;
+}
+.apricot.apricot .video-card-media {
+  height: auto;
+  aspect-ratio: 1.48;
+  width: 100%;
+}
+.apricot.apricot .video-card-media .custom-video {
+  aspect-ratio: auto;
+}
+.apricot.apricot .video-card-media .custom-video video {
+  object-fit: cover;
+}
+.apricot.apricot .video-card-media .custom-video.is-playing video {
+  object-fit: contain;
+}
+.apricot.apricot .two-grid:has(> .profile-panel) {
+  align-items: start;
+}
+@media (max-width: 1000px) {
+  .apricot.apricot .child-view-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .apricot.apricot .child-view-actions > button {
+    width: 100%;
+  }
+}
+
+/* Family rows keep identity and role together, with actions below. */
+.apricot.apricot .family-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+.apricot.apricot .family-grid > .family-invite {
+  width: 100%;
+  margin-top: 24px;
+}
+.apricot.apricot .member-list .person-row {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 132px;
+  gap: 12px;
+  align-items: center;
+}
+.apricot.apricot .member-list .member-controls {
+  display: contents;
+}
+.apricot.apricot .member-list .row-actions {
+  grid-column: 2 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.apricot.apricot .member-list :is(.choice-trigger, .role-badge) {
+  width: 132px;
+}
+.apricot.apricot .profile-panel .writing-input {
+  padding-inline: 0 !important;
+  width: 100%;
+  margin-inline: 0 !important;
+}
+.apricot-popover .choice-item {
+  border-radius: 10px;
+  cursor: pointer;
+}
+.apricot-popover .choice-item:is(:hover, [data-highlighted], [data-state="checked"]) {
+  background: #f7e7df !important;
+  color: #a9422c !important;
+  outline: none;
+}
+.apricot.apricot .hero-copy .actions > .text-button {
+  padding: 12px 24px;
+}
+.apricot.apricot .journal-section {
+  align-items: stretch;
+}
+.apricot.apricot .journal-card {
+  align-items: stretch;
+}
+.apricot.apricot .journal-card > div {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.apricot.apricot .journal-card .article-link {
+  margin-top: auto;
+  padding-top: 12px;
+}
+.preview-bottom-tabs {
+  display: none;
+}
+@media (max-width: 700px) {
+  .apricot.apricot .preview-bottom-tabs {
+    display: block;
+    border-top: 1px solid #ead8bf;
+    padding: 12px 8px;
+  }
+  .apricot.apricot .preview-bottom-tabs .sliding-tabs {
+    display: flex;
+    width: 100%;
+  }
+  .apricot.apricot .preview-bottom-tabs .sliding-trigger {
+    flex: 1;
+    padding: 10px 6px;
+    font-size: 12px;
+  }
+}
+.apricot.apricot .attached-preview {
+  padding: 0;
+}
+.apricot.apricot .attached-preview :is(img, video) {
+  display: block;
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+.attachment-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+@media (max-width: 700px) {
+  .apricot.apricot .hero-copy .actions > .text-button {
+    padding-inline: 18px;
+  }
+}
+.apricot.apricot .member-list .row-actions > .raised {
+  margin: 0;
+  flex: 0 0 auto;
+}
+.apricot.apricot .member-list .row-actions > .person-remove {
+  width: auto;
+  min-height: 50px;
+  justify-content: center;
+  flex: 0 0 auto;
+}

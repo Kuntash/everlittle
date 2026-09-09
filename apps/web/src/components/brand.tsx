@@ -1,13 +1,9 @@
-export function Brand({ compact = false }: { compact?: boolean }) {
+import { BrandMark } from "@/components/design/memory-illustrations";
+export function Brand({ compact: _compact = false }: { compact?: boolean }) {
   return (
-    <div className={`brand ${compact ? "compact" : ""}`}>
-      <span className="brand-mark" aria-hidden="true">
-        <img src="/icon-512.png" alt="" />
-      </span>
-      <div>
-        <strong>Everlittle</strong>
-        {compact ? null : <small>A place for the memories they’ll grow into.</small>}
-      </div>
-    </div>
+    <span className="brand">
+      <BrandMark />
+      Everlittle
+    </span>
   );
 }

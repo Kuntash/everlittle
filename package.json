@@ -8,7 +8,7 @@
     "dev": "vp run @everlittle/web#dev",
     "build": "vp run @everlittle/web#build",
     "typecheck": "vp run @everlittle/web#typecheck",
-    "ready": "pnpm --filter @everlittle/web generate-routes && vp check && vp run @everlittle/web#test && vp run @everlittle/web#build",
+    "ready": "pnpm --filter @everlittle/web generate-routes && vp check apps packages package.json pnpm-workspace.yaml vite.config.ts && vp run @everlittle/web#test && pnpm --filter @everlittle/web test:ui && vp run @everlittle/web#build",
     "test": "vp run @everlittle/web#test",
     "cf-typegen": "vp run @everlittle/web#cf-typegen",
     "db:migrate:local": "vp run @everlittle/web#db:migrate:local",
@@ -20,7 +20,9 @@
     "deploy:self-hosted": "vp run @everlittle/web#deploy:self-hosted",
     "deploy:hosted": "vp run @everlittle/web#deploy:hosted",
     "setup:hooks": "git config core.hooksPath .githooks",
-    "setup:vp": "vp config"
+    "setup:vp": "vp config",
+    "test:ui": "pnpm --filter @everlittle/web test:ui",
+    "test:e2e": "pnpm --filter @everlittle/web test:e2e"
   },
   "devDependencies": {
     "vite-plus": "catalog:"

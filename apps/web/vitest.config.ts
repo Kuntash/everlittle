@@ -32,6 +32,7 @@ export default defineConfig({
     })),
   ],
   test: {
+    include: ["test/**/*.test.{ts,tsx}"],
     setupFiles: ["./test/apply-migrations.ts"],
   },
 });

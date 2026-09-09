@@ -5,16 +5,16 @@ import { Brand } from "@/components/brand";
 import { MarketingHome } from "@/components/marketing-home";
 
 describe("Everlittle brand", () => {
-  it("uses the canonical app logo", () => {
+  it("uses the approved background-free vector mark", () => {
     const markup = renderToStaticMarkup(<Brand compact />);
 
-    expect(markup).toContain('src="/icon-512.png"');
+    expect(markup).toContain('class="brand-mark"');
     expect(markup).toContain("Everlittle");
   });
 
-  it("renders the canonical logo on the marketing landing page", () => {
+  it("renders the same vector mark on the marketing landing page", () => {
     const markup = renderToStaticMarkup(<MarketingHome />);
 
-    expect(markup).toContain('src="/icon-512.png"');
+    expect(markup).toContain('class="brand-mark"');
   });
 });

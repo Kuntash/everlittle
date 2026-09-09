@@ -9,7 +9,7 @@ dist/
 error.log
 .playwright-cli/
 apps/web/wrangler.self-hosted.jsonc
-apps/web/src/routeTree.gen.ts
+apps/web/src/route-tree.gen.ts
 
 # Graphify keeps these as machine-local or temporary incremental-build state.
 graphify-out/.graphify_root
@@ -30,3 +30,7 @@ graphify-out/20??-??-??/
 graphify-out/cache/last_query_stamp
 graphify-out/memory/
 graphify-out/reflections/
+
+# Browser regression outputs
+apps/web/test-results/
+apps/web/playwright-report/

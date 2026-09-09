@@ -1,3 +1,4 @@
+import tailwindcss from "@tailwindcss/vite";
 import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
@@ -28,7 +29,7 @@ function hashApplicationSource() {
       for (const child of readdirSync(fullPath).sort()) addPath(join(path, child));
       return;
     }
-    if (path.endsWith("routeTree.gen.ts")) return;
+    if (path.endsWith("route-tree.gen.ts")) return;
     hash.update(relative(projectRoot, fullPath));
     hash.update(readFileSync(fullPath));
   }
@@ -56,11 +57,12 @@ export default defineConfig({
   resolve: { tsconfigPaths: true },
   plugins: [
     releaseManifest(),
+    tailwindcss(),
     cloudflare({
       ...(wranglerConfigPath ? { configPath: wranglerConfigPath } : {}),
       viteEnvironment: { name: "ssr" },
     }),
-    tanstackStart(),
+    tanstackStart({ router: { generatedRouteTree: "./route-tree.gen.ts" } }),
     viteReact(),
   ],
 });

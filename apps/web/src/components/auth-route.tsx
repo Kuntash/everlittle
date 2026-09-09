@@ -1,14 +1,12 @@
+import { ArchiveRedirect } from "@/features/archive/components/archive-redirect";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
+import type { InvitationPreview, PlatformState } from "@/features/archive/archive-types";
+import { AccessScreen } from "@/features/archive/components/access-screen";
+import { InvitationAcceptance } from "@/features/archive/components/invitation-acceptance";
+import { Loading } from "@/features/archive/components/loading";
 import { authClient } from "@/lib/auth-client";
-import {
-  AccessScreen,
-  InvitationAcceptance,
-  Loading,
-  type InvitationPreview,
-  type PlatformState,
-} from "@/routes/index";
 
 export function AuthRoute({
   inviteToken = "",
@@ -41,7 +39,7 @@ export function AuthRoute({
   const shouldRedirectSignedInUser = Boolean(session.data?.user && checked && !invitation);
 
   useEffect(() => {
-    if (!shouldRedirectSignedInUser) return;
+    if (!shouldRedirectSignedInUser || safeRedirect() === "/") return;
 
     if (mode === "setup") {
       toast("You already have an account", {
@@ -60,7 +58,15 @@ export function AuthRoute({
   if (session.data?.user && invitation) {
     return <InvitationAcceptance invitation={invitation} token={inviteToken} />;
   }
-  if (session.data?.user) return <Loading />;
+  if (session.data?.user)
+    return safeRedirect() === "/" ? (
+      <ArchiveRedirect
+        defaultArchiveSlug={platform.defaultArchiveSlug}
+        deploymentMode={platform.deploymentMode}
+      />
+    ) : (
+      <Loading />
+    );
   if (platform.deploymentMode === "self-hosted" && !inviteToken) {
     location.replace("/");
     return <Loading />;

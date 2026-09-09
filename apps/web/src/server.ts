@@ -14,8 +14,8 @@ import {
   robotsResponse,
   sitemapResponse,
 } from "@/lib/public-web";
-import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 import { getRuntimeEnv } from "@/lib/runtime-env";
+import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 
 type SignUpPayload = { user?: { id?: string; name?: string } };
 type SignUpInput = { email?: string };

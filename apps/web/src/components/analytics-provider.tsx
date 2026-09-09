@@ -3,14 +3,14 @@ import { useRouterState } from "@tanstack/react-router";
 import posthog from "posthog-js";
 import { useEffect, useRef, useState } from "react";
 
-import { authClient } from "@/lib/auth-client";
+import type { MarketingAttribution } from "@/lib/analytics";
 import {
   MARKETING_ATTRIBUTION_STORAGE_KEY,
   analyticsPath,
   marketingAttribution,
   readMarketingAttribution,
 } from "@/lib/analytics";
-import type { MarketingAttribution } from "@/lib/analytics";
+import { authClient } from "@/lib/auth-client";
 
 type AnalyticsConfig = {
   analytics?: { posthog?: { host?: string; token?: string } } | null;

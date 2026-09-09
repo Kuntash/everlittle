@@ -1,5 +1,5 @@
-import { z } from "zod";
 import { childSlugSchema, familySlugSchema, slugify } from "@everlittle/domain";
+import { z } from "zod";
 
 import { createAuth } from "@/lib/auth";
 import {
@@ -10,10 +10,10 @@ import {
   getBillingConfig,
   hasManageableSubscription,
 } from "@/lib/billing";
-import { getRuntimeEnv } from "@/lib/runtime-env";
 import { getDeploymentConfig } from "@/lib/deployment";
-import { canCreateArchiveContent, canStoreMedia, FAMILY_PLAN } from "@/lib/plans";
 import { sendInvitationEmail } from "@/lib/invitation-email";
+import { canCreateArchiveContent, canStoreMedia, FAMILY_PLAN } from "@/lib/plans";
+import { getRuntimeEnv } from "@/lib/runtime-env";
 
 const invitationSchema = z.object({
   email: z.email().transform((value) => value.trim().toLowerCase()),
@@ -1838,8 +1838,6 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   if (byteSize > MAX_MEDIA_BYTES) {
     return Response.json({ error: "Media files must be 50 MB or smaller." }, { status: 413 });
   }
-  const storageResponse = await enforceArchiveStorage(runtime.DB, context.archiveId, byteSize);
-  if (storageResponse) return storageResponse;
   if (
     (memory.kind === "photo" && media.mediaType !== "image") ||
     (memory.kind === "voice" && media.mediaType !== "audio") ||
@@ -1850,11 +1848,23 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   }
 
   const existing = await runtime.DB.prepare(
-    "SELECT id FROM media_asset WHERE memory_id = ? AND archive_id = ? LIMIT 1",
+    "SELECT id, object_key AS objectKey, byte_size AS byteSize, thumbnail_byte_size AS thumbnailByteSize FROM media_asset WHERE memory_id = ? AND archive_id = ? LIMIT 1",
   )
     .bind(memoryId, context.archiveId)
-    .first();
-  if (existing) return Response.json({ error: "This memory already has media." }, { status: 409 });
+    .first<{ id: string; objectKey: string; byteSize: number; thumbnailByteSize: number }>();
+  const replaceId = request.headers.get("x-everlittle-replace-media-id");
+  if ((existing && replaceId !== existing.id) || (!existing && replaceId)) {
+    return Response.json(
+      { error: "The attachment changed. Reopen this memory before replacing it." },
+      { status: 409 },
+    );
+  }
+  const storageResponse = await enforceArchiveStorage(
+    runtime.DB,
+    context.archiveId,
+    Math.max(0, byteSize - (existing ? existing.byteSize + existing.thumbnailByteSize : 0)),
+  );
+  if (storageResponse) return storageResponse;
 
   const assetId = crypto.randomUUID();
   const objectKey = `archives/${context.archiveId}/${memoryId}/${assetId}.${media.extension}`;
@@ -1868,20 +1878,33 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   });
 
   try {
-    await runtime.DB.batch([
-      runtime.DB.prepare(
-        `INSERT INTO media_asset
+    const results = await runtime.DB.batch([
+      existing
+        ? runtime.DB.prepare(
+            `UPDATE media_asset SET id = ?, object_key = ?, media_type = ?, content_type = ?,
+         byte_size = ?, thumbnail_byte_size = 0 WHERE id = ? AND archive_id = ?`,
+          ).bind(
+            assetId,
+            objectKey,
+            media.mediaType,
+            contentType,
+            byteSize,
+            existing.id,
+            context.archiveId,
+          )
+        : runtime.DB.prepare(
+            `INSERT INTO media_asset
           (id, archive_id, memory_id, object_key, media_type, content_type, byte_size)
          VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      ).bind(
-        assetId,
-        context.archiveId,
-        memoryId,
-        objectKey,
-        media.mediaType,
-        contentType,
-        byteSize,
-      ),
+          ).bind(
+            assetId,
+            context.archiveId,
+            memoryId,
+            objectKey,
+            media.mediaType,
+            contentType,
+            byteSize,
+          ),
       auditStatement(runtime.DB, {
         id: crypto.randomUUID(),
         archiveId: context.archiveId,
@@ -1892,6 +1915,13 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
         metadata: { memoryId, mediaType: media.mediaType, byteSize },
       }),
     ]);
+    if (!results[0].meta.changes) {
+      await runtime.MEDIA.delete(objectKey);
+      return Response.json(
+        { error: "The attachment changed. Reopen this memory before replacing it." },
+        { status: 409 },
+      );
+    }
   } catch (error) {
     await runtime.MEDIA.delete(objectKey);
     console.error(
@@ -1900,6 +1930,14 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
     return Response.json({ error: "The media upload could not be saved." }, { status: 500 });
   }
 
+  if (existing) {
+    // The old object remains intact until the new asset metadata has committed.
+    await runtime.MEDIA.delete([existing.objectKey, thumbnailObjectKey(existing.objectKey)]).catch(
+      (error) => {
+        console.error(JSON.stringify({ event: "replaced_media_cleanup_failed", memoryId, error }));
+      },
+    );
+  }
   return Response.json({ id: assetId, url: `/api/media/${assetId}` }, { status: 201 });
 }
 

@@ -13,8 +13,8 @@ import {
 } from "lucide-react";
 
 import { Brand } from "@/components/brand";
-import { seoLandingPages } from "@/lib/seo-pages";
 import type { SeoLandingPageContent } from "@/lib/seo-pages";
+import { seoLandingPages } from "@/lib/seo-pages";
 
 export function SeoLandingPage({ page }: { page: SeoLandingPageContent }) {
   return (

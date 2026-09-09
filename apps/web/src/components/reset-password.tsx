@@ -1,9 +1,10 @@
-import { ArrowRight, LockKeyhole } from "lucide-react";
-import { useEffect, useState } from "react";
+import { AuthFrame } from "@/components/design/auth-frame";
+import { ArrowRight } from "lucide-react";
 import type { FormEvent } from "react";
+import { useEffect, useState } from "react";
 
-import { PasswordInput } from "@/components/password-input";
 import { Brand } from "@/components/brand";
+import { PasswordInput } from "@/components/password-input";
 
 export function ResetPassword() {
   const [link, setLink] = useState<{ invalid: boolean; token: string } | null>(null);
@@ -56,61 +57,55 @@ export function ResetPassword() {
   }
 
   return (
-    <main className="loading-shell invitation-shell">
-      <Brand />
-      <section className="access-card">
-        <div className="access-icon">
-          <LockKeyhole size={22} />
-        </div>
-        <p className="eyebrow">Account recovery</p>
-        <h2>{complete ? "Your password is ready" : "Choose a new password"}</h2>
-        {complete ? (
-          <>
-            <p className="card-intro">Your other adult sessions have been signed out.</p>
-            <a className="primary-button" href="/sign-in">
-              Return to sign in <ArrowRight size={18} />
-            </a>
-          </>
-        ) : (
-          <form onSubmit={submit}>
-            <label>
-              New password
-              <PasswordInput
-                autoComplete="new-password"
-                disabled={invalid}
-                minLength={10}
-                onChange={(event) => setPassword(event.target.value)}
-                required
-                value={password}
-              />
-              <small>At least 10 characters</small>
-            </label>
-            <label>
-              Confirm new password
-              <PasswordInput
-                autoComplete="new-password"
-                disabled={invalid}
-                minLength={10}
-                onChange={(event) => setConfirmation(event.target.value)}
-                required
-                value={confirmation}
-              />
-            </label>
-            {error ? (
-              <p className="form-error" role="alert">
-                {error}
-              </p>
-            ) : null}
-            <button
-              className="primary-button"
-              disabled={invalid || submitting || password !== confirmation}
-              type="submit"
-            >
-              {submitting ? "Saving…" : "Save new password"} <ArrowRight size={18} />
-            </button>
-          </form>
-        )}
-      </section>
-    </main>
+    <AuthFrame>
+      <p className="eyebrow">Account recovery</p>
+      <h1>{complete ? "Your password is ready" : "Choose a new password"}</h1>
+      {complete ? (
+        <>
+          <p className="card-intro">Your other adult sessions have been signed out.</p>
+          <a className="primary-button" href="/sign-in">
+            Return to sign in <ArrowRight size={18} />
+          </a>
+        </>
+      ) : (
+        <form onSubmit={submit}>
+          <label>
+            New password
+            <PasswordInput
+              autoComplete="new-password"
+              disabled={invalid}
+              minLength={10}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              value={password}
+            />
+            <small>At least 10 characters</small>
+          </label>
+          <label>
+            Confirm new password
+            <PasswordInput
+              autoComplete="new-password"
+              disabled={invalid}
+              minLength={10}
+              onChange={(event) => setConfirmation(event.target.value)}
+              required
+              value={confirmation}
+            />
+          </label>
+          {error ? (
+            <p className="form-error" role="alert">
+              {error}
+            </p>
+          ) : null}
+          <button
+            className="primary-button"
+            disabled={invalid || submitting || password !== confirmation}
+            type="submit"
+          >
+            {submitting ? "Saving…" : "Save new password"} <ArrowRight size={18} />
+          </button>
+        </form>
+      )}
+    </AuthFrame>
   );
 }

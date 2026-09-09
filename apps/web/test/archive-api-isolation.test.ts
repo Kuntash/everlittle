@@ -138,6 +138,61 @@ describe("route-scoped tenant isolation", () => {
     expect(response.status).toBe(404);
   });
 
+  it("replaces owned media only with its current attachment id and preserves it on rejected uploads", async () => {
+    const created = await api(familyA, `/api/families/${familyA.slug}/archive/memories`, {
+      method: "POST",
+      body: JSON.stringify({
+        childId: familyA.childId,
+        kind: "photo",
+        title: "Replace fixture",
+        audience: "family",
+        happenedAt: new Date().toISOString(),
+      }),
+    });
+    const { id: memoryId } = (await created.json()) as { id: string };
+    const path = `/api/families/${familyA.slug}/archive/memories/${memoryId}/media`;
+    const upload = (replaceId?: string, type = "image/jpeg") =>
+      api(familyA, path, {
+        method: "PUT",
+        body: new Uint8Array([1, 2, 3]),
+        headers: {
+          "content-type": type,
+          "content-length": "3",
+          ...(replaceId ? { "x-everlittle-replace-media-id": replaceId } : {}),
+        },
+      });
+    const initial = await upload();
+    expect(initial.status).toBe(201);
+    const old = (await initial.json()) as { id: string };
+    const oldKey = `archives/${familyA.archiveId}/${memoryId}/${old.id}.jpg`;
+    expect((await upload()).status).toBe(409);
+    expect((await upload(old.id, "audio/mpeg")).status).toBe(400);
+    expect(await env.MEDIA.head(oldKey)).not.toBeNull();
+    const forbidden = await api({ ...familyA, cookie: parent.cookie }, path, {
+      method: "PUT",
+      body: new Uint8Array([1, 2, 3]),
+      headers: {
+        "content-type": "image/jpeg",
+        "content-length": "3",
+        "x-everlittle-replace-media-id": old.id,
+      },
+    });
+    expect(forbidden.status).toBe(403);
+    const replaced = await upload(old.id);
+    expect(replaced.status).toBe(201);
+    const next = (await replaced.json()) as { id: string };
+    expect(next.id).not.toBe(old.id);
+    expect(await env.MEDIA.head(oldKey)).toBeNull();
+    expect(
+      await env.MEDIA.head(`archives/${familyA.archiveId}/${memoryId}/${next.id}.jpg`),
+    ).not.toBeNull();
+    expect((await upload(old.id)).status).toBe(409);
+    const assets = await env.DB.prepare("SELECT id FROM media_asset WHERE memory_id = ?")
+      .bind(memoryId)
+      .all();
+    expect(assets.results).toEqual([{ id: next.id }]);
+  });
+
   it("does not let an adult upload media to another family's memory", async () => {
     const response = await api(
       familyA,

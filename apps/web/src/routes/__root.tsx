@@ -1,14 +1,17 @@
+import primaryButtonCss from "@/features/archive/primary-button.css?url";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { Download, RefreshCw, Share, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import { authClient } from "@/lib/auth-client";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { Toaster } from "@/components/ui/sonner";
+import { authClient } from "@/lib/auth-client";
 import { shouldOfferPwaInstall } from "@/lib/pwa-install";
 
+import apricotCss from "../apricot.css?url";
+import integrationCss from "../integration.css?url";
+import parityCss from "../parity.css?url";
 import appCss from "../styles.css?url";
-import scrapbookCss from "../scrapbook.css?url";
 
 export const Route = createRootRoute({
   head: () => ({
@@ -23,16 +26,19 @@ export const Route = createRootRoute({
         name: "description",
         content: "A private family memory archive and time capsule.",
       },
-      { name: "theme-color", content: "#eef1ed", media: "(prefers-color-scheme: light)" },
-      { name: "theme-color", content: "#111a17", media: "(prefers-color-scheme: dark)" },
-      { name: "color-scheme", content: "light dark" },
+      { name: "theme-color", content: "#fffaf3", media: "(prefers-color-scheme: light)" },
+      { name: "theme-color", content: "#fffaf3", media: "(prefers-color-scheme: dark)" },
+      { name: "color-scheme", content: "light" },
       { name: "apple-mobile-web-app-capable", content: "yes" },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
       { name: "apple-mobile-web-app-title", content: "Everlittle" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "stylesheet", href: scrapbookCss },
+      { rel: "stylesheet", href: apricotCss },
+      { rel: "stylesheet", href: integrationCss },
+      { rel: "stylesheet", href: parityCss },
+      { rel: "stylesheet", href: primaryButtonCss },
       { rel: "manifest", href: "/manifest.webmanifest" },
       { rel: "icon", href: "/icon.svg", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
@@ -47,7 +53,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="apricot">
         <AnalyticsProvider>
           {children}
           <PwaExperience />
@@ -101,7 +107,13 @@ function PwaExperience() {
     }
 
     let reloading = false;
+    let hasController = Boolean(navigator.serviceWorker.controller);
     function reloadForUpdate() {
+      // First installation claims the page; only an update should reload it.
+      if (!hasController) {
+        hasController = true;
+        return;
+      }
       if (reloading) return;
       reloading = true;
       window.location.reload();
@@ -129,21 +141,27 @@ function PwaExperience() {
       if (document.visibilityState === "visible") void checkForRelease();
     }
 
-    void navigator.serviceWorker.register("/sw.js").then((nextRegistration) => {
-      registration = nextRegistration;
-      if (nextRegistration.waiting && navigator.serviceWorker.controller) {
-        setUpdateWorker(nextRegistration.waiting);
-      }
-      nextRegistration.addEventListener("updatefound", () => {
-        const worker = nextRegistration.installing;
-        worker?.addEventListener("statechange", () => {
-          if (worker.state === "installed" && navigator.serviceWorker.controller) {
-            setUpdateWorker(worker);
-          }
+    void navigator.serviceWorker
+      .register("/sw.js")
+      .then((nextRegistration) => {
+        if (!nextRegistration) return;
+        registration = nextRegistration;
+        if (nextRegistration.waiting && navigator.serviceWorker.controller) {
+          setUpdateWorker(nextRegistration.waiting);
+        }
+        nextRegistration.addEventListener("updatefound", () => {
+          const worker = nextRegistration.installing;
+          worker?.addEventListener("statechange", () => {
+            if (worker.state === "installed" && navigator.serviceWorker.controller) {
+              setUpdateWorker(worker);
+            }
+          });
         });
+        void checkForRelease();
+      })
+      .catch(() => {
+        /* Browsing still works when service workers are unavailable. */
       });
-      void checkForRelease();
-    });
     window.addEventListener("focus", checkForRelease);
     window.addEventListener("online", checkForRelease);
     document.addEventListener("visibilitychange", checkWhenVisible);

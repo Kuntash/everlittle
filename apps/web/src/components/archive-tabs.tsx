@@ -1,44 +1,36 @@
-import { Archive, Baby, Clock3, UserRound, Users } from "lucide-react";
-
-type View = "parent" | "timeline" | "capsules" | "child" | "family";
+import { SlidingTabs } from "@/components/design/controls";
+import type { View } from "@/features/archive/archive-types";
 const destinations = [
-  { view: "parent", label: "Parent", icon: UserRound },
-  { view: "timeline", label: "Timeline", icon: Clock3 },
-  { view: "capsules", label: "Capsules", icon: Archive },
-  { view: "child", label: "Child", icon: Baby },
-  { view: "family", label: "Family", icon: Users },
+  { view: "parent", label: "Home" },
+  { view: "timeline", label: "Timeline" },
+  { view: "capsules", label: "Capsules" },
+  { view: "family", label: "Family" },
 ] as const;
-
 export function ArchiveTabs({
   active,
   onNavigate,
-  showChild,
   mobile = false,
 }: {
   active: View;
   onNavigate: (view: View) => void;
-  showChild: boolean;
+  showChild?: boolean;
   mobile?: boolean;
 }) {
   return (
     <nav
-      className={mobile ? "scrapbook-mobile-nav" : "folder-tabs"}
+      className={mobile ? "mobile-nav" : "desktop-nav"}
       aria-label={mobile ? "Primary mobile" : "Primary"}
     >
-      {destinations
-        .filter(({ view }) => view !== "child" || showChild)
-        .map(({ view, label, icon: Icon }) => (
-          <button
-            key={view}
-            className={`folder-tab folder-${view} ${active === view ? "active" : ""}`}
-            aria-current={active === view ? "page" : undefined}
-            onClick={() => onNavigate(view)}
-            type="button"
-          >
-            <Icon size={20} aria-hidden="true" />
-            <span>{label}</span>
-          </button>
-        ))}
+      <SlidingTabs
+        value={destinations.find((item) => item.view === active)?.label ?? "Home"}
+        items={destinations.map((item) => item.label)}
+        label="Archive navigation"
+        className="archive-tabs"
+        onChange={(label) => {
+          const target = destinations.find((item) => item.label === label);
+          if (target) onNavigate(target.view);
+        }}
+      />
     </nav>
   );
 }

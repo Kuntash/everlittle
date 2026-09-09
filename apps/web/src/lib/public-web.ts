@@ -1,7 +1,14 @@
 import type { DeploymentConfig } from "@/lib/deployment";
 import { SEO_PAGE_PATHS } from "@/lib/seo-page-paths";
 
-export const INDEXABLE_PATHS = ["/", "/pricing", ...SEO_PAGE_PATHS] as const;
+export const INDEXABLE_PATHS = [
+  "/",
+  "/pricing",
+  "/journal",
+  "/journal/small-firsts",
+  "/journal/photo-story",
+  ...SEO_PAGE_PATHS,
+] as const;
 
 export function isIndexablePath(pathname: string): boolean {
   return INDEXABLE_PATHS.includes(pathname as (typeof INDEXABLE_PATHS)[number]);
