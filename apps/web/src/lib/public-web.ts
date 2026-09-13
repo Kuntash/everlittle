@@ -4,6 +4,9 @@ import { SEO_PAGE_PATHS } from "@/lib/seo-page-paths";
 export const INDEXABLE_PATHS = [
   "/",
   "/pricing",
+  "/about",
+  "/contact",
+  "/privacy",
   "/journal",
   "/journal/small-firsts",
   "/journal/photo-story",

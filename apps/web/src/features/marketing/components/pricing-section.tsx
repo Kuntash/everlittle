@@ -1,3 +1,5 @@
+import posthog from "posthog-js";
+import { useEffect, useRef } from "react";
 import { Button, Check } from "@/components/design/shared";
 export function PricingSection({
   start,
@@ -8,8 +10,22 @@ export function PricingSection({
   billing: string;
   setBilling: (value: string) => void;
 }) {
+  const ref = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          posthog.capture("pricing_viewed", { placement: "homepage" });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
   return (
-    <section className="pricing-section section-border" id="pricing">
+    <section ref={ref} className="pricing-section section-border" id="pricing">
       <h2>
         One home for <br />
         all the little things.
@@ -23,7 +39,14 @@ export function PricingSection({
           </div>
           <button
             className="text-button small"
-            onClick={() => setBilling(billing === "Monthly" ? "Yearly" : "Monthly")}
+            onClick={() => {
+              const next = billing === "Monthly" ? "Yearly" : "Monthly";
+              setBilling(next);
+              posthog.capture("plan_selected", {
+                billing_interval: next.toLowerCase(),
+                placement: "homepage",
+              });
+            }}
           >
             {billing === "Monthly" ? "or $60 yearly" : "or $6 monthly"} ↔
           </button>

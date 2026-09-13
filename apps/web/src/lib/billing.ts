@@ -1,3 +1,5 @@
+import { recordPayment, majorAmount } from "@/lib/payment-measurement";
+import { eventStatement, flushAnalytics } from "@/lib/server-analytics";
 import DodoPayments from "dodopayments";
 
 import type { RuntimeEnv } from "@/lib/runtime-env";
@@ -129,6 +131,15 @@ export async function createBillingCheckout(input: {
   );
   if (!session.checkout_url) throw new Error("Dodo did not return a hosted checkout URL.");
 
+  await (
+    await eventStatement(input.runtime, {
+      key: `checkout:${session.session_id ?? crypto.randomUUID()}`,
+      event: "billing_checkout_started",
+      userId: input.owner.id,
+      archiveId: input.archiveId,
+      properties: { billing_interval: input.interval, environment: config.environment },
+    })
+  ).run();
   return { url: session.checkout_url, environment: config.environment };
 }
 
@@ -174,19 +185,79 @@ export async function handleDodoWebhook(request: Request, runtime: RuntimeEnv) {
   }
 
   const rawBody = await request.text();
-  let event: SubscriptionWebhook;
+  let verified: ReturnType<DodoPayments["webhooks"]["unwrap"]>;
   try {
-    event = createDodoClient(config).webhooks.unwrap(rawBody, {
+    verified = createDodoClient(config).webhooks.unwrap(rawBody, {
       headers: Object.fromEntries(request.headers),
       key: config.webhookKey,
-    }) as unknown as SubscriptionWebhook;
+    });
   } catch {
     return Response.json({ error: "Invalid webhook signature." }, { status: 400 });
   }
 
   const eventId = request.headers.get("webhook-id");
   if (!eventId) return Response.json({ error: "Missing webhook ID." }, { status: 400 });
-  if (!SUBSCRIPTION_EVENTS.has(event.type)) return Response.json({ received: true });
+  if (
+    verified.type === "payment.succeeded" ||
+    verified.type === "payment.failed" ||
+    verified.type === "refund.succeeded"
+  ) {
+    const client = createDodoClient(config);
+    const payment =
+      verified.type === "refund.succeeded"
+        ? await client.payments.retrieve(verified.data.payment_id)
+        : verified.data;
+    if (!payment.subscription_id || payment.is_update_payment_method)
+      return Response.json({ received: true });
+    const subscription = await client.subscriptions.retrieve(payment.subscription_id);
+    const archiveId = stringMetadata(subscription.metadata.archive_id);
+    if (
+      !archiveId ||
+      ![config.monthlyProductId, config.yearlyProductId].includes(subscription.product_id)
+    )
+      return Response.json({ error: "Unmapped payment" }, { status: 400 });
+    const owner = await runtime.DB.prepare(
+      "SELECT user_id FROM family_member WHERE archive_id=? AND role='owner'",
+    )
+      .bind(archiveId)
+      .first<{ user_id: string }>();
+    if (!owner) return Response.json({ error: "Unknown archive" }, { status: 404 });
+    if (verified.type === "refund.succeeded") {
+      const refund = verified.data;
+      if (refund.amount == null || !refund.currency)
+        return Response.json({ error: "Refund amount unavailable" }, { status: 422 });
+      await (
+        await eventStatement(runtime, {
+          key: `refund:${config.environment}:${refund.refund_id}`,
+          event: "refund_succeeded",
+          userId: owner.user_id,
+          archiveId,
+          timestamp: verified.timestamp,
+          properties: {
+            refund_id: refund.refund_id,
+            payment_id: refund.payment_id,
+            amount_minor: refund.amount,
+            amount: majorAmount(refund.amount, refund.currency),
+            currency: refund.currency,
+          },
+        })
+      ).run();
+    } else {
+      await recordPayment(runtime, {
+        paymentId: payment.payment_id,
+        archiveId,
+        ownerId: owner.user_id,
+        amount: payment.total_amount,
+        currency: payment.currency,
+        timestamp: verified.timestamp,
+        succeeded: verified.type === "payment.succeeded",
+      });
+    }
+    await flushAnalytics(runtime);
+    return Response.json({ received: true });
+  }
+  if (!SUBSCRIPTION_EVENTS.has(verified.type)) return Response.json({ received: true });
+  const event = verified as SubscriptionWebhook;
 
   const archiveId = stringMetadata(event.data.metadata?.archive_id);
   const allowedProducts = new Set([config.monthlyProductId, config.yearlyProductId]);

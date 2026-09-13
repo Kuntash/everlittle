@@ -3,6 +3,7 @@ import { tanstackStartCookies } from "better-auth/tanstack-start";
 
 type AuthOptions = {
   appName?: string;
+  onEmailVerified?: (userId: string) => Promise<void>;
   sendAuthEmail: (input: {
     email: string;
     name: string;
@@ -24,6 +25,7 @@ export function createAuth({
   allowSignUp,
   requireEmailVerification,
   sendAuthEmail,
+  onEmailVerified,
 }: AuthOptions) {
   return betterAuth({
     appName,
@@ -42,6 +44,9 @@ export function createAuth({
       },
     },
     emailVerification: {
+      afterEmailVerification: async (user) => {
+        await onEmailVerified?.(user.id);
+      },
       autoSignInAfterVerification: true,
       expiresIn: 60 * 60 * 24,
       sendOnSignIn: true,

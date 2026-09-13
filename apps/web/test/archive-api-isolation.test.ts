@@ -857,3 +857,36 @@ async function legacyChildPinHash(childId: string, pin: string) {
     "",
   );
 }
+
+describe("Google conversion receipt access", () => {
+  it("requires an adult session and returns only their live non-QA receipts", async () => {
+    const url = ORIGIN + "/api/measurement/conversions";
+    expect((await exports.default.fetch(new Request(url))).status).toBe(401);
+    const owner = await signUpAccount("conversion-owner@example.com", "QA");
+    await env.DB.batch(
+      [
+        ["owner-live", owner.userId, "live_mode", false],
+        ["owner-test", owner.userId, "test_mode", false],
+        ["owner-qa", owner.userId, "live_mode", true],
+        ["another-user", familyB.userId, "live_mode", false],
+      ].map(([key, user, environment, is_test]) =>
+        env.DB.prepare(
+          "INSERT INTO analytics_outbox(event_key,uuid,event_name,distinct_id,properties,occurred_at) VALUES(?,?,'first_payment_succeeded',?,?,CURRENT_TIMESTAMP)",
+        ).bind(
+          key,
+          crypto.randomUUID(),
+          user,
+          JSON.stringify({ environment, is_test, amount: 6, currency: "USD" }),
+        ),
+      ),
+    );
+    const response = await exports.default.fetch(
+      new Request(url, { headers: { cookie: owner.cookie } }),
+    );
+    expect(response.status).toBe(200);
+    expect(response.headers.get("cache-control")).toBe("private, no-store");
+    expect(await response.json()).toEqual({
+      conversions: [{ name: "purchase", transactionId: "owner-live", value: 6, currency: "USD" }],
+    });
+  });
+});

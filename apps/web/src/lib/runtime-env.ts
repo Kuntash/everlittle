@@ -2,7 +2,10 @@ import { env } from "cloudflare:workers";
 
 import { getDeploymentConfig } from "@/lib/deployment";
 
-export type RuntimeEnv = Env & {
+export type RuntimeEnv = Omit<
+  Env,
+  "DODO_PAYMENTS_ENVIRONMENT" | "POSTHOG_PROJECT_TOKEN" | "POSTHOG_HOST"
+> & {
   DODO_PAYMENTS_API_KEY?: string;
   DODO_PAYMENTS_WEBHOOK_KEY?: string;
   DODO_PAYMENTS_ENVIRONMENT?: string;

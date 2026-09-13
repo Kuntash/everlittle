@@ -7,6 +7,8 @@ export type MarketingAttribution = {
   campaign_medium?: string;
   campaign_name?: string;
   campaign_content?: string;
+  campaign_term?: string;
+  campaign_id?: string;
   campaign_landing_path?: string;
 };
 
@@ -38,6 +40,8 @@ export function marketingAttribution(search: string): MarketingAttribution | nul
     ["utm_medium", "campaign_medium"],
     ["utm_campaign", "campaign_name"],
     ["utm_content", "campaign_content"],
+    ["utm_term", "campaign_term"],
+    ["utm_id", "campaign_id"],
   ] as const;
 
   for (const [queryKey, propertyKey] of fields) {
@@ -58,6 +62,8 @@ export function readMarketingAttribution(value: string | null): MarketingAttribu
       "campaign_medium",
       "campaign_name",
       "campaign_content",
+      "campaign_term",
+      "campaign_id",
       "campaign_landing_path",
     ] as const;
     for (const key of keys) {
@@ -77,4 +83,33 @@ function safeCampaignValue(value: string | null) {
     .trim()
     .slice(0, 100);
   return clean || null;
+}
+
+// SDK-generated initial URL/referrer properties can occur inside identify payloads.
+export function sanitizeAnalyticsProperties(
+  properties: Record<string, unknown>,
+  safePath: string,
+): Record<string, unknown> {
+  const result: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(properties)) {
+    if (
+      /referrer|referring_domain|initial_current_url|initial_pathname|gclid|gbraid|wbraid|fbclid/i.test(
+        key,
+      )
+    )
+      continue;
+    if (key === "$current_url" || key === "$pathname") {
+      result[key] = safePath;
+      continue;
+    }
+    if (
+      (key === "$set" || key === "$set_once") &&
+      value &&
+      typeof value === "object" &&
+      !Array.isArray(value)
+    ) {
+      result[key] = sanitizeAnalyticsProperties(value as Record<string, unknown>, safePath);
+    } else result[key] = value;
+  }
+  return result;
 }

@@ -27,7 +27,9 @@
     "db:migrate:hosted": "wrangler d1 migrations apply DB --remote --env hosted",
     "billing:setup:test": "node scripts/setup-dodo-test.mjs",
     "test:ui": "vitest run --config vitest.ui.config.ts",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "deploy:sandbox": "CLOUDFLARE_ENV=sandbox vp build && wrangler deploy --env sandbox",
+    "db:migrate:sandbox": "wrangler d1 migrations apply DB --remote --env sandbox"
   },
   "dependencies": {
     "@everlittle/domain": "workspace:*",

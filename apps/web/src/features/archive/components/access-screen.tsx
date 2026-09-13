@@ -1,3 +1,4 @@
+import { acquisitionHeaders } from "@/lib/acquisition";
 import { AuthFrame } from "@/components/design/auth-frame";
 import { SlidingTabs } from "@/components/design/controls";
 import { PasswordInput } from "@/components/password-input";
@@ -74,11 +75,20 @@ export function AccessScreen({
       mode === "setup"
         ? await authClient.signUp.email(
             { callbackURL, name, email, password },
-            isInvitation ? { headers: { "x-everlittle-invitation": inviteToken } } : undefined,
+            {
+              headers: {
+                ...acquisitionHeaders(),
+                ...(isInvitation ? { "x-everlittle-invitation": inviteToken } : {}),
+              },
+            },
           )
         : await authClient.signIn.email({ callbackURL, email, password });
 
     if (result.error) {
+      if (isAcquisitionSignup)
+        posthog?.capture("account_signup_failed", {
+          reason: isExistingAccountError(result.error) ? "existing_account" : "signup_rejected",
+        });
       if (isExistingAccountError(result.error)) {
         setMode("sign-in");
         setPassword("");
@@ -95,7 +105,8 @@ export function AccessScreen({
     }
 
     if (isAcquisitionSignup) {
-      posthog?.capture("account_signup_completed", {
+      if (result.data?.user?.id) posthog?.identify(result.data.user.id);
+      posthog?.capture("account_signup_form_completed", {
         signup_method: "email",
         email_verification_required: true,
       });

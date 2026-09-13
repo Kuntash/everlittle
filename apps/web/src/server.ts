@@ -1,3 +1,6 @@
+import { advertisingPolicy } from "@/lib/advertising-policy";
+import { flushAnalytics, projectAnalytics, eventStatement } from "@/lib/server-analytics";
+import { parseAcquisition } from "@/lib/acquisition";
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 
 import { slugify } from "@everlittle/domain";
@@ -20,7 +23,7 @@ import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 type SignUpPayload = { user?: { id?: string; name?: string } };
 type SignUpInput = { email?: string };
 
-export default createServerEntry({
+const serverEntry = createServerEntry({
   async fetch(request) {
     const url = new URL(request.url);
     const runtime = getRuntimeEnv();
@@ -32,6 +35,10 @@ export default createServerEntry({
     if (canonicalUrl) return Response.redirect(canonicalUrl, 308);
 
     if ((request.method === "GET" || request.method === "HEAD") && url.pathname === "/robots.txt") {
+      if (deployment.mode === "hosted" && runtime.DODO_PAYMENTS_ENVIRONMENT !== "live_mode")
+        return new Response("User-agent: *\nDisallow: /\n", {
+          headers: { "content-type": "text/plain" },
+        });
       return robotsResponse(deployment);
     }
 
@@ -74,30 +81,38 @@ export default createServerEntry({
             }>()
           : null;
 
-      return Response.json({
-        allowsPublicSignup: deployment.capabilities.allowsPublicSignup,
-        defaultArchiveSlug: deployment.defaultArchiveSlug,
-        deploymentMode: deployment.mode,
-        needsSetup:
-          deployment.capabilities.allowsInitialOwnerBootstrap && Number(row?.count ?? 0) === 0,
-        analytics:
-          deployment.mode === "hosted" && runtime.POSTHOG_PROJECT_TOKEN && runtime.POSTHOG_HOST
+      return Response.json(
+        {
+          advertising: advertisingPolicy(
+            request.cf?.country,
+            request.headers.get("Sec-GPC") === "1",
+          ),
+          allowsPublicSignup: deployment.capabilities.allowsPublicSignup,
+          defaultArchiveSlug: deployment.defaultArchiveSlug,
+          deploymentMode: deployment.mode,
+          needsSetup:
+            deployment.capabilities.allowsInitialOwnerBootstrap && Number(row?.count ?? 0) === 0,
+          analytics:
+            deployment.mode === "hosted" && runtime.POSTHOG_PROJECT_TOKEN && runtime.POSTHOG_HOST
+              ? {
+                  posthog: {
+                    host: runtime.POSTHOG_HOST,
+                    environment: runtime.DODO_PAYMENTS_ENVIRONMENT ?? "test_mode",
+                    token: runtime.POSTHOG_PROJECT_TOKEN,
+                  },
+                }
+              : null,
+          childAccess: child
             ? {
-                posthog: {
-                  host: runtime.POSTHOG_HOST,
-                  token: runtime.POSTHOG_PROJECT_TOKEN,
-                },
+                displayName: child.displayName,
+                childSlug: child.childSlug,
+                familySlug: child.familySlug,
+                enabled: Boolean(child.enabled),
               }
             : null,
-        childAccess: child
-          ? {
-              displayName: child.displayName,
-              childSlug: child.childSlug,
-              familySlug: child.familySlug,
-              enabled: Boolean(child.enabled),
-            }
-          : null,
-      });
+        },
+        { headers: { "Cache-Control": "private, no-store" } },
+      );
     }
 
     if (request.method !== "GET" && request.method !== "HEAD") {
@@ -109,7 +124,10 @@ export default createServerEntry({
     }
 
     const response = await handler.fetch(request);
-    const isPublicMarketingPage = deployment.mode === "hosted" && isIndexablePath(url.pathname);
+    const isPublicMarketingPage =
+      deployment.mode === "hosted" &&
+      runtime.DODO_PAYMENTS_ENVIRONMENT === "live_mode" &&
+      isIndexablePath(url.pathname);
     if (!isPublicMarketingPage) {
       const headers = new Headers(response.headers);
       headers.set("cache-control", "private, no-store");
@@ -119,6 +137,15 @@ export default createServerEntry({
     return response;
   },
 });
+
+export default {
+  ...serverEntry,
+  async scheduled() {
+    const runtime = getRuntimeEnv();
+    await projectAnalytics(runtime);
+    await flushAnalytics(runtime);
+  },
+};
 
 async function handleAuthRequest(request: Request): Promise<Response> {
   const runtime = getRuntimeEnv();
@@ -150,11 +177,33 @@ async function handleAuthRequest(request: Request): Promise<Response> {
     allowSignUp: isOwnerBootstrap || isHostedSignup || Boolean(invitation),
     requireEmailVerification: deployment.mode === "hosted",
     sendAuthEmail: (input) => sendAuthEmail(runtime, input),
+    onEmailVerified: async (userId) => {
+      await (
+        await eventStatement(runtime, {
+          key: `verified:${userId}`,
+          event: "email_verified",
+          userId,
+        })
+      ).run();
+    },
   });
   const response = await auth.handler(request);
 
   if (isEmailSignUp && response.ok) {
     const payload = (await response.clone().json()) as SignUpPayload;
+    if (payload.user?.id && isHostedSignup) {
+      const acquisition = parseAcquisition(request.headers.get("x-everlittle-acquisition")) ?? {
+        first: { campaign_source: "unknown", captured_at: new Date().toISOString() },
+        last: { campaign_source: "unknown", captured_at: new Date().toISOString() },
+        is_test: false,
+      };
+      if (acquisition)
+        await runtime.DB.prepare(
+          "INSERT OR IGNORE INTO acquisition_snapshot(user_id,snapshot,signup_recorded) VALUES (?,?,1)",
+        )
+          .bind(payload.user.id, JSON.stringify(acquisition))
+          .run();
+    }
     if (payload.user?.id && invitation) {
       await acceptInvitation(runtime.DB, invitation, payload.user.id);
     } else if (payload.user?.id && isOwnerBootstrap) {

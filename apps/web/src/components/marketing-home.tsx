@@ -1,3 +1,4 @@
+import posthog from "posthog-js";
 import { ClosingSection } from "@/features/marketing/components/closing-section";
 import { JournalSection } from "@/features/marketing/components/journal-section";
 import { MarketingFooter } from "@/features/marketing/components/marketing-footer";
@@ -23,6 +24,13 @@ export const MarketingHome = () => {
     setMenu(false);
   };
   const start = (mode = "Create your archive") => {
+    if (mode !== "Sign in")
+      posthog.capture("marketing_signup_cta_clicked", {
+        source_path: "/",
+        destination_path: "/sign-up",
+        placement: "homepage",
+        billing_interval: billing.toLowerCase(),
+      });
     window.location.assign(mode === "Sign in" ? "/sign-in" : "/sign-up");
   };
   return (
@@ -38,15 +46,15 @@ export const MarketingHome = () => {
             ["Journal", "journal"],
             ["Pricing", "pricing"],
           ].map(([label, id]) => (
-            <button key={id} onClick={() => go(id)}>
+            <a key={id} href={`#${id}`} onClick={() => setMenu(false)}>
               {label}
-            </button>
+            </a>
           ))}
         </nav>
         <div className="header-actions">
-          <button className="text-button" onClick={() => start("Sign in")}>
+          <a className="text-button" href="/sign-in">
             Sign in
-          </button>
+          </a>
           <Button onClick={() => start()}>
             <span className="desktop-label">Create your archive</span>
             <span className="mobile-label">Start</span>
@@ -70,12 +78,12 @@ export const MarketingHome = () => {
           setPreview={setPreview}
         />
         <MemoryPath />
-        <PrivacySection setDialog={setDialog} />
+        <PrivacySection />
         <PricingSection start={start} billing={billing} setBilling={setBilling} />
         <JournalSection />
         <ClosingSection start={start} />
       </main>
-      <MarketingFooter start={start} go={go} />
+      <MarketingFooter />
       {dialog && (
         <Modal title={dialog} onClose={() => setDialog("")}>
           {dialog === "Your family, your privacy" ? (
@@ -91,6 +99,19 @@ export const MarketingHome = () => {
               <p>
                 A memory becomes public only if its author explicitly creates a link. That link
                 lasts for 30 days and can be disabled.
+              </p>
+              <p>
+                We use PostHog to measure product activity without recording your photos, stories,
+                or family names. We use Google advertising cookies and signup, checkout, and
+                purchase events to understand which ads bring families to Everlittle. For US
+                visitors, measurement starts by default with restricted data processing unless you
+                opt out. Elsewhere, we ask first. We honor browser Global Privacy Control signals.
+                You can turn measurement off at any time using Cookie preferences. Your family
+                content is never included in these advertising events. Learn more about{" "}
+                <a href="https://business.safety.google/privacy/" target="_blank" rel="noreferrer">
+                  how Google uses data
+                </a>
+                .
               </p>
             </>
           ) : dialog === "An afternoon together" ? (

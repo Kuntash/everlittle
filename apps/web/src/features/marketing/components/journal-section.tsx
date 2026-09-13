@@ -9,9 +9,9 @@ export function JournalSection() {
           Ideas for the memories <br />
           you want to keep.
         </h2>
-        <button className="text-button" onClick={() => window.location.assign("/journal")}>
+        <a className="text-button" href="/journal">
           Browse all guides <ArrowRight size={18} />
-        </button>
+        </a>
       </div>
       {[
         {
@@ -30,17 +30,15 @@ export function JournalSection() {
           icon: "Voice",
         },
       ].map((a) => (
-        <button
+        <a
           className="journal-card"
           key={a.title}
-          onClick={() =>
-            window.location.assign(
+          href={
               a.icon === "Story"
                 ? "/baby-memory-journal"
                 : a.icon === "Letter"
                   ? "/letters-to-your-future-child"
-                  : "/grandparents-memory-project",
-            )
+                  : "/grandparents-memory-project"
           }
         >
           <span className="journal-art">
@@ -55,7 +53,7 @@ export function JournalSection() {
               Read article <ArrowRight size={16} />
             </span>
           </div>
-        </button>
+        </a>
       ))}
     </section>
   );

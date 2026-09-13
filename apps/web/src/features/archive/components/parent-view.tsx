@@ -10,7 +10,8 @@ import type {
 import { MemoryComposer } from "@/features/archive/components/memory-composer";
 import { MemoryDetail } from "@/features/archive/components/memory-detail";
 import { MemoryNote } from "@/features/archive/components/memory-note";
-import { ArrowRight, PenLine, Plus } from "lucide-react";
+import { MemoryEmptyState } from "@/features/archive/components/memory-empty-state";
+import { ArrowRight, Plus } from "lucide-react";
 import { useState } from "react";
 
 export function ParentView({
@@ -67,7 +68,7 @@ export function ParentView({
           <h1>{isVault ? "Our memory vault" : `${childName}’s memories`}</h1>
           <p className="subtitle">Your family’s moments, kept together.</p>
         </div>
-        {canCreate ? (
+        {canCreate && memories.length > 0 ? (
           <Button
             className="scrapbook-add"
             disabled={!child}
@@ -78,9 +79,6 @@ export function ParentView({
           </Button>
         ) : null}
       </header>
-      {!child ? (
-        <p className="capture-note">Create a child profile in Family before adding memories.</p>
-      ) : null}
       {memories.length ? (
         <>
           <div className="section-heading">
@@ -100,23 +98,11 @@ export function ParentView({
           </div>
         </>
       ) : (
-        <section className="memory-empty scrapbook-first-note">
-          <span aria-hidden="true">
-            <PenLine />
-          </span>
-          <p className="eyebrow">The first page is waiting</p>
-          <h2>Keep the small thing you don’t want to forget.</h2>
-          <p>
-            {isVault
-              ? "An ordinary afternoon, a note to each other, or simply what today felt like."
-              : "A sleepy expression, a new sound, a photograph, or simply what today felt like."}
-          </p>
-          {canCreate && child ? (
-            <button className="primary-button" onClick={() => openComposer("photo")} type="button">
-              Write the first memory <ArrowRight size={17} />
-            </button>
-          ) : null}
-        </section>
+        <MemoryEmptyState
+          isVault={isVault}
+          onStart={canCreate && child ? openComposer : undefined}
+          onCreateProfile={canCreate && !child ? () => onNavigate("family") : undefined}
+        />
       )}
       {composerKind && child ? (
         <MemoryComposer

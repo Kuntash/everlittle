@@ -90,6 +90,11 @@ export function MemoryComposer({
     const created = (await response.json()) as { id: string };
     if (file) {
       setStage("uploading");
+      posthog?.capture("upload_started", {
+        memory_kind: kind,
+        size_bucket:
+          file.size < 1048576 ? "under_1mb" : file.size < 10485760 ? "1_to_10mb" : "10_to_50mb",
+      });
       const upload = await fetch(scopedApiPath(`/api/archive/memories/${created.id}/media`), {
         method: "PUT",
         headers: {
@@ -99,11 +104,16 @@ export function MemoryComposer({
         body: file,
       });
       if (!upload.ok) {
+        posthog?.capture("upload_failed", {
+          memory_kind: kind,
+          reason: upload.status === 413 ? "too_large" : "request_rejected",
+        });
         await apiFetch(`/api/archive/memories/${created.id}`, { method: "DELETE" });
         setError(await responseError(upload));
         setStage("idle");
         return;
       }
+      posthog?.capture("upload_succeeded", { memory_kind: kind });
       if (videoThumbnail) {
         const thumbnailUpload = await fetch(
           scopedApiPath(`/api/archive/memories/${created.id}/media/thumbnail`),
@@ -119,7 +129,7 @@ export function MemoryComposer({
       }
     }
 
-    posthog?.capture("memory_created", {
+    posthog?.capture("memory_save_completed", {
       memory_kind: kind,
       has_media: Boolean(file),
       memory_audience: audience,

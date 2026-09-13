@@ -3,6 +3,7 @@ import {
   publicShareUnavailablePage,
   type PublicMemory,
 } from "./public-memory-page";
+import { parseAcquisition } from "@/lib/acquisition";
 import { childSlugSchema, familySlugSchema, slugify } from "@everlittle/domain";
 import { z } from "zod";
 
@@ -18,7 +19,7 @@ import {
 import { getDeploymentConfig } from "@/lib/deployment";
 import { sendInvitationEmail } from "@/lib/invitation-email";
 import { canCreateArchiveContent, canStoreMedia, FAMILY_PLAN } from "@/lib/plans";
-import { getRuntimeEnv } from "@/lib/runtime-env";
+import { getRuntimeEnv, type RuntimeEnv } from "@/lib/runtime-env";
 
 const invitationSchema = z.object({
   email: z.email().transform((value) => value.trim().toLowerCase()),
@@ -169,6 +170,36 @@ type Invitation = {
 
 export async function handleArchiveApi(request: Request): Promise<Response | null> {
   const url = new URL(request.url);
+
+  if (url.pathname === "/api/measurement/conversions" && request.method === "GET") {
+    const user = await getSessionUser(request);
+    if (!user) return unauthorized();
+    const rows = await getRuntimeEnv()
+      .DB.prepare(
+        `SELECT event_key,event_name,properties FROM analytics_outbox WHERE distinct_id=? AND event_name IN ('first_payment_succeeded','account_signup_completed','billing_checkout_started') AND json_extract(properties,'$.environment')='live_mode' AND json_extract(properties,'$.is_test')=0 AND datetime(occurred_at) >= datetime('now','-30 days') ORDER BY occurred_at LIMIT 50`,
+      )
+      .bind(user.id)
+      .all<{ event_key: string; event_name: string; properties: string }>();
+    return Response.json(
+      {
+        conversions: rows.results.map((row) => {
+          const properties = JSON.parse(row.properties);
+          return {
+            name:
+              row.event_name === "first_payment_succeeded"
+                ? "purchase"
+                : row.event_name === "account_signup_completed"
+                  ? "signup"
+                  : "checkout",
+            transactionId: row.event_key,
+            value: row.event_name === "first_payment_succeeded" ? properties.amount : 0,
+            currency: properties.currency ?? "USD",
+          };
+        }),
+      },
+      { headers: { "cache-control": "private, no-store" } },
+    );
+  }
 
   if (url.pathname === "/api/onboarding" && request.method === "GET") {
     return getOnboarding(request);
@@ -547,6 +578,13 @@ async function startBillingCheckout(request: Request): Promise<Response> {
     return Response.json({ error: "Choose monthly or yearly billing." }, { status: 400 });
   }
 
+  const acquisition = parseAcquisition(request.headers.get("x-everlittle-acquisition"));
+  if (acquisition)
+    await runtime.DB.prepare(
+      `INSERT INTO acquisition_snapshot(user_id,snapshot) VALUES (?,?) ON CONFLICT(user_id) DO UPDATE SET snapshot=json_set(acquisition_snapshot.snapshot,'$.last',json_extract(excluded.snapshot,'$.last'),'$.is_test',json(CASE WHEN json_extract(acquisition_snapshot.snapshot,'$.is_test') OR json_extract(excluded.snapshot,'$.is_test') THEN 'true' ELSE 'false' END)) WHERE datetime(json_extract(excluded.snapshot,'$.last.captured_at')) > datetime(json_extract(acquisition_snapshot.snapshot,'$.last.captured_at'))`,
+    )
+      .bind(context.user.id, JSON.stringify(acquisition))
+      .run();
   try {
     return Response.json(
       await createBillingCheckout({
@@ -973,7 +1011,7 @@ async function resendInvitation(request: Request, invitationId: string): Promise
 }
 
 async function deliverInvitation(
-  runtime: Env,
+  runtime: RuntimeEnv,
   input: {
     archiveId: string;
     archiveName: string;

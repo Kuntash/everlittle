@@ -1,0 +1,93 @@
+.information-page {
+  background: #fffaf3;
+}
+.information-page a {
+  color: inherit;
+  text-underline-offset: 4px;
+}
+.information-header,
+.information-page footer {
+  max-width: 1120px;
+  margin: auto;
+  padding: 28px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+.information-header > a {
+  text-decoration: none;
+}
+.information-page nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+}
+.information-page main {
+  max-width: 800px;
+  margin: auto;
+  padding: 36px 32px 72px;
+}
+.information-page main > nav {
+  font-size: 14px;
+  margin-bottom: 48px;
+  gap: 8px;
+}
+.information-page h1 {
+  font-size: clamp(36px, 6vw, 56px);
+  margin: 12px 0 24px;
+}
+.information-page .information-intro {
+  font-size: 22px;
+  line-height: 1.5;
+  color: #786459;
+}
+.information-page section {
+  margin-top: 36px;
+}
+.information-page section p {
+  font-size: 17px;
+  line-height: 1.8;
+}
+.information-page .information-email {
+  display: inline-block;
+  margin-top: 16px;
+  font-size: 22px;
+  overflow-wrap: anywhere;
+}
+.information-page footer {
+  border-top: 1px solid #ecddce;
+}
+.information-page button {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.information-page :is(a, button):focus-visible {
+  outline: 2px solid #285445;
+  outline-offset: 4px;
+}
+.information-skip {
+  position: absolute;
+  top: -100px;
+  left: 16px;
+  padding: 12px;
+  background: #fffaf3;
+  z-index: 100;
+}
+.information-skip:focus {
+  top: 8px;
+}
+@media (max-width: 600px) {
+  .information-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .information-header,
+  .information-page footer {
+    padding: 24px;
+  }
+  .information-page main {
+    padding: 24px 24px 56px;
+  }
+}

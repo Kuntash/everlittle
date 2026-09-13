@@ -132,3 +132,26 @@ test("landing preview navigation and article baselines stay aligned", async ({ p
     expect(Math.max(...links) - Math.min(...links)).toBeLessThan(2);
   }
 });
+
+test("public information pages have crawlable navigation and contact details", async ({
+  page,
+}, info) => {
+  await page.goto("/");
+  for (const path of ["about", "contact", "privacy"]) {
+    await expect(page.locator(`.landing-footer a[href="/${path}"]`)).toHaveCount(1);
+    await page.goto(`/${path}`);
+    await expect(page.locator("main h1")).toBeVisible();
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      "href",
+      `https://geteverlittle.com/${path}`,
+    );
+    await expect(
+      page.locator('main a[href="mailto:kunga@geteverlittle.com"]').first(),
+    ).toBeVisible();
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
+    ).toBeTruthy();
+    await page.screenshot({ path: info.outputPath(`${path}.png`), fullPage: true });
+    await page.goto("/");
+  }
+});

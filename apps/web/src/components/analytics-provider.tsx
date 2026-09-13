@@ -1,3 +1,9 @@
+import {
+  ACQUISITION_KEY,
+  updateAcquisition,
+  browserAcquisition,
+  acquisitionProperties,
+} from "@/lib/acquisition";
 import { PostHogProvider } from "@posthog/react";
 import { useRouterState } from "@tanstack/react-router";
 import posthog from "posthog-js";
@@ -7,19 +13,21 @@ import type { MarketingAttribution } from "@/lib/analytics";
 import {
   MARKETING_ATTRIBUTION_STORAGE_KEY,
   analyticsPath,
+  sanitizeAnalyticsProperties,
   marketingAttribution,
   readMarketingAttribution,
 } from "@/lib/analytics";
 import { authClient } from "@/lib/auth-client";
 
 type AnalyticsConfig = {
-  analytics?: { posthog?: { host?: string; token?: string } } | null;
+  analytics?: { posthog?: { host?: string; token?: string; environment?: string } } | null;
 };
 
 let initialized = false;
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
+  const locationKey = useRouterState({ select: (state) => state.location.href });
   const session = authClient.useSession();
   const identifiedUser = useRef<string | null>(null);
   const capturedCampaignLanding = useRef<string | null>(null);
@@ -41,10 +49,19 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
             return {
               ...event,
               properties: {
-                ...event.properties,
+                ...sanitizeAnalyticsProperties(event.properties, safePath),
+                ...acquisitionProperties(browserAcquisition()),
                 $current_url: safePath,
                 $pathname: safePath,
                 $referrer: undefined,
+                $initial_current_url: undefined,
+                $initial_referrer: undefined,
+                $referring_domain: undefined,
+                environment: config.environment ?? "test_mode",
+                is_test:
+                  event.properties.is_test === true ||
+                  browserAcquisition()?.is_test === true ||
+                  config.environment !== "live_mode",
               },
             };
           },
@@ -58,6 +75,26 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
         });
         const attribution = resolveMarketingAttribution(window.location.pathname);
         if (attribution) posthog.register(attribution);
+        const acquisition = updateAcquisition(
+          browserAcquisition() ??
+            (attribution
+              ? {
+                  first: { ...attribution, captured_at: new Date().toISOString() },
+                  last: { ...attribution, captured_at: new Date().toISOString() },
+                  is_test: attribution.campaign_source === "qa",
+                }
+              : null),
+          {
+            search: window.location.search,
+            pathname: window.location.pathname,
+            referrer: document.referrer,
+            hostname: window.location.hostname,
+          },
+        );
+        try {
+          localStorage.setItem(ACQUISITION_KEY, JSON.stringify(acquisition));
+        } catch {}
+        posthog.register(acquisitionProperties(acquisition));
         initialized = true;
         setReady(true);
       })
@@ -73,9 +110,25 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     if (!ready) return;
     const safePath = analyticsPath(pathname);
     const directCampaign = marketingAttribution(window.location.search);
-    const attribution = resolveMarketingAttribution(pathname);
-    if (attribution) posthog.register(attribution);
+    if (directCampaign) {
+      const acquisition = updateAcquisition(browserAcquisition(), {
+        search: window.location.search,
+        pathname,
+        referrer: "",
+        hostname: window.location.hostname,
+      });
+      try {
+        localStorage.setItem(ACQUISITION_KEY, JSON.stringify(acquisition));
+      } catch {}
+    }
+    posthog.register(acquisitionProperties(browserAcquisition()));
     posthog.capture("$pageview", { $current_url: safePath });
+    if (
+      safePath === "/" ||
+      (!safePath.includes(":") &&
+        !["/sign-up", "/sign-in", "/onboarding", "/invite", "/reset-password"].includes(safePath))
+    )
+      posthog.capture("marketing_landing_view", { landing_path: safePath });
 
     if (directCampaign) {
       const campaignKey = JSON.stringify({ ...directCampaign, campaign_landing_path: safePath });
@@ -87,7 +140,7 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
         capturedCampaignLanding.current = campaignKey;
       }
     }
-  }, [pathname, ready]);
+  }, [pathname, locationKey, ready]);
 
   useEffect(() => {
     if (!ready) return;

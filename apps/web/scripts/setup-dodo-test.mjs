@@ -3,8 +3,11 @@ import { readFileSync } from "node:fs";
 
 import DodoPayments from "dodopayments";
 
-const WEBHOOK_URL = "https://geteverlittle.com/api/webhooks/dodo";
+const WEBHOOK_URL = "https://everlittle-sandbox.kuntashtashi11.workers.dev/api/webhooks/dodo";
 const WEBHOOK_EVENTS = [
+  "payment.succeeded",
+  "payment.failed",
+  "refund.succeeded",
   "subscription.active",
   "subscription.cancelled",
   "subscription.expired",
@@ -17,9 +20,10 @@ const WEBHOOK_EVENTS = [
   "subscription.updated",
 ];
 
-const variables = readDevVariables(".dev.vars");
-const apiKey = variables.DODO_PAYMENTS_API_KEY;
-if (!apiKey) throw new Error("DODO_PAYMENTS_API_KEY is missing from apps/web/.dev.vars.");
+const keyFile = process.env.DODO_TEST_API_KEY_FILE;
+if (!keyFile) throw new Error("Set DODO_TEST_API_KEY_FILE to a private file containing a test-mode API key.");
+const apiKey = readFileSync(keyFile, "utf8").trim();
+if (!apiKey) throw new Error("The test API key file is empty.");
 
 const client = new DodoPayments({ bearerToken: apiKey, environment: "test_mode" });
 const products = [];
@@ -48,7 +52,7 @@ for await (const candidate of client.webhooks.list()) {
 
 if (webhook) {
   webhook = await client.webhooks.update(webhook.id, {
-    description: "Everlittle test subscription lifecycle",
+    description: "Everlittle sandbox payment and subscription lifecycle",
     disabled: false,
     filter_types: WEBHOOK_EVENTS,
     metadata: { app: "everlittle", environment: "test" },
@@ -56,10 +60,10 @@ if (webhook) {
   console.log("Reused the existing Everlittle test webhook.");
 } else {
   webhook = await client.webhooks.create({
-    description: "Everlittle test subscription lifecycle",
+    description: "Everlittle sandbox payment and subscription lifecycle",
     disabled: false,
     filter_types: WEBHOOK_EVENTS,
-    idempotency_key: "everlittle-test-webhook-v1",
+    idempotency_key: "everlittle-sandbox-webhook-v1",
     metadata: { app: "everlittle", environment: "test" },
     url: WEBHOOK_URL,
   });
@@ -73,7 +77,7 @@ const cloudflareSecrets = {
   DODO_PRODUCT_ID_MONTHLY: monthly.product_id,
   DODO_PRODUCT_ID_YEARLY: yearly.product_id,
 };
-const upload = spawnSync("pnpm", ["exec", "wrangler", "secret", "bulk", "--env", "hosted"], {
+const upload = spawnSync("pnpm", ["exec", "wrangler", "secret", "bulk", "--env", "sandbox"], {
   cwd: process.cwd(),
   encoding: "utf8",
   input: JSON.stringify(cloudflareSecrets),
@@ -84,7 +88,7 @@ if (upload.status !== 0) {
   throw new Error("Could not store the Dodo configuration in Cloudflare.");
 }
 
-console.log("Stored the Dodo test configuration in the hosted Worker.");
+console.log("Stored the Dodo test configuration in the sandbox Worker.");
 console.log(`Monthly product: ${monthly.product_id}`);
 console.log(`Yearly product: ${yearly.product_id}`);
 console.log(`Webhook: ${webhook.id}`);
@@ -138,22 +142,4 @@ function assertProductConfiguration(product, expected) {
   if (!matches) {
     throw new Error(`${expected.name} exists but does not match the expected billing schedule.`);
   }
-}
-
-function readDevVariables(path) {
-  const result = {};
-  for (const line of readFileSync(path, "utf8").split(/\r?\n/)) {
-    const match = line.match(/^\s*([A-Z][A-Z0-9_]*)\s*=\s*(.*?)\s*$/);
-    if (!match) continue;
-    let value = match[2];
-    if (
-      value.length >= 2 &&
-      ((value.startsWith('"') && value.endsWith('"')) ||
-        (value.startsWith("'") && value.endsWith("'")))
-    ) {
-      value = value.slice(1, -1);
-    }
-    result[match[1]] = value;
-  }
-  return result;
 }

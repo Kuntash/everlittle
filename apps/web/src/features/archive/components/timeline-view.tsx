@@ -6,6 +6,7 @@ import { MemoryNote } from "@/features/archive/components/memory-note";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { MemoryComposer } from "./memory-composer";
+import { MemoryEmptyState } from "./memory-empty-state";
 
 export function TimelineView({
   child,
@@ -101,6 +102,16 @@ export function TimelineView({
             </div>
           </section>
         ))
+      ) : memories.length === 0 ? (
+        <MemoryEmptyState
+          compact
+          isVault={child?.profileKind === "vault"}
+          onStart={
+            role !== "viewer" && child
+              ? () => (canCreateContent ? setCreating(true) : onSubscriptionRequired())
+              : undefined
+          }
+        />
       ) : (
         <div className="empty">
           <KindIcon

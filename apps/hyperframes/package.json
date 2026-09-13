@@ -1,0 +1,14 @@
+{
+  "name": "@everlittle/hyperframes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.34 preview",
+    "check": "npx --yes hyperframes@0.8.34 check",
+    "render": "npx --yes hyperframes@0.8.34 render --quality high --output renders/everlittle-launch.mp4",
+    "publish": "npx --yes hyperframes@0.8.34 publish",
+    "render:draft": "npx --yes hyperframes@0.8.34 render --quality draft --output renders/everlittle-launch-draft.mp4",
+    "snapshot": "npx --yes hyperframes@0.8.34 snapshot --at 4,7.9,8.2,12,15.4,16,22.9,23.2,27",
+    "demo": "node demo/serve.mjs"
+  }
+}

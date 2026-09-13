@@ -1,3 +1,4 @@
+import { GoogleAdsMeasurement } from "@/components/google-ads-measurement";
 import primaryButtonCss from "@/features/archive/primary-button.css?url";
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
 import { Sprout, RefreshCw, Share, X } from "lucide-react";
@@ -58,6 +59,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body className="apricot">
         <AnalyticsProvider>
           {children}
+          <GoogleAdsMeasurement />
           <PwaExperience />
           <Toaster />
         </AnalyticsProvider>

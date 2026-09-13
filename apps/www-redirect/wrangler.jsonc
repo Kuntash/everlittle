@@ -1,0 +1,8 @@
+{
+  "name": "everlittle-www-redirect",
+  "main": "index.mjs",
+  "compatibility_date": "2026-09-11",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [{ "pattern": "www.geteverlittle.com", "custom_domain": true }],
+}

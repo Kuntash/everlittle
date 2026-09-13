@@ -1,3 +1,4 @@
+import type { RuntimeEnv } from "./runtime-env";
 type InvitationEmailInput = {
   archiveName: string;
   expiresAt: string;
@@ -15,7 +16,7 @@ const roleDescriptions = {
 } as const;
 
 export async function sendInvitationEmail(
-  runtime: Env,
+  runtime: RuntimeEnv,
   input: InvitationEmailInput,
 ): Promise<string> {
   const copy = buildInvitationEmail(input);

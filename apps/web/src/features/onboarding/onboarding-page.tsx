@@ -76,6 +76,7 @@ export function Onboarding() {
           location.replace(`/${encodeURIComponent(state.archiveSlug)}`);
           return;
         }
+        posthog?.capture("archive_onboarding_started");
         if (state.draft) {
           setFamilyName(state.draft.familyName ?? "");
           setFamilySlug(state.draft.familySlug ?? "");
@@ -142,6 +143,10 @@ export function Onboarding() {
       }),
     });
     if (!response.ok) {
+      posthog?.capture("archive_onboarding_failed", {
+        reason: response.status === 409 ? "conflict" : "request_rejected",
+        step: section,
+      });
       setError(await responseMessage(response));
       setSaving(false);
       return;
@@ -168,12 +173,16 @@ export function Onboarding() {
       }),
     });
     if (!response.ok) {
+      posthog?.capture("archive_onboarding_failed", {
+        reason: response.status === 409 ? "conflict" : "request_rejected",
+        step: section,
+      });
       setError(await responseMessage(response));
       setSaving(false);
       return;
     }
     const result = (await response.json()) as { archiveSlug: string };
-    posthog?.capture("archive_onboarding_completed", {
+    posthog?.capture("archive_onboarding_submitted", {
       archive_profile_kind: profileKind,
       child_pin_enabled: profileKind === "child" && enablePin,
     });

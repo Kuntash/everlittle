@@ -1,0 +1,56 @@
+[
+  {
+    "id": "00-launch",
+    "layout": "launch",
+    "eyebrow": "INTRODUCING EVERLITTLE",
+    "title": "A home for their<br><em>little history.</em>",
+    "body": "Photos, voices, stories & letters.<br>Kept privately. Made to grow with them.",
+    "footer": "Start your family archive · Link in bio"
+  },
+  {
+    "id": "01-cover",
+    "layout": "cover",
+    "eyebrow": "THE LITTLE THINGS SERIES",
+    "title": "Little things<br><em>worth keeping.</em>",
+    "body": "Three easy places to start<br>your family’s story.",
+    "footer": "Try one idea from the caption."
+  },
+  {
+    "id": "02-prompt",
+    "layout": "prompt",
+    "eyebrow": "A MEMORY PROMPT",
+    "title": "What do they call<br>it <em>right now?</em>",
+    "body": "The funny word. The made-up name.<br>The phrase that belongs only to them.",
+    "prompt": "Write down one thing they said today.",
+    "footer": "Save this for tonight · @geteverlittle"
+  },
+  {
+    "id": "03-checklist",
+    "layout": "list",
+    "eyebrow": "YOUR NEXT LITTLE MEMORY",
+    "title": "Start with<br><em>one of these.</em>",
+    "items": [
+      "Their version of a favourite song",
+      "The story behind a family photo",
+      "A voice note from a grandparent"
+    ],
+    "footer": "One memory is a lovely place to start."
+  },
+  {
+    "id": "04-note",
+    "layout": "note",
+    "eyebrow": "LETTERS FOR LATER",
+    "title": "For an ordinary<br><em>Tuesday.</em>",
+    "body": "“You don’t have to do anything extraordinary to be loved.”",
+    "prompt": "A line to begin a letter to your child.",
+    "footer": "A writing prompt from Everlittle"
+  },
+  {
+    "id": "05-cta",
+    "layout": "cta",
+    "eyebrow": "MAKE ROOM FOR THE LITTLE THINGS",
+    "title": "Keep a little<br>of <em>right now.</em>",
+    "body": "A private home for your family’s<br>photos, voices, stories and letters.",
+    "footer": "geteverlittle.com · Link in bio"
+  }
+]

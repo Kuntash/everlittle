@@ -1,6 +1,6 @@
 import { Illustration } from "@/components/design/illustrations";
 import { ArrowRight, Check, Lock, Users } from "@/components/design/shared";
-export function PrivacySection({ setDialog }: { setDialog: (value: string) => void }) {
+export function PrivacySection() {
   return (
     <section className="privacy-block" id="privacy">
       <div className="shield">
@@ -12,9 +12,9 @@ export function PrivacySection({ setDialog }: { setDialog: (value: string) => vo
           Only the people you invite can enter your archive. You decide what appears in your child’s
           view—and what stays sealed for later.
         </p>
-        <button className="text-button" onClick={() => setDialog("Your family, your privacy")}>
+        <a className="text-button" href="/privacy">
           Read about privacy <ArrowRight size={18} />
-        </button>
+        </a>
       </div>
       <div className="family-voices">
         <h3>Everyone remembers a different part.</h3>

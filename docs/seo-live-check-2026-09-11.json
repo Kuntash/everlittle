@@ -1,0 +1,403 @@
+{
+  "robots": "User-agent: *\nAllow: /\nDisallow: /api/\nSitemap: https://geteverlittle.com/sitemap.xml\n",
+  "sitemap_urls": [
+    "https://geteverlittle.com/",
+    "https://geteverlittle.com/pricing",
+    "https://geteverlittle.com/journal",
+    "https://geteverlittle.com/journal/small-firsts",
+    "https://geteverlittle.com/journal/photo-story",
+    "https://geteverlittle.com/family-memory-app",
+    "https://geteverlittle.com/digital-time-capsule-for-kids",
+    "https://geteverlittle.com/letters-to-your-future-child",
+    "https://geteverlittle.com/private-family-photo-sharing",
+    "https://geteverlittle.com/baby-memory-journal",
+    "https://geteverlittle.com/grandparents-memory-project",
+    "https://geteverlittle.com/sharing-photos-with-grandparents"
+  ],
+  "pages": [
+    {
+      "url": "https://geteverlittle.com/",
+      "status": "200 https://geteverlittle.com/",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/"
+      ],
+      "robots": [
+        "index,follow"
+      ],
+      "title": "Everlittle \u2014 Memories to grow into",
+      "h1": [
+        "Their childhood is happening. Keep a little of it."
+      ],
+      "bytes": 40304,
+      "schema_types": [
+        "SoftwareApplication",
+        "Offer"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/pricing",
+      "status": "200 https://geteverlittle.com/pricing",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/pricing"
+      ],
+      "robots": [
+        "index,follow"
+      ],
+      "title": "Pricing \u2014 Everlittle",
+      "h1": [
+        "One home for your family\u2019s memories."
+      ],
+      "bytes": 8454,
+      "schema_types": []
+    },
+    {
+      "url": "https://geteverlittle.com/journal",
+      "status": "200 https://geteverlittle.com/journal",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/journal"
+      ],
+      "robots": [],
+      "title": "Everlittle Journal \u2014 Ideas for the memories you want to keep",
+      "h1": [
+        "Ideas for the memories",
+        "you want to keep."
+      ],
+      "bytes": 26635,
+      "schema_types": []
+    },
+    {
+      "url": "https://geteverlittle.com/journal/small-firsts",
+      "status": "200 https://geteverlittle.com/journal/small-firsts",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/journal/small-firsts"
+      ],
+      "robots": [],
+      "title": "The small firsts deserve a place, too | Everlittle Journal",
+      "h1": [
+        "The small firsts deserve a place, too"
+      ],
+      "bytes": 15591,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/journal/photo-story",
+      "status": "200 https://geteverlittle.com/journal/photo-story",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/journal/photo-story"
+      ],
+      "robots": [],
+      "title": "The story just outside the photograph | Everlittle Journal",
+      "h1": [
+        "The story just outside the photograph"
+      ],
+      "bytes": 16328,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/family-memory-app",
+      "status": "200 https://geteverlittle.com/family-memory-app",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/family-memory-app"
+      ],
+      "robots": [],
+      "title": "What to look for in a family memory app | Everlittle Journal",
+      "h1": [
+        "What to look for in a family memory app"
+      ],
+      "bytes": 17287,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/digital-time-capsule-for-kids",
+      "status": "200 https://geteverlittle.com/digital-time-capsule-for-kids",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/digital-time-capsule-for-kids"
+      ],
+      "robots": [],
+      "title": "How to make a digital time capsule for your child | Everlittle Journal",
+      "h1": [
+        "How to make a digital time capsule for your child"
+      ],
+      "bytes": 17417,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/letters-to-your-future-child",
+      "status": "200 https://geteverlittle.com/letters-to-your-future-child",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/letters-to-your-future-child"
+      ],
+      "robots": [],
+      "title": "A letter for the person they\u2019ll become | Everlittle Journal",
+      "h1": [
+        "A letter for the person they\u2019ll become"
+      ],
+      "bytes": 16171,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/private-family-photo-sharing",
+      "status": "200 https://geteverlittle.com/private-family-photo-sharing",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/private-family-photo-sharing"
+      ],
+      "robots": [],
+      "title": "How to share family photos privately | Everlittle Journal",
+      "h1": [
+        "How to share family photos privately"
+      ],
+      "bytes": 20357,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/baby-memory-journal",
+      "status": "200 https://geteverlittle.com/baby-memory-journal",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/baby-memory-journal"
+      ],
+      "robots": [],
+      "title": "A baby memory journal for real life | Everlittle Journal",
+      "h1": [
+        "A baby memory journal for real life"
+      ],
+      "bytes": 16306,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/grandparents-memory-project",
+      "status": "200 https://geteverlittle.com/grandparents-memory-project",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/grandparents-memory-project"
+      ],
+      "robots": [],
+      "title": "The stories only your grandparents can tell | Everlittle Journal",
+      "h1": [
+        "The stories only your grandparents can tell"
+      ],
+      "bytes": 16129,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/sharing-photos-with-grandparents",
+      "status": "200 https://geteverlittle.com/sharing-photos-with-grandparents",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/sharing-photos-with-grandparents"
+      ],
+      "robots": [],
+      "title": "How to share photos with grandparents privately | Everlittle Journal",
+      "h1": [
+        "How to share photos with grandparents privately"
+      ],
+      "bytes": 22647,
+      "schema_types": [
+        "BlogPosting",
+        "Organization",
+        "Organization",
+        "Blog"
+      ]
+    },
+    {
+      "url": "https://geteverlittle.com/sign-in",
+      "status": "200 https://geteverlittle.com/sign-in",
+      "error": "",
+      "canonical": [],
+      "robots": [],
+      "title": "Everlittle \u2014 Memories to grow into",
+      "h1": [],
+      "bytes": 3570,
+      "schema_types": []
+    },
+    {
+      "url": "http://geteverlittle.com/",
+      "status": "200 https://geteverlittle.com/",
+      "error": "",
+      "canonical": [
+        "https://geteverlittle.com/"
+      ],
+      "robots": [
+        "index,follow"
+      ],
+      "title": "Everlittle \u2014 Memories to grow into",
+      "h1": [
+        "Their childhood is happening. Keep a little of it."
+      ],
+      "bytes": 40304,
+      "schema_types": [
+        "SoftwareApplication",
+        "Offer"
+      ]
+    },
+    {
+      "url": "https://www.geteverlittle.com/",
+      "status": "000 https://www.geteverlittle.com/",
+      "error": "curl: (6) Could not resolve host: www.geteverlittle.com\n",
+      "canonical": [],
+      "robots": [],
+      "title": "",
+      "h1": [],
+      "bytes": 0,
+      "schema_types": []
+    }
+  ],
+  "header_checks": [
+    {
+      "url": "https://geteverlittle.com/",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/pricing",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/journal",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/journal/small-firsts",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/journal/photo-story",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/family-memory-app",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/digital-time-capsule-for-kids",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/letters-to-your-future-child",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/private-family-photo-sharing",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/baby-memory-journal",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/grandparents-memory-project",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/sharing-photos-with-grandparents",
+      "headers": {
+        "content-type": "text/html; charset=utf-8"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/sign-in",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "x-robots-tag": "noindex, nofollow, noarchive"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "https://geteverlittle.com/sign-up",
+      "headers": {
+        "content-type": "text/html; charset=utf-8",
+        "x-robots-tag": "noindex, nofollow, noarchive"
+      },
+      "status": "HTTP/2 200 "
+    },
+    {
+      "url": "http://geteverlittle.com/",
+      "headers": {
+        "location": "https://geteverlittle.com/"
+      },
+      "status": "HTTP/1.1 308 Permanent Redirect"
+    }
+  ]
+}

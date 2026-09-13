@@ -36,7 +36,12 @@ export function FamilySettings({
   const { confirm, confirmation } = useConfirmation();
   const isOwner = state.currentMember.role === "owner";
   const canEditChild = isOwner || state.currentMember.role === "parent";
-  const [tab, setTab] = useState("People");
+  const [tab, setTab] = useState(() =>
+    typeof window !== "undefined" &&
+    window.location.pathname.replace(/\/$/, "").endsWith("/settings")
+      ? "Plan"
+      : "People",
+  );
   const [inviteEmail, setInviteEmail] = useState("");
   const [inviteRole, setInviteRole] = useState<Exclude<FamilyRole, "owner">>("contributor");
   const [inviteUrl, setInviteUrl] = useState("");

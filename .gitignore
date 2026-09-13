@@ -34,3 +34,6 @@ graphify-out/reflections/
 # Browser regression outputs
 apps/web/test-results/
 apps/web/playwright-report/
+
+# Generated video preview cache
+apps/hyperframes/.thumbnails/

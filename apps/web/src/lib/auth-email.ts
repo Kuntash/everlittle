@@ -1,3 +1,4 @@
+import type { RuntimeEnv } from "./runtime-env";
 type AuthEmailInput = {
   email: string;
   name: string;
@@ -5,7 +6,7 @@ type AuthEmailInput = {
   url: string;
 };
 
-export async function sendAuthEmail(runtime: Env, input: AuthEmailInput): Promise<void> {
+export async function sendAuthEmail(runtime: RuntimeEnv, input: AuthEmailInput): Promise<void> {
   const copy = buildAuthEmail(input);
   await runtime.EMAIL.send({
     to: input.email,

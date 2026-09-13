@@ -323,3 +323,24 @@ test("people keep roles in the first row, actions below and invitations after th
   await page.keyboard.press("Escape");
   await page.screenshot({ path: info.outputPath("people-layout.png"), fullPage: true });
 });
+
+test("mobile navigation stays inside the viewport without growing on scroll or resize", async ({
+  page,
+}, info) => {
+  test.skip(info.project.name !== "mobile", "Mobile shell regression");
+  await page.goto("/test-family");
+  const nav = page.getByRole("navigation", { name: "Primary mobile", exact: true });
+  await expect(nav).toBeInViewport({ ratio: 1 });
+  const initial = (await nav.boundingBox())!;
+  await nav.hover();
+  await page.mouse.wheel(0, 700);
+  await expect(nav).toHaveCSS("height", `${initial.height}px`);
+  await expect(nav).toHaveCSS("overflow", "hidden");
+  await expect(nav).toHaveCSS("touch-action", "pan-x pinch-zoom");
+  expect(await page.evaluate(() => window.scrollY)).toBe(0);
+  const viewport = page.viewportSize()!;
+  await page.setViewportSize({ width: viewport.width, height: viewport.height - 100 });
+  await expect(nav).toBeInViewport({ ratio: 1 });
+  expect((await nav.boundingBox())!.height).toBe(initial.height);
+  await page.screenshot({ path: info.outputPath("mobile-navigation.png") });
+});

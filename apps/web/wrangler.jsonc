@@ -2,51 +2,70 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "everlittle",
   "compatibility_date": "2026-08-18",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "main": "src/server.ts",
   "secrets": {
-    "required": ["BETTER_AUTH_SECRET", "CHILD_PIN_PEPPER"],
+    "required": [
+      "BETTER_AUTH_SECRET",
+      "CHILD_PIN_PEPPER"
+    ]
   },
   "assets": {
-    "not_found_handling": "single-page-application",
+    "not_found_handling": "single-page-application"
   },
   "observability": {
     "enabled": true,
-    "logs": { "head_sampling_rate": 1 },
+    "logs": {
+      "head_sampling_rate": 1
+    }
   },
   "vars": {
     "APP_NAME": "Everlittle",
     "DEPLOYMENT_MODE": "self-hosted",
     "INVITATION_FROM_EMAIL": "invites@example.com",
     "PUBLIC_APP_URL": "http://localhost:3000",
-    "DODO_PAYMENTS_ENVIRONMENT": "test_mode",
+    "DODO_PAYMENTS_ENVIRONMENT": "test_mode"
   },
-  "send_email": [{ "name": "EMAIL" }],
+  "send_email": [
+    {
+      "name": "EMAIL"
+    }
+  ],
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "everlittle-db",
       "database_id": "replace-with-your-d1-database-id",
-      "migrations_dir": "migrations",
-    },
+      "migrations_dir": "migrations"
+    }
   ],
   "r2_buckets": [
     {
       "binding": "MEDIA",
-      "bucket_name": "everlittle-media",
-    },
+      "bucket_name": "everlittle-media"
+    }
   ],
   "env": {
     "hosted": {
       "name": "everlittle-hosted",
+      "triggers": {
+        "crons": [
+          "*/5 * * * *"
+        ]
+      },
       "secrets": {
-        "required": ["BETTER_AUTH_SECRET", "CHILD_PIN_PEPPER"],
+        "required": [
+          "BETTER_AUTH_SECRET",
+          "CHILD_PIN_PEPPER"
+        ]
       },
       "routes": [
         {
           "pattern": "geteverlittle.com",
-          "custom_domain": true,
-        },
+          "custom_domain": true
+        }
       ],
       "vars": {
         "APP_NAME": "Everlittle",
@@ -55,28 +74,82 @@
         "PUBLIC_APP_URL": "https://geteverlittle.com",
         "DODO_PAYMENTS_ENVIRONMENT": "live_mode",
         "POSTHOG_PROJECT_TOKEN": "phc_moqXcBVhKD9oP7YiYRbHng47QXcjPyZbStYWdHpLTPVu",
-        "POSTHOG_HOST": "https://eu.i.posthog.com",
+        "POSTHOG_HOST": "https://eu.i.posthog.com"
       },
       "send_email": [
         {
           "name": "EMAIL",
-          "allowed_sender_addresses": ["invites@geteverlittle.com"],
-        },
+          "allowed_sender_addresses": [
+            "invites@geteverlittle.com"
+          ]
+        }
       ],
       "d1_databases": [
         {
           "binding": "DB",
           "database_name": "everlittle-hosted-db",
           "database_id": "3b114b81-448b-46d1-80fc-5dd9010f447f",
-          "migrations_dir": "migrations",
-        },
+          "migrations_dir": "migrations"
+        }
       ],
       "r2_buckets": [
         {
           "binding": "MEDIA",
-          "bucket_name": "everlittle-hosted-media",
-        },
-      ],
+          "bucket_name": "everlittle-hosted-media"
+        }
+      ]
     },
-  },
+    "sandbox": {
+      "name": "everlittle-sandbox",
+      "triggers": {
+        "crons": [
+          "*/5 * * * *"
+        ]
+      },
+      "secrets": {
+        "required": [
+          "BETTER_AUTH_SECRET",
+          "CHILD_PIN_PEPPER"
+        ]
+      },
+      "routes": [
+        {
+          "pattern": "sandbox.geteverlittle.com",
+          "custom_domain": true
+        }
+      ],
+      "vars": {
+        "APP_NAME": "Everlittle Sandbox",
+        "DEPLOYMENT_MODE": "hosted",
+        "INVITATION_FROM_EMAIL": "invites@geteverlittle.com",
+        "PUBLIC_APP_URL": "https://everlittle-sandbox.kuntashtashi11.workers.dev",
+        "DODO_PAYMENTS_ENVIRONMENT": "test_mode",
+        "POSTHOG_PROJECT_TOKEN": "phc_moqXcBVhKD9oP7YiYRbHng47QXcjPyZbStYWdHpLTPVu",
+        "POSTHOG_HOST": "https://eu.i.posthog.com"
+      },
+      "send_email": [
+        {
+          "name": "EMAIL",
+          "allowed_sender_addresses": [
+            "invites@geteverlittle.com"
+          ]
+        }
+      ],
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_name": "everlittle-sandbox-db",
+          "database_id": "f99694c0-1c37-446f-b4ac-1c349f74e4d7",
+          "migrations_dir": "migrations"
+        }
+      ],
+      "r2_buckets": [
+        {
+          "binding": "MEDIA",
+          "bucket_name": "everlittle-sandbox-media"
+        }
+      ],
+      "workers_dev": true
+    }
+  }
 }
