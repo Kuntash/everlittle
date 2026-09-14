@@ -1,59 +1,58 @@
-import { Brand } from "@/components/brand";
-import { SlidingTabs } from "@/components/design/controls";
-import { MemoryIllustration } from "@/components/design/memory-illustrations";
+import { Brand } from "@/components/design/shared";
+import { MarketingFooter } from "@/features/marketing/components/marketing-footer";
+import { PricingSection } from "@/features/marketing/components/pricing-section";
+import posthog from "posthog-js";
 import { useState } from "react";
+
 export function MarketingPricingPage() {
-  const [cycle, setCycle] = useState("Monthly");
+  const [billing, setBilling] = useState("Monthly");
+  const start = () => {
+    posthog.capture("marketing_signup_cta_clicked", {
+      source_path: "/pricing",
+      destination_path: "/sign-up",
+      placement: "pricing_page",
+      billing_interval: billing.toLowerCase(),
+    });
+    window.location.assign("/sign-up");
+  };
+
   return (
-    <main className="pricing-page">
+    <div className="apricot landing pricing-page">
       <header className="landing-header">
-        <a href="/" aria-label="Everlittle home">
+        <a className="brand-link" href="/" aria-label="Everlittle home">
           <Brand />
         </a>
-        <a className="text-button" href="/sign-in">
-          Sign in
-        </a>
-      </header>
-      <section className="pricing-content">
-        <MemoryIllustration kind="Keepsake" size={150} />
-        <h1>One home for your family’s memories.</h1>
-        <p>
-          Photos, voices, stories and letters. Everyone you invite, together in one private archive.
-        </p>
-        <SlidingTabs
-          label="Billing cycle"
-          value={cycle}
-          onChange={setCycle}
-          items={["Monthly", "Yearly"]}
-        />
-        <div className="price-card">
-          <h2>Family archive</h2>
-          <strong className="price">
-            {cycle === "Monthly" ? "$6" : "$60"}
-            <small> / {cycle === "Monthly" ? "month" : "year"}</small>
-          </strong>
-          <p>{cycle === "Yearly" ? "Save $12 each year." : "A little at a time, each month."}</p>
-          <ul>
-            <li>25 GB for photos, voices and video</li>
-            <li>Unlimited invited loved ones</li>
-            <li>Child spaces and future capsules</li>
-          </ul>
-          <a className="primary-button" href="/sign-up">
-            Create your archive
+        <div className="header-actions">
+          <a className="text-button" href="/sign-in">
+            Sign in
           </a>
-          <small>Create your account free. A subscription enables new memories.</small>
         </div>
-        <section className="self-host-option">
-          <h2>Prefer to host it yourself?</h2>
-          <p>
-            Everlittle is open source. Run your own private installation with no Everlittle
-            subscription. Your hosting provider’s costs apply.
+      </header>
+      <main className="landing-main">
+        <section className="pricing-intro">
+          <p className="eyebrow">A private family archive</p>
+          <h1>One home for all the little things.</h1>
+          <p className="hero-description">
+            Save their photos, voices, stories and letters in a private archive. Invite the people
+            who know them best.
           </p>
-          <a className="text-button" href="https://github.com/Kuntash/everlittle">
-            Explore self-hosting →
+        </section>
+        <PricingSection start={start} billing={billing} setBilling={setBilling} standalone />
+        <p className="pricing-account-note">
+          Create your account free. Choose a plan before adding memories.
+        </p>
+        <section className="pricing-family-note">
+          <h2>Bring the people who love them.</h2>
+          <p>
+            Invite grandparents and loved ones to share photos and add their own stories. Unlimited
+            invited family members are included in your family archive.
+          </p>
+          <a className="text-button" href="/sharing-photos-with-grandparents">
+            A little closer, even from far away →
           </a>
         </section>
-      </section>
-    </main>
+      </main>
+      <MarketingFooter />
+    </div>
   );
 }

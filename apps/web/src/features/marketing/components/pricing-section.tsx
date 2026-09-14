@@ -5,17 +5,21 @@ export function PricingSection({
   start,
   billing,
   setBilling,
+  standalone = false,
 }: {
+  standalone?: boolean;
   start: (mode?: string) => void;
   billing: string;
   setBilling: (value: string) => void;
 }) {
+  const placement = standalone ? "pricing_page" : "homepage";
+  const PlanHeading = standalone ? "h2" : "h3";
   const ref = useRef<HTMLElement>(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          posthog.capture("pricing_viewed", { placement: "homepage" });
+          posthog.capture("pricing_viewed", { placement });
           observer.disconnect();
         }
       },
@@ -23,16 +27,18 @@ export function PricingSection({
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [placement]);
   return (
     <section ref={ref} className="pricing-section section-border" id="pricing">
-      <h2>
-        One home for <br />
-        all the little things.
-      </h2>
+      {!standalone && (
+        <h2>
+          One home for <br />
+          all the little things.
+        </h2>
+      )}
       <div className="price-card">
         <div>
-          <h3>Family archive</h3>
+          <PlanHeading>Family archive</PlanHeading>
           <div className="price">
             <strong key={billing}>{billing === "Monthly" ? "$6" : "$60"}</strong> /{" "}
             {billing === "Monthly" ? "month" : "year"}
@@ -44,7 +50,7 @@ export function PricingSection({
               setBilling(next);
               posthog.capture("plan_selected", {
                 billing_interval: next.toLowerCase(),
-                placement: "homepage",
+                placement,
               });
             }}
           >

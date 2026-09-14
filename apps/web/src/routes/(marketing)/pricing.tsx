@@ -1,16 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import landingCss from "@/features/marketing/landing.css?url";
+
 import { MarketingPricingPage } from "@/features/marketing/pricing-page";
 
 export const Route = createFileRoute("/(marketing)/pricing")({
   component: MarketingPricingPage,
   head: () => ({
-    links: [{ href: "https://geteverlittle.com/pricing", rel: "canonical" }],
+    links: [
+      { rel: "stylesheet", href: landingCss },
+      { href: "https://geteverlittle.com/pricing", rel: "canonical" },
+    ],
     meta: [
       { title: "Pricing — Everlittle" },
       {
         name: "description",
-        content: "Simple pricing for a private family archive, with a free self-hosted option.",
+        content:
+          "Keep photos, voices, stories and letters together. $6/month or $60/year, with 25 GB and unlimited invited family members.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Everlittle" },
@@ -18,7 +24,8 @@ export const Route = createFileRoute("/(marketing)/pricing")({
       { property: "og:title", content: "Pricing — Everlittle" },
       {
         property: "og:description",
-        content: "Simple pricing for a private family archive, with a free self-hosted option.",
+        content:
+          "Keep photos, voices, stories and letters together. $6/month or $60/year, with 25 GB and unlimited invited family members.",
       },
       {
         property: "og:image",
@@ -34,7 +41,8 @@ export const Route = createFileRoute("/(marketing)/pricing")({
       { name: "twitter:title", content: "Pricing — Everlittle" },
       {
         name: "twitter:description",
-        content: "Simple pricing for a private family archive, with a free self-hosted option.",
+        content:
+          "Keep photos, voices, stories and letters together. $6/month or $60/year, with 25 GB and unlimited invited family members.",
       },
       {
         name: "twitter:image",
