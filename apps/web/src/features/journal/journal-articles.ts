@@ -6,6 +6,13 @@ export type JournalArticle = {
   intro: string;
   minutes: number;
   published?: string;
+  updated?: string;
+  cover?: { src: string; alt: string; width: number; height: number; caption: string };
+  sectionImages?: Record<
+    number,
+    { src: string; alt: string; width: number; height: number; caption: string }
+  >;
+  comparison?: { title: string; rows: { method: string; bestFor: string; check: string }[] };
   lede?: string;
   relatedIds?: string[];
   sectionLinks?: Record<number, { href: string; label: string }[]>;
@@ -19,73 +26,147 @@ export const articles: JournalArticle[] = [
     id: "grandparent-sharing",
     category: "Family stories",
     kind: "Photo",
-    title: "How to share photos with grandparents privately",
+    title: "Photo sharing for grandparents: a private mobile guide",
     intro:
-      "Choose between a quick photo update, an invited family archive and a single-memory link—with a practical setup guide for Everlittle.",
-    minutes: 4,
+      "Share pictures with grandparents, send a photo to Grandma, and keep family stories together. Compare your options and see Everlittle’s mobile web app.",
+    minutes: 7,
     published: "2026-09-10",
-    lede: "For regular updates, invite grandparents into a family archive so they have one place to return to. For an occasional photo, a direct message may be enough. In either case, agree on whether pictures can be forwarded before you start sharing.",
+    updated: "2026-09-15",
+    lede: "For a quick photo to Grandma, use a messaging app she already knows. For regular updates that the family can revisit, choose a shared album or a private family archive. Start with the simplest option your grandparents can open comfortably, then decide how much of the story you want to keep.",
     quote: "The best place to share a photo is one your family can comfortably return to.",
-    relatedIds: ["private-sharing", "grandparents"],
+    relatedIds: ["private-sharing", "family-archive"],
+    sectionImages: {
+      1: {
+        src: "/journal/grandparents-mobile-family.png",
+        alt: "Everlittle mobile Family screen showing Grandma June as a Contributor and the email invitation form.",
+        width: 390,
+        height: 1000,
+        caption:
+          "Choose a role when you invite a loved one. This owner’s view shows a fictional family; no invitation was sent.",
+      },
+      4: {
+        src: "/journal/grandparents-mobile-memory.png",
+        alt: "A mobile photo memory with its title, story, author, date and Family audience.",
+        width: 390,
+        height: 844,
+        caption:
+          "Keep the story beside the photograph. This demo shows the author’s view, including editing controls.",
+      },
+    },
+    cover: {
+      src: "/journal/grandparents-mobile-overview.png",
+      alt: "Everlittle on mobile: a family memory feed, a photo with its story, and family invitations.",
+      width: 1200,
+      height: 720,
+      caption:
+        "Everlittle’s actual mobile interface, shown with fictional family details and an illustrative photo.",
+    },
+    comparison: {
+      title: "Choose how to share pictures with grandparents",
+      rows: [
+        {
+          method: "A direct message",
+          bestFor: "A few photos now, using an app Grandma already knows.",
+          check: "Pictures may be forwarded. Agree on sharing, and keep your own originals.",
+        },
+        {
+          method: "A shared photo album",
+          bestFor: "A collection of photos relatives can return to.",
+          check:
+            "Try the invitation on their device. Check account requirements, storage and who can add pictures.",
+        },
+        {
+          method: "A private family archive",
+          bestFor: "Photos alongside dated stories, voices and letters from several relatives.",
+          check: "Check roles, price, exports and the steps each relative needs to join.",
+        },
+        {
+          method: "A link to one memory",
+          bestFor:
+            "Showing someone one photo and its story without inviting them into the archive.",
+          check:
+            "Anyone with a working public link can view it. Share only content you are comfortable having forwarded.",
+        },
+      ],
+    },
     sectionTitles: [
-      "Choose a way to share that fits your family",
-      "Set up a private family archive in Everlittle",
-      "Help a grandparent open the first invitation",
-      "Share one memory without opening the archive",
-      "Keep the story with the photograph",
-      "Check costs, access and backups before committing",
+      "Make grandparent photo sharing easy to return to",
+      "Share pictures with grandparents in Everlittle",
+      "Help Grandma open her first invitation",
+      "How to send photos to Grandma without an archive account",
+      "Preserve family memories with an app: keep the story, too",
+      "What to look for in a memory sharing platform",
+      "Common questions about photo sharing for grandparents",
     ],
     paragraphs: [
       [
-        "Start with what the recipient needs. A direct message is useful for a small update to someone who already uses that messaging app. An invited archive is useful when relatives want to revisit dated memories and add their own. A single-memory link is useful for showing one item to someone outside the archive.",
-        "These options have different boundaries. An archive invitation gives a person the access associated with their role. A public link can be opened by anyone who receives it, including someone it was forwarded to. Neither prevents a viewer from taking a screenshot. Agree on forwarding and posting photos elsewhere.",
+        "Ask which device your grandparent actually uses and how they prefer to receive an update. A phone, a tablet and a shared household computer can require different setup help. Try opening one photo together before moving a whole collection.",
+        "For a one-off update, a direct message may be enough. For a growing collection, choose a shared album or archive with a place to find older memories. Check whether an invitation needs an account, whether text is comfortable to read, and whether the person can find the photo again without your help.",
+        "Agree on one simple boundary: who may see the pictures, and whether they can be forwarded or posted elsewhere. Private sharing still allows a recipient to save a copy or take a screenshot.",
       ],
       [
-        "Create your Everlittle account and family archive, then choose a paid plan before adding memories. Add a photo with a date and a sentence explaining what happened. Starting with one familiar moment gives your relative something specific to look at.",
-        "In the family settings, invite the grandparent by email. Choose Viewer if they should only view the memories available to them, or Contributor if you want them to add memories too. Review each memory’s audience: joining the family does not mean every person should see every entry.",
-        "Everlittle works in a web browser. This guide does not require an iPhone or Android app download. Open the archive on the device your relative will actually use and check that text, pictures and playback are comfortable for them.",
+        "Create your Everlittle account and family archive, then choose a plan before adding memories. Account creation is free; adding memories requires a paid plan. Open the archive on your phone and tap Add a memory. Choose a photo, add a title and date, and write a sentence about what happened.",
+        "In Family → People, enter your grandparent’s email address and choose an invitation role. Choose Viewer for someone who should only see memories available to them. Choose Contributor for a grandparent who wants to add photos and stories, too. Send the invitation, then help them complete the account and acceptance steps.",
+        "Review the audience on each memory. Joining the archive does not give every relative access to every entry. The mobile Home view keeps recent memories together; Timeline helps the family return to earlier moments.",
       ],
       [
-        "Send a short message separately so the invitation is expected: “I sent you an Everlittle invitation by email. It is where we are keeping family photos and stories. Open the invitation and follow the account steps. We can try the first photo together.”",
-        "If the email is missing, check the address and spam folder, then resend the invitation from family settings. If the link has expired, send a fresh invitation. Keep passwords and access details out of a group conversation.",
-        "Once they can open the archive, bookmark it in their browser. Ask them to find the first memory on their own. That small check is more useful than assuming that a successfully sent invitation means the setup is finished.",
+        "Tell your grandparent that an invitation is coming before sending it. You can use this message: “I sent you an Everlittle invitation by email. It is where we are keeping family photos and stories. Open it on your phone and follow the account steps. Let’s look at the first photo together.”",
+        "If the invitation is missing, check the email address and spam folder. If the link has expired, send a fresh invitation from family settings. Avoid sharing passwords in a family group chat.",
+        "After they join, bookmark the archive in their browser. Ask them to reopen it, find the photo and return to Home on their own. Everlittle works in a web browser, so these steps do not require an App Store or Google Play download.",
       ],
       [
-        "The author of a memory can enable a public link from its sharing options. Copy the link or use Share to an app. The recipient can view that single memory without joining the archive; the rest of the family archive remains protected.",
-        "Everlittle’s public-memory links expire after 30 days and the author can disable sharing earlier. Anyone with a working link can view it, so use an invitation instead when you need access tied to a family member. Disabling a link cannot remove copies or screenshots someone already made.",
-        "Before sending, check the memory’s photo, title, story and names. The shared page includes the child’s name and author attribution. Choose another photo if it shows details you would not want forwarded.",
+        "To send photos to Grandma occasionally, a direct message on an app she already uses may be the quickest choice. You do not need to move every family conversation into a new service.",
+        "For a photo already kept in Everlittle, its author can open the memory’s sharing options and enable a public link. Copy that link and send it through your usual messaging app. The recipient can view that single memory without joining the archive; the rest of the archive stays protected.",
+        "Everlittle’s public-memory links expire after 30 days and the author can disable them earlier. Anyone with a working link can open it, including someone it was forwarded to. The shared page includes the child’s name and author attribution. Check the photo, story and names before sending; use an invitation when you need access tied to a family member.",
       ],
       [
-        "Pick a small number of photos rather than uploading every near-identical frame. Add the date, who was there and a detail the picture cannot show. For example: “You asked Grandpa to read the same page three times because you liked the sound of the train.”",
-        "Invite a response that is easy to make: “What do you remember about that afternoon?” A relative with Contributor access can add a memory of their own. With permission, a voice recording can keep their way of telling a story as well as the words.",
-        "There is no required posting schedule. A short update when you have something to share is better than a routine that becomes another obligation.",
+        "A photo tells part of the story. Add the date, who was there and one detail the picture cannot show: “You wanted to hear the story behind every picture. Grandma had time for them all.” Those words make an ordinary afternoon easier to remember years later.",
+        "An app to preserve family memories should help you keep that context with the original moment. In Everlittle, you can keep photos, voices, stories, videos, milestones and letters. A grandparent with Contributor access can add a memory of their own, including a voice recording they are comfortable sharing.",
+        "Keep a separate copy of irreplaceable original photos and recordings. Check the archive’s export options before committing your collection, and review who has access from time to time. A sharing service is one part of a preservation routine.",
       ],
       [
-        "As of 10 September 2026, Everlittle’s family plan is $6 per month or $60 per year with 25 GB of storage. Account creation is free; adding memories requires a paid plan. Check the pricing page for current terms before subscribing.",
-        "Keep a separate copy of irreplaceable original photos and recordings. Review the archive’s export options and who has access from time to time. Start with a few memories before deciding whether the arrangement works for your whole family.",
+        "Choose a memory sharing platform by trying the full family experience: add a photo, invite a relative, open the invitation on their device, and find an older entry. Look for clear permissions and a way to keep the date and story alongside the photo.",
+        "Compare the total family cost, storage allowance, supported media, invitation requirements and export options. Ask whether relatives pay separately and what happens when a subscription changes. A low starting price tells you little without those details.",
+        "Everlittle’s family plan is $6 per month or $60 per year, with 25 GB for photos, voices and video and unlimited invited family members. The yearly plan saves $12 compared with twelve monthly payments. Account creation is free; choose a plan before adding memories. Check the pricing page for current terms.",
+      ],
+      [
+        "What is the easiest way to share pictures with grandparents? Start with a messaging app they already use for a few pictures. A shared album or private archive is useful when they want a collection to revisit. Test the first invitation and photo together.",
+        "Do grandparents need an Everlittle account? They need to complete the account and invitation steps to join your private archive. A public link to one memory can be opened without joining, but anyone with that working link can view it.",
+        "Can grandparents add photos as well as view them? Yes, when invited as Contributors. Viewers can see the memories available to them but cannot add their own. Choose the role that fits how each person wants to take part.",
+        "Is Everlittle free? Creating an account is free. Adding memories requires a family plan at $6 per month or $60 per year. Unlimited invited family members are included.",
       ],
     ],
     sectionLinks: {
+      "1": [
+        {
+          href: "/sign-up",
+          label: "Start your family archive",
+        },
+      ],
       "3": [
         {
-          href: "/private-family-photo-sharing",
-          label: "Read the private family photo-sharing guide",
+          href: "/privacy",
+          label: "Read how Everlittle sharing and privacy work",
         },
       ],
       "4": [
         {
+          href: "/family-memory-app",
+          label: "Explore ways to preserve family memories",
+        },
+        {
           href: "/grandparents-memory-project",
-          label: "Questions for recording grandparents’ stories",
+          label: "Find prompts for the stories only grandparents can tell",
         },
       ],
       "5": [
         {
           href: "/pricing",
-          label: "See Everlittle’s plans and storage allowance",
+          label: "See the family plan and pricing",
         },
         {
-          href: "/family-memory-app",
-          label: "What to check when choosing a family memory app",
+          href: "/private-family-photo-sharing",
+          label: "Read the private family photo sharing guide",
         },
       ],
     },

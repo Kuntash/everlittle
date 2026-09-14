@@ -26,7 +26,7 @@ export function JournalSection() {
         },
         {
           category: "Grandparents",
-          title: "Keep the stories only your grandparents can tell.",
+          title: "Share photos with grandparents, privately.",
           icon: "Voice",
         },
       ].map((a) => (
@@ -34,11 +34,11 @@ export function JournalSection() {
           className="journal-card"
           key={a.title}
           href={
-              a.icon === "Story"
-                ? "/baby-memory-journal"
-                : a.icon === "Letter"
-                  ? "/letters-to-your-future-child"
-                  : "/grandparents-memory-project"
+            a.icon === "Story"
+              ? "/baby-memory-journal"
+              : a.icon === "Letter"
+                ? "/letters-to-your-future-child"
+                : "/sharing-photos-with-grandparents"
           }
         >
           <span className="journal-art">

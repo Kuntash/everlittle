@@ -2782,3 +2782,78 @@ body {
   font-weight: 700;
   text-underline-offset: 4px;
 }
+
+/* Product photography in journal articles keeps the mobile UI legible. */
+.journal-experience .article-product-cover {
+  margin: 32px 0 48px;
+}
+.journal-experience .article-product-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ap-border);
+  border-radius: 18px;
+}
+.journal-experience figure figcaption {
+  max-width: 640px;
+  margin: 14px auto 0;
+  color: var(--ap-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
+}
+.journal-experience .article-mobile-figure {
+  margin: 32px 0;
+}
+.journal-experience .article-mobile-figure img {
+  display: block;
+  width: min(100%, 390px);
+  height: auto;
+  margin: 0 auto;
+  border: 1px solid var(--ap-border);
+  border-radius: 18px;
+}
+.journal-experience .journal-cover-thumb {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.journal-experience .comparison-scroll {
+  overflow-x: auto;
+  margin: 24px 0 36px;
+}
+.journal-experience .comparison-scroll table {
+  width: 100%;
+  min-width: 540px;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.journal-experience .comparison-scroll caption {
+  text-align: left;
+  margin-bottom: 16px;
+  color: var(--ap-muted);
+}
+.journal-experience .comparison-scroll th,
+.journal-experience .comparison-scroll td {
+  padding: 16px 12px;
+  border-bottom: 1px solid var(--ap-border);
+  text-align: left;
+  vertical-align: top;
+}
+.journal-experience .comparison-scroll th {
+  color: var(--ap-ink);
+  font-weight: 750;
+}
+.journal-experience .comparison-scroll thead {
+  background: var(--ap-page);
+}
+@media (max-width: 700px) {
+  .journal-experience .article-product-cover {
+    margin: 24px 0 32px;
+  }
+  .journal-experience .article-product-cover figcaption {
+    padding: 0 12px;
+  }
+}

@@ -1,0 +1,86 @@
+import type { ArchiveState } from "../../../apps/web/src/features/archive/archive-types";
+export const state: ArchiveState = {
+  archive: {
+    id: "e2e-family",
+    name: "Parker family",
+    slug: "test-family",
+    timezone: "Asia/Kolkata",
+    createdAt: "2026-01-01",
+  },
+  currentMember: { id: "member-1", role: "owner", userId: "user-1" },
+  members: [
+    {
+      id: "member-1",
+      userId: "user-1",
+      role: "owner",
+      joinedAt: "2026-01-01",
+      name: "Sarah",
+      email: "alex@example.com",
+    },
+  ],
+  children: [
+    {
+      id: "child-1",
+      slug: "emma",
+      displayName: "Emma",
+      birthDate: "2020-01-01",
+      profileKind: "child",
+      childAccessEnabled: 0,
+    },
+  ],
+  memories: [
+    {
+      id: "memory-1",
+      childId: "child-1",
+      kind: "story",
+      title: "The moon is a night-light",
+      body: "A little thing you said today.",
+      happenedAt: "2026-09-01",
+      audience: "family",
+      createdAt: "2026-09-01",
+      createdByUserId: "user-1",
+      authorName: "Sarah",
+      mediaId: null,
+      mediaType: null,
+      contentType: null,
+      byteSize: null,
+    },
+  ],
+  capsules: [],
+  invitations: [],
+  billing: {
+    plan: "family",
+    status: "active",
+    usedBytes: 0,
+    limitBytes: 25000000000,
+    trialEndsAt: null,
+    currentPeriodEndsAt: "2026-10-01",
+    interval: "monthly",
+    cancelAtPeriodEnd: false,
+    checkoutAvailable: true,
+    canManage: true,
+    canCreateContent: true,
+    environment: "live_mode",
+  },
+};
+
+state.members.push({
+  id: "member-2",
+  userId: "user-2",
+  role: "contributor",
+  joinedAt: "2026-09-01",
+  name: "Grandma June",
+  email: "june@example.com",
+});
+state.memories.unshift({
+  ...state.memories[0],
+  id: "memory-photo",
+  kind: "photo",
+  title: "An afternoon with Grandma",
+  body: "You wanted to hear the story behind every picture. Grandma had time for them all.",
+  mediaId: "demo-photo",
+  mediaType: "image",
+  contentType: "image/webp",
+  happenedAt: "2026-09-06",
+  createdAt: "2026-09-06",
+});

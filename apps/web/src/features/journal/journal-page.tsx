@@ -79,20 +79,44 @@ export function JournalExperience({
                     timeZone: "UTC",
                   }).format(new Date(article.published ?? "2026-09-09"))}
                 </time>
+                {article.updated && (
+                  <time dateTime={article.updated}>
+                    Updated{" "}
+                    {new Intl.DateTimeFormat("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
+                      timeZone: "UTC",
+                    }).format(new Date(article.updated))}
+                  </time>
+                )}
                 <span>
                   <Clock size={14} />
                   {article.minutes} min read
                 </span>
               </div>
             </header>
-            <div className="article-hero">
-              <MemoryIllustration kind={article.kind} size={310} />
-              <span>
-                Their story,
-                <br />
-                in your words.
-              </span>
-            </div>
+            {article.cover ? (
+              <figure className="article-product-cover">
+                <img
+                  src={article.cover.src}
+                  alt={article.cover.alt}
+                  width={article.cover.width}
+                  height={article.cover.height}
+                  fetchPriority="high"
+                />
+                <figcaption>{article.cover.caption}</figcaption>
+              </figure>
+            ) : (
+              <div className="article-hero">
+                <MemoryIllustration kind={article.kind} size={310} />
+                <span>
+                  Their story,
+                  <br />
+                  in your words.
+                </span>
+              </div>
+            )}
             <div className="reading-layout">
               <details className="article-contents" suppressHydrationWarning>
                 <summary className="contents-toggle">
@@ -125,12 +149,58 @@ export function JournalExperience({
                   {article.lede ??
                     "Choose one idea below and try it with a memory you already have."}
                 </p>
+                {article.comparison && (
+                  <section className="article-comparison" aria-labelledby="sharing-options-title">
+                    <h2 id="sharing-options-title">{article.comparison.title}</h2>
+                    <div
+                      className="comparison-scroll"
+                      role="region"
+                      aria-label="Photo sharing options comparison"
+                      tabIndex={0}
+                    >
+                      <table>
+                        <caption>
+                          Compare the approach with the way your family wants to share.
+                        </caption>
+                        <thead>
+                          <tr>
+                            <th scope="col">Option</th>
+                            <th scope="col">Useful for</th>
+                            <th scope="col">What to check</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {article.comparison.rows.map((row) => (
+                            <tr key={row.method}>
+                              <th scope="row">{row.method}</th>
+                              <td>{row.bestFor}</td>
+                              <td>{row.check}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                )}
                 {article.sectionTitles.map((t, i) => (
                   <section id={`story-section-${i}`} key={t}>
                     <h2>{t}</h2>
                     {article.paragraphs[i].map((p) => (
                       <p key={p}>{p}</p>
                     ))}
+                    {article.sectionImages?.[i] && (
+                      <figure className="article-mobile-figure">
+                        <img
+                          src={article.sectionImages[i].src}
+                          alt={article.sectionImages[i].alt}
+                          width={article.sectionImages[i].width}
+                          height={article.sectionImages[i].height}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <figcaption>{article.sectionImages[i].caption}</figcaption>
+                      </figure>
+                    )}
                     {article.sectionLinks?.[i]?.map((link) => (
                       <p key={link.href}>
                         <a className="article-resource" href={link.href}>
@@ -200,7 +270,17 @@ export function JournalExperience({
           </section>
           <a className="featured-story" href={articlePaths[articles[0].id]}>
             <div className="featured-art">
-              <MemoryIllustration kind="Story" size={290} />
+              {articles[0].cover ? (
+                <img
+                  className="journal-cover-thumb"
+                  src={articles[0].cover.src}
+                  alt={articles[0].cover.alt}
+                  width={articles[0].cover.width}
+                  height={articles[0].cover.height}
+                />
+              ) : (
+                <MemoryIllustration kind="Story" size={290} />
+              )}
             </div>
             <div className="featured-copy">
               <span className="eyebrow">Start here</span>
@@ -234,7 +314,18 @@ export function JournalExperience({
             {visible.map((a) => (
               <a className="editorial-story" href={articlePaths[a.id]} key={a.id}>
                 <div className="story-art">
-                  <MemoryIllustration kind={a.kind} size={160} />
+                  {a.cover ? (
+                    <img
+                      className="journal-cover-thumb"
+                      src={a.cover.src}
+                      alt={a.cover.alt}
+                      width={a.cover.width}
+                      height={a.cover.height}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <MemoryIllustration kind={a.kind} size={160} />
+                  )}
                 </div>
                 <small>
                   {a.category} · {a.minutes} min read
