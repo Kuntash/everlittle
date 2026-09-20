@@ -1,0 +1,102 @@
+[
+  {
+    "title": "The word they say their way",
+    "hook": "You know that little word your kid says in their own way?",
+    "script": "You know that little word your kid says in their own way? Record it, then save the story behind it, because a photo can't tell you how they sounded. Everlittle keeps photos, voices, and little stories in one private family archive, and grandparents can add theirs too. Start with one thing they said today, something you'll love hearing again.",
+    "pattern": "Specific everyday detail → voice value → small action",
+    "id": 1,
+    "word_count": 59,
+    "duration_seconds": 14,
+    "video_cost_usd": 3.73562
+  },
+  {
+    "title": "The baby book you haven’t started",
+    "hook": "If the baby book is still on your to-do list, start here.",
+    "script": "If the baby book is still on your to-do list, start here. Pick one photo from this week and write down what was happening just outside the frame. That's a memory worth keeping. Everlittle gives your family a private place for those photos, stories, and voices, so you can build their story a little at a time.",
+    "pattern": "Unfinished intention → manageable first step",
+    "id": 2,
+    "word_count": 57,
+    "duration_seconds": 13,
+    "video_cost_usd": 3.46879
+  },
+  {
+    "title": "Grandma’s version",
+    "hook": "Ask Grandma what she remembers about the day that photo was taken.",
+    "script": "Ask Grandma what she remembers about the day that photo was taken. You might get a completely different story, the funny bit, the tiny detail, the thing nobody wrote down. With Everlittle, your family can save those voices and stories alongside the photos in one private archive. Next time you're together, start with one picture and see where it goes.",
+    "pattern": "Curiosity prompt → family contribution → concrete action",
+    "id": 3,
+    "word_count": 60,
+    "duration_seconds": 14,
+    "video_cost_usd": 3.73562
+  },
+  {
+    "title": "The bedtime voice",
+    "hook": "The bedtime story is lovely, but listen to who's reading it.",
+    "script": "The bedtime story is lovely, but listen to who's reading it. The little voices they do, the laugh halfway through, the way your child asks for it again. That's worth saving too. Everlittle keeps voice recordings, photos, and stories in your family's private archive. Ask someone they love to record a little story, and keep that version.",
+    "pattern": "Familiar routine → sensory detail → demonstration idea",
+    "id": 4,
+    "word_count": 57,
+    "duration_seconds": 13,
+    "video_cost_usd": 3.46879
+  },
+  {
+    "title": "A photo needs its story",
+    "hook": "Before you save that photo, add the part nobody can see.",
+    "script": "Before you save that photo, add the part nobody can see. What made them laugh, what they had just said, why everyone ended up on the kitchen floor. Those little details are the story. Everlittle gives your family a private place to keep photos with memories from the people who were there. Pick one from today and tell that part.",
+    "pattern": "Simple useful tip → missing context → action",
+    "id": 5,
+    "word_count": 60,
+    "duration_seconds": 14,
+    "video_cost_usd": 3.73562
+  },
+  {
+    "title": "The family group chat",
+    "hook": "That story in the family group chat deserves a place you can find again.",
+    "script": "That story in the family group chat deserves a place you can find again. The photo Dad sent, the funny thing your toddler said, Grandma remembering the same thing about you. Everlittle brings photos, voices, and stories into a private family archive, where invited relatives can add their own memories. Choose one keeper from this week and start there.",
+    "pattern": "Recognizable sharing habit → archive value",
+    "id": 6,
+    "word_count": 59,
+    "duration_seconds": 14,
+    "video_cost_usd": 3.73562
+  },
+  {
+    "title": "Everyone remembers a different part",
+    "hook": "Ask two people about your child's birthday and you'll get two different memories.",
+    "script": "Ask two people about your child's birthday and you'll get two different memories. You remember the candles, Grandpa remembers the conversation on the way home. Both belong in the story. Everlittle lets invited family members add photos, voices, and memories to one private archive. Give everyone a place to save the little part they noticed.",
+    "pattern": "Two perspectives → shared family archive",
+    "id": 7,
+    "word_count": 55,
+    "duration_seconds": 13,
+    "video_cost_usd": 3.46879
+  },
+  {
+    "title": "A letter from right now",
+    "hook": "Write your child a letter about who they are this week.",
+    "script": "Write your child a letter about who they are this week. Their favorite question, the song they keep requesting, the thing that made you laugh at breakfast. It doesn't have to be a big birthday speech. Everlittle keeps letters with your family's photos, voices, and stories, and you can seal a capsule for later. Start with one little detail.",
+    "pattern": "Concrete writing prompt → future value",
+    "id": 8,
+    "word_count": 59,
+    "duration_seconds": 14,
+    "video_cost_usd": 3.73562
+  },
+  {
+    "title": "A grandparent across the miles",
+    "hook": "If Grandma lives far away, give her a part in the memory keeping.",
+    "script": "If Grandma lives far away, give her a part in the memory keeping. She might have a photo you've never seen, a family recipe, a story about when you were little. Everlittle lets invited relatives add their own photos, voices, and stories to your private family archive. Ask her for one memory she'd love your child to know.",
+    "pattern": "Distance → meaningful contribution → invitation",
+    "id": 9,
+    "word_count": 58,
+    "duration_seconds": 14,
+    "video_cost_usd": 3.73562
+  },
+  {
+    "title": "An ordinary Tuesday",
+    "hook": "Save something from an ordinary Tuesday, the kind that never makes the baby book.",
+    "script": "Save something from an ordinary Tuesday, the kind that never makes the baby book. The breakfast conversation, the ridiculous nickname, the same game they ask you to play again. Everlittle gives your family a private home for those photos, voices, and stories, with room for grandparents to add theirs. Pick one small moment from today and keep a little of it.",
+    "pattern": "Ordinary moment → specific examples → low-effort action",
+    "id": 10,
+    "word_count": 61,
+    "duration_seconds": 14,
+    "video_cost_usd": 3.73562
+  }
+]

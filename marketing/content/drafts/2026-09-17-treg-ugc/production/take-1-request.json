@@ -1,0 +1,15 @@
+{
+  "model": "doubao-seedance-2.5-face",
+  "content_filter": false,
+  "prompt": "The woman in @image1 talks directly to the camera in a vertical smartphone video shot from a phone on a fixed dashboard mount in a parked car: same car interior, same pale blue striped button-down shirt, same soft bright window daylight. Preserve her face and shoulder-length hair. Frame vertically at 9:16.\nShe speaks with the energy and speaking rhythm of @audio1: warm, quick, conversational delivery with natural rise and fall, no whispering, no dramatic pauses. She keeps talking through the sentence breaks, taking only quick breaths.\nShe says, in English, lips precisely synced to every word: \"If the baby book is still on your to-do list, start here. Pick one photo from this week and write down what was happening just outside the frame. That's a memory worth keeping. Everlittle gives your family a private place for those photos, stories, and voices, so you can build their story a little at a time.\"\nHer left hand gestures outward toward the camera or rests in her lap; she never points at herself or touches her face or lips. Natural head movement, eye contact with the lens throughout. No handheld props.\nCamera locked off, no sway, no cuts, no zoom, no captions, no on-screen text, no music, only her voice and quiet car-interior room tone.",
+  "duration": 13,
+  "size": "9:16",
+  "resolution": "720p",
+  "generate_audio": true,
+  "image_urls": [
+    "https://treg.to/m/Bt7adcLU81pBnP6AOJZkZH0Orx7E4ora"
+  ],
+  "audio_urls": [
+    "https://treg.to/m/w3kLJxbV2o2sRBvjkeNojQXhYHLJ64ZY"
+  ]
+}

@@ -1,0 +1,125 @@
+{
+  "analysis": {
+    "7683903191162916110": {
+      "hook": "On-screen: “What do you mean he won’t draw stick figures like this forever?”",
+      "spoken": "No spoken transcript returned, including AI fallback.",
+      "product": "No product name verified.",
+      "camera": "Hands making keepsakes from a child’s drawing; checked at 2s.",
+      "pattern": "Specific fleeting detail → tangible keepsake."
+    },
+    "7680373151729028382": {
+      "hook": "Audio transcript: “Merry Christmas, Mommy.” Text: “bottle up those voices”.",
+      "spoken": "Untimed AI transcript; exact first-three-second alignment unverified.",
+      "product": "No brand name in returned transcript.",
+      "camera": "Adult in a car holding a recordable bottle; checked at 2s.",
+      "pattern": "Let the saved voice demonstrate the value."
+    },
+    "7682000299803839775": {
+      "hook": "“Merry Christmas, Baby Harbor.”",
+      "spoken": "Timestamped transcript begins at 0.06s; name may be mistranscribed.",
+      "product": "No brand name in transcript; ornament visible at 2s.",
+      "camera": "Grandfather seated on bed recording a Christmas message.",
+      "pattern": "Real family interaction before explanation."
+    },
+    "7683281426346691853": {
+      "hook": "“Did you know Grandparents Day actually has a purpose?”",
+      "spoken": "Untimed AI transcript; exact first-three-second alignment unverified.",
+      "product": "No app or product name; personal introduction at end.",
+      "camera": "Grandma Jan, glasses, purple collared shirt, bright home setting.",
+      "pattern": "Curiosity question → meaningful family action."
+    },
+    "7684154397915483405": {
+      "hook": "“Three days ago, I asked the scrapbook community…”",
+      "spoken": "Timestamped opening, 0–2.34s.",
+      "product": "Baby scrapbook planner first described at 6.62–10.70s.",
+      "camera": "Adult seated at craft table speaking into small handheld microphone.",
+      "pattern": "Small question → unexpectedly useful result → how it works."
+    },
+    "7685041364475579661": {
+      "hook": "On-screen: “An easy souvenir idea for babies and kids”.",
+      "spoken": "No spoken transcript returned, including AI fallback.",
+      "product": "Book visible at 2s; brand mention unverified.",
+      "camera": "Hands showing a souvenir book outdoors.",
+      "pattern": "Useful idea first, tangible demonstration immediately."
+    },
+    "Dczm4CGNO4G": {
+      "hook": "“If you’re a mom who had every intention of creating a baby book…”",
+      "spoken": "Untimed transcript; opening continues beyond 3s.",
+      "product": "Birthday book introduced in the next sentence; exact time unavailable.",
+      "camera": "Overhead scrapbook process with voiceover; sampled 2/8/16/25s.",
+      "pattern": "Name an unfinished intention → reduce effort → repeatable habit."
+    },
+    "DdHX2g1pZeV": {
+      "hook": "“Bubby? Bubby? This is my Bubby.”",
+      "spoken": "Untimed transcript; family reaction visible at 2s.",
+      "product": "Remento appears after context about Bubby’s life; exact time unavailable.",
+      "camera": "Opens with family and book; adult presenter by bookcase at 8/16/25s.",
+      "pattern": "Family reaction → reason to preserve memories → demonstration."
+    },
+    "DdPtTzNMypp": {
+      "hook": "“The single most important possession you’ll ever have in your life is your personal archive.”",
+      "spoken": "Untimed transcript; full sentence extends beyond 3s.",
+      "product": "Personal archive named immediately; no app promotion in transcript.",
+      "camera": "Seated adult with handheld microphone in personal bedroom setting.",
+      "pattern": "Strong belief → personal story → ordinary objects as evidence."
+    },
+    "DdSo-MWJghA": {
+      "hook": "On-screen: “it was all such a blur”.",
+      "spoken": "Returned text appears to be background music, excluded from spoken-hook analysis.",
+      "product": "No product name verified.",
+      "camera": "Hands showing a journal, sampled 2s/8s.",
+      "pattern": "Familiar feeling → a physical record of everyday life."
+    },
+    "Dc01XQEhMHi": {
+      "hook": "On-screen: “Parents, don’t forget to do this when your baby is born”.",
+      "spoken": "No spoken transcript returned; sampled text overlays instead.",
+      "product": "No app name verified.",
+      "camera": "Baby montage with an adult at beginning; sampled 2/8/16/25s.",
+      "pattern": "Direct parent callout → easy memory-saving action."
+    },
+    "DdCDoNNiD6v": {
+      "hook": "“What if the stories your parents told your kids today…”",
+      "spoken": "Untimed transcript; opening continues beyond 3s.",
+      "product": "Remento named in the second sentence; exact time unavailable.",
+      "camera": "Adult speaking to camera from car, gesturing with hands.",
+      "pattern": "Imagine a future benefit → solution → family demonstration."
+    }
+  },
+  "candidates": [
+    {
+      "number": 1,
+      "id": "DdCDoNNiD6v",
+      "label": "Everyday parent / casual car chat",
+      "fit": "Recommended for an approachable parent-to-parent ad.",
+      "frame": "DdCDoNNiD6v.jpg"
+    },
+    {
+      "number": 2,
+      "id": "7684154397915483405",
+      "label": "Practical parent / craft-table explainer",
+      "fit": "Good for making an unfinished baby book feel manageable.",
+      "frame": "7684154397915483405.jpg"
+    },
+    {
+      "number": 3,
+      "id": "DdHX2g1pZeV",
+      "label": "Family storyteller / seated at home",
+      "fit": "Good for grandparents’ voices and memories across generations.",
+      "frame": "DdHX2g1pZeV-8.jpg"
+    },
+    {
+      "number": 4,
+      "id": "DdPtTzNMypp",
+      "label": "Reflective storyteller / handheld mic",
+      "fit": "Good for explaining why ordinary memories matter.",
+      "frame": "DdPtTzNMypp.jpg"
+    },
+    {
+      "number": 5,
+      "id": "7683281426346691853",
+      "label": "Grandparent guide / bright home setting",
+      "fit": "Good for a grandparent speaking directly to other grandparents.",
+      "frame": "7683281426346691853.jpg"
+    }
+  ]
+}

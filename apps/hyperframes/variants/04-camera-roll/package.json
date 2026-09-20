@@ -1,0 +1,1 @@
+{"private":true,"scripts":{"check":"npx --yes hyperframes@0.8.40 check","render":"npx --yes hyperframes@0.8.40 render --quality high --output ../../renders/04-camera-roll.mp4"}}

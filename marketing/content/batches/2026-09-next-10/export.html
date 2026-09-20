@@ -1,0 +1,15 @@
+<!doctype html><html><meta charset="utf-8"><title>Everlittle slide exports</title><style>@font-face{font-family:Nunito;src:url(assets/nunito.woff2);font-weight:200 1000}body{margin:0;background:#ede7df;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:16px}img{width:100%}</style><body><script>
+(async()=>{await document.fonts.load('850 80px Nunito');await document.fonts.load('500 40px Nunito');const items=await(await fetch('content.json')).json();let count=0;
+for(const item of items.filter(i=>i.format==='carousel'))for(const [n,s] of item.slides.entries()){
+ const c=document.createElement('canvas');c.width=1080;c.height=1350;const x=c.getContext('2d');const ink='#302e2b',cream='#fffbf4',green='#52664c';const dark=n===4;const photo=n===0;x.fillStyle=dark?green:cream;x.fillRect(0,0,1080,1350);let fg=dark?cream:ink;if(photo){const map={'07-ask-grandparents':'02-grandmas-recipe','08-first-letter':'04-little-words','09-photo-needs-story':'01-memory-keeper','10-seven-ordinary-things':'06-ordinary-tuesday'};const im=await new Promise((res,rej)=>{let a=new Image;a.onload=()=>res(a);a.onerror=rej;a.src='assets/'+map[item.id]+'.jpg'});let sc=Math.max(1080/im.width,1350/im.height);x.drawImage(im,(1080-im.width*sc)/2,(1350-im.height*sc)/2,im.width*sc,im.height*sc);x.fillStyle='#0008';x.fillRect(0,0,1080,1350);fg=cream;}
+ x.strokeStyle=dark?'#d8dec8':'#ded8ce';x.lineWidth=2;x.strokeRect(45,45,990,1260);
+ x.font='750 27px Nunito';x.fillStyle=(dark||photo)?'#e4e9da':green;x.textBaseline='top';x.fillText(s.label,84,108);
+ function wrap(txt,size,max){x.font='850 '+size+'px Nunito';const lines=[];for(const para of txt.split('\n')){let line='';for(const w of para.split(' ')){const t=line?line+' '+w:w;if(x.measureText(t).width>max&&line){lines.push(line);line=w}else line=t}lines.push(line)}return lines}
+ let size=n===0?83:76;let lines=wrap(s.title,size,900);while(lines.length*size*1.18>485){size-=2;lines=wrap(s.title,size,900)}
+ x.font='850 '+size+'px Nunito';x.fillStyle=fg;let yy=n===0?470:380;for(const l of lines){x.fillText(l,84,yy);yy+=size*1.18}
+ yy+=66;x.font='500 40px Nunito';const body=[];for(const para of s.body.split('\n')){let line='';for(const w of para.split(' ')){let t=line?line+' '+w:w;if(x.measureText(t).width>870&&line){body.push(line);line=w}else line=t}body.push(line)}
+ x.fillStyle=(dark||photo)?'#f0f2e9':'#5e5a54';for(const l of body){x.fillText(l,84,yy);yy+=55}if(yy>1170)throw Error(item.id+' text overflow '+yy);
+ x.fillStyle=fg;x.font='800 33px Nunito';x.fillText('everlittle',84,1228);x.textAlign='right';x.font='600 28px Nunito';x.fillText((n+1)+' / 5',996,1233);x.textAlign='left';
+ const im=document.createElement('img');im.dataset.file=item.id+'/slide-'+String(n+1).padStart(2,'0')+'.png';im.alt=item.title+' slide '+(n+1);im.src=c.toDataURL('image/png');document.body.append(im);count++;
+}document.title='Ready: '+count+' slides';})();
+</script></body></html>

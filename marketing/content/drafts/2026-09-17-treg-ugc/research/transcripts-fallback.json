@@ -1,0 +1,62 @@
+[
+  {
+    "id": "7683903191162916110",
+    "call_id": "5951a564c7444234a46afe7e88fc4fb9",
+    "status": 200,
+    "endpoint_id": "scrapecreators.x.v1-tiktok-video-transcript",
+    "body": {
+      "success": true,
+      "credits_remaining": 21010,
+      "credits_charged": 1,
+      "id": "7683903191162916110",
+      "url": "https://www.tiktok.com/@thereeseco/video/7683903191162916110",
+      "transcript": null
+    },
+    "cost_usd": 0.00188
+  },
+  {
+    "id": "7680373151729028382",
+    "call_id": "0ffb9c93fa034ff9b00764697bf43d09",
+    "status": 200,
+    "endpoint_id": "scrapecreators.x.v1-tiktok-video-transcript",
+    "body": {
+      "success": true,
+      "credits_remaining": 20997,
+      "credits_charged": 1,
+      "id": "7680373151729028382",
+      "url": "https://www.tiktok.com/@thecozymama22/video/7680373151729028382",
+      "transcript": "Merry Christmas, Mommy."
+    },
+    "cost_usd": 0.00188
+  },
+  {
+    "id": "7683281426346691853",
+    "call_id": "d8d37e19312f4dfb9a0effdfb4a4a686",
+    "status": 200,
+    "endpoint_id": "scrapecreators.x.v1-tiktok-video-transcript",
+    "body": {
+      "success": true,
+      "credits_remaining": 20986,
+      "credits_charged": 1,
+      "id": "7683281426346691853",
+      "url": "https://www.tiktok.com/@grandmacampplanner/video/7683281426346691853",
+      "transcript": "Did you know Grandparents Day actually has a purpose? National Grandparents Day is celebrated on the first Sunday after Labor Day and became a national observance in 1978. And here's the part I really love. The idea wasn't simply to give grandma and grandpa another day to receive cards and presents. It was about honoring grandparents, helping children understand the importance of older generations, and giving grandparents an opportunity to share their wisdom and experiences with younger generations. And that is what I think we miss sometimes. Grandparents Day isn't just about celebrating the grandparent, it's about celebrating the relationship. It's telling family stories, it's passing something down. It's letting a child know where they came from. It's spending time together and creating the memories they'll carry with them long after we're gone. And you don't have to live close to do that. Tomorrow I'm going to share some very simple ways you can make Grandparents Day meaningful, whether your grands are sitting at your kitchen table or 100 miles away, because the little things really do become the big memories. I'm Grandma Jan. I don't babysit. I grandparent."
+    },
+    "cost_usd": 0.00188
+  },
+  {
+    "id": "7685041364475579661",
+    "call_id": "4daa3ed61c2e4b91b01bda4646e32025",
+    "status": 200,
+    "endpoint_id": "scrapecreators.x.v1-tiktok-video-transcript",
+    "body": {
+      "success": true,
+      "credits_remaining": 20985,
+      "credits_charged": 1,
+      "id": "7685041364475579661",
+      "url": "https://www.tiktok.com/@kaitlinirl/video/7685041364475579661",
+      "transcript": null
+    },
+    "cost_usd": 0.00188
+  }
+]

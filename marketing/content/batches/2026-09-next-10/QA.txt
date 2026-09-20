@@ -1,0 +1,11 @@
+01-memory-keeper: 1080x1920, 10.000000s, aac audio; full decode passed; HyperFrames check passed.
+02-grandmas-recipe: 1080x1920, 10.000000s, aac audio; full decode passed; HyperFrames check passed.
+03-in-the-picture: 1080x1920, 10.000000s, aac audio; full decode passed; HyperFrames check passed.
+04-little-words: 1080x1920, 10.000000s, aac audio; full decode passed; HyperFrames check passed.
+05-bedtime-across-miles: 1080x1920, 10.000000s, aac audio; full decode passed; HyperFrames check passed.
+06-ordinary-tuesday: 1080x1920, 10.000000s, aac audio; full decode passed; HyperFrames check passed.
+07-ask-grandparents: 5 PNGs, 1080x1350 each.
+08-first-letter: 5 PNGs, 1080x1350 each.
+09-photo-needs-story: 5 PNGs, 1080x1350 each.
+10-seven-ordinary-things: 5 PNGs, 1080x1350 each.
+Original Flow footage: 720x1280, rendered at 1080x1920. No additional music. Contact sheets show opening/middle/end of every reel and all carousel slides.

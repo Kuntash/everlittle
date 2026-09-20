@@ -1,0 +1,21 @@
+{
+  "call_id": "cdd715d6320943d999d1ddfe4b34c397",
+  "status": 200,
+  "endpoint_id": "reapi.tasks.get",
+  "body": {
+    "id": "task_01a0ab9e936d744e97cb6971d849f969",
+    "model": "doubao-seedance-2.5-face",
+    "status": "completed",
+    "created_at": 1789585691,
+    "output": {
+      "video_urls": [
+        "https://reapiflexible.b-cdn.net/flexible/v1/expires/2026-10/20261016T19/task_01a0ab9e936d744e97cb6971d849f969/0.mp4?token=HS256-dti69-OZE6G1vKkZlRCLQ9l5aeTz66qi7VjL-vUUBgM&expires=1792178325"
+      ]
+    },
+    "usage": {
+      "credits": 3469
+    },
+    "error": null
+  },
+  "cost_usd": 0
+}

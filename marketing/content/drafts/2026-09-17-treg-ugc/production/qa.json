@@ -1,0 +1,34 @@
+{
+  "duration_seconds": 13.041667,
+  "speech_start": 0.09,
+  "speech_end": 12.74,
+  "trailing_seconds": 0.302,
+  "normalized_script_matches": true,
+  "brand_spelling_correction": true,
+  "words_space_delimited": 57,
+  "words_per_minute_speech_span": 270.4,
+  "gaps_250ms_or_longer": [
+    {
+      "after": "down",
+      "before": "what",
+      "seconds": 0.27
+    }
+  ],
+  "sampled_frames": "0-12s in 2-second intervals",
+  "visual_findings": "Character stable across sampled frames; no handheld prop; no self-point or face-touch seen. Video adds a ring not present in the original character prompt.",
+  "limitations": [
+    "Voice likeness and precise lip-sync not independently verified by listening.",
+    "Transcript-based name correction does not certify pronunciation.",
+    "Delivery is brisk; speaking rate above the skill\u2019s 230\u2013250 wpm preference."
+  ],
+  "caption_phrase_count": 20,
+  "caption_coverage_complete": true,
+  "captioned_duration_seconds": 13.041667,
+  "video_frame_count": 313,
+  "audio_packet_hash_matches": true,
+  "caption_visual_check": "Final single-line header above head; phrase captions below face; sampled through clip, no clipping or doubled captions observed.",
+  "caption_renderer_adjustments": [
+    "Replaced removed ffmpeg filter_complex_script option with filter_complex.",
+    "Used 40px header at 2.5% height to avoid covering expression; captions retain 54px base font at 78% height."
+  ]
+}

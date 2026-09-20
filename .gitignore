@@ -37,3 +37,16 @@ apps/web/playwright-report/
 
 # Generated video preview cache
 apps/hyperframes/.thumbnails/
+
+# Reproducible creative caches and execution logs
+**/.thumbnails/
+**/.waveform-cache/
+__pycache__/
+marketing/**/*.log
+
+# Packaged exports; keep source assets and individual deliverables in Git
+marketing/**/*.zip
+
+# Downloaded research media; notes and source records remain versioned
+marketing/content/drafts/2026-09-17-treg-ugc/research/*.mp4
+marketing/content/drafts/2026-09-17-treg-ugc/research/*.jpg

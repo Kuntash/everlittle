@@ -1,0 +1,11 @@
+order,id,format,hook,primary_metric,posted_at,url,24h_views,24h_viewers,24h_saves,24h_shares,24h_follows,72h_views,72h_viewers,72h_saves,72h_shares,72h_follows,7d_views,7d_viewers,notes
+1,01-memory-keeper,reel,POV: your family says you take too many photos.,Shares per viewer
+2,07-ask-grandparents,carousel,“Tell me about your life” is a big question.,Saves per viewer; meaningful comments
+3,02-grandmas-recipe,reel,Grandma’s recipe says “a handful.”,Saves and meaningful comments per viewer
+4,03-in-the-picture,reel,You’re in everyone’s life.,Shares per viewer
+5,08-first-letter,carousel,A letter to your child can start with three sentences.,Saves per viewer; meaningful comments
+6,04-little-words,reel,"One day, “pasghetti” becomes spaghetti.",Saves and meaningful comments per viewer
+7,09-photo-needs-story,carousel,A photo shows what happened. A sentence saves what it meant.,Saves per viewer; meaningful comments
+8,05-bedtime-across-miles,reel,Different time zones.,Saves and meaningful comments per viewer
+9,06-ordinary-tuesday,reel,No birthday. No first steps.,Saves and meaningful comments per viewer
+10,10-seven-ordinary-things,carousel,Seven things worth saving before they become “remember when?”,Saves per viewer; meaningful comments

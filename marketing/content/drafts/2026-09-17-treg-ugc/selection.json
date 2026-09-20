@@ -1,0 +1,23 @@
+{
+  "presenter": 1,
+  "source": "https://www.instagram.com/reel/DdCDoNNiD6v/",
+  "requested_clips": 1,
+  "target_duration_seconds": 13,
+  "target_resolution": "720p",
+  "stage": "complete",
+  "funds_verified": 10.96428,
+  "character_recommendation": "B",
+  "balance_after_images": 10.90328,
+  "character_cost_usd": 0.061,
+  "character_selected": "B",
+  "character_file": "character/option-b-gpt.png",
+  "video_reference_image": "character.jpg",
+  "recommended_hook": 1,
+  "hook_selected": 2,
+  "final_captioned": "final/baby-book-captioned.mp4",
+  "final_clean": "final/baby-book-clean.mp4",
+  "actual_duration_seconds": 13.041667,
+  "actual_video_cost_usd": 3.46879,
+  "total_project_cost_usd": 3.56551,
+  "balance_remaining": 7.43449
+}

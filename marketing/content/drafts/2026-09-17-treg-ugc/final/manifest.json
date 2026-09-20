@@ -1,0 +1,42 @@
+{
+  "product": "Everlittle",
+  "hook": 2,
+  "character": "B",
+  "presenter_reference": 1,
+  "duration_seconds": 13.041667,
+  "width": 720,
+  "height": 1280,
+  "fps": 24,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "generated_with": "Seedance 2.5 through treg",
+  "total_cost_usd": 3.56551,
+  "video_cost_usd": 3.46879,
+  "files": [
+    {
+      "file": "baby-book-captioned.mp4",
+      "bytes": 4254858,
+      "sha256": "5cc8b5e1cbc78506a4799ff05c6287b27095760812b883cf1e2945a9e5287421"
+    },
+    {
+      "file": "baby-book-clean.mp4",
+      "bytes": 11472290,
+      "sha256": "a687048b65091924a1425117bbedb70cfbfa88e52294bb5eb5ec2c5e5bca05e7"
+    },
+    {
+      "file": "baby-book.srt",
+      "bytes": 980,
+      "sha256": "fd711d6373f92aa7da41e9030be3f37a9567562d715d01a7a1937f486cce6514"
+    },
+    {
+      "file": "baby-book.vtt",
+      "bytes": 937,
+      "sha256": "6aa229df119aa54dd1ac3f7b0c2ac3fe106c532023b030856c689d47c98ccd0c"
+    },
+    {
+      "file": "poster.jpg",
+      "bytes": 56833,
+      "sha256": "899b8e8d76ae71efbd12dd07b4dfd03b2148708925280ff40958f9dccad72c1d"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "label": "character-gemini",
+    "call_id": "0abdcea00242406abaf6bf638f9c1ed0",
+    "status": 200,
+    "endpoint_id": "reapi.image-gen.gemini-3-pro-image",
+    "body": {
+      "id": "task_01a0ab93469975cdbdc2bf9334d93ac7",
+      "model": "gemini-3-pro-image-preview",
+      "status": "processing",
+      "created_at": 1789584951
+    },
+    "cost_usd": 0.03
+  },
+  {
+    "label": "character-gpt",
+    "call_id": "539dc8f394c14fc9a042122bbb87eb56",
+    "status": 200,
+    "endpoint_id": "reapi.image-gen.gpt-image-2-5",
+    "body": {
+      "id": "task_01a0ab9349fc7474b67e21fa0e6c8dec",
+      "model": "gpt-image-2.5-flare-official",
+      "status": "processing",
+      "created_at": 1789584951
+    },
+    "cost_usd": 0.031
+  }
+]

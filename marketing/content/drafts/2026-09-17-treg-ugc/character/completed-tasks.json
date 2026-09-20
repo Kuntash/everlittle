@@ -1,0 +1,74 @@
+[
+  {
+    "label": "character-gemini",
+    "submission": {
+      "call_id": "0abdcea00242406abaf6bf638f9c1ed0",
+      "status": 200,
+      "endpoint_id": "reapi.image-gen.gemini-3-pro-image",
+      "body": {
+        "id": "task_01a0ab93469975cdbdc2bf9334d93ac7",
+        "model": "gemini-3-pro-image-preview",
+        "status": "processing",
+        "created_at": 1789584951
+      },
+      "cost_usd": 0.03
+    },
+    "completion": {
+      "call_id": "194e2d71a0b94bd7b85b264f6f649b48",
+      "status": 200,
+      "endpoint_id": "reapi.tasks.get",
+      "body": {
+        "id": "task_01a0ab93469975cdbdc2bf9334d93ac7",
+        "model": "gemini-3-pro-image-preview",
+        "status": "completed",
+        "created_at": 1789584950,
+        "output": {
+          "image_urls": [
+            "https://file.deepytb.com/reapi-slave2/tasks/task_01a0ab93469975cdbdc2bf9334d93ac7/0.jpg"
+          ]
+        },
+        "usage": {
+          "credits": 30
+        },
+        "error": null
+      },
+      "cost_usd": 0
+    }
+  },
+  {
+    "label": "character-gpt",
+    "submission": {
+      "call_id": "539dc8f394c14fc9a042122bbb87eb56",
+      "status": 200,
+      "endpoint_id": "reapi.image-gen.gpt-image-2-5",
+      "body": {
+        "id": "task_01a0ab9349fc7474b67e21fa0e6c8dec",
+        "model": "gpt-image-2.5-flare-official",
+        "status": "processing",
+        "created_at": 1789584951
+      },
+      "cost_usd": 0.031
+    },
+    "completion": {
+      "call_id": "73f1d6ff9c2c4d00a9b7d48ea90faab8",
+      "status": 200,
+      "endpoint_id": "reapi.tasks.get",
+      "body": {
+        "id": "task_01a0ab9349fc7474b67e21fa0e6c8dec",
+        "model": "gpt-image-2.5-flare-official",
+        "status": "completed",
+        "created_at": 1789584951,
+        "output": {
+          "image_urls": [
+            "https://file.deepytb.com/reapi-slave2/tasks/task_01a0ab9349fc7474b67e21fa0e6c8dec/0.png"
+          ]
+        },
+        "usage": {
+          "credits": 40
+        },
+        "error": null
+      },
+      "cost_usd": 0
+    }
+  }
+]

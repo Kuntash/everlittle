@@ -1,0 +1,192 @@
+[
+  {
+    "key": "tt-baby",
+    "endpoint": "justoneapi.tiktok.search.videos",
+    "call_id": "bc841c00e29d47e2867463c1fabed9b0",
+    "cost_usd": 0,
+    "status": 200,
+    "query": {
+      "keyword": "baby memory book",
+      "offset": 0,
+      "sortType": "MOST_LIKED",
+      "publishTime": "ONE_MONTH",
+      "region": "US"
+    }
+  },
+  {
+    "key": "tt-grandparents",
+    "endpoint": "justoneapi.tiktok.search.videos",
+    "call_id": "af24c1d0002142e5a9f874091d6ec326",
+    "cost_usd": 0,
+    "status": 200,
+    "query": {
+      "keyword": "record grandparents stories",
+      "offset": 0,
+      "sortType": "MOST_LIKED",
+      "publishTime": "ONE_MONTH",
+      "region": "US"
+    }
+  },
+  {
+    "key": "tt-childhood",
+    "endpoint": "justoneapi.tiktok.search.videos",
+    "call_id": "1d5013b751c5459a82d8c19fa9e54f04",
+    "cost_usd": 0,
+    "status": 200,
+    "query": {
+      "keyword": "preserving childhood memories",
+      "offset": 0,
+      "sortType": "MOST_LIKED",
+      "publishTime": "ONE_MONTH",
+      "region": "US"
+    }
+  },
+  {
+    "key": "ig-baby",
+    "endpoint": "scrapecreators.x.v2-instagram-reels-search",
+    "call_id": "0bf1604a13ee405299a135b82f773b21",
+    "cost_usd": 0.00188,
+    "status": 200,
+    "query": {
+      "query": "baby memory book",
+      "date_posted": "last-month",
+      "page": 1
+    }
+  },
+  {
+    "key": "ig-grandparents",
+    "endpoint": "scrapecreators.x.v2-instagram-reels-search",
+    "call_id": "c1e89bab901948d8be4615f8d965e849",
+    "cost_usd": 0.00188,
+    "status": 200,
+    "query": {
+      "query": "record grandparents stories",
+      "date_posted": "last-month",
+      "page": 1
+    }
+  },
+  {
+    "key": "ig-childhood",
+    "endpoint": "scrapecreators.x.v2-instagram-reels-search",
+    "call_id": "9b9cc2800b7e4db28546f730520d270e",
+    "cost_usd": 0.00188,
+    "status": 200,
+    "query": {
+      "query": "preserving childhood memories",
+      "date_posted": "last-month",
+      "page": 1
+    }
+  },
+  {
+    "key": "transcript-7683903191162916110",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "015f3aabb6bf44b494dd8c3d850aee82",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-7680373151729028382",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "1541eaece96d4fa8a306c6e2ced054c0",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-7682000299803839775",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "a0972b67399f42c5b696d752821bcda5",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-7683281426346691853",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "b9aae23e79a04c2eb6828fb98fad525a",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-7684154397915483405",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "4a0b001268804eb1aa9cae2304c07451",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-7685041364475579661",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "72abb1c9220d4e159eccebc06fed7807",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-Dczm4CGNO4G",
+    "endpoint": "scrapecreators.x.v2-instagram-media-transcript",
+    "call_id": "dca535c518c148989e7d4e5a13c79a28",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-DdHX2g1pZeV",
+    "endpoint": "scrapecreators.x.v2-instagram-media-transcript",
+    "call_id": "1e59fd0459644efd9effd63ba4106f7e",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-DdPtTzNMypp",
+    "endpoint": "scrapecreators.x.v2-instagram-media-transcript",
+    "call_id": "7d3a7c621e2941c882aff44d7b5f80da",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-DdSo-MWJghA",
+    "endpoint": "scrapecreators.x.v2-instagram-media-transcript",
+    "call_id": "08825f3796e84925a1be3b77910636c4",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-Dc01XQEhMHi",
+    "endpoint": "scrapecreators.x.v2-instagram-media-transcript",
+    "call_id": "be477705e2f24407be8169cf8c20ff87",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "transcript-DdCDoNNiD6v",
+    "endpoint": "scrapecreators.x.v2-instagram-media-transcript",
+    "call_id": "e50336e90b4f42c78e3280e23adc4ae4",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "ai-transcript-7683903191162916110",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "5951a564c7444234a46afe7e88fc4fb9",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "ai-transcript-7680373151729028382",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "0ffb9c93fa034ff9b00764697bf43d09",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "ai-transcript-7683281426346691853",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "d8d37e19312f4dfb9a0effdfb4a4a686",
+    "cost_usd": 0.00188,
+    "status": 200
+  },
+  {
+    "key": "ai-transcript-7685041364475579661",
+    "endpoint": "scrapecreators.x.v1-tiktok-video-transcript",
+    "call_id": "4daa3ed61c2e4b91b01bda4646e32025",
+    "cost_usd": 0.00188,
+    "status": 200
+  }
+]

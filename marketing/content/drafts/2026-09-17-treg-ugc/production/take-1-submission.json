@@ -1,0 +1,12 @@
+{
+  "call_id": "7557edbb400549d5b299c51a99525341",
+  "status": 200,
+  "endpoint_id": "reapi.video-gen.seedance-2-5.unrestricted",
+  "body": {
+    "id": "task_01a0ab9e936d744e97cb6971d849f969",
+    "model": "doubao-seedance-2.5-face",
+    "status": "processing",
+    "created_at": 1789585691
+  },
+  "cost_usd": 3.46879
+}

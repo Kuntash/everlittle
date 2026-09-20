@@ -1,0 +1,27 @@
+[
+  {
+    "post": "DdH0HFUs8Um",
+    "snapshot": "Browser tab: 1, Title: \"Instagram\", URL: \"https://www.instagram.com/insights/media/3983381580603442470/\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 1 AXWebArea Instagram, URL: instagram.com/insights/media/3983381580603442470/"
+  },
+  {
+    "post": "DdSDIOAsoIU",
+    "age": "33 minutes",
+    "snapshot": "Browser tab: 1, Title: \"Instagram\", URL: \"https://www.instagram.com/insights/media/3986262379115741716/\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t\t\t\t24 slider Description: Change Position, Value: 5\n~\t\t\t\t\t\t\t25 text 0:05\nThe focused UI element is 1 AXWebArea Instagram, URL: instagram.com/insights/media/3986262379115741716/"
+  },
+  {
+    "post": "DdSBiIJM2X8",
+    "snapshot": "Browser tab: 1, Title: \"Instagram\", URL: \"https://www.instagram.com/insights/media/3986255363429328380/\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t\t\t23 slider Description: Change Position, Value: 7\n~\t\t\t\t\t\t24 text 0:07\nThe focused UI element is 1 AXWebArea Instagram, URL: instagram.com/insights/media/3986255363429328380/"
+  },
+  {
+    "post": "DdHyY3SMag1",
+    "snapshot": "Browser tab: 1, Title: \"Instagram\", URL: \"https://www.instagram.com/insights/media/3983374006386534453/\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 1 AXWebArea Instagram, URL: instagram.com/insights/media/3983374006386534453/"
+  },
+  {
+    "post": "DdSDUY0sccN",
+    "snapshot": "Browser tab: 1, Title: \"Instagram\", URL: \"https://www.instagram.com/insights/media/3986263215359248141/\".\nThe following is a diff from the previous accessibility tree with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.\n~\t\t\t\t\t\t23 slider Description: Change Position, Value: 0\n~\t\t\t\t\t\t24 text 0:00\nThe focused UI element is 1 AXWebArea Instagram, URL: instagram.com/insights/media/3986263215359248141/"
+  },
+  {
+    "post": "DdSF4BvExLS",
+    "snapshot": "Browser tab: 1, Title: \"Instagram\", URL: \"https://www.instagram.com/insights/media/3986274460563083986/\".\nThere has been no change in the accessibility tree.\nThe focused UI element is 1 AXWebArea Instagram, URL: instagram.com/insights/media/3986274460563083986/"
+  }
+]

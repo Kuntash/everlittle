@@ -1,0 +1,21 @@
+{
+  "expected_script": "If the baby book is still on your to-do list, start here. Pick one photo from this week and write down what was happening just outside the frame. That's a memory worth keeping. Everlittle gives your family a private place for those photos, stories, and voices, so you can build their story a little at a time.",
+  "expected_duration_seconds": 13,
+  "expected_dimensions": [
+    720,
+    1280
+  ],
+  "checks": [
+    "ffprobe format and streams",
+    "recognized speech vs approved words",
+    "speech end and internal gaps",
+    "sampled frames for character and hand consistency",
+    "caption phrase coverage against transcript",
+    "caption sample frames for placement and clipping",
+    "audio stream unchanged in captioned output"
+  ],
+  "limitations": [
+    "voice likeness not independently verified by listening",
+    "precise lip sync not certified by transcript and sampled frames"
+  ]
+}
