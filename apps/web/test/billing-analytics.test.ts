@@ -39,12 +39,12 @@ describe("Dodo billing", () => {
     expect(hasManageableSubscription(false, "sub_test")).toBe(false);
   });
 
-  it("keeps unsubscribed hosted archives read-only", () => {
+  it("allows free archives while preserving delinquent and expired subscription restrictions", () => {
     expect(canCreateArchiveContent("active", null)).toBe(true);
-    expect(canCreateArchiveContent("complimentary", null)).toBe(false);
+    expect(canCreateArchiveContent("complimentary", null)).toBe(true);
     expect(canCreateArchiveContent("past_due", null)).toBe(false);
     expect(canCreateArchiveContent("canceled", null)).toBe(false);
-    expect(canStoreMedia("complimentary", null)).toBe(false);
+    expect(canStoreMedia("complimentary", null)).toBe(true);
     expect(canCreateArchiveContent("trialing", "2099-01-01T00:00:00Z")).toBe(true);
     expect(canCreateArchiveContent("trialing", "2000-01-01T00:00:00Z")).toBe(false);
   });

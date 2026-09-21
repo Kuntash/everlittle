@@ -32,46 +32,74 @@ export function PricingSection({
     <section ref={ref} className="pricing-section section-border" id="pricing">
       {!standalone && (
         <h2>
-          One home for <br />
-          all the little things.
+          Start free. <br />
+          Add space when you need it.
         </h2>
       )}
-      <div className="price-card">
-        <div>
-          <PlanHeading>Family archive</PlanHeading>
-          <div className="price">
-            <strong key={billing}>{billing === "Monthly" ? "$6" : "$60"}</strong> /{" "}
-            {billing === "Monthly" ? "month" : "year"}
+      <div className="pricing-plans">
+        <div className="price-card free-price-card">
+          <div>
+            <PlanHeading>Free</PlanHeading>
+            <div className="price">
+              <strong>$0</strong>
+            </div>
+            <p>No card. No expiry.</p>
           </div>
-          <button
-            className="text-button small"
-            onClick={() => {
-              const next = billing === "Monthly" ? "Yearly" : "Monthly";
-              setBilling(next);
-              posthog.capture("plan_selected", {
-                billing_interval: next.toLowerCase(),
-                placement,
-              });
-            }}
-          >
-            {billing === "Monthly" ? "or $60 yearly" : "or $6 monthly"} ↔
-          </button>
+          <ul>
+            <li>
+              <Check />
+              100 MB for photos, voices and video
+            </li>
+            <li>
+              <Check />
+              Stories, letters and time capsules
+            </li>
+            <li>
+              <Check />
+              Invite family to view and contribute
+            </li>
+          </ul>
+          <Button onClick={() => start()}>Save your first memory</Button>
         </div>
-        <ul>
-          <li>
-            <Check />
-            25 GB for photos, voices, and video
-          </li>
-          <li>
-            <Check />
-            Unlimited invited family members
-          </li>
-          <li>
-            <Check />
-            Child spaces and future capsules
-          </li>
-        </ul>
-        <Button onClick={() => start()}>Start your archive</Button>
+        <div className="price-card">
+          <div>
+            <PlanHeading>Family archive</PlanHeading>
+            <div className="price">
+              <strong key={billing}>{billing === "Monthly" ? "$6" : "$60"}</strong> /{" "}
+              {billing === "Monthly" ? "month" : "year"}
+            </div>
+            <button
+              className="text-button small"
+              onClick={() => {
+                const next = billing === "Monthly" ? "Yearly" : "Monthly";
+                setBilling(next);
+                posthog.capture("plan_selected", {
+                  billing_interval: next.toLowerCase(),
+                  placement,
+                });
+              }}
+            >
+              {billing === "Monthly" ? "or $60 yearly" : "or $6 monthly"} ↔
+            </button>
+          </div>
+          <ul>
+            <li>
+              <Check />
+              25 GB for photos, voices, and video
+            </li>
+            <li>
+              <Check />
+              Unlimited invited family members
+            </li>
+            <li>
+              <Check />
+              Child spaces and future capsules
+            </li>
+          </ul>
+          <Button secondary onClick={() => start()}>
+            Start free, upgrade later
+          </Button>
+        </div>
       </div>
     </section>
   );

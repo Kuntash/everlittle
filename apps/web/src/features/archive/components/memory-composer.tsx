@@ -1,3 +1,4 @@
+import { uploadMedia } from "@/features/archive/lib/upload-media";
 import { ShadButton } from "@/components/design/controls";
 import { DateInput } from "@/components/design/date-input";
 import { DesignSelect } from "@/components/design/design-select";
@@ -38,6 +39,7 @@ export function MemoryComposer({
   const [happenedAt, setHappenedAt] = useState(currentLocalDateTime());
   const [audience, setAudience] = useState<"parents" | "family" | "child" | "all">("family");
   const [file, setFile] = useState<File | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState("");
   const [stage, setStage] = useState<"idle" | "saving" | "uploading">("idle");
 
@@ -61,81 +63,91 @@ export function MemoryComposer({
       );
       return;
     }
-    if (file && file.size > 50 * 1024 * 1024) {
-      setError("Media files must be 50 MB or smaller.");
-      return;
-    }
 
     setError("");
     setStage("saving");
-    const videoThumbnail =
-      kind === "video" && file ? await createVideoThumbnail(file).catch(() => null) : null;
-    const response = await apiFetch("/api/archive/memories", {
-      method: "POST",
-      body: JSON.stringify({
-        childId: child.id,
-        kind,
-        title,
-        body: body || undefined,
-        happenedAt: new Date(happenedAt).toISOString(),
-        audience,
-      }),
-    });
-    if (!response.ok) {
-      setError(await responseError(response));
-      setStage("idle");
-      return;
-    }
-
-    const created = (await response.json()) as { id: string };
-    if (file) {
-      setStage("uploading");
-      posthog?.capture("upload_started", {
-        memory_kind: kind,
-        size_bucket:
-          file.size < 1048576 ? "under_1mb" : file.size < 10485760 ? "1_to_10mb" : "10_to_50mb",
+    setUploadProgress(0);
+    let pendingMemoryId: string | null = null;
+    try {
+      const videoThumbnail =
+        kind === "video" && file ? await createVideoThumbnail(file).catch(() => null) : null;
+      const response = await apiFetch("/api/archive/memories", {
+        method: "POST",
+        body: JSON.stringify({
+          childId: child.id,
+          kind,
+          title,
+          body: body || undefined,
+          happenedAt: new Date(happenedAt).toISOString(),
+          audience,
+        }),
       });
-      const upload = await fetch(scopedApiPath(`/api/archive/memories/${created.id}/media`), {
-        method: "PUT",
-        headers: {
-          "content-type": file.type || "application/octet-stream",
-          "x-everlittle-file-name": encodeURIComponent(file.name),
-        },
-        body: file,
-      });
-      if (!upload.ok) {
-        posthog?.capture("upload_failed", {
-          memory_kind: kind,
-          reason: upload.status === 413 ? "too_large" : "request_rejected",
-        });
-        await apiFetch(`/api/archive/memories/${created.id}`, { method: "DELETE" });
-        setError(await responseError(upload));
+      if (!response.ok) {
+        setError(await responseError(response));
         setStage("idle");
         return;
       }
-      posthog?.capture("upload_succeeded", { memory_kind: kind });
-      if (videoThumbnail) {
-        const thumbnailUpload = await fetch(
-          scopedApiPath(`/api/archive/memories/${created.id}/media/thumbnail`),
-          {
-            method: "PUT",
-            headers: { "content-type": videoThumbnail.type },
-            body: videoThumbnail,
-          },
-        );
-        if (!thumbnailUpload.ok) {
-          console.warn("The video was saved without its generated thumbnail.");
+
+      const created = (await response.json()) as { id: string };
+      if (file) {
+        pendingMemoryId = created.id;
+        setStage("uploading");
+        posthog?.capture("upload_started", {
+          memory_kind: kind,
+          size_bucket:
+            file.size < 1048576
+              ? "under_1mb"
+              : file.size < 10485760
+                ? "1_to_10mb"
+                : file.size < 52428800
+                  ? "10_to_50mb"
+                  : "over_50mb",
+        });
+        const upload = await uploadMedia(created.id, file, undefined, setUploadProgress);
+        if (!upload.ok) {
+          posthog?.capture("upload_failed", {
+            memory_kind: kind,
+            reason: upload.status === 413 ? "too_large" : "request_rejected",
+          });
+          await apiFetch(`/api/archive/memories/${created.id}`, { method: "DELETE" });
+          setError(await responseError(upload));
+          setStage("idle");
+          return;
+        }
+        pendingMemoryId = null;
+        posthog?.capture("upload_succeeded", { memory_kind: kind });
+        if (videoThumbnail) {
+          const thumbnailUpload = await fetch(
+            scopedApiPath(`/api/archive/memories/${created.id}/media/thumbnail`),
+            {
+              method: "PUT",
+              headers: { "content-type": videoThumbnail.type },
+              body: videoThumbnail,
+            },
+          ).catch(() => null);
+          if (!thumbnailUpload?.ok) {
+            console.warn("The video was saved without its generated thumbnail.");
+          }
         }
       }
-    }
 
-    posthog?.capture("memory_save_completed", {
-      memory_kind: kind,
-      has_media: Boolean(file),
-      memory_audience: audience,
-    });
-    await onCreated();
-    onClose();
+      posthog?.capture("memory_save_completed", {
+        memory_kind: kind,
+        has_media: Boolean(file),
+        memory_audience: audience,
+      });
+      await onCreated();
+      onClose();
+    } catch (reason) {
+      if (pendingMemoryId)
+        await apiFetch(`/api/archive/memories/${pendingMemoryId}`, { method: "DELETE" }).catch(
+          () => undefined,
+        );
+      setError(
+        reason instanceof Error ? reason.message : "The upload was interrupted. Please try again.",
+      );
+      setStage("idle");
+    }
   }
 
   return (
@@ -166,7 +178,9 @@ export function MemoryComposer({
                 ? file.name
                 : `Add ${kind === "voice" ? "an audio recording" : kind === "photo" ? "a photo" : "a video"}`}
             </span>
-            <small>{file ? "Choose a different file" : "Up to 50 MB"}</small>
+            <small>
+              {file ? "Choose a different file" : "Any file that fits your remaining storage"}
+            </small>
             <Input
               type="file"
               aria-label={`Choose ${kind} file`}
@@ -238,7 +252,7 @@ export function MemoryComposer({
             Cancel
           </Button>
           <Button disabled={stage !== "idle"} aria-busy={stage !== "idle"}>
-            <MemoryStageLabel stage={stage} />
+            <MemoryStageLabel stage={stage} progress={uploadProgress} />
           </Button>
         </div>
       </form>

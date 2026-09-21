@@ -235,7 +235,9 @@ export function FamilySettings({
                     ? state.billing.interval === "yearly"
                       ? "$60 / year"
                       : "$6 / month"
-                    : "Keep adding to their story."}
+                    : state.billing.status === "complimentary"
+                      ? "Your first memories, free."
+                      : "Resume your family plan"}
               </h2>
               <p className="muted">{billingStatusDetail(state.billing)}</p>
               <ul className="plan-features">
@@ -288,14 +290,14 @@ export function FamilySettings({
                         disabled={billingBusy !== null}
                         onClick={() => void openBilling("monthly")}
                       >
-                        Choose monthly
+                        25 GB · $6/month
                       </Button>
                       <Button
                         secondary
                         disabled={billingBusy !== null}
                         onClick={() => void openBilling("yearly")}
                       >
-                        Choose yearly
+                        25 GB · $60/year
                       </Button>
                     </>
                   )}
@@ -307,7 +309,7 @@ export function FamilySettings({
               <p>
                 {state.billing.plan === "self-hosted"
                   ? "Your memories stay on the infrastructure you manage."
-                  : "Choose yearly and save $12 over twelve monthly payments."}
+                  : "25 GB · $60/year and save $12 over twelve monthly payments."}
               </p>
               {state.billing.plan === "family" && (
                 <div className="plan-comparison">

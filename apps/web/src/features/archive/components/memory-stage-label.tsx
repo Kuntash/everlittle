@@ -1,6 +1,12 @@
 import { AnimatedActionLabel } from "@/features/archive/components/animated-action-label";
 
-export function MemoryStageLabel({ stage }: { stage: "idle" | "saving" | "uploading" }) {
+export function MemoryStageLabel({
+  stage,
+  progress = 0,
+}: {
+  stage: "idle" | "saving" | "uploading";
+  progress?: number;
+}) {
   return (
     <AnimatedActionLabel
       showArrow={false}
@@ -8,7 +14,9 @@ export function MemoryStageLabel({ stage }: { stage: "idle" | "saving" | "upload
         stage === "saving"
           ? "Saving memory…"
           : stage === "uploading"
-            ? "Keeping media private…"
+            ? progress
+              ? `Uploading… ${progress}%`
+              : "Uploading…"
             : "Save memory"
       }
       transitionKey={stage}

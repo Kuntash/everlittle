@@ -11,6 +11,12 @@ const eligibleContext = {
 };
 
 describe("PWA install offer", () => {
+  it("does not cover setup controls for signed-in parents", () => {
+    expect(shouldOfferPwaInstall({ ...eligibleContext, isOnboarding: true, isIos: true })).toBe(
+      false,
+    );
+  });
+
   it("never appears for a signed-out visitor", () => {
     expect(shouldOfferPwaInstall({ ...eligibleContext, isAuthenticated: false })).toBe(false);
   });

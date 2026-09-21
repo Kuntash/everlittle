@@ -105,7 +105,7 @@ export const articles: JournalArticle[] = [
         "Agree on one simple boundary: who may see the pictures, and whether they can be forwarded or posted elsewhere. Private sharing still allows a recipient to save a copy or take a screenshot.",
       ],
       [
-        "Create your Everlittle account and family archive, then choose a plan before adding memories. Account creation is free; adding memories requires a paid plan. Open the archive on your phone and tap Add a memory. Choose a photo, add a title and date, and write a sentence about what happened.",
+        "Create your free Everlittle archive with 100 MB of storage. No card required. Open the archive on your phone and tap Add a memory. Choose a photo, add a title and date, and write a sentence about what happened.",
         "In Family → People, enter your grandparent’s email address and choose an invitation role. Choose Viewer for someone who should only see memories available to them. Choose Contributor for a grandparent who wants to add photos and stories, too. Send the invitation, then help them complete the account and acceptance steps.",
         "Review the audience on each memory. Joining the archive does not give every relative access to every entry. The mobile Home view keeps recent memories together; Timeline helps the family return to earlier moments.",
       ],
@@ -127,13 +127,13 @@ export const articles: JournalArticle[] = [
       [
         "Choose a memory sharing platform by trying the full family experience: add a photo, invite a relative, open the invitation on their device, and find an older entry. Look for clear permissions and a way to keep the date and story alongside the photo.",
         "Compare the total family cost, storage allowance, supported media, invitation requirements and export options. Ask whether relatives pay separately and what happens when a subscription changes. A low starting price tells you little without those details.",
-        "Everlittle’s family plan is $6 per month or $60 per year, with 25 GB for photos, voices and video and unlimited invited family members. The yearly plan saves $12 compared with twelve monthly payments. Account creation is free; choose a plan before adding memories. Check the pricing page for current terms.",
+        "Everlittle’s family plan is $6 per month or $60 per year, with 25 GB for photos, voices and video and unlimited invited family members. The yearly plan saves $12 compared with twelve monthly payments. Start with 100 MB free, with no card or expiry. Upgrade when you need more space. Check the pricing page for current terms.",
       ],
       [
         "What is the easiest way to share pictures with grandparents? Start with a messaging app they already use for a few pictures. A shared album or private archive is useful when they want a collection to revisit. Test the first invitation and photo together.",
         "Do grandparents need an Everlittle account? They need to complete the account and invitation steps to join your private archive. A public link to one memory can be opened without joining, but anyone with that working link can view it.",
         "Can grandparents add photos as well as view them? Yes, when invited as Contributors. Viewers can see the memories available to them but cannot add their own. Choose the role that fits how each person wants to take part.",
-        "Is Everlittle free? Creating an account is free. Adding memories requires a family plan at $6 per month or $60 per year. Unlimited invited family members are included.",
+        "Is Everlittle free? Yes. Start with 100 MB, no card or expiry. Upgrade to 25 GB for $6 per month or $60 per year. Both plans include unlimited invited family members.",
       ],
     ],
     sectionLinks: {
@@ -354,7 +354,7 @@ export const articles: JournalArticle[] = [
       ],
       [
         "Before committing to a service, check its price, storage allowance, privacy controls, and export options. Keeping a separate copy of irreplaceable originals gives you more freedom later.",
-        "Everlittle keeps photos, voices, stories, and letters in an invited family archive. You can create an account free; adding memories requires a paid plan, currently $6 monthly or $60 yearly with 25 GB of storage. Choose the arrangement that your family will actually use.",
+        "Everlittle keeps photos, voices, stories, and letters in an invited family archive. Start with 100 MB free. Upgrade to 25 GB for $6 monthly or $60 yearly. Choose the arrangement that your family will actually use.",
       ],
     ],
   },
@@ -390,7 +390,7 @@ export const articles: JournalArticle[] = [
       ],
       [
         "Compare the subscription price, storage allowance, and any limits on contributors or file types. A large allowance is only useful if the app fits your family’s habits.",
-        "Everlittle combines photos, voice, video, stories, and future letters in a private archive. Account creation is free; adding memories requires a $6 monthly or $60 yearly plan with 25 GB. Begin when there is something you want to keep, rather than feeling you need a complete family history.",
+        "Everlittle combines photos, voice, video, stories, and future letters in a private archive. Start with 100 MB free, with no card or expiry. The 25 GB plan costs $6 monthly or $60 yearly. Begin when there is something you want to keep, rather than feeling you need a complete family history.",
       ],
     ],
   },

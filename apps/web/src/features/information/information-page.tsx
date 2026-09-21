@@ -22,7 +22,7 @@ export const informationPages = {
       ],
       [
         "Built for the web",
-        "Everlittle runs in a browser and can be added to a supported device’s Home Screen. The hosted family plan is paid; account creation is free. See Pricing for the current plan and storage allowance.",
+        "Everlittle runs in a browser and can be added to a supported device’s Home Screen. Start with 100 MB free. Upgrade to 25 GB when you need more space. See Pricing for details.",
       ],
     ],
   },
@@ -88,9 +88,7 @@ export function InformationPage({ page }: { page: InformationPageId }) {
         Skip to content
       </a>
       <header className="information-header">
-        <a href="/" aria-label="Everlittle home">
-          <Brand />
-        </a>
+        <Brand />
         <nav aria-label="Main navigation">
           <a href="/journal">Journal</a>
           <a href="/pricing">Pricing</a>

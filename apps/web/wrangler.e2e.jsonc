@@ -12,7 +12,7 @@
   "vars": {
     "APP_NAME": "Everlittle",
     "DEPLOYMENT_MODE": "hosted",
-    "PUBLIC_APP_URL": "http://localhost:3000",
+    "PUBLIC_APP_URL": "http://localhost:3015",
     "INVITATION_FROM_EMAIL": "invites@example.com",
   },
   "d1_databases": [

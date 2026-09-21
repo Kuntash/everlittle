@@ -5,7 +5,12 @@ import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
 
 import { slugify } from "@everlittle/domain";
 
-import { acceptInvitation, findValidInvitation, handleArchiveApi } from "@/lib/archive-api";
+import {
+  acceptInvitation,
+  findValidInvitation,
+  handleArchiveApi,
+  cleanupExpiredMediaUploads,
+} from "@/lib/archive-api";
 import { createAuth } from "@/lib/auth";
 import { sendAuthEmail } from "@/lib/auth-email";
 import { handleDodoWebhook } from "@/lib/billing";
@@ -142,6 +147,7 @@ export default {
   ...serverEntry,
   async scheduled() {
     const runtime = getRuntimeEnv();
+    await cleanupExpiredMediaUploads();
     await projectAnalytics(runtime);
     await flushAnalytics(runtime);
   },

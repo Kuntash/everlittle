@@ -28,7 +28,7 @@ for (const args of [
   const result = spawnSync("pnpm", args, { stdio: "inherit" });
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
-const child = spawn("pnpm", ["dev"], {
+const child = spawn("pnpm", ["exec", "vp", "dev", "--port", "3015"], {
   stdio: "inherit",
   env: {
     ...process.env,

@@ -1,6 +1,6 @@
 import { GoogleAdsMeasurement } from "@/components/google-ads-measurement";
 import primaryButtonCss from "@/features/archive/primary-button.css?url";
-import { HeadContent, Scripts, createRootRoute } from "@tanstack/react-router";
+import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
 import { Sprout, RefreshCw, Share, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
@@ -78,6 +78,7 @@ const PWA_DISMISSED_KEY = "everlittle.pwa-install-dismissed";
 const PWA_REMINDER_MS = 30 * 24 * 60 * 60 * 1000;
 
 function PwaExperience() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
   const session = authClient.useSession();
   const [installPrompt, setInstallPrompt] = useState<InstallPromptEvent | null>(null);
   const [showIosGuide, setShowIosGuide] = useState(false);
@@ -244,6 +245,7 @@ function PwaExperience() {
 
   const isAuthenticated = Boolean(session.data?.user);
   const showInstall = shouldOfferPwaInstall({
+    isOnboarding: pathname === "/onboarding" || pathname === "/sign-up",
     dismissed,
     hasInstallPrompt: Boolean(installPrompt),
     isAuthenticated,
@@ -260,7 +262,9 @@ function PwaExperience() {
           </span>
           <div>
             <strong>Your little world, one tap away</strong>
-            <small>Add Everlittle to your Home Screen and come back to the moments that matter.</small>
+            <small>
+              Add Everlittle to your Home Screen and come back to the moments that matter.
+            </small>
           </div>
           <button
             className="pwa-prompt-action"

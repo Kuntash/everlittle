@@ -339,7 +339,8 @@ describe("route-scoped tenant isolation", () => {
     );
     expect(upload.status).toBe(413);
     expect(await upload.json()).toEqual({
-      error: "This upload would exceed your family's 25 GB storage allowance.",
+      error:
+        "This upload would exceed your family's storage allowance. Remove a file to make room.",
     });
 
     await env.DB.prepare(
@@ -414,10 +415,233 @@ describe("route-scoped tenant isolation", () => {
     expect(memory.status).toBe(201);
   });
 
-  it("keeps unsubscribed families read-only while preserving existing content", async () => {
+  it("lets free families save memories, enforces 100 MB, and unlocks paid storage", async () => {
+    const family = await createFamily("free-family@example.com", "Free family", "free-family");
     await env.DB.prepare(
       "UPDATE archive_subscription SET status = 'complimentary' WHERE archive_id = ?",
     )
+      .bind(family.archiveId)
+      .run();
+    const path = `/api/families/${family.slug}/archive`;
+    const archive = await (await api(family, path)).json();
+    expect(archive).toMatchObject({
+      billing: { status: "complimentary", canCreateContent: true, limitBytes: 100 * 1024 * 1024 },
+    });
+    const memory = await api(family, `${path}/memories`, {
+      method: "POST",
+      body: JSON.stringify({
+        childId: family.childId,
+        kind: "photo",
+        title: "First photo",
+        audience: "family",
+        happenedAt: new Date().toISOString(),
+      }),
+    });
+    expect(memory.status).toBe(201);
+    const { id } = (await memory.json()) as { id: string };
+    const upload = () =>
+      api(family, `${path}/memories/${id}/media`, {
+        method: "PUT",
+        body: new Uint8Array([1, 2]),
+        headers: { "content-length": "2", "content-type": "image/jpeg" },
+      });
+    expect((await upload()).status).toBe(201);
+    // Fill the allowance using metadata instead of allocating a 100 MB test file.
+    await env.DB.prepare("UPDATE media_asset SET byte_size = ? WHERE memory_id = ?")
+      .bind(100 * 1024 * 1024, id)
+      .run();
+    const second = await api(family, `${path}/memories`, {
+      method: "POST",
+      body: JSON.stringify({
+        childId: family.childId,
+        kind: "photo",
+        title: "Another photo",
+        audience: "family",
+        happenedAt: new Date().toISOString(),
+      }),
+    });
+    expect(second.status).toBe(201);
+    const secondId = ((await second.json()) as { id: string }).id;
+    const nextUpload = () =>
+      api(family, `${path}/memories/${secondId}/media`, {
+        method: "PUT",
+        body: new Uint8Array([3]),
+        headers: { "content-length": "1", "content-type": "image/jpeg" },
+      });
+    const blocked = await nextUpload();
+    expect(blocked.status).toBe(413);
+    expect(await blocked.json()).toMatchObject({ error: expect.stringContaining("free 100 MB") });
+    // Quota never hides or deletes existing memories.
+    expect((await api(family, path)).status).toBe(200);
+    await env.DB.prepare("UPDATE archive_subscription SET status = 'active' WHERE archive_id = ?")
+      .bind(family.archiveId)
+      .run();
+    expect((await nextUpload()).status).toBe(201);
+    expect(await (await api(family, path)).json()).toMatchObject({
+      billing: { limitBytes: 25 * 1024 * 1024 * 1024 },
+    });
+  });
+
+  it("does not let concurrent free uploads spend the same remaining space", async () => {
+    const family = await createFamily("free-race@example.com", "Free race", "free-race");
+    await env.DB.prepare(
+      "UPDATE archive_subscription SET status = 'complimentary' WHERE archive_id = ?",
+    )
+      .bind(family.archiveId)
+      .run();
+    const path = `/api/families/${family.slug}/archive/memories`;
+    const create = async () => {
+      const response = await api(family, path, {
+        method: "POST",
+        body: JSON.stringify({
+          childId: family.childId,
+          kind: "photo",
+          title: "Photo",
+          audience: "family",
+          happenedAt: new Date().toISOString(),
+        }),
+      });
+      return ((await response.json()) as { id: string }).id;
+    };
+    const baseline = await create();
+    await env.DB.prepare(
+      "INSERT INTO media_asset (id,archive_id,memory_id,object_key,media_type,content_type,byte_size) VALUES (?, ?, ?, ?, 'image', 'image/jpeg', ?)",
+    )
+      .bind(
+        crypto.randomUUID(),
+        family.archiveId,
+        baseline,
+        `archives/${family.archiveId}/${baseline}/quota-fixture.jpg`,
+        100 * 1024 * 1024 - 3,
+      )
+      .run();
+    const ids = await Promise.all([create(), create()]);
+    const uploads = await Promise.all(
+      ids.map((id) =>
+        api(family, `${path}/${id}/media`, {
+          method: "PUT",
+          body: new Uint8Array([1, 2]),
+          headers: { "content-length": "2", "content-type": "image/jpeg" },
+        }),
+      ),
+    );
+    expect(uploads.map((response) => response.status).sort((a, b) => a - b)).toEqual([201, 413]);
+    const usage = await env.DB.prepare(
+      "SELECT SUM(byte_size + thumbnail_byte_size) AS bytes FROM media_asset WHERE archive_id = ?",
+    )
+      .bind(family.archiveId)
+      .first<{ bytes: number }>();
+    expect(usage?.bytes).toBe(100 * 1024 * 1024 - 1);
+  });
+
+  it("uploads a video over 50 MB in chunks and checks ownership, part sizes, and quota again at completion", async () => {
+    const family = await createFamily("multipart@example.com", "Video family", "video-family");
+    const base = `/api/families/${family.slug}/archive/memories`;
+    async function memory() {
+      const response = await api(family, base, {
+        method: "POST",
+        body: JSON.stringify({
+          childId: family.childId,
+          kind: "video",
+          title: "A long video",
+          audience: "family",
+          happenedAt: new Date().toISOString(),
+        }),
+      });
+      expect(response.status).toBe(201);
+      return ((await response.json()) as { id: string }).id;
+    }
+    const memoryId = await memory();
+    const byteSize = 51 * 1024 * 1024;
+    const start = await api(family, `${base}/${memoryId}/media/uploads`, {
+      method: "POST",
+      body: JSON.stringify({ byteSize, contentType: "video/mp4", fileName: "first-steps.mp4" }),
+    });
+    expect(start.status).toBe(201);
+    const session = (await start.json()) as { id: string; partSize: number };
+    const path = `${base}/${memoryId}/media/uploads/${session.id}`;
+    expect((await api(familyB, path, { method: "POST" })).status).toBe(401);
+    expect(
+      (await api(familyB, path.replace(family.slug, familyB.slug), { method: "POST" })).status,
+    ).toBe(404);
+    expect((await api(family, path, { method: "POST" })).status).toBe(400);
+    expect(
+      (
+        await api(family, `${path}/parts/1`, {
+          method: "PUT",
+          headers: { "content-length": "1" },
+          body: new Uint8Array([1]),
+        })
+      ).status,
+    ).toBe(400);
+    for (let offset = 0, part = 1; offset < byteSize; offset += session.partSize, part++) {
+      const size = Math.min(session.partSize, byteSize - offset);
+      expect(
+        (
+          await api(family, `${path}/parts/${part}`, {
+            method: "PUT",
+            headers: { "content-length": String(size) },
+            body: new Uint8Array(size),
+          })
+        ).status,
+      ).toBe(200);
+    }
+    const finish = await api(family, path, { method: "POST" });
+    expect(finish.status).toBe(201);
+    const asset = (await finish.json()) as { id: string };
+    const stored = await env.DB.prepare(
+      "SELECT object_key, byte_size FROM media_asset WHERE id = ?",
+    )
+      .bind(asset.id)
+      .first<{ object_key: string; byte_size: number }>();
+    expect(stored?.byte_size).toBe(byteSize);
+    expect((await env.MEDIA.head(stored!.object_key))?.size).toBe(byteSize);
+    expect((await api(family, path, { method: "POST" })).status).toBe(404);
+    // The completed video remains intact if the completion request is repeated.
+    expect((await env.MEDIA.head(stored!.object_key))?.size).toBe(byteSize);
+
+    await env.DB.prepare(
+      "UPDATE archive_subscription SET status = 'complimentary' WHERE archive_id = ?",
+    )
+      .bind(family.archiveId)
+      .run();
+    const secondId = await memory();
+    const rejected = await api(family, `${base}/${secondId}/media/uploads`, {
+      method: "POST",
+      body: JSON.stringify({ byteSize, contentType: "video/mp4", fileName: "too-large.mp4" }),
+    });
+    expect(rejected.status).toBe(413);
+    const next = await api(family, `${base}/${secondId}/media/uploads`, {
+      method: "POST",
+      body: JSON.stringify({ byteSize: 2, contentType: "video/mp4", fileName: "small.mp4" }),
+    });
+    const nextSession = (await next.json()) as { id: string };
+    const nextPath = `${base}/${secondId}/media/uploads/${nextSession.id}`;
+    expect(
+      (
+        await api(family, `${nextPath}/parts/1`, {
+          method: "PUT",
+          headers: { "content-length": "2" },
+          body: new Uint8Array([1, 2]),
+        })
+      ).status,
+    ).toBe(200);
+    const staged = await env.DB.prepare("SELECT object_key FROM media_upload WHERE id = ?")
+      .bind(nextSession.id)
+      .first<{ object_key: string }>();
+    // Another upload uses the remaining quota while this video is transferring.
+    await env.DB.prepare("UPDATE media_asset SET byte_size = ? WHERE id = ?")
+      .bind(100 * 1024 * 1024, asset.id)
+      .run();
+    expect((await api(family, nextPath, { method: "POST" })).status).toBe(413);
+    expect(await env.MEDIA.head(staged!.object_key)).toBeNull();
+    expect(
+      await env.DB.prepare("SELECT id FROM media_upload WHERE id = ?").bind(nextSession.id).first(),
+    ).toBeNull();
+  }, 60000);
+
+  it("keeps canceled subscriptions read-only while preserving existing content", async () => {
+    await env.DB.prepare("UPDATE archive_subscription SET status = 'canceled' WHERE archive_id = ?")
       .bind(familyA.archiveId)
       .run();
 
@@ -428,7 +652,7 @@ describe("route-scoped tenant isolation", () => {
         billing: { canCreateContent: boolean; status: string };
         memories: Array<{ id: string }>;
       };
-      expect(archive.billing).toMatchObject({ canCreateContent: false, status: "complimentary" });
+      expect(archive.billing).toMatchObject({ canCreateContent: false, status: "canceled" });
       expect(archive.memories.length).toBeGreaterThan(0);
 
       const memory = await api(familyA, `/api/families/${familyA.slug}/archive/memories`, {

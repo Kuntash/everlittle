@@ -1,4 +1,5 @@
 type PwaInstallContext = {
+  isOnboarding?: boolean;
   dismissed: boolean;
   hasInstallPrompt: boolean;
   isAuthenticated: boolean;
@@ -7,11 +8,14 @@ type PwaInstallContext = {
 };
 
 export function shouldOfferPwaInstall({
+  isOnboarding = false,
   dismissed,
   hasInstallPrompt,
   isAuthenticated,
   isIos,
   standalone,
 }: PwaInstallContext) {
-  return isAuthenticated && !standalone && !dismissed && (hasInstallPrompt || isIos);
+  return (
+    !isOnboarding && isAuthenticated && !standalone && !dismissed && (hasInstallPrompt || isIos)
+  );
 }

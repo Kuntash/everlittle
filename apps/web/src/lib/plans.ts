@@ -1,3 +1,5 @@
+export const FREE_PLAN = { storageLimitBytes: 100 * 1024 * 1024, storageLabel: "100 MB" } as const;
+
 export const FAMILY_PLAN = {
   key: "family",
   monthlyPriceUsd: 6,
@@ -11,7 +13,7 @@ export function canCreateArchiveContent(
   status: BillingStatus,
   trialEndsAt: string | null,
 ): boolean {
-  if (status === "active") return true;
+  if (status === "active" || status === "complimentary") return true;
   if (status !== "trialing" || !trialEndsAt) return false;
   return new Date(trialEndsAt).valueOf() > Date.now();
 }

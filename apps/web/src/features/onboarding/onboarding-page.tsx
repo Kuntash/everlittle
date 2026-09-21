@@ -18,7 +18,7 @@ type Draft = {
   profileKind?: "child" | "vault" | null;
 };
 
-const sections = ["Your archive", "Memory focus", "Privacy"] as const;
+const sections = ["Family", "Memories", "Finish"] as const;
 
 export function Onboarding() {
   const posthog = usePostHog();
@@ -35,7 +35,7 @@ export function Onboarding() {
   const [timezone, setTimezone] = useState(
     () => Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC",
   );
-  const [enablePin, setEnablePin] = useState(true);
+  const [enablePin, setEnablePin] = useState(false);
   const [childPin, setChildPin] = useState("");
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -124,69 +124,86 @@ export function Onboarding() {
 
   function updateFamilyName(value: string) {
     setFamilyName(value);
-    if (!slugEdited) setFamilySlug(toSlug(value));
+    if (!slugEdited) {
+      setSlugAvailable(null);
+      setFamilySlug(toSlug(value));
+    }
   }
 
   async function saveDraft(nextSection: number) {
     setError("");
     setSaving(true);
-    const response = await fetch("/api/onboarding", {
-      method: "PATCH",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        familyName: familyName || undefined,
-        familySlug: familySlug || undefined,
-        childName: childName || undefined,
-        childBirthDate: childBirthDate || undefined,
-        profileKind,
-        timezone: timezone || undefined,
-      }),
-    });
-    if (!response.ok) {
-      posthog?.capture("archive_onboarding_failed", {
-        reason: response.status === 409 ? "conflict" : "request_rejected",
-        step: section,
+    try {
+      const response = await fetch("/api/onboarding", {
+        method: "PATCH",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          familyName: familyName || undefined,
+          familySlug: familySlug || undefined,
+          childName: childName || undefined,
+          childBirthDate: childBirthDate || undefined,
+          profileKind,
+          timezone: timezone || undefined,
+        }),
       });
-      setError(await responseMessage(response));
+      if (!response.ok) {
+        posthog?.capture("archive_onboarding_failed", {
+          reason: response.status === 409 ? "conflict" : "request_rejected",
+          step: section,
+        });
+        setError(await responseMessage(response));
+        setSaving(false);
+        return;
+      }
+      setSection(nextSection);
       setSaving(false);
-      return;
+    } catch {
+      setError("Couldn’t connect. Please try again.");
+      posthog?.capture("archive_onboarding_failed", { reason: "network_error", step: section });
+    } finally {
+      setSaving(false);
     }
-    setSection(nextSection);
-    setSaving(false);
   }
 
   async function complete(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
     setSaving(true);
-    const response = await fetch("/api/onboarding", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({
-        familyName,
-        familySlug,
-        profileKind,
-        childName: profileKind === "child" ? childName : undefined,
-        childBirthDate: profileKind === "child" ? childBirthDate : undefined,
-        timezone,
-        childPin: profileKind === "child" && enablePin ? childPin : "",
-      }),
-    });
-    if (!response.ok) {
-      posthog?.capture("archive_onboarding_failed", {
-        reason: response.status === 409 ? "conflict" : "request_rejected",
-        step: section,
+    try {
+      const response = await fetch("/api/onboarding", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          familyName,
+          familySlug,
+          profileKind,
+          childName: profileKind === "child" ? childName : undefined,
+          childBirthDate: profileKind === "child" ? childBirthDate : undefined,
+          timezone,
+          childPin: profileKind === "child" && enablePin ? childPin : "",
+        }),
       });
-      setError(await responseMessage(response));
+      if (!response.ok) {
+        posthog?.capture("archive_onboarding_failed", {
+          reason: response.status === 409 ? "conflict" : "request_rejected",
+          step: section,
+        });
+        setError(await responseMessage(response));
+        setSaving(false);
+        return;
+      }
+      const result = (await response.json()) as { archiveSlug: string };
+      posthog?.capture("archive_onboarding_submitted", {
+        archive_profile_kind: profileKind,
+        child_pin_enabled: profileKind === "child" && enablePin,
+      });
+      location.assign(`/${encodeURIComponent(result.archiveSlug)}`);
+    } catch {
+      setError("Couldn’t connect. Please try again.");
+      posthog?.capture("archive_onboarding_failed", { reason: "network_error", step: section });
+    } finally {
       setSaving(false);
-      return;
     }
-    const result = (await response.json()) as { archiveSlug: string };
-    posthog?.capture("archive_onboarding_submitted", {
-      archive_profile_kind: profileKind,
-      child_pin_enabled: profileKind === "child" && enablePin,
-    });
-    location.assign(`/${encodeURIComponent(result.archiveSlug)}`);
   }
 
   if (loading || session.isPending) {
@@ -203,7 +220,7 @@ export function Onboarding() {
         {sections.map((label, index) => (
           <button
             aria-current={section === index ? "step" : undefined}
-            disabled={index > section}
+            disabled={saving || index > section}
             key={label}
             onClick={() => setSection(index)}
             type="button"
@@ -216,29 +233,28 @@ export function Onboarding() {
 
       {section === 0 ? (
         <section className="onboarding-panel">
-          <p className="eyebrow">Begin with a home</p>
-          <h1>Name your family archive</h1>
-          <p className="onboarding-intro">
-            This name stays private. The address is what your family will use to open it.
-          </p>
+          <h1>What’s your family name?</h1>
+          <p className="onboarding-intro">Start with 100 MB free. Invite family after setup.</p>
           <div className="onboarding-fields">
             <label>
               Family name
               <Input
                 autoFocus
+                maxLength={100}
                 onChange={(event) => updateFamilyName(event.target.value)}
                 placeholder="The Norbu family"
                 value={familyName}
               />
             </label>
             <label>
-              Family address
+              Archive address
               <div className="slug-field">
                 <span>geteverlittle.com/</span>
                 <Input
                   aria-describedby="slug-status"
                   onChange={(event) => {
                     setSlugEdited(true);
+                    setSlugAvailable(null);
                     setFamilySlug(toSlug(event.target.value));
                   }}
                   placeholder="norbu-family"
@@ -250,10 +266,10 @@ export function Onboarding() {
                 id="slug-status"
               >
                 {slugAvailable === true
-                  ? "This address is available."
+                  ? "Available"
                   : slugAvailable === false
-                    ? "That address is not available."
-                    : "Use 3-48 lowercase letters, numbers, or hyphens."}
+                    ? "Already taken. Try another."
+                    : "3–48 letters, numbers or hyphens."}
               </small>
             </label>
           </div>
@@ -264,26 +280,28 @@ export function Onboarding() {
           ) : null}
           <button
             className="primary-button"
-            disabled={saving || !familyName || slugAvailable !== true}
+            disabled={saving || !familyName.trim() || slugAvailable !== true}
             onClick={() => void saveDraft(1)}
             type="button"
           >
-            {saving ? "Saving…" : "Choose what to keep"} <ArrowRight size={18} />
+            {saving ? "Saving…" : "Continue"} <ArrowRight size={18} />
           </button>
         </section>
       ) : null}
 
       {section === 1 ? (
         <section className="onboarding-panel">
-          <button className="onboarding-back" onClick={() => setSection(0)} type="button">
+          <button
+            className="onboarding-back"
+            disabled={saving}
+            onClick={() => setSection(0)}
+            type="button"
+          >
             <ArrowLeft size={15} /> Family details
           </button>
-          <p className="eyebrow">Make it yours</p>
-          <h1>What kind of archive are you beginning?</h1>
-          <p className="onboarding-intro">
-            Everlittle can hold a child’s story or simply be a private memory vault for the two of
-            you. You can add a child later.
-          </p>
+
+          <h1>Who are you saving memories for?</h1>
+          <p className="onboarding-intro">You can add more people later.</p>
           <div className="onboarding-fields">
             <label className="onboarding-choice">
               <input
@@ -296,10 +314,8 @@ export function Onboarding() {
                 type="radio"
               />
               <span>
-                <strong>Our memory vault</strong>
-                <small>
-                  A shared place for the moments, trips, notes, and years you keep together.
-                </small>
+                <strong>Our family</strong>
+                <small>Photos and stories for everyone.</small>
               </span>
               <HeartIcon />
             </label>
@@ -309,13 +325,13 @@ export function Onboarding() {
                 name="profile-kind"
                 onChange={() => {
                   setProfileKind("child");
-                  setEnablePin(true);
+                  setEnablePin(false);
                 }}
                 type="radio"
               />
               <span>
-                <strong>A child’s story</strong>
-                <small>Keep memories for a child to explore now or grow into later.</small>
+                <strong>Our child</strong>
+                <small>Their childhood, saved in one place.</small>
               </span>
               <ChildIcon />
             </label>
@@ -333,6 +349,7 @@ export function Onboarding() {
                 <label>
                   Date of birth
                   <DateInput
+                    aria-label="Date of birth"
                     max={new Date().toISOString().slice(0, 10)}
                     onChange={(event) => setChildBirthDate(event.target.value)}
                     type="date"
@@ -349,30 +366,41 @@ export function Onboarding() {
           ) : null}
           <button
             className="primary-button"
-            disabled={saving || (profileKind === "child" && (!childName || !childBirthDate))}
+            disabled={
+              saving ||
+              (profileKind === "child" &&
+                (!childName.trim() ||
+                  !childBirthDate ||
+                  childBirthDate > new Date().toISOString().slice(0, 10)))
+            }
             onClick={() => void saveDraft(2)}
             type="button"
           >
-            {saving ? "Saving…" : "Set privacy"} <ArrowRight size={18} />
+            {saving ? "Saving…" : "Continue"} <ArrowRight size={18} />
           </button>
         </section>
       ) : null}
 
       {section === 2 ? (
         <section className="onboarding-panel">
-          <button className="onboarding-back" onClick={() => setSection(1)} type="button">
-            <ArrowLeft size={15} /> Memory focus
+          <button
+            className="onboarding-back"
+            disabled={saving}
+            onClick={() => setSection(1)}
+            type="button"
+          >
+            <ArrowLeft size={15} /> Back
           </button>
-          <p className="eyebrow">Private by default</p>
+
           <h1>
             {profileKind === "child"
-              ? `Choose how ${childName || "your child"} enters`
-              : "Set your archive privacy"}
+              ? "Ready for your first memory?"
+              : "Ready for your first memory?"}
           </h1>
           <p className="onboarding-intro">
             {profileKind === "child"
-              ? "Adults sign in with email. A child can use a private six-digit PIN without an account."
-              : "Only invited adults can enter your memory vault. You can change sharing choices later."}
+              ? "Child access is optional. You can set it up later."
+              : "Only the people you invite can see your memories."}
           </p>
           <form className="onboarding-fields" onSubmit={complete}>
             {profileKind === "child" ? (
@@ -383,8 +411,8 @@ export function Onboarding() {
                   type="checkbox"
                 />
                 <span>
-                  <strong>Enable child access</strong>
-                  <small>Only memories shared with children will appear.</small>
+                  <strong>Let my child sign in</strong>
+                  <small>A PIN opens only the memories you choose.</small>
                 </span>
                 <LockKeyhole size={20} />
               </label>
@@ -404,20 +432,17 @@ export function Onboarding() {
                   secretLabel="PIN"
                   value={childPin}
                 />
-                <small>Keep this separate from your account password.</small>
+                <small>Use a separate six-digit PIN.</small>
               </label>
             ) : null}
             <label>
               Family timezone
               <Input onChange={(event) => setTimezone(event.target.value)} value={timezone} />
-              <small>Used for memory dates and time capsules.</small>
+              <small>For dates and scheduled letters.</small>
             </label>
             <div className="privacy-note">
               <ShieldCheck size={19} />
-              <p>
-                <strong>Your archive starts private.</strong> Nothing is public unless an adult
-                deliberately creates a share link.
-              </p>
+              <p>100 MB free. No card. No expiry.</p>
             </div>
             {error ? (
               <p className="form-error" role="alert">
@@ -429,7 +454,7 @@ export function Onboarding() {
               disabled={saving || (profileKind === "child" && enablePin && childPin.length !== 6)}
               type="submit"
             >
-              {saving ? "Creating your archive…" : "Create family archive"} <ArrowRight size={18} />
+              {saving ? "Creating your archive…" : "Open my free archive"} <ArrowRight size={18} />
             </button>
           </form>
         </section>
@@ -455,7 +480,11 @@ function ChildIcon() {
 }
 
 function OnboardingShell({ children }: { children: React.ReactNode }) {
-  return <AuthFrame>{children}</AuthFrame>;
+  return (
+    <AuthFrame>
+      <div className="onboarding-flow">{children}</div>
+    </AuthFrame>
+  );
 }
 
 function toSlug(value: string) {

@@ -1,0 +1,164 @@
+/* Setup uses the same apricot tokens and controls as account access. */
+.onboarding-flow {
+  width: 100%;
+  color: var(--ap-ink);
+}
+.onboarding-flow .onboarding-progress {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 28px;
+}
+.onboarding-flow .onboarding-progress button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  min-height: 42px;
+  padding: 8px;
+  border: 1px solid var(--ap-border);
+  border-radius: 12px;
+  background: transparent;
+  color: var(--ap-muted);
+  font-size: 13px;
+}
+.onboarding-flow .onboarding-progress button[aria-current="step"] {
+  color: var(--ap-coral);
+  background: #f7e7df;
+  border-color: #dfb6a5;
+  font-weight: 700;
+}
+.onboarding-flow .onboarding-panel {
+  padding: 0;
+  background: transparent;
+}
+.onboarding-flow .onboarding-panel h1 {
+  color: var(--ap-ink);
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.15;
+  margin: 0 0 12px;
+}
+.onboarding-flow .onboarding-intro {
+  color: var(--ap-muted);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+.onboarding-flow .onboarding-fields {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+}
+.onboarding-flow .onboarding-fields > label {
+  margin: 0;
+  font-size: 13px;
+}
+.onboarding-flow .onboarding-fields > label:not(.onboarding-choice) {
+  display: grid;
+  gap: 8px;
+  color: var(--ap-ink);
+}
+.onboarding-flow .onboarding-fields input {
+  margin: 0;
+  min-width: 0;
+}
+.onboarding-flow .onboarding-fields small {
+  color: var(--ap-muted);
+  font-size: 12px;
+  font-weight: 400;
+}
+.onboarding-flow .onboarding-choice {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--ap-border);
+  border-radius: 14px;
+  background: var(--ap-card);
+  cursor: pointer;
+}
+.onboarding-flow .onboarding-choice:has(input:checked) {
+  border-color: #dfb6a5;
+  background: #fcf0e7;
+}
+.onboarding-flow .onboarding-choice input {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  padding: 0;
+  accent-color: var(--ap-coral);
+}
+.onboarding-flow .onboarding-choice strong,
+.onboarding-flow .onboarding-choice > svg,
+.onboarding-flow .choice-symbol {
+  color: var(--ap-ink);
+}
+.onboarding-flow .onboarding-choice span {
+  display: grid;
+  gap: 4px;
+}
+.onboarding-flow .onboarding-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ap-muted);
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+.onboarding-flow .slug-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.onboarding-flow .slug-field > span {
+  color: var(--ap-muted);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.onboarding-flow .slug-field input {
+  width: 100%;
+}
+.onboarding-flow .privacy-note {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ap-muted);
+  font-size: 12px;
+}
+.onboarding-flow .privacy-note p {
+  margin: 0;
+}
+.onboarding-flow .privacy-note svg {
+  flex-shrink: 0;
+}
+.onboarding-flow .field-status.error,
+.onboarding-flow .form-error {
+  color: #a63e2c;
+}
+.onboarding-flow .onboarding-panel > .primary-button,
+.onboarding-flow .onboarding-fields > .primary-button {
+  margin-top: 24px;
+}
+.onboarding-flow .date-trigger {
+  width: 100%;
+}
+.onboarding-flow .date-validation {
+  margin: 0;
+  width: 1px;
+  height: 1px;
+  min-height: 0;
+  padding: 0;
+}
+.onboarding-flow button:focus-visible {
+  outline: 2px solid var(--ap-coral);
+  outline-offset: 3px;
+}
+@media (max-width: 400px) {
+  .onboarding-flow .slug-field {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+}

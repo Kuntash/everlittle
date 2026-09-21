@@ -18,7 +18,7 @@ import {
 } from "@/lib/billing";
 import { getDeploymentConfig } from "@/lib/deployment";
 import { sendInvitationEmail } from "@/lib/invitation-email";
-import { canCreateArchiveContent, canStoreMedia, FAMILY_PLAN } from "@/lib/plans";
+import { canCreateArchiveContent, canStoreMedia, FAMILY_PLAN, FREE_PLAN } from "@/lib/plans";
 import { getRuntimeEnv, type RuntimeEnv } from "@/lib/runtime-env";
 
 const invitationSchema = z.object({
@@ -73,7 +73,7 @@ const onboardingCompletionSchema = z.object({
   childPin: z.union([z.literal(""), z.string().regex(/^\d{6}$/)]),
 });
 
-const MAX_MEDIA_BYTES = 50 * 1024 * 1024;
+const MEDIA_PART_BYTES = 8 * 1024 * 1024;
 const MAX_THUMBNAIL_BYTES = 2 * 1024 * 1024;
 const CHILD_SESSION_COOKIE = "everlittle.child_session";
 const CHILD_SESSION_SECONDS = 60 * 60 * 24 * 7;
@@ -326,6 +326,49 @@ export async function handleArchiveApi(request: Request): Promise<Response | nul
   if (mediaThumbnailMatch && request.method === "GET") {
     return serveMediaThumbnail(request, mediaThumbnailMatch[1]);
   }
+
+  const uploadStartMatch = url.pathname.match(
+    /^\/api\/archive\/memories\/([^/]+)\/media\/uploads$/,
+  );
+  if (uploadStartMatch && request.method === "POST") {
+    const input = (await request.json().catch(() => null)) as {
+      byteSize?: number;
+      contentType?: string;
+      fileName?: string;
+      replaceId?: string;
+    } | null;
+    if (
+      !input ||
+      !Number.isSafeInteger(input.byteSize) ||
+      Number(input.byteSize) < 1 ||
+      typeof input.fileName !== "string" ||
+      typeof input.contentType !== "string" ||
+      (input.replaceId !== undefined && typeof input.replaceId !== "string")
+    ) {
+      return Response.json({ error: "Choose a supported file." }, { status: 400 });
+    }
+    const headers = new Headers(request.headers);
+    headers.set("content-length", String(input.byteSize));
+    headers.set("content-type", input.contentType);
+    headers.set("x-everlittle-file-name", encodeURIComponent(input.fileName));
+    headers.delete("x-everlittle-replace-media-id");
+    if (input.replaceId) headers.set("x-everlittle-replace-media-id", input.replaceId);
+    return uploadMemoryMedia(
+      new Request(request.url, { method: "PUT", headers, body: "" }),
+      uploadStartMatch[1],
+      { start: true },
+    );
+  }
+  const uploadPartMatch = url.pathname.match(
+    /^\/api\/archive\/memories\/([^/]+)\/media\/uploads\/([^/]+)(?:\/parts\/(\d+))?$/,
+  );
+  if (uploadPartMatch)
+    return handleMultipartUpload(
+      request,
+      uploadPartMatch[1],
+      uploadPartMatch[2],
+      uploadPartMatch[3],
+    );
 
   const memoryMediaMatch = url.pathname.match(/^\/api\/archive\/memories\/([^/]+)\/media$/);
   if (memoryMediaMatch && request.method === "PUT") {
@@ -1831,7 +1874,11 @@ async function deleteCapsule(request: Request, capsuleId: string): Promise<Respo
   return Response.json({ deleted: true });
 }
 
-async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Response> {
+async function uploadMemoryMedia(
+  request: Request,
+  memoryId: string,
+  staged?: { start?: boolean; objectKey?: string },
+): Promise<Response> {
   if (!isSameOrigin(request)) return forbidden();
   const runtime = getRuntimeEnv();
   const context = await getMembershipContext(request);
@@ -1864,9 +1911,6 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
       { status: 400 },
     );
   }
-  if (byteSize > MAX_MEDIA_BYTES) {
-    return Response.json({ error: "Media files must be 50 MB or smaller." }, { status: 413 });
-  }
   if (
     (memory.kind === "photo" && media.mediaType !== "image") ||
     (memory.kind === "voice" && media.mediaType !== "audio") ||
@@ -1895,23 +1939,71 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
   );
   if (storageResponse) return storageResponse;
 
+  if (staged?.start) {
+    // R2 permits up to 10,000 parts. Eight MiB parts cover the entire hosted quota.
+    if (Math.ceil(byteSize / MEDIA_PART_BYTES) > 10000)
+      return Response.json(
+        { error: "This file exceeds the storage provider’s upload capacity." },
+        { status: 413 },
+      );
+    const id = crypto.randomUUID();
+    const objectKey = `archives/${context.archiveId}/${memoryId}/${id}.${media.extension}`;
+    const upload = await runtime.MEDIA.createMultipartUpload(objectKey, {
+      httpMetadata: { contentType },
+      customMetadata: { archiveId: context.archiveId, memoryId, uploadedByUserId: context.user.id },
+    });
+    try {
+      await runtime.DB.prepare(
+        `INSERT INTO media_upload (id, archive_id, memory_id, user_id, object_key, upload_id, content_type, file_name, byte_size, part_size, replace_id, expires_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      )
+        .bind(
+          id,
+          context.archiveId,
+          memoryId,
+          context.user.id,
+          objectKey,
+          upload.uploadId,
+          contentType,
+          fileName,
+          byteSize,
+          MEDIA_PART_BYTES,
+          replaceId,
+          Date.now() + 24 * 60 * 60 * 1000,
+        )
+        .run();
+    } catch (error) {
+      await upload.abort();
+      throw error;
+    }
+    return Response.json({ id, partSize: MEDIA_PART_BYTES }, { status: 201 });
+  }
+
+  // Recheck the total atomically when metadata commits: simultaneous uploads
+  // must not each consume the same remaining free space.
+  const { limitBytes } = await getArchiveStorage(runtime.DB, context.archiveId);
+  const quotaCondition = `(? IS NULL OR
+    (SELECT COALESCE(SUM(byte_size + thumbnail_byte_size), 0) FROM media_asset
+     WHERE archive_id = ? AND id != ?) + ? <= ?)`;
+  const quotaArgs = [limitBytes, context.archiveId, existing?.id ?? "", byteSize, limitBytes];
   const assetId = crypto.randomUUID();
-  const objectKey = `archives/${context.archiveId}/${memoryId}/${assetId}.${media.extension}`;
-  await runtime.MEDIA.put(objectKey, request.body, {
-    httpMetadata: { contentType },
-    customMetadata: {
-      archiveId: context.archiveId,
-      memoryId,
-      uploadedByUserId: context.user.id,
-    },
-  });
+  const objectKey =
+    staged?.objectKey ?? `archives/${context.archiveId}/${memoryId}/${assetId}.${media.extension}`;
+  if (!staged?.objectKey)
+    await runtime.MEDIA.put(objectKey, request.body, {
+      httpMetadata: { contentType },
+      customMetadata: {
+        archiveId: context.archiveId,
+        memoryId,
+        uploadedByUserId: context.user.id,
+      },
+    });
 
   try {
     const results = await runtime.DB.batch([
       existing
         ? runtime.DB.prepare(
             `UPDATE media_asset SET id = ?, object_key = ?, media_type = ?, content_type = ?,
-         byte_size = ?, thumbnail_byte_size = 0 WHERE id = ? AND archive_id = ?`,
+         byte_size = ?, thumbnail_byte_size = 0 WHERE id = ? AND archive_id = ? AND ${quotaCondition}`,
           ).bind(
             assetId,
             objectKey,
@@ -1920,11 +2012,12 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
             byteSize,
             existing.id,
             context.archiveId,
+            ...quotaArgs,
           )
         : runtime.DB.prepare(
             `INSERT INTO media_asset
           (id, archive_id, memory_id, object_key, media_type, content_type, byte_size)
-         VALUES (?, ?, ?, ?, ?, ?, ?)`,
+         SELECT ?, ?, ?, ?, ?, ?, ? WHERE ${quotaCondition}`,
           ).bind(
             assetId,
             context.archiveId,
@@ -1933,6 +2026,7 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
             media.mediaType,
             contentType,
             byteSize,
+            ...quotaArgs,
           ),
       auditStatement(runtime.DB, {
         id: crypto.randomUUID(),
@@ -1946,6 +2040,12 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
     ]);
     if (!results[0].meta.changes) {
       await runtime.MEDIA.delete(objectKey);
+      const quotaError = await enforceArchiveStorage(
+        runtime.DB,
+        context.archiveId,
+        Math.max(0, byteSize - (existing ? existing.byteSize + existing.thumbnailByteSize : 0)),
+      );
+      if (quotaError) return quotaError;
       return Response.json(
         { error: "The attachment changed. Reopen this memory before replacing it." },
         { status: 409 },
@@ -1968,6 +2068,143 @@ async function uploadMemoryMedia(request: Request, memoryId: string): Promise<Re
     );
   }
   return Response.json({ id: assetId, url: `/api/media/${assetId}` }, { status: 201 });
+}
+
+type MultipartSession = {
+  id: string;
+  archive_id: string;
+  memory_id: string;
+  user_id: string;
+  object_key: string;
+  upload_id: string;
+  content_type: string;
+  file_name: string;
+  byte_size: number;
+  part_size: number;
+  replace_id: string | null;
+  expires_at: number;
+  state: string;
+};
+
+async function handleMultipartUpload(
+  request: Request,
+  memoryId: string,
+  id: string,
+  part?: string,
+): Promise<Response> {
+  if (!isSameOrigin(request)) return forbidden();
+  const context = await getMembershipContext(request);
+  if (!context) return unauthorized();
+  if (context.role === "viewer") return forbidden();
+  const runtime = getRuntimeEnv();
+  const session = await runtime.DB.prepare(
+    `SELECT u.* FROM media_upload u JOIN memory m ON m.id = u.memory_id AND m.archive_id = u.archive_id WHERE u.id = ? AND u.memory_id = ? AND u.archive_id = ? AND u.user_id = ? AND m.created_by_user_id = ?`,
+  )
+    .bind(id, memoryId, context.archiveId, context.user.id, context.user.id)
+    .first<MultipartSession>();
+  if (!session) return Response.json({ error: "Upload not found." }, { status: 404 });
+  if (session.state !== "uploading")
+    return Response.json({ error: "This upload is being saved." }, { status: 409 });
+  const upload = runtime.MEDIA.resumeMultipartUpload(session.object_key, session.upload_id);
+  async function abort() {
+    await upload.abort().catch(() => undefined);
+    await runtime.DB.prepare("DELETE FROM media_upload WHERE id = ?").bind(id).run();
+  }
+  if (request.method === "DELETE" && !part) {
+    await abort();
+    return Response.json({ ok: true });
+  }
+  if (session.expires_at < Date.now()) {
+    await abort();
+    return Response.json({ error: "This upload expired. Choose the file again." }, { status: 410 });
+  }
+  const partCount = Math.ceil(session.byte_size / session.part_size);
+  if (request.method === "PUT" && part) {
+    const number = Number(part);
+    const size =
+      number === partCount
+        ? session.byte_size - (number - 1) * session.part_size
+        : session.part_size;
+    if (
+      !Number.isSafeInteger(number) ||
+      number < 1 ||
+      number > partCount ||
+      !request.body ||
+      Number(request.headers.get("content-length")) !== size
+    ) {
+      return Response.json({ error: "The upload part has an unexpected size." }, { status: 400 });
+    }
+    const result = await upload.uploadPart(number, request.body);
+    await runtime.DB.prepare(
+      "INSERT INTO media_upload_part (session_id, part_number, etag) VALUES (?, ?, ?) ON CONFLICT(session_id, part_number) DO UPDATE SET etag = excluded.etag",
+    )
+      .bind(id, number, result.etag)
+      .run();
+    return Response.json({ ok: true });
+  }
+  if (request.method !== "POST" || part)
+    return Response.json({ error: "Method not allowed." }, { status: 405 });
+  const { results } = await runtime.DB.prepare(
+    "SELECT part_number AS partNumber, etag FROM media_upload_part WHERE session_id = ? ORDER BY part_number",
+  )
+    .bind(id)
+    .all<R2UploadedPart>();
+  if (results.length !== partCount)
+    return Response.json({ error: "The upload is incomplete. Try again." }, { status: 400 });
+  const claim = await runtime.DB.prepare(
+    "UPDATE media_upload SET state = 'completing' WHERE id = ? AND state = 'uploading'",
+  )
+    .bind(id)
+    .run();
+  if (!claim.meta.changes)
+    return Response.json({ error: "This upload is being saved." }, { status: 409 });
+  try {
+    const object = await upload.complete(results);
+    if (object.size !== session.byte_size) {
+      await runtime.MEDIA.delete(session.object_key);
+      return Response.json({ error: "The uploaded file has an unexpected size." }, { status: 400 });
+    }
+    const headers = new Headers(request.headers);
+    headers.set("content-length", String(session.byte_size));
+    headers.set("content-type", session.content_type);
+    headers.set("x-everlittle-file-name", encodeURIComponent(session.file_name));
+    headers.delete("x-everlittle-replace-media-id");
+    if (session.replace_id) headers.set("x-everlittle-replace-media-id", session.replace_id);
+    // Reuse the same ownership, subscription, replacement, and atomic quota checks as a direct upload.
+    const response = await uploadMemoryMedia(
+      new Request(request.url, { method: "PUT", headers, body: "" }),
+      memoryId,
+      { objectKey: session.object_key },
+    );
+    if (!response.ok) await runtime.MEDIA.delete(session.object_key);
+    return response;
+  } catch (error) {
+    await runtime.MEDIA.delete(session.object_key);
+    throw error;
+  } finally {
+    await abort();
+  }
+}
+
+/** Bound cleanup work per cron tick; R2 also expires abandoned multipart uploads. */
+export async function cleanupExpiredMediaUploads(): Promise<void> {
+  const runtime = getRuntimeEnv();
+  const { results } = await runtime.DB.prepare(
+    "SELECT * FROM media_upload WHERE expires_at < ? LIMIT 50",
+  )
+    .bind(Date.now())
+    .all<MultipartSession>();
+  for (const session of results) {
+    await runtime.MEDIA.resumeMultipartUpload(session.object_key, session.upload_id)
+      .abort()
+      .catch(() => undefined);
+    // A worker can stop between R2 completion and the metadata commit.
+    const committed = await runtime.DB.prepare("SELECT id FROM media_asset WHERE object_key = ?")
+      .bind(session.object_key)
+      .first();
+    if (!committed) await runtime.MEDIA.delete(session.object_key);
+    await runtime.DB.prepare("DELETE FROM media_upload WHERE id = ?").bind(session.id).run();
+  }
 }
 
 async function uploadVideoThumbnail(request: Request, memoryId: string): Promise<Response> {
@@ -2292,14 +2529,17 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
 
   const billing = getBillingConfig(getRuntimeEnv());
 
-  const status = subscription?.status ?? "complimentary";
+  const status = subscription?.status ?? "canceled";
   const trialEndsAt = subscription?.trialEndsAt ?? null;
 
   return {
     plan: "family",
     status,
     usedBytes,
-    limitBytes: Number(subscription?.storageLimitBytes ?? FAMILY_PLAN.storageLimitBytes),
+    limitBytes:
+      status === "complimentary"
+        ? FREE_PLAN.storageLimitBytes
+        : Number(subscription?.storageLimitBytes ?? FAMILY_PLAN.storageLimitBytes),
     trialEndsAt,
     currentPeriodEndsAt: subscription?.currentPeriodEndsAt ?? null,
     interval: subscription?.interval ?? null,
@@ -2342,7 +2582,12 @@ async function enforceArchiveStorage(
   }
   if (storage.limitBytes !== null && storage.usedBytes + additionalBytes > storage.limitBytes) {
     return Response.json(
-      { error: "This upload would exceed your family's 25 GB storage allowance." },
+      {
+        error:
+          storage.status === "complimentary"
+            ? `Your free ${FREE_PLAN.storageLabel} is full. Upgrade to 25 GB in Family → Plan, or remove a file.`
+            : "This upload would exceed your family's storage allowance. Remove a file to make room.",
+      },
       { status: 413 },
     );
   }
@@ -2363,6 +2608,17 @@ async function deleteMemory(request: Request, memoryId: string): Promise<Respons
     .first<{ id: string; createdByUserId: string | null }>();
   if (!memory) return Response.json({ error: "Memory not found." }, { status: 404 });
   if (memory.createdByUserId !== context.user.id) return forbidden();
+
+  const uploads = await runtime.DB.prepare(
+    "SELECT object_key, upload_id FROM media_upload WHERE memory_id = ? AND archive_id = ?",
+  )
+    .bind(memoryId, context.archiveId)
+    .all<{ object_key: string; upload_id: string }>();
+  for (const upload of uploads.results) {
+    await runtime.MEDIA.resumeMultipartUpload(upload.object_key, upload.upload_id)
+      .abort()
+      .catch(() => undefined);
+  }
 
   const assets = await runtime.DB.prepare(
     "SELECT object_key AS objectKey FROM media_asset WHERE memory_id = ? AND archive_id = ?",

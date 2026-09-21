@@ -72,6 +72,8 @@ export function formatDate(value: string) {
 }
 
 export function billingStatusTitle(billing: ArchiveState["billing"]) {
+  if (billing.plan === "self-hosted") return "Self-hosted";
+  if (billing.status === "complimentary") return "Free plan";
   if (!billing.canManage) return "No paid subscription";
   if (billing.cancelAtPeriodEnd) return "Cancellation scheduled";
   if (billing.status === "past_due") return "Payment needs attention";
@@ -82,7 +84,10 @@ export function billingStatusTitle(billing: ArchiveState["billing"]) {
 }
 
 export function billingStatusDetail(billing: ArchiveState["billing"]) {
-  if (!billing.canManage) return "No charges or invoices. Choose a plan when you’re ready.";
+  if (billing.plan === "self-hosted") return "Storage on your own infrastructure.";
+  if (billing.status === "complimentary")
+    return "100 MB free. No card, no expiry. Upgrade to 25 GB for $6/month or $60/year.";
+  if (!billing.canManage) return "Choose a plan to resume adding memories.";
   if (billing.cancelAtPeriodEnd && billing.currentPeriodEndsAt) {
     return `Access continues until ${formatDate(billing.currentPeriodEndsAt)}.`;
   }

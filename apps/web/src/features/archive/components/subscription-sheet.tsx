@@ -24,7 +24,7 @@ export function SubscriptionSheet({
 
   return (
     <Modal title="Choose your family plan" busy={billingBusy !== null} onClose={onClose}>
-      <p>A little more room for photos, voices, and the stories you’ll tell again.</p>
+      <p>25 GB for photos, voice recordings and videos. Your saved memories stay in place.</p>
       <SlidingTabs
         label="Billing cycle"
         value={cycle}
@@ -33,7 +33,7 @@ export function SubscriptionSheet({
       />
       <div className="plan-selection">
         <h2>{cycle === "Yearly" ? "$60 / year" : "$6 / month"}</h2>
-        <p>{cycle === "Yearly" ? "Save $12 each year." : "A little at a time, each month."}</p>
+        <p>{cycle === "Yearly" ? "Save $12 each year." : "Cancel anytime."}</p>
       </div>
       {!isOwner && (
         <p className="muted">Ask the family owner to start or manage the subscription.</p>

@@ -50,6 +50,16 @@ export function Everlittle() {
       .finally(() => setInvitationChecked(true));
   }, [inviteToken]);
 
+  // Logo links always open the public landing page, including for signed-in parents.
+  if (
+    routeLocation.pathname === "/" &&
+    !inviteToken &&
+    !childModeRequested &&
+    platform?.deploymentMode === "hosted"
+  ) {
+    return <MarketingHome />;
+  }
+
   if (session.isPending || !platform || !childSession || !invitationChecked) {
     const isPublicHomepage = routeLocation.pathname === "/" && !inviteToken && !childModeRequested;
     return isPublicHomepage && !session.data?.user ? <MarketingHome /> : <Loading />;

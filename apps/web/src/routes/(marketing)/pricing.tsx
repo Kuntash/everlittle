@@ -16,7 +16,7 @@ export const Route = createFileRoute("/(marketing)/pricing")({
       {
         name: "description",
         content:
-          "Keep photos, voices, stories and letters together. $6/month or $60/year, with 25 GB and unlimited invited family members.",
+          "Start with 100 MB free. Upgrade to 25 GB for $6/month or $60/year. Photos, voices, stories and unlimited invited family members.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Everlittle" },
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/(marketing)/pricing")({
       {
         property: "og:description",
         content:
-          "Keep photos, voices, stories and letters together. $6/month or $60/year, with 25 GB and unlimited invited family members.",
+          "Start with 100 MB free. Upgrade to 25 GB for $6/month or $60/year. Photos, voices, stories and unlimited invited family members.",
       },
       {
         property: "og:image",
@@ -42,7 +42,7 @@ export const Route = createFileRoute("/(marketing)/pricing")({
       {
         name: "twitter:description",
         content:
-          "Keep photos, voices, stories and letters together. $6/month or $60/year, with 25 GB and unlimited invited family members.",
+          "Start with 100 MB free. Upgrade to 25 GB for $6/month or $60/year. Photos, voices, stories and unlimited invited family members.",
       },
       {
         name: "twitter:image",

@@ -222,9 +222,7 @@ export function SeoLandingPage({ page }: { page: SeoLandingPageContent }) {
 function MarketingNav() {
   return (
     <nav className="seo-story-nav" aria-label="Main navigation">
-      <a href="/" aria-label="Everlittle home">
-        <Brand compact />
-      </a>
+      <Brand compact />
       <div>
         <a href="/family-memory-app">How it works</a>
         <a href="/pricing">Pricing</a>
@@ -241,9 +239,7 @@ function MarketingFooter() {
   return (
     <footer className="seo-story-footer">
       <div>
-        <a href="/" aria-label="Everlittle home">
-          <Brand compact />
-        </a>
+        <Brand compact />
         <p>Made for the people who know the whole story.</p>
       </div>
       <nav aria-label="Family memory guides">

@@ -7,25 +7,15 @@ export function PrivacySection() {
         <Illustration scene="privacy" />
       </div>
       <div className="privacy-copy">
-        <h2>Their story belongs with your family.</h2>
-        <p>
-          Only the people you invite can enter your archive. You decide what appears in your child’s
-          view—and what stays sealed for later.
-        </p>
+        <h2>Your memories stay in the family.</h2>
+        <p>Invite the people you trust. Choose what your child can see.</p>
         <a className="text-button" href="/privacy">
           Read about privacy <ArrowRight size={18} />
         </a>
       </div>
       <div className="family-voices">
-        <h3>Everyone remembers a different part.</h3>
-        <dl>
-          <dt>Mom</dt>
-          <dd>I caught the little things.</dd>
-          <dt>Dad</dt>
-          <dd>I see the everyday adventures.</dd>
-          <dt>Grandpa</dt>
-          <dd>I share the stories from long ago.</dd>
-        </dl>
+        <h3>Private by default.</h3>
+
         <div className="privacy-points">
           <span>
             <Check size={15} /> No ads

@@ -5377,3 +5377,74 @@ body {
     padding: 0 12px;
   }
 }
+
+/* Clear free entry point alongside the existing paid storage plan. */
+.landing .pricing-section {
+  grid-template-columns: 1fr;
+}
+.landing .pricing-plans {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+.landing .pricing-plans .price-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 24px;
+  padding: 28px;
+  min-width: 0;
+}
+.landing .pricing-plans .price-card > div {
+  min-height: 100px;
+}
+.landing .pricing-plans .price-card ul {
+  flex: 1;
+  font-size: 14px;
+  gap: 12px;
+}
+.landing .pricing-plans .price-card li svg {
+  flex-shrink: 0;
+}
+.landing .pricing-plans .price-card p {
+  color: var(--ap-muted);
+  font-size: 13px;
+  margin: 10px 0 0;
+}
+.landing .pricing-plans .price-card button {
+  white-space: normal;
+}
+.landing .free-price-card {
+  border-color: #dfb6a5;
+}
+@media (max-width: 700px) {
+  .landing .pricing-plans {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Keep the privacy assurances legible at every breakpoint. */
+.apricot .family-voices {
+  min-width: 0;
+}
+.apricot .family-voices h3 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  line-height: 1.25;
+}
+.apricot .privacy-points {
+  display: grid;
+  gap: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.apricot .privacy-points span {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.apricot .privacy-points svg {
+  flex-shrink: 0;
+}

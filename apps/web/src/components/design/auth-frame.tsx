@@ -13,16 +13,16 @@ export function AuthFrame({ children }: { children: ReactNode }) {
           <div className="auth-drawing">
             <MemoryIllustration kind="Photo" size={320} />
           </div>
-          <p className="eyebrow">Keep what makes them, them.</p>
+          <p className="eyebrow">Your family’s memories</p>
           <h2>
-            Their first joke.
-            <br />A familiar voice.
-            <br />A day worth remembering.
+            Photos with a story.
+            <br />
+            Voices you can hear again.
           </h2>
-          <p>Save the details a photo can’t tell, with the people who remember them.</p>
+          <p>One private place to keep them together.</p>
           <div className="auth-footnote">
             <span />
-            Private by invitation. Made for your family.
+            Only the family you invite.
           </div>
         </aside>
         <main className="auth-form-area">

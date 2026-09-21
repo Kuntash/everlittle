@@ -4,10 +4,10 @@ export function ClosingSection({ start }: { start: (mode?: string) => void }) {
     <section className="final-cta">
       <Art name="box" />
       <h2>
-        Keep a moment <br />
-        you’ll want to return to.
+        Start with one photo. <br />
+        Keep the story, too.
       </h2>
-      <Button onClick={() => start()}>Create your archive</Button>
+      <Button onClick={() => start()}>Save your first memory</Button>
     </section>
   );
 }

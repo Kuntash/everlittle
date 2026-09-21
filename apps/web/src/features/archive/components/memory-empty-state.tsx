@@ -37,19 +37,15 @@ export function MemoryEmptyState({
           <MemoryIllustration kind="Keepsake" size={230} />
         </div>
         <div className="memory-beginning-copy">
-          <p className="memory-beginning-kicker">Every story starts somewhere</p>
-          <h2>
-            A little moment today.
-            <br />A treasure for tomorrow.
-          </h2>
+          <h2>Save your first memory.</h2>
           <p className="memory-beginning-description">
             {onCreateProfile
-              ? "Give your memories a home. Start with a profile, then keep your first little moment."
+              ? "Add a profile to start saving memories."
               : onStart
                 ? isVault
-                  ? "An ordinary afternoon. An old photograph. A story only you can tell. Start with one small thing."
-                  : "A sleepy smile. Their newest word. The sound of your voice. You don’t need a big occasion to begin."
-                : "Your family’s photos, voices and stories will gather here, ready to return to whenever you like."}
+                  ? "Choose a photo and add its story."
+                  : "A photo, their newest word, or a voice recording."
+                : "Memories your family shares will appear here."}
           </p>
           {onStart ? (
             <Button onClick={() => onStart("photo")}>
@@ -67,7 +63,7 @@ export function MemoryEmptyState({
       </div>
       {onStart && !compact ? (
         <div className="memory-beginning-prompts">
-          <p>Not sure where to start? Try one of these.</p>
+          <p>Or start with…</p>
           <div className="memory-beginning-options">
             {prompts.map(({ kind, art, title, copy }) => (
               <button type="button" key={kind} onClick={() => onStart(kind)}>

@@ -22,18 +22,18 @@ export function MarketingHero({
     <section className="hero">
       <div className="hero-copy">
         <p className="eyebrow">A private family archive</p>
-        <h1>Their childhood is happening. Keep a little of it.</h1>
+        <h1>Keep the story behind every photo.</h1>
         <p className="hero-description">
-          Save their photos, voices, stories and letters in a private archive. Invite the people who
-          know them best.
+          Save photos, record their little voice, and let family add their memories. All in one
+          private place.
         </p>
         <div className="actions">
-          <Button onClick={() => start()}>Start your family archive</Button>
+          <Button onClick={() => start()}>Save your first memory</Button>
           <button className="text-button" onClick={() => go("how")}>
             See how it works <ArrowRight size={18} />
           </button>
         </div>
-        <small>Create your account free. Choose a plan before adding memories.</small>
+        <small>100 MB free. No card. No expiry.</small>
       </div>
       <div className="product-preview" aria-label="Interactive archive preview">
         <div className="preview-header">
@@ -134,7 +134,7 @@ export function MarketingHero({
                   <FamilyPerson key={name} name={name} description={role} />
                 ))}
               </div>
-              <Button onClick={() => start()}>Start your family archive</Button>
+              <Button onClick={() => start()}>Save your first memory</Button>
             </div>
           )}
         </div>

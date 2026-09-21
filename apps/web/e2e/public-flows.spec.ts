@@ -15,11 +15,12 @@ test.beforeEach(async ({ page }) => {
   await page.route("**/api/child/session", (route) => route.fulfill({ json: { signedIn: false } }));
 });
 test("landing loads with local artwork and responsive footer", async ({ page }, testInfo) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "Their childhood is happening. Keep a little of it." }),
+    page.getByRole("heading", { name: "Keep the story behind every photo." }),
   ).toBeVisible();
   await expect(page.locator(".landing-footer .footer-identity")).toContainText("Everlittle");
   await expect(page.locator(".landing-footer nav")).toHaveCSS(
@@ -31,6 +32,7 @@ test("landing loads with local artwork and responsive footer", async ({ page }, 
     await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
   ).toBeTruthy();
   await page.screenshot({ path: testInfo.outputPath("landing.png"), fullPage: true });
+  await page.locator("#privacy").screenshot({ path: testInfo.outputPath("privacy.png") });
   expect(errors).toEqual([]);
 });
 test("password recovery uses the real endpoint and keeps reset confirmation private", async ({
@@ -154,4 +156,22 @@ test("public information pages have crawlable navigation and contact details", a
     await page.screenshot({ path: info.outputPath(`${path}.png`), fullPage: true });
     await page.goto("/");
   }
+});
+
+test("journal logos reach the landing page even for a signed-in parent", async ({ page }) => {
+  await page.route("**/api/auth/get-session*", (route) =>
+    route.fulfill({
+      json: {
+        session: { id: "test-session" },
+        user: { id: "parent", name: "Parent", email: "parent@example.com" },
+      },
+    }),
+  );
+  await page.goto("/journal");
+  await page.getByRole("link", { name: "Everlittle home" }).first().click();
+  await expect(
+    page.getByRole("heading", { name: "Keep the story behind every photo." }),
+  ).toBeVisible();
+  await expect(page).toHaveURL(/\/$/);
+  expect(await page.locator("a a").count()).toBe(0);
 });

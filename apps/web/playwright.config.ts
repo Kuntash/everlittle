@@ -3,7 +3,7 @@ export default defineConfig({
   testDir: "./e2e",
   fullyParallel: false,
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: "http://localhost:3015",
     channel: process.env.CI ? undefined : "chrome",
     trace: "retain-on-failure",
     // API fixtures must not be bypassed by a previously installed service worker.
@@ -16,7 +16,7 @@ export default defineConfig({
   ],
   webServer: {
     command: "node scripts/start-e2e.mjs",
-    url: "http://localhost:3000",
+    url: "http://localhost:3015",
     reuseExistingServer: !process.env.CI,
     timeout: 120000,
   },

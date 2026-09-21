@@ -1,3 +1,4 @@
+import { uploadMedia } from "@/features/archive/lib/upload-media";
 import { ShadButton } from "@/components/design/controls";
 import { DateInput } from "@/components/design/date-input";
 import { DesignSelect } from "@/components/design/design-select";
@@ -48,6 +49,7 @@ export function MemoryDetail({
   const [happenedAt, setHappenedAt] = useState(toLocalDateTime(memory.happenedAt));
   const [audience, setAudience] = useState<Memory["audience"]>(memory.audience);
   const [error, setError] = useState("");
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [busy, setBusy] = useState(false);
   const [shareBusy, setShareBusy] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
@@ -83,23 +85,18 @@ export function MemoryDetail({
       setError("Choose a replacement file, or restore the current attachment.");
       return;
     }
-    if (replacement && replacement.size > 50 * 1024 * 1024) {
-      setError("Media files must be 50 MB or smaller.");
-      return;
-    }
+
     setBusy(true);
+    setUploadProgress(0);
     setError("");
     try {
       if (replacement) {
-        const upload = await fetch(scopedApiPath(`/api/archive/memories/${memory.id}/media`), {
-          method: "PUT",
-          headers: {
-            "content-type": replacement.type || "application/octet-stream",
-            "x-everlittle-file-name": encodeURIComponent(replacement.name),
-            ...(currentMediaId ? { "x-everlittle-replace-media-id": currentMediaId } : {}),
-          },
-          body: replacement,
-        });
+        const upload = await uploadMedia(
+          memory.id,
+          replacement,
+          currentMediaId ?? undefined,
+          setUploadProgress,
+        );
         if (!upload.ok) throw new Error(await responseError(upload));
         const asset = (await upload.json()) as { id: string };
         setCurrentMediaId(asset.id);
@@ -382,7 +379,13 @@ export function MemoryDetail({
             <Button secondary type="button" disabled={busy} onClick={closeEditor}>
               Cancel
             </Button>
-            <Button disabled={busy}>{busy ? "Saving…" : "Save changes"}</Button>
+            <Button disabled={busy}>
+              {busy
+                ? uploadProgress && uploadProgress < 100
+                  ? `Uploading… ${uploadProgress}%`
+                  : "Saving…"
+                : "Save changes"}
+            </Button>
           </div>
         </form>
       </Modal>

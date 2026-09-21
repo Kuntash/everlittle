@@ -237,7 +237,7 @@ export function AccessScreen({
             {isInvitation
               ? `Join ${invitation?.archiveName ?? "your family archive"}`
               : mode === "setup"
-                ? "Start your family’s story."
+                ? "Save your first memory."
                 : "Welcome back."}
           </h1>
           <p className="card-intro">
@@ -246,7 +246,7 @@ export function AccessScreen({
               : mode === "setup"
                 ? needsSetup
                   ? "The first account becomes the archive owner."
-                  : "Keep photos, voices and stories in one place for your family."
+                  : "100 MB free. No card. No expiry."
                 : "Come back to the moments you’ve kept."}
           </p>
 
@@ -270,8 +270,7 @@ export function AccessScreen({
               </span>
               <h3>Check your inbox</h3>
               <p>
-                We sent a verification email to <strong>{verificationEmail}</strong>. Open the link
-                inside to confirm your address and begin your private archive.
+                Open the link we sent to <strong>{verificationEmail}</strong> to continue.
               </p>
               <small>The link is valid for 24 hours. It may take a minute to arrive.</small>
               <button
@@ -366,7 +365,7 @@ export function AccessScreen({
                       ? "Create account & join"
                       : "Sign in & join"
                     : mode === "setup"
-                      ? "Begin our story"
+                      ? "Create free account"
                       : "Enter Everlittle"}
                 <ArrowRight size={18} />
               </button>

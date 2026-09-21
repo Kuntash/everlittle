@@ -14,20 +14,13 @@ import {
 import React from "react";
 import { Button as ShadButton } from "../ui/button";
 import { SurfaceModal } from "./controls";
-import { BrandMark, MemoryIllustration } from "./memory-illustrations";
+import { MemoryIllustration } from "./memory-illustrations";
 export { ArrowRight, Calendar, Check, ChevronDown, Lock, Pause, Play, Plus, ShieldCheck, Users, X };
 export const kinds = ["Photo", "Story", "Voice", "Video", "Milestone", "Letter"];
 export function KindIcon({ kind, size = 38 }: { kind: string; size?: number }) {
   return <MemoryIllustration kind={kind} size={size} />;
 }
-export function Brand() {
-  return (
-    <span className="brand">
-      <BrandMark />
-      Everlittle
-    </span>
-  );
-}
+export { Brand } from "../brand";
 export function Art({ name, className = "" }: { name: string; className?: string }) {
   if (name === "box" || name === "camera")
     return (

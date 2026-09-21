@@ -10,7 +10,7 @@ import { PrivacySection } from "@/features/marketing/components/privacy-section"
 import { ArrowRight, Art, Brand, Button, Modal } from "@/components/design/shared";
 import { useLandingMotion } from "@/features/marketing/hooks/use-landing-motion";
 import { useState } from "react";
-const appUrl = "/sign-in";
+const appUrl = "/sign-up";
 export const MarketingHome = () => {
   const motionRoot = useLandingMotion();
   const [menu, setMenu] = useState(false),
@@ -36,9 +36,7 @@ export const MarketingHome = () => {
   return (
     <div className="apricot landing" ref={motionRoot}>
       <header className="landing-header">
-        <a className="brand-link" href="#" aria-label="Everlittle home">
-          <Brand />
-        </a>
+        <Brand />
         <nav aria-label="Main navigation" className={menu ? "open" : ""}>
           {[
             ["How it works", "how"],
@@ -56,8 +54,8 @@ export const MarketingHome = () => {
             Sign in
           </a>
           <Button onClick={() => start()}>
-            <span className="desktop-label">Create your archive</span>
-            <span className="mobile-label">Start</span>
+            <span className="desktop-label">Start free</span>
+            <span className="mobile-label">Start free</span>
           </Button>
           <button
             className="menu-button"
@@ -133,7 +131,7 @@ export const MarketingHome = () => {
                     : "Keep a photo, story, voice, video, milestone, or letter in your family’s private archive."}
               </p>
               <a href={appUrl} target="_blank" rel="noreferrer" className="raised">
-                Open your archive <ArrowRight size={18} />
+                Save your first memory <ArrowRight size={18} />
               </a>
             </>
           )}
