@@ -1,12 +1,13 @@
 import { GoogleAdsMeasurement } from "@/components/google-ads-measurement";
 import primaryButtonCss from "@/features/archive/primary-button.css?url";
-import { HeadContent, Scripts, createRootRoute, useRouterState } from "@tanstack/react-router";
+import { HeadContent, Scripts, createRootRoute, useLocation, useRouterState } from "@tanstack/react-router";
 import { Sprout, RefreshCw, Share, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { authClient } from "@/lib/auth-client";
+import { LOCALE_LANG, localeFromPath } from "@/lib/locales";
 import { shouldOfferPwaInstall } from "@/lib/pwa-install";
 
 import apricotCss from "../apricot.css?url";
@@ -51,8 +52,9 @@ export const Route = createRootRoute({
 });
 
 function RootDocument({ children }: { children: React.ReactNode }) {
+  const pathname = useLocation({ select: (location) => location.pathname });
   return (
-    <html lang="en">
+    <html lang={LOCALE_LANG[localeFromPath(pathname)]}>
       <head>
         <HeadContent />
       </head>

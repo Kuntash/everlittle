@@ -8,19 +8,23 @@ export const RESERVED_FAMILY_SLUGS = new Set([
   "about",
   "admin",
   "api",
+  "contact",
   "help",
   "invite",
+  "journal",
   "login",
   "logout",
   "onboarding",
   "pricing",
   "privacy",
+  "pt-br",
   "settings",
   "share",
   "sign-in",
   "sign-up",
   "support",
   "terms",
+  "tools",
 ]);
 
 export const familySlugSchema = z

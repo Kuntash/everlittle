@@ -25,7 +25,11 @@ export function analyticsPath(pathname: string) {
   ]);
   if (publicRoutes.has(parts[0])) return `/${parts[0]}`;
   const seoPath = `/${parts[0]}`;
-  if (SEO_PAGE_PATHS.includes(seoPath as (typeof SEO_PAGE_PATHS)[number])) return seoPath;
+  if (SEO_PAGE_PATHS.includes(seoPath as (typeof SEO_PAGE_PATHS)[number])) {
+    // Tools and localized guides are nested one level below their hub.
+    const nested = `/${parts.slice(0, 2).join("/")}`;
+    return SEO_PAGE_PATHS.includes(nested as (typeof SEO_PAGE_PATHS)[number]) ? nested : seoPath;
+  }
   if (parts[0] === "share") return "/share/:token";
   const familySections = new Set(["capsules", "child", "family", "settings", "timeline"]);
   const section = familySections.has(parts[1]) ? parts[1] : "home";

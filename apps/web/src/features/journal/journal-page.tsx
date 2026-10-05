@@ -3,23 +3,26 @@ import { MemoryIllustration } from "@/components/design/memory-illustrations";
 import { Brand, Button } from "@/components/design/shared";
 import { ArrowRight, ChevronDown, Clock, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { articles, articlePaths } from "./journal-articles";
+import type { ContentLocale } from "@/lib/locales";
+import { allArticles, articlePaths } from "./journal-articles";
+import { journalStrings } from "./journal-strings";
 export function JournalExperience({
   initialArticle = "",
+  locale = "en",
   onStart = () => window.location.assign("/sign-up"),
 }: {
   initialArticle?: string;
+  locale?: ContentLocale;
   onStart?: () => void;
 }) {
+  const copy = journalStrings[locale];
+  const articles = allArticles.filter((a) => (a.locale ?? "en") === locale);
   const [active] = useState(initialArticle),
     [category, setCategory] = useState("All stories"),
     [query, setQuery] = useState(""),
     [activeSection, setActiveSection] = useState(0);
   const root = useRef<HTMLDivElement>(null);
   const article = articles.find((a) => a.id === active);
-  const open = (id: string) => {
-    window.location.assign(articlePaths[id] ?? "/journal");
-  };
   useEffect(() => {
     const id = requestAnimationFrame(() =>
       root.current?.scrollIntoView({
@@ -47,21 +50,23 @@ export function JournalExperience({
   return (
     <div className="journal-experience" ref={root}>
       <header className="journal-header">
-        <Brand />
+        <a className="journal-nav-link" href="/" aria-label={`Everlittle — ${copy.home}`}>
+          <Brand />
+        </a>
         <div>
-          <ShadButton variant="quiet" onClick={() => open("")}>
-            Journal
-          </ShadButton>
-          <Button onClick={onStart}>Start your archive</Button>
+          <a className="journal-nav-link" href={copy.journalPath}>
+            {copy.journal}
+          </a>
+          <Button onClick={onStart}>{copy.start}</Button>
         </div>
       </header>
       {article ? (
         <main>
           <article className="article-reader">
             <nav className="reader-tools journal-breadcrumbs" aria-label="Breadcrumb">
-              <a href="/">Home</a>
+              <a href="/">{copy.home}</a>
               <span aria-hidden="true">/</span>
-              <a href="/journal">Journal</a>
+              <a href={copy.journalPath}>{copy.journal}</a>
               <span aria-hidden="true">/</span>
               <span aria-current="page">{article.title}</span>
             </nav>
@@ -70,9 +75,9 @@ export function JournalExperience({
               <h1>{article.title}</h1>
               <p>{article.intro}</p>
               <div className="byline">
-                <span>By the Everlittle journal</span>
+                <span>{copy.byline}</span>
                 <time dateTime={article.published ?? "2026-09-09"}>
-                  {new Intl.DateTimeFormat("en-US", {
+                  {new Intl.DateTimeFormat(copy.dateLocale, {
                     month: "long",
                     day: "numeric",
                     year: "numeric",
@@ -92,7 +97,7 @@ export function JournalExperience({
                 )}
                 <span>
                   <Clock size={14} />
-                  {article.minutes} min read
+                  {article.minutes} {copy.minRead}
                 </span>
               </div>
             </header>
@@ -111,22 +116,22 @@ export function JournalExperience({
               <div className="article-hero">
                 <MemoryIllustration kind={article.kind} size={310} />
                 <span>
-                  Their story,
+                  {copy.heroLineOne}
                   <br />
-                  in your words.
+                  {copy.heroLineTwo}
                 </span>
               </div>
             )}
             <div className="reading-layout">
               <details className="article-contents" suppressHydrationWarning>
                 <summary className="contents-toggle">
-                  On this page
+                  {copy.onThisPage}
                   <ChevronDown size={17} />
                 </summary>
-                <p className="contents-desktop-title">On this page</p>
+                <p className="contents-desktop-title">{copy.onThisPage}</p>
                 <nav
                   id="article-contents-links"
-                  aria-label="Article contents"
+                  aria-label={copy.contentsLabel}
                   className="contents-links"
                 >
                   {article.sectionTitles.map((t, i) => (
@@ -145,10 +150,7 @@ export function JournalExperience({
                 </nav>
               </details>
               <div className="reading-body">
-                <p className="article-lede">
-                  {article.lede ??
-                    "Choose one idea below and try it with a memory you already have."}
-                </p>
+                <p className="article-lede">{article.lede ?? copy.defaultLede}</p>
                 {article.comparison && (
                   <section className="article-comparison" aria-labelledby="sharing-options-title">
                     <h2 id="sharing-options-title">{article.comparison.title}</h2>
@@ -201,6 +203,13 @@ export function JournalExperience({
                         <figcaption>{article.sectionImages[i].caption}</figcaption>
                       </figure>
                     )}
+                    {article.lists?.[i] && (
+                      <ul className="article-list">
+                        {article.lists[i].map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    )}
                     {article.sectionLinks?.[i]?.map((link) => (
                       <p key={link.href}>
                         <a className="article-resource" href={link.href}>
@@ -208,21 +217,45 @@ export function JournalExperience({
                         </a>
                       </p>
                     ))}
-                    {i === 0 && (
-                      <blockquote>
-                        {article.quote ??
-                          "A little detail, kept today, can bring a whole season back."}
-                      </blockquote>
+                    {article.sectionSources?.[i] && (
+                      <p className="article-section-sources">
+                        {copy.sources}:{" "}
+                        {article.sectionSources[i].map((sourceIndex, index) => {
+                          const source = article.sources![sourceIndex];
+                          return (
+                            <span key={source.href}>
+                              {index > 0 && "; "}
+                              <a href={source.href}>{source.label}</a>
+                            </span>
+                          );
+                        })}
+                      </p>
                     )}
+                    {i === 0 && <blockquote>{article.quote ?? copy.defaultQuote}</blockquote>}
                   </section>
                 ))}
+                {article.sources && (
+                  <section className="article-sources" aria-labelledby="article-sources-title">
+                    <h2 id="article-sources-title">{copy.sources}</h2>
+                    <ol>
+                      {article.sources.map((source) => (
+                        <li key={source.href}>
+                          <a href={source.href} rel="noopener noreferrer" target="_blank">
+                            {source.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  </section>
+                )}
+                {copy.languageNote && <p className="article-language-note">{copy.languageNote}</p>}
                 <div className="reading-prompt">
                   <MemoryIllustration kind={article.kind} size={80} />
                   <div>
-                    <h3>Keep one detail from today.</h3>
-                    <p>Start with a sentence, a photo or a familiar voice.</p>
+                    <h3>{copy.promptTitle}</h3>
+                    <p>{copy.promptBody}</p>
                     <Button onClick={onStart}>
-                      Start your archive
+                      {copy.start}
                       <ArrowRight size={15} />
                     </Button>
                   </div>
@@ -230,7 +263,7 @@ export function JournalExperience({
               </div>
             </div>
             <section className="related-stories">
-              <p className="eyebrow">Read next</p>
+              <p className="eyebrow">{copy.readNext}</p>
               <div>
                 {articles
                   .filter((a) =>
@@ -244,7 +277,7 @@ export function JournalExperience({
                         <small>{a.category}</small>
                         <h3>{a.title}</h3>
                         <span>
-                          Read story <ArrowRight size={15} />
+                          {copy.readStory} <ArrowRight size={15} />
                         </span>
                       </div>
                     </a>
@@ -256,17 +289,26 @@ export function JournalExperience({
       ) : (
         <main className="journal-home">
           <section className="journal-intro">
-            <p className="eyebrow">The Everlittle journal</p>
-            <h1>
-              Ideas for the memories
-              <br />
-              you want to keep.
-            </h1>
-            <p>
-              Practical ways to keep childhood memories.
-              <br />
-              From first entries to letters for later.
-            </p>
+            <p className="eyebrow">{copy.hubEyebrow}</p>
+            {locale === "en" ? (
+              <>
+                <h1>
+                  Ideas for the memories
+                  <br />
+                  you want to keep.
+                </h1>
+                <p>
+                  Practical ways to keep childhood memories.
+                  <br />
+                  From first entries to letters for later.
+                </p>
+              </>
+            ) : (
+              <>
+                <h1>{copy.hubTitle}</h1>
+                <p>{copy.hubIntro}</p>
+              </>
+            )}
           </section>
           <a className="featured-story" href={articlePaths[articles[0].id]}>
             <div className="featured-art">
@@ -283,33 +325,39 @@ export function JournalExperience({
               )}
             </div>
             <div className="featured-copy">
-              <span className="eyebrow">Start here</span>
+              <span className="eyebrow">
+                {locale === "en" ? "Start here" : articles[0].category}
+              </span>
               <h2>{articles[0].title}</h2>
               <p>{articles[0].intro}</p>
               <span className="story-link">
-                Read the story
+                {locale === "en" ? "Read the story" : copy.readStory}
                 <ArrowRight size={18} />
-                <small>{articles[0].minutes} min read</small>
+                <small>
+                  {articles[0].minutes} {copy.minRead}
+                </small>
               </span>
             </div>
           </a>
-          <div className="journal-filters">
-            <SlidingTabs
-              label="Journal categories"
-              value={category}
-              onChange={setCategory}
-              items={["All stories", "Everyday memories", "Letters for later", "Family stories"]}
-            />
-            <div className="journal-search">
-              <Search size={16} />
-              <Input
-                aria-label="Search stories"
-                placeholder="Search the journal"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
+          {locale === "en" && (
+            <div className="journal-filters">
+              <SlidingTabs
+                label="Journal categories"
+                value={category}
+                onChange={setCategory}
+                items={["All stories", "Everyday memories", "Letters for later", "Family stories"]}
               />
+              <div className="journal-search">
+                <Search size={16} />
+                <Input
+                  aria-label="Search stories"
+                  placeholder="Search the journal"
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
+          )}
           <div className="editorial-grid">
             {visible.map((a) => (
               <a className="editorial-story" href={articlePaths[a.id]} key={a.id}>
@@ -328,12 +376,12 @@ export function JournalExperience({
                   )}
                 </div>
                 <small>
-                  {a.category} · {a.minutes} min read
+                  {a.category} · {a.minutes} {copy.minRead}
                 </small>
                 <h2>{a.title}</h2>
                 <p>{a.intro}</p>
                 <span className="story-link">
-                  Read story
+                  {copy.readStory}
                   <ArrowRight size={15} />
                 </span>
               </a>
@@ -359,9 +407,23 @@ export function JournalExperience({
       )}
       <footer className="journal-bottom">
         <Brand />
-        <p>A home for your family’s memories.</p>
+        <p>{copy.tagline}</p>
+        <nav
+          className="journal-languages"
+          aria-label={locale === "es" ? "Idiomas" : locale === "pt-br" ? "Idiomas" : "Languages"}
+        >
+          <a href="/journal" lang="en" aria-current={locale === "en" ? "page" : undefined}>
+            English
+          </a>
+          <a href="/es" lang="es" aria-current={locale === "es" ? "page" : undefined}>
+            Español
+          </a>
+          <a href="/pt-br" lang="pt-BR" aria-current={locale === "pt-br" ? "page" : undefined}>
+            Português
+          </a>
+        </nav>
         <ShadButton variant="quiet" onClick={onStart}>
-          Create your archive
+          {copy.create}
           <ArrowRight size={16} />
         </ShadButton>
       </footer>

@@ -1,3 +1,8 @@
+import type { ContentLocale } from "@/lib/locales";
+import { guideArticlePaths, guideArticles } from "./journal-guides";
+import { spanishArticlePaths, spanishArticles } from "./journal-articles-es";
+import { portugueseArticlePaths, portugueseArticles } from "./journal-articles-pt";
+
 export type JournalArticle = {
   id: string;
   category: string;
@@ -13,15 +18,24 @@ export type JournalArticle = {
     { src: string; alt: string; width: number; height: number; caption: string }
   >;
   comparison?: { title: string; rows: { method: string; bestFor: string; check: string }[] };
+  // Search-result title when the editorial heading is not descriptive enough on its own.
+  searchTitle?: string;
+  locale?: ContentLocale;
+  // Article ids of the same guide written for other locales, used for hreflang.
+  translations?: Partial<Record<ContentLocale, string>>;
   lede?: string;
   relatedIds?: string[];
   sectionLinks?: Record<number, { href: string; label: string }[]>;
+  // Bulleted items shown after a section's paragraphs, keyed by section index.
+  lists?: Record<number, string[]>;
+  sources?: { label: string; href: string }[];
+  sectionSources?: Record<number, number[]>;
   quote?: string;
   sectionTitles: string[];
   paragraphs: string[][];
 };
 
-export const articles: JournalArticle[] = [
+const englishArticles: JournalArticle[] = [
   {
     id: "grandparent-sharing",
     category: "Family stories",
@@ -436,6 +450,10 @@ export const articles: JournalArticle[] = [
   },
 ];
 
+export const articles: JournalArticle[] = [...englishArticles, ...guideArticles];
+export const localizedArticles: JournalArticle[] = [...spanishArticles, ...portugueseArticles];
+export const allArticles: JournalArticle[] = [...articles, ...localizedArticles];
+
 export const articlePaths: Record<string, string> = {
   "little-journal": "/baby-memory-journal",
   "future-letter": "/letters-to-your-future-child",
@@ -446,4 +464,11 @@ export const articlePaths: Record<string, string> = {
   "private-sharing": "/private-family-photo-sharing",
   "family-archive": "/family-memory-app",
   "time-capsule": "/digital-time-capsule-for-kids",
+  ...guideArticlePaths,
+  ...spanishArticlePaths,
+  ...portugueseArticlePaths,
 };
+
+export function findArticle(id: string) {
+  return allArticles.find((entry) => entry.id === id);
+}

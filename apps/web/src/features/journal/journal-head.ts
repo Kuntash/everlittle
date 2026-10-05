@@ -1,13 +1,39 @@
-import { articles, articlePaths } from "./journal-articles";
+import { LOCALE_LANG, type ContentLocale } from "@/lib/locales";
+import { articlePaths, findArticle } from "./journal-articles";
+import { journalStrings } from "./journal-strings";
+
+const ORIGIN = "https://geteverlittle.com";
+
+// hreflang links for a guide and its translations, including the x-default English version.
+function alternateLinks(alternates: Partial<Record<ContentLocale, string>>) {
+  const entries = Object.entries(alternates) as [ContentLocale, string][];
+  if (entries.length < 2) return [];
+  return [
+    ...entries.map(([locale, path]) => ({
+      rel: "alternate",
+      hrefLang: LOCALE_LANG[locale],
+      href: `${ORIGIN}${path}`,
+    })),
+    ...(alternates.en
+      ? [{ rel: "alternate", hrefLang: "x-default", href: `${ORIGIN}${alternates.en}` }]
+      : []),
+  ];
+}
 
 export function journalArticleHead(id: string, stylesheet: string) {
-  const article = articles.find((entry) => entry.id === id)!;
-  const url = `https://geteverlittle.com${articlePaths[id]}`;
-  const title = `${article.title} | Everlittle Journal`;
-  const image = `https://geteverlittle.com${article.cover?.src ?? "/marketing/family-album-us.jpg"}`;
+  const article = findArticle(id)!;
+  const locale = article.locale ?? "en";
+  const url = `${ORIGIN}${articlePaths[id]}`;
+  const title = `${article.searchTitle ?? article.title} | ${locale === "en" ? "Everlittle Journal" : "Everlittle"}`;
+  const image = `${ORIGIN}${article.cover?.src ?? "/marketing/family-album-us.jpg"}`;
+  const alternates: Partial<Record<ContentLocale, string>> = { [locale]: articlePaths[id] };
+  for (const [other, otherId] of Object.entries(article.translations ?? {})) {
+    alternates[other as ContentLocale] = articlePaths[otherId];
+  }
   return {
     links: [
       { rel: "canonical", href: url },
+      ...alternateLinks(alternates),
       { rel: "stylesheet", href: stylesheet },
     ],
     meta: [
@@ -18,6 +44,7 @@ export function journalArticleHead(id: string, stylesheet: string) {
       { property: "og:description", content: article.intro },
       { property: "og:url", content: url },
       { property: "og:site_name", content: "Everlittle" },
+      { property: "og:locale", content: LOCALE_LANG[locale].replace("-", "_") },
       { property: "og:image", content: image },
       ...(article.cover
         ? [
@@ -38,25 +65,37 @@ export function journalArticleHead(id: string, stylesheet: string) {
           "@type": "BlogPosting",
           headline: article.title,
           description: article.intro,
+          inLanguage: LOCALE_LANG[locale],
           url,
           mainEntityOfPage: url,
           image,
           datePublished: article.published ?? "2026-09-09",
           dateModified: article.updated ?? article.published ?? "2026-09-09",
-          author: { "@type": "Organization", name: "Everlittle", url: "https://geteverlittle.com" },
+          author: { "@type": "Organization", name: "Everlittle", url: ORIGIN },
           publisher: {
             "@type": "Organization",
             name: "Everlittle",
-            url: "https://geteverlittle.com",
+            url: ORIGIN,
           },
           articleSection: article.category,
           isPartOf: {
             "@type": "Blog",
             name: "Everlittle Journal",
-            url: "https://geteverlittle.com/journal",
+            url: `${ORIGIN}${journalStrings[locale].journalPath}`,
           },
         },
       },
+    ],
+  };
+}
+
+export function journalHubHead(locale: ContentLocale, stylesheet: string) {
+  const t = journalStrings[locale];
+  return {
+    meta: [{ title: t.hubMetaTitle }, { name: "description", content: t.hubIntro }],
+    links: [
+      { rel: "stylesheet", href: stylesheet },
+      { rel: "canonical", href: `${ORIGIN}${t.journalPath}` },
     ],
   };
 }
