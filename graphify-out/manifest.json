@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1789261409.4246497,
-    "ast_hash": "542ab8f1cbf6a64ba86de321c1d85332",
+    "mtime": 1791226652.63192,
+    "ast_hash": "a91fb147021c90298d704beea3328cf8",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -40,13 +40,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1791225403.1806066,
-    "ast_hash": "8bbf1d1d933c75e59e8c0e5d21529d7b",
+    "mtime": 1791226693.8660104,
+    "ast_hash": "eeb909e1f49a7822e2293fe71392042d",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1789261409.4309912,
-    "ast_hash": "a1dccaa45002b0fcbc93b8c2047b04a3",
+    "mtime": 1791226652.6361709,
+    "ast_hash": "70038330cb8fa86bd86918c2afc26f2c",
     "semantic_hash": ""
   },
   "apps/web/tsconfig.json": {
@@ -75,7 +75,7 @@
     "semantic_hash": "26a7124adb9523ff62c9cea1e9e829d2"
   },
   "packages/domain/src/index.ts": {
-    "mtime": 1791225403.180952,
+    "mtime": 1791226666.138221,
     "ast_hash": "d0d8c88307440fc1f417bf12a4618105",
     "semantic_hash": ""
   },
@@ -215,8 +215,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/invitation-email.ts": {
-    "mtime": 1789261409.4265087,
-    "ast_hash": "762d9abe2c6709f7c20b1348a5cc8a82",
+    "mtime": 1791226652.6329806,
+    "ast_hash": "1442dcaf2c07efa97373bb1ad4adc804",
     "semantic_hash": ""
   },
   "apps/web/public/offline.html": {
@@ -255,13 +255,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/brand.tsx": {
-    "mtime": 1789261409.414456,
-    "ast_hash": "4d5f0311717bf3d3adf1d92fe5322ccc",
+    "mtime": 1791226652.623438,
+    "ast_hash": "4b82a009d5b1dacc5cce7ec3a409f152",
     "semantic_hash": ""
   },
   "apps/web/src/components/marketing-home.tsx": {
-    "mtime": 1789261409.4158738,
-    "ast_hash": "eb815e53695604607147296fe5f6de34",
+    "mtime": 1791226652.624283,
+    "ast_hash": "f89a58b1bddee7f2b6e55433a87d0f88",
     "semantic_hash": ""
   },
   "apps/web/public/marketing/family-album.jpg": {
@@ -370,8 +370,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1789261409.432319,
-    "ast_hash": "43e76e0bc9600cbda5f0366819f8e0a7",
+    "mtime": 1791226652.6365047,
+    "ast_hash": "7d472998608bf3ef8900da07c81bd6cc",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
@@ -410,8 +410,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-email.ts": {
-    "mtime": 1789261409.424889,
-    "ast_hash": "2a6a3b7fa6ff9550763f48842cac0c9d",
+    "mtime": 1791226652.6324186,
+    "ast_hash": "1ec5621fee7152a30d59cf6fc14738b6",
     "semantic_hash": ""
   },
   "apps/web/test/auth-email.test.ts": {
@@ -430,13 +430,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/pwa-install.ts": {
-    "mtime": 1787257770.0105295,
-    "ast_hash": "4c68cf5b1609d51754f0e84a8ff1ecab",
+    "mtime": 1791226652.6348794,
+    "ast_hash": "e97c0766fff50455d48ee6bcbc24aab4",
     "semantic_hash": ""
   },
   "apps/web/test/pwa-install.test.ts": {
-    "mtime": 1787257770.0169837,
-    "ast_hash": "c861abdbc9637737793e61b1e047f858",
+    "mtime": 1791226652.637684,
+    "ast_hash": "e3ef8b70431afee538ee7477f76a31e3",
     "semantic_hash": ""
   },
   "apps/web/migrations/0012_optional_child_archives.sql": {
@@ -475,13 +475,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/plans.ts": {
-    "mtime": 1787742406.4711623,
-    "ast_hash": "56df7cd2ea6fe1798a1723c726aefc46",
+    "mtime": 1791226652.6341608,
+    "ast_hash": "7aeb58ee09446b6569c876c3477235e0",
     "semantic_hash": ""
   },
   "docs/hosted-billing.md": {
-    "mtime": 1787642874.000654,
-    "ast_hash": "d46880b8acf99379e28a9e842b2fb772",
+    "mtime": 1791226652.638313,
+    "ast_hash": "9a37eab07da254163a187726d9c37fa6",
     "semantic_hash": ""
   },
   "apps/web/migrations/0014_dodo_billing.sql": {
@@ -495,7 +495,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/analytics.ts": {
-    "mtime": 1791225403.1799624,
+    "mtime": 1791226666.1020212,
     "ast_hash": "e96e00ed68cdd3b8e161f22e0857d013",
     "semantic_hash": ""
   },
@@ -505,8 +505,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/billing-analytics.test.ts": {
-    "mtime": 1788143581.841607,
-    "ast_hash": "bdbd6b429a08caf8ef757d1a800edc33",
+    "mtime": 1791226652.6375859,
+    "ast_hash": "90442a59228a3356a07931b8b389afe7",
     "semantic_hash": ""
   },
   "apps/web/scripts/setup-dodo-test.mjs": {
@@ -555,12 +555,12 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/seo-landing-page.tsx": {
-    "mtime": 1789261409.4168043,
-    "ast_hash": "f64a02992bda9f851fedae103c568f78",
+    "mtime": 1791226652.6246686,
+    "ast_hash": "be2f70b5f4933ad386903d99907013da",
     "semantic_hash": ""
   },
   "apps/web/src/lib/seo-page-paths.ts": {
-    "mtime": 1791225403.180239,
+    "mtime": 1791226666.102517,
     "ast_hash": "f61dcab1178cad564b7c029aa676732a",
     "semantic_hash": ""
   },
@@ -835,8 +835,8 @@
     "semantic_hash": ""
   },
   "apps/hyperframes/package.json": {
-    "mtime": 1789261409.401644,
-    "ast_hash": "a1f44168b4ffdb8f512a914b0f35d382",
+    "mtime": 1791226652.5651028,
+    "ast_hash": "fd60c96b597ca9298fcabfec955d615c",
     "semantic_hash": ""
   },
   "apps/hyperframes/scripts/add-review-captions.mjs": {
@@ -880,8 +880,8 @@
     "semantic_hash": ""
   },
   "apps/web/e2e/public-flows.spec.ts": {
-    "mtime": 1789261409.4111469,
-    "ast_hash": "e7b8d1570c739e2e4bf9c82bd98bd0a8",
+    "mtime": 1791226652.6225207,
+    "ast_hash": "e57be6f7d57e222d06c1844460dcbff4",
     "semantic_hash": ""
   },
   "apps/web/migrations/0016_acquisition_measurement.sql": {
@@ -890,13 +890,13 @@
     "semantic_hash": ""
   },
   "apps/web/playwright.config.ts": {
-    "mtime": 1789261409.4117765,
-    "ast_hash": "3dcf4f60dd0a307ed5f86cd5e56212c5",
+    "mtime": 1791226652.6230052,
+    "ast_hash": "cdfa51ebac24d812f35aed763160c7b1",
     "semantic_hash": ""
   },
   "apps/web/scripts/start-e2e.mjs": {
-    "mtime": 1789261409.41325,
-    "ast_hash": "ba9ff78eab0a5688d84f1ba746374c68",
+    "mtime": 1791226652.6231437,
+    "ast_hash": "c36e25cb18366e2ae7354d88aca93519",
     "semantic_hash": ""
   },
   "apps/web/src/components/cookie-preferences-link.tsx": {
@@ -910,8 +910,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/design/auth-frame.tsx": {
-    "mtime": 1789261409.4148061,
-    "ast_hash": "f9c990c6fa25e9c72923a685575511a5",
+    "mtime": 1791226652.6237311,
+    "ast_hash": "d7aaabb128602c482c5adb565cc88623",
     "semantic_hash": ""
   },
   "apps/web/src/components/design/controls.tsx": {
@@ -940,8 +940,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/design/shared.tsx": {
-    "mtime": 1789261409.4154463,
-    "ast_hash": "70a77675cb4a1d770ed788feaf146819",
+    "mtime": 1791226652.6241093,
+    "ast_hash": "66e61f4e2b8e0bd0a4cfaaffa0da4e62",
     "semantic_hash": ""
   },
   "apps/web/src/components/google-ads-measurement.tsx": {
@@ -1030,8 +1030,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/access-screen.tsx": {
-    "mtime": 1789261409.4184306,
-    "ast_hash": "5643eb251154230521a8b3d0b0a261a4",
+    "mtime": 1791226652.6251874,
+    "ast_hash": "1386356892cd3ced65f6622f37ee567f",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/animated-action-label.tsx": {
@@ -1070,13 +1070,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/everlittle.tsx": {
-    "mtime": 1789261409.4192262,
-    "ast_hash": "508fdbb7f2450b45fd2fe6700f9355ba",
+    "mtime": 1791226652.6254878,
+    "ast_hash": "21edd2d1ca6f41e09483fce01ca28741",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/family-settings.tsx": {
-    "mtime": 1789261409.4193337,
-    "ast_hash": "8d449deb2d64bfc4f6fb4ef8781f8b46",
+    "mtime": 1791226652.6256409,
+    "ast_hash": "c2f9d681270df88ee4b5a4c269952201",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/invitation-acceptance.tsx": {
@@ -1090,18 +1090,18 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-composer.tsx": {
-    "mtime": 1789261409.4196336,
-    "ast_hash": "bd4234e9f1191339d332346cf0a80121",
+    "mtime": 1791226652.6257987,
+    "ast_hash": "d8cc4cc7fe55b502c0208b783e1546fb",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-detail.tsx": {
-    "mtime": 1789261409.419729,
-    "ast_hash": "a52f6bc690179d97223981c3c9ffd62d",
+    "mtime": 1791226652.62597,
+    "ast_hash": "e1863fc2752a1b13ccd6c5be5c5b71c4",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-empty-state.tsx": {
-    "mtime": 1789261409.4197981,
-    "ast_hash": "768730b8b72b46982d405cab54df62fa",
+    "mtime": 1791226652.6260927,
+    "ast_hash": "b8333e39492c43bfe5beb7675ca77c54",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-media.tsx": {
@@ -1125,8 +1125,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-stage-label.tsx": {
-    "mtime": 1789261409.4202528,
-    "ast_hash": "9962f305b4e53b672b74549fd0530922",
+    "mtime": 1791226652.626388,
+    "ast_hash": "0cd03cae3619d07149758a44fe04e791",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/parent-view.tsx": {
@@ -1145,8 +1145,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/subscription-sheet.tsx": {
-    "mtime": 1789261409.4206593,
-    "ast_hash": "90f954099199ea091ce1da8809a227da",
+    "mtime": 1791226652.62649,
+    "ast_hash": "26811876452f708517b5d8378db7131c",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/timeline-view.tsx": {
@@ -1175,53 +1175,53 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/lib/archive-utils.tsx": {
-    "mtime": 1789261409.421251,
-    "ast_hash": "1ccd634b8ed7e8e2d9706f9e7f43c03f",
+    "mtime": 1791226652.626628,
+    "ast_hash": "0188c5d8c6b1e452ea0af0c37ce33034",
     "semantic_hash": ""
   },
   "apps/web/src/features/information/information-page.tsx": {
-    "mtime": 1789261409.4216259,
-    "ast_hash": "c411c026ee164ecdf3d14a5179505afb",
+    "mtime": 1791226652.6268723,
+    "ast_hash": "7852356ee403327ea34da6cdd557a010",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-articles-es.ts": {
-    "mtime": 1791225403.1913145,
+    "mtime": 1791226666.0932765,
     "ast_hash": "ae51c39cf8a98a7101aea049b2a45e44",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-articles-pt.ts": {
-    "mtime": 1791225403.1916018,
+    "mtime": 1791226666.093539,
     "ast_hash": "22f4582c900eab5a3df21905ebbc6166",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-articles.ts": {
-    "mtime": 1791225420.4620445,
-    "ast_hash": "ae3ca0565ab2e4e8a97a4bc61bf8889a",
+    "mtime": 1791226666.0937445,
+    "ast_hash": "e3c5ce0b480a02809ef4ef170dfcf6a0",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-guides.ts": {
-    "mtime": 1791225403.1920888,
-    "ast_hash": "829193a6e63320bb85a8bbbdc506065a",
+    "mtime": 1791226692.960572,
+    "ast_hash": "d7d3a0e6fd612bee3905685996364af4",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-head.ts": {
-    "mtime": 1791225420.462248,
+    "mtime": 1791226666.0960617,
     "ast_hash": "b4f8dbe5950656c598fda76281b63b32",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-page.tsx": {
-    "mtime": 1791225420.4624639,
+    "mtime": 1791226666.0963295,
     "ast_hash": "170b89812f4b3252ff2aef7159cd7633",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-strings.ts": {
-    "mtime": 1791225403.1924798,
+    "mtime": 1791226666.0967543,
     "ast_hash": "832282926cc58103b8ca62fae59beddd",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/closing-section.tsx": {
-    "mtime": 1789261409.4222896,
-    "ast_hash": "69c9437ede5827573992dd1a51f04eb3",
+    "mtime": 1791226652.629426,
+    "ast_hash": "de8d60c1543e3c23b36c7ef3ddf9088c",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/journal-section.tsx": {
@@ -1230,28 +1230,28 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/marketing-footer.tsx": {
-    "mtime": 1791225403.1797206,
+    "mtime": 1791226666.0974042,
     "ast_hash": "a7e8841127115c54b491c64226430bb0",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/marketing-hero.tsx": {
-    "mtime": 1789261409.4224892,
-    "ast_hash": "97b40d6bf78596b328d16d76676830ed",
+    "mtime": 1791226652.6300046,
+    "ast_hash": "85405a7ff18fa5843126dc80030e652f",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/memory-path.tsx": {
-    "mtime": 1789261409.4225497,
-    "ast_hash": "21760d1365d13a253f3e345b03682705",
+    "mtime": 1791226652.6303792,
+    "ast_hash": "53165ba70b2cff3531003354a7e0d4dc",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/pricing-section.tsx": {
-    "mtime": 1791225403.1432037,
-    "ast_hash": "adb8af498ae3df2ae9b092d33c0dfdf3",
+    "mtime": 1791226652.6304939,
+    "ast_hash": "e3ef434f8b27cf8a85f6bb36b63738a4",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/privacy-section.tsx": {
-    "mtime": 1789261409.422811,
-    "ast_hash": "da924c7530f323c5fb54d46c765e5c18",
+    "mtime": 1791226652.6306176,
+    "ast_hash": "27935dbe35a969aedebcacb5dbc70031",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/hooks/use-landing-motion.ts": {
@@ -1260,67 +1260,67 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/pricing-page.tsx": {
-    "mtime": 1791225403.1438136,
-    "ast_hash": "a15ce7a5898a3c9a60aa8b6e91563537",
+    "mtime": 1791226652.6312652,
+    "ast_hash": "65f5d3a390b67e62ce607449b8680198",
     "semantic_hash": ""
   },
   "apps/web/src/features/onboarding/onboarding-page.tsx": {
-    "mtime": 1789261409.4232378,
-    "ast_hash": "ad3e4bbf8d60bebe42e9317511e03711",
+    "mtime": 1791226652.6314304,
+    "ast_hash": "fc6bbac39821cdc77ed64e85fb714368",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/baby-dates-tool.tsx": {
-    "mtime": 1791225403.1930265,
+    "mtime": 1791226666.0976827,
     "ast_hash": "924b7045fcc04198e2c99a9e66b31d0e",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/family-age-tool.tsx": {
-    "mtime": 1791225403.1933646,
+    "mtime": 1791226666.0979762,
     "ast_hash": "147c8181e26c8868ce9059951c57655c",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/graduation-tool.tsx": {
-    "mtime": 1791225403.193694,
+    "mtime": 1791226666.0983331,
     "ast_hash": "e271074cdf538d982b59be4e969505f3",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/interview-tool.tsx": {
-    "mtime": 1791225403.1943612,
+    "mtime": 1791226666.099108,
     "ast_hash": "e4b5564ea1bb1a0fcd2d4824cb25de8c",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/letter-prompts-tool.tsx": {
-    "mtime": 1791225403.1945508,
+    "mtime": 1791226666.0993447,
     "ast_hash": "9a07f75e257f5889363b9578820e9238",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/share-link.tsx": {
-    "mtime": 1791225403.1949084,
+    "mtime": 1791226666.0996473,
     "ast_hash": "b5b75179981dcf7bc907262bb596471c",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/time-with-kids-tool.tsx": {
-    "mtime": 1791225403.1952677,
+    "mtime": 1791226666.0999584,
     "ast_hash": "a4ad51fba8c8667a20cb10d3c8b787ed",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/tool-math.ts": {
-    "mtime": 1791225403.1960225,
+    "mtime": 1791226666.1003592,
     "ast_hash": "c16affa680dec5f4740117a02e708008",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/tool-page.tsx": {
-    "mtime": 1791225403.196311,
+    "mtime": 1791226666.1006494,
     "ast_hash": "40c418067772d893fe08a6cfa282feb9",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/tool-state.ts": {
-    "mtime": 1791225403.1969256,
+    "mtime": 1791226666.1011007,
     "ast_hash": "d2c4dce7582878c645e46c2ea4f158d5",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/tools.ts": {
-    "mtime": 1791225403.197548,
+    "mtime": 1791226666.1017053,
     "ast_hash": "0c18dc2eb13826caa62378278e404c29",
     "semantic_hash": ""
   },
@@ -1340,7 +1340,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/locales.ts": {
-    "mtime": 1791225403.1979585,
+    "mtime": 1791226666.1022468,
     "ast_hash": "0cc491ac4cfba752adf108ed71b1d6ba",
     "semantic_hash": ""
   },
@@ -1350,8 +1350,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/public-memory-page.ts": {
-    "mtime": 1789261409.4268968,
-    "ast_hash": "67db1cad709d7db99c389706d2918621",
+    "mtime": 1791226652.634302,
+    "ast_hash": "e6b17ffb6e0ea93de0f75db5d0be467b",
     "semantic_hash": ""
   },
   "apps/web/src/lib/server-analytics.ts": {
@@ -1405,8 +1405,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(app)/onboarding.tsx": {
-    "mtime": 1789261409.4287934,
-    "ast_hash": "0c572d77b4f86e2939473df059962fd7",
+    "mtime": 1791226652.635316,
+    "ast_hash": "4550f975d33f4c543999c95e54cc131b",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(app)/reset-password.tsx": {
@@ -1425,17 +1425,17 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/18-letters-for-18th-birthday.tsx": {
-    "mtime": 1791225403.198225,
+    "mtime": 1791226666.1028333,
     "ast_hash": "a0eca7537e2708e07345e8f7b2766e46",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/baby-book-alternatives.tsx": {
-    "mtime": 1791225403.1985326,
+    "mtime": 1791226666.103153,
     "ast_hash": "cfa76d7c48b90c6b9bb682f7127bc33f",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/baby-firsts-checklist.tsx": {
-    "mtime": 1791225403.1994648,
+    "mtime": 1791226666.1034815,
     "ast_hash": "5b3109ba9cba507ab811663edae7c34b",
     "semantic_hash": ""
   },
@@ -1445,7 +1445,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/birthday-interview-questions-for-kids.tsx": {
-    "mtime": 1791225403.1996028,
+    "mtime": 1791226666.1037588,
     "ast_hash": "b4f60c250f2cd486b9809150e20d793c",
     "semantic_hash": ""
   },
@@ -1455,37 +1455,37 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/email-address-for-baby.tsx": {
-    "mtime": 1791225403.1997783,
+    "mtime": 1791226666.1047242,
     "ast_hash": "6600f0a7b6c615c14e15880477366558",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.capsula-del-tiempo-para-bebe.tsx": {
-    "mtime": 1791225403.199977,
+    "mtime": 1791226666.1049607,
     "ast_hash": "1f75214e557872976e31b7753dcd993e",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.carta-para-mi-ahijado-de-bautizo.tsx": {
-    "mtime": 1791225403.2005877,
+    "mtime": 1791226666.105546,
     "ast_hash": "178fd36508402ea6699020e67becfe27",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.carta-para-mi-hija-en-sus-15-anos.tsx": {
-    "mtime": 1791225403.2007544,
+    "mtime": 1791226666.1057112,
     "ast_hash": "c6d4c8daa2acd6d705afdaccad4ab337",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.carta-para-mi-hijo-que-esta-lejos.tsx": {
-    "mtime": 1791225403.2009077,
+    "mtime": 1791226666.1060493,
     "ast_hash": "3d5ac89417b0262f39a992e494feab75",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.carta-para-mi-nieto.tsx": {
-    "mtime": 1791225403.2010658,
+    "mtime": 1791226666.1062255,
     "ast_hash": "e8a3f4c7b4c1a9f83c415eb02d2c4728",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.index.tsx": {
-    "mtime": 1791225403.2012315,
+    "mtime": 1791226666.1063707,
     "ast_hash": "2a6698ab5bc45bc861710a9b0afcc01b",
     "semantic_hash": ""
   },
@@ -1495,7 +1495,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/first-birthday-time-capsule-letters.tsx": {
-    "mtime": 1791225403.2013843,
+    "mtime": 1791226666.1067376,
     "ast_hash": "0df61f23772ffad05304fc16cd65c922",
     "semantic_hash": ""
   },
@@ -1520,12 +1520,12 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/letter-to-my-baby-on-first-birthday.tsx": {
-    "mtime": 1791225403.2015226,
+    "mtime": 1791226666.1069038,
     "ast_hash": "2b55223642a5288f96c9ea4984246c39",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/letter-to-my-grandchild.tsx": {
-    "mtime": 1791225403.2016656,
+    "mtime": 1791226666.1070464,
     "ast_hash": "967865b37c9f6ce2efbc173a44a38a88",
     "semantic_hash": ""
   },
@@ -1535,12 +1535,12 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/long-distance-family-statistics.tsx": {
-    "mtime": 1791225403.2018132,
+    "mtime": 1791226666.1072006,
     "ast_hash": "69f274258567bb8ca6c4df43e7fcf713",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/long-distance-grandparenting-ideas.tsx": {
-    "mtime": 1791225403.2019587,
+    "mtime": 1791226666.107342,
     "ast_hash": "723e5472c6327c04832fe8e2083cd09e",
     "semantic_hash": ""
   },
@@ -1550,22 +1550,22 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/pt-br.carta-para-meu-filho-ler-no-futuro.tsx": {
-    "mtime": 1791225403.2020986,
+    "mtime": 1791226666.107485,
     "ast_hash": "8e94ffee42f7dbdcb85426ffc4bc17e1",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/pt-br.carta-para-meu-neto.tsx": {
-    "mtime": 1791225403.2022703,
+    "mtime": 1791226666.1076326,
     "ast_hash": "6bded003881c3601e80093c19eb87869",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/pt-br.index.tsx": {
-    "mtime": 1791225403.2024403,
+    "mtime": 1791226666.1078815,
     "ast_hash": "57f2adfb728d0d42a0056b6481891992",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/pt-br.mensagem-capsula-do-tempo-cha-de-bebe.tsx": {
-    "mtime": 1791225403.2025957,
+    "mtime": 1791226666.1080334,
     "ast_hash": "4525f8b02fcbc177b5b8e4f6c1adb9c3",
     "semantic_hash": ""
   },
@@ -1575,7 +1575,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/time-capsule-letter-to-child-examples.tsx": {
-    "mtime": 1791225403.2027829,
+    "mtime": 1791226666.108172,
     "ast_hash": "e8a68025c41f06f165c77f2e1f8dee55",
     "semantic_hash": ""
   },
@@ -1590,13 +1590,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(marketing)/index.tsx": {
-    "mtime": 1789261409.4300683,
-    "ast_hash": "eaa72b94b74ab46a27fc2b481b9f9a0e",
+    "mtime": 1791226652.6355774,
+    "ast_hash": "eb9a12879cee3c64f1ffe5af25d1e425",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(marketing)/pricing.tsx": {
-    "mtime": 1791225403.1442182,
-    "ast_hash": "4d4abf38608896ec4d17d72a8d141335",
+    "mtime": 1791226652.6356752,
+    "ast_hash": "c5245c589e39b57f4203862cb437bd17",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(marketing)/privacy.tsx": {
@@ -1605,37 +1605,37 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.baby-milestone-dates.tsx": {
-    "mtime": 1791225403.2030025,
+    "mtime": 1791226666.1084554,
     "ast_hash": "ea609b46e06119e2a3535c0f020400fa",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.birthday-interview-questions.tsx": {
-    "mtime": 1791225403.2031953,
+    "mtime": 1791226666.108617,
     "ast_hash": "074e82dbf55e335bd58af919065cf9f7",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.graduation-year-calculator.tsx": {
-    "mtime": 1791225403.2033446,
+    "mtime": 1791226666.108771,
     "ast_hash": "0c3d34fdffdfdd4552ccf030262a2f0a",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.how-old-will-i-be.tsx": {
-    "mtime": 1791225403.2034905,
+    "mtime": 1791226666.108921,
     "ast_hash": "fd99421e1c25e21e6331c6e8ad0d59e6",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.index.tsx": {
-    "mtime": 1791225403.2036386,
+    "mtime": 1791226666.1090786,
     "ast_hash": "25074d65a2d2814f98ff7112ef17cddb",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.time-capsule-letter-prompts.tsx": {
-    "mtime": 1791225403.2037964,
+    "mtime": 1791226666.109218,
     "ast_hash": "d906b64c882639cc3529cb1d631b310d",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.time-with-your-kids.tsx": {
-    "mtime": 1791225403.20397,
+    "mtime": 1791226666.1093593,
     "ast_hash": "856c431f642324725b5d689805529e6b",
     "semantic_hash": ""
   },
@@ -1645,7 +1645,7 @@
     "semantic_hash": ""
   },
   "apps/web/test-ui/free-tools.test.tsx": {
-    "mtime": 1791225403.204204,
+    "mtime": 1791226666.1098437,
     "ast_hash": "09a3b8c43cf45123284460d8aa2e5f0c",
     "semantic_hash": ""
   },
@@ -1670,12 +1670,12 @@
     "semantic_hash": ""
   },
   "apps/web/test/journal-content.test.ts": {
-    "mtime": 1791225459.568029,
+    "mtime": 1791226666.1100664,
     "ast_hash": "138419f16b99dd52ada8aa29e95b79a6",
     "semantic_hash": ""
   },
   "apps/web/test/tool-math.test.ts": {
-    "mtime": 1791225403.2047164,
+    "mtime": 1791226666.1103795,
     "ast_hash": "fc55f14163cf910e5f98f8a6a7db86c8",
     "semantic_hash": ""
   },
@@ -2035,27 +2035,27 @@
     "semantic_hash": ""
   },
   "docs/seo-growth-plan-2026-10-05.md": {
-    "mtime": 1791225403.2054439,
+    "mtime": 1791226666.1106408,
     "ast_hash": "c39e5e4e8f3d6f9fd024b5439d510dc6",
     "semantic_hash": ""
   },
   "docs/seo-research-2026-10-05/english-keywords.md": {
-    "mtime": 1791225403.2057486,
+    "mtime": 1791226666.1109455,
     "ast_hash": "c46bae204498377ecdebd8f21fa46afc",
     "semantic_hash": ""
   },
   "docs/seo-research-2026-10-05/family-statistics.md": {
-    "mtime": 1791225403.2060447,
+    "mtime": 1791226666.1112406,
     "ast_hash": "e7ec4b231106a4585dccd77a0460f84d",
     "semantic_hash": ""
   },
   "docs/seo-research-2026-10-05/free-tools.md": {
-    "mtime": 1791225403.206817,
+    "mtime": 1791226666.1119153,
     "ast_hash": "f88603b0c4f7e718164e2bb79bfeb2f2",
     "semantic_hash": ""
   },
   "docs/seo-research-2026-10-05/localization.md": {
-    "mtime": 1791225403.207121,
+    "mtime": 1791226666.1122391,
     "ast_hash": "a3c578153bd33fa298fdbdbd73e07498",
     "semantic_hash": ""
   },
@@ -2402,6 +2402,1676 @@
   "marketing/content/published/2026-09-11-03-grandma-stories/media.mp4": {
     "mtime": 1789261409.4792519,
     "ast_hash": "6d3013a530dddbdbed4c83e49bf47538",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/demo/capsule-capture.tsx": {
+    "mtime": 1791226652.5645442,
+    "ast_hash": "37ff36e23e263ee4c888285fc019e37d",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/demo/dad-capture.tsx": {
+    "mtime": 1791226652.564869,
+    "ast_hash": "80f01a4311d8878a60976438a5ec8985",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/assets/gsap.min.js": {
+    "mtime": 1791226652.568288,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/hyperframes.json": {
+    "mtime": 1791226652.5723753,
+    "ast_hash": "f6424b9ebfc2490b7e82a88f0b60931e",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/package.json": {
+    "mtime": 1791226652.5725062,
+    "ast_hash": "aff6e323ccbdd2ff71fb1bf7299a41c3",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/05-camera-roll-ugc/assets/gsap.min.js": {
+    "mtime": 1791226652.5760293,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/05-camera-roll-ugc/hyperframes.json": {
+    "mtime": 1791226652.5762806,
+    "ast_hash": "f6424b9ebfc2490b7e82a88f0b60931e",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/05-camera-roll-ugc/package.json": {
+    "mtime": 1791226652.5765724,
+    "ast_hash": "b17af0624f8f84ee595935fa7208a350",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/assets/gsap.min.js": {
+    "mtime": 1791226652.5813293,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/hyperframes.json": {
+    "mtime": 1791226652.6216247,
+    "ast_hash": "4b0c8d46eda2f3df41096e6a4473046f",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/package.json": {
+    "mtime": 1791226652.621921,
+    "ast_hash": "6d9f36ae4948e808eefec17e07f568e7",
+    "semantic_hash": ""
+  },
+  "apps/web/e2e/email-preview.spec.ts": {
+    "mtime": 1791226652.6220157,
+    "ast_hash": "6b8de4e8c71865070e021b5b2e18cef4",
+    "semantic_hash": ""
+  },
+  "apps/web/e2e/onboarding.spec.ts": {
+    "mtime": 1791226652.6221433,
+    "ast_hash": "db605d6d1ed817e7f60a13fe4c44d120",
+    "semantic_hash": ""
+  },
+  "apps/web/migrations/0017_multipart_uploads.sql": {
+    "mtime": 1791226652.62261,
+    "ast_hash": "4428b65ee2fa7841cc78b416a6945962",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/archive/lib/upload-media.ts": {
+    "mtime": 1791226652.6266906,
+    "ast_hash": "24d393b69023afefe776198a7890b032",
+    "semantic_hash": ""
+  },
+  "apps/web/src/lib/email-template.ts": {
+    "mtime": 1791226652.632496,
+    "ast_hash": "1b5efaa7bfb0720e36c2ce10169640cc",
+    "semantic_hash": ""
+  },
+  "apps/web/test-ui/upload-media.test.tsx": {
+    "mtime": 1791226652.636235,
+    "ast_hash": "395346a69e44797fe940bf019658da2a",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/render.mjs": {
+    "mtime": 1791226652.6834438,
+    "ast_hash": "27042925120024a43e75e3d1a983400a",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/render.mjs": {
+    "mtime": 1791226652.8042536,
+    "ast_hash": "59d964a55921fa1f5f3b930d65406a4a",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/assets/gsap.min.js": {
+    "mtime": 1791226652.8082337,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/hyperframes.json": {
+    "mtime": 1791226652.8089483,
+    "ast_hash": "afda5368b70194018e91c15b37ae6e60",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/package.json": {
+    "mtime": 1791226652.809213,
+    "ast_hash": "50c0d4f183bf455813a5c3b903e58555",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/assets/gsap.min.js": {
+    "mtime": 1791226652.8333104,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/hyperframes.json": {
+    "mtime": 1791226652.8336577,
+    "ast_hash": "afda5368b70194018e91c15b37ae6e60",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/package.json": {
+    "mtime": 1791226652.8340614,
+    "ast_hash": "50c0d4f183bf455813a5c3b903e58555",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/assets/gsap.min.js": {
+    "mtime": 1791226652.8593056,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/hyperframes.json": {
+    "mtime": 1791226652.8595655,
+    "ast_hash": "afda5368b70194018e91c15b37ae6e60",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/package.json": {
+    "mtime": 1791226652.8600116,
+    "ast_hash": "50c0d4f183bf455813a5c3b903e58555",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/assets/gsap.min.js": {
+    "mtime": 1791226652.8932073,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/hyperframes.json": {
+    "mtime": 1791226652.8941925,
+    "ast_hash": "afda5368b70194018e91c15b37ae6e60",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/package.json": {
+    "mtime": 1791226652.8950112,
+    "ast_hash": "50c0d4f183bf455813a5c3b903e58555",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/assets/gsap.min.js": {
+    "mtime": 1791226652.92,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/hyperframes.json": {
+    "mtime": 1791226652.920279,
+    "ast_hash": "afda5368b70194018e91c15b37ae6e60",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/package.json": {
+    "mtime": 1791226652.9204981,
+    "ast_hash": "50c0d4f183bf455813a5c3b903e58555",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/assets/gsap.min.js": {
+    "mtime": 1791226652.9461658,
+    "ast_hash": "b729ff7f59f3391835501f2900ecd857",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/hyperframes.json": {
+    "mtime": 1791226652.9464307,
+    "ast_hash": "afda5368b70194018e91c15b37ae6e60",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/package.json": {
+    "mtime": 1791226652.946666,
+    "ast_hash": "50c0d4f183bf455813a5c3b903e58555",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/build.py": {
+    "mtime": 1791226653.001743,
+    "ast_hash": "2c0856c2d22dc70477726e9104ede334",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/compose.py": {
+    "mtime": 1791226653.0020652,
+    "ast_hash": "218aae57189c21745a1066c3a54aee14",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/gallery.py": {
+    "mtime": 1791226653.0026147,
+    "ast_hash": "f1567c8c4966c4bffb03ca9383a0a82c",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/package.py": {
+    "mtime": 1791226653.0033212,
+    "ast_hash": "a96bd32c2cbf613aad2cdceed11f1bab",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/render.py": {
+    "mtime": 1791226653.0039296,
+    "ast_hash": "29c4a9421feb86664a10324d40bff680",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/validate.py": {
+    "mtime": 1791226653.0041413,
+    "ast_hash": "167442bc944b3fa3ac9cbbff7d0807f0",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/final/manifest.json": {
+    "mtime": 1791226653.116897,
+    "ast_hash": "9d9e20f0d3e28ed5e3a1b07b92f7cf9d",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/caption_burn.py": {
+    "mtime": 1791226653.1189656,
+    "ast_hash": "5713db3fea70d77cb8fc4d2cacfc5dec",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/seedance_treg.py": {
+    "mtime": 1791226653.127259,
+    "ast_hash": "1d3fcbf1d27b299dc3400855eed5445b",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/whisper_to_words.py": {
+    "mtime": 1791226653.1481922,
+    "ast_hash": "b207bd85a6f4f08c223097f1161c052a",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/demo/capsule-capture-2x.html": {
+    "mtime": 1791226652.564248,
+    "ast_hash": "2a7ba357e0ddd6a5ade8a583de434585",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/demo/capsule-capture.html": {
+    "mtime": 1791226652.5643244,
+    "ast_hash": "64eb0c9d31d7b1709660f86599bc542e",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/demo/dad-capture-2x.html": {
+    "mtime": 1791226652.5647075,
+    "ast_hash": "81e4578a31758f3cd7694c22a1b95cae",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/demo/dad-capture.html": {
+    "mtime": 1791226652.5647852,
+    "ast_hash": "e4f038303d39b9ad050e89228f503941",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/.media/index.md": {
+    "mtime": 1791226652.5652783,
+    "ast_hash": "d6c4c9081726da9b319f5b1ac2723660",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/BRIEF.md": {
+    "mtime": 1791226652.565495,
+    "ast_hash": "6be0df4e6d117fa79a10cccd8660faa4",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/index.html": {
+    "mtime": 1791226652.572444,
+    "ast_hash": "4af3f9b7de30d1da83f5cf1384e6847c",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/05-camera-roll-ugc/.media/index.md": {
+    "mtime": 1791226652.572664,
+    "ast_hash": "318a04c3373520769bc5eebfc9bc5c76",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/05-camera-roll-ugc/BRIEF.md": {
+    "mtime": 1791226652.5727868,
+    "ast_hash": "3740bfa47af4593a48c4cb366b2d18c1",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/05-camera-roll-ugc/index.html": {
+    "mtime": 1791226652.5764885,
+    "ast_hash": "91444d9eb26ed209aaba9099c547fbeb",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/.media/index.md": {
+    "mtime": 1791226652.5767446,
+    "ast_hash": "1e46508cfc3f084a96357c5a01ab00f4",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/AUDIO.md": {
+    "mtime": 1791226652.576888,
+    "ast_hash": "b4eb55fbfe368c6a145ccfb5ab1c17e2",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/BRIEF.md": {
+    "mtime": 1791226652.5769553,
+    "ast_hash": "7d177d4a6256634fc008bc1e26cd97b1",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/STORYBOARD.md": {
+    "mtime": 1791226652.57742,
+    "ast_hash": "f7a75f6482172cb52a3d5f35935edd6a",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/compositions/components/device-frame-stage.html": {
+    "mtime": 1791226652.6215155,
+    "ast_hash": "aeaaf4df0029a6a12da630fff7ea4e95",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/index.html": {
+    "mtime": 1791226652.6218529,
+    "ast_hash": "5ab015d956301212e44d4d112c815dd6",
+    "semantic_hash": ""
+  },
+  "marketing/ads/2026-09-meta-traffic/campaign-setup.md": {
+    "mtime": 1791226652.6480358,
+    "ast_hash": "8d6353ed98ff744ce4303b8901e7df3c",
+    "semantic_hash": ""
+  },
+  "marketing/ads/2026-09-meta-traffic/creative-notes.md": {
+    "mtime": 1791226652.6481135,
+    "ast_hash": "ab56164196705268dbcf96a1a8279106",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/01-little-words/alt-text.txt": {
+    "mtime": 1791226652.6512632,
+    "ast_hash": "62f4ca7f3ebac484e375e2fa8e61835f",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/01-little-words/caption.txt": {
+    "mtime": 1791226652.6516,
+    "ast_hash": "673f30bf10fc4d4cfe324007526b5fe6",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/02-first-laugh/alt-text.txt": {
+    "mtime": 1791226652.6607015,
+    "ast_hash": "85e001a31ccf56f9e9a9074c2b924cf1",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/02-first-laugh/caption.txt": {
+    "mtime": 1791226652.660772,
+    "ast_hash": "3cb0af09c90621986767d814d62b5b83",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/03-bedtime/alt-text.txt": {
+    "mtime": 1791226652.6710346,
+    "ast_hash": "b2aad4b5a891c7602ca81e964c754838",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/03-bedtime/caption.txt": {
+    "mtime": 1791226652.6713424,
+    "ast_hash": "c965d8b2a12d4ab73f73b280365cc924",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/INSTAGRAM-REVIEW.md": {
+    "mtime": 1791226652.680963,
+    "ast_hash": "903a2e5b4b999fff804452f4b399b599",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/README.md": {
+    "mtime": 1791226652.6810505,
+    "ast_hash": "acdc4e286a8632a377a114b0a1edf36e",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/alt-text.txt": {
+    "mtime": 1791226652.68382,
+    "ast_hash": "af8bb31b79525a8dda39f707e4cf963b",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/caption.txt": {
+    "mtime": 1791226652.6841092,
+    "ast_hash": "673f30bf10fc4d4cfe324007526b5fe6",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/alt-text.txt": {
+    "mtime": 1791226652.7200267,
+    "ast_hash": "0bf239e41f76e00f4ffd8d126d7754aa",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/caption.txt": {
+    "mtime": 1791226652.7200947,
+    "ast_hash": "3cb0af09c90621986767d814d62b5b83",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/alt-text.txt": {
+    "mtime": 1791226652.755775,
+    "ast_hash": "930ee0dfb970400c2e0d7828021170b6",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/caption.txt": {
+    "mtime": 1791226652.7558413,
+    "ast_hash": "c965d8b2a12d4ab73f73b280365cc924",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/README.md": {
+    "mtime": 1791226652.796604,
+    "ast_hash": "ae88124427fa4d260f8ccad4688fa176",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/caption.txt": {
+    "mtime": 1791226652.8050795,
+    "ast_hash": "fa278309d4c41c45cb923cb00d6279e3",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/AGENTS.md": {
+    "mtime": 1791226652.8052557,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/BRIEF.md": {
+    "mtime": 1791226652.805593,
+    "ast_hash": "cf407cd5cc28a38b106d5c455aaf7721",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/CLAUDE.md": {
+    "mtime": 1791226652.8057208,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/design.md": {
+    "mtime": 1791226652.8086545,
+    "ast_hash": "7efc06dd83f2d5d95f5662e5d20cf932",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/index.html": {
+    "mtime": 1791226652.8090491,
+    "ast_hash": "3d9578685652ad38fb850e01fb65f775",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/caption.txt": {
+    "mtime": 1791226652.8252962,
+    "ast_hash": "a423fa834778cc90cdbe7e737f5eeb69",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/AGENTS.md": {
+    "mtime": 1791226652.8256965,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/BRIEF.md": {
+    "mtime": 1791226652.8257945,
+    "ast_hash": "a6582280eb3061a0ade79095aeb864d1",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/CLAUDE.md": {
+    "mtime": 1791226652.8259323,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/design.md": {
+    "mtime": 1791226652.8335485,
+    "ast_hash": "7efc06dd83f2d5d95f5662e5d20cf932",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/index.html": {
+    "mtime": 1791226652.833896,
+    "ast_hash": "e4f514b325b1ae6f2297ffa2611047a0",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/caption.txt": {
+    "mtime": 1791226652.8525126,
+    "ast_hash": "735f6a1024d69135236473f032a9811a",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/AGENTS.md": {
+    "mtime": 1791226652.8527062,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/BRIEF.md": {
+    "mtime": 1791226652.853321,
+    "ast_hash": "5e10ec4a54fae2e9e179bbf979ffd6db",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/CLAUDE.md": {
+    "mtime": 1791226652.8539593,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/design.md": {
+    "mtime": 1791226652.8594847,
+    "ast_hash": "7efc06dd83f2d5d95f5662e5d20cf932",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/index.html": {
+    "mtime": 1791226652.8597982,
+    "ast_hash": "9aa703e6f2d99b67a59c865afa7a8a56",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/caption.txt": {
+    "mtime": 1791226652.8900363,
+    "ast_hash": "746ad329cac2d49792b4fe5af2f29619",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/AGENTS.md": {
+    "mtime": 1791226652.8902373,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/BRIEF.md": {
+    "mtime": 1791226652.8903055,
+    "ast_hash": "e39f7b532d6590f98d263176b4967bcc",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/CLAUDE.md": {
+    "mtime": 1791226652.890434,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/design.md": {
+    "mtime": 1791226652.893867,
+    "ast_hash": "7efc06dd83f2d5d95f5662e5d20cf932",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/index.html": {
+    "mtime": 1791226652.894728,
+    "ast_hash": "b52551094663472e87e2ea0c31f464eb",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/caption.txt": {
+    "mtime": 1791226652.9141207,
+    "ast_hash": "dc680b8d7a0bb4ace1b43e81f622367f",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/AGENTS.md": {
+    "mtime": 1791226652.9143097,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/BRIEF.md": {
+    "mtime": 1791226652.9145427,
+    "ast_hash": "fdc4e108dad13e31dbf15d21d2d533a6",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/CLAUDE.md": {
+    "mtime": 1791226652.914673,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/design.md": {
+    "mtime": 1791226652.9201949,
+    "ast_hash": "7efc06dd83f2d5d95f5662e5d20cf932",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/index.html": {
+    "mtime": 1791226652.9203565,
+    "ast_hash": "9c1ad1c3361e89f67588a56ec81d726b",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/caption.txt": {
+    "mtime": 1791226652.9421263,
+    "ast_hash": "40cf20b197e9f63ef5cf66a521b13682",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/AGENTS.md": {
+    "mtime": 1791226652.9425611,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/BRIEF.md": {
+    "mtime": 1791226652.942883,
+    "ast_hash": "a216b0e4233f0054a95b055dda2a6433",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/CLAUDE.md": {
+    "mtime": 1791226652.9430652,
+    "ast_hash": "b5c9f2fb30749b8abf9288f6d2f3bfb7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/design.md": {
+    "mtime": 1791226652.9463453,
+    "ast_hash": "7efc06dd83f2d5d95f5662e5d20cf932",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/index.html": {
+    "mtime": 1791226652.9465322,
+    "ast_hash": "a19b74e22c62c0b93e226a53d578d029",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/07-ask-grandparents/caption.txt": {
+    "mtime": 1791226652.966927,
+    "ast_hash": "d553d9acd8679f73c97e63b568ce29a9",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/08-first-letter/caption.txt": {
+    "mtime": 1791226652.9702723,
+    "ast_hash": "0c58daf3dafe8897562092ef6d584bee",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/09-photo-needs-story/caption.txt": {
+    "mtime": 1791226652.9729817,
+    "ast_hash": "6b32258880ef743bfc4c5077edbc5d50",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/10-seven-ordinary-things/caption.txt": {
+    "mtime": 1791226652.9762616,
+    "ast_hash": "8dae73e2a7bba4c0e829f98aadba0443",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/AUDIT.md": {
+    "mtime": 1791226652.9796999,
+    "ast_hash": "59ec70a8abbf3238c0c2dfc9be271013",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/QA.txt": {
+    "mtime": 1791226652.9797766,
+    "ast_hash": "7ca91b6d3676ea00f88f9fd42e70de8d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/README.md": {
+    "mtime": 1791226652.9803202,
+    "ast_hash": "f7a3549f9ecab26eaca50ae53155ec1c",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/export.html": {
+    "mtime": 1791226653.002284,
+    "ast_hash": "4cedc072eec7e359ae6193cee9d586f8",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/index.html": {
+    "mtime": 1791226653.0031695,
+    "ast_hash": "69b496698ec35ecb3d7d0491224729e7",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-camera-roll-ugc/README.md": {
+    "mtime": 1791226653.0046682,
+    "ast_hash": "b93122c15970cd11ed402659edfb68ec",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-camera-roll-ugc/caption.txt": {
+    "mtime": 1791226653.004732,
+    "ast_hash": "dc4e2da4366b08181852421d7450a098",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-camera-roll/README.md": {
+    "mtime": 1791226653.020311,
+    "ast_hash": "081065668ebafc76230a3cf987ad3488",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-camera-roll/caption.txt": {
+    "mtime": 1791226653.0204,
+    "ast_hash": "dc4e2da4366b08181852421d7450a098",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/README.md": {
+    "mtime": 1791226653.0339625,
+    "ast_hash": "61e33dae635b985ff411ef39e344a382",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/caption.txt": {
+    "mtime": 1791226653.034721,
+    "ast_hash": "a82ada800c85f4de277f3f6191a36ce1",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/export.html": {
+    "mtime": 1791226653.0348291,
+    "ast_hash": "b058269ca751e55e2ec0123c0c604479",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/index.html": {
+    "mtime": 1791226653.0349722,
+    "ast_hash": "8e48f0ebf4d6af1f6ea55d0c381b1530",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-fastlane-pair/README.md": {
+    "mtime": 1791226653.0501215,
+    "ast_hash": "697fe0845e29cbb1ff885cb2fdcbcc1d",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-fastlane-pair/grandma-caption.txt": {
+    "mtime": 1791226653.050197,
+    "ast_hash": "c60e2216720f2ba2036d2f9183e11190",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-fastlane-pair/letter-caption.txt": {
+    "mtime": 1791226653.0623028,
+    "ast_hash": "2b53ccb41e88dc0d2a8206fa0e6bcc9e",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-first-night/README.md": {
+    "mtime": 1791226653.0624628,
+    "ast_hash": "e70261c4412c4f04679b386a33d76bf6",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-first-night/caption.txt": {
+    "mtime": 1791226653.0625536,
+    "ast_hash": "9355090c244c766c934b4b7644e8649d",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/README.md": {
+    "mtime": 1791226653.079957,
+    "ast_hash": "b3baf413fed261cc2beff7df06542e54",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/bill.md": {
+    "mtime": 1791226653.0800438,
+    "ast_hash": "e3fb61cba18b8b551e93422392128820",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/candidates.md": {
+    "mtime": 1791226653.080154,
+    "ast_hash": "0a5af17141798639cdb8fe44004696be",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/character-gallery.html": {
+    "mtime": 1791226653.080233,
+    "ast_hash": "f88259cacf94a0de70d78e8573be85db",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/final/index.html": {
+    "mtime": 1791226653.116831,
+    "ast_hash": "1f9331839bcec63e996ed8bbe45274f7",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/hook-gallery.html": {
+    "mtime": 1791226653.1172888,
+    "ast_hash": "7c079e833a40cad7b50f9a0193834379",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/hook-options.md": {
+    "mtime": 1791226653.1176538,
+    "ast_hash": "d99ca0b4e942455ee5fbb4b7fb95e50c",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/hooks.md": {
+    "mtime": 1791226653.1177678,
+    "ast_hash": "2dfbad2b7c9d79a8456540cdfd43b9d3",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/presenter-gallery.html": {
+    "mtime": 1791226653.1178756,
+    "ast_hash": "1747894832efd994236c3b0042ba20b1",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/bill-history.md": {
+    "mtime": 1791226653.1183972,
+    "ast_hash": "95c56751dc1b6a052c669e9aa860de17",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/captioned-audio-hash.txt": {
+    "mtime": 1791226653.1190302,
+    "ast_hash": "77824aed65d0b579ce584538c28c57b8",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/phrases-draft.txt": {
+    "mtime": 1791226653.120069,
+    "ast_hash": "2217cd4932c3fb20e17104c693d6cda5",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/phrases.txt": {
+    "mtime": 1791226653.1201806,
+    "ast_hash": "bee0c5a7354b2a1418e76e58b4de3390",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/prompt.txt": {
+    "mtime": 1791226653.1267066,
+    "ast_hash": "7d7958763ec826b9216981b83d4a1b8f",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/raw-audio-hash.txt": {
+    "mtime": 1791226653.1270137,
+    "ast_hash": "77824aed65d0b579ce584538c28c57b8",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/script.txt": {
+    "mtime": 1791226653.1271074,
+    "ast_hash": "91dfa051a6559ffb492d04990b44f004",
+    "semantic_hash": ""
+  },
+  "marketing/content/published/2026-09-17-01-baby-book-ugc/caption.txt": {
+    "mtime": 1791226653.1502764,
+    "ast_hash": "756e788f67abc319a1e64c7524e8b203",
+    "semantic_hash": ""
+  },
+  "marketing/research/parent-interviews-2026-09-21.md": {
+    "mtime": 1791226653.1540496,
+    "ast_hash": "48f3e08c4c7a8c1c4e58c990d115e27a",
+    "semantic_hash": ""
+  },
+  "marketing/research/parent-survey-2026-09-21.md": {
+    "mtime": 1791226653.15415,
+    "ast_hash": "1787172475783b5fdb31a438dca5a17a",
+    "semantic_hash": ""
+  },
+  "marketing/seo/2026-09-15/acquisition-review.md": {
+    "mtime": 1791226653.1543148,
+    "ast_hash": "3dbbf2ec9595cf657aa9f2d649c738f4",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/assets/icon.svg": {
+    "mtime": 1791226652.5691319,
+    "ast_hash": "948fca858376114f106028181eca7ce7",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/assets/bedroom-phone-backdrop.jpg": {
+    "mtime": 1791226652.5775704,
+    "ast_hash": "a3c8fd83b73b6ef844ad390ee1567c38",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/assets/capsule-real-mobile.png": {
+    "mtime": 1791226652.5777354,
+    "ast_hash": "85056f196f8f5d42a14684e45d34251a",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/assets/icon.svg": {
+    "mtime": 1791226652.5814214,
+    "ast_hash": "948fca858376114f106028181eca7ce7",
+    "semantic_hash": ""
+  },
+  "marketing/ads/2026-09-meta-traffic/story-behind-photo-v1.png": {
+    "mtime": 1791226652.64956,
+    "ast_hash": "9ea1c2c9f2df8d73d0bc9e526348d470",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/01-little-words/photo.png": {
+    "mtime": 1791226652.6527624,
+    "ast_hash": "96b5be136e8c4f638e8fc87c3e75654a",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/01-little-words/slide-01.png": {
+    "mtime": 1791226652.654054,
+    "ast_hash": "18576eb4e0ca74acf25392c61184b0e5",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/01-little-words/slide-02.png": {
+    "mtime": 1791226652.655937,
+    "ast_hash": "ed033fc32bd3a53fa8672422ff291fc7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/01-little-words/slide-03.png": {
+    "mtime": 1791226652.6571646,
+    "ast_hash": "fd0acbc1ac2c4f2f873d94c9bd03f781",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/01-little-words/slide-04.png": {
+    "mtime": 1791226652.6583908,
+    "ast_hash": "76c418bf68acfff2574ff0e915ea7c06",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/01-little-words/slide-05.png": {
+    "mtime": 1791226652.6600604,
+    "ast_hash": "d1098e437945f9b0c656b103b95d1f32",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/02-first-laugh/photo.png": {
+    "mtime": 1791226652.6618235,
+    "ast_hash": "3b6cf3a4b097c0cbe842c20d0b95f9da",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/02-first-laugh/slide-01.png": {
+    "mtime": 1791226652.6642652,
+    "ast_hash": "6585dc23a9ea6a288da08aeae20552ff",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/02-first-laugh/slide-02.png": {
+    "mtime": 1791226652.6662822,
+    "ast_hash": "b6d85da1e41320353f2c7c4c04309f68",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/02-first-laugh/slide-03.png": {
+    "mtime": 1791226652.667411,
+    "ast_hash": "72ca0d2d6a6c4b012748490d3b6a34d8",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/02-first-laugh/slide-04.png": {
+    "mtime": 1791226652.6684797,
+    "ast_hash": "04efd91251c4c182fc5478c4fd02b7cb",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/02-first-laugh/slide-05.png": {
+    "mtime": 1791226652.670413,
+    "ast_hash": "759e964bc3a57e50bacb7f86fa9c14e1",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/03-bedtime/photo.png": {
+    "mtime": 1791226652.672159,
+    "ast_hash": "c058fae6ef0097213f840cc024f3994e",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/03-bedtime/slide-01.png": {
+    "mtime": 1791226652.673975,
+    "ast_hash": "680081e3ce3060b2b9f0fa770711e249",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/03-bedtime/slide-02.png": {
+    "mtime": 1791226652.6764147,
+    "ast_hash": "d5f3ceabbfeb6231e11d7bd7ab4fae5e",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/03-bedtime/slide-03.png": {
+    "mtime": 1791226652.6779778,
+    "ast_hash": "a87c4c995dd058db8066d8e91d9a635a",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/03-bedtime/slide-04.png": {
+    "mtime": 1791226652.67961,
+    "ast_hash": "ce88ab8104413b4366fda4c6ad2b9d80",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/03-bedtime/slide-05.png": {
+    "mtime": 1791226652.6806767,
+    "ast_hash": "9294785cfd66e6cb7cb9620d0df46868",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/contact-sheet.jpg": {
+    "mtime": 1791226652.6813269,
+    "ast_hash": "d8e3769fa3274d92594b307f7b28e2a9",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-16-baby-journal/covers.jpg": {
+    "mtime": 1791226652.6816337,
+    "ast_hash": "bf12a8a7b84d7f376702e5f98c683cf3",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/high-resolution/slide-01.png": {
+    "mtime": 1791226652.6863236,
+    "ast_hash": "59af45927daf2e5aae438cb14da8f5a9",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/high-resolution/slide-02.png": {
+    "mtime": 1791226652.6907506,
+    "ast_hash": "6e1c5608de1448a98cee86061a0130fd",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/high-resolution/slide-03.png": {
+    "mtime": 1791226652.6948874,
+    "ast_hash": "46ec149f32953523e102cc46f2191846",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/high-resolution/slide-04.png": {
+    "mtime": 1791226652.6997886,
+    "ast_hash": "112515c892c8ccb3e6d6a03793075e42",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/high-resolution/slide-05.png": {
+    "mtime": 1791226652.7035866,
+    "ast_hash": "9bb93cb8d7461d93b3093f371d424416",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/photos/photo-01.png": {
+    "mtime": 1791226652.705589,
+    "ast_hash": "96b5be136e8c4f638e8fc87c3e75654a",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/photos/photo-02.png": {
+    "mtime": 1791226652.7077148,
+    "ast_hash": "18ac9fd9d6819981ab4eb4df898fa129",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/photos/photo-03.png": {
+    "mtime": 1791226652.7095628,
+    "ast_hash": "5301335bfac30b3bf4401067ab59a071",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/photos/photo-04.png": {
+    "mtime": 1791226652.7111056,
+    "ast_hash": "63e0e525c6bba0b8b73b8ec25932bb3c",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/photos/photo-05.png": {
+    "mtime": 1791226652.7128446,
+    "ast_hash": "c9529eec3c0fa57cfc13775c2b56a67c",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/slide-01.png": {
+    "mtime": 1791226652.713813,
+    "ast_hash": "1c1e0892fb3633dbc55ce3798b869463",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/slide-02.png": {
+    "mtime": 1791226652.7158608,
+    "ast_hash": "987b50f47df2487e0138e1ad392c3050",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/slide-03.png": {
+    "mtime": 1791226652.7172418,
+    "ast_hash": "9f59b4c35f374e32ed4c9027d22b1f77",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/slide-04.png": {
+    "mtime": 1791226652.718344,
+    "ast_hash": "1d0183d6dbe067a6bad3b8bae160b452",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/01-little-words/slide-05.png": {
+    "mtime": 1791226652.7198339,
+    "ast_hash": "f47cb2b4b9cc3b91eb64c189e95ef275",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/high-resolution/slide-01.png": {
+    "mtime": 1791226652.7226841,
+    "ast_hash": "d599ab77343b3633f8d5ddf3eb7f115d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/high-resolution/slide-02.png": {
+    "mtime": 1791226652.7264237,
+    "ast_hash": "796818a1a216420869bc5732b00b97f5",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/high-resolution/slide-03.png": {
+    "mtime": 1791226652.7304304,
+    "ast_hash": "a9c70befc80531092027347ace3fff7d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/high-resolution/slide-04.png": {
+    "mtime": 1791226652.7354555,
+    "ast_hash": "6a697200a42f594aea5777af114187f5",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/high-resolution/slide-05.png": {
+    "mtime": 1791226652.7414455,
+    "ast_hash": "dcf8b87b44b9c6f91ef634568f018eb0",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/photos/photo-01.png": {
+    "mtime": 1791226652.7438817,
+    "ast_hash": "3b6cf3a4b097c0cbe842c20d0b95f9da",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/photos/photo-02.png": {
+    "mtime": 1791226652.744946,
+    "ast_hash": "6f110d94a1a9619a689bc4defe6424ec",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/photos/photo-03.png": {
+    "mtime": 1791226652.745987,
+    "ast_hash": "2ce9b4a60f076b89e0fcdce371557c5a",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/photos/photo-04.png": {
+    "mtime": 1791226652.747448,
+    "ast_hash": "28ef67ac395257d22e1cff6fa681bea9",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/photos/photo-05.png": {
+    "mtime": 1791226652.7491722,
+    "ast_hash": "23e810e242e497028d4be70a413ea363",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/slide-01.png": {
+    "mtime": 1791226652.750372,
+    "ast_hash": "1e3ef13ae975a3d7477b25a27a9969da",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/slide-02.png": {
+    "mtime": 1791226652.751853,
+    "ast_hash": "b4bc28eda53d84b1620dcfc9073484b0",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/slide-03.png": {
+    "mtime": 1791226652.7529771,
+    "ast_hash": "cf3a18807ac1ffb1714e0287f275f370",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/slide-04.png": {
+    "mtime": 1791226652.7540298,
+    "ast_hash": "16ec95248c6f7321378a497bea584181",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/02-first-laugh/slide-05.png": {
+    "mtime": 1791226652.7549164,
+    "ast_hash": "59bce6fb40593df6a243c920f2838bec",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/high-resolution/slide-01.png": {
+    "mtime": 1791226652.7581532,
+    "ast_hash": "a95cd7e69f525ddf9eefa0e9ee6916db",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/high-resolution/slide-02.png": {
+    "mtime": 1791226652.7616477,
+    "ast_hash": "ff9a47ab5d7cc312e2cd3830774fcc45",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/high-resolution/slide-03.png": {
+    "mtime": 1791226652.764973,
+    "ast_hash": "1f5487e94f994aa2ae65f1429c87965d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/high-resolution/slide-04.png": {
+    "mtime": 1791226652.7705383,
+    "ast_hash": "0a394536989d35de1a797bcbda27076d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/high-resolution/slide-05.png": {
+    "mtime": 1791226652.7737396,
+    "ast_hash": "6d41f4a12702104e50f6973e33273836",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/photos/photo-01.png": {
+    "mtime": 1791226652.7757142,
+    "ast_hash": "c058fae6ef0097213f840cc024f3994e",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/photos/photo-02.png": {
+    "mtime": 1791226652.7774346,
+    "ast_hash": "30d74c58c33e3642e2f3eb5c7f3be8d7",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/photos/photo-03.png": {
+    "mtime": 1791226652.7797902,
+    "ast_hash": "00344e4b73a3658bd433af297eaed9ec",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/photos/photo-04.png": {
+    "mtime": 1791226652.7823806,
+    "ast_hash": "df67787113eee03b5746470e87f131d6",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/photos/photo-05.png": {
+    "mtime": 1791226652.7843847,
+    "ast_hash": "8f508a98bdcd1e9db4c4a9a43de64bd2",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/slide-01.png": {
+    "mtime": 1791226652.7871325,
+    "ast_hash": "59cb147a6bdea56e320a4b6c3d24aba1",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/slide-02.png": {
+    "mtime": 1791226652.7882054,
+    "ast_hash": "9fc52c671e3344ff35095c4b0a5fa51f",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/slide-03.png": {
+    "mtime": 1791226652.7908554,
+    "ast_hash": "e93132fc8d6442e9f14cfd7237e1b551",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/slide-04.png": {
+    "mtime": 1791226652.792856,
+    "ast_hash": "996e363fb93b2773ce30177979606855",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/03-bedtime/slide-05.png": {
+    "mtime": 1791226652.7949343,
+    "ast_hash": "e443a14a8fb8f9a6a73158a610f2b7f3",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/contact-sheet.png": {
+    "mtime": 1791226652.799229,
+    "ast_hash": "078222bfb503b0b14b2f98a716549208",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-17-baby-journal-v2/covers.png": {
+    "mtime": 1791226652.8015966,
+    "ast_hash": "6cc2469aeba32d754be6a9560830478d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/cover.jpg": {
+    "mtime": 1791226652.809475,
+    "ast_hash": "bd5fa09802e31f3aa7c89f0b1dd2bcdf",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/end.jpg": {
+    "mtime": 1791226652.8102171,
+    "ast_hash": "5a0949b9c4853cd1c983de83fc5b48ed",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/middle.jpg": {
+    "mtime": 1791226652.8104954,
+    "ast_hash": "a25d9362e8378b6e665d7e4db2dd1825",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/cover.jpg": {
+    "mtime": 1791226652.8342907,
+    "ast_hash": "d4f11791bc18aa905631976ed464613d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/end.jpg": {
+    "mtime": 1791226652.834572,
+    "ast_hash": "e0ceb1c48aa2462a49225aa5302a2577",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/middle.jpg": {
+    "mtime": 1791226652.8348384,
+    "ast_hash": "c2bcbcde22a7843125e2cadeeddc115f",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/cover.jpg": {
+    "mtime": 1791226652.8606021,
+    "ast_hash": "ae09bd1dac359d34b5e64cebd4b755d9",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/end.jpg": {
+    "mtime": 1791226652.861167,
+    "ast_hash": "f6ee433417b81805215bf399289861db",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/middle.jpg": {
+    "mtime": 1791226652.8616755,
+    "ast_hash": "10c3f518feab02c8209f6189777fd7b6",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/cover.jpg": {
+    "mtime": 1791226652.8954284,
+    "ast_hash": "c32858c9e01994016cfe00c4d93a0e65",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/end.jpg": {
+    "mtime": 1791226652.8956523,
+    "ast_hash": "125a6a6e1ae8b31decf11408271dfe5b",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/middle.jpg": {
+    "mtime": 1791226652.8958678,
+    "ast_hash": "d45fbae560fd0825b732ac1a2da08f6c",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/cover.jpg": {
+    "mtime": 1791226652.9207513,
+    "ast_hash": "1dbfa819b449e23d74c23857bf647ed2",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/end.jpg": {
+    "mtime": 1791226652.9210174,
+    "ast_hash": "eae02f3ba01fc57628b0ef4a4c003c84",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/middle.jpg": {
+    "mtime": 1791226652.9212773,
+    "ast_hash": "9e78b00ce9a8ccef466a78d6d419ce3d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/cover.jpg": {
+    "mtime": 1791226652.9469147,
+    "ast_hash": "19b87d57b7541e9ae9b6fb307a808861",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/end.jpg": {
+    "mtime": 1791226652.9471693,
+    "ast_hash": "ee39efaba23cfcc0a2244d78f1eb17af",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/middle.jpg": {
+    "mtime": 1791226652.9474435,
+    "ast_hash": "7448edfba27dce2c0216636c067c6d55",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/07-ask-grandparents/slide-01.png": {
+    "mtime": 1791226652.9679317,
+    "ast_hash": "e6e68349edb787254ac7e98bb51a4538",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/07-ask-grandparents/slide-02.png": {
+    "mtime": 1791226652.968788,
+    "ast_hash": "8ffb050e6f04fdef90750a53d68807fc",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/07-ask-grandparents/slide-03.png": {
+    "mtime": 1791226652.9690392,
+    "ast_hash": "75ec13f6f27339a85dce4fb9263b6cb2",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/07-ask-grandparents/slide-04.png": {
+    "mtime": 1791226652.9693146,
+    "ast_hash": "e1665bf823bba99f4ef68c2456804bdd",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/07-ask-grandparents/slide-05.png": {
+    "mtime": 1791226652.970129,
+    "ast_hash": "d39c2353565083ceedb32439a3bb3598",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/08-first-letter/slide-01.png": {
+    "mtime": 1791226652.971317,
+    "ast_hash": "f45ebd4cf756088e3d8e0a64c077b841",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/08-first-letter/slide-02.png": {
+    "mtime": 1791226652.9716241,
+    "ast_hash": "657cff5084e5752934babca71d16b04e",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/08-first-letter/slide-03.png": {
+    "mtime": 1791226652.9723828,
+    "ast_hash": "72262385968a9adffeed82a1be58bcc0",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/08-first-letter/slide-04.png": {
+    "mtime": 1791226652.9726088,
+    "ast_hash": "716d960d80553d223321e2b6137aeed1",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/08-first-letter/slide-05.png": {
+    "mtime": 1791226652.9728618,
+    "ast_hash": "5dfe8003bc544f8b64b659290197ce68",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/09-photo-needs-story/slide-01.png": {
+    "mtime": 1791226652.9740899,
+    "ast_hash": "df99fff46d96d113a52fce5859d3d2a0",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/09-photo-needs-story/slide-02.png": {
+    "mtime": 1791226652.9753253,
+    "ast_hash": "c1cd2c5ffa57d42a32a15238c3d31118",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/09-photo-needs-story/slide-03.png": {
+    "mtime": 1791226652.975592,
+    "ast_hash": "5cab9327b35b1fb7f2a4eae6b03adc21",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/09-photo-needs-story/slide-04.png": {
+    "mtime": 1791226652.9758573,
+    "ast_hash": "8d59147e3921273d8e252d297b383825",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/09-photo-needs-story/slide-05.png": {
+    "mtime": 1791226652.9761171,
+    "ast_hash": "3dfe3a4023a9c19cfe5b4edb9d191204",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/10-seven-ordinary-things/slide-01.png": {
+    "mtime": 1791226652.9774866,
+    "ast_hash": "3530092ace1fd67de1991730eafa78fb",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/10-seven-ordinary-things/slide-02.png": {
+    "mtime": 1791226652.9786282,
+    "ast_hash": "0e5370629e9e65b9defe7bf0c105d36c",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/10-seven-ordinary-things/slide-03.png": {
+    "mtime": 1791226652.978906,
+    "ast_hash": "69430d2cd9239dcd31cb0c3397e9e072",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/10-seven-ordinary-things/slide-04.png": {
+    "mtime": 1791226652.9792733,
+    "ast_hash": "bc897c3e8426c94ba592aece6b2f6963",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/10-seven-ordinary-things/slide-05.png": {
+    "mtime": 1791226652.9795406,
+    "ast_hash": "4b52c91f3d65452ab06804d79458f2ed",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/01-memory-keeper.jpg": {
+    "mtime": 1791226652.9805076,
+    "ast_hash": "ff3fc72bc47dd739adce5e9d9357cb30",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/02-grandmas-recipe.jpg": {
+    "mtime": 1791226652.984253,
+    "ast_hash": "77809017558790cb86b18b3cba1607b2",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/03-in-the-picture.jpg": {
+    "mtime": 1791226652.9871967,
+    "ast_hash": "74298ef098dbc5616c975a72588e381e",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/04-little-words.jpg": {
+    "mtime": 1791226652.992455,
+    "ast_hash": "693bef9903a73ba1e2a8283a8b886628",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/05-bedtime-across-miles.jpg": {
+    "mtime": 1791226652.9958272,
+    "ast_hash": "d4bee9bfc4469f76f0f8256f3debb935",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/06-ordinary-tuesday.jpg": {
+    "mtime": 1791226652.9995599,
+    "ast_hash": "921313e3881e7574634af3ba3850a74e",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/carousels-contact.jpg": {
+    "mtime": 1791226653.001977,
+    "ast_hash": "e2e8d25eebd62d177ff50de3a295e84b",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/footage-contact.jpg": {
+    "mtime": 1791226653.0024724,
+    "ast_hash": "f9b2f25c1894b73009596f3aface805d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/reels-contact.jpg": {
+    "mtime": 1791226653.0034428,
+    "ast_hash": "db309353bf0be3ae69cb465720bd75fa",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-camera-roll-ugc/cover.png": {
+    "mtime": 1791226653.0059655,
+    "ast_hash": "22f9432cea3711a646a4843d8ed35daf",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-camera-roll/cover.png": {
+    "mtime": 1791226653.0212824,
+    "ast_hash": "7bac5408072dea888cacf4e71fda7c53",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/capsule.png": {
+    "mtime": 1791226653.0341659,
+    "ast_hash": "c17f04a630de02d7e2787371ef338241",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/photo.png": {
+    "mtime": 1791226653.0382264,
+    "ast_hash": "a04a55afd73a7fc8f4cdffd6d6eea5e8",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/slide-01.png": {
+    "mtime": 1791226653.0403292,
+    "ast_hash": "d221b0c9539db4234edf2811936b9a35",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/slide-02.png": {
+    "mtime": 1791226653.0432692,
+    "ast_hash": "adce41b7e7c78a5bb25d67afcd92d2a4",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/slide-03.png": {
+    "mtime": 1791226653.0451875,
+    "ast_hash": "e2e00a4dfa725945efa3ba7a76ca2088",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/slide-04.png": {
+    "mtime": 1791226653.04821,
+    "ast_hash": "e5fb7e39fe89caa240497492911d20c9",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-dads-first-letter/slide-05.png": {
+    "mtime": 1791226653.04985,
+    "ast_hash": "e7071459f4145a9d3b8d8c613abeabf2",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-first-night/cover.png": {
+    "mtime": 1791226653.0633984,
+    "ast_hash": "bc9eae56ecd7afd883df9115cfbb8467",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/character.jpg": {
+    "mtime": 1791226653.0805714,
+    "ast_hash": "cc7f19b5b1a36e7c6197004254285999",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/character/option-a-gemini.jpg": {
+    "mtime": 1791226653.0851285,
+    "ast_hash": "323d4f73e73518c97569c74f24d56677",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/character/option-b-gpt.png": {
+    "mtime": 1791226653.095674,
+    "ast_hash": "e9b293dbdf7d47a74cb051bfdd21ec9c",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/final/poster.jpg": {
+    "mtime": 1791226653.1171098,
+    "ast_hash": "63b57da9a2d16bcc3b0923eea468d587",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/caption-check-final.jpg": {
+    "mtime": 1791226653.1186352,
+    "ast_hash": "63b57da9a2d16bcc3b0923eea468d587",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/caption-check.jpg": {
+    "mtime": 1791226653.1188068,
+    "ast_hash": "7d9a8244a7a1784b618f93b4ec5861df",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/captioned-frames-final.jpg": {
+    "mtime": 1791226653.1191857,
+    "ast_hash": "51ed20c749fb3b9b25c7a4ef47c4b750",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/header-preview.png": {
+    "mtime": 1791226653.1193962,
+    "ast_hash": "a26ea931e09e952a16c559feb448c281",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/take-1-frames.jpg": {
+    "mtime": 1791226653.134492,
+    "ast_hash": "3ab43d6ac172a76ef293b55e3475bb35",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/assets/flow-dinosaur.mp4": {
+    "mtime": 1791226652.5675955,
+    "ast_hash": "0da8a789aacb8136b284da187fcf6fcf",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/04-camera-roll/assets/room-sound.wav": {
+    "mtime": 1791226652.572047,
+    "ast_hash": "16756b4489a5846e8dabd68f4fc00d41",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/05-camera-roll-ugc/assets/flow-ugc.mp4": {
+    "mtime": 1791226652.5747933,
+    "ast_hash": "873450a7ab9421db1f321119cc4d5d0a",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/assets/first-night.mp4": {
+    "mtime": 1791226652.580699,
+    "ast_hash": "00fa61d41d0a45eb340d84566040ad5a",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/assets/room.wav": {
+    "mtime": 1791226652.5840688,
+    "ast_hash": "e924ee50067feec84509dad534db0f0b",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/assets/warm-memories-edit.wav": {
+    "mtime": 1791226652.5943549,
+    "ast_hash": "4f6510f4384e1037e5c0b2b82cece57b",
+    "semantic_hash": ""
+  },
+  "apps/hyperframes/variants/06-first-night/assets/warm-memories.mp3": {
+    "mtime": 1791226652.620898,
+    "ast_hash": "461fe3a70dcfb4fb01aa40afa3e8a0a4",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/composition/assets/footage.mp4": {
+    "mtime": 1791226652.8078547,
+    "ast_hash": "ac7356d2d7624f8a90e3c664b4948ef3",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/01-memory-keeper/reel.mp4": {
+    "mtime": 1791226652.8228137,
+    "ast_hash": "b48e155bf27e25119cd752786694a81b",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/composition/assets/footage.mp4": {
+    "mtime": 1791226652.8304627,
+    "ast_hash": "51f231d2dee068a666b1a4e0261c02cf",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/02-grandmas-recipe/reel.mp4": {
+    "mtime": 1791226652.8510354,
+    "ast_hash": "1230cc4e31007aeb021eeae0ddc0aa55",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/composition/assets/footage.mp4": {
+    "mtime": 1791226652.8584504,
+    "ast_hash": "45c256fa93a1f06659c25cde12412f7d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/03-in-the-picture/reel.mp4": {
+    "mtime": 1791226652.889121,
+    "ast_hash": "ddfa35eca9552f2bc278d8d2475b509d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/composition/assets/footage.mp4": {
+    "mtime": 1791226652.8923826,
+    "ast_hash": "ece26a9866432ed23172d62b3afc0ae5",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/04-little-words/reel.mp4": {
+    "mtime": 1791226652.9107287,
+    "ast_hash": "130f5cf6063648113ecb26ac0de40fa1",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/composition/assets/footage.mp4": {
+    "mtime": 1791226652.9170933,
+    "ast_hash": "5ebbb75742b57f21ec5df5a89a091003",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/05-bedtime-across-miles/reel.mp4": {
+    "mtime": 1791226652.9408212,
+    "ast_hash": "72263169f3b2db2a54d775d4fb1a6a52",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/composition/assets/footage.mp4": {
+    "mtime": 1791226652.9457521,
+    "ast_hash": "92d8c2137bf39f8db477687e68815796",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/06-ordinary-tuesday/reel.mp4": {
+    "mtime": 1791226652.9647322,
+    "ast_hash": "c5d7e3977f7526c744fe110ab8bb5f18",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/01-memory-keeper.mp4": {
+    "mtime": 1791226652.9833155,
+    "ast_hash": "ac7356d2d7624f8a90e3c664b4948ef3",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/02-grandmas-recipe.mp4": {
+    "mtime": 1791226652.9863644,
+    "ast_hash": "51f231d2dee068a666b1a4e0261c02cf",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/03-in-the-picture.mp4": {
+    "mtime": 1791226652.9909766,
+    "ast_hash": "45c256fa93a1f06659c25cde12412f7d",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/04-little-words.mp4": {
+    "mtime": 1791226652.9949284,
+    "ast_hash": "ece26a9866432ed23172d62b3afc0ae5",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/05-bedtime-across-miles.mp4": {
+    "mtime": 1791226652.9982824,
+    "ast_hash": "5ebbb75742b57f21ec5df5a89a091003",
+    "semantic_hash": ""
+  },
+  "marketing/content/batches/2026-09-next-10/assets/06-ordinary-tuesday.mp4": {
+    "mtime": 1791226653.0013638,
+    "ast_hash": "92d8c2137bf39f8db477687e68815796",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-camera-roll-ugc/reel.mp4": {
+    "mtime": 1791226653.0188246,
+    "ast_hash": "864d3ed7dacaf54d7a48d1ba63fc0ec6",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-camera-roll/reel.mp4": {
+    "mtime": 1791226653.0335255,
+    "ast_hash": "52fb426c176851248787c59def6f7c4a",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-fastlane-pair/grandma-voice-notes.mp4": {
+    "mtime": 1791226653.0557067,
+    "ast_hash": "9fae7929eedaf23defa47ba599b9775f",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-fastlane-pair/letter-at-18.mp4": {
+    "mtime": 1791226653.0594225,
+    "ast_hash": "333aa703bd16362969bf15b251906d0a",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-15-first-night/reel.mp4": {
+    "mtime": 1791226653.0786088,
+    "ast_hash": "0428c9f6f6bb7d75c5c810c8b21d79ec",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/final/baby-book-captioned.mp4": {
+    "mtime": 1791226653.0989022,
+    "ast_hash": "19874c3110af7d69fbe8ebe2f8a58a4c",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/final/baby-book-clean.mp4": {
+    "mtime": 1791226653.1144,
+    "ast_hash": "b1113e9922a63e8a17fda82d9293e983",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/presenter-reference.wav": {
+    "mtime": 1791226653.1260753,
+    "ast_hash": "ef40b0525b7a05efcba4c9356dc0dc2c",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/take-1-audio.wav": {
+    "mtime": 1791226653.128468,
+    "ast_hash": "b32cbe293027e4c99bf5b57fcc2c58dd",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/take-1-captioned.mp4": {
+    "mtime": 1791226653.1332726,
+    "ast_hash": "19874c3110af7d69fbe8ebe2f8a58a4c",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/take-1-raw.mp4": {
+    "mtime": 1791226653.1459203,
+    "ast_hash": "b1113e9922a63e8a17fda82d9293e983",
+    "semantic_hash": ""
+  },
+  "marketing/content/drafts/2026-09-17-treg-ugc/production/voice-reference.mp3": {
+    "mtime": 1791226653.148094,
+    "ast_hash": "02b49429dd65d128e593dad5e04bf995",
+    "semantic_hash": ""
+  },
+  "marketing/content/published/2026-09-17-01-baby-book-ugc/media.mp4": {
+    "mtime": 1791226653.1525333,
+    "ast_hash": "19874c3110af7d69fbe8ebe2f8a58a4c",
     "semantic_hash": ""
   }
 }

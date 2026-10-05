@@ -739,7 +739,7 @@ export const guideArticles: JournalArticle[] = [
       ],
       [
         "A private space built for this job, where photographs, short stories, voice notes, video and letters sit on one dated timeline and the relatives you invite can add their own. This is what Everlittle is. It keeps the story with the photograph, lets grandparents contribute from a browser and can hold letters until a date you choose.",
-        "It also costs money and asks you to trust a service. Everlittle’s family plan is $6 a month or $60 a year with 25 GB of storage; account creation is free and adding memories requires the plan. As with every method here, keep your own copies of anything irreplaceable.",
+        "A digital service also asks you to trust it with your memories. Everlittle starts with 100 MB free, with no card or expiry. Its 25 GB family plan is $6 a month or $60 a year. As with every method here, keep your own copies of anything irreplaceable.",
       ],
       [
         "Ask three questions. Will I do this when I am tired? Can someone else add to it? Will my child be able to open it in twenty years? Paper wins the last question and digital wins the second, which is why many families pair one of each: a calendar on the wall and an archive for voices and video, or a notes app and a printed book each birthday.",
@@ -804,7 +804,7 @@ export const guideArticles: JournalArticle[] = [
       ],
       [
         "If the appeal is writing to your child’s future self, you have other options. A dated document or a paper notebook is under your control and has no inactivity rule. A printed copy of each year’s letters, kept with the family papers, will still open in 2044.",
-        "A private family archive is built for the same habit. In Everlittle you can write letters with an opening date, attach photographs, video and voice, and invite grandparents to add their own. The account belongs to you as the parent, so there is no age rule to work around. It is a paid service, and the same advice applies: keep your own copy of the words that matter most.",
+        "A private family archive is built for the same habit. In Everlittle you can write letters with an opening date, attach photographs, video and voice, and invite grandparents to add their own. The account belongs to you as the parent, so there is no age rule to work around. Start with 100 MB free and upgrade when you need more space. The same advice applies: keep your own copy of the words that matter most.",
       ],
     ],
     lists: {

@@ -1,6 +1,12 @@
 import { GoogleAdsMeasurement } from "@/components/google-ads-measurement";
 import primaryButtonCss from "@/features/archive/primary-button.css?url";
-import { HeadContent, Scripts, createRootRoute, useLocation, useRouterState } from "@tanstack/react-router";
+import {
+  HeadContent,
+  Scripts,
+  createRootRoute,
+  useLocation,
+  useRouterState,
+} from "@tanstack/react-router";
 import { Sprout, RefreshCw, Share, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 

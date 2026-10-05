@@ -1,0 +1,77 @@
+{
+  "property": "sc-domain:geteverlittle.com",
+  "sitemap": {
+    "url": "https://geteverlittle.com/sitemap.xml",
+    "submittedOn": "2026-10-06",
+    "submissionResult": "Sitemap submitted successfully",
+    "lastReportedRead": "2026-09-28",
+    "lastReportedDiscoveredPages": 15
+  },
+  "liveTests": [
+    {
+      "url": "https://geteverlittle.com/tools/time-with-your-kids",
+      "result": "URL is available to Google; Page can be indexed",
+      "indexingRequest": "Indexing requested",
+      "testedOn": "2026-10-06",
+      "evidence": "https://geteverlittle.com/tools/time-with-your-kids\nURL Inspection\nGOOGLE INDEX\nLIVE TEST\nTested on: 6 Oct 2026, 00:14\n\ncheck_circle\nURL is available to Google\nIf it gets indexed and selected as canonical, it could appear in Google Search results with all relevant enhancements. Learn more\nVIEW TESTED PAGE\nPage changed?\nREQUEST INDEXING\ncheck_circle\nPage availability\nPage can be indexed\n\nEnhancements and experience\nURL has no enhancements\ncheck_circle\nIndexing requested\nURL was added to a priority crawl queue. Submitting a page multiple times will not change its queue position or priority. Find out more.\nDismiss"
+    },
+    {
+      "url": "https://geteverlittle.com/es/carta-para-mi-nieto",
+      "result": "URL is available to Google; Page can be indexed",
+      "indexingRequest": "Indexing requested",
+      "testedOn": "2026-10-06",
+      "evidence": "https://geteverlittle.com/es/carta-para-mi-nieto\nURL Inspection\nGOOGLE INDEX\nLIVE TEST\nTested on: 6 Oct 2026, 00:15\n\ncheck_circle\nURL is available to Google\nIf it gets indexed and selected as canonical, it could appear in Google Search results with all relevant enhancements. Learn more\nVIEW TESTED PAGE\nPage changed?\nREQUEST INDEXING\ncheck_circle\nPage availability\nPage can be indexed\n\nEnhancements and experience\nURL has no enhancements\ncheck_circle\nIndexing requested\nURL was added to a priority crawl queue. Submitting a page multiple times will not change its queue position or priority. Find out more.\nDismiss\nURL Inspection"
+    },
+    {
+      "url": "https://geteverlittle.com/pt-br/carta-para-meu-neto",
+      "result": "URL is available to Google; Page can be indexed",
+      "indexingRequest": "Indexing requested",
+      "testedOn": "2026-10-06",
+      "evidence": "https://geteverlittle.com/pt-br/carta-para-meu-neto\nURL Inspection\nGOOGLE INDEX\nLIVE TEST\nTested on: 6 Oct 2026, 00:16\n\ncheck_circle\nURL is available to Google\nIf it gets indexed and selected as canonical, it could appear in Google Search results with all relevant enhancements. Learn more\nVIEW TESTED PAGE\nPage changed?\nREQUEST INDEXING\ncheck_circle\nPage availability\nPage can be indexed\n\nEnhancements and experience\nURL has no enhancements\ncheck_circle\nIndexing requested\nURL was added to a priority crawl queue. Submitting a page multiple times will not change its queue position or priority. Find out more.\nDismiss\nURL Inspection"
+    },
+    {
+      "url": "https://geteverlittle.com/long-distance-family-statistics",
+      "result": "URL is available to Google; Page can be indexed",
+      "indexingRequest": "Indexing requested",
+      "testedOn": "2026-10-06",
+      "evidence": "https://geteverlittle.com/long-distance-family-statistics\nURL Inspection\nGOOGLE INDEX\nLIVE TEST\nTested on: 6 Oct 2026, 00:17\n\ncheck_circle\nURL is available to Google\nIf it gets indexed and selected as canonical, it could appear in Google Search results with all relevant enhancements. Learn more\nVIEW TESTED PAGE\nPage changed?\nREQUEST INDEXING\ncheck_circle\nPage availability\nPage can be indexed\n\nEnhancements and experience\nURL has no enhancements\ncheck_circle\nIndexing requested\nURL was added to a priority crawl queue. Submitting a page multiple times will not change its queue position or priority. Find out more.\nDismiss\nURL Inspection",
+      "crawl": {
+        "crawler": "Google Inspection Tool smartphone",
+        "crawlAllowed": true,
+        "pageFetch": "Successful",
+        "indexingAllowed": true,
+        "userDeclaredCanonical": "https://geteverlittle.com/long-distance-family-statistics",
+        "googleSelectedCanonical": "Only determined after indexing"
+      }
+    },
+    {
+      "url": "https://geteverlittle.com/journal",
+      "result": "URL is available to Google; Page can be indexed",
+      "indexingRequest": "Indexing requested",
+      "testedOn": "2026-10-06",
+      "evidence": "https://geteverlittle.com/journal\nURL Inspection\nGOOGLE INDEX\nLIVE TEST\nTested on: 6 Oct 2026, 00:22\n\ncheck_circle\nURL is available to Google\nIf it gets indexed and selected as canonical, it could appear in Google Search results with all relevant enhancements. Learn more\nVIEW TESTED PAGE\nPage changed?\nREQUEST INDEXING\ncheck_circle\nPage availability\nPage can be indexed\n\nEnhancements and experience\nURL has no enhancements\ncheck_circle\nIndexing requested\nURL was added to a priority crawl queue. Submitting a page multiple times will not change its queue position or priority. Find out more.\nDismiss\nURL Inspection"
+    }
+  ],
+  "coverageSnapshot": {
+    "lastUpdate": "2026-09-21",
+    "indexed": 11,
+    "notIndexed": 8,
+    "noindex": {
+      "count": 2,
+      "urls": ["https://geteverlittle.com/sign-in", "https://geteverlittle.com/sign-up"],
+      "intentional": true
+    },
+    "redirects": {
+      "count": 2
+    },
+    "discoveredNotIndexed": {
+      "count": 4,
+      "urls": [
+        "https://geteverlittle.com/contact",
+        "https://geteverlittle.com/journal",
+        "https://geteverlittle.com/journal/photo-story",
+        "https://geteverlittle.com/journal/small-firsts"
+      ]
+    }
+  }
+}
