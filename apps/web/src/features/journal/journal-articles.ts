@@ -1,4 +1,5 @@
 import type { ContentLocale } from "@/lib/locales";
+import { comparisonArticlePaths, comparisonArticles } from "./journal-comparisons";
 import { guideArticlePaths, guideArticles } from "./journal-guides";
 import { spanishArticlePaths, spanishArticles } from "./journal-articles-es";
 import { portugueseArticlePaths, portugueseArticles } from "./journal-articles-pt";
@@ -17,7 +18,13 @@ export type JournalArticle = {
     number,
     { src: string; alt: string; width: number; height: number; caption: string }
   >;
-  comparison?: { title: string; rows: { method: string; bestFor: string; check: string }[] };
+  comparison?: {
+    title: string;
+    // Column headings and caption default to the photo-sharing wording of the first guide.
+    columns?: [string, string, string];
+    caption?: string;
+    rows: { method: string; bestFor: string; check: string }[];
+  };
   // Search-result title when the editorial heading is not descriptive enough on its own.
   searchTitle?: string;
   locale?: ContentLocale;
@@ -450,7 +457,11 @@ const englishArticles: JournalArticle[] = [
   },
 ];
 
-export const articles: JournalArticle[] = [...englishArticles, ...guideArticles];
+export const articles: JournalArticle[] = [
+  ...englishArticles,
+  ...guideArticles,
+  ...comparisonArticles,
+];
 export const localizedArticles: JournalArticle[] = [...spanishArticles, ...portugueseArticles];
 export const allArticles: JournalArticle[] = [...articles, ...localizedArticles];
 
@@ -465,6 +476,7 @@ export const articlePaths: Record<string, string> = {
   "family-archive": "/family-memory-app",
   "time-capsule": "/digital-time-capsule-for-kids",
   ...guideArticlePaths,
+  ...comparisonArticlePaths,
   ...spanishArticlePaths,
   ...portugueseArticlePaths,
 };

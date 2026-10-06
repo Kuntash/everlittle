@@ -217,7 +217,7 @@ export function milestoneCalendar(name: string, dates: BabyDate[]) {
   ].join("\r\n");
 }
 
-function escapeIcs(value: string) {
+export function escapeIcs(value: string) {
   return value
     .replace(/\\/g, "\\\\")
     .replace(/\r\n|\r|\n/g, "\\n")

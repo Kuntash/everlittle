@@ -1,3 +1,5 @@
+import { CAPSULE_LEAVE_OUT } from "./capsule-checklist";
+
 export type ToolContent = {
   id: string;
   path: string;
@@ -11,6 +13,8 @@ export type ToolContent = {
   sections: { title: string; paragraphs: string[]; list?: string[] }[];
   faq: { question: string; answer: string }[];
   sources?: { label: string; href: string }[];
+  // Replaces the standard privacy line under the tool when a tool stores or shares differently.
+  note?: string;
   ctaTitle: string;
   ctaBody: string;
   related: { href: string; label: string; title: string; kind: string }[];
@@ -390,6 +394,170 @@ export const tools: ToolContent[] = [
         href: "/letter-to-my-grandchild",
         label: "Examples",
         title: "What to write in a letter to your grandchild",
+        kind: "Letter",
+      },
+    ],
+  },
+  {
+    id: "future-letter",
+    path: "/tools/letter-to-future-self",
+    name: "Letter to the future",
+    eyebrow: "Letter writer",
+    kind: "Letter",
+    title: "Write a letter to your future self, or to your child",
+    searchTitle: "Write a Letter to Your Future Self or Your Child: Free, No Sign-Up",
+    summary:
+      "Write a letter to your future self or your child, choose the day it should be opened, then print it, download it or copy it. No account.",
+    intro:
+      "Write a letter to your future self or to your child, choose the date it should be opened, then print or download it. No account and no email address needed.",
+    note: "Your letter is saved only in this browser, so a refresh will not lose it. It is never sent to Everlittle. “Start over” erases it from this device.",
+    sections: [
+      {
+        title: "How this is different from an email to your future self",
+        paragraphs: [
+          "Services such as FutureMe hold your letter on their servers and email it to you on the date you pick, which is why they ask for an email address and for you to confirm it. That works well for a note to yourself a year from now.",
+          "This page does not send anything. It runs in your browser, with no account and no copy on our side, so it cannot deliver a letter later and we will not pretend it can. You leave with the letter itself: on paper, as a text file, or both, plus a calendar entry on the opening day if you want one.",
+          "For a letter to a child that is a better fit than it sounds. A baby has no inbox, and an email address you use today may not exist in eighteen years. A sealed envelope with a date on it has a good record.",
+        ],
+        list: [
+          "Print it, fold it into an envelope and write “Do not open until” and the date across the seal",
+          "Download the text file and store it with your photo backups",
+          "Add the opening date to your calendar, so the day does not pass unnoticed",
+          "Tell one other person where the letter is",
+        ],
+      },
+      {
+        title: "What to write to your future self",
+        paragraphs: [
+          "Describe an ordinary day in detail: where you live, what you eat for breakfast, who you talk to most, what you are worried about this month. Those are the things you will have forgotten, and they will read as a different life.",
+          "Then ask yourself two or three questions you cannot answer yet. Did you move? Are you still friends with them? Did the thing you were afraid of happen? A letter with questions in it is much more fun to open.",
+        ],
+      },
+      {
+        title: "What to write to your child",
+        paragraphs: [
+          "Tell them who they are today. Write down the word they say wrong, what they insist on wearing, what they ask for at bedtime and what made them laugh this week. Say what your life together looks like on a normal Tuesday.",
+          "Leave out advice for the adult you imagine. You do not know that person yet, and the letter will be opened by whoever they turn out to be. If you are stuck, the prompt generator gives you an opening line and six questions to answer.",
+        ],
+      },
+      {
+        title: "Choosing the opening date",
+        paragraphs: [
+          "For yourself, one, five or ten years are the common choices. One year is long enough to be surprised and short enough that you will still have the envelope.",
+          "For a child, the eighteenth birthday is traditional. Enter their birthday and the tool will work out the date. A tenth birthday, the first day of high school or the day they leave home are good alternatives, and nothing stops you writing one letter for each.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Will this email my letter to me on the date I choose?",
+        answer:
+          "No. Nothing is sent anywhere, now or later. You print, download or copy the letter yourself, and you can add the opening date to your calendar as a reminder.",
+      },
+      {
+        question: "Where is my letter stored?",
+        answer:
+          "Only in the browser you wrote it in, so that closing the tab does not lose your draft. It is not uploaded. Use “Start over” to erase it, and download or print it before you clear your browser data or change device.",
+      },
+      {
+        question: "How do I make sure a letter survives 18 years?",
+        answer:
+          "Keep it in two forms in two places. Print one copy for a labelled envelope and keep the text file with your backed-up photos. Tell another adult where both are.",
+      },
+      {
+        question: "Can Everlittle keep the letter sealed until the date?",
+        answer:
+          "Yes, in an Everlittle family archive, which needs an account. A letter saved there as a capsule shows only its title and opening date until that day, then opens for the child or the family in the archive. Everlittle does not email the letter out.",
+      },
+    ],
+    sources: [
+      { label: "FutureMe: Write a letter to your future self", href: "https://www.futureme.org/" },
+    ],
+    ctaTitle: "Want it sealed until the day?",
+    ctaBody:
+      "In an Everlittle archive, a letter saved as a capsule stays closed until its opening date. Only the title and the date are visible before then.",
+    related: [
+      {
+        href: "/tools/time-capsule-letter-prompts",
+        label: "Prompt generator",
+        title: "Prompts for a letter to your child",
+        kind: "Letter",
+      },
+      {
+        href: "/letters-to-your-future-child",
+        label: "Guide",
+        title: "Letters to your future child",
+        kind: "Letter",
+      },
+    ],
+  },
+  {
+    id: "capsule-checklist",
+    path: "/tools/first-birthday-time-capsule-checklist",
+    name: "First birthday time capsule checklist",
+    eyebrow: "Checklist",
+    kind: "Keepsake",
+    title: "First birthday time capsule checklist",
+    searchTitle: "First Birthday Time Capsule Checklist: What to Put In It, Free and Printable",
+    summary:
+      "Tick off what goes into your baby’s first birthday time capsule, add your own items and print the list as an inventory for the box.",
+    intro:
+      "A checklist of what to put in a first birthday time capsule. Tick items off as you pack them, add your own and print the list to put inside the box.",
+    note: "Your list is saved only in this browser, so you can come back to it. A copied link contains the name, birthday and items you entered; share it only with people you want to see them.",
+    sections: [
+      {
+        title: "How to use the checklist",
+        paragraphs: [
+          "You do not need everything on it. Ten well-chosen things in a shoebox are better than forty in a crate nobody wants to store. Tick what you have packed, ignore what does not suit your family and add anything of your own at the bottom.",
+          "Start collecting a week before the party and seal the box a week after, once the photographs are printed and the late letters have arrived. Send the link to your partner or a grandparent if they are gathering some of it.",
+        ],
+      },
+      {
+        title: "What to leave out",
+        paragraphs: [
+          "Anything that rots, leaks, melts or perishes will damage the paper around it.",
+        ],
+        list: CAPSULE_LEAVE_OUT,
+      },
+      {
+        title: "Sealing and storing the box",
+        paragraphs: [
+          "Photograph or scan every letter before it goes in. Write the opening date and your child’s full name on the outside, and put the printed checklist on top as an inventory.",
+          "Keep the box indoors, somewhere dry with a steady temperature, such as a wardrobe shelf. Lofts, garages and basements are hard on paper and fabric. Tell one other adult where it is.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "When should a first birthday time capsule be opened?",
+        answer:
+          "The eighteenth birthday is the usual choice. Some families open at ten and reseal, or wait until sixteen or twenty-one. Enter the birthday above to see the exact date.",
+      },
+      {
+        question: "What container should I use?",
+        answer:
+          "A lidded archival storage box or a clean, dry metal tin about the size of a shoebox. Keep it indoors; a box buried in the garden is likely to get damp.",
+      },
+      {
+        question: "Should I put a USB stick of videos in it?",
+        answer:
+          "Only as an extra. A drive left untouched for many years may not work, and the socket may be gone. Print the photographs, and keep video and sound in at least two places you look after.",
+      },
+    ],
+    ctaTitle: "Keep the part that will not fit in a box.",
+    ctaBody:
+      "Save the first birthday video, their voice and a letter on your child’s timeline in Everlittle, where the family can add theirs.",
+    related: [
+      {
+        href: "/first-birthday-time-capsule-ideas",
+        label: "Guide",
+        title: "What to put in a first birthday time capsule",
+        kind: "Keepsake",
+      },
+      {
+        href: "/first-birthday-time-capsule-letters",
+        label: "Examples",
+        title: "First birthday time capsule letters to open at 18",
         kind: "Letter",
       },
     ],

@@ -20,14 +20,11 @@ test("landing loads with local artwork and responsive footer", async ({ page }, 
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: "Keep the story behind every photo." }),
+    page.getByRole("heading", { name: "The family archive your kids will inherit." }),
   ).toBeVisible();
-  await expect(page.locator(".landing-footer .footer-identity")).toContainText("Everlittle");
-  await expect(page.locator(".landing-footer nav")).toHaveCSS(
-    "display",
-    testInfo.project.name === "mobile" ? "grid" : "flex",
-  );
-  await expect(page.locator(".landing h1").first()).toHaveCSS("font-family", /Nunito Sans/);
+  await expect(page.locator(".site-footer-main")).toContainText("Everlittle");
+  await expect(page.locator(".site-footer-main nav")).toHaveCSS("display", "flex");
+  await expect(page.locator(".hv h1").first()).toHaveCSS("font-family", /Nunito Sans/);
   expect(
     await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth),
   ).toBeTruthy();
@@ -110,28 +107,19 @@ test("child entry routes render the child PIN screen", async ({ page }) => {
   await expect(page.getByRole("heading", { name: "Welcome back." })).not.toBeVisible();
 });
 
-test("landing preview navigation and article baselines stay aligned", async ({ page }, info) => {
+test("landing menu opens on small screens and article links stay aligned", async ({
+  page,
+}, info) => {
   await page.goto("/");
-  const primary = page.locator(".hero-copy .raised");
-  const secondary = page.getByRole("button", { name: "See how it works", exact: true });
-  expect(await secondary.evaluate((el) => getComputedStyle(el).paddingLeft)).toBe(
-    await primary.evaluate((el) => getComputedStyle(el).paddingLeft),
-  );
-  if (info.project.name === "mobile") {
-    const tabs = page.getByRole("tablist", { name: "Product preview mobile navigation" });
-    await expect(tabs).toBeVisible();
-    await tabs.getByRole("tab", { name: "Timeline", exact: true }).click();
-    await expect(page.locator(".product-preview").getByText("Every little chapter")).toBeVisible();
-    const container = await page.locator(".product-preview").boundingBox();
-    const navigation = await tabs.boundingBox();
-    expect(navigation!.y + navigation!.height).toBeLessThanOrEqual(
-      container!.y + container!.height,
-    );
-  } else {
+  if (info.project.name === "desktop") {
+    await expect(page.locator(".hv-menu")).toBeHidden();
     const links = await page
-      .locator(".journal-card .article-link")
+      .locator(".hv-journal-card .hv-journal-more")
       .evaluateAll((els) => els.map((el) => el.getBoundingClientRect().bottom));
     expect(Math.max(...links) - Math.min(...links)).toBeLessThan(2);
+  } else {
+    await page.locator(".hv-menu summary").click();
+    await expect(page.locator(".hv-menu").getByRole("link", { name: "Pricing" })).toBeVisible();
   }
 });
 
@@ -140,7 +128,7 @@ test("public information pages have crawlable navigation and contact details", a
 }, info) => {
   await page.goto("/");
   for (const path of ["about", "contact", "privacy"]) {
-    await expect(page.locator(`.landing-footer a[href="/${path}"]`)).toHaveCount(1);
+    await expect(page.locator(`.site-footer a[href="/${path}"]`)).toHaveCount(1);
     await page.goto(`/${path}`);
     await expect(page.locator("main h1")).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -170,7 +158,7 @@ test("journal logos reach the landing page even for a signed-in parent", async (
   await page.goto("/journal");
   await page.getByRole("link", { name: "Everlittle home" }).first().click();
   await expect(
-    page.getByRole("heading", { name: "Keep the story behind every photo." }),
+    page.getByRole("heading", { name: "The family archive your kids will inherit." }),
   ).toBeVisible();
   await expect(page).toHaveURL(/\/$/);
   expect(await page.locator("a a").count()).toBe(0);

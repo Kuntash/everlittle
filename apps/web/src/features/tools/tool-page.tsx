@@ -1,6 +1,6 @@
-import { ShadButton } from "@/components/design/controls";
 import { MemoryIllustration } from "@/components/design/memory-illustrations";
 import { Brand, Button } from "@/components/design/shared";
+import { SiteFooter } from "@/features/marketing/site-footer";
 import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";
 import { tools, type ToolContent } from "./tools";
@@ -10,9 +10,7 @@ const start = () => window.location.assign("/sign-up");
 function ToolsHeader() {
   return (
     <header className="journal-header">
-      <a className="tools-brand-link" href="/" aria-label="Everlittle home">
-        <Brand />
-      </a>
+      <Brand />
       <div>
         <a className="journal-nav-link" href="/tools">
           Free tools
@@ -24,16 +22,7 @@ function ToolsHeader() {
 }
 
 function ToolsFooter() {
-  return (
-    <footer className="journal-bottom">
-      <Brand />
-      <p>A home for your family’s memories.</p>
-      <ShadButton variant="quiet" onClick={start}>
-        Create your archive
-        <ArrowRight size={16} />
-      </ShadButton>
-    </footer>
-  );
+  return <SiteFooter />;
 }
 
 export function ToolPage({ tool, children }: { tool: ToolContent; children: ReactNode }) {
@@ -42,23 +31,25 @@ export function ToolPage({ tool, children }: { tool: ToolContent; children: Reac
       <ToolsHeader />
       <main>
         <article className="article-reader tool-reader">
-          <nav className="reader-tools journal-breadcrumbs" aria-label="Breadcrumb">
-            <a href="/">Home</a>
-            <span aria-hidden="true">/</span>
-            <a href="/tools">Free tools</a>
-            <span aria-hidden="true">/</span>
-            <span aria-current="page">{tool.name}</span>
-          </nav>
-          <header className="article-heading">
-            <p className="eyebrow">{tool.eyebrow}</p>
-            <h1>{tool.title}</h1>
-            <p>{tool.intro}</p>
-          </header>
-          <section className="tool-card" aria-label={tool.name}>
+          <div className="forest-band">
+            <nav className="reader-tools journal-breadcrumbs" aria-label="Breadcrumb">
+              <a href="/">Home</a>
+              <span aria-hidden="true">/</span>
+              <a href="/tools">Free tools</a>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{tool.name}</span>
+            </nav>
+            <header className="article-heading">
+              <p className="eyebrow">{tool.eyebrow}</p>
+              <h1>{tool.title}</h1>
+              <p>{tool.intro}</p>
+            </header>
+          </div>
+          <section className="tool-card" aria-label={tool.name} data-tool={tool.id}>
             {children}
             <p className="tool-note">
-              Inputs stay in this browser. A copied result link contains the details you entered, so
-              share it only with people you want to see them.
+              {tool.note ??
+                "Inputs stay in this browser. A copied result link contains the details you entered, so share it only with people you want to see them."}
             </p>
           </section>
           <div className="reading-body tool-body">
@@ -143,7 +134,7 @@ export function ToolsHub() {
     <div className="journal-experience tools-experience">
       <ToolsHeader />
       <main className="journal-home">
-        <section className="journal-intro">
+        <section className="journal-intro forest-band">
           <p className="eyebrow">Free tools from Everlittle</p>
           <h1>Small tools for the years that go quickly.</h1>
           <p>
