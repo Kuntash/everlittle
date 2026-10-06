@@ -1,0 +1,71 @@
+/* Shared footer for the homepage, the journal and the free tools. */
+.site-footer {
+  max-width: 1276px;
+  margin: 0 auto;
+  padding: 0 clamp(18px, 4vw, 48px) 28px;
+  font-family: "Nunito Sans Variable", "Avenir Next", sans-serif;
+  color: #352c29;
+}
+.site-footer-main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  padding: 26px 0 20px;
+  border-top: 1px solid #ecd9c5;
+}
+.site-footer .brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+.site-footer .brand svg {
+  width: 28px;
+  height: 32px;
+}
+.site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px clamp(16px, 2.4vw, 32px);
+}
+.site-footer :is(a, button) {
+  padding: 0;
+  border: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: none;
+  background: none;
+  cursor: pointer;
+}
+.site-footer-main nav a {
+  font-size: 15.5px;
+  font-weight: 650;
+}
+.site-footer-small {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 24px;
+  font-size: 13.5px;
+  color: #7a665b;
+}
+.site-footer-small nav {
+  gap: 6px 16px;
+}
+.site-footer-small span {
+  display: inline-flex;
+  gap: 16px;
+}
+.site-footer-small [aria-current="page"] {
+  font-weight: 750;
+  color: #352c29;
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-footer :is(a, button):hover {
+    color: #c54f37;
+  }
+}

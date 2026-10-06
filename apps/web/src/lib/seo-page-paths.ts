@@ -22,6 +22,12 @@ export const GUIDE_PAGE_PATHS = [
   "/email-address-for-baby",
   "/long-distance-family-statistics",
   "/long-distance-grandparenting-ideas",
+  "/first-birthday-time-capsule-ideas",
+  "/tinybeans-alternatives",
+  "/qeepsake-alternatives",
+  "/storyworth-alternatives",
+  "/familyalbum-vs-google-photos-vs-tinybeans",
+  "/best-baby-book-apps",
 ] as const;
 
 export const TOOL_PAGE_PATHS = [
@@ -32,6 +38,8 @@ export const TOOL_PAGE_PATHS = [
   "/tools/how-old-will-i-be",
   "/tools/baby-milestone-dates",
   "/tools/time-capsule-letter-prompts",
+  "/tools/letter-to-future-self",
+  "/tools/first-birthday-time-capsule-checklist",
 ] as const;
 
 // Guides written natively for other languages, served under a locale prefix.

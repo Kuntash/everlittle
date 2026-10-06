@@ -1,3 +1,4 @@
+import { CAPSULE_LEAVE_OUT, capsuleItemLabels } from "@/features/tools/capsule-checklist";
 import type { JournalArticle } from "./journal-articles";
 
 // Search-led guides: examples, templates and checklists people look for by name.
@@ -172,6 +173,12 @@ export const guideArticles: JournalArticle[] = [
         {
           href: "/time-capsule-letter-to-child-examples",
           label: "More time capsule letter examples and a template",
+        },
+      ],
+      "4": [
+        {
+          href: "/first-birthday-time-capsule-ideas",
+          label: "The full list of what to put in a first birthday time capsule",
         },
       ],
       "7": [
@@ -756,7 +763,13 @@ export const guideArticles: JournalArticle[] = [
         { href: "/family-memory-app", label: "What to look for in a family memory app" },
         { href: "/pricing", label: "See Everlittle’s plans" },
       ],
-      "10": [{ href: "/baby-firsts-checklist", label: "A checklist of 90 baby firsts to record" }],
+      "10": [
+        { href: "/baby-firsts-checklist", label: "A checklist of 90 baby firsts to record" },
+        {
+          href: "/best-baby-book-apps",
+          label: "If you do want an app: six baby book apps compared",
+        },
+      ],
     },
   },
   {
@@ -1196,6 +1209,102 @@ export const guideArticles: JournalArticle[] = [
       },
     ],
   },
+  {
+    id: "capsule-contents",
+    category: "Letters for later",
+    kind: "Keepsake",
+    title: "What to put in a first birthday time capsule",
+    searchTitle: "First Birthday Time Capsule Ideas: What to Put In It (and What to Leave Out)",
+    intro:
+      "What to put in a baby’s first birthday time capsule: things from the day, from their first year and from the world right now, and what to leave out.",
+    minutes: 6,
+    published: "2026-10-06",
+    lede: "Fill it with flat, dry things that describe this one year: printed photographs with names on the back, an outfit they have outgrown, a newspaper, a coin from the year, a handprint and a letter from each of you. Leave out food, batteries and anything that exists only on a USB stick.",
+    quote: "In seventeen years the ordinary things will be the strange ones.",
+    relatedIds: ["first-birthday-capsule", "capsule-letter-examples"],
+    sectionTitles: [
+      "Choose the box and the opening date first",
+      "From the day itself",
+      "About your baby at one",
+      "From the world this year",
+      "From the people who love them",
+      "What to leave out",
+      "Photos, video and voices: keep a second copy",
+      "Pack it with the checklist",
+    ],
+    paragraphs: [
+      [
+        "The box decides what fits, so pick it before you collect anything. A lidded archival storage box or a clean metal tin about the size of a shoebox is enough. Keep it indoors. A capsule buried in the garden is a romantic idea and a damp one, and families move house.",
+        "Most parents choose the eighteenth birthday. Sixteen, twenty-one or the day they leave home work as well. Write the date and your child’s full name on the outside, and tell one other adult where the box lives.",
+      ],
+      [
+        "These are the things that will be gone by the end of the week if you do not put them aside. Collect them on the day and add them before the box is sealed.",
+      ],
+      [
+        "A one-year-old changes so fast that you will not remember this version of them by Christmas. Write these down on a single sheet, in your own handwriting if you can.",
+      ],
+      [
+        "This is the part your child will find funniest. When a parent on r/AskUK asked what to put in a first birthday capsule, the most upvoted answers were outgrown clothes, a newspaper and printed photographs. Others suggested a banknote or coins from the year, since the designs are likely to have changed, along with stamps, a supermarket receipt and a takeaway menu.",
+        "One reply added a sensible caution about the money: treat it as a curiosity. Eighteen years of inflation means a note in a box is a poor way to save for them.",
+      ],
+      [
+        "Objects show what the year looked like. Letters say what it felt like, and they are what an eighteen-year-old reads twice. Ask each grandparent for one, however short. More than one person in the same Reddit thread made the point that some of the writers may not be there when the box is opened.",
+      ],
+      [
+        "Anything that rots, leaks, melts or perishes will take the paper around it too. Leave these out.",
+      ],
+      [
+        "The Reddit thread had a good suggestion and a good warning in the same breath: record their babbling, and do not trust the memory stick. Nobody can promise that a USB drive left in a box for seventeen years will still work, or that anything will have a socket for it.",
+        "Print the photographs you care about. For video and sound, put a note in the box saying where the files are, and keep them in at least two places you look after: a backed-up computer and a cloud account, or a family archive.",
+        "Everlittle is the family archive we make, and it suits the half of the capsule that cannot go in a box. Keep the first birthday photos, a recording of their voice and a letter together on your child’s timeline. Then seal a written note as a capsule until the date on the box: nobody can read it before that day, including you. It is free up to 100 MB, with no card.",
+      ],
+      [
+        "The checklist tool has every item on this page with a box to tick. Choose the opening date, tick things off as they go in, add your own and print the finished list to put inside as an inventory.",
+        "If guests are writing notes at the party, the letters guide has invitation wording, prompts for the cards and example messages.",
+      ],
+    ],
+    // The same items the checklist tool ticks off, so the guide and the tool cannot drift apart.
+    lists: {
+      "1": capsuleItemLabels("day"),
+      "2": capsuleItemLabels("baby"),
+      "3": capsuleItemLabels("world"),
+      "4": capsuleItemLabels("people"),
+      "5": CAPSULE_LEAVE_OUT,
+    },
+    sectionLinks: {
+      "4": [
+        {
+          href: "/first-birthday-time-capsule-letters",
+          label: "Invitation wording, guest prompts and example letters",
+        },
+        {
+          href: "/tools/time-capsule-letter-prompts",
+          label: "Get prompts for your own letter",
+        },
+      ],
+      "6": [
+        { href: "/sign-up", label: "Start a free archive for the digital half" },
+        { href: "/digital-time-capsule-for-kids", label: "How a digital time capsule works" },
+      ],
+      "7": [
+        {
+          href: "/tools/first-birthday-time-capsule-checklist",
+          label: "Open the first birthday time capsule checklist",
+        },
+        {
+          href: "/tools/how-old-will-i-be",
+          label: "See how old everyone will be on the day it opens",
+        },
+      ],
+    },
+    sources: [
+      {
+        label: "Reddit, r/AskUK: “What can I put in my one year old’s birthday time capsule?”",
+        href: "https://www.reddit.com/r/AskUK/comments/1n1r81i/what_can_i_put_in_my_one_year_olds_birthday_time/",
+      },
+    ],
+    sectionSources: { "3": [0], "4": [0], "6": [0] },
+  },
 ];
 
 export const guideArticlePaths: Record<string, string> = {
@@ -1210,4 +1319,5 @@ export const guideArticlePaths: Record<string, string> = {
   "email-for-baby": "/email-address-for-baby",
   "family-distance-stats": "/long-distance-family-statistics",
   "long-distance-grandparenting": "/long-distance-grandparenting-ideas",
+  "capsule-contents": "/first-birthday-time-capsule-ideas",
 };

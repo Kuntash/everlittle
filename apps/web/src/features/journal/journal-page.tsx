@@ -1,6 +1,7 @@
-import { Input, ShadButton, SlidingTabs } from "@/components/design/controls";
+import { Input, SlidingTabs } from "@/components/design/controls";
 import { MemoryIllustration } from "@/components/design/memory-illustrations";
 import { Brand, Button } from "@/components/design/shared";
+import { SiteFooter } from "@/features/marketing/site-footer";
 import { ArrowRight, ChevronDown, Clock, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { ContentLocale } from "@/lib/locales";
@@ -50,9 +51,7 @@ export function JournalExperience({
   return (
     <div className="journal-experience" ref={root}>
       <header className="journal-header">
-        <a className="journal-nav-link" href="/" aria-label={`Everlittle — ${copy.home}`}>
-          <Brand />
-        </a>
+        <Brand />
         <div>
           <a className="journal-nav-link" href={copy.journalPath}>
             {copy.journal}
@@ -63,44 +62,46 @@ export function JournalExperience({
       {article ? (
         <main>
           <article className="article-reader">
-            <nav className="reader-tools journal-breadcrumbs" aria-label="Breadcrumb">
-              <a href="/">{copy.home}</a>
-              <span aria-hidden="true">/</span>
-              <a href={copy.journalPath}>{copy.journal}</a>
-              <span aria-hidden="true">/</span>
-              <span aria-current="page">{article.title}</span>
-            </nav>
-            <header className="article-heading">
-              <p className="eyebrow">{article.category}</p>
-              <h1>{article.title}</h1>
-              <p>{article.intro}</p>
-              <div className="byline">
-                <span>{copy.byline}</span>
-                <time dateTime={article.published ?? "2026-09-09"}>
-                  {new Intl.DateTimeFormat(copy.dateLocale, {
-                    month: "long",
-                    day: "numeric",
-                    year: "numeric",
-                    timeZone: "UTC",
-                  }).format(new Date(article.published ?? "2026-09-09"))}
-                </time>
-                {article.updated && (
-                  <time dateTime={article.updated}>
-                    Updated{" "}
-                    {new Intl.DateTimeFormat("en-US", {
+            <div className="forest-band">
+              <nav className="reader-tools journal-breadcrumbs" aria-label="Breadcrumb">
+                <a href="/">{copy.home}</a>
+                <span aria-hidden="true">/</span>
+                <a href={copy.journalPath}>{copy.journal}</a>
+                <span aria-hidden="true">/</span>
+                <span aria-current="page">{article.title}</span>
+              </nav>
+              <header className="article-heading">
+                <p className="eyebrow">{article.category}</p>
+                <h1>{article.title}</h1>
+                <p>{article.intro}</p>
+                <div className="byline">
+                  <span>{copy.byline}</span>
+                  <time dateTime={article.published ?? "2026-09-09"}>
+                    {new Intl.DateTimeFormat(copy.dateLocale, {
                       month: "long",
                       day: "numeric",
                       year: "numeric",
                       timeZone: "UTC",
-                    }).format(new Date(article.updated))}
+                    }).format(new Date(article.published ?? "2026-09-09"))}
                   </time>
-                )}
-                <span>
-                  <Clock size={14} />
-                  {article.minutes} {copy.minRead}
-                </span>
-              </div>
-            </header>
+                  {article.updated && (
+                    <time dateTime={article.updated}>
+                      Updated{" "}
+                      {new Intl.DateTimeFormat("en-US", {
+                        month: "long",
+                        day: "numeric",
+                        year: "numeric",
+                        timeZone: "UTC",
+                      }).format(new Date(article.updated))}
+                    </time>
+                  )}
+                  <span>
+                    <Clock size={14} />
+                    {article.minutes} {copy.minRead}
+                  </span>
+                </div>
+              </header>
+            </div>
             {article.cover ? (
               <figure className="article-product-cover">
                 <img
@@ -157,18 +158,31 @@ export function JournalExperience({
                     <div
                       className="comparison-scroll"
                       role="region"
-                      aria-label="Photo sharing options comparison"
+                      aria-label={
+                        article.comparison.columns
+                          ? article.comparison.title
+                          : "Photo sharing options comparison"
+                      }
                       tabIndex={0}
                     >
                       <table>
                         <caption>
-                          Compare the approach with the way your family wants to share.
+                          {article.comparison.caption ??
+                            "Compare the approach with the way your family wants to share."}
                         </caption>
                         <thead>
                           <tr>
-                            <th scope="col">Option</th>
-                            <th scope="col">Useful for</th>
-                            <th scope="col">What to check</th>
+                            {(
+                              article.comparison.columns ?? [
+                                "Option",
+                                "Useful for",
+                                "What to check",
+                              ]
+                            ).map((heading) => (
+                              <th scope="col" key={heading}>
+                                {heading}
+                              </th>
+                            ))}
                           </tr>
                         </thead>
                         <tbody>
@@ -288,7 +302,7 @@ export function JournalExperience({
         </main>
       ) : (
         <main className="journal-home">
-          <section className="journal-intro">
+          <section className="journal-intro forest-band">
             <p className="eyebrow">{copy.hubEyebrow}</p>
             {locale === "en" ? (
               <>
@@ -405,28 +419,7 @@ export function JournalExperience({
           )}
         </main>
       )}
-      <footer className="journal-bottom">
-        <Brand />
-        <p>{copy.tagline}</p>
-        <nav
-          className="journal-languages"
-          aria-label={locale === "es" ? "Idiomas" : locale === "pt-br" ? "Idiomas" : "Languages"}
-        >
-          <a href="/journal" lang="en" aria-current={locale === "en" ? "page" : undefined}>
-            English
-          </a>
-          <a href="/es" lang="es" aria-current={locale === "es" ? "page" : undefined}>
-            Español
-          </a>
-          <a href="/pt-br" lang="pt-BR" aria-current={locale === "pt-br" ? "page" : undefined}>
-            Português
-          </a>
-        </nav>
-        <ShadButton variant="quiet" onClick={onStart}>
-          {copy.create}
-          <ArrowRight size={16} />
-        </ShadButton>
-      </footer>
+      <SiteFooter locale={locale} journalLabel={copy.journal} journalPath={copy.journalPath} />
     </div>
   );
 }
