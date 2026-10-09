@@ -36,6 +36,7 @@ export function SiteFooter({
           </a>
         </nav>
         <span>
+          <a href="https://oddkite.com">Made by oddkite</a>
           <a href="/privacy">Privacy</a>
           <CookiePreferencesLink />
         </span>

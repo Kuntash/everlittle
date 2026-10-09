@@ -255,6 +255,7 @@ function MarketingFooter() {
         <a href="/pricing">Pricing</a>
         <a href="/sign-in">Sign in</a>
         <a href="https://github.com/Kuntash/everlittle">Open source</a>
+        <a href="https://oddkite.com">Made by oddkite</a>
       </nav>
     </footer>
   );

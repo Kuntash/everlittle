@@ -1336,7 +1336,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_capsule_capture",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "capsule-capture.tsx"
     },
     {
@@ -1347,7 +1347,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_capsule_capture_child",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "child"
     },
     {
@@ -1358,7 +1358,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_capsule_capture_base",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "base"
     },
     {
@@ -1369,7 +1369,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_capsule_capture_demomemories",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "demomemories"
     },
     {
@@ -1380,7 +1380,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_capsule_capture_state",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "state"
     },
     {
@@ -1391,7 +1391,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_capsule_capture_nativefetch",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "nativefetch"
     },
     {
@@ -1403,7 +1403,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_capsule_capture_captureapp",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "captureapp()"
     },
     {
@@ -1414,7 +1414,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_dad_capture",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "dad-capture.tsx"
     },
     {
@@ -1425,7 +1425,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_dad_capture_child",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "child"
     },
     {
@@ -1436,7 +1436,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_dad_capture_base",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "base"
     },
     {
@@ -1447,7 +1447,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_dad_capture_demomemories",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "demomemories"
     },
     {
@@ -1458,7 +1458,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_dad_capture_state",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "state"
     },
     {
@@ -1469,7 +1469,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_dad_capture_nativefetch",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "nativefetch"
     },
     {
@@ -1481,7 +1481,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_dad_capture_captureapp",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "captureapp()"
     },
     {
@@ -1492,7 +1492,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_main",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "main.tsx"
     },
     {
@@ -1503,7 +1503,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_main_child",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "child"
     },
     {
@@ -1514,7 +1514,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_main_base",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "base"
     },
     {
@@ -1525,7 +1525,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_main_demomemories",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "demomemories"
     },
     {
@@ -1536,7 +1536,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_main_state",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "state"
     },
     {
@@ -1547,7 +1547,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_main_nativefetch",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "nativefetch"
     },
     {
@@ -1559,7 +1559,7 @@
       "_origin": "ast",
       "id": "apps_hyperframes_demo_main_captureapp",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "captureapp()"
     },
     {
@@ -2232,8 +2232,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_ga",
-      "community": 605,
-      "community_name": "ga",
+      "community": 407,
+      "community_name": "r",
       "norm_label": "ga()"
     },
     {
@@ -2244,8 +2244,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_ha",
-      "community": 605,
-      "community_name": "ga",
+      "community": 407,
+      "community_name": "r",
       "norm_label": "ha()"
     },
     {
@@ -2316,8 +2316,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_na",
-      "community": 420,
-      "community_name": "t",
+      "community": 503,
+      "community_name": "la",
       "norm_label": "na()"
     },
     {
@@ -2364,8 +2364,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_ra",
-      "community": 407,
-      "community_name": "r",
+      "community": 621,
+      "community_name": "kb",
       "norm_label": "ra()"
     },
     {
@@ -2436,8 +2436,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_aa",
-      "community": 420,
-      "community_name": "t",
+      "community": 503,
+      "community_name": "la",
       "norm_label": "aa()"
     },
     {
@@ -2460,8 +2460,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_ca",
-      "community": 420,
-      "community_name": "t",
+      "community": 503,
+      "community_name": "la",
       "norm_label": "ca()"
     },
     {
@@ -2520,8 +2520,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_za",
-      "community": 407,
-      "community_name": "r",
+      "community": 420,
+      "community_name": "t",
       "norm_label": "za()"
     },
     {
@@ -2604,8 +2604,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_jb",
-      "community": 407,
-      "community_name": "r",
+      "community": 420,
+      "community_name": "t",
       "norm_label": "jb()"
     },
     {
@@ -2616,8 +2616,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_kb",
-      "community": 407,
-      "community_name": "r",
+      "community": 621,
+      "community_name": "kb",
       "norm_label": "kb()"
     },
     {
@@ -2628,8 +2628,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_ob",
-      "community": 407,
-      "community_name": "r",
+      "community": 420,
+      "community_name": "t",
       "norm_label": "ob()"
     },
     {
@@ -2640,8 +2640,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_rb",
-      "community": 407,
-      "community_name": "r",
+      "community": 621,
+      "community_name": "kb",
       "norm_label": "rb()"
     },
     {
@@ -2664,8 +2664,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_wb",
-      "community": 420,
-      "community_name": "t",
+      "community": 503,
+      "community_name": "la",
       "norm_label": "wb()"
     },
     {
@@ -3252,8 +3252,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_ae",
-      "community": 605,
-      "community_name": "ga",
+      "community": 407,
+      "community_name": "r",
       "norm_label": "ae()"
     },
     {
@@ -3336,8 +3336,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_oe",
-      "community": 605,
-      "community_name": "ga",
+      "community": 407,
+      "community_name": "r",
       "norm_label": "oe()"
     },
     {
@@ -3348,8 +3348,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_pe",
-      "community": 605,
-      "community_name": "ga",
+      "community": 407,
+      "community_name": "r",
       "norm_label": "pe()"
     },
     {
@@ -3615,8 +3615,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_ga",
-      "community": 403,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "ga()"
     },
     {
@@ -3627,8 +3627,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_ha",
-      "community": 403,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "ha()"
     },
     {
@@ -3675,8 +3675,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_la",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "la()"
     },
     {
@@ -3699,8 +3699,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_na",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "na()"
     },
     {
@@ -3747,8 +3747,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_ra",
-      "community": 610,
-      "community_name": "kb",
+      "community": 403,
+      "community_name": "r",
       "norm_label": "ra()"
     },
     {
@@ -3819,8 +3819,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_aa",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "aa()"
     },
     {
@@ -3843,8 +3843,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_ca",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "ca()"
     },
     {
@@ -3855,8 +3855,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_da",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "da()"
     },
     {
@@ -3879,8 +3879,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_ua",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "ua()"
     },
     {
@@ -3891,8 +3891,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_va",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "va()"
     },
     {
@@ -3903,8 +3903,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_za",
-      "community": 417,
-      "community_name": "t",
+      "community": 403,
+      "community_name": "r",
       "norm_label": "za()"
     },
     {
@@ -3987,8 +3987,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_jb",
-      "community": 417,
-      "community_name": "t",
+      "community": 403,
+      "community_name": "r",
       "norm_label": "jb()"
     },
     {
@@ -3999,8 +3999,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_kb",
-      "community": 610,
-      "community_name": "kb",
+      "community": 403,
+      "community_name": "r",
       "norm_label": "kb()"
     },
     {
@@ -4011,8 +4011,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_ob",
-      "community": 417,
-      "community_name": "t",
+      "community": 403,
+      "community_name": "r",
       "norm_label": "ob()"
     },
     {
@@ -4023,8 +4023,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_rb",
-      "community": 610,
-      "community_name": "kb",
+      "community": 403,
+      "community_name": "r",
       "norm_label": "rb()"
     },
     {
@@ -4047,8 +4047,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_wb",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "wb()"
     },
     {
@@ -4179,8 +4179,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_animation",
-      "community": 537,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "animation()"
     },
     {
@@ -4635,8 +4635,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_ae",
-      "community": 403,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "ae()"
     },
     {
@@ -4719,8 +4719,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_oe",
-      "community": 403,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "oe()"
     },
     {
@@ -4731,8 +4731,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_pe",
-      "community": 403,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "pe()"
     },
     {
@@ -6261,7 +6261,7 @@
       "_origin": "ast",
       "id": "apps_web_e2e_archive_flows_spec",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "archive-flows.spec.ts"
     },
     {
@@ -6272,7 +6272,7 @@
       "_origin": "ast",
       "id": "apps_web_e2e_archive_flows_spec_state",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "state"
     },
     {
@@ -7492,8 +7492,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_radix_ui_react_slider",
-      "community": 405,
-      "community_name": "@radix-ui/react-slider",
+      "community": 7,
+      "community_name": "dependencies",
       "norm_label": "@radix-ui/react-slider"
     },
     {
@@ -7503,8 +7503,8 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "radix_ui_react_slider",
-      "community": 405,
-      "community_name": "@radix-ui/react-slider",
+      "community": 7,
+      "community_name": "dependencies",
       "norm_label": "@radix-ui/react-slider"
     },
     {
@@ -7624,8 +7624,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "apps_web_package_dependencies_better_auth",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 622,
+      "community_name": "better-auth",
       "norm_label": "better-auth"
     },
     {
@@ -7635,8 +7635,8 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "better_auth",
-      "community": 7,
-      "community_name": "dependencies",
+      "community": 622,
+      "community_name": "better-auth",
       "norm_label": "better-auth"
     },
     {
@@ -8659,7 +8659,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_cookie_preferences_link",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "cookie-preferences-link.tsx"
     },
     {
@@ -8671,7 +8671,7 @@
       "_origin": "ast",
       "id": "apps_web_src_components_cookie_preferences_link_cookiepreferenceslink",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "cookiepreferenceslink()"
     },
     {
@@ -8681,7 +8681,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_design_archive_presentations",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "archive-presentations.tsx"
     },
@@ -8693,7 +8693,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_archive_presentations_memorycard",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "memorycard()"
     },
@@ -8705,7 +8705,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_archive_presentations_sealedcapsulecard",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "sealedcapsulecard()"
     },
@@ -8717,7 +8717,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_archive_presentations_familyperson",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "familyperson()"
     },
@@ -8787,8 +8787,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_controls_iso",
-      "community": 180,
-      "community_name": "cn",
+      "community": 13,
+      "community_name": "onboarding-page.tsx",
       "norm_label": "iso()"
     },
     {
@@ -8799,8 +8799,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_controls_datefield",
-      "community": 180,
-      "community_name": "cn",
+      "community": 13,
+      "community_name": "onboarding-page.tsx",
       "norm_label": "datefield()"
     },
     {
@@ -8822,8 +8822,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_design_date_input",
-      "community": 181,
-      "community_name": "family-settings.tsx",
+      "community": 13,
+      "community_name": "onboarding-page.tsx",
       "norm_label": "date-input.tsx"
     },
     {
@@ -8834,8 +8834,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_date_input_dateinput",
-      "community": 181,
-      "community_name": "family-settings.tsx",
+      "community": 13,
+      "community_name": "onboarding-page.tsx",
       "norm_label": "dateinput()"
     },
     {
@@ -8893,7 +8893,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_design_illustrations",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "illustrations.tsx"
     },
@@ -8904,7 +8904,7 @@
       "source_location": "L2",
       "_origin": "ast",
       "id": "apps_web_src_components_design_illustrations_c",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "c"
     },
@@ -8916,7 +8916,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_illustrations_leaves",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "leaves()"
     },
@@ -8928,7 +8928,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_illustrations_spark",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "spark()"
     },
@@ -8940,7 +8940,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_illustrations_face",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "face()"
     },
@@ -8952,7 +8952,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_illustrations_illustration",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "illustration()"
     },
@@ -9113,7 +9113,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "marketing-home.tsx"
     },
@@ -9125,7 +9125,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_marketing_home_marketinghome",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "marketinghome()"
     },
@@ -9334,7 +9334,7 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "apps_web_src_components_ui_card_card",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "card"
     },
@@ -10074,7 +10074,7 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_archive_types_pendinginvitation",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "pendinginvitation"
     },
@@ -10088,7 +10088,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_archive_archive_types_archivestate",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "archivestate"
     },
     {
@@ -10113,8 +10113,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_archive_types_view",
-      "community": 208,
-      "community_name": "design-select.tsx",
+      "community": 183,
+      "community_name": "archive-utils.tsx",
       "norm_label": "view"
     },
     {
@@ -10127,7 +10127,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_archive_archive_types_billingdestination",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "billingdestination"
     },
     {
@@ -10160,7 +10160,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_animated_action_label",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "animated-action-label.tsx"
     },
@@ -10172,7 +10172,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_animated_action_label_animatedactionlabel",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "animatedactionlabel()"
     },
@@ -10264,8 +10264,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_capsules_view_capsulesview",
-      "community": 103,
-      "community_name": "archive-app.tsx",
+      "community": 543,
+      "community_name": "family-settings.tsx",
       "norm_label": "capsulesview()"
     },
     {
@@ -10344,7 +10344,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_family_settings",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "family-settings.tsx"
     },
@@ -10356,7 +10356,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_family_settings_familysettings",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "familysettings()"
     },
@@ -10585,7 +10585,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_memory_stage_label",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "memory-stage-label.tsx"
     },
@@ -10597,7 +10597,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_memory_stage_label_memorystagelabel",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "memorystagelabel()"
     },
@@ -10621,7 +10621,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_parent_view_parentview",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "parentview()"
     },
     {
@@ -10678,7 +10678,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_subscription_sheet",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "subscription-sheet.tsx"
     },
     {
@@ -10690,7 +10690,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_subscription_sheet_subscriptionsheet",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "subscriptionsheet()"
     },
     {
@@ -10713,7 +10713,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_archive_components_timeline_view_timelineview",
       "community": 181,
-      "community_name": "family-settings.tsx",
+      "community_name": "capsule-capture.tsx",
       "norm_label": "timelineview()"
     },
     {
@@ -10724,7 +10724,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_archive_hooks_use_billing_navigation",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "use-billing-navigation.ts"
     },
     {
@@ -10736,7 +10736,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_archive_hooks_use_billing_navigation_usebillingnavigation",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "usebillingnavigation()"
     },
     {
@@ -10758,8 +10758,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_hooks_use_confirmation_useconfirmation",
-      "community": 183,
-      "community_name": "archive-utils.tsx",
+      "community": 543,
+      "community_name": "family-settings.tsx",
       "norm_label": "useconfirmation()"
     },
     {
@@ -10827,8 +10827,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_lib_archive_utils_apifetch",
-      "community": 103,
-      "community_name": "archive-app.tsx",
+      "community": 183,
+      "community_name": "archive-utils.tsx",
       "norm_label": "apifetch()"
     },
     {
@@ -10935,7 +10935,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_lib_archive_utils_formatdate",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "formatdate()"
     },
@@ -10947,7 +10947,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_lib_archive_utils_billingstatustitle",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "billingstatustitle()"
     },
@@ -10959,7 +10959,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_lib_archive_utils_billingstatusdetail",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "billingstatusdetail()"
     },
@@ -11127,7 +11127,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_archive_lib_archive_utils_formatfilesize",
-      "community": 181,
+      "community": 543,
       "community_name": "family-settings.tsx",
       "norm_label": "formatfilesize()"
     },
@@ -11162,7 +11162,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_information_information_page",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "information-page.tsx"
     },
     {
@@ -11173,7 +11173,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_information_information_page_informationpages",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "informationpages"
     },
     {
@@ -11186,7 +11186,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_information_information_page_informationpageid",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "informationpageid"
     },
     {
@@ -11198,7 +11198,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_information_information_page_informationpage",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "informationpage()"
     },
     {
@@ -11780,7 +11780,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_components_marketing_footer",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "marketing-footer.tsx"
     },
     {
@@ -11792,7 +11792,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_components_marketing_footer_marketingfooter",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "marketingfooter()"
     },
     {
@@ -11803,7 +11803,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_components_pricing_section",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "pricing-section.tsx"
     },
     {
@@ -11815,7 +11815,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_components_pricing_section_pricingsection",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "pricingsection()"
     },
     {
@@ -11825,7 +11825,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "forest-home.tsx"
     },
@@ -11837,7 +11837,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_start",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "start()"
     },
@@ -11849,7 +11849,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_usehomemotion",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "usehomemotion()"
     },
@@ -11860,7 +11860,7 @@
       "source_location": "L77",
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_waveheights",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "waveheights"
     },
@@ -11872,7 +11872,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_waveform",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "waveform()"
     },
@@ -11884,7 +11884,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_cta",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "cta()"
     },
@@ -11896,7 +11896,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_header",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "header()"
     },
@@ -11908,7 +11908,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_hero",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "hero()"
     },
@@ -11920,7 +11920,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_privacy",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "privacy()"
     },
@@ -11932,7 +11932,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_pricing",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "pricing()"
     },
@@ -11944,7 +11944,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_journal",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "journal()"
     },
@@ -11956,7 +11956,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_closing",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "closing()"
     },
@@ -11968,7 +11968,7 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_home_forest_home_foresthome",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "foresthome()"
     },
@@ -11980,7 +11980,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_pricing_page",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "pricing-page.tsx"
     },
     {
@@ -11992,7 +11992,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_pricing_page_marketingpricingpage",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "marketingpricingpage()"
     },
     {
@@ -12003,7 +12003,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_site_footer",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "site-footer.tsx"
     },
     {
@@ -12015,7 +12015,7 @@
       "_origin": "ast",
       "id": "apps_web_src_features_marketing_site_footer_sitefooter",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "sitefooter()"
     },
     {
@@ -13507,7 +13507,7 @@
       "_origin": "ast",
       "id": "apps_web_src_lib_acquisition_acquisitionheaders",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "acquisitionheaders()"
     },
     {
@@ -17537,7 +17537,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_marketing_about",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "about.tsx"
     },
     {
@@ -17548,7 +17548,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_marketing_about_route",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "route"
     },
     {
@@ -17559,7 +17559,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_marketing_contact",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "contact.tsx"
     },
     {
@@ -17570,7 +17570,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_marketing_contact_route",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "route"
     },
     {
@@ -17603,7 +17603,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_marketing_pricing",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "pricing.tsx"
     },
     {
@@ -17614,7 +17614,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_marketing_pricing_route",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "route"
     },
     {
@@ -17625,7 +17625,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_marketing_privacy",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "privacy.tsx"
     },
     {
@@ -17636,7 +17636,7 @@
       "_origin": "ast",
       "id": "apps_web_src_routes_marketing_privacy_route",
       "community": 196,
-      "community_name": "forest-home.tsx",
+      "community_name": "information-page.tsx",
       "norm_label": "route"
     },
     {
@@ -18404,7 +18404,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_test_brand_test",
-      "community": 196,
+      "community": 405,
       "community_name": "forest-home.tsx",
       "norm_label": "brand.test.tsx"
     },
@@ -62423,7 +62423,7 @@
       "_origin": "ast",
       "id": "assets_design_grandparents_guide_fixture",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "fixture.ts"
     },
     {
@@ -62434,7 +62434,7 @@
       "_origin": "ast",
       "id": "assets_design_grandparents_guide_fixture_state",
       "community": 543,
-      "community_name": "subscription-sheet.tsx",
+      "community_name": "family-settings.tsx",
       "norm_label": "state"
     },
     {
@@ -65900,8 +65900,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_na",
-      "community": 509,
-      "community_name": "la",
+      "community": 477,
+      "community_name": "t",
       "norm_label": "na()"
     },
     {
@@ -65948,8 +65948,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ra",
-      "community": 567,
-      "community_name": "kb",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "ra()"
     },
     {
@@ -66020,8 +66020,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_aa",
-      "community": 509,
-      "community_name": "la",
+      "community": 477,
+      "community_name": "t",
       "norm_label": "aa()"
     },
     {
@@ -66044,8 +66044,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ca",
-      "community": 509,
-      "community_name": "la",
+      "community": 477,
+      "community_name": "t",
       "norm_label": "ca()"
     },
     {
@@ -66104,8 +66104,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_za",
-      "community": 477,
-      "community_name": "t",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "za()"
     },
     {
@@ -66188,8 +66188,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_jb",
-      "community": 477,
-      "community_name": "t",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "jb()"
     },
     {
@@ -66200,8 +66200,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_kb",
-      "community": 567,
-      "community_name": "kb",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "kb()"
     },
     {
@@ -66212,8 +66212,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ob",
-      "community": 477,
-      "community_name": "t",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "ob()"
     },
     {
@@ -66224,8 +66224,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_rb",
-      "community": 567,
-      "community_name": "kb",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "rb()"
     },
     {
@@ -66248,8 +66248,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_wb",
-      "community": 509,
-      "community_name": "la",
+      "community": 477,
+      "community_name": "t",
       "norm_label": "wb()"
     },
     {
@@ -67320,8 +67320,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ga",
-      "community": 406,
-      "community_name": "r",
+      "community": 615,
+      "community_name": "ga",
       "norm_label": "ga()"
     },
     {
@@ -67332,8 +67332,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ha",
-      "community": 406,
-      "community_name": "r",
+      "community": 615,
+      "community_name": "ga",
       "norm_label": "ha()"
     },
     {
@@ -67380,8 +67380,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_la",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "la()"
     },
     {
@@ -67404,8 +67404,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_na",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "na()"
     },
     {
@@ -67452,8 +67452,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ra",
-      "community": 613,
-      "community_name": "kb",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "ra()"
     },
     {
@@ -67524,8 +67524,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_aa",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "aa()"
     },
     {
@@ -67548,8 +67548,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ca",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "ca()"
     },
     {
@@ -67560,8 +67560,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_da",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "da()"
     },
     {
@@ -67584,8 +67584,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ua",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "ua()"
     },
     {
@@ -67596,8 +67596,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_va",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "va()"
     },
     {
@@ -67608,8 +67608,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_za",
-      "community": 418,
-      "community_name": "t",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "za()"
     },
     {
@@ -67692,8 +67692,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_jb",
-      "community": 418,
-      "community_name": "t",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "jb()"
     },
     {
@@ -67704,8 +67704,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_kb",
-      "community": 613,
-      "community_name": "kb",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "kb()"
     },
     {
@@ -67716,8 +67716,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ob",
-      "community": 418,
-      "community_name": "t",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "ob()"
     },
     {
@@ -67728,8 +67728,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_rb",
-      "community": 613,
-      "community_name": "kb",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "rb()"
     },
     {
@@ -67752,8 +67752,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_wb",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "wb()"
     },
     {
@@ -67884,8 +67884,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_animation",
-      "community": 549,
-      "community_name": "la",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "animation()"
     },
     {
@@ -68340,8 +68340,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ae",
-      "community": 406,
-      "community_name": "r",
+      "community": 615,
+      "community_name": "ga",
       "norm_label": "ae()"
     },
     {
@@ -68424,8 +68424,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_oe",
-      "community": 406,
-      "community_name": "r",
+      "community": 615,
+      "community_name": "ga",
       "norm_label": "oe()"
     },
     {
@@ -68436,8 +68436,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_pe",
-      "community": 406,
-      "community_name": "r",
+      "community": 615,
+      "community_name": "ga",
       "norm_label": "pe()"
     },
     {
@@ -70388,8 +70388,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_la",
-      "community": 482,
-      "community_name": "t",
+      "community": 616,
+      "community_name": "la",
       "norm_label": "la()"
     },
     {
@@ -70568,8 +70568,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_da",
-      "community": 482,
-      "community_name": "t",
+      "community": 616,
+      "community_name": "la",
       "norm_label": "da()"
     },
     {
@@ -70592,8 +70592,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_ua",
-      "community": 482,
-      "community_name": "t",
+      "community": 616,
+      "community_name": "la",
       "norm_label": "ua()"
     },
     {
@@ -70604,8 +70604,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_va",
-      "community": 482,
-      "community_name": "t",
+      "community": 616,
+      "community_name": "la",
       "norm_label": "va()"
     },
     {
@@ -70892,8 +70892,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_animation",
-      "community": 482,
-      "community_name": "t",
+      "community": 616,
+      "community_name": "la",
       "norm_label": "animation()"
     },
     {
@@ -74180,8 +74180,8 @@
       "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
-      "community": 488,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "community": 612,
       "community_name": "Everlittle \u2014 Apricot detailed design",
       "norm_label": "everlittle \u2014 apricot detailed design"
     },
@@ -74191,8 +74191,8 @@
       "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_screen_set",
-      "community": 488,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_screen_set",
+      "community": 612,
       "community_name": "Everlittle \u2014 Apricot detailed design",
       "norm_label": "screen set"
     },
@@ -74202,8 +74202,8 @@
       "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
       "source_location": "L21",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_product_decisions",
-      "community": 488,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_product_decisions",
+      "community": 612,
       "community_name": "Everlittle \u2014 Apricot detailed design",
       "norm_label": "product decisions"
     },
@@ -74213,8 +74213,8 @@
       "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_raised_button_specification",
-      "community": 488,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_raised_button_specification",
+      "community": 612,
       "community_name": "Everlittle \u2014 Apricot detailed design",
       "norm_label": "raised button specification"
     },
@@ -74224,8 +74224,8 @@
       "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
       "source_location": "L56",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_async_and_empty_state_behavior",
-      "community": 488,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_async_and_empty_state_behavior",
+      "community": 612,
       "community_name": "Everlittle \u2014 Apricot detailed design",
       "norm_label": "async and empty-state behavior"
     },
@@ -74235,8 +74235,8 @@
       "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
       "source_location": "L67",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_source_grounding",
-      "community": 488,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_source_grounding",
+      "community": 612,
       "community_name": "Everlittle \u2014 Apricot detailed design",
       "norm_label": "source grounding"
     },
@@ -74246,8 +74246,8 @@
       "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
       "source_location": "L87",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_generation_and_review",
-      "community": 488,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_generation_and_review",
+      "community": 612,
       "community_name": "Everlittle \u2014 Apricot detailed design",
       "norm_label": "generation and review"
     },
@@ -74258,8 +74258,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "assets_design_apricot_landing_2026_09_07_readme",
-      "community": 548,
-      "community_name": "Everlittle \u2014 Apricot landing concept",
+      "community": 609,
+      "community_name": "apricot-landing-2026-09-07/README.md",
       "norm_label": "apricot-landing-2026-09-07/readme.md"
     },
     {
@@ -74268,9 +74268,9 @@
       "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
       "community": 609,
-      "community_name": "Everlittle \u2014 Apricot landing concept",
+      "community_name": "apricot-landing-2026-09-07/README.md",
       "norm_label": "everlittle \u2014 apricot landing concept"
     },
     {
@@ -74279,9 +74279,9 @@
       "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
       "source_location": "L10",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_spacious_v2",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_spacious_v2",
       "community": 609,
-      "community_name": "Everlittle \u2014 Apricot landing concept",
+      "community_name": "apricot-landing-2026-09-07/README.md",
       "norm_label": "spacious v2"
     },
     {
@@ -74290,9 +74290,9 @@
       "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
       "source_location": "L22",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_concept",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_concept",
       "community": 609,
-      "community_name": "Everlittle \u2014 Apricot landing concept",
+      "community_name": "apricot-landing-2026-09-07/README.md",
       "norm_label": "concept"
     },
     {
@@ -74301,9 +74301,9 @@
       "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_original_v1_page_story",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_original_v1_page_story",
       "community": 609,
-      "community_name": "Everlittle \u2014 Apricot landing concept",
+      "community_name": "apricot-landing-2026-09-07/README.md",
       "norm_label": "original v1 page story"
     },
     {
@@ -74312,9 +74312,9 @@
       "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
       "source_location": "L48",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_final_generation_prompt",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_final_generation_prompt",
       "community": 609,
-      "community_name": "Everlittle \u2014 Apricot landing concept",
+      "community_name": "apricot-landing-2026-09-07/README.md",
       "norm_label": "final generation prompt"
     },
     {
@@ -74422,8 +74422,8 @@
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
-      "community": 514,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
+      "community": 613,
       "community_name": "Final generation prompts",
       "norm_label": "living scrapbook \u2014 navigation and mobile refinement"
     },
@@ -74433,8 +74433,8 @@
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_compare",
-      "community": 514,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_compare",
+      "community": 613,
       "community_name": "Final generation prompts",
       "norm_label": "compare"
     },
@@ -74444,8 +74444,8 @@
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
       "source_location": "L19",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_files",
-      "community": 514,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_files",
+      "community": 613,
       "community_name": "Final generation prompts",
       "norm_label": "files"
     },
@@ -74455,8 +74455,8 @@
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
       "source_location": "L26",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
-      "community": 514,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
+      "community": 613,
       "community_name": "Final generation prompts",
       "norm_label": "final generation prompts"
     },
@@ -74466,8 +74466,8 @@
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
       "source_location": "L28",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_a_paper_index",
-      "community": 514,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_a_paper_index",
+      "community": 613,
       "community_name": "Final generation prompts",
       "norm_label": "a \u2014 paper index"
     },
@@ -74477,8 +74477,8 @@
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_b_folder_tabs",
-      "community": 514,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_b_folder_tabs",
+      "community": 613,
       "community_name": "Final generation prompts",
       "norm_label": "b \u2014 folder tabs"
     },
@@ -74488,8 +74488,8 @@
       "source_file": "assets/design/living-scrapbook-refinement/README.md",
       "source_location": "L40",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_mobile",
-      "community": 514,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_mobile",
+      "community": 613,
       "community_name": "Final generation prompts",
       "norm_label": "mobile"
     },
@@ -74510,8 +74510,8 @@
       "source_file": "assets/design/product-directions-2026-09-06/README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
-      "community": 240,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "community": 610,
       "community_name": "Everlittle product design options",
       "norm_label": "everlittle product design options"
     },
@@ -74521,8 +74521,8 @@
       "source_file": "assets/design/product-directions-2026-09-06/README.md",
       "source_location": "L7",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_recommendation",
-      "community": 240,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_recommendation",
+      "community": 610,
       "community_name": "Everlittle product design options",
       "norm_label": "recommendation"
     },
@@ -74532,8 +74532,8 @@
       "source_file": "assets/design/product-directions-2026-09-06/README.md",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_audit_and_limits",
-      "community": 240,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_audit_and_limits",
+      "community": 610,
       "community_name": "Everlittle product design options",
       "norm_label": "audit and limits"
     },
@@ -74543,8 +74543,8 @@
       "source_file": "assets/design/product-directions-2026-09-06/README.md",
       "source_location": "L23",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_corrections_before_implementation",
-      "community": 240,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_corrections_before_implementation",
+      "community": 610,
       "community_name": "Everlittle product design options",
       "norm_label": "corrections before implementation"
     },
@@ -74554,8 +74554,8 @@
       "source_file": "assets/design/product-directions-2026-09-06/README.md",
       "source_location": "L27",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts",
-      "community": 240,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_final_prompts",
+      "community": 610,
       "community_name": "Everlittle product design options",
       "norm_label": "final prompts"
     },
@@ -74565,8 +74565,8 @@
       "source_file": "assets/design/product-directions-2026-09-06/README.md",
       "source_location": "L29",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_01_quiet_heirloom",
-      "community": 240,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_01_quiet_heirloom",
+      "community": 610,
       "community_name": "Everlittle product design options",
       "norm_label": "01-quiet-heirloom"
     },
@@ -74576,8 +74576,8 @@
       "source_file": "assets/design/product-directions-2026-09-06/README.md",
       "source_location": "L35",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_02_living_scrapbook",
-      "community": 240,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_02_living_scrapbook",
+      "community": 610,
       "community_name": "Everlittle product design options",
       "norm_label": "02-living-scrapbook"
     },
@@ -74587,8 +74587,8 @@
       "source_file": "assets/design/product-directions-2026-09-06/README.md",
       "source_location": "L41",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_03_everyday_companion",
-      "community": 240,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_03_everyday_companion",
+      "community": 610,
       "community_name": "Everlittle product design options",
       "norm_label": "03-everyday-companion"
     },
@@ -74907,7 +74907,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_deployment_modes",
-      "community": 612,
+      "community": 569,
       "community_name": "README.md",
       "norm_label": "deployment-modes.md"
     },
@@ -75106,7 +75106,7 @@
       "_origin": "ast",
       "id": "docs_hosted_billing",
       "community": 569,
-      "community_name": "Dodo Payments boundary",
+      "community_name": "README.md",
       "norm_label": "hosted-billing.md"
     },
     {
@@ -75117,7 +75117,7 @@
       "_origin": "ast",
       "id": "docs_hosted_billing_hosted_plans_and_storage",
       "community": 569,
-      "community_name": "Dodo Payments boundary",
+      "community_name": "README.md",
       "norm_label": "hosted plans and storage"
     },
     {
@@ -75128,7 +75128,7 @@
       "_origin": "ast",
       "id": "docs_hosted_billing_free_entry_plan",
       "community": 569,
-      "community_name": "Dodo Payments boundary",
+      "community_name": "README.md",
       "norm_label": "free entry plan"
     },
     {
@@ -75139,7 +75139,7 @@
       "_origin": "ast",
       "id": "docs_hosted_billing_dodo_payments_boundary",
       "community": 569,
-      "community_name": "Dodo Payments boundary",
+      "community_name": "README.md",
       "norm_label": "dodo payments boundary"
     },
     {
@@ -75150,7 +75150,7 @@
       "_origin": "ast",
       "id": "docs_hosted_billing_test_mode_setup",
       "community": 569,
-      "community_name": "Dodo Payments boundary",
+      "community_name": "README.md",
       "norm_label": "test-mode setup"
     },
     {
@@ -75161,7 +75161,7 @@
       "_origin": "ast",
       "id": "docs_hosted_billing_upload_quota_and_deployment",
       "community": 569,
-      "community_name": "Dodo Payments boundary",
+      "community_name": "README.md",
       "norm_label": "upload quota and deployment"
     },
     {
@@ -76260,7 +76260,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "docs_self_hosting",
-      "community": 612,
+      "community": 569,
       "community_name": "README.md",
       "norm_label": "self-hosting.md"
     },
@@ -80000,7 +80000,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "readme",
-      "community": 612,
+      "community": 569,
       "community_name": "README.md",
       "norm_label": "readme.md"
     },
@@ -80010,8 +80010,8 @@
       "source_file": "README.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "everlittle"
     },
@@ -80021,8 +80021,8 @@
       "source_file": "README.md",
       "source_location": "L9",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_what_is_in_this_repository",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_what_is_in_this_repository",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "what is in this repository"
     },
@@ -80032,8 +80032,8 @@
       "source_file": "README.md",
       "source_location": "L18",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_design_references",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_design_references",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "design references"
     },
@@ -80043,8 +80043,8 @@
       "source_file": "README.md",
       "source_location": "L25",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_product_surfaces",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_product_surfaces",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "product surfaces"
     },
@@ -80054,8 +80054,8 @@
       "source_file": "README.md",
       "source_location": "L34",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_hosted_and_self_hosted",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_hosted_and_self_hosted",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "hosted and self-hosted"
     },
@@ -80065,8 +80065,8 @@
       "source_file": "README.md",
       "source_location": "L42",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_authentication",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_authentication",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "authentication"
     },
@@ -80076,8 +80076,8 @@
       "source_file": "README.md",
       "source_location": "L56",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_local_development",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_local_development",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "local development"
     },
@@ -80087,8 +80087,8 @@
       "source_file": "README.md",
       "source_location": "L80",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_validation",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_validation",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "validation"
     },
@@ -80098,8 +80098,8 @@
       "source_file": "README.md",
       "source_location": "L88",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_deployment",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_deployment",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "deployment"
     },
@@ -80109,8 +80109,8 @@
       "source_file": "README.md",
       "source_location": "L113",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_privacy_posture",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_privacy_posture",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "privacy posture"
     },
@@ -80120,8 +80120,8 @@
       "source_file": "README.md",
       "source_location": "L120",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_license",
-      "community": 213,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_license",
+      "community": 537,
       "community_name": "Everlittle",
       "norm_label": "license"
     },
@@ -80418,7 +80418,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "todo",
-      "community": 78,
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "todo.md"
     },
@@ -80428,8 +80428,8 @@
       "source_file": "TODO.md",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "community": 78,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "everlittle todo"
     },
@@ -80439,8 +80439,8 @@
       "source_file": "TODO.md",
       "source_location": "L5",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p0_claim_the_reference_installation",
-      "community": 78,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p0_claim_the_reference_installation",
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "p0 \u2014 claim the reference installation"
     },
@@ -80450,9 +80450,9 @@
       "source_file": "TODO.md",
       "source_location": "L10",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_family_invitation_and_ownership_handover",
+      "community": 620,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "p1 \u2014 family invitation and ownership handover"
     },
     {
@@ -80461,9 +80461,9 @@
       "source_file": "TODO.md",
       "source_location": "L15",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_required_ux",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_required_ux",
+      "community": 620,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "required ux"
     },
     {
@@ -80472,9 +80472,9 @@
       "source_file": "TODO.md",
       "source_location": "L26",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_current_invitation_ux_gaps",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_current_invitation_ux_gaps",
+      "community": 620,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "current invitation ux gaps"
     },
     {
@@ -80483,9 +80483,9 @@
       "source_file": "TODO.md",
       "source_location": "L44",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_safety_invariants",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_safety_invariants",
+      "community": 620,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "safety invariants"
     },
     {
@@ -80494,9 +80494,9 @@
       "source_file": "TODO.md",
       "source_location": "L55",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_server_work",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_server_work",
+      "community": 620,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "server work"
     },
     {
@@ -80505,8 +80505,8 @@
       "source_file": "TODO.md",
       "source_location": "L63",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_real_archive_data",
-      "community": 78,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_real_archive_data",
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "p1 \u2014 real archive data"
     },
@@ -80516,8 +80516,8 @@
       "source_file": "TODO.md",
       "source_location": "L83",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_privacy_and_durability",
-      "community": 78,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_privacy_and_durability",
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "p1 \u2014 privacy and durability"
     },
@@ -80527,8 +80527,8 @@
       "source_file": "TODO.md",
       "source_location": "L91",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_child_experience",
-      "community": 78,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p2_child_experience",
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "p2 \u2014 child experience"
     },
@@ -80538,8 +80538,8 @@
       "source_file": "TODO.md",
       "source_location": "L101",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_deferred_account_recovery",
-      "community": 78,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p2_deferred_account_recovery",
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "p2 \u2014 deferred account recovery"
     },
@@ -80549,8 +80549,8 @@
       "source_file": "TODO.md",
       "source_location": "L105",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_pwa_and_device_polish",
-      "community": 78,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p2_pwa_and_device_polish",
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "p2 \u2014 pwa and device polish"
     },
@@ -80560,8 +80560,8 @@
       "source_file": "TODO.md",
       "source_location": "L115",
       "_origin": "ast",
-      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_quality_and_operations",
-      "community": 78,
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p2_quality_and_operations",
+      "community": 549,
       "community_name": "Everlittle TODO",
       "norm_label": "p2 \u2014 quality and operations"
     },
@@ -80718,6 +80718,567 @@
       "community": 177,
       "community_name": "Everlittle preliminary trademark knockout search",
       "norm_label": "practical domain decision"
+    },
+    {
+      "label": "Everlittle \u2014 Apricot detailed design",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 488,
+      "community_name": "Everlittle \u2014 Apricot detailed design",
+      "norm_label": "everlittle \u2014 apricot detailed design",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design"
+    },
+    {
+      "label": "Screen set",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 488,
+      "community_name": "Everlittle \u2014 Apricot detailed design",
+      "norm_label": "screen set",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_screen_set"
+    },
+    {
+      "label": "Product decisions",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L21",
+      "_origin": "ast",
+      "community": 488,
+      "community_name": "Everlittle \u2014 Apricot detailed design",
+      "norm_label": "product decisions",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_product_decisions"
+    },
+    {
+      "label": "Raised button specification",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "community": 488,
+      "community_name": "Everlittle \u2014 Apricot detailed design",
+      "norm_label": "raised button specification",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_raised_button_specification"
+    },
+    {
+      "label": "Async and empty-state behavior",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "community": 488,
+      "community_name": "Everlittle \u2014 Apricot detailed design",
+      "norm_label": "async and empty-state behavior",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_async_and_empty_state_behavior"
+    },
+    {
+      "label": "Source grounding",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L67",
+      "_origin": "ast",
+      "community": 488,
+      "community_name": "Everlittle \u2014 Apricot detailed design",
+      "norm_label": "source grounding",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_source_grounding"
+    },
+    {
+      "label": "Generation and review",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L87",
+      "_origin": "ast",
+      "community": 488,
+      "community_name": "Everlittle \u2014 Apricot detailed design",
+      "norm_label": "generation and review",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_generation_and_review"
+    },
+    {
+      "label": "Everlittle \u2014 Apricot landing concept",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 609,
+      "community_name": "apricot-landing-2026-09-07/README.md",
+      "norm_label": "everlittle \u2014 apricot landing concept",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept"
+    },
+    {
+      "label": "Spacious v2",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "community": 609,
+      "community_name": "apricot-landing-2026-09-07/README.md",
+      "norm_label": "spacious v2",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_spacious_v2"
+    },
+    {
+      "label": "Concept",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L22",
+      "_origin": "ast",
+      "community": 609,
+      "community_name": "apricot-landing-2026-09-07/README.md",
+      "norm_label": "concept",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_concept"
+    },
+    {
+      "label": "Original v1 page story",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "community": 609,
+      "community_name": "apricot-landing-2026-09-07/README.md",
+      "norm_label": "original v1 page story",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_original_v1_page_story"
+    },
+    {
+      "label": "Final generation prompt",
+      "file_type": "document",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L48",
+      "_origin": "ast",
+      "community": 609,
+      "community_name": "apricot-landing-2026-09-07/README.md",
+      "norm_label": "final generation prompt",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_final_generation_prompt"
+    },
+    {
+      "label": "Living Scrapbook \u2014 navigation and mobile refinement",
+      "file_type": "document",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 514,
+      "community_name": "Final generation prompts",
+      "norm_label": "living scrapbook \u2014 navigation and mobile refinement",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement"
+    },
+    {
+      "label": "Compare",
+      "file_type": "document",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 514,
+      "community_name": "Final generation prompts",
+      "norm_label": "compare",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_compare"
+    },
+    {
+      "label": "Files",
+      "file_type": "document",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L19",
+      "_origin": "ast",
+      "community": 514,
+      "community_name": "Final generation prompts",
+      "norm_label": "files",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_files"
+    },
+    {
+      "label": "Final generation prompts",
+      "file_type": "document",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "community": 514,
+      "community_name": "Final generation prompts",
+      "norm_label": "final generation prompts",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts"
+    },
+    {
+      "label": "A \u2014 Paper index",
+      "file_type": "document",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L28",
+      "_origin": "ast",
+      "community": 514,
+      "community_name": "Final generation prompts",
+      "norm_label": "a \u2014 paper index",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_a_paper_index"
+    },
+    {
+      "label": "B \u2014 Folder tabs",
+      "file_type": "document",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "community": 514,
+      "community_name": "Final generation prompts",
+      "norm_label": "b \u2014 folder tabs",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_b_folder_tabs"
+    },
+    {
+      "label": "Mobile",
+      "file_type": "document",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L40",
+      "_origin": "ast",
+      "community": 514,
+      "community_name": "Final generation prompts",
+      "norm_label": "mobile",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_mobile"
+    },
+    {
+      "label": "Everlittle product design options",
+      "file_type": "document",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "Everlittle product design options",
+      "norm_label": "everlittle product design options",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options"
+    },
+    {
+      "label": "Recommendation",
+      "file_type": "document",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "Everlittle product design options",
+      "norm_label": "recommendation",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_recommendation"
+    },
+    {
+      "label": "Audit and limits",
+      "file_type": "document",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "Everlittle product design options",
+      "norm_label": "audit and limits",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_audit_and_limits"
+    },
+    {
+      "label": "Corrections before implementation",
+      "file_type": "document",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "Everlittle product design options",
+      "norm_label": "corrections before implementation",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_corrections_before_implementation"
+    },
+    {
+      "label": "Final prompts",
+      "file_type": "document",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "Everlittle product design options",
+      "norm_label": "final prompts",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts"
+    },
+    {
+      "label": "01-quiet-heirloom",
+      "file_type": "document",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L29",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "Everlittle product design options",
+      "norm_label": "01-quiet-heirloom",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_01_quiet_heirloom"
+    },
+    {
+      "label": "02-living-scrapbook",
+      "file_type": "document",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L35",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "Everlittle product design options",
+      "norm_label": "02-living-scrapbook",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_02_living_scrapbook"
+    },
+    {
+      "label": "03-everyday-companion",
+      "file_type": "document",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L41",
+      "_origin": "ast",
+      "community": 240,
+      "community_name": "Everlittle product design options",
+      "norm_label": "03-everyday-companion",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_03_everyday_companion"
+    },
+    {
+      "label": "Everlittle",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "everlittle",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle"
+    },
+    {
+      "label": "What is in this repository",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "what is in this repository",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_what_is_in_this_repository"
+    },
+    {
+      "label": "Design references",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L18",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "design references",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_design_references"
+    },
+    {
+      "label": "Product surfaces",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "product surfaces",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_product_surfaces"
+    },
+    {
+      "label": "Hosted and self-hosted",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L34",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "hosted and self-hosted",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_hosted_and_self_hosted"
+    },
+    {
+      "label": "Authentication",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L42",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "authentication",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_authentication"
+    },
+    {
+      "label": "Local development",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L56",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "local development",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_local_development"
+    },
+    {
+      "label": "Validation",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L80",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "validation",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_validation"
+    },
+    {
+      "label": "Deployment",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L88",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "deployment",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_deployment"
+    },
+    {
+      "label": "Privacy posture",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L113",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "privacy posture",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_privacy_posture"
+    },
+    {
+      "label": "License",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L120",
+      "_origin": "ast",
+      "community": 213,
+      "community_name": "Everlittle",
+      "norm_label": "license",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_license"
+    },
+    {
+      "label": "Everlittle TODO",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "community": 605,
+      "community_name": "Everlittle TODO",
+      "norm_label": "everlittle todo",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo"
+    },
+    {
+      "label": "P0 \u2014 Claim the reference installation",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L5",
+      "_origin": "ast",
+      "community": 605,
+      "community_name": "Everlittle TODO",
+      "norm_label": "p0 \u2014 claim the reference installation",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p0_claim_the_reference_installation"
+    },
+    {
+      "label": "P1 \u2014 Family invitation and ownership handover",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "community": 619,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
+      "norm_label": "p1 \u2014 family invitation and ownership handover",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover"
+    },
+    {
+      "label": "Required UX",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L15",
+      "_origin": "ast",
+      "community": 619,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
+      "norm_label": "required ux",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_required_ux"
+    },
+    {
+      "label": "Current invitation UX gaps",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L26",
+      "_origin": "ast",
+      "community": 619,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
+      "norm_label": "current invitation ux gaps",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_current_invitation_ux_gaps"
+    },
+    {
+      "label": "Safety invariants",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L44",
+      "_origin": "ast",
+      "community": 619,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
+      "norm_label": "safety invariants",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_safety_invariants"
+    },
+    {
+      "label": "Server work",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L55",
+      "_origin": "ast",
+      "community": 619,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
+      "norm_label": "server work",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_server_work"
+    },
+    {
+      "label": "P1 \u2014 Real archive data",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L63",
+      "_origin": "ast",
+      "community": 605,
+      "community_name": "Everlittle TODO",
+      "norm_label": "p1 \u2014 real archive data",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_real_archive_data"
+    },
+    {
+      "label": "P1 \u2014 Privacy and durability",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L83",
+      "_origin": "ast",
+      "community": 605,
+      "community_name": "Everlittle TODO",
+      "norm_label": "p1 \u2014 privacy and durability",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_privacy_and_durability"
+    },
+    {
+      "label": "P2 \u2014 Child experience",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L91",
+      "_origin": "ast",
+      "community": 605,
+      "community_name": "Everlittle TODO",
+      "norm_label": "p2 \u2014 child experience",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_child_experience"
+    },
+    {
+      "label": "P2 \u2014 Deferred account recovery",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L101",
+      "_origin": "ast",
+      "community": 605,
+      "community_name": "Everlittle TODO",
+      "norm_label": "p2 \u2014 deferred account recovery",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_deferred_account_recovery"
+    },
+    {
+      "label": "P2 \u2014 PWA and device polish",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "community": 605,
+      "community_name": "Everlittle TODO",
+      "norm_label": "p2 \u2014 pwa and device polish",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_pwa_and_device_polish"
+    },
+    {
+      "label": "P2 \u2014 Quality and operations",
+      "file_type": "document",
+      "source_file": "TODO.md",
+      "source_location": "L115",
+      "_origin": "ast",
+      "community": 605,
+      "community_name": "Everlittle TODO",
+      "norm_label": "p2 \u2014 quality and operations",
+      "id": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_quality_and_operations"
     },
     {
       "label": "Everlittle \u2014 Apricot detailed design",
@@ -81143,7 +81704,7 @@
       "source_file": "TODO.md",
       "source_location": "L1",
       "_origin": "ast",
-      "community": 78,
+      "community": 567,
       "community_name": "Everlittle TODO",
       "norm_label": "everlittle todo",
       "id": "users_kunga_desktop_projects_everlittle_todo_everlittle_todo"
@@ -81154,7 +81715,7 @@
       "source_file": "TODO.md",
       "source_location": "L5",
       "_origin": "ast",
-      "community": 78,
+      "community": 567,
       "community_name": "Everlittle TODO",
       "norm_label": "p0 \u2014 claim the reference installation",
       "id": "users_kunga_desktop_projects_everlittle_todo_p0_claim_the_reference_installation"
@@ -81165,8 +81726,8 @@
       "source_file": "TODO.md",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 618,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "p1 \u2014 family invitation and ownership handover",
       "id": "users_kunga_desktop_projects_everlittle_todo_p1_family_invitation_and_ownership_handover"
     },
@@ -81176,8 +81737,8 @@
       "source_file": "TODO.md",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 618,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "required ux",
       "id": "users_kunga_desktop_projects_everlittle_todo_required_ux"
     },
@@ -81187,8 +81748,8 @@
       "source_file": "TODO.md",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 618,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "current invitation ux gaps",
       "id": "users_kunga_desktop_projects_everlittle_todo_current_invitation_ux_gaps"
     },
@@ -81198,8 +81759,8 @@
       "source_file": "TODO.md",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 618,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "safety invariants",
       "id": "users_kunga_desktop_projects_everlittle_todo_safety_invariants"
     },
@@ -81209,8 +81770,8 @@
       "source_file": "TODO.md",
       "source_location": "L55",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 618,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "server work",
       "id": "users_kunga_desktop_projects_everlittle_todo_server_work"
     },
@@ -81220,7 +81781,7 @@
       "source_file": "TODO.md",
       "source_location": "L63",
       "_origin": "ast",
-      "community": 78,
+      "community": 567,
       "community_name": "Everlittle TODO",
       "norm_label": "p1 \u2014 real archive data",
       "id": "users_kunga_desktop_projects_everlittle_todo_p1_real_archive_data"
@@ -81231,7 +81792,7 @@
       "source_file": "TODO.md",
       "source_location": "L83",
       "_origin": "ast",
-      "community": 78,
+      "community": 567,
       "community_name": "Everlittle TODO",
       "norm_label": "p1 \u2014 privacy and durability",
       "id": "users_kunga_desktop_projects_everlittle_todo_p1_privacy_and_durability"
@@ -81242,7 +81803,7 @@
       "source_file": "TODO.md",
       "source_location": "L91",
       "_origin": "ast",
-      "community": 78,
+      "community": 567,
       "community_name": "Everlittle TODO",
       "norm_label": "p2 \u2014 child experience",
       "id": "users_kunga_desktop_projects_everlittle_todo_p2_child_experience"
@@ -81253,7 +81814,7 @@
       "source_file": "TODO.md",
       "source_location": "L101",
       "_origin": "ast",
-      "community": 78,
+      "community": 567,
       "community_name": "Everlittle TODO",
       "norm_label": "p2 \u2014 deferred account recovery",
       "id": "users_kunga_desktop_projects_everlittle_todo_p2_deferred_account_recovery"
@@ -81264,7 +81825,7 @@
       "source_file": "TODO.md",
       "source_location": "L105",
       "_origin": "ast",
-      "community": 78,
+      "community": 567,
       "community_name": "Everlittle TODO",
       "norm_label": "p2 \u2014 pwa and device polish",
       "id": "users_kunga_desktop_projects_everlittle_todo_p2_pwa_and_device_polish"
@@ -81275,7 +81836,7 @@
       "source_file": "TODO.md",
       "source_location": "L115",
       "_origin": "ast",
-      "community": 78,
+      "community": 567,
       "community_name": "Everlittle TODO",
       "norm_label": "p2 \u2014 quality and operations",
       "id": "users_kunga_desktop_projects_everlittle_todo_p2_quality_and_operations"
@@ -81429,8 +81990,8 @@
       "source_file": "TODO.md",
       "source_location": "L10",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 617,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "p1 \u2014 family invitation and ownership handover",
       "id": "todo_p1_family_invitation_and_ownership_handover"
     },
@@ -81440,8 +82001,8 @@
       "source_file": "TODO.md",
       "source_location": "L15",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 617,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "required ux",
       "id": "todo_required_ux"
     },
@@ -81451,8 +82012,8 @@
       "source_file": "TODO.md",
       "source_location": "L26",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 617,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "current invitation ux gaps",
       "id": "todo_current_invitation_ux_gaps"
     },
@@ -81462,8 +82023,8 @@
       "source_file": "TODO.md",
       "source_location": "L44",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 617,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "safety invariants",
       "id": "todo_safety_invariants"
     },
@@ -81473,8 +82034,8 @@
       "source_file": "TODO.md",
       "source_location": "L55",
       "_origin": "ast",
-      "community": 78,
-      "community_name": "Everlittle TODO",
+      "community": 617,
+      "community_name": "P1 \u2014 Family invitation and ownership handover",
       "norm_label": "server work",
       "id": "todo_server_work"
     },
@@ -185446,8 +186007,19 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "assets_design_apricot_detailed_2026_09_07_readme",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_detailed_2026_09_07_readme",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
       "confidence_score": 1.0
     },
     {
@@ -185479,8 +186051,8 @@
       "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_async_and_empty_state_behavior",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_async_and_empty_state_behavior",
       "confidence_score": 1.0
     },
     {
@@ -185490,8 +186062,8 @@
       "source_location": "L87",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_generation_and_review",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_generation_and_review",
       "confidence_score": 1.0
     },
     {
@@ -185501,8 +186073,8 @@
       "source_location": "L21",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_product_decisions",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_product_decisions",
       "confidence_score": 1.0
     },
     {
@@ -185512,8 +186084,8 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_raised_button_specification",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_raised_button_specification",
       "confidence_score": 1.0
     },
     {
@@ -185523,8 +186095,8 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_screen_set",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_screen_set",
       "confidence_score": 1.0
     },
     {
@@ -185534,8 +186106,8 @@
       "source_location": "L67",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_source_grounding",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_detailed_2026_09_07_readme_source_grounding",
       "confidence_score": 1.0
     },
     {
@@ -185567,8 +186139,19 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "assets_design_apricot_landing_2026_09_07_readme",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_apricot_landing_2026_09_07_readme",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
       "confidence_score": 1.0
     },
     {
@@ -185589,8 +186172,8 @@
       "source_location": "L22",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_concept",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_concept",
       "confidence_score": 1.0
     },
     {
@@ -185600,8 +186183,8 @@
       "source_location": "L48",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_final_generation_prompt",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_final_generation_prompt",
       "confidence_score": 1.0
     },
     {
@@ -185611,8 +186194,8 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_original_v1_page_story",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_original_v1_page_story",
       "confidence_score": 1.0
     },
     {
@@ -185622,8 +186205,8 @@
       "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_spacious_v2",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_apricot_landing_2026_09_07_readme_spacious_v2",
       "confidence_score": 1.0
     },
     {
@@ -185743,8 +186326,19 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "assets_design_living_scrapbook_refinement_readme",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_living_scrapbook_refinement_readme",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
       "confidence_score": 1.0
     },
     {
@@ -185754,8 +186348,8 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_compare",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_compare",
       "confidence_score": 1.0
     },
     {
@@ -185765,8 +186359,8 @@
       "source_location": "L19",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_files",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_files",
       "confidence_score": 1.0
     },
     {
@@ -185776,8 +186370,8 @@
       "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
       "confidence_score": 1.0
     },
     {
@@ -185787,8 +186381,8 @@
       "source_location": "L28",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_a_paper_index",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_a_paper_index",
       "confidence_score": 1.0
     },
     {
@@ -185798,8 +186392,8 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_b_folder_tabs",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_b_folder_tabs",
       "confidence_score": 1.0
     },
     {
@@ -185809,8 +186403,8 @@
       "source_location": "L40",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_mobile",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_living_scrapbook_refinement_readme_mobile",
       "confidence_score": 1.0
     },
     {
@@ -185853,8 +186447,19 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "assets_design_product_directions_2026_09_06_readme",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "assets_design_product_directions_2026_09_06_readme",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
       "confidence_score": 1.0
     },
     {
@@ -185864,8 +186469,8 @@
       "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_audit_and_limits",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_audit_and_limits",
       "confidence_score": 1.0
     },
     {
@@ -185875,8 +186480,8 @@
       "source_location": "L23",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_corrections_before_implementation",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_corrections_before_implementation",
       "confidence_score": 1.0
     },
     {
@@ -185886,8 +186491,8 @@
       "source_location": "L27",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_final_prompts",
       "confidence_score": 1.0
     },
     {
@@ -185897,8 +186502,8 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_recommendation",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_recommendation",
       "confidence_score": 1.0
     },
     {
@@ -185908,8 +186513,8 @@
       "source_location": "L29",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_01_quiet_heirloom",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_final_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_01_quiet_heirloom",
       "confidence_score": 1.0
     },
     {
@@ -185919,8 +186524,8 @@
       "source_location": "L35",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_02_living_scrapbook",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_final_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_02_living_scrapbook",
       "confidence_score": 1.0
     },
     {
@@ -185930,8 +186535,8 @@
       "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_03_everyday_companion",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_final_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_assets_design_product_directions_2026_09_06_readme_03_everyday_companion",
       "confidence_score": 1.0
     },
     {
@@ -190627,8 +191232,19 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "readme",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "readme",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
       "confidence_score": 1.0
     },
     {
@@ -190638,8 +191254,8 @@
       "source_location": "L42",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_authentication",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_authentication",
       "confidence_score": 1.0
     },
     {
@@ -190649,8 +191265,8 @@
       "source_location": "L88",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_deployment",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_deployment",
       "confidence_score": 1.0
     },
     {
@@ -190660,8 +191276,8 @@
       "source_location": "L34",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_hosted_and_self_hosted",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_hosted_and_self_hosted",
       "confidence_score": 1.0
     },
     {
@@ -190671,8 +191287,8 @@
       "source_location": "L120",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_license",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_license",
       "confidence_score": 1.0
     },
     {
@@ -190682,8 +191298,8 @@
       "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_local_development",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_local_development",
       "confidence_score": 1.0
     },
     {
@@ -190693,8 +191309,8 @@
       "source_location": "L113",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_privacy_posture",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_privacy_posture",
       "confidence_score": 1.0
     },
     {
@@ -190704,8 +191320,8 @@
       "source_location": "L25",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_product_surfaces",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_product_surfaces",
       "confidence_score": 1.0
     },
     {
@@ -190715,8 +191331,8 @@
       "source_location": "L80",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_validation",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_validation",
       "confidence_score": 1.0
     },
     {
@@ -190726,8 +191342,8 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_what_is_in_this_repository",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_what_is_in_this_repository",
       "confidence_score": 1.0
     },
     {
@@ -190737,8 +191353,8 @@
       "source_location": "L18",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_what_is_in_this_repository",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_design_references",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_what_is_in_this_repository",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_readme_design_references",
       "confidence_score": 1.0
     },
     {
@@ -191034,8 +191650,19 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
+      "confidence_score": 1.0,
       "source": "todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
       "confidence_score": 1.0
     },
     {
@@ -191045,8 +191672,8 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p0_claim_the_reference_installation",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p0_claim_the_reference_installation",
       "confidence_score": 1.0
     },
     {
@@ -191056,8 +191683,8 @@
       "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_family_invitation_and_ownership_handover",
       "confidence_score": 1.0
     },
     {
@@ -191067,8 +191694,8 @@
       "source_location": "L83",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_privacy_and_durability",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_privacy_and_durability",
       "confidence_score": 1.0
     },
     {
@@ -191078,8 +191705,8 @@
       "source_location": "L63",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_real_archive_data",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_real_archive_data",
       "confidence_score": 1.0
     },
     {
@@ -191089,8 +191716,8 @@
       "source_location": "L91",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_child_experience",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p2_child_experience",
       "confidence_score": 1.0
     },
     {
@@ -191100,8 +191727,8 @@
       "source_location": "L101",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_deferred_account_recovery",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p2_deferred_account_recovery",
       "confidence_score": 1.0
     },
     {
@@ -191111,8 +191738,8 @@
       "source_location": "L105",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_pwa_and_device_polish",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p2_pwa_and_device_polish",
       "confidence_score": 1.0
     },
     {
@@ -191122,8 +191749,8 @@
       "source_location": "L115",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_quality_and_operations",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p2_quality_and_operations",
       "confidence_score": 1.0
     },
     {
@@ -191133,8 +191760,8 @@
       "source_location": "L26",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_current_invitation_ux_gaps",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_family_invitation_and_ownership_handover",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_current_invitation_ux_gaps",
       "confidence_score": 1.0
     },
     {
@@ -191144,8 +191771,8 @@
       "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_required_ux",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_family_invitation_and_ownership_handover",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_required_ux",
       "confidence_score": 1.0
     },
     {
@@ -191155,8 +191782,8 @@
       "source_location": "L44",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_safety_invariants",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_family_invitation_and_ownership_handover",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_safety_invariants",
       "confidence_score": 1.0
     },
     {
@@ -191166,8 +191793,8 @@
       "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
-      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
-      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_server_work",
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_p1_family_invitation_and_ownership_handover",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_oddkite_footer_link_todo_server_work",
       "confidence_score": 1.0
     },
     {
@@ -191312,6 +191939,501 @@
       "source": "trademark_knockout_preliminary_assessment",
       "target": "trademark_knockout_result_not_cleared_for_public_launch",
       "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_async_and_empty_state_behavior"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L87",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_generation_and_review"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L21",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_product_decisions"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_raised_button_specification"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_screen_set"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-detailed-2026-09-07/README.md",
+      "source_location": "L67",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_everlittle_apricot_detailed_design",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_detailed_2026_09_07_readme_source_grounding"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L22",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_concept"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L48",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_final_generation_prompt"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_original_v1_page_story"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/apricot-landing-2026-09-07/README.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_everlittle_apricot_landing_concept",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_apricot_landing_2026_09_07_readme_spacious_v2"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_compare"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L19",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_files"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_living_scrapbook_navigation_and_mobile_refinement",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L28",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_a_paper_index"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_b_folder_tabs"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/living-scrapbook-refinement/README.md",
+      "source_location": "L40",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_final_generation_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_living_scrapbook_refinement_readme_mobile"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_audit_and_limits"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_corrections_before_implementation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_everlittle_product_design_options",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_recommendation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L29",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_01_quiet_heirloom"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L35",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_02_living_scrapbook"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/design/product-directions-2026-09-06/README.md",
+      "source_location": "L41",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_final_prompts",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_assets_design_product_directions_2026_09_06_readme_03_everyday_companion"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L42",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_authentication"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L88",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_deployment"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L34",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_hosted_and_self_hosted"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L120",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_license"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L56",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_local_development"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L113",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_privacy_posture"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L25",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_product_surfaces"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L80",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_validation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_everlittle",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_what_is_in_this_repository"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L18",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_what_is_in_this_repository",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_readme_design_references"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p0_claim_the_reference_installation"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L83",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_privacy_and_durability"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L63",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_real_archive_data"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L91",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_child_experience"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L101",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_deferred_account_recovery"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_pwa_and_device_polish"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L115",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_everlittle_todo",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p2_quality_and_operations"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L26",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_current_invitation_ux_gaps"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L15",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_required_ux"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L44",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_safety_invariants"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TODO.md",
+      "source_location": "L55",
+      "weight": 1.0,
+      "_origin": "ast",
+      "confidence_score": 1.0,
+      "source": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_p1_family_invitation_and_ownership_handover",
+      "target": "users_kunga_desktop_projects_worktrees_everlittle_landing_polish_todo_server_work"
     },
     {
       "relation": "contains",
@@ -192305,5 +193427,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "ed7fdabaa5a5f67bcb7fe72edb3b95b5201f58b3"
+  "built_at_commit": "d4ae78d018d668b2c7ac8259d74dc4f2d3c2e612"
 }
