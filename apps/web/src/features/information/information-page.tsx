@@ -144,6 +144,7 @@ export function InformationPage({ page }: { page: InformationPageId }) {
           <a href="/contact">Contact</a>
           <a href="/privacy">Privacy</a>
           <a href="https://www.instagram.com/geteverlittle/">Instagram</a>
+          <a href="https://oddkite.com">Made by oddkite</a>
           <CookiePreferencesLink />
         </nav>
       </footer>
