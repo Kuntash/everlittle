@@ -172,8 +172,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_ga",
-      "community": 223,
-      "community_name": "r",
+      "community": 607,
+      "community_name": "ga",
       "norm_label": "ga()"
     },
     {
@@ -184,8 +184,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_ha",
-      "community": 223,
-      "community_name": "r",
+      "community": 607,
+      "community_name": "ga",
       "norm_label": "ha()"
     },
     {
@@ -256,8 +256,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_na",
-      "community": 568,
-      "community_name": "la",
+      "community": 238,
+      "community_name": "t",
       "norm_label": "na()"
     },
     {
@@ -304,8 +304,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_ra",
-      "community": 615,
-      "community_name": "kb",
+      "community": 223,
+      "community_name": "r",
       "norm_label": "ra()"
     },
     {
@@ -376,8 +376,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_aa",
-      "community": 568,
-      "community_name": "la",
+      "community": 238,
+      "community_name": "t",
       "norm_label": "aa()"
     },
     {
@@ -400,8 +400,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_ca",
-      "community": 568,
-      "community_name": "la",
+      "community": 238,
+      "community_name": "t",
       "norm_label": "ca()"
     },
     {
@@ -460,8 +460,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_za",
-      "community": 238,
-      "community_name": "t",
+      "community": 223,
+      "community_name": "r",
       "norm_label": "za()"
     },
     {
@@ -544,8 +544,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_jb",
-      "community": 238,
-      "community_name": "t",
+      "community": 223,
+      "community_name": "r",
       "norm_label": "jb()"
     },
     {
@@ -556,8 +556,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_kb",
-      "community": 615,
-      "community_name": "kb",
+      "community": 223,
+      "community_name": "r",
       "norm_label": "kb()"
     },
     {
@@ -568,8 +568,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_ob",
-      "community": 238,
-      "community_name": "t",
+      "community": 223,
+      "community_name": "r",
       "norm_label": "ob()"
     },
     {
@@ -580,8 +580,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_rb",
-      "community": 615,
-      "community_name": "kb",
+      "community": 223,
+      "community_name": "r",
       "norm_label": "rb()"
     },
     {
@@ -604,8 +604,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_wb",
-      "community": 568,
-      "community_name": "la",
+      "community": 238,
+      "community_name": "t",
       "norm_label": "wb()"
     },
     {
@@ -1192,8 +1192,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_ae",
-      "community": 223,
-      "community_name": "r",
+      "community": 607,
+      "community_name": "ga",
       "norm_label": "ae()"
     },
     {
@@ -1276,8 +1276,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_oe",
-      "community": 223,
-      "community_name": "r",
+      "community": 607,
+      "community_name": "ga",
       "norm_label": "oe()"
     },
     {
@@ -1288,8 +1288,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_assets_vendor_gsap_min_pe",
-      "community": 223,
-      "community_name": "r",
+      "community": 607,
+      "community_name": "ga",
       "norm_label": "pe()"
     },
     {
@@ -2292,8 +2292,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_la",
-      "community": 622,
-      "community_name": "la",
+      "community": 420,
+      "community_name": "t",
       "norm_label": "la()"
     },
     {
@@ -2472,8 +2472,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_da",
-      "community": 622,
-      "community_name": "la",
+      "community": 420,
+      "community_name": "t",
       "norm_label": "da()"
     },
     {
@@ -2496,8 +2496,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_ua",
-      "community": 622,
-      "community_name": "la",
+      "community": 420,
+      "community_name": "t",
       "norm_label": "ua()"
     },
     {
@@ -2508,8 +2508,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_va",
-      "community": 622,
-      "community_name": "la",
+      "community": 420,
+      "community_name": "t",
       "norm_label": "va()"
     },
     {
@@ -2796,8 +2796,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_04_camera_roll_assets_gsap_min_animation",
-      "community": 622,
-      "community_name": "la",
+      "community": 420,
+      "community_name": "t",
       "norm_label": "animation()"
     },
     {
@@ -3675,8 +3675,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_la",
-      "community": 198,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "la()"
     },
     {
@@ -3855,8 +3855,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_da",
-      "community": 198,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "da()"
     },
     {
@@ -3879,8 +3879,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_ua",
-      "community": 198,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "ua()"
     },
     {
@@ -3891,8 +3891,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_va",
-      "community": 198,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "va()"
     },
     {
@@ -4179,8 +4179,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_hyperframes_variants_05_camera_roll_ugc_assets_gsap_min_animation",
-      "community": 198,
-      "community_name": "la",
+      "community": 417,
+      "community_name": "t",
       "norm_label": "animation()"
     },
     {
@@ -8690,8 +8690,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_design_archive_presentations",
-      "community": 180,
-      "community_name": "cn",
+      "community": 183,
+      "community_name": "archive-utils.tsx",
       "norm_label": "archive-presentations.tsx"
     },
     {
@@ -8702,8 +8702,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_archive_presentations_memorycard",
-      "community": 180,
-      "community_name": "cn",
+      "community": 183,
+      "community_name": "archive-utils.tsx",
       "norm_label": "memorycard()"
     },
     {
@@ -8714,8 +8714,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_archive_presentations_sealedcapsulecard",
-      "community": 180,
-      "community_name": "cn",
+      "community": 183,
+      "community_name": "archive-utils.tsx",
       "norm_label": "sealedcapsulecard()"
     },
     {
@@ -8726,8 +8726,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_archive_presentations_familyperson",
-      "community": 180,
-      "community_name": "cn",
+      "community": 183,
+      "community_name": "archive-utils.tsx",
       "norm_label": "familyperson()"
     },
     {
@@ -8865,8 +8865,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_design_design_select",
-      "community": 180,
-      "community_name": "cn",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "design-select.tsx"
     },
     {
@@ -8878,8 +8878,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_design_select_option",
-      "community": 180,
-      "community_name": "cn",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "option"
     },
     {
@@ -8890,8 +8890,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_design_select_optionsfrom",
-      "community": 180,
-      "community_name": "cn",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "optionsfrom()"
     },
     {
@@ -8902,8 +8902,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_design_design_select_designselect",
-      "community": 180,
-      "community_name": "cn",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "designselect()"
     },
     {
@@ -9167,8 +9167,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_components_password_input",
-      "community": 13,
-      "community_name": "journal-page.tsx",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "password-input.tsx"
     },
     {
@@ -9180,8 +9180,8 @@
       "_callable_class": true,
       "_origin": "ast",
       "id": "apps_web_src_components_password_input_passwordinputprops",
-      "community": 13,
-      "community_name": "journal-page.tsx",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "passwordinputprops"
     },
     {
@@ -9192,8 +9192,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_components_password_input_passwordinput",
-      "community": 13,
-      "community_name": "journal-page.tsx",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "passwordinput()"
     },
     {
@@ -9365,8 +9365,8 @@
       "source_location": "L3",
       "_origin": "ast",
       "id": "apps_web_src_components_ui_card_card",
-      "community": 180,
-      "community_name": "cn",
+      "community": 183,
+      "community_name": "archive-utils.tsx",
       "norm_label": "card"
     },
     {
@@ -9731,8 +9731,8 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "apps_web_src_components_ui_select_selecttrigger",
-      "community": 180,
-      "community_name": "cn",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "selecttrigger"
     },
     {
@@ -11453,8 +11453,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_journal_journal_articles_findarticle",
-      "community": 193,
-      "community_name": "journal-head.ts",
+      "community": 221,
+      "community_name": "journal-articles.ts",
       "norm_label": "findarticle()"
     },
     {
@@ -11796,8 +11796,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_journal_journal_head_alternatelinks",
-      "community": 193,
-      "community_name": "journal-head.ts",
+      "community": 221,
+      "community_name": "journal-articles.ts",
       "norm_label": "alternatelinks()"
     },
     {
@@ -11808,8 +11808,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "apps_web_src_features_journal_journal_head_journalarticlehead",
-      "community": 193,
-      "community_name": "journal-head.ts",
+      "community": 221,
+      "community_name": "journal-articles.ts",
       "norm_label": "journalarticlehead()"
     },
     {
@@ -17110,8 +17110,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_src_routes_blog_baby_memory_journal",
-      "community": 631,
-      "community_name": "baby-memory-journal.tsx",
+      "community": 193,
+      "community_name": "journal-head.ts",
       "norm_label": "baby-memory-journal.tsx"
     },
     {
@@ -17121,8 +17121,8 @@
       "source_location": "L5",
       "_origin": "ast",
       "id": "apps_web_src_routes_blog_baby_memory_journal_route",
-      "community": 631,
-      "community_name": "baby-memory-journal.tsx",
+      "community": 193,
+      "community_name": "journal-head.ts",
       "norm_label": "route"
     },
     {
@@ -18356,8 +18356,8 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "apps_web_test_ui_archive_controls_test",
-      "community": 13,
-      "community_name": "journal-page.tsx",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "archive-controls.test.tsx"
     },
     {
@@ -18367,8 +18367,8 @@
       "source_location": "L9",
       "_origin": "ast",
       "id": "apps_web_test_ui_archive_controls_test_child",
-      "community": 13,
-      "community_name": "journal-page.tsx",
+      "community": 198,
+      "community_name": "design-select.tsx",
       "norm_label": "child"
     },
     {
@@ -64657,8 +64657,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_ga",
-      "community": 607,
-      "community_name": "ga",
+      "community": 412,
+      "community_name": "r",
       "norm_label": "ga()"
     },
     {
@@ -64669,8 +64669,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_ha",
-      "community": 607,
-      "community_name": "ga",
+      "community": 412,
+      "community_name": "r",
       "norm_label": "ha()"
     },
     {
@@ -64717,8 +64717,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_la",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "la()"
     },
     {
@@ -64741,8 +64741,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_na",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "na()"
     },
     {
@@ -64789,8 +64789,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_ra",
-      "community": 412,
-      "community_name": "r",
+      "community": 615,
+      "community_name": "kb",
       "norm_label": "ra()"
     },
     {
@@ -64861,8 +64861,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_aa",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "aa()"
     },
     {
@@ -64885,8 +64885,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_ca",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "ca()"
     },
     {
@@ -64897,8 +64897,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_da",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "da()"
     },
     {
@@ -64921,8 +64921,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_ua",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "ua()"
     },
     {
@@ -64933,8 +64933,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_va",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "va()"
     },
     {
@@ -64945,8 +64945,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_za",
-      "community": 412,
-      "community_name": "r",
+      "community": 475,
+      "community_name": "t",
       "norm_label": "za()"
     },
     {
@@ -65029,8 +65029,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_jb",
-      "community": 412,
-      "community_name": "r",
+      "community": 475,
+      "community_name": "t",
       "norm_label": "jb()"
     },
     {
@@ -65041,8 +65041,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_kb",
-      "community": 412,
-      "community_name": "r",
+      "community": 615,
+      "community_name": "kb",
       "norm_label": "kb()"
     },
     {
@@ -65053,8 +65053,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_ob",
-      "community": 412,
-      "community_name": "r",
+      "community": 475,
+      "community_name": "t",
       "norm_label": "ob()"
     },
     {
@@ -65065,8 +65065,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_rb",
-      "community": 412,
-      "community_name": "r",
+      "community": 615,
+      "community_name": "kb",
       "norm_label": "rb()"
     },
     {
@@ -65089,8 +65089,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_wb",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "wb()"
     },
     {
@@ -65221,8 +65221,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_animation",
-      "community": 475,
-      "community_name": "t",
+      "community": 543,
+      "community_name": "la",
       "norm_label": "animation()"
     },
     {
@@ -65677,8 +65677,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_ae",
-      "community": 607,
-      "community_name": "ga",
+      "community": 412,
+      "community_name": "r",
       "norm_label": "ae()"
     },
     {
@@ -65761,8 +65761,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_oe",
-      "community": 607,
-      "community_name": "ga",
+      "community": 412,
+      "community_name": "r",
       "norm_label": "oe()"
     },
     {
@@ -65773,8 +65773,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_02_grandmas_recipe_composition_assets_gsap_min_pe",
-      "community": 607,
-      "community_name": "ga",
+      "community": 412,
+      "community_name": "r",
       "norm_label": "pe()"
     },
     {
@@ -66161,8 +66161,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ga",
-      "community": 543,
-      "community_name": "ga",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "ga()"
     },
     {
@@ -66173,8 +66173,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ha",
-      "community": 543,
-      "community_name": "ga",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "ha()"
     },
     {
@@ -66245,8 +66245,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_na",
-      "community": 477,
-      "community_name": "t",
+      "community": 576,
+      "community_name": "la",
       "norm_label": "na()"
     },
     {
@@ -66293,8 +66293,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ra",
-      "community": 413,
-      "community_name": "r",
+      "community": 616,
+      "community_name": "kb",
       "norm_label": "ra()"
     },
     {
@@ -66365,8 +66365,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_aa",
-      "community": 477,
-      "community_name": "t",
+      "community": 576,
+      "community_name": "la",
       "norm_label": "aa()"
     },
     {
@@ -66389,8 +66389,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ca",
-      "community": 477,
-      "community_name": "t",
+      "community": 576,
+      "community_name": "la",
       "norm_label": "ca()"
     },
     {
@@ -66449,8 +66449,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_za",
-      "community": 413,
-      "community_name": "r",
+      "community": 477,
+      "community_name": "t",
       "norm_label": "za()"
     },
     {
@@ -66533,8 +66533,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_jb",
-      "community": 413,
-      "community_name": "r",
+      "community": 477,
+      "community_name": "t",
       "norm_label": "jb()"
     },
     {
@@ -66545,8 +66545,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_kb",
-      "community": 413,
-      "community_name": "r",
+      "community": 616,
+      "community_name": "kb",
       "norm_label": "kb()"
     },
     {
@@ -66557,8 +66557,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ob",
-      "community": 413,
-      "community_name": "r",
+      "community": 477,
+      "community_name": "t",
       "norm_label": "ob()"
     },
     {
@@ -66569,8 +66569,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_rb",
-      "community": 413,
-      "community_name": "r",
+      "community": 616,
+      "community_name": "kb",
       "norm_label": "rb()"
     },
     {
@@ -66593,8 +66593,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_wb",
-      "community": 477,
-      "community_name": "t",
+      "community": 576,
+      "community_name": "la",
       "norm_label": "wb()"
     },
     {
@@ -67181,8 +67181,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_ae",
-      "community": 543,
-      "community_name": "ga",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "ae()"
     },
     {
@@ -67265,8 +67265,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_oe",
-      "community": 543,
-      "community_name": "ga",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "oe()"
     },
     {
@@ -67277,8 +67277,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_03_in_the_picture_composition_assets_gsap_min_pe",
-      "community": 543,
-      "community_name": "ga",
+      "community": 413,
+      "community_name": "r",
       "norm_label": "pe()"
     },
     {
@@ -67665,8 +67665,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ga",
-      "community": 566,
-      "community_name": "ga",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "ga()"
     },
     {
@@ -67677,8 +67677,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ha",
-      "community": 566,
-      "community_name": "ga",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "ha()"
     },
     {
@@ -67749,8 +67749,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_na",
-      "community": 418,
-      "community_name": "t",
+      "community": 352,
+      "community_name": "la",
       "norm_label": "na()"
     },
     {
@@ -67797,8 +67797,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ra",
-      "community": 406,
-      "community_name": "r",
+      "community": 621,
+      "community_name": "kb",
       "norm_label": "ra()"
     },
     {
@@ -67869,8 +67869,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_aa",
-      "community": 418,
-      "community_name": "t",
+      "community": 352,
+      "community_name": "la",
       "norm_label": "aa()"
     },
     {
@@ -67893,8 +67893,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ca",
-      "community": 418,
-      "community_name": "t",
+      "community": 352,
+      "community_name": "la",
       "norm_label": "ca()"
     },
     {
@@ -67953,8 +67953,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_za",
-      "community": 406,
-      "community_name": "r",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "za()"
     },
     {
@@ -68037,8 +68037,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_jb",
-      "community": 406,
-      "community_name": "r",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "jb()"
     },
     {
@@ -68049,8 +68049,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_kb",
-      "community": 406,
-      "community_name": "r",
+      "community": 621,
+      "community_name": "kb",
       "norm_label": "kb()"
     },
     {
@@ -68061,8 +68061,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ob",
-      "community": 406,
-      "community_name": "r",
+      "community": 418,
+      "community_name": "t",
       "norm_label": "ob()"
     },
     {
@@ -68073,8 +68073,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_rb",
-      "community": 406,
-      "community_name": "r",
+      "community": 621,
+      "community_name": "kb",
       "norm_label": "rb()"
     },
     {
@@ -68097,8 +68097,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_wb",
-      "community": 418,
-      "community_name": "t",
+      "community": 352,
+      "community_name": "la",
       "norm_label": "wb()"
     },
     {
@@ -68685,8 +68685,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_ae",
-      "community": 566,
-      "community_name": "ga",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "ae()"
     },
     {
@@ -68769,8 +68769,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_oe",
-      "community": 566,
-      "community_name": "ga",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "oe()"
     },
     {
@@ -68781,8 +68781,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_04_little_words_composition_assets_gsap_min_pe",
-      "community": 566,
-      "community_name": "ga",
+      "community": 406,
+      "community_name": "r",
       "norm_label": "pe()"
     },
     {
@@ -69169,8 +69169,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_ga",
-      "community": 614,
-      "community_name": "ga",
+      "community": 414,
+      "community_name": "r",
       "norm_label": "ga()"
     },
     {
@@ -69181,8 +69181,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_ha",
-      "community": 614,
-      "community_name": "ga",
+      "community": 414,
+      "community_name": "r",
       "norm_label": "ha()"
     },
     {
@@ -69229,8 +69229,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_la",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "la()"
     },
     {
@@ -69253,8 +69253,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_na",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "na()"
     },
     {
@@ -69301,8 +69301,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_ra",
-      "community": 414,
-      "community_name": "r",
+      "community": 622,
+      "community_name": "kb",
       "norm_label": "ra()"
     },
     {
@@ -69373,8 +69373,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_aa",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "aa()"
     },
     {
@@ -69397,8 +69397,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_ca",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "ca()"
     },
     {
@@ -69409,8 +69409,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_da",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "da()"
     },
     {
@@ -69433,8 +69433,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_ua",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "ua()"
     },
     {
@@ -69445,8 +69445,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_va",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "va()"
     },
     {
@@ -69457,8 +69457,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_za",
-      "community": 414,
-      "community_name": "r",
+      "community": 480,
+      "community_name": "t",
       "norm_label": "za()"
     },
     {
@@ -69541,8 +69541,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_jb",
-      "community": 414,
-      "community_name": "r",
+      "community": 480,
+      "community_name": "t",
       "norm_label": "jb()"
     },
     {
@@ -69553,8 +69553,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_kb",
-      "community": 414,
-      "community_name": "r",
+      "community": 622,
+      "community_name": "kb",
       "norm_label": "kb()"
     },
     {
@@ -69565,8 +69565,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_ob",
-      "community": 414,
-      "community_name": "r",
+      "community": 480,
+      "community_name": "t",
       "norm_label": "ob()"
     },
     {
@@ -69577,8 +69577,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_rb",
-      "community": 414,
-      "community_name": "r",
+      "community": 622,
+      "community_name": "kb",
       "norm_label": "rb()"
     },
     {
@@ -69601,8 +69601,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_wb",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "wb()"
     },
     {
@@ -69733,8 +69733,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_animation",
-      "community": 480,
-      "community_name": "t",
+      "community": 566,
+      "community_name": "la",
       "norm_label": "animation()"
     },
     {
@@ -70189,8 +70189,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_ae",
-      "community": 614,
-      "community_name": "ga",
+      "community": 414,
+      "community_name": "r",
       "norm_label": "ae()"
     },
     {
@@ -70273,8 +70273,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_oe",
-      "community": 614,
-      "community_name": "ga",
+      "community": 414,
+      "community_name": "r",
       "norm_label": "oe()"
     },
     {
@@ -70285,8 +70285,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_05_bedtime_across_miles_composition_assets_gsap_min_pe",
-      "community": 614,
-      "community_name": "ga",
+      "community": 414,
+      "community_name": "r",
       "norm_label": "pe()"
     },
     {
@@ -70673,8 +70673,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_ga",
-      "community": 415,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "ga()"
     },
     {
@@ -70685,8 +70685,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_ha",
-      "community": 415,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "ha()"
     },
     {
@@ -70733,8 +70733,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_la",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "la()"
     },
     {
@@ -70757,8 +70757,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_na",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "na()"
     },
     {
@@ -70805,8 +70805,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_ra",
-      "community": 621,
-      "community_name": "kb",
+      "community": 415,
+      "community_name": "r",
       "norm_label": "ra()"
     },
     {
@@ -70877,8 +70877,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_aa",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "aa()"
     },
     {
@@ -70901,8 +70901,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_ca",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "ca()"
     },
     {
@@ -70913,8 +70913,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_da",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "da()"
     },
     {
@@ -70937,8 +70937,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_ua",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "ua()"
     },
     {
@@ -70949,8 +70949,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_va",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "va()"
     },
     {
@@ -70961,8 +70961,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_za",
-      "community": 482,
-      "community_name": "t",
+      "community": 415,
+      "community_name": "r",
       "norm_label": "za()"
     },
     {
@@ -71045,8 +71045,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_jb",
-      "community": 482,
-      "community_name": "t",
+      "community": 415,
+      "community_name": "r",
       "norm_label": "jb()"
     },
     {
@@ -71057,8 +71057,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_kb",
-      "community": 621,
-      "community_name": "kb",
+      "community": 415,
+      "community_name": "r",
       "norm_label": "kb()"
     },
     {
@@ -71069,8 +71069,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_ob",
-      "community": 482,
-      "community_name": "t",
+      "community": 415,
+      "community_name": "r",
       "norm_label": "ob()"
     },
     {
@@ -71081,8 +71081,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_rb",
-      "community": 621,
-      "community_name": "kb",
+      "community": 415,
+      "community_name": "r",
       "norm_label": "rb()"
     },
     {
@@ -71105,8 +71105,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_wb",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "wb()"
     },
     {
@@ -71237,8 +71237,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_animation",
-      "community": 616,
-      "community_name": "la",
+      "community": 482,
+      "community_name": "t",
       "norm_label": "animation()"
     },
     {
@@ -71693,8 +71693,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_ae",
-      "community": 415,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "ae()"
     },
     {
@@ -71777,8 +71777,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_oe",
-      "community": 415,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "oe()"
     },
     {
@@ -71789,8 +71789,8 @@
       "_callable": true,
       "_origin": "ast",
       "id": "marketing_content_batches_2026_09_next_10_06_ordinary_tuesday_composition_assets_gsap_min_pe",
-      "community": 415,
-      "community_name": "r",
+      "community": 614,
+      "community_name": "ga",
       "norm_label": "pe()"
     },
     {
@@ -76342,7 +76342,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "performance-and-paper-cuts-2026-10-13.md"
     },
     {
@@ -76353,7 +76353,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_performance_and_paper_cuts_baseline_and_plan_13_october_2026",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "performance and paper cuts: baseline and plan (13 october 2026)"
     },
     {
@@ -76364,7 +76364,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_1_what_earlier_work_covered",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "1. what earlier work covered"
     },
     {
@@ -76375,7 +76375,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_2_baseline_measurements",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "2. baseline measurements"
     },
     {
@@ -76386,7 +76386,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_lighthouse_mobile_profile",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "lighthouse, mobile profile"
     },
     {
@@ -76397,7 +76397,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_server_response_time_ttfb",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "server response time (ttfb)"
     },
     {
@@ -76408,7 +76408,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_database",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "database"
     },
     {
@@ -76419,7 +76419,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_round_trips_per_request_from_the_code",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "round trips per request (from the code)"
     },
     {
@@ -76430,7 +76430,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_what_the_home_page_downloads",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "what the home page downloads"
     },
     {
@@ -76441,7 +76441,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_3_performance_findings",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "3. performance findings"
     },
     {
@@ -76452,7 +76452,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_public_pages_hosted",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "public pages (hosted)"
     },
     {
@@ -76463,7 +76463,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_app_both_installations",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "app, both installations"
     },
     {
@@ -76474,7 +76474,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_4_open_paper_cuts",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "4. open paper cuts"
     },
     {
@@ -76485,7 +76485,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_data_loss_or_a_dead_end",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "data loss or a dead end"
     },
     {
@@ -76496,7 +76496,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_wrong_destination_or_wrong_state",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "wrong destination or wrong state"
     },
     {
@@ -76507,7 +76507,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_forms",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "forms"
     },
     {
@@ -76518,7 +76518,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_copy_and_polish",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "copy and polish"
     },
     {
@@ -76529,7 +76529,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_housekeeping",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "housekeeping"
     },
     {
@@ -76540,7 +76540,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_carried_over_from_earlier_threads_larger_than_a_paper_cut",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "carried over from earlier threads, larger than a paper cut"
     },
     {
@@ -76551,7 +76551,7 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_5_plan",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "5. plan"
     },
     {
@@ -76562,19 +76562,85 @@
       "_origin": "ast",
       "id": "docs_performance_and_paper_cuts_2026_10_13_decision_needed_for_step_4",
       "community": 206,
-      "community_name": "4. Open paper cuts",
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
       "norm_label": "decision needed for step 4"
     },
     {
-      "label": "6. Not measured",
+      "label": "6. First pass, 14 October 2026",
       "file_type": "document",
       "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
       "source_location": "L241",
       "_origin": "ast",
-      "id": "docs_performance_and_paper_cuts_2026_10_13_6_not_measured",
+      "id": "docs_performance_and_paper_cuts_2026_10_13_6_first_pass_14_october_2026",
       "community": 206,
-      "community_name": "4. Open paper cuts",
-      "norm_label": "6. not measured"
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
+      "norm_label": "6. first pass, 14 october 2026"
+    },
+    {
+      "label": "What changed",
+      "file_type": "document",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L247",
+      "_origin": "ast",
+      "id": "docs_performance_and_paper_cuts_2026_10_13_what_changed",
+      "community": 206,
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
+      "norm_label": "what changed"
+    },
+    {
+      "label": "Trade-off to know about",
+      "file_type": "document",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L273",
+      "_origin": "ast",
+      "id": "docs_performance_and_paper_cuts_2026_10_13_trade_off_to_know_about",
+      "community": 206,
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
+      "norm_label": "trade-off to know about"
+    },
+    {
+      "label": "Measured on a local build",
+      "file_type": "document",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L280",
+      "_origin": "ast",
+      "id": "docs_performance_and_paper_cuts_2026_10_13_measured_on_a_local_build",
+      "community": 206,
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
+      "norm_label": "measured on a local build"
+    },
+    {
+      "label": "Checks",
+      "file_type": "document",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L305",
+      "_origin": "ast",
+      "id": "docs_performance_and_paper_cuts_2026_10_13_checks",
+      "community": 206,
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
+      "norm_label": "checks"
+    },
+    {
+      "label": "Not done in this pass",
+      "file_type": "document",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L314",
+      "_origin": "ast",
+      "id": "docs_performance_and_paper_cuts_2026_10_13_not_done_in_this_pass",
+      "community": 206,
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
+      "norm_label": "not done in this pass"
+    },
+    {
+      "label": "7. Not measured",
+      "file_type": "document",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L319",
+      "_origin": "ast",
+      "id": "docs_performance_and_paper_cuts_2026_10_13_7_not_measured",
+      "community": 206,
+      "community_name": "Performance and paper cuts: baseline and plan (13 October 2026)",
+      "norm_label": "7. not measured"
     },
     {
       "label": "pre-campaign-account-audit-2026-09-09.md",
@@ -189255,7 +189321,18 @@
       "weight": 1.0,
       "_origin": "ast",
       "source": "docs_performance_and_paper_cuts_2026_10_13_performance_and_paper_cuts_baseline_and_plan_13_october_2026",
-      "target": "docs_performance_and_paper_cuts_2026_10_13_6_not_measured",
+      "target": "docs_performance_and_paper_cuts_2026_10_13_6_first_pass_14_october_2026",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L319",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_performance_and_paper_cuts_2026_10_13_performance_and_paper_cuts_baseline_and_plan_13_october_2026",
+      "target": "docs_performance_and_paper_cuts_2026_10_13_7_not_measured",
       "confidence_score": 1.0
     },
     {
@@ -189410,6 +189487,61 @@
       "_origin": "ast",
       "source": "docs_performance_and_paper_cuts_2026_10_13_5_plan",
       "target": "docs_performance_and_paper_cuts_2026_10_13_decision_needed_for_step_4",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L305",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_performance_and_paper_cuts_2026_10_13_6_first_pass_14_october_2026",
+      "target": "docs_performance_and_paper_cuts_2026_10_13_checks",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L280",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_performance_and_paper_cuts_2026_10_13_6_first_pass_14_october_2026",
+      "target": "docs_performance_and_paper_cuts_2026_10_13_measured_on_a_local_build",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L314",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_performance_and_paper_cuts_2026_10_13_6_first_pass_14_october_2026",
+      "target": "docs_performance_and_paper_cuts_2026_10_13_not_done_in_this_pass",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L273",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_performance_and_paper_cuts_2026_10_13_6_first_pass_14_october_2026",
+      "target": "docs_performance_and_paper_cuts_2026_10_13_trade_off_to_know_about",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/performance-and-paper-cuts-2026-10-13.md",
+      "source_location": "L247",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "docs_performance_and_paper_cuts_2026_10_13_6_first_pass_14_october_2026",
+      "target": "docs_performance_and_paper_cuts_2026_10_13_what_changed",
       "confidence_score": 1.0
     },
     {
@@ -195222,5 +195354,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "83977848b57901f2c085d65df3bf8671b9e66c1b"
+  "built_at_commit": "13d809e9d10318d83e157b30a4b202975b8ea0ca"
 }

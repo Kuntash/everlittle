@@ -238,7 +238,85 @@ The hosted database is in western North America. Two ways to close the distance:
 Which is right depends on where hosted users are. PostHog has that; it was not checked in this
 pass. If most are in North America, neither is urgent after step 3.
 
-## 6. Not measured
+## 6. First pass, 14 October 2026
+
+Branch `perf/page-weight-and-round-trips`. It follows the latency work in the medibara project:
+a signed session cookie, no smart placement, long-lived caching of built files, and page text
+imported inside route loaders.
+
+### What changed
+
+| Finding | Change |
+| --- | --- |
+| P1 | The two PNG decorations are WebP files at 640 px (2.77 MB to 55 KB). Images below the first screen load lazily. The hero photo has an 800 px version for phones, dimensions and high fetch priority |
+| P2 | `public/_headers`: one year, immutable, for `/assets/*`; one day for artwork and fonts |
+| P3 | PostHog loads on demand, only where analytics is configured (`lib/product-analytics.ts`) |
+| P4 | Journal and tool text is imported inside each route's loader |
+| P5 | Public pages import the tabs, the button and the brand mark from small files |
+| P6 | The archive, the sign-in form and the child's view load on demand |
+| P7 | The 1,092 rules of `styles.css` that needed `.legacy-ui` are removed (211 KB to 36 KB of source) |
+| A2 | Better Auth keeps the session in a signed cookie for 5 minutes. The API passes a refreshed cookie on |
+| A3, A4, B5 in part, B9 | The Worker hands each page the installation's settings and the cookie flags (`lib/boot.ts`). A page makes one API request before it shows, not four. The sign-in form and the self-hosted entry screen are in the first HTML |
+| A4 | `/api/platform` reads no row in hosted mode and one batch in self-hosted mode |
+| A7 in part | Media answers a revalidation with 304 and no body. The one-hour lifetime is unchanged |
+| A8 in part | A voice recording downloads when its card comes near the screen |
+| A13 in part | The conversion check does not run in a background tab |
+| new | The hero and journal entrances start at opacity 0.01, so the first screen counts as painted |
+
+Not taken from medibara: prebuilt public pages (the hosted and sandbox Workers decide indexing
+and the canonical host at request time, and server response is already about 110 ms), and D1 read
+replicas (section 5, still open).
+
+Left as it was after testing: the home page keeps `landing.css`, because the article cards take
+their illustration size from it.
+
+### Trade-off to know about
+
+A session that is revoked elsewhere (a password reset, or a sign-out on another device) keeps
+working in an already signed-in browser for up to 5 minutes. A sign-out in the same browser acts at
+once. Family membership and child PIN sessions are still read on every request, so removing a
+member acts at once. The time is `SESSION_COOKIE_CACHE_SECONDS` in `src/lib/auth.ts`.
+
+### Measured on a local build
+
+Lighthouse, mobile profile, production build served over HTTP/2 with compression. This is not
+production; repeat it on both sites after the release.
+
+| Page | Before (production) | After (local) | LCP before | LCP after |
+| --- | --- | --- | --- | --- |
+| Hosted `/` | 62 | 96 | 8.6 s | 2.3 s |
+| Hosted `/sign-in` | 80 | 98 | 5.2 s | 1.8 s |
+| Hosted `/pricing` | not measured | 97 | | 2.1 s |
+| Hosted `/journal` | not measured | 95 | | 2.1 s |
+| Hosted `/sharing-photos-with-grandparents` | not measured | 95 | | 2.6 s |
+| Hosted `/tools/how-old-will-i-be` | not measured | 97 | | 2.2 s |
+| Hosted `/es` | not measured | 97 | | 2.1 s |
+| Self-hosted `/` | 62 | 95 to 96 (HTTP/1.1) | 7.7 s | 2.4 s |
+
+| Home page | Before | After |
+| --- | --- | --- |
+| Total transfer | 3,739 KB | 411 KB |
+| JavaScript before the page is interactive | 405 KB gzip | 152 KB gzip |
+| API requests before the page shows | 4 | 1 |
+
+A remaining layout shift of 0.05 to 0.08 on the home page, `/journal` and `/es` comes from the web
+font replacing the fallback font.
+
+### Checks
+
+- 111 unit tests, 25 component tests and 55 end-to-end tests pass. Two tests are new: the signed
+  session cookie, and media revalidation.
+- Screenshots of 16 pages at phone and desktop width match the build before the change. The only
+  differences are the re-encoded home images.
+- A real first-owner sign-up, reload and return was run on a local self-hosted installation.
+- `playwright.preview.config.ts` runs the end-to-end tests against a local preview build.
+
+### Not done in this pass
+
+A1 (database distance), A5, A6 (photo thumbnails), A9 to A12, A14 to A16, P8 to P10, and the paper
+cuts of section 4 other than B9.
+
+## 7. Not measured
 
 - Signed-in page loads end to end (no test credentials were used).
 - Upload speed for large files.
