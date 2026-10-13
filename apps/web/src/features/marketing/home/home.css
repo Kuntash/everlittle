@@ -1119,13 +1119,15 @@
 
 @keyframes hv-rise {
   from {
-    opacity: 0;
+    /* Not 0: a browser does not count a fully transparent element as painted. */
+    opacity: 0.01;
     transform: translateY(22px);
   }
 }
 @keyframes hv-fade {
   from {
-    opacity: 0;
+    /* Not 0: a browser does not count a fully transparent element as painted. */
+    opacity: 0.01;
   }
 }
 @keyframes hv-swap {

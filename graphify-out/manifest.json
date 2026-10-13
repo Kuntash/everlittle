@@ -1540,8 +1540,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(marketing)/index.tsx": {
-    "mtime": 1791933175.8196912,
-    "ast_hash": "c3adc92643a8107a4f32d48d7992bedc",
+    "mtime": 1791933737.246235,
+    "ast_hash": "2ff33fed26fba3fa4d459dc9184b589d",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(marketing)/pricing.tsx": {
