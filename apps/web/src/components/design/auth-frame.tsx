@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { MemoryIllustration } from "./memory-illustrations";
-import { Brand } from "./shared";
+import { Brand } from "../brand";
 export function AuthFrame({ children }: { children: ReactNode }) {
   return (
     <div className="auth-experience">

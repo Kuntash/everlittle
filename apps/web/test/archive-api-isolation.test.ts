@@ -248,6 +248,53 @@ describe("route-scoped tenant isolation", () => {
     expect(new Uint8Array(await response.arrayBuffer())).toEqual(new Uint8Array([2, 3]));
   });
 
+  it("answers a revalidation of unchanged media without the file, and only when authorized", async () => {
+    const path = `/api/families/${familyB.slug}/media/${familyB.mediaId}`;
+    const first = await api(familyB, path);
+    expect(first.status).toBe(200);
+    const etag = first.headers.get("etag");
+    expect(etag).toBeTruthy();
+    await first.arrayBuffer();
+
+    const unchanged = await api(familyB, path, { headers: { "if-none-match": etag! } });
+    expect(unchanged.status).toBe(304);
+    expect(unchanged.headers.get("etag")).toBe(etag);
+    expect((await unchanged.arrayBuffer()).byteLength).toBe(0);
+
+    const changed = await api(familyB, path, { headers: { "if-none-match": '"another-file"' } });
+    expect(changed.status).toBe(200);
+    expect(new Uint8Array(await changed.arrayBuffer())).toEqual(new Uint8Array([1, 2, 3]));
+
+    const outsider = await api(familyA, `/api/families/${familyA.slug}/media/${familyB.mediaId}`, {
+      headers: { "if-none-match": etag! },
+    });
+    expect(outsider.status).toBe(404);
+  });
+
+  it("proves a session from the signed cookie and rejects a changed one", async () => {
+    const account = await signUpAccount("cookie-cache-api@example.com", "Cookie Cache");
+    const archives = (cookie: string) =>
+      exports.default.fetch(
+        new Request(`${ORIGIN}/api/archives`, { headers: { cookie, origin: ORIGIN } }),
+      );
+
+    // Without the signed cookie the session row is read, and the answer carries a new signed cookie.
+    const first = await archives(account.cookie);
+    expect(first.status).toBe(200);
+    const signed = first.headers.get("set-cookie")?.match(/everlittle\.session_data=[^;]+/)?.[0];
+    expect(signed).toBeTruthy();
+
+    // With it, the request is answered and no cookie is issued again.
+    const second = await archives(`${account.cookie}; ${signed}`);
+    expect(second.status).toBe(200);
+    expect(second.headers.get("set-cookie") ?? "").not.toContain("everlittle.session_data=");
+
+    // A changed cookie proves nothing. The request falls back to the session row, which is gone.
+    await env.DB.prepare("DELETE FROM session WHERE userId = ?").bind(account.userId).run();
+    const forged = await archives(`${account.cookie}; ${signed!.slice(0, -4)}AAAA`);
+    expect(forged.status).toBe(401);
+  });
+
   it("stores and privately serves a generated video thumbnail", async () => {
     const memory = await api(familyB, `/api/families/${familyB.slug}/archive/memories`, {
       body: JSON.stringify({

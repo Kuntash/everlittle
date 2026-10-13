@@ -1,6 +1,6 @@
 import { acquisitionHeaders } from "@/lib/acquisition";
 import { AuthFrame } from "@/components/design/auth-frame";
-import { SlidingTabs } from "@/components/design/controls";
+import { SlidingTabs } from "@/components/design/sliding-tabs";
 import { PasswordInput } from "@/components/password-input";
 import { Input } from "@/components/ui/input";
 import type { InvitationPreview, PlatformState } from "@/features/archive/archive-types";

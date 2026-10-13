@@ -1,5 +1,5 @@
-import { ShadButton } from "@/components/design/controls";
-import { Button } from "@/components/design/shared";
+import { Button as ShadButton } from "@/components/ui/button";
+import { Button } from "@/components/design/button";
 import { Plus, Printer, RotateCcw, X } from "lucide-react";
 import { useState } from "react";
 import {

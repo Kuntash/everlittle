@@ -1,6 +1,7 @@
 import { productAnalytics } from "@/lib/product-analytics";
 import { useEffect, useRef } from "react";
-import { Button, Check } from "@/components/design/shared";
+import { Button } from "@/components/design/button";
+import { Check } from "lucide-react";
 export function PricingSection({
   start,
   billing,

@@ -1,4 +1,4 @@
-import { ShadButton } from "@/components/design/controls";
+import { Button as ShadButton } from "@/components/ui/button";
 import { CalendarPlus } from "lucide-react";
 import { ShareLink } from "./share-link";
 import {

@@ -1,4 +1,4 @@
-import { Brand } from "@/components/design/shared";
+import { Brand } from "@/components/brand";
 import { MarketingFooter } from "@/features/marketing/components/marketing-footer";
 import { PricingSection } from "@/features/marketing/components/pricing-section";
 import { productAnalytics } from "@/lib/product-analytics";

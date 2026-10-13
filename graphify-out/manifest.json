@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/archive-api.ts": {
-    "mtime": 1791865920.266366,
-    "ast_hash": "d0c18840a284105852587c4ee1b1ee11",
+    "mtime": 1791933325.9919648,
+    "ast_hash": "3e9878d64427b6d2b57912c9670082a6",
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth-client.ts": {
@@ -25,8 +25,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/auth.ts": {
-    "mtime": 1789261409.4254766,
-    "ast_hash": "43fa799e7769b2ef73d2518410b91257",
+    "mtime": 1791933300.1713674,
+    "ast_hash": "2018edbf4e1fcbd1a74465518206eb71",
     "semantic_hash": ""
   },
   "apps/web/src/lib/runtime-env.ts": {
@@ -370,8 +370,8 @@
     "semantic_hash": ""
   },
   "apps/web/test/archive-api-isolation.test.ts": {
-    "mtime": 1791865920.267152,
-    "ast_hash": "2e176e6990982677f4fac17498796d98",
+    "mtime": 1791933343.9134207,
+    "ast_hash": "ad79ef5b487f4a4cb8baabeb630003e0",
     "semantic_hash": ""
   },
   "apps/web/test/migration-upgrade.test.ts": {
@@ -890,13 +890,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/design/auth-frame.tsx": {
-    "mtime": 1791226652.6237311,
-    "ast_hash": "d7aaabb128602c482c5adb565cc88623",
+    "mtime": 1791932994.1992438,
+    "ast_hash": "ba7df948e2e131ab3b9d67fba9356ece",
     "semantic_hash": ""
   },
   "apps/web/src/components/design/controls.tsx": {
-    "mtime": 1789261409.4149256,
-    "ast_hash": "2d8bfc55e85d57a14d20d1e939a4dc10",
+    "mtime": 1791933009.844479,
+    "ast_hash": "676552fbf83835f3c5efcd825bd4ba9b",
     "semantic_hash": ""
   },
   "apps/web/src/components/design/date-input.tsx": {
@@ -920,13 +920,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/design/shared.tsx": {
-    "mtime": 1791226652.6241093,
-    "ast_hash": "66e61f4e2b8e0bd0a4cfaaffa0da4e62",
+    "mtime": 1791933009.844615,
+    "ast_hash": "89b9b7151b8d8940b09cd6b3401f0348",
     "semantic_hash": ""
   },
   "apps/web/src/components/google-ads-measurement.tsx": {
-    "mtime": 1791932547.6925995,
-    "ast_hash": "d541a384ec69d3ff33acef064e07d418",
+    "mtime": 1791933371.8260736,
+    "ast_hash": "8ea11c8ddc8303671f90db47f86aa3a1",
     "semantic_hash": ""
   },
   "apps/web/src/components/ui/button.tsx": {
@@ -1010,8 +1010,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/access-screen.tsx": {
-    "mtime": 1791932529.11998,
-    "ast_hash": "410c6e255e9aabefb7004cb0c691a757",
+    "mtime": 1791932994.1994245,
+    "ast_hash": "ce6fae889b01852056809500b0380e76",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/animated-action-label.tsx": {
@@ -1085,8 +1085,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-media.tsx": {
-    "mtime": 1789261409.4198732,
-    "ast_hash": "6a1bfa0273fc697f0af7e51a81aab1e4",
+    "mtime": 1791933371.825933,
+    "ast_hash": "943c9df82349dea19063a71b68853552",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-note.tsx": {
@@ -1115,8 +1115,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/secure-audio-player.tsx": {
-    "mtime": 1789261409.4204128,
-    "ast_hash": "a2d28e99f8f1d502f1ae07c3003564c3",
+    "mtime": 1791933371.8256238,
+    "ast_hash": "bab8bc6c348ae9bfacc82d1e459c25ad",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/secure-video-player.tsx": {
@@ -1160,8 +1160,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/information/information-page.tsx": {
-    "mtime": 1791865920.2650623,
-    "ast_hash": "cded3f5129995ccd85d08fce96f0b658",
+    "mtime": 1791932994.1989064,
+    "ast_hash": "922ee233bd1ee67fb517bfd8b298ffc9",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-articles-es.ts": {
@@ -1190,8 +1190,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-page.tsx": {
-    "mtime": 1791326449.2315235,
-    "ast_hash": "621b7d1e0befc9f997a6d47e9fa49c1f",
+    "mtime": 1791932994.197591,
+    "ast_hash": "8f3f19cd3498153c9faeb021d908e6f5",
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-strings.ts": {
@@ -1205,13 +1205,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/pricing-section.tsx": {
-    "mtime": 1791932529.1218386,
-    "ast_hash": "cc90d1ac16e9017d86599a383d10bcc3",
+    "mtime": 1791932994.1993227,
+    "ast_hash": "7572f87dd3a20709d7ff901db8a427d6",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/pricing-page.tsx": {
-    "mtime": 1791932529.1210685,
-    "ast_hash": "a639448cbe8b1c7eb7757f7c99d25813",
+    "mtime": 1791932994.1991706,
+    "ast_hash": "3d3a3cfe6ec14322495452282e1d5626",
     "semantic_hash": ""
   },
   "apps/web/src/features/onboarding/onboarding-page.tsx": {
@@ -1220,8 +1220,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/baby-dates-tool.tsx": {
-    "mtime": 1791226666.0976827,
-    "ast_hash": "924b7045fcc04198e2c99a9e66b31d0e",
+    "mtime": 1791932994.1986003,
+    "ast_hash": "4ed4227e03a170b3f0dc995eabdf746c",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/family-age-tool.tsx": {
@@ -1235,18 +1235,18 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/interview-tool.tsx": {
-    "mtime": 1791226666.099108,
-    "ast_hash": "e4b5564ea1bb1a0fcd2d4824cb25de8c",
+    "mtime": 1791932994.1980433,
+    "ast_hash": "3e330cdb5ac5a3298535da519ba21b91",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/letter-prompts-tool.tsx": {
-    "mtime": 1791226666.0993447,
-    "ast_hash": "9a07f75e257f5889363b9578820e9238",
+    "mtime": 1791932994.1982524,
+    "ast_hash": "e21fb6a167f339c21e27652c3d54d3be",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/share-link.tsx": {
-    "mtime": 1791226666.0996473,
-    "ast_hash": "b5b75179981dcf7bc907262bb596471c",
+    "mtime": 1791932994.198686,
+    "ast_hash": "8675ddb36798c09b62fc9aaeb1f8df57",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/time-with-kids-tool.tsx": {
@@ -1260,8 +1260,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/tool-page.tsx": {
-    "mtime": 1791326449.2379649,
-    "ast_hash": "f479ff91a31d39055a9f853916d9c01a",
+    "mtime": 1791932994.1978092,
+    "ast_hash": "fc1a0d7e80a8ee6f4b91d8d125a8b5e0",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/tool-state.ts": {
@@ -1375,83 +1375,83 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/18-letters-for-18th-birthday.tsx": {
-    "mtime": 1791226666.1028333,
-    "ast_hash": "a0eca7537e2708e07345e8f7b2766e46",
+    "mtime": 1791933013.3800085,
+    "ast_hash": "a22fdc3c4ef0b67a34f0382b26bbff6d",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/baby-book-alternatives.tsx": {
-    "mtime": 1791226666.103153,
-    "ast_hash": "cfa76d7c48b90c6b9bb682f7127bc33f",
+    "mtime": 1791933013.3803773,
+    "ast_hash": "961f510d7d131f3e97affb83140ad832",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/baby-firsts-checklist.tsx": {
-    "mtime": 1791226666.1034815,
-    "ast_hash": "5b3109ba9cba507ab811663edae7c34b",
+    "mtime": 1791933013.3805068,
+    "ast_hash": "4c031316249ea9e29dd254984ac75a13",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/baby-memory-journal.tsx": {
-    "mtime": 1789261409.4290686,
-    "ast_hash": "26acba1fd1bf71b99af8a5fbb7543650",
+    "mtime": 1791933013.380108,
+    "ast_hash": "5eca4c7e9298b7ca50f11813e4ba86fa",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/birthday-interview-questions-for-kids.tsx": {
-    "mtime": 1791226666.1037588,
-    "ast_hash": "b4f60c250f2cd486b9809150e20d793c",
+    "mtime": 1791933013.3812418,
+    "ast_hash": "8f08d6adce1e1740229e7cb291fb9e74",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/digital-time-capsule-for-kids.tsx": {
-    "mtime": 1789261409.429119,
-    "ast_hash": "b8ce53d22b862cad594658c40aa03c43",
+    "mtime": 1791933013.3804483,
+    "ast_hash": "7c107d57dd0f33d49fa73eab5f2200a4",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/email-address-for-baby.tsx": {
-    "mtime": 1791226666.1047242,
-    "ast_hash": "6600f0a7b6c615c14e15880477366558",
+    "mtime": 1791933013.380357,
+    "ast_hash": "e96e0d4f132b5df28f64c5a3c204dcb9",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.capsula-del-tiempo-para-bebe.tsx": {
-    "mtime": 1791226666.1049607,
-    "ast_hash": "1f75214e557872976e31b7753dcd993e",
+    "mtime": 1791933013.3807354,
+    "ast_hash": "d508b2ee48e6ad09ba93ad462180373c",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.carta-para-mi-ahijado-de-bautizo.tsx": {
-    "mtime": 1791226666.105546,
-    "ast_hash": "178fd36508402ea6699020e67becfe27",
+    "mtime": 1791933013.3805506,
+    "ast_hash": "cc668ecb1d447e3abd69cef6aef5bfec",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.carta-para-mi-hija-en-sus-15-anos.tsx": {
-    "mtime": 1791226666.1057112,
-    "ast_hash": "c6d4c8daa2acd6d705afdaccad4ab337",
+    "mtime": 1791933013.3804245,
+    "ast_hash": "fc7c64546bbf2128fe184fd46572a1a9",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.carta-para-mi-hijo-que-esta-lejos.tsx": {
-    "mtime": 1791226666.1060493,
-    "ast_hash": "3d5ac89417b0262f39a992e494feab75",
+    "mtime": 1791933013.381103,
+    "ast_hash": "5a348b3dbfd1a70dfe02795cce53e8f7",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.carta-para-mi-nieto.tsx": {
-    "mtime": 1791226666.1062255,
-    "ast_hash": "e8a3f4c7b4c1a9f83c415eb02d2c4728",
+    "mtime": 1791933013.3801024,
+    "ast_hash": "71c6a667b77cb43fd6d876705784bd0c",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/es.index.tsx": {
-    "mtime": 1791226666.1063707,
-    "ast_hash": "2a6698ab5bc45bc861710a9b0afcc01b",
+    "mtime": 1791933013.384157,
+    "ast_hash": "47a52439d7ef6efff2ba3875115570d0",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/family-memory-app.tsx": {
-    "mtime": 1789261409.4291654,
-    "ast_hash": "14aba321b8780e2f5958c97a5f7b9e2b",
+    "mtime": 1791933013.3805273,
+    "ast_hash": "991c0e43d6b9334c14bdfbcf9e550ae3",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/first-birthday-time-capsule-letters.tsx": {
-    "mtime": 1791226666.1067376,
-    "ast_hash": "0df61f23772ffad05304fc16cd65c922",
+    "mtime": 1791933013.3806472,
+    "ast_hash": "8f447f0ca9a62fd605fc5be344f5ac18",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/grandparents-memory-project.tsx": {
-    "mtime": 1789261409.4293287,
-    "ast_hash": "300cf64e09be438b9083df99b118c1e7",
+    "mtime": 1791933013.3808844,
+    "ast_hash": "16ffc1c14f570b67500cc6900b27c088",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/journal.index.tsx": {
@@ -1460,73 +1460,73 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/journal.photo-story.tsx": {
-    "mtime": 1789261409.4294314,
-    "ast_hash": "31d081f40a0db3c477d06e312f1efab9",
+    "mtime": 1791933013.3808594,
+    "ast_hash": "3c0197e578c33ae9947dff0125199e61",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/journal.small-firsts.tsx": {
-    "mtime": 1789261409.429482,
-    "ast_hash": "59c5d869219c4f7fe9739c50dc270419",
+    "mtime": 1791933013.3806214,
+    "ast_hash": "c29f4a40d851db8e18b842028a930fc2",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/letter-to-my-baby-on-first-birthday.tsx": {
-    "mtime": 1791226666.1069038,
-    "ast_hash": "2b55223642a5288f96c9ea4984246c39",
+    "mtime": 1791933013.3810656,
+    "ast_hash": "107e0010451b51b8865f7962bfa0f711",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/letter-to-my-grandchild.tsx": {
-    "mtime": 1791226666.1070464,
-    "ast_hash": "967865b37c9f6ce2efbc173a44a38a88",
+    "mtime": 1791933013.381108,
+    "ast_hash": "93c1b623c391fd3e4763626c921e8d38",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/letters-to-your-future-child.tsx": {
-    "mtime": 1789261409.4295301,
-    "ast_hash": "445a6ceeab5676ec8551c3948f736483",
+    "mtime": 1791933013.3809776,
+    "ast_hash": "368181514da033c3d303900a2659eeec",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/long-distance-family-statistics.tsx": {
-    "mtime": 1791226666.1072006,
-    "ast_hash": "69f274258567bb8ca6c4df43e7fcf713",
+    "mtime": 1791933013.3808918,
+    "ast_hash": "e34882302875c89c38934e91cc987373",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/long-distance-grandparenting-ideas.tsx": {
-    "mtime": 1791226666.107342,
-    "ast_hash": "723e5472c6327c04832fe8e2083cd09e",
+    "mtime": 1791933013.3805535,
+    "ast_hash": "bd14354c1ad9170ab9d0cf4c8713d9d3",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/private-family-photo-sharing.tsx": {
-    "mtime": 1789261409.4296827,
-    "ast_hash": "2e4bc70520cdc9bf7d9db5c2230671ab",
+    "mtime": 1791933013.3824377,
+    "ast_hash": "1ea404ae44c0afcd3dc628b32804ad41",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/pt-br.carta-para-meu-filho-ler-no-futuro.tsx": {
-    "mtime": 1791226666.107485,
-    "ast_hash": "8e94ffee42f7dbdcb85426ffc4bc17e1",
+    "mtime": 1791933013.3807254,
+    "ast_hash": "bf7fae5b7ea46e8aa65224041ea87032",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/pt-br.carta-para-meu-neto.tsx": {
-    "mtime": 1791226666.1076326,
-    "ast_hash": "6bded003881c3601e80093c19eb87869",
+    "mtime": 1791933013.380827,
+    "ast_hash": "84a778ca04a992bae1a5d5a0bb3efbf2",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/pt-br.index.tsx": {
-    "mtime": 1791226666.1078815,
-    "ast_hash": "57f2adfb728d0d42a0056b6481891992",
+    "mtime": 1791933013.3809829,
+    "ast_hash": "639c12ec81431b7bd03bd06396f2e4ab",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/pt-br.mensagem-capsula-do-tempo-cha-de-bebe.tsx": {
-    "mtime": 1791226666.1080334,
-    "ast_hash": "4525f8b02fcbc177b5b8e4f6c1adb9c3",
+    "mtime": 1791933013.380339,
+    "ast_hash": "3226e2902973c32fa14d09c80f3cb3a7",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/sharing-photos-with-grandparents.tsx": {
-    "mtime": 1789261409.4297414,
-    "ast_hash": "a894af171c2d4dd417730005ed8eb4dc",
+    "mtime": 1791933013.3802998,
+    "ast_hash": "2bf39837b81850dd5b4b905454f52a8d",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/time-capsule-letter-to-child-examples.tsx": {
-    "mtime": 1791226666.108172,
-    "ast_hash": "e8a68025c41f06f165c77f2e1f8dee55",
+    "mtime": 1791933013.3801107,
+    "ast_hash": "f0e37defe21dc357a0830179c5733f68",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(marketing)/about.tsx": {
@@ -1540,7 +1540,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(marketing)/index.tsx": {
-    "mtime": 1791326449.2417123,
+    "mtime": 1791933175.8196912,
     "ast_hash": "c3adc92643a8107a4f32d48d7992bedc",
     "semantic_hash": ""
   },
@@ -1555,38 +1555,38 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.baby-milestone-dates.tsx": {
-    "mtime": 1791226666.1084554,
-    "ast_hash": "ea609b46e06119e2a3535c0f020400fa",
+    "mtime": 1791933013.3794048,
+    "ast_hash": "07f6305f4e52963fdaa57bb62e0a91bb",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.birthday-interview-questions.tsx": {
-    "mtime": 1791226666.108617,
-    "ast_hash": "074e82dbf55e335bd58af919065cf9f7",
+    "mtime": 1791933013.3797858,
+    "ast_hash": "c90823a5573044bd598b830d14472d2a",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.graduation-year-calculator.tsx": {
-    "mtime": 1791226666.108771,
-    "ast_hash": "0c3d34fdffdfdd4552ccf030262a2f0a",
+    "mtime": 1791933013.3792648,
+    "ast_hash": "e708981758be9dbaca4d3b345ab042b1",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.how-old-will-i-be.tsx": {
-    "mtime": 1791226666.108921,
-    "ast_hash": "fd99421e1c25e21e6331c6e8ad0d59e6",
+    "mtime": 1791933013.3791614,
+    "ast_hash": "2c9d3beb9a4ef2bc9f595968d9ad96c0",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.index.tsx": {
-    "mtime": 1791226666.1090786,
-    "ast_hash": "25074d65a2d2814f98ff7112ef17cddb",
+    "mtime": 1791932959.0756574,
+    "ast_hash": "459042e2efe83f5a95998c77095febab",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.time-capsule-letter-prompts.tsx": {
-    "mtime": 1791226666.109218,
-    "ast_hash": "d906b64c882639cc3529cb1d631b310d",
+    "mtime": 1791933013.3795493,
+    "ast_hash": "60292407b9ad2a54dffdc1db9c30c613",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.time-with-your-kids.tsx": {
-    "mtime": 1791226666.1093593,
-    "ast_hash": "856c431f642324725b5d689805529e6b",
+    "mtime": 1791933013.3793354,
+    "ast_hash": "4f8cab118a85c3caadc72be77b5553fa",
     "semantic_hash": ""
   },
   "apps/web/test-ui/archive-controls.test.tsx": {
@@ -1615,7 +1615,7 @@
     "semantic_hash": ""
   },
   "apps/web/test/acquisition-measurement.test.ts": {
-    "mtime": 1791864302.756478,
+    "mtime": 1791933382.166499,
     "ast_hash": "90846e82f088f52fdf6b42b2735034b6",
     "semantic_hash": ""
   },
@@ -4030,18 +4030,18 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/home/forest-home.tsx": {
-    "mtime": 1791932529.122079,
-    "ast_hash": "a348020ff02eba07c568aaba024969c3",
+    "mtime": 1791932994.1995513,
+    "ast_hash": "f4618318c20dafb054c4046c030f6ba3",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/site-footer.tsx": {
-    "mtime": 1791865920.2653265,
-    "ast_hash": "4f422946a5edb737dfcf975257f86fd5",
+    "mtime": 1791932994.1990962,
+    "ast_hash": "2b07c573241a47652e7868fba4185c7f",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/capsule-checklist-tool.tsx": {
-    "mtime": 1791326449.2355723,
-    "ast_hash": "619a432523f2d71fce74ab8444a1621b",
+    "mtime": 1791932994.1981535,
+    "ast_hash": "16e3c81e165eb08b9224c5aad15171d8",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/capsule-checklist.ts": {
@@ -4050,8 +4050,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/future-letter-tool.tsx": {
-    "mtime": 1791326449.2366407,
-    "ast_hash": "758d417f83137842141310fb3e89d6ee",
+    "mtime": 1791932994.1984918,
+    "ast_hash": "02e4b6be6ecd708f1f1bc157517f3ba2",
     "semantic_hash": ""
   },
   "apps/web/src/features/tools/future-letter.ts": {
@@ -4060,43 +4060,43 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/best-baby-book-apps.tsx": {
-    "mtime": 1791326449.2397778,
-    "ast_hash": "945904d06c860cc3b53fa27bcb40fa96",
+    "mtime": 1791933013.3802037,
+    "ast_hash": "635971183bb04fe0a181f7a130478887",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/familyalbum-vs-google-photos-vs-tinybeans.tsx": {
-    "mtime": 1791326449.2400513,
-    "ast_hash": "e992d9632706424187e1884b576fb20d",
+    "mtime": 1791933013.3807306,
+    "ast_hash": "dd8e1b558d3448ceb222cda324d468a4",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/first-birthday-time-capsule-ideas.tsx": {
-    "mtime": 1791326449.2403512,
-    "ast_hash": "494cb9491badb7922e422536f86cbde9",
+    "mtime": 1791933013.380264,
+    "ast_hash": "da7b6348cafd83a0159777b61053e506",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/qeepsake-alternatives.tsx": {
-    "mtime": 1791326449.2406504,
-    "ast_hash": "9e467b95d36c85d4016a4a1bca8cfae5",
+    "mtime": 1791933013.3809695,
+    "ast_hash": "5641db14634ded99f8a5d18961eee200",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/storyworth-alternatives.tsx": {
-    "mtime": 1791326449.240946,
-    "ast_hash": "4bf07634ab84989cbe1e8c378c5c60e4",
+    "mtime": 1791933013.381469,
+    "ast_hash": "2f4e42fbe80a592ba254187c858f609d",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(blog)/tinybeans-alternatives.tsx": {
-    "mtime": 1791326449.2412448,
-    "ast_hash": "72e0391f96096306d9f65ec079239faa",
+    "mtime": 1791933013.3806188,
+    "ast_hash": "ab6daaa36e8d427dd8930e6e68520018",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.first-birthday-time-capsule-checklist.tsx": {
-    "mtime": 1791326449.2420394,
-    "ast_hash": "d3058f1cd4f4ce690e5ac14114e69943",
+    "mtime": 1791933013.3794084,
+    "ast_hash": "0cefd189b90f8e60ef31e6dc7aa32bf3",
     "semantic_hash": ""
   },
   "apps/web/src/routes/(tools)/tools.letter-to-future-self.tsx": {
-    "mtime": 1791326449.2423134,
-    "ast_hash": "6229e7f52b971d3e63838f3d8d08a9b4",
+    "mtime": 1791933013.3795073,
+    "ast_hash": "a0afe6670b422e15673e866272ec0a8e",
     "semantic_hash": ""
   },
   "apps/web/test/keepsake-tools.test.ts": {
@@ -4177,6 +4177,16 @@
   "apps/web/public/marketing/objects/sealed-envelope.webp": {
     "mtime": 1791932318.0269911,
     "ast_hash": "1e074247ca9c10f58270c10a7e753f05",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/design/button.tsx": {
+    "mtime": 1791932994.197047,
+    "ast_hash": "537f9f815fa43ed218036a7fa50d13a4",
+    "semantic_hash": ""
+  },
+  "apps/web/src/components/design/sliding-tabs.tsx": {
+    "mtime": 1791932994.1966157,
+    "ast_hash": "f1958eba541ea3e9d39e56d00cc337c4",
     "semantic_hash": ""
   }
 }

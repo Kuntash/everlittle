@@ -63,6 +63,8 @@ export function GoogleAdsMeasurement() {
     if (!session.data?.user || safePath.includes("/child")) return;
     let stopped = false;
     const check = async () => {
+      /* A tab in the background sends nothing. It checks again on its next turn after it is shown. */
+      if (document.visibilityState === "hidden") return;
       try {
         const response = await fetch("/api/measurement/conversions", { cache: "no-store" });
         if (!response.ok || stopped) return;

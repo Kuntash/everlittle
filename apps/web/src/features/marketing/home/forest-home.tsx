@@ -2,15 +2,8 @@ import { productAnalytics } from "@/lib/product-analytics";
 import { useEffect, useRef, useState } from "react";
 import { SiteFooter } from "@/features/marketing/site-footer";
 import { Illustration } from "@/components/design/illustrations";
-import {
-  ArrowRight,
-  Brand,
-  Check,
-  Lock,
-  Play,
-  ShieldCheck,
-  Users,
-} from "@/components/design/shared";
+import { Brand } from "@/components/brand";
+import { ArrowRight, Check, Lock, Play, ShieldCheck, Users } from "lucide-react";
 
 const start = (placement: string) => {
   productAnalytics.capture("marketing_signup_cta_clicked", {

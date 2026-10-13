@@ -1,5 +1,5 @@
-import { ShadButton } from "@/components/design/controls";
-import { Button } from "@/components/design/shared";
+import { Button as ShadButton } from "@/components/ui/button";
+import { Button } from "@/components/design/button";
 import { Printer, Shuffle } from "lucide-react";
 import { seededShuffle } from "./tool-math";
 import { useQueryState } from "./tool-state";

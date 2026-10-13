@@ -1,4 +1,4 @@
-import { ShadButton } from "@/components/design/controls";
+import { Button as ShadButton } from "@/components/ui/button";
 import { Check, Link2 } from "lucide-react";
 import { useState } from "react";
 

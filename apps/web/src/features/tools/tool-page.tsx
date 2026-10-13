@@ -1,5 +1,6 @@
 import { MemoryIllustration } from "@/components/design/memory-illustrations";
-import { Brand, Button } from "@/components/design/shared";
+import { Brand } from "@/components/brand";
+import { Button } from "@/components/design/button";
 import { SiteFooter } from "@/features/marketing/site-footer";
 import { ArrowRight } from "lucide-react";
 import type { ReactNode } from "react";

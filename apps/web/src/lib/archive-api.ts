@@ -1,3 +1,4 @@
+import { AsyncLocalStorage } from "node:async_hooks";
 import {
   publicMemoryPage,
   publicShareUnavailablePage,
@@ -168,7 +169,29 @@ type Invitation = {
   inviterName: string;
 };
 
+/**
+ * The session cookies that Better Auth issued while the running request was authorized.
+ * A fresh signed session cookie answers without the database. When it has run out, Better Auth reads the
+ * session row and issues the cookie again. That cookie must reach the browser, or every later request
+ * reads the session row again.
+ */
+const refreshedSessionCookies = new AsyncLocalStorage<Map<string, string>>();
+
+/** Answer an API request, or return null when the path is not an API path. Refreshed session cookies are added to the answer. */
 export async function handleArchiveApi(request: Request): Promise<Response | null> {
+  const cookies = new Map<string, string>();
+  const response = await refreshedSessionCookies.run(cookies, () => routeArchiveApi(request));
+  if (!response || cookies.size === 0) return response;
+  const headers = new Headers(response.headers);
+  for (const cookie of cookies.values()) headers.append("set-cookie", cookie);
+  return new Response(response.body, {
+    headers,
+    status: response.status,
+    statusText: response.statusText,
+  });
+}
+
+async function routeArchiveApi(request: Request): Promise<Response | null> {
   const url = new URL(request.url);
 
   if (url.pathname === "/api/measurement/conversions" && request.method === "GET") {
@@ -2394,10 +2417,23 @@ async function streamMediaObject(
   if (rangeHeader && !requestedRange) {
     return new Response(null, { status: 416, headers: { "accept-ranges": "bytes" } });
   }
-  const object = requestedRange
+  /*
+   * A browser that kept the file sends its ETag back. R2 compares it and returns no body when the file is unchanged.
+   * The caller has already authorized the request, so a 304 is given only to someone who may read the file.
+   */
+  const revalidating = !requestedRange && request.headers.has("if-none-match");
+  const object: R2Object | R2ObjectBody | null = requestedRange
     ? await runtime.MEDIA.get(objectKey, { range: requestedRange })
-    : await runtime.MEDIA.get(objectKey);
+    : revalidating
+      ? await runtime.MEDIA.get(objectKey, { onlyIf: request.headers })
+      : await runtime.MEDIA.get(objectKey);
   if (!object) return Response.json({ error: "Media not found." }, { status: 404 });
+  if (!("body" in object)) {
+    return new Response(null, {
+      status: 304,
+      headers: { "cache-control": cacheControl, etag: object.httpEtag },
+    });
+  }
 
   const headers = new Headers();
   object.writeHttpMetadata(headers);
@@ -2422,7 +2458,7 @@ async function streamMediaObject(
     headers.set("content-length", String(object.size));
   }
 
-  return new Response(object.body, { headers, status });
+  return new Response((object as R2ObjectBody).body, { headers, status });
 }
 
 type ByteRange = { offset: number; length?: number } | { suffix: number };
@@ -2820,7 +2856,13 @@ async function getSessionUser(request: Request): Promise<SessionUser | null> {
     requireEmailVerification: deployment.mode === "hosted",
     sendAuthEmail: async () => undefined,
   });
-  const session = await auth.api.getSession({ headers: request.headers });
+  const result = await auth.api.getSession({ headers: request.headers, returnHeaders: true });
+  /* Keep the last cookie of each name. A request may check the session more than once. */
+  const refreshed = refreshedSessionCookies.getStore();
+  for (const cookie of result.headers.getSetCookie()) {
+    refreshed?.set(cookie.slice(0, cookie.indexOf("=")), cookie);
+  }
+  const session = result.response;
   if (!session?.user.id || !session.user.email) return null;
   return { id: session.user.id, name: session.user.name, email: session.user.email };
 }

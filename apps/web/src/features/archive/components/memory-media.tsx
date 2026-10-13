@@ -8,6 +8,7 @@ export function MemoryMedia({ memory, featured = false }: { memory: Memory; feat
       <div className={`memory-photo real-photo ${featured ? "featured" : ""}`}>
         <img
           alt={memory.title}
+          decoding="async"
           loading={featured ? "eager" : "lazy"}
           src={scopedApiPath(`/api/media/${memory.mediaId}`)}
         />

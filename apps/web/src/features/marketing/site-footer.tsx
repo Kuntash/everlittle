@@ -1,5 +1,5 @@
 import { CookiePreferencesLink } from "@/components/cookie-preferences-link";
-import { Brand } from "@/components/design/shared";
+import { Brand } from "@/components/brand";
 
 // One footer for the homepage, the journal and the free tools.
 export function SiteFooter({
