@@ -62,6 +62,7 @@ const state: ArchiveState = {
     canManage: true,
     canCreateContent: true,
     environment: "live_mode",
+    lifetime: false,
   },
 };
 test.beforeEach(async ({ page }) => {
@@ -343,4 +344,28 @@ test("mobile navigation stays inside the viewport without growing on scroll or r
   await expect(nav).toBeInViewport({ ratio: 1 });
   expect((await nav.boundingBox())!.height).toBe(initial.height);
   await page.screenshot({ path: info.outputPath("mobile-navigation.png") });
+});
+test("a lifetime archive shows its gift and no way to pay", async ({ page }) => {
+  await page.route("**/api/families/test-family/archive", (route) =>
+    route.fulfill({
+      json: {
+        ...state,
+        billing: {
+          ...state.billing,
+          canManage: false,
+          checkoutAvailable: false,
+          currentPeriodEndsAt: null,
+          interval: null,
+          lifetime: true,
+          limitBytes: 25 * 1024 * 1024 * 1024,
+        },
+      },
+    }),
+  );
+  await page.goto("/test-family/settings");
+  await page.getByLabel("Family sections").getByText("Plan", { exact: true }).click();
+  await expect(page.getByText("Lifetime access", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Yours to keep." })).toBeVisible();
+  await expect(page.getByText(/\$6|\$60/)).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /subscription|plan|month|year/i })).toHaveCount(0);
 });

@@ -23,6 +23,24 @@ recorded in D1. The archive API returns this meter to the Family screen. A hoste
 before it reaches R2 when it would exceed the archive allowance. Self-hosted uploads bypass the
 hosted entitlement and quota policy.
 
+## Lifetime access
+
+A gifted archive is marked with `archive_subscription.lifetime = 1`. The Family screen then shows
+"Lifetime access" with no checkout or portal buttons, checkout requests for the archive are
+refused, and subscription webhooks leave the row alone. The stored allowance and `status` still
+apply, so a grant sets both. Granting is a deliberate, hand-run statement against the hosted
+database once the owner has finished onboarding:
+
+```sh
+pnpm --filter @everlittle/web exec wrangler d1 execute DB --remote --env hosted --command \
+  "UPDATE archive_subscription SET status = 'active', lifetime = 1, updated_at = CURRENT_TIMESTAMP
+   WHERE archive_id = (SELECT id FROM family_archive WHERE slug = '<family-slug>')
+     AND provider_subscription_id IS NULL"
+```
+
+The last condition keeps a grant from masking a live paid subscription; resolve that with the
+owner first. Apply migration `0018_lifetime_access.sql` before deploying.
+
 ## Dodo Payments boundary
 
 Everlittle uses Dodo Payments hosted Checkout and its hosted Customer Portal. The archive owner can

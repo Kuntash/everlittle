@@ -291,6 +291,7 @@ export async function handleDodoWebhook(request: Request, runtime: RuntimeEnv) {
            current_period_ends_at = ?, provider_event_at = ?, billing_interval = ?,
            cancel_at_period_end = ?, updated_at = CURRENT_TIMESTAMP
        WHERE archive_id = ?
+         AND lifetime = 0
          AND (provider_event_at IS NULL OR datetime(provider_event_at) <= datetime(?))
          AND EXISTS (
            SELECT 1 FROM billing_webhook_event

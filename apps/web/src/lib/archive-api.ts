@@ -620,6 +620,12 @@ async function startBillingCheckout(request: Request): Promise<Response> {
   if (!parsed.success) {
     return Response.json({ error: "Choose monthly or yearly billing." }, { status: 400 });
   }
+  if ((await getArchiveStorage(runtime.DB, context.archiveId)).lifetime) {
+    return Response.json(
+      { error: "This archive has lifetime access. There is nothing to pay." },
+      { status: 409 },
+    );
+  }
 
   const acquisition = parseAcquisition(request.headers.get("x-everlittle-acquisition"));
   if (acquisition)
@@ -2476,6 +2482,7 @@ type ArchiveStorage = {
   canManage: boolean;
   environment: "test_mode" | "live_mode" | null;
   canCreateContent: boolean;
+  lifetime: boolean;
 };
 
 async function getArchiveStorage(database: D1Database, archiveId: string): Promise<ArchiveStorage> {
@@ -2503,6 +2510,7 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
       canManage: false,
       environment: null,
       canCreateContent: true,
+      lifetime: false,
     };
   }
 
@@ -2512,7 +2520,8 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
               provider_customer_id AS providerCustomerId,
               provider_subscription_id AS providerSubscriptionId,
               trial_ends_at AS trialEndsAt, current_period_ends_at AS currentPeriodEndsAt,
-              billing_interval AS interval, cancel_at_period_end AS cancelAtPeriodEnd
+              billing_interval AS interval, cancel_at_period_end AS cancelAtPeriodEnd,
+              lifetime
        FROM archive_subscription WHERE archive_id = ?`,
     )
     .bind(archiveId)
@@ -2525,12 +2534,14 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
       providerSubscriptionId: string | null;
       interval: "monthly" | "yearly" | null;
       cancelAtPeriodEnd: 0 | 1;
+      lifetime: 0 | 1;
     }>();
 
   const billing = getBillingConfig(getRuntimeEnv());
 
   const status = subscription?.status ?? "canceled";
   const trialEndsAt = subscription?.trialEndsAt ?? null;
+  const lifetime = subscription?.lifetime === 1;
 
   return {
     plan: "family",
@@ -2544,13 +2555,13 @@ async function getArchiveStorage(database: D1Database, archiveId: string): Promi
     currentPeriodEndsAt: subscription?.currentPeriodEndsAt ?? null,
     interval: subscription?.interval ?? null,
     cancelAtPeriodEnd: subscription?.cancelAtPeriodEnd === 1,
-    checkoutAvailable: billing.checkoutConfigured,
-    canManage: hasManageableSubscription(
-      billing.checkoutConfigured,
-      subscription?.providerSubscriptionId,
-    ),
+    checkoutAvailable: billing.checkoutConfigured && !lifetime,
+    canManage:
+      !lifetime &&
+      hasManageableSubscription(billing.checkoutConfigured, subscription?.providerSubscriptionId),
     environment: billing.checkoutConfigured ? billing.environment : null,
     canCreateContent: canCreateArchiveContent(status, trialEndsAt),
+    lifetime,
   };
 }
 
