@@ -109,6 +109,7 @@ export type ArchiveState = {
     canManage: boolean;
     canCreateContent: boolean;
     environment: "test_mode" | "live_mode" | null;
+    lifetime: boolean;
   };
 };
 

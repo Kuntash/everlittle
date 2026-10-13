@@ -640,6 +640,33 @@ describe("route-scoped tenant isolation", () => {
     ).toBeNull();
   }, 60000);
 
+  it("marks gifted archives as lifetime and refuses checkout for them", async () => {
+    const family = await createFamily("gifted@example.com", "Gifted family", "gifted-family");
+    await env.DB.prepare(
+      "UPDATE archive_subscription SET status = 'active', lifetime = 1 WHERE archive_id = ?",
+    )
+      .bind(family.archiveId)
+      .run();
+
+    const archive = await (await api(family, `/api/families/${family.slug}/archive`)).json();
+    expect(archive).toMatchObject({
+      billing: {
+        canCreateContent: true,
+        canManage: false,
+        checkoutAvailable: false,
+        lifetime: true,
+        limitBytes: 25 * 1024 * 1024 * 1024,
+        status: "active",
+      },
+    });
+
+    const checkout = await api(family, `/api/families/${family.slug}/archive/billing/checkout`, {
+      body: JSON.stringify({ interval: "monthly" }),
+      method: "POST",
+    });
+    expect(checkout.status).toBe(409);
+  });
+
   it("keeps canceled subscriptions read-only while preserving existing content", async () => {
     await env.DB.prepare("UPDATE archive_subscription SET status = 'canceled' WHERE archive_id = ?")
       .bind(familyA.archiveId)

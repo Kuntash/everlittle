@@ -231,13 +231,15 @@ export function FamilySettings({
               <h2>
                 {state.billing.plan === "self-hosted"
                   ? "Your family’s own space."
-                  : state.billing.canManage
-                    ? state.billing.interval === "yearly"
-                      ? "$60 / year"
-                      : "$6 / month"
-                    : state.billing.status === "complimentary"
-                      ? "Your first memories, free."
-                      : "Resume your family plan"}
+                  : state.billing.lifetime
+                    ? "Yours to keep."
+                    : state.billing.canManage
+                      ? state.billing.interval === "yearly"
+                        ? "$60 / year"
+                        : "$6 / month"
+                      : state.billing.status === "complimentary"
+                        ? "Your first memories, free."
+                        : "Resume your family plan"}
               </h2>
               <p className="muted">{billingStatusDetail(state.billing)}</p>
               <ul className="plan-features">
@@ -305,13 +307,17 @@ export function FamilySettings({
               )}
             </Card>
             <aside className="plan-aside">
-              <h3>A little more room for memories.</h3>
+              <h3>
+                {state.billing.lifetime ? "Nothing to manage." : "A little more room for memories."}
+              </h3>
               <p>
                 {state.billing.plan === "self-hosted"
                   ? "Your memories stay on the infrastructure you manage."
-                  : "25 GB · $60/year and save $12 over twelve monthly payments."}
+                  : state.billing.lifetime
+                    ? "Your archive has lifetime access, so there is no plan to choose."
+                    : "25 GB · $60/year and save $12 over twelve monthly payments."}
               </p>
-              {state.billing.plan === "family" && (
+              {state.billing.plan === "family" && !state.billing.lifetime && (
                 <div className="plan-comparison">
                   <span>Monthly</span>
                   <b>$6 / month</b>
