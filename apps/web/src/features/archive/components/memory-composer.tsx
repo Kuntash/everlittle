@@ -15,7 +15,7 @@ import {
   responseError,
   scopedApiPath,
 } from "@/features/archive/lib/archive-utils";
-import { usePostHog } from "@posthog/react";
+import { productAnalytics } from "@/lib/product-analytics";
 import type { FormEvent } from "react";
 import { useState } from "react";
 
@@ -32,7 +32,6 @@ export function MemoryComposer({
   onCreated: () => Promise<void>;
   role: FamilyRole;
 }) {
-  const posthog = usePostHog();
   const [kind, setKind] = useState<MemoryKind>(initialKind);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -92,7 +91,7 @@ export function MemoryComposer({
       if (file) {
         pendingMemoryId = created.id;
         setStage("uploading");
-        posthog?.capture("upload_started", {
+        productAnalytics.capture("upload_started", {
           memory_kind: kind,
           size_bucket:
             file.size < 1048576
@@ -105,7 +104,7 @@ export function MemoryComposer({
         });
         const upload = await uploadMedia(created.id, file, undefined, setUploadProgress);
         if (!upload.ok) {
-          posthog?.capture("upload_failed", {
+          productAnalytics.capture("upload_failed", {
             memory_kind: kind,
             reason: upload.status === 413 ? "too_large" : "request_rejected",
           });
@@ -115,7 +114,7 @@ export function MemoryComposer({
           return;
         }
         pendingMemoryId = null;
-        posthog?.capture("upload_succeeded", { memory_kind: kind });
+        productAnalytics.capture("upload_succeeded", { memory_kind: kind });
         if (videoThumbnail) {
           const thumbnailUpload = await fetch(
             scopedApiPath(`/api/archive/memories/${created.id}/media/thumbnail`),
@@ -131,7 +130,7 @@ export function MemoryComposer({
         }
       }
 
-      posthog?.capture("memory_save_completed", {
+      productAnalytics.capture("memory_save_completed", {
         memory_kind: kind,
         has_media: Boolean(file),
         memory_audience: audience,

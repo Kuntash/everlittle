@@ -4,9 +4,7 @@ import {
   browserAcquisition,
   acquisitionProperties,
 } from "@/lib/acquisition";
-import { PostHogProvider } from "@posthog/react";
 import { useRouterState } from "@tanstack/react-router";
-import posthog from "posthog-js";
 import { useEffect, useRef, useState } from "react";
 
 import type { MarketingAttribution } from "@/lib/analytics";
@@ -18,12 +16,16 @@ import {
   readMarketingAttribution,
 } from "@/lib/analytics";
 import { authClient } from "@/lib/auth-client";
+import { loadPlatform } from "@/lib/platform-client";
+import {
+  disableProductAnalytics,
+  productAnalytics as posthog,
+  startProductAnalytics,
+} from "@/lib/product-analytics";
 
-type AnalyticsConfig = {
-  analytics?: { posthog?: { host?: string; token?: string; environment?: string } } | null;
-};
-
-let initialized = false;
+/** The one start of PostHog for this page. Every mount of the provider waits for the same one. */
+let starting: Promise<void> | null = null;
+let started = false;
 
 export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -31,72 +33,80 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
   const session = authClient.useSession();
   const identifiedUser = useRef<string | null>(null);
   const capturedCampaignLanding = useRef<string | null>(null);
-  const [ready, setReady] = useState(initialized);
+  const [ready, setReady] = useState(started);
 
   useEffect(() => {
     let active = true;
-    void fetch("/api/platform", { cache: "no-store" })
-      .then(async (response) => (response.ok ? ((await response.json()) as AnalyticsConfig) : null))
-      .then((platform) => {
-        const config = platform?.analytics?.posthog;
-        if (!active || initialized || !config?.token || !config.host) return;
-        posthog.init(config.token, {
-          api_host: config.host,
-          autocapture: false,
-          before_send: (event) => {
-            if (!event) return null;
-            const safePath = analyticsPath(window.location.pathname);
-            return {
-              ...event,
-              properties: {
-                ...sanitizeAnalyticsProperties(event.properties, safePath),
-                ...acquisitionProperties(browserAcquisition()),
-                $current_url: safePath,
-                $pathname: safePath,
-                $referrer: undefined,
-                $initial_current_url: undefined,
-                $initial_referrer: undefined,
-                $referring_domain: undefined,
-                environment: config.environment ?? "test_mode",
-                is_test:
-                  event.properties.is_test === true ||
-                  browserAcquisition()?.is_test === true ||
-                  config.environment !== "live_mode",
-              },
-            };
-          },
-          capture_exceptions: false,
-          capture_pageleave: false,
-          capture_pageview: false,
-          defaults: "2026-05-30",
-          disable_session_recording: true,
-          person_profiles: "identified_only",
-          persistence: "localStorage",
-        });
-        const attribution = resolveMarketingAttribution(window.location.pathname);
-        if (attribution) posthog.register(attribution);
-        const acquisition = updateAcquisition(
-          browserAcquisition() ??
-            (attribution
-              ? {
-                  first: { ...attribution, captured_at: new Date().toISOString() },
-                  last: { ...attribution, captured_at: new Date().toISOString() },
-                  is_test: attribution.campaign_source === "qa",
-                }
-              : null),
+    void loadPlatform()
+      .then(async (platform) => {
+        const config = platform.analytics?.posthog;
+        if (!config?.token || !config.host) {
+          disableProductAnalytics();
+          return;
+        }
+        starting ??= startProductAnalytics(
+          config.token,
           {
-            search: window.location.search,
-            pathname: window.location.pathname,
-            referrer: document.referrer,
-            hostname: window.location.hostname,
+            api_host: config.host,
+            autocapture: false,
+            before_send: (event) => {
+              if (!event) return null;
+              const safePath = analyticsPath(window.location.pathname);
+              return {
+                ...event,
+                properties: {
+                  ...sanitizeAnalyticsProperties(event.properties, safePath),
+                  ...acquisitionProperties(browserAcquisition()),
+                  $current_url: safePath,
+                  $pathname: safePath,
+                  $referrer: undefined,
+                  $initial_current_url: undefined,
+                  $initial_referrer: undefined,
+                  $referring_domain: undefined,
+                  environment: config.environment ?? "test_mode",
+                  is_test:
+                    event.properties.is_test === true ||
+                    browserAcquisition()?.is_test === true ||
+                    config.environment !== "live_mode",
+                },
+              };
+            },
+            capture_exceptions: false,
+            capture_pageleave: false,
+            capture_pageview: false,
+            defaults: "2026-05-30",
+            disable_session_recording: true,
+            person_profiles: "identified_only",
+            persistence: "localStorage",
+          },
+          (client) => {
+            const attribution = resolveMarketingAttribution(window.location.pathname);
+            if (attribution) client.register(attribution);
+            const acquisition = updateAcquisition(
+              browserAcquisition() ??
+                (attribution
+                  ? {
+                      first: { ...attribution, captured_at: new Date().toISOString() },
+                      last: { ...attribution, captured_at: new Date().toISOString() },
+                      is_test: attribution.campaign_source === "qa",
+                    }
+                  : null),
+              {
+                search: window.location.search,
+                pathname: window.location.pathname,
+                referrer: document.referrer,
+                hostname: window.location.hostname,
+              },
+            );
+            try {
+              localStorage.setItem(ACQUISITION_KEY, JSON.stringify(acquisition));
+            } catch {}
+            client.register(acquisitionProperties(acquisition));
           },
         );
-        try {
-          localStorage.setItem(ACQUISITION_KEY, JSON.stringify(acquisition));
-        } catch {}
-        posthog.register(acquisitionProperties(acquisition));
-        initialized = true;
-        setReady(true);
+        await starting;
+        started = true;
+        if (active) setReady(true);
       })
       .catch(() => {
         // Analytics must never interfere with the archive experience.
@@ -176,7 +186,7 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     }
   }, [ready, session.data?.user.id]);
 
-  return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
+  return <>{children}</>;
 }
 
 function resolveMarketingAttribution(pathname: string): MarketingAttribution | null {

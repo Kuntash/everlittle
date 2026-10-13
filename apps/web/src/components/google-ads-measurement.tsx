@@ -1,4 +1,3 @@
-import type { AdvertisingPolicy } from "@/lib/advertising-policy";
 import { useEffect, useState } from "react";
 import {
   adsConsent,
@@ -12,6 +11,7 @@ import {
 import { analyticsPath } from "@/lib/analytics";
 import { useRouterState } from "@tanstack/react-router";
 import { authClient } from "@/lib/auth-client";
+import { loadPlatform } from "@/lib/platform-client";
 
 export function GoogleAdsMeasurement() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -25,15 +25,7 @@ export function GoogleAdsMeasurement() {
     (!safePath.includes(":") &&
       !["/invite", "/reset-password", "/onboarding", "/sign-in"].includes(safePath));
   useEffect(() => {
-    void fetch("/api/platform", { cache: "no-store" })
-      .then(
-        (r) =>
-          r.json() as Promise<{
-            deploymentMode: string;
-            advertising?: AdvertisingPolicy;
-            analytics?: { posthog?: { environment?: string } };
-          }>,
-      )
+    void loadPlatform()
       .then((p) => {
         configureAdsPolicy(p.advertising ?? { mode: "opt-in", globalPrivacyControl: false });
         refresh();

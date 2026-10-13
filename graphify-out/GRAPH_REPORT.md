@@ -1,16 +1,16 @@
-# Graph Report - everlittle  (2026-10-13)
+# Graph Report - everlittle  (2026-10-14)
 
 ## Corpus Check
-- 512 files · ~10,395,406 words
+- 517 files · ~10,405,550 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 6868 nodes · 9807 edges · 637 communities (294 shown, 343 thin omitted)
-- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 118 edges (avg confidence: 0.53)
+- 6915 nodes · 9909 edges · 638 communities (297 shown, 341 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 119 edges (avg confidence: 0.53)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `186767e5`
+- Built from commit: `17bd5698`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -117,7 +117,7 @@
 - WebSocketRequestResponsePair
 - Workflow
 - WorkflowEntrypoint
-- archive-app.tsx
+- everlittle.tsx
 - AgentMemoryNamespace
 - BasicImageTransformations
 - BrowserRun
@@ -189,11 +189,11 @@
 - Everlittle hosted and self-hosted migration checklist
 - Everlittle preliminary trademark knockout search
 - billing.ts
-- letter-prompts-tool.tsx
+- tool-math.ts
 - cn
-- family-settings.tsx
+- archive-app.tsx
 - ExtendableEvent
-- archive-utils.tsx
+- memory-detail.tsx
 - Everlittle landing design direction
 - apply-migrations.ts
 - migration-upgrade.test.ts
@@ -209,13 +209,13 @@
 - CompileError
 - RuntimeError
 - Everlittle — Living Scrapbook redesign handoff
-- acquisition.ts
+- google-ads.ts
 - 12. Continuation log — keep this current
 - @fontsource-variable/cormorant-garamond
 - 0014_dodo_billing.sql
-- lucide-react
+- 4. Open paper cuts
 - @tanstack/react-router
-- design-select.tsx
+- analytics-provider.tsx
 - Final generation prompts
 - Everlittle redesign status
 - Everlittle
@@ -223,7 +223,7 @@
 - Everlittle product design options
 - 9. Step-by-step execution plan
 - Event
-- secure-audio-player.tsx
+- archive-types.ts
 - Console
 - TransformStream
 - URL
@@ -231,12 +231,12 @@
 - URLSearchParams
 - r
 - DurableObjectStorage
-- journal-head.ts
+- journal-page.tsx
 - Container
 - Element
 - Headers
 - SubtleCrypto
-- journal-page.tsx
+- journal-head.ts
 - Self-hosting Everlittle on Cloudflare
 - Blob
 - Body
@@ -260,7 +260,7 @@
 - Flagship
 - R2ObjectBody
 - Apricot redesign migration
-- tool-page.tsx
+- seo-page-paths.ts
 - AgentMemoryProfile
 - ByteLengthQueuingStrategy
 - WritableStream
@@ -357,7 +357,7 @@
 - Workflow
 - WorkflowEntrypoint
 - Isolated payment QA — 10 September 2026
-- keepsake-tools.test.ts
+- information-page.tsx
 - serve-review.mjs
 - AgentMemoryNamespace
 - BasicImageTransformations
@@ -403,14 +403,14 @@
 - @fontsource-variable/geist-mono
 - 05-bedtime-across-miles/composition/assets/gsap.min.js
 - 06-ordinary-tuesday/composition/assets/gsap.min.js
-- tool-math.ts
+- __root.tsx
 - Everlittle — Apricot detailed design
 - Closely reviewed sources
 - @radix-ui/react-dropdown-menu
 - @radix-ui/react-popover
 - r
 - invitation-email.ts
-- future-letter-tool.tsx
+- product-analytics.ts
 - r
 - r
 - @radix-ui/react-tabs
@@ -537,7 +537,7 @@
 - Sd
 - scripts
 - First night away
-- subscription-sheet.tsx
+- archive-utils.tsx
 - Meta traffic test — saved drafts
 - Sd
 - Sd
@@ -562,7 +562,7 @@
 - README.md
 - kb
 - Everlittle TODO
-- ga
+- la
 - Hosted plans and storage
 - 04-camera-roll/.media/index.md
 - 05-camera-roll-ugc/.media/index.md
@@ -570,7 +570,7 @@
 - 06-first-night/.media/index.md
 - @radix-ui/react-dialog
 - react-day-picker
-- react-dom
+- la
 - 01-memory-keeper/composition/BRIEF.md
 - 02-grandmas-recipe/composition/BRIEF.md
 - 03-in-the-picture/composition/BRIEF.md
@@ -587,7 +587,7 @@
 - whisper_to_words.py
 - Everlittle TODO
 - Everlittle — Apricot landing concept
-- la
+- ga
 - la
 - apricot-landing-2026-09-07/README.md
 - Everlittle product design options
@@ -602,19 +602,19 @@
 - P1 — Family invitation and ownership handover
 - kb
 - la
-- @radix-ui/react-slider
+- kb
 - baby-book-alternatives.tsx
 - baby-firsts-checklist.tsx
 - ga
 - Agent instructions
 - kb
-- kb
+- @fontsource-variable/geist
 - kb
 - posthog-js
-- 18-letters-for-18th-birthday.tsx
-- journal.small-firsts.tsx
-- long-distance-family-statistics.tsx
-- long-distance-grandparenting-ideas.tsx
+- @fontsource-variable/nunito-sans
+- zod
+- es.carta-para-mi-ahijado-de-bautizo.tsx
+- sharing-photos-with-grandparents.tsx
 
 ## God Nodes (most connected - your core abstractions)
 1. `journalArticleHead()` - 72 edges
@@ -634,24 +634,24 @@
 - `createChildProfile()` --calls--> `slugify()`  [EXTRACTED]
   apps/web/src/lib/archive-api.ts → packages/domain/src/index.ts
 - `Route` --calls--> `journalArticleHead()`  [EXTRACTED]
-  apps/web/src/routes/(blog)/18-letters-for-18th-birthday.tsx → apps/web/src/features/journal/journal-head.ts
-- `Route` --calls--> `journalArticleHead()`  [EXTRACTED]
   apps/web/src/routes/(blog)/baby-book-alternatives.tsx → apps/web/src/features/journal/journal-head.ts
 - `Route` --calls--> `journalArticleHead()`  [EXTRACTED]
   apps/web/src/routes/(blog)/baby-firsts-checklist.tsx → apps/web/src/features/journal/journal-head.ts
+- `Route` --calls--> `journalArticleHead()`  [EXTRACTED]
+  apps/web/src/routes/(blog)/es.capsula-del-tiempo-para-bebe.tsx → apps/web/src/features/journal/journal-head.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (637 total, 343 thin omitted)
+## Communities (638 total, 341 thin omitted)
 
 ### Community 0 - "web/worker-configuration.d.ts"
 Cohesion: 0.00
 Nodes (849): AgentMemoryGetSummaryOptions, AgentMemoryGetSummaryResponse, AgentMemoryIncomingMemory, AgentMemoryIngestOptions, AgentMemoryListMemoriesOptions, AgentMemoryListMemoriesResult, AgentMemoryMemory, AgentMemoryMemoryListEntry (+841 more)
 
 ### Community 1 - "archive-api.ts"
-Cohesion: 0.06
-Nodes (51): ArchiveStorage, base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url(), capsuleSchema, ChildAccessContext, childPinRetryAfter() (+43 more)
+Cohesion: 0.05
+Nodes (63): ArchiveStorage, base64UrlToBytes(), billingCheckoutSchema, ByteRange, bytesToBase64Url(), capsuleSchema, ChildAccessContext, childPinRetryAfter() (+55 more)
 
 ### Community 2 - "scripts"
 Cohesion: 0.09
@@ -675,7 +675,7 @@ Nodes (30): devDependencies, vite-plus, engines, node, license, name, packageMan
 
 ### Community 7 - "dependencies"
 Cohesion: 0.05
-Nodes (39): dependencies, better-auth, class-variance-authority, clsx, dodopayments, @everlittle/domain, @everlittle/ui, @fontsource-variable/geist (+31 more)
+Nodes (39): dependencies, better-auth, class-variance-authority, clsx, dodopayments, @everlittle/domain, @everlittle/ui, @fontsource-variable/inter (+31 more)
 
 ### Community 9 - "TransformStream"
 Cohesion: 0.10
@@ -686,8 +686,8 @@ Cohesion: 0.05
 Nodes (39): devDependencies, @cloudflare/vite-plugin, @cloudflare/vitest-pool-workers, jsdom, @playwright/test, tailwindcss, tailwindcss-animate, @tailwindcss/vite (+31 more)
 
 ### Community 13 - "onboarding-page.tsx"
-Cohesion: 0.11
-Nodes (15): AuthFrame(), PasswordInput(), PasswordInputProps, ResetPassword(), Draft, Onboarding(), responseMessage(), sections (+7 more)
+Cohesion: 0.10
+Nodes (17): AuthFrame(), PasswordInput(), PasswordInputProps, ResetPassword(), Input, ChildArchiveApp(), Draft, Onboarding() (+9 more)
 
 ### Community 20 - "Body"
 Cohesion: 0.15
@@ -721,9 +721,9 @@ Nodes (22): BABY_NOTEBOOK, EVERLITTLE_PRICING, FAMILYALBUM_FREE, FAMILYALBUM_HOM
 Cohesion: 0.25
 Nodes (8): Everlittle TODO, P0 — Claim the reference installation, P1 — Privacy and durability, P1 — Real archive data, P2 — Child experience, P2 — Deferred account recovery, P2 — PWA and device polish, P2 — Quality and operations
 
-### Community 103 - "archive-app.tsx"
+### Community 103 - "everlittle.tsx"
 Cohesion: 0.08
-Nodes (38): AuthRoute(), safeRedirect(), Brand(), ArchiveMembership, ChildSession, InvitationPreview, PlatformState, AccessScreen() (+30 more)
+Nodes (26): AuthRoute(), safeRedirect(), MarketingHome(), ChildSession, PlatformState, AccessScreen, ArchiveApp, ChildArchiveApp (+18 more)
 
 ### Community 105 - "BasicImageTransformations"
 Cohesion: 0.67
@@ -770,28 +770,28 @@ Cohesion: 0.14
 Nodes (13): EverLittle 3D, United States, Everlittle Baby domain, EverLittle Co., United States-facing marketplace use, Everlittle, India, Everlittle preliminary trademark knockout search, Material commercial uses found, Namespace screening update on 2026-08-16 Asia/Kolkata, Practical domain decision (+5 more)
 
 ### Community 178 - "billing.ts"
-Cohesion: 0.12
-Nodes (31): cleanupExpiredMediaUploads(), BillingConfigurationError, BillingInterval, BillingOwner, BillingPortalUnavailableError, billingStatusForDodoEvent(), createBillingCheckout(), createBillingPortal() (+23 more)
+Cohesion: 0.17
+Nodes (23): parseAcquisition(), BillingInterval, BillingOwner, billingStatusForDodoEvent(), createBillingCheckout(), createBillingPortal(), createDodoClient(), DodoEnvironment (+15 more)
 
-### Community 179 - "letter-prompts-tool.tsx"
-Cohesion: 0.10
-Nodes (26): ADULTS, MILESTONES, CUTOFFS, GRADES, GraduationTool(), CORE, EXTRAS, InterviewTool() (+18 more)
+### Community 179 - "tool-math.ts"
+Cohesion: 0.05
+Nodes (99): BabyDatesTool(), number, CAPSULE_GROUPS, CAPSULE_LEAVE_OUT, CAPSULE_OPEN_AGES, CapsuleGroup, capsuleOpenAge(), capsuleOpenDate() (+91 more)
 
 ### Community 180 - "cn"
-Cohesion: 0.08
-Nodes (47): DateField(), iso(), Button, ButtonProps, buttonVariants, Calendar(), CalendarDayButton(), CardContent (+39 more)
-
-### Community 181 - "family-settings.tsx"
 Cohesion: 0.07
-Nodes (30): base, child, demoMemories, nativeFetch, state, base, child, demoMemories (+22 more)
+Nodes (48): DateField(), iso(), DesignSelect(), Option, optionsFrom(), Button, ButtonProps, buttonVariants (+40 more)
+
+### Community 181 - "archive-app.tsx"
+Cohesion: 0.08
+Nodes (33): base, child, demoMemories, nativeFetch, state, base, child, demoMemories (+25 more)
 
 ### Community 182 - "ExtendableEvent"
 Cohesion: 0.17
 Nodes (6): EmailEvent, ExtendableEvent, FetchEvent, QueueEvent, ScheduledEvent, TailEvent
 
-### Community 183 - "archive-utils.tsx"
-Cohesion: 0.12
-Nodes (35): SurfaceModal(), BrandMark(), MemoryIllustration(), P, Button(), KindIcon(), kinds, Modal (+27 more)
+### Community 183 - "memory-detail.tsx"
+Cohesion: 0.16
+Nodes (23): SealedCapsuleCard(), SurfaceModal(), DateInput(), Button(), KindIcon(), kinds, Modal, Card (+15 more)
 
 ### Community 184 - "Everlittle landing design direction"
 Cohesion: 0.15
@@ -810,24 +810,24 @@ Cohesion: 0.04
 Nodes (7): AbortSignal, EventSource, EventTarget, MessagePort, ServiceWorkerGlobalScope, WebSocket, WorkerGlobalScope
 
 ### Community 192 - "getRuntimeEnv"
-Cohesion: 0.20
-Nodes (50): acceptInvitationForCurrentUser(), auditStatement(), checkOnboardingSlug(), completeOnboarding(), createCapsule(), createChildProfile(), createInvitation(), createMemory() (+42 more)
+Cohesion: 0.21
+Nodes (47): acceptInvitationForCurrentUser(), auditStatement(), checkOnboardingSlug(), completeOnboarding(), createCapsule(), createChildProfile(), createInvitation(), createMemory() (+39 more)
 
 ### Community 193 - "journalArticleHead"
-Cohesion: 0.08
-Nodes (25): journalArticleHead(), JournalExperience(), Route, Route, Route, Route, Route, Route (+17 more)
+Cohesion: 0.07
+Nodes (27): journalArticleHead(), JournalExperience(), Route, Route, Route, Route, Route, Route (+19 more)
 
 ### Community 195 - "gsap.min.js"
 Cohesion: 0.06
 Nodes (14): ia(), ie(), ja(), Mc(), Nd(), oa(), Oc(), Od() (+6 more)
 
 ### Community 196 - "forest-home.tsx"
-Cohesion: 0.06
-Nodes (21): CookiePreferencesLink(), C, Illustration(), MarketingHome(), InformationPage(), InformationPageId, informationPages, MarketingFooter() (+13 more)
+Cohesion: 0.13
+Nodes (8): C, Illustration(), Cta(), ForestHome(), Pricing(), start(), useHomeMotion(), waveHeights
 
 ### Community 197 - "server.ts"
-Cohesion: 0.10
-Nodes (34): acceptInvitation(), findValidInvitation(), previewInvitation(), AuthOptions, createAuth(), DEPLOYMENT_MODES, DeploymentConfig, DeploymentEnvironment (+26 more)
+Cohesion: 0.09
+Nodes (36): acceptInvitation(), cleanupExpiredMediaUploads(), AuthOptions, createAuth(), BOOT_STORE_GLOBAL, BootState, DEPLOYMENT_MODES, DeploymentConfig (+28 more)
 
 ### Community 198 - "la"
 Cohesion: 0.60
@@ -837,17 +837,21 @@ Nodes (5): Animation(), Da(), la(), Ua(), Va()
 Cohesion: 0.12
 Nodes (16): 10. Verification and acceptance, 11. Mandatory rollout: hosted geteverlittle AND Dikichoetso, 1. User decisions and scope, 2. Existing references and evidence, 3. Visual system — warm paper, clear structure, 4. Navigation — approved horizontal folder tabs, 5. US audience content and imagery, 6. Product coverage and behavioral requirements (+8 more)
 
-### Community 202 - "acquisition.ts"
-Cohesion: 0.06
-Nodes (49): AnalyticsConfig, AnalyticsProvider(), resolveMarketingAttribution(), GoogleAdsMeasurement(), Toaster(), Acquisition, ACQUISITION_KEY, acquisitionProperties() (+41 more)
+### Community 202 - "google-ads.ts"
+Cohesion: 0.23
+Nodes (15): GoogleAdsMeasurement(), advertisingPolicy, ADS_CONSENT_KEY, adsConsent(), adsOptOutSignal(), configureAdsPolicy(), GOOGLE_ADS_ID, GOOGLE_CONVERSION_LABELS (+7 more)
 
 ### Community 203 - "12. Continuation log — keep this current"
 Cohesion: 0.20
 Nodes (10): 12. Continuation log — keep this current, Completed, Final release record — verified September 7, 2026, In progress / not yet released, Next-thread status template, Outstanding decisions / evidence, Release validation — September 6, 2026, September 6, 2026 — resumed through codex-alt (+2 more)
 
-### Community 208 - "design-select.tsx"
-Cohesion: 0.24
-Nodes (8): ArchiveTabs(), destinations, SlidingTabs(), DesignSelect(), Option, optionsFrom(), View, child
+### Community 206 - "4. Open paper cuts"
+Cohesion: 0.09
+Nodes (21): 1. What earlier work covered, 2. Baseline measurements, 3. Performance findings, 4. Open paper cuts, 5. Plan, 6. Not measured, App, both installations, Carried over from earlier threads, larger than a paper cut (+13 more)
+
+### Community 208 - "analytics-provider.tsx"
+Cohesion: 0.26
+Nodes (16): AnalyticsProvider(), resolveMarketingAttribution(), Acquisition, ACQUISITION_KEY, acquisitionProperties(), browserAcquisition(), Touch, updateAcquisition() (+8 more)
 
 ### Community 210 - "Final generation prompts"
 Cohesion: 0.25
@@ -877,29 +881,29 @@ Nodes (8): 9. Step-by-step execution plan, Phase 0 — resume and verify, Phase 
 Cohesion: 0.06
 Nodes (6): CloseEvent, CustomEvent, ErrorEvent, Event, MessageEvent, PromiseRejectionEvent
 
-### Community 217 - "secure-audio-player.tsx"
-Cohesion: 0.42
-Nodes (6): SecureAudioPlayer(), formatMediaTime(), FALLBACK_WAVEFORM, Waveform, waveformFromAudio(), waveformFromChannels()
+### Community 217 - "archive-types.ts"
+Cohesion: 0.12
+Nodes (23): state, MemoryCard(), ArchiveMembership, ArchiveState, BillingDestination, Capsule, Child, Member (+15 more)
 
 ### Community 219 - "TransformStream"
 Cohesion: 0.10
 Nodes (7): CompressionStream, DecompressionStream, FixedLengthStream, IdentityTransformStream, TextDecoderStream, TextEncoderStream, TransformStream
 
 ### Community 221 - "journal-articles.ts"
-Cohesion: 0.21
-Nodes (11): articles, englishArticles, spanishArticlePaths, spanishArticles, findArticle(), JournalArticle, localizedArticles, portugueseArticlePaths (+3 more)
+Cohesion: 0.16
+Nodes (15): allArticles, articles, englishArticles, spanishArticlePaths, spanishArticles, findArticle(), JournalArticle, localizedArticles (+7 more)
 
 ### Community 223 - "r"
-Cohesion: 0.18
-Nodes (16): cb(), dc(), Fo(), gb(), hb(), jb(), kb(), ob() (+8 more)
+Cohesion: 0.19
+Nodes (15): ae(), cb(), dc(), Fo(), ga(), gb(), ha(), hb() (+7 more)
 
-### Community 225 - "journal-head.ts"
-Cohesion: 0.17
-Nodes (11): alternateLinks(), journalHubHead(), JournalStrings, CONTENT_LOCALES, ContentLocale, LOCALE_LANG, LOCALE_PREFIX, Route (+3 more)
+### Community 225 - "journal-page.tsx"
+Cohesion: 0.16
+Nodes (9): JournalStrings, CONTENT_LOCALES, ContentLocale, LOCALE_LANG, LOCALE_PREFIX, Route, Route, Route (+1 more)
 
-### Community 230 - "journal-page.tsx"
-Cohesion: 0.17
-Nodes (7): allArticles, articlePaths, Route, Route, Route, Route, internalLinks
+### Community 230 - "journal-head.ts"
+Cohesion: 0.20
+Nodes (8): articlePaths, alternateLinks(), journalHubHead(), Route, Route, Route, Route, internalLinks
 
 ### Community 231 - "Self-hosting Everlittle on Cloudflare"
 Cohesion: 0.20
@@ -918,8 +922,8 @@ Cohesion: 0.23
 Nodes (12): _a(), Be(), $d(), de(), fe(), ka(), ma(), me() (+4 more)
 
 ### Community 238 - "t"
-Cohesion: 0.14
-Nodes (18): Aa(), Animation(), Ca(), Context(), Da(), Db(), Eb(), fb() (+10 more)
+Cohesion: 0.20
+Nodes (12): Context(), Db(), Eb(), fb(), Hc(), ib(), Ic(), jb() (+4 more)
 
 ### Community 239 - "scripts"
 Cohesion: 0.17
@@ -965,9 +969,9 @@ Nodes (7): Async and empty-state behavior, Everlittle — Apricot detailed desig
 Cohesion: 0.20
 Nodes (9): Apricot redesign migration, Code organization, Deployment, Fidelity correction — September 9, 2026, Follow-up layout and media corrections — September 10, 2026, Product review corrections — September 9, 2026, Release verification — September 9, 2026, Source revisions (+1 more)
 
-### Community 254 - "tool-page.tsx"
-Cohesion: 0.19
-Nodes (16): ToolPage(), ToolsHub(), findTool(), ToolContent, toolHead(), tools, toolsHubHead(), Route (+8 more)
+### Community 254 - "seo-page-paths.ts"
+Cohesion: 0.14
+Nodes (10): GUIDE_PAGE_PATHS, LOCALIZED_PAGE_PATHS, SEO_PAGE_LINKS, SEO_PAGE_PATHS, SeoPagePath, TOOL_PAGE_PATHS, SeoLandingPageContent, seoLandingPages (+2 more)
 
 ### Community 256 - "ByteLengthQueuingStrategy"
 Cohesion: 0.22
@@ -1081,9 +1085,9 @@ Nodes (14): ia(), ie(), ja(), Mc(), Nd(), oa(), Oc(), Od() (+6 more)
 Cohesion: 0.50
 Nodes (3): Completed customer path, Isolated payment QA — 10 September 2026, Remaining external limitations
 
-### Community 352 - "keepsake-tools.test.ts"
-Cohesion: 0.20
-Nodes (20): guideArticlePaths, guideArticles, CAPSULE_GROUPS, CAPSULE_LEAVE_OUT, CAPSULE_OPEN_AGES, CapsuleGroup, capsuleItemLabels(), capsuleOpenAge() (+12 more)
+### Community 352 - "information-page.tsx"
+Cohesion: 0.17
+Nodes (9): CookiePreferencesLink(), InformationPage(), InformationPageId, informationPages, MarketingFooter(), SiteFooter(), Route, Route (+1 more)
 
 ### Community 355 - "BasicImageTransformations"
 Cohesion: 0.67
@@ -1125,9 +1129,9 @@ Nodes (14): ia(), ie(), ja(), Mc(), Nd(), oa(), Oc(), Od() (+6 more)
 Cohesion: 0.06
 Nodes (14): ia(), ie(), ja(), Mc(), Nd(), oa(), Oc(), Od() (+6 more)
 
-### Community 398 - "tool-math.ts"
-Cohesion: 0.26
-Nodes (20): BabyDatesTool(), number, FamilyAgeTool(), addDays(), addMonths(), addYears(), ageOn(), BabyDate (+12 more)
+### Community 398 - "__root.tsx"
+Cohesion: 0.21
+Nodes (10): Toaster(), bootScript(), localeFromPath(), PwaInstallContext, shouldOfferPwaInstall(), InstallPromptEvent, PwaExperience(), RootDocument() (+2 more)
 
 ### Community 399 - "Everlittle — Apricot detailed design"
 Cohesion: 0.29
@@ -1145,33 +1149,33 @@ Nodes (16): cb(), dc(), Fo(), gb(), hb(), jb(), kb(), ob() (+8 more)
 Cohesion: 0.25
 Nodes (10): AuthEmailInput, buildAuthEmail(), sendAuthEmail(), emailTemplate(), escapeHtml(), buildInvitationEmail(), InvitationEmailInput, roleDescriptions (+2 more)
 
-### Community 405 - "future-letter-tool.tsx"
-Cohesion: 0.25
-Nodes (20): eighteenthBirthday(), isFutureDate(), Letter, LETTER_PRESET_YEARS, LETTER_RECIPIENTS, letterFileName(), letterGreeting(), letterHeading() (+12 more)
+### Community 405 - "product-analytics.ts"
+Cohesion: 0.27
+Nodes (6): PricingSection(), MarketingPricingPage(), Call, productAnalytics, waiting, Route
 
 ### Community 406 - "r"
-Cohesion: 0.19
-Nodes (15): ae(), cb(), dc(), Fo(), ga(), gb(), ha(), hb() (+7 more)
+Cohesion: 0.18
+Nodes (16): cb(), dc(), Fo(), gb(), hb(), jb(), kb(), ob() (+8 more)
 
 ### Community 407 - "r"
-Cohesion: 0.14
-Nodes (21): ae(), cb(), dc(), Fo(), ga(), gb(), ha(), hb() (+13 more)
+Cohesion: 0.18
+Nodes (16): cb(), dc(), Fo(), gb(), hb(), jb(), kb(), ob() (+8 more)
 
 ### Community 409 - "r"
 Cohesion: 0.19
 Nodes (15): ae(), cb(), dc(), Fo(), ga(), gb(), ha(), hb() (+7 more)
 
 ### Community 410 - "r"
-Cohesion: 0.19
-Nodes (15): ae(), cb(), dc(), Fo(), ga(), gb(), ha(), hb() (+7 more)
+Cohesion: 0.14
+Nodes (21): ae(), cb(), dc(), Fo(), ga(), gb(), ha(), hb() (+13 more)
 
 ### Community 412 - "r"
 Cohesion: 0.19
 Nodes (15): ae(), cb(), dc(), Fo(), ga(), gb(), ha(), hb() (+7 more)
 
 ### Community 413 - "r"
-Cohesion: 0.18
-Nodes (16): cb(), dc(), Fo(), gb(), hb(), jb(), kb(), ob() (+8 more)
+Cohesion: 0.19
+Nodes (15): ae(), cb(), dc(), Fo(), ga(), gb(), ha(), hb() (+7 more)
 
 ### Community 414 - "r"
 Cohesion: 0.19
@@ -1190,8 +1194,8 @@ Cohesion: 0.18
 Nodes (13): Aa(), Ca(), Context(), Db(), Eb(), fb(), Hc(), ib() (+5 more)
 
 ### Community 418 - "t"
-Cohesion: 0.20
-Nodes (12): Context(), Db(), Eb(), fb(), Hc(), ib(), Ic(), jb() (+4 more)
+Cohesion: 0.14
+Nodes (18): Aa(), Animation(), Ca(), Context(), Da(), Db(), Eb(), fb() (+10 more)
 
 ### Community 419 - "de"
 Cohesion: 0.23
@@ -1218,8 +1222,8 @@ Cohesion: 0.23
 Nodes (12): _a(), Be(), $d(), de(), fe(), ka(), ma(), me() (+4 more)
 
 ### Community 473 - "t"
-Cohesion: 0.20
-Nodes (12): Context(), Db(), Eb(), fb(), Hc(), ib(), Ic(), jb() (+4 more)
+Cohesion: 0.18
+Nodes (13): Aa(), Ca(), Context(), Db(), Eb(), fb(), Hc(), ib() (+5 more)
 
 ### Community 474 - "de"
 Cohesion: 0.23
@@ -1234,8 +1238,8 @@ Cohesion: 0.23
 Nodes (12): _a(), Be(), $d(), de(), fe(), ka(), ma(), me() (+4 more)
 
 ### Community 477 - "t"
-Cohesion: 0.14
-Nodes (18): Aa(), Animation(), Ca(), Context(), Da(), Db(), Eb(), fb() (+10 more)
+Cohesion: 0.20
+Nodes (12): Context(), Db(), Eb(), fb(), Hc(), ib(), Ic(), jb() (+4 more)
 
 ### Community 478 - "de"
 Cohesion: 0.23
@@ -1346,8 +1350,8 @@ Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: How should public SEO landing pages integrate with the existing SSR routing, metadata, sitemap, server indexability, and marketing styles?, Source Nodes
 
 ### Community 505 - "la"
-Cohesion: 0.28
-Nodes (9): Aa(), Animation(), Ca(), Da(), la(), na(), Ua(), Va() (+1 more)
+Cohesion: 0.60
+Nodes (5): Animation(), Da(), la(), Ua(), Va()
 
 ### Community 506 - "scripts"
 Cohesion: 0.22
@@ -1497,9 +1501,9 @@ Nodes (4): private, scripts, check, render
 Cohesion: 0.40
 Nodes (4): First night away, Frame 1, Frame 2, Frame 3
 
-### Community 543 - "subscription-sheet.tsx"
-Cohesion: 0.24
-Nodes (7): state, ArchiveState, BillingDestination, SubscriptionSheet(), useBillingNavigation(), acquisitionHeaders(), state
+### Community 543 - "archive-utils.tsx"
+Cohesion: 0.10
+Nodes (27): FamilyPerson(), InvitationPreview, PendingInvitation, AccessScreen(), AnimatedActionLabel(), ArchiveRedirect(), CapsulesView(), FamilySettings() (+19 more)
 
 ### Community 544 - "Meta traffic test — saved drafts"
 Cohesion: 0.40
@@ -1581,13 +1585,17 @@ Nodes (3): kb(), ra(), rb()
 Cohesion: 0.25
 Nodes (8): Everlittle TODO, P0 — Claim the reference installation, P1 — Privacy and durability, P1 — Real archive data, P2 — Child experience, P2 — Deferred account recovery, P2 — PWA and device polish, P2 — Quality and operations
 
-### Community 568 - "ga"
-Cohesion: 0.40
-Nodes (5): ae(), ga(), ha(), oe(), pe()
+### Community 568 - "la"
+Cohesion: 0.28
+Nodes (9): Aa(), Animation(), Ca(), Da(), la(), na(), Ua(), Va() (+1 more)
 
 ### Community 569 - "Hosted plans and storage"
 Cohesion: 0.29
 Nodes (6): Dodo Payments boundary, Free entry plan, Hosted plans and storage, Lifetime access, Test-mode setup, Upload quota and deployment
+
+### Community 576 - "la"
+Cohesion: 0.28
+Nodes (9): Aa(), Animation(), Ca(), Da(), la(), na(), Ua(), Va() (+1 more)
 
 ### Community 605 - "Everlittle TODO"
 Cohesion: 0.25
@@ -1597,9 +1605,9 @@ Nodes (8): Everlittle TODO, P0 — Claim the reference installation, P1 — Priv
 Cohesion: 0.40
 Nodes (5): Concept, Everlittle — Apricot landing concept, Final generation prompt, Original v1 page story, Spacious v2
 
-### Community 607 - "la"
-Cohesion: 0.28
-Nodes (9): Aa(), Animation(), Ca(), Da(), la(), na(), Ua(), Va() (+1 more)
+### Community 607 - "ga"
+Cohesion: 0.40
+Nodes (5): ae(), ga(), ha(), oe(), pe()
 
 ### Community 608 - "la"
 Cohesion: 0.28
@@ -1657,6 +1665,10 @@ Nodes (3): kb(), ra(), rb()
 Cohesion: 0.60
 Nodes (5): Animation(), Da(), la(), Ua(), Va()
 
+### Community 623 - "kb"
+Cohesion: 0.67
+Nodes (3): kb(), ra(), rb()
+
 ### Community 626 - "ga"
 Cohesion: 0.40
 Nodes (5): ae(), ga(), ha(), oe(), pe()
@@ -1665,33 +1677,29 @@ Nodes (5): ae(), ga(), ha(), oe(), pe()
 Cohesion: 0.67
 Nodes (3): kb(), ra(), rb()
 
-### Community 630 - "kb"
-Cohesion: 0.67
-Nodes (3): kb(), ra(), rb()
-
 ### Community 631 - "kb"
 Cohesion: 0.67
 Nodes (3): kb(), ra(), rb()
 
 ## Knowledge Gaps
-- **2824 isolated node(s):** `child`, `base`, `demoMemories`, `state`, `nativeFetch` (+2819 more)
+- **2842 isolated node(s):** `child`, `base`, `demoMemories`, `state`, `nativeFetch` (+2837 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **343 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **341 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `URL` connect `URL` to `web/worker-configuration.d.ts`?**
-  _High betweenness centrality (0.012) - this node is a cross-community bridge._
-- **Why does `SubtleCrypto` connect `SubtleCrypto` to `web/worker-configuration.d.ts`?**
+- **Why does `Blob` connect `Blob` to `web/worker-configuration.d.ts`?**
   _High betweenness centrality (0.008) - this node is a cross-community bridge._
-- **Why does `cn()` connect `cn` to `family-settings.tsx`?**
+- **Why does `cn()` connect `cn` to `onboarding-page.tsx`, `memory-detail.tsx`?**
   _High betweenness centrality (0.007) - this node is a cross-community bridge._
+- **Why does `Event` connect `Event` to `web/worker-configuration.d.ts`, `ExtendableEvent`?**
+  _High betweenness centrality (0.005) - this node is a cross-community bridge._
 - **What connects `child`, `base`, `demoMemories` to the rest of the system?**
-  _2824 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _2842 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `web/worker-configuration.d.ts` be split into smaller, more focused modules?**
   _Cohesion score 0.0023446658851113715 - nodes in this community are weakly interconnected._
 - **Should `archive-api.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06458635703918723 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.05268065268065268 - nodes in this community are weakly interconnected._
 - **Should `scripts` be split into smaller, more focused modules?**
   _Cohesion score 0.09090909090909091 - nodes in this community are weakly interconnected._

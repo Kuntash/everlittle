@@ -2,6 +2,7 @@ import { advertisingPolicy } from "@/lib/advertising-policy";
 import { flushAnalytics, projectAnalytics, eventStatement } from "@/lib/server-analytics";
 import { parseAcquisition } from "@/lib/acquisition";
 import handler, { createServerEntry } from "@tanstack/react-start/server-entry";
+import { AsyncLocalStorage } from "node:async_hooks";
 
 import { slugify } from "@everlittle/domain";
 
@@ -14,7 +15,13 @@ import {
 import { createAuth } from "@/lib/auth";
 import { sendAuthEmail } from "@/lib/auth-email";
 import { handleDodoWebhook } from "@/lib/billing";
-import { getCanonicalHostedUrl, getDeploymentConfig } from "@/lib/deployment";
+import { BOOT_STORE_GLOBAL, type BootState } from "@/lib/boot";
+import {
+  getCanonicalHostedUrl,
+  getDeploymentConfig,
+  type DeploymentConfig,
+} from "@/lib/deployment";
+import type { PlatformState } from "@/features/archive/archive-types";
 import {
   isIndexablePath,
   isKnownPagePath,
@@ -22,11 +29,24 @@ import {
   robotsResponse,
   sitemapResponse,
 } from "@/lib/public-web";
-import { getRuntimeEnv } from "@/lib/runtime-env";
+import { getRuntimeEnv, type RuntimeEnv } from "@/lib/runtime-env";
 import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 
 type SignUpPayload = { user?: { id?: string; name?: string } };
 type SignUpInput = { email?: string };
+
+/**
+ * The boot state of the request that is being rendered. `readBoot` in `@/lib/boot` reads it during the render.
+ * It is reached through a global, so the page code needs no server-only import.
+ */
+const bootStore = new AsyncLocalStorage<BootState>();
+(globalThis as unknown as Record<string, unknown>)[BOOT_STORE_GLOBAL] = bootStore;
+
+/** Built files live here. Cloudflare serves the ones that exist before this Worker runs. */
+const ASSETS_PATH = "/assets/";
+/** Better Auth's session cookie, with the `everlittle` prefix from `createAuth`. Its presence is a hint, not proof. */
+const SESSION_COOKIE = "everlittle.session_token=";
+const CHILD_SESSION_COOKIE = "everlittle.child_session=";
 
 const serverEntry = createServerEntry({
   async fetch(request) {
@@ -62,62 +82,24 @@ const serverEntry = createServerEntry({
       return handleDodoWebhook(request, runtime);
     }
 
+    /*
+     * A request under `/assets/` that reaches the Worker names a file of an older build. It gets a plain 404
+     * without a database query, and no browser keeps it.
+     */
+    if (url.pathname.startsWith(ASSETS_PATH)) {
+      return new Response("Not found", {
+        status: 404,
+        headers: { "content-type": "text/plain; charset=utf-8", "cache-control": "no-store" },
+      });
+    }
+
     const archiveResponse = await handleArchiveApi(request);
     if (archiveResponse) return archiveResponse;
 
     if (url.pathname === "/api/platform" && request.method === "GET") {
-      const row = await runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"').first<{
-        count: number;
-      }>();
-      const child =
-        deployment.mode === "self-hosted"
-          ? await runtime.DB.prepare(
-              `SELECT display_name AS displayName,
-                      c.slug AS childSlug, a.slug AS familySlug,
-                      CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS enabled
-               FROM child_profile c
-               JOIN family_archive a ON a.id = c.archive_id
-               ORDER BY c.created_at LIMIT 1`,
-            ).first<{
-              displayName: string;
-              childSlug: string;
-              familySlug: string;
-              enabled: number;
-            }>()
-          : null;
-
-      return Response.json(
-        {
-          advertising: advertisingPolicy(
-            request.cf?.country,
-            request.headers.get("Sec-GPC") === "1",
-          ),
-          allowsPublicSignup: deployment.capabilities.allowsPublicSignup,
-          defaultArchiveSlug: deployment.defaultArchiveSlug,
-          deploymentMode: deployment.mode,
-          needsSetup:
-            deployment.capabilities.allowsInitialOwnerBootstrap && Number(row?.count ?? 0) === 0,
-          analytics:
-            deployment.mode === "hosted" && runtime.POSTHOG_PROJECT_TOKEN && runtime.POSTHOG_HOST
-              ? {
-                  posthog: {
-                    host: runtime.POSTHOG_HOST,
-                    environment: runtime.DODO_PAYMENTS_ENVIRONMENT ?? "test_mode",
-                    token: runtime.POSTHOG_PROJECT_TOKEN,
-                  },
-                }
-              : null,
-          childAccess: child
-            ? {
-                displayName: child.displayName,
-                childSlug: child.childSlug,
-                familySlug: child.familySlug,
-                enabled: Boolean(child.enabled),
-              }
-            : null,
-        },
-        { headers: { "Cache-Control": "private, no-store" } },
-      );
+      return Response.json(await platformState(request, runtime, deployment), {
+        headers: { "Cache-Control": "private, no-store" },
+      });
     }
 
     if (request.method !== "GET" && request.method !== "HEAD") {
@@ -128,7 +110,14 @@ const serverEntry = createServerEntry({
       return notFoundResponse();
     }
 
-    const response = await handler.fetch(request);
+    /* The page starts from what the server knows, so its first paint does not wait for `/api/platform`. */
+    const cookies = request.headers.get("cookie") ?? "";
+    const boot: BootState = {
+      platform: await platformState(request, runtime, deployment),
+      hasSession: cookies.includes(SESSION_COOKIE),
+      hasChildSession: cookies.includes(CHILD_SESSION_COOKIE),
+    };
+    const response = await bootStore.run(boot, () => handler.fetch(request));
     const isPublicMarketingPage =
       deployment.mode === "hosted" &&
       runtime.DODO_PAYMENTS_ENVIRONMENT === "live_mode" &&
@@ -152,6 +141,62 @@ export default {
     await flushAnalytics(runtime);
   },
 };
+
+/**
+ * The installation's settings as the browser needs them. `/api/platform` returns this, and each rendered page
+ * carries it. Hosted mode reads no database row. Self-hosted mode reads the account count and the first child
+ * profile in one batch.
+ */
+async function platformState(
+  request: Request,
+  runtime: RuntimeEnv,
+  deployment: DeploymentConfig,
+): Promise<PlatformState> {
+  type ChildRow = { displayName: string; childSlug: string; familySlug: string; enabled: number };
+  let accounts = 1;
+  let child: ChildRow | null = null;
+  if (deployment.mode === "self-hosted") {
+    const [accountRows, childRows] = await runtime.DB.batch([
+      runtime.DB.prepare('SELECT COUNT(*) AS count FROM "user"'),
+      runtime.DB.prepare(
+        `SELECT display_name AS displayName,
+                c.slug AS childSlug, a.slug AS familySlug,
+                CASE WHEN access_pin_hash IS NULL THEN 0 ELSE 1 END AS enabled
+         FROM child_profile c
+         JOIN family_archive a ON a.id = c.archive_id
+         ORDER BY c.created_at LIMIT 1`,
+      ),
+    ]);
+    accounts = Number((accountRows.results[0] as { count: number } | undefined)?.count ?? 0);
+    child = (childRows.results[0] as ChildRow | undefined) ?? null;
+  }
+
+  return {
+    advertising: advertisingPolicy(request.cf?.country, request.headers.get("Sec-GPC") === "1"),
+    allowsPublicSignup: deployment.capabilities.allowsPublicSignup,
+    defaultArchiveSlug: deployment.defaultArchiveSlug,
+    deploymentMode: deployment.mode,
+    needsSetup: deployment.capabilities.allowsInitialOwnerBootstrap && accounts === 0,
+    analytics:
+      deployment.mode === "hosted" && runtime.POSTHOG_PROJECT_TOKEN && runtime.POSTHOG_HOST
+        ? {
+            posthog: {
+              host: runtime.POSTHOG_HOST,
+              environment: runtime.DODO_PAYMENTS_ENVIRONMENT ?? "test_mode",
+              token: runtime.POSTHOG_PROJECT_TOKEN,
+            },
+          }
+        : null,
+    childAccess: child
+      ? {
+          displayName: child.displayName,
+          childSlug: child.childSlug,
+          familySlug: child.familySlug,
+          enabled: Boolean(child.enabled),
+        }
+      : null,
+  };
+}
 
 async function handleAuthRequest(request: Request): Promise<Response> {
   const runtime = getRuntimeEnv();

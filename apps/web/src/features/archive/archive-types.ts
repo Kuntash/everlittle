@@ -9,6 +9,8 @@ export type PlatformState = {
     familySlug: string;
     enabled: boolean;
   } | null;
+  advertising?: { mode: "opt-in" | "us-opt-out"; globalPrivacyControl: boolean };
+  analytics?: { posthog?: { host?: string; token?: string; environment?: string } } | null;
 };
 
 export type ChildSession = { signedIn: boolean; child?: { displayName: string } };

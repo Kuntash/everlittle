@@ -1,7 +1,8 @@
 import { AuthFrame } from "@/components/design/auth-frame";
 import { DateInput } from "@/components/design/date-input";
 import { Input } from "@/components/ui/input";
-import { usePostHog } from "@posthog/react";
+import { loadPlatform } from "@/lib/platform-client";
+import { productAnalytics } from "@/lib/product-analytics";
 import { ArrowLeft, ArrowRight, Check, LockKeyhole, ShieldCheck } from "lucide-react";
 import type { FormEvent } from "react";
 import { useEffect, useState } from "react";
@@ -21,7 +22,6 @@ type Draft = {
 const sections = ["Family", "Memories", "Finish"] as const;
 
 export function Onboarding() {
-  const posthog = usePostHog();
   const session = authClient.useSession();
   const [deploymentMode, setDeploymentMode] = useState<"hosted" | "self-hosted" | null>(null);
   const [section, setSection] = useState(0);
@@ -42,14 +42,10 @@ export function Onboarding() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    void fetch("/api/platform")
-      .then(async (response) => {
-        if (!response.ok) throw new Error("We could not check this archive.");
-        return response.json() as Promise<{ deploymentMode: "hosted" | "self-hosted" }>;
-      })
+    void loadPlatform()
       .then(({ deploymentMode: mode }) => setDeploymentMode(mode))
-      .catch((reason: Error) => {
-        setError(reason.message);
+      .catch(() => {
+        setError("We could not check this archive.");
         setLoading(false);
       });
   }, []);
@@ -76,7 +72,7 @@ export function Onboarding() {
           location.replace(`/${encodeURIComponent(state.archiveSlug)}`);
           return;
         }
-        posthog?.capture("archive_onboarding_started");
+        productAnalytics.capture("archive_onboarding_started");
         if (state.draft) {
           setFamilyName(state.draft.familyName ?? "");
           setFamilySlug(state.draft.familySlug ?? "");
@@ -147,7 +143,7 @@ export function Onboarding() {
         }),
       });
       if (!response.ok) {
-        posthog?.capture("archive_onboarding_failed", {
+        productAnalytics.capture("archive_onboarding_failed", {
           reason: response.status === 409 ? "conflict" : "request_rejected",
           step: section,
         });
@@ -159,7 +155,10 @@ export function Onboarding() {
       setSaving(false);
     } catch {
       setError("Couldn’t connect. Please try again.");
-      posthog?.capture("archive_onboarding_failed", { reason: "network_error", step: section });
+      productAnalytics.capture("archive_onboarding_failed", {
+        reason: "network_error",
+        step: section,
+      });
     } finally {
       setSaving(false);
     }
@@ -184,7 +183,7 @@ export function Onboarding() {
         }),
       });
       if (!response.ok) {
-        posthog?.capture("archive_onboarding_failed", {
+        productAnalytics.capture("archive_onboarding_failed", {
           reason: response.status === 409 ? "conflict" : "request_rejected",
           step: section,
         });
@@ -193,14 +192,17 @@ export function Onboarding() {
         return;
       }
       const result = (await response.json()) as { archiveSlug: string };
-      posthog?.capture("archive_onboarding_submitted", {
+      productAnalytics.capture("archive_onboarding_submitted", {
         archive_profile_kind: profileKind,
         child_pin_enabled: profileKind === "child" && enablePin,
       });
       location.assign(`/${encodeURIComponent(result.archiveSlug)}`);
     } catch {
       setError("Couldn’t connect. Please try again.");
-      posthog?.capture("archive_onboarding_failed", { reason: "network_error", step: section });
+      productAnalytics.capture("archive_onboarding_failed", {
+        reason: "network_error",
+        step: section,
+      });
     } finally {
       setSaving(false);
     }
