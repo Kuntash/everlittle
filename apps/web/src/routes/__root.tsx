@@ -13,6 +13,7 @@ import { useEffect, useRef, useState } from "react";
 import { AnalyticsProvider } from "@/components/analytics-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { authClient } from "@/lib/auth-client";
+import { bootScript, readBoot } from "@/lib/boot";
 import { LOCALE_LANG, localeFromPath } from "@/lib/locales";
 import { shouldOfferPwaInstall } from "@/lib/pwa-install";
 
@@ -59,9 +60,12 @@ export const Route = createRootRoute({
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const pathname = useLocation({ select: (location) => location.pathname });
+  const boot = readBoot();
   return (
     <html lang={LOCALE_LANG[localeFromPath(pathname)]}>
       <head>
+        {/* Hands the server's settings to the browser before any script runs. See `@/lib/boot`. */}
+        {boot ? <script dangerouslySetInnerHTML={{ __html: bootScript(boot) }} /> : null}
         <HeadContent />
       </head>
       <body className="apricot">

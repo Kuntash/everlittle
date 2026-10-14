@@ -1,13 +1,19 @@
 import { Everlittle } from "@/features/archive/components/everlittle";
 import landingCss from "@/features/marketing/landing.css?url";
 import homeCss from "@/features/marketing/home/home.css?url";
+import { readBoot } from "@/lib/boot";
 import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/(marketing)/")({
   component: Everlittle,
   head: () => ({
     links: [
-      { rel: "stylesheet", href: landingCss },
-      { rel: "stylesheet", href: homeCss },
+      // A self-hosted installation shows its sign-in screen here, so it does not need the landing page's styles.
+      ...(readBoot()?.platform.deploymentMode === "self-hosted"
+        ? []
+        : [
+            { rel: "stylesheet", href: landingCss },
+            { rel: "stylesheet", href: homeCss },
+          ]),
       { href: "https://geteverlittle.com/", rel: "canonical" },
     ],
     meta: [

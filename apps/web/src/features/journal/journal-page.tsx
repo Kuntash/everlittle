@@ -1,6 +1,8 @@
-import { Input, SlidingTabs } from "@/components/design/controls";
+import { Button } from "@/components/design/button";
+import { SlidingTabs } from "@/components/design/sliding-tabs";
+import { Input } from "@/components/ui/input";
+import { Brand } from "@/components/brand";
 import { MemoryIllustration } from "@/components/design/memory-illustrations";
-import { Brand, Button } from "@/components/design/shared";
 import { SiteFooter } from "@/features/marketing/site-footer";
 import { ArrowRight, ChevronDown, Clock, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";

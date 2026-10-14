@@ -1,4 +1,4 @@
-import { Brand } from "@/components/design/shared";
+import { Brand } from "@/components/brand";
 import { CookiePreferencesLink } from "@/components/cookie-preferences-link";
 import "./information.css";
 

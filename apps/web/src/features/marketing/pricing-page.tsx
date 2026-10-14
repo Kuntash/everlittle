@@ -1,13 +1,13 @@
-import { Brand } from "@/components/design/shared";
+import { Brand } from "@/components/brand";
 import { MarketingFooter } from "@/features/marketing/components/marketing-footer";
 import { PricingSection } from "@/features/marketing/components/pricing-section";
-import posthog from "posthog-js";
+import { productAnalytics } from "@/lib/product-analytics";
 import { useState } from "react";
 
 export function MarketingPricingPage() {
   const [billing, setBilling] = useState("Monthly");
   const start = () => {
-    posthog.capture("marketing_signup_cta_clicked", {
+    productAnalytics.capture("marketing_signup_cta_clicked", {
       source_path: "/pricing",
       destination_path: "/sign-up",
       placement: "pricing_page",

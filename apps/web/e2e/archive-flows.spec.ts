@@ -69,6 +69,10 @@ test.beforeEach(async ({ page }) => {
   await page.addInitScript(() =>
     localStorage.setItem("everlittle.pwa-install-dismissed", String(Date.now())),
   );
+  // The server tells the page whether the browser sent a session cookie. A signed-in parent always has one.
+  await page
+    .context()
+    .addCookies([{ name: "everlittle.session_token", value: "e2e", url: "http://localhost:3015" }]);
   await page.route("**/api/platform", (r) =>
     r.fulfill({
       json: {

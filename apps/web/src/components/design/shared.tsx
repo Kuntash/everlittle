@@ -11,8 +11,6 @@ import {
   Users,
   X,
 } from "lucide-react";
-import React from "react";
-import { Button as ShadButton } from "../ui/button";
 import { SurfaceModal } from "./controls";
 import { MemoryIllustration } from "./memory-illustrations";
 export { ArrowRight, Calendar, Check, ChevronDown, Lock, Pause, Play, Plus, ShieldCheck, Users, X };
@@ -47,24 +45,7 @@ export function Art({ name, className = "" }: { name: string; className?: string
     </div>
   );
 }
-export function Button({
-  children,
-  secondary = false,
-  className = "",
-  ...props
-}: React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  secondary?: boolean;
-}) {
-  return (
-    <ShadButton
-      {...props}
-      variant={secondary ? "outline" : "default"}
-      className={`raised ${secondary ? "secondary" : ""} ${className}`}
-    >
-      {children}
-    </ShadButton>
-  );
-}
+export { Button } from "./button";
 export const Modal = SurfaceModal;
 export function Wave() {
   return (

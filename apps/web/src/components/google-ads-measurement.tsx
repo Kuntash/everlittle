@@ -1,4 +1,3 @@
-import type { AdvertisingPolicy } from "@/lib/advertising-policy";
 import { useEffect, useState } from "react";
 import {
   adsConsent,
@@ -12,6 +11,7 @@ import {
 import { analyticsPath } from "@/lib/analytics";
 import { useRouterState } from "@tanstack/react-router";
 import { authClient } from "@/lib/auth-client";
+import { loadPlatform } from "@/lib/platform-client";
 
 export function GoogleAdsMeasurement() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -25,15 +25,7 @@ export function GoogleAdsMeasurement() {
     (!safePath.includes(":") &&
       !["/invite", "/reset-password", "/onboarding", "/sign-in"].includes(safePath));
   useEffect(() => {
-    void fetch("/api/platform", { cache: "no-store" })
-      .then(
-        (r) =>
-          r.json() as Promise<{
-            deploymentMode: string;
-            advertising?: AdvertisingPolicy;
-            analytics?: { posthog?: { environment?: string } };
-          }>,
-      )
+    void loadPlatform()
       .then((p) => {
         configureAdsPolicy(p.advertising ?? { mode: "opt-in", globalPrivacyControl: false });
         refresh();
@@ -71,6 +63,8 @@ export function GoogleAdsMeasurement() {
     if (!session.data?.user || safePath.includes("/child")) return;
     let stopped = false;
     const check = async () => {
+      /* A tab in the background sends nothing. It checks again on its next turn after it is shown. */
+      if (document.visibilityState === "hidden") return;
       try {
         const response = await fetch("/api/measurement/conversions", { cache: "no-store" });
         if (!response.ok || stopped) return;

@@ -1,6 +1,6 @@
 import { acquisitionHeaders } from "@/lib/acquisition";
 import { AuthFrame } from "@/components/design/auth-frame";
-import { SlidingTabs } from "@/components/design/controls";
+import { SlidingTabs } from "@/components/design/sliding-tabs";
 import { PasswordInput } from "@/components/password-input";
 import { Input } from "@/components/ui/input";
 import type { InvitationPreview, PlatformState } from "@/features/archive/archive-types";
@@ -13,7 +13,7 @@ import {
 import { resolveArchiveEntry } from "@/lib/archive-navigation";
 import { authClient } from "@/lib/auth-client";
 import { isExistingAccountError } from "@/lib/auth-feedback";
-import { usePostHog } from "@posthog/react";
+import { productAnalytics } from "@/lib/product-analytics";
 import { ArrowRight, Check } from "lucide-react";
 import type { FormEvent } from "react";
 import { useState } from "react";
@@ -36,7 +36,6 @@ export function AccessScreen({
   inviteToken: string;
   needsSetup: boolean;
 }) {
-  const posthog = usePostHog();
   const isInvitation = Boolean(invitation && inviteToken);
   const [mode, setMode] = useState<"sign-in" | "setup">(
     initialMode ?? (needsSetup || isInvitation || allowsPublicSignup ? "setup" : "sign-in"),
@@ -68,7 +67,7 @@ export function AccessScreen({
         : redirect;
     const isAcquisitionSignup = mode === "setup" && allowsPublicSignup && !isInvitation;
     if (isAcquisitionSignup) {
-      posthog?.capture("account_signup_started", { signup_method: "email" });
+      productAnalytics.capture("account_signup_started", { signup_method: "email" });
     }
 
     const result =
@@ -86,7 +85,7 @@ export function AccessScreen({
 
     if (result.error) {
       if (isAcquisitionSignup)
-        posthog?.capture("account_signup_failed", {
+        productAnalytics.capture("account_signup_failed", {
           reason: isExistingAccountError(result.error) ? "existing_account" : "signup_rejected",
         });
       if (isExistingAccountError(result.error)) {
@@ -105,8 +104,8 @@ export function AccessScreen({
     }
 
     if (isAcquisitionSignup) {
-      if (result.data?.user?.id) posthog?.identify(result.data.user.id);
-      posthog?.capture("account_signup_form_completed", {
+      if (result.data?.user?.id) productAnalytics.identify(result.data.user.id);
+      productAnalytics.capture("account_signup_form_completed", {
         signup_method: "email",
         email_verification_required: true,
       });

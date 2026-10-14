@@ -1,19 +1,12 @@
-import posthog from "posthog-js";
+import { productAnalytics } from "@/lib/product-analytics";
 import { useEffect, useRef, useState } from "react";
 import { SiteFooter } from "@/features/marketing/site-footer";
 import { Illustration } from "@/components/design/illustrations";
-import {
-  ArrowRight,
-  Brand,
-  Check,
-  Lock,
-  Play,
-  ShieldCheck,
-  Users,
-} from "@/components/design/shared";
+import { Brand } from "@/components/brand";
+import { ArrowRight, Check, Lock, Play, ShieldCheck, Users } from "lucide-react";
 
 const start = (placement: string) => {
-  posthog.capture("marketing_signup_cta_clicked", {
+  productAnalytics.capture("marketing_signup_cta_clicked", {
     source_path: "/",
     destination_path: "/sign-up",
     placement,
@@ -166,6 +159,11 @@ function Hero() {
               <figure className="hv-c-photo">
                 <img
                   src="/marketing/family-album-us.webp"
+                  srcSet="/marketing/family-album-us-800.webp 800w, /marketing/family-album-us.webp 1536w"
+                  sizes="(max-width: 700px) 92vw, 640px"
+                  width={1536}
+                  height={1024}
+                  fetchPriority="high"
                   alt="Three generations looking through a family album"
                 />
                 <figcaption>
@@ -217,6 +215,12 @@ function Hero() {
             <figure className="hv-print">
               <img
                 src="/marketing/first-bike-us.webp"
+                srcSet="/marketing/first-bike-us-800.webp 800w, /marketing/first-bike-us.webp 1536w"
+                sizes="(max-width: 700px) 84vw, 420px"
+                width={1536}
+                height={1024}
+                loading="lazy"
+                decoding="async"
                 alt="A father steadying his daughter on her first bike"
               />
               <figcaption>
@@ -239,7 +243,11 @@ function Hero() {
             <h3>Letters that wait</h3>
             <p>Choose the day it opens. Until then nobody can read it, including you.</p>
             <img
-              src="/marketing/objects/sealed-envelope.png"
+              src="/marketing/objects/sealed-envelope.webp"
+              width={640}
+              height={640}
+              loading="lazy"
+              decoding="async"
               alt="A sealed envelope with a wax seal"
             />
           </article>
@@ -301,7 +309,7 @@ function Pricing() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          posthog.capture("pricing_viewed", { placement: "homepage" });
+          productAnalytics.capture("pricing_viewed", { placement: "homepage" });
           observer.disconnect();
         }
       },
@@ -322,7 +330,7 @@ function Pricing() {
               aria-pressed={yearly === value}
               onClick={() => {
                 setYearly(value);
-                posthog.capture("plan_selected", {
+                productAnalytics.capture("plan_selected", {
                   billing_interval: value ? "yearly" : "monthly",
                   placement: "homepage",
                 });
@@ -435,7 +443,11 @@ function Closing() {
   return (
     <section className="hv-closing" data-reveal>
       <img
-        src="/marketing/objects/archive-stack-v2.png"
+        src="/marketing/objects/archive-stack-v2.webp"
+        width={640}
+        height={426}
+        loading="lazy"
+        decoding="async"
         alt="A stack of letters tied with ribbon"
         data-scroll
         style={{ "--depth": "-40px" } as React.CSSProperties}

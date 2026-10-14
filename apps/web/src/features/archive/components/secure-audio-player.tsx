@@ -18,8 +18,31 @@ export function SecureAudioPlayer({ memory }: { memory: Memory }) {
   const [duration, setDuration] = useState(0);
   const [waveform, setWaveform] = useState(FALLBACK_WAVEFORM);
   const [error, setError] = useState("");
+  const rootRef = useRef<HTMLDivElement>(null);
+  /* A long timeline holds many recordings. Each one downloads when its card comes near the screen, not before. */
+  const [near, setNear] = useState(false);
 
   useEffect(() => {
+    const root = rootRef.current;
+    if (!root || typeof IntersectionObserver === "undefined") {
+      setNear(true);
+      return;
+    }
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setNear(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "400px 0px" },
+    );
+    observer.observe(root);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!near) return;
     const controller = new AbortController();
     let active = true;
     setLoading(true);
@@ -63,7 +86,7 @@ export function SecureAudioPlayer({ memory }: { memory: Memory }) {
       if (objectUrlRef.current) URL.revokeObjectURL(objectUrlRef.current);
       objectUrlRef.current = null;
     };
-  }, [memory.mediaId]);
+  }, [memory.mediaId, near]);
 
   async function toggle() {
     const audio = audioRef.current;
@@ -88,7 +111,7 @@ export function SecureAudioPlayer({ memory }: { memory: Memory }) {
 
   const progress = duration ? currentTime / duration : 0;
   return (
-    <div className="voice-player custom-player">
+    <div className="voice-player custom-player" ref={rootRef}>
       <audio
         aria-label={memory.title}
         onDurationChange={(event) => setDuration(event.currentTarget.duration || 0)}

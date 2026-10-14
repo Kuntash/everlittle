@@ -1,6 +1,7 @@
-import posthog from "posthog-js";
+import { productAnalytics } from "@/lib/product-analytics";
 import { useEffect, useRef } from "react";
-import { Button, Check } from "@/components/design/shared";
+import { Button } from "@/components/design/button";
+import { Check } from "lucide-react";
 export function PricingSection({
   start,
   billing,
@@ -19,7 +20,7 @@ export function PricingSection({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          posthog.capture("pricing_viewed", { placement });
+          productAnalytics.capture("pricing_viewed", { placement });
           observer.disconnect();
         }
       },
@@ -73,7 +74,7 @@ export function PricingSection({
               onClick={() => {
                 const next = billing === "Monthly" ? "Yearly" : "Monthly";
                 setBilling(next);
-                posthog.capture("plan_selected", {
+                productAnalytics.capture("plan_selected", {
                   billing_interval: next.toLowerCase(),
                   placement,
                 });
