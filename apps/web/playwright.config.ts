@@ -8,6 +8,10 @@ export default defineConfig({
     trace: "retain-on-failure",
     // API fixtures must not be bypassed by a previously installed service worker.
     serviceWorkers: "block",
+    // A fake microphone that plays a steady tone, for the voice recording tests.
+    launchOptions: {
+      args: ["--use-fake-device-for-media-stream", "--use-fake-ui-for-media-stream"],
+    },
   },
   projects: [
     { name: "tablet", use: { viewport: { width: 820, height: 1180 } } },

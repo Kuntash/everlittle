@@ -1,7 +1,7 @@
 {
   "apps/web/package.json": {
-    "mtime": 1789261409.4117088,
-    "ast_hash": "eb008fd3801a65899a087f2f039e56c2",
+    "mtime": 1791955460.6507897,
+    "ast_hash": "5a3c0883d0c167e1d1c218abb870b2e9",
     "semantic_hash": ""
   },
   "apps/web/public/sw.js": {
@@ -40,12 +40,12 @@
     "semantic_hash": ""
   },
   "apps/web/src/routes/__root.tsx": {
-    "mtime": 1791945397.2412019,
+    "mtime": 1791949605.9581935,
     "ast_hash": "5fa76ade815ce92c06a6cc1d8451a422",
     "semantic_hash": ""
   },
   "apps/web/src/server.ts": {
-    "mtime": 1791945733.4258533,
+    "mtime": 1791949605.9590983,
     "ast_hash": "a5855712c00abd8dbe9ce618fd303d3f",
     "semantic_hash": ""
   },
@@ -105,8 +105,8 @@
     "semantic_hash": ""
   },
   "pnpm-workspace.yaml": {
-    "mtime": 1789261409.4836886,
-    "ast_hash": "71360be4bdf4ac994f89e2ae80fc810a",
+    "mtime": 1791955460.650792,
+    "ast_hash": "3626d1cc17224eee369c2c53ee9191ef",
     "semantic_hash": ""
   },
   "apps/web/public/apple-touch-icon.png": {
@@ -490,7 +490,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/analytics-provider.tsx": {
-    "mtime": 1791949360.1410778,
+    "mtime": 1791949605.9518442,
     "ast_hash": "e202ff6c0f9ca0277e1f814674beeed6",
     "semantic_hash": ""
   },
@@ -855,8 +855,8 @@
     "semantic_hash": ""
   },
   "apps/web/e2e/archive-flows.spec.ts": {
-    "mtime": 1791944754.3030279,
-    "ast_hash": "7a85cc58b73a8e7a1be1cb3dd3e3c23e",
+    "mtime": 1791955429.3236432,
+    "ast_hash": "742413eadb38afd63b5997b6c7e082c0",
     "semantic_hash": ""
   },
   "apps/web/e2e/public-flows.spec.ts": {
@@ -870,8 +870,8 @@
     "semantic_hash": ""
   },
   "apps/web/playwright.config.ts": {
-    "mtime": 1791226652.6230052,
-    "ast_hash": "cdfa51ebac24d812f35aed763160c7b1",
+    "mtime": 1791954270.16301,
+    "ast_hash": "debfb8e1fbf381b02a2e3f330e47f8da",
     "semantic_hash": ""
   },
   "apps/web/scripts/start-e2e.mjs": {
@@ -925,7 +925,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/google-ads-measurement.tsx": {
-    "mtime": 1791945385.2868602,
+    "mtime": 1791949605.953746,
     "ast_hash": "45407631829db40e16ca075d9ff5a257",
     "semantic_hash": ""
   },
@@ -1070,13 +1070,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-composer.tsx": {
-    "mtime": 1791944754.3090937,
-    "ast_hash": "f135c0cde1febbb457be6ae32e76f9e7",
+    "mtime": 1791954288.3256001,
+    "ast_hash": "40c4ee0a60f4c5f77bb1a2f59738a063",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-detail.tsx": {
-    "mtime": 1791226652.62597,
-    "ast_hash": "e1863fc2752a1b13ccd6c5be5c5b71c4",
+    "mtime": 1791954143.1499085,
+    "ast_hash": "10a3e0207bf45bc5814156644a910689",
     "semantic_hash": ""
   },
   "apps/web/src/features/archive/components/memory-empty-state.tsx": {
@@ -1190,7 +1190,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/journal/journal-page.tsx": {
-    "mtime": 1791945929.198329,
+    "mtime": 1791949605.9541345,
     "ast_hash": "e6ef2310b2c45e6bf0de5d9b87cc58c3",
     "semantic_hash": ""
   },
@@ -1205,12 +1205,12 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/pricing-section.tsx": {
-    "mtime": 1791949360.1408908,
+    "mtime": 1791949605.9543822,
     "ast_hash": "8ec490578d886071616c6acf355f7835",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/pricing-page.tsx": {
-    "mtime": 1791949360.1407945,
+    "mtime": 1791949605.9575222,
     "ast_hash": "d50bd4f437a5a0dea89221680e40a483",
     "semantic_hash": ""
   },
@@ -4030,7 +4030,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/home/forest-home.tsx": {
-    "mtime": 1791949360.1405244,
+    "mtime": 1791949605.955424,
     "ast_hash": "b407ce841ccb80fdea4c892852f0d48d",
     "semantic_hash": ""
   },
@@ -4150,7 +4150,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/product-analytics.ts": {
-    "mtime": 1791949175.122422,
+    "mtime": 1791949605.9577823,
     "ast_hash": "ba22702ef64234764e7378e7a6576b6c",
     "semantic_hash": ""
   },
@@ -4180,7 +4180,7 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/design/button.tsx": {
-    "mtime": 1791949372.2662473,
+    "mtime": 1791949605.9526727,
     "ast_hash": "dacb269265087e8fd8dde24f20a7ec6c",
     "semantic_hash": ""
   },
@@ -4200,13 +4200,18 @@
     "semantic_hash": ""
   },
   "apps/web/public/journal/grandparents-mobile-overview.webp": {
-    "mtime": 1791945918.0003045,
+    "mtime": 1791949605.9508345,
     "ast_hash": "2de32456c49623c93bb059d0f6f278da",
     "semantic_hash": ""
   },
   "apps/web/test-ui/product-analytics.test.tsx": {
-    "mtime": 1791949169.861458,
+    "mtime": 1791949605.959335,
     "ast_hash": "8c4b1fdded83858155c3ee99a1739283",
+    "semantic_hash": ""
+  },
+  "apps/web/src/features/archive/components/voice-recorder.tsx": {
+    "mtime": 1791955478.8898304,
+    "ast_hash": "76bcb4fbb9c4db44df06b55b81598719",
     "semantic_hash": ""
   }
 }

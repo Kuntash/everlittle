@@ -373,3 +373,123 @@ test("a lifetime archive shows its gift and no way to pay", async ({ page }) => 
   await expect(page.getByText(/\$6|\$60/)).toHaveCount(0);
   await expect(page.getByRole("button", { name: /subscription|plan|month|year/i })).toHaveCount(0);
 });
+
+test.describe("voice recording", () => {
+  // The configuration gives Chromium a fake microphone that plays a steady tone.
+  // Firefox has no microphone permission to grant; its fake microphone is allowed by a preference.
+  test.use({
+    permissions: async ({ browserName }, use) =>
+      use(browserName === "firefox" ? [] : ["microphone"]),
+  });
+
+  test("a voice memory can be recorded in the app and is uploaded as audio", async ({
+    page,
+  }, info) => {
+    let upload: { contentType: string; fileName: string } | null = null;
+    await page.route("**/archive/memories", (route) =>
+      route.request().method() === "POST"
+        ? route.fulfill({ status: 201, json: { id: "memory-voice" } })
+        : route.fallback(),
+    );
+    await page.route("**/archive/memories/memory-voice/media", (route) => {
+      const request = route.request();
+      upload = {
+        contentType: request.headers()["content-type"] ?? "",
+        fileName: decodeURIComponent(request.headers()["x-everlittle-file-name"] ?? ""),
+      };
+      return route.fulfill({ status: 201, json: { id: "media-voice" } });
+    });
+
+    await page.goto("/test-family");
+    await page.getByRole("button", { name: "Add a memory", exact: true }).click();
+    const dialog = page.getByRole("dialog", { name: "Add a memory" });
+    await dialog.getByRole("button", { name: "Voice", exact: true }).click();
+    await expect(dialog.getByLabel("Choose voice file")).toBeAttached();
+
+    await dialog.getByRole("button", { name: "Record now" }).click();
+    await expect(dialog.getByRole("timer")).toHaveText("0:02", { timeout: 5000 });
+    await page.screenshot({ path: info.outputPath("voice-recording.png") });
+    // Saving while the microphone is on would lose the recording, so the form asks to stop first.
+    await dialog.getByRole("textbox", { name: "Memory title" }).fill("Emma singing");
+    await dialog.getByRole("button", { name: /save/i }).click();
+    await expect(dialog.getByRole("alert")).toHaveText("Stop the recording before saving.");
+
+    await dialog.getByRole("button", { name: "Stop recording" }).click();
+    await expect(dialog.getByLabel("Play back the recording")).toBeVisible();
+    await expect(dialog.getByRole("button", { name: "Record again" })).toBeVisible();
+    await page.screenshot({ path: info.outputPath("voice-recorded.png") });
+    // The recording knows its length, so the player can show it before it is played.
+    const { duration, bytes } = await dialog
+      .getByLabel("Play back the recording")
+      .evaluate(async (audio: HTMLAudioElement) => {
+        if (audio.readyState < 1)
+          await new Promise((resolve) => audio.addEventListener("loadedmetadata", resolve));
+        const blob = await (await fetch(audio.src)).blob();
+        return { duration: audio.duration, bytes: blob.size };
+      });
+    expect(bytes).toBeGreaterThan(1000);
+    expect(duration).toBeGreaterThan(1.5);
+    expect(duration).toBeLessThan(10);
+    await dialog.getByRole("button", { name: /save/i }).click();
+    await expect(dialog).not.toBeVisible();
+
+    expect(upload).not.toBeNull();
+    const sent = upload as unknown as { contentType: string; fileName: string };
+    expect(sent.contentType).toMatch(/^audio\/(webm|mp4|ogg)$/);
+    expect(sent.fileName).toMatch(/^Recording .+\.(webm|m4a|ogg)$/);
+  });
+
+  test("an existing voice memory can be recorded again from the edit form", async ({ page }) => {
+    const voice = { ...state.memories[0], kind: "voice", mediaType: "audio", mediaId: "voice-1" };
+    await page.route("**/api/families/test-family/archive", (r) =>
+      r.fulfill({ json: { ...state, memories: [voice] } }),
+    );
+    // One second of silence, so the current recording has something to play.
+    const wav = Buffer.alloc(44 + 8000);
+    wav.write("RIFF", 0);
+    wav.writeUInt32LE(36 + 8000, 4);
+    wav.write("WAVEfmt ", 8);
+    wav.writeUInt32LE(16, 16);
+    wav.writeUInt16LE(1, 20);
+    wav.writeUInt16LE(1, 22);
+    wav.writeUInt32LE(8000, 24);
+    wav.writeUInt32LE(8000, 28);
+    wav.writeUInt16LE(1, 32);
+    wav.writeUInt16LE(8, 34);
+    wav.write("data", 36);
+    wav.writeUInt32LE(8000, 40);
+    wav.fill(128, 44);
+    await page.route("**/api/families/test-family/media/voice-1", (r) =>
+      r.fulfill({ contentType: "audio/wav", body: wav }),
+    );
+    let replaced: { contentType: string; replaces: string } | null = null;
+    await page.route("**/api/families/test-family/archive/memories/memory-1/media", (r) => {
+      replaced = {
+        contentType: r.request().headers()["content-type"] ?? "",
+        replaces: r.request().headers()["x-everlittle-replace-media-id"] ?? "",
+      };
+      return r.fulfill({ status: 201, json: { id: "voice-2" } });
+    });
+    await page.route("**/api/families/test-family/archive/memories/memory-1", (r) =>
+      r.fulfill({ json: { updated: true } }),
+    );
+
+    await page.goto("/test-family");
+    await page.getByRole("button", { name: `Open memory: ${voice.title}`, exact: true }).click();
+    await page.getByRole("button", { name: "Edit memory", exact: true }).click();
+    const dialog = page.getByRole("dialog", { name: "Edit your memory" });
+    await dialog.getByRole("button", { name: "Record again" }).click();
+    await expect(dialog.getByRole("timer")).toHaveText("0:01", { timeout: 5000 });
+    await expect(dialog.getByText("Replace attachment")).toBeHidden();
+    await dialog.getByRole("button", { name: "Save changes", exact: true }).click();
+    await expect(dialog.getByRole("alert")).toHaveText("Stop the recording before saving.");
+    await dialog.getByRole("button", { name: "Stop recording" }).click();
+    await expect(dialog.locator(".attached-preview audio")).toBeVisible();
+    await dialog.getByRole("button", { name: "Save changes", exact: true }).click();
+    await expect(dialog).toHaveCount(0);
+
+    const sent = replaced as unknown as { contentType: string; replaces: string };
+    expect(sent.contentType).toMatch(/^audio\/(webm|mp4|ogg)$/);
+    expect(sent.replaces).toBe("voice-1");
+  });
+});

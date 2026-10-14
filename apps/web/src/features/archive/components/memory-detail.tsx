@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import type { Child, FamilyRole, Memory } from "@/features/archive/archive-types";
 import { MemoryMedia } from "@/features/archive/components/memory-media";
 import { MemoryPlayback } from "@/features/archive/components/memory-playback";
+import { VoiceRecorder, canRecordAudio } from "@/features/archive/components/voice-recorder";
 import { useConfirmation } from "@/features/archive/hooks/use-confirmation";
 import {
   apiFetch,
@@ -57,6 +58,8 @@ export function MemoryDetail({
   const [removeAttachment, setRemoveAttachment] = useState(false);
   const [replacementUrl, setReplacementUrl] = useState("");
   const [currentMediaId, setCurrentMediaId] = useState(memory.mediaId);
+  const [canRecord] = useState(canRecordAudio);
+  const [recording, setRecording] = useState(false);
   useEffect(() => {
     if (!replacement) {
       setReplacementUrl("");
@@ -81,6 +84,10 @@ export function MemoryDetail({
 
   async function save(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (recording) {
+      setError("Stop the recording before saving.");
+      return;
+    }
     if (removeAttachment && !replacement) {
       setError("Choose a replacement file, or restore the current attachment.");
       return;
@@ -277,7 +284,17 @@ export function MemoryDetail({
                     )}
                   </div>
                 )}
-                <div className="attachment-actions">
+                {memory.kind === "voice" && canRecord && (
+                  <VoiceRecorder
+                    hasRecording
+                    onRecorded={(recorded) => {
+                      setReplacement(recorded);
+                      setError("");
+                    }}
+                    onRecordingChange={setRecording}
+                  />
+                )}
+                <div className="attachment-actions" hidden={recording}>
                   <label className="button-quiet">
                     {removeAttachment ? "Choose replacement" : "Replace attachment"}
                     <Input

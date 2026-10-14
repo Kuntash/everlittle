@@ -678,6 +678,76 @@ body {
   outline: 2px solid #8aa07c;
   outline-offset: 3px;
 }
+.voice-attachment {
+  cursor: default;
+}
+.voice-attachment > audio {
+  width: 100%;
+  max-width: 360px;
+}
+.voice-recorder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+}
+.voice-recorder > button {
+  gap: 7px;
+}
+.voice-recorder .error {
+  margin: 0;
+  max-width: 340px;
+  text-align: center;
+}
+.voice-recorder-levels {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  height: 34px;
+}
+.voice-recorder-levels > span {
+  width: 4px;
+  min-height: 4px;
+  border-radius: 2px;
+  background: #c98a68;
+  transition: height 90ms linear;
+}
+.voice-recorder-time {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: #92725c;
+}
+.voice-recorder-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #d0573f;
+  animation: voice-recorder-pulse 1.2s ease-in-out infinite;
+}
+@keyframes voice-recorder-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .voice-recorder-dot {
+    animation: none;
+  }
+}
+.voice-file-choice {
+  font-size: 12px;
+  color: #92725c;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.voice-file-choice:focus-within {
+  outline: 2px solid #8aa07c;
+  outline-offset: 3px;
+}
 .attachment-preview {
   max-height: 190px;
   width: 100%;
