@@ -9,6 +9,8 @@ export function Button({
   ...props
 }: React.ButtonHTMLAttributes<HTMLButtonElement> & {
   secondary?: boolean;
+  /** Render the one child, for example a link, with the button's look. */
+  asChild?: boolean;
 }) {
   return (
     <ShadButton

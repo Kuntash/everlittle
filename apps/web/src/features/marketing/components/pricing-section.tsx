@@ -60,7 +60,11 @@ export function PricingSection({
               Invite family to view and contribute
             </li>
           </ul>
-          <Button onClick={() => start()}>Save your first memory</Button>
+          <Button asChild>
+            <a data-placement={placement} href="/sign-up" onClick={() => start()}>
+              Save your first memory
+            </a>
+          </Button>
         </div>
         <div className="price-card">
           <div>
@@ -97,8 +101,10 @@ export function PricingSection({
               Child spaces and future capsules
             </li>
           </ul>
-          <Button secondary onClick={() => start()}>
-            Start free, upgrade later
+          <Button asChild secondary>
+            <a data-placement={placement} href="/sign-up" onClick={() => start()}>
+              Start free, upgrade later
+            </a>
           </Button>
         </div>
       </div>

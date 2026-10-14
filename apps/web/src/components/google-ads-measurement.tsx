@@ -92,14 +92,21 @@ export function GoogleAdsMeasurement() {
     );
   return (
     <aside className="measurement-consent" aria-label="Advertising measurement preferences">
+      {/*
+        Each sentence is its own block. One long paragraph was the largest text on some pages, and it appears
+        only after the scripts run. A browser then reported it as the page's largest paint.
+      */}
       <p>
         <strong>{open ? "Advertising measurement" : "Help us find more families"}</strong>
-        <br />
+      </p>
+      <p>
         {adsOptOutSignal()
           ? "Your browser’s privacy signal is respected. Google advertising measurement is off."
           : open
             ? `Google advertising measurement is ${consent === "granted" ? "on" : "off"}. You can change your choice here.`
-            : "May we use Google advertising cookies to understand which ads lead to signups and purchases?"}{" "}
+            : "May we use Google advertising cookies to understand which ads lead to signups and purchases?"}
+      </p>
+      <p>
         Your photos, stories and family details aren’t shared.{" "}
         <a href="https://business.safety.google/privacy/" target="_blank" rel="noreferrer">
           How Google uses data

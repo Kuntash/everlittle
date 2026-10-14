@@ -152,14 +152,14 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
     }
   }, [pathname, locationKey, ready]);
 
+  /* Registered at once, not when PostHog is ready. A click before that waits in the queue. */
   useEffect(() => {
-    if (!ready) return;
-
     function captureMarketingClick(event: MouseEvent) {
       const target = event.target;
       if (!(target instanceof Element)) return;
       const link = target.closest<HTMLAnchorElement>("a[href]");
-      if (!link) return;
+      /* A link with a placement records its own click, with more detail. */
+      if (!link || link.dataset.placement) return;
       const destination = new URL(link.href, window.location.origin);
       if (destination.origin !== window.location.origin || destination.pathname !== "/sign-up") {
         return;
@@ -172,7 +172,7 @@ export function AnalyticsProvider({ children }: { children: React.ReactNode }) {
 
     document.addEventListener("click", captureMarketingClick);
     return () => document.removeEventListener("click", captureMarketingClick);
-  }, [ready]);
+  }, []);
 
   useEffect(() => {
     const userId = session.data?.user.id ?? null;

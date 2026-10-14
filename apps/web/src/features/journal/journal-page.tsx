@@ -106,13 +106,17 @@ export function JournalExperience({
             </div>
             {article.cover ? (
               <figure className="article-product-cover">
-                <img
-                  src={article.cover.src}
-                  alt={article.cover.alt}
-                  width={article.cover.width}
-                  height={article.cover.height}
-                  fetchPriority="high"
-                />
+                <picture>
+                  {/* A cover keeps its PNG for link previews. Each one has a smaller WebP copy beside it. */}
+                  <source srcSet={article.cover.src.replace(/\.png$/, ".webp")} type="image/webp" />
+                  <img
+                    src={article.cover.src}
+                    alt={article.cover.alt}
+                    width={article.cover.width}
+                    height={article.cover.height}
+                    fetchPriority="high"
+                  />
+                </picture>
                 <figcaption>{article.cover.caption}</figcaption>
               </figure>
             ) : (
