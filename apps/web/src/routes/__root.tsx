@@ -17,6 +17,9 @@ import { bootScript, readBoot } from "@/lib/boot";
 import { LOCALE_LANG, localeFromPath } from "@/lib/locales";
 import { shouldOfferPwaInstall } from "@/lib/pwa-install";
 
+import interFont from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+import nunitoFont from "@fontsource-variable/nunito-sans/files/nunito-sans-latin-wght-normal.woff2?url";
+
 import apricotCss from "../apricot.css?url";
 import pwaCss from "../pwa.css?url";
 import integrationCss from "../integration.css?url";
@@ -44,6 +47,18 @@ export const Route = createRootRoute({
       { name: "apple-mobile-web-app-title", content: "Everlittle" },
     ],
     links: [
+      /*
+       * The two text fonts start loading with the stylesheets, not after them. Text then shows in its
+       * final font sooner, and the page moves less when the font arrives. A font needs `crossOrigin`.
+       */
+      {
+        rel: "preload",
+        as: "font",
+        type: "font/woff2",
+        href: nunitoFont,
+        crossOrigin: "anonymous",
+      },
+      { rel: "preload", as: "font", type: "font/woff2", href: interFont, crossOrigin: "anonymous" },
       { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: apricotCss },
       { rel: "stylesheet", href: integrationCss },

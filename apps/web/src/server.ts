@@ -126,7 +126,9 @@ async function respond(request: Request): Promise<Response> {
       hasSession: cookies.includes(SESSION_COOKIE),
       hasChildSession: cookies.includes(CHILD_SESSION_COOKIE),
     };
-    const response = await bootStore.run(boot, () => handler.fetch(request));
+    const rendered = await bootStore.run(boot, () => handler.fetch(request));
+    const response =
+      boot.hasSession || boot.hasChildSession ? rendered : paintBeforeScripts(rendered);
     const isPublicMarketingPage =
       deployment.mode === "hosted" &&
       runtime.DODO_PAYMENTS_ENVIRONMENT === "live_mode" &&
@@ -150,6 +152,25 @@ export default {
     await flushAnalytics(runtime);
   },
 };
+
+/**
+ * Ask the browser to fetch the page's scripts after its styles, fonts and first image.
+ * A signed-out visitor gets a page whose content is already in the HTML: the landing page, an article,
+ * a tool, the sign-in form. The scripts only make it interactive, so they must not delay the first paint
+ * on a slow connection. A signed-in page shows nothing useful until its scripts run, so it is left as it is.
+ */
+function paintBeforeScripts(response: Response): Response {
+  if (!response.headers.get("content-type")?.startsWith("text/html")) return response;
+  const lowPriority = {
+    element(element: Element) {
+      element.setAttribute("fetchpriority", "low");
+    },
+  };
+  return new HTMLRewriter()
+    .on('link[rel="modulepreload"]', lowPriority)
+    .on('script[type="module"]', lowPriority)
+    .transform(response);
+}
 
 /**
  * The installation's settings as the browser needs them. `/api/platform` returns this, and each rendered page

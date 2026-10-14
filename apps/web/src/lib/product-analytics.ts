@@ -34,6 +34,22 @@ export const productAnalytics = {
 };
 
 /**
+ * Wait until the page has loaded and the browser has a free moment. PostHog then does not compete with
+ * the page's own styles, fonts and images for the connection. Calls made before that wait in the queue.
+ */
+function afterPageLoad(): Promise<void> {
+  return new Promise((resolve) => {
+    const whenIdle = () => {
+      if ("requestIdleCallback" in window)
+        window.requestIdleCallback(() => resolve(), { timeout: 2000 });
+      else setTimeout(resolve, 200);
+    };
+    if (document.readyState === "complete") whenIdle();
+    else window.addEventListener("load", whenIdle, { once: true });
+  });
+}
+
+/**
  * Load and start PostHog. `prepare` runs after `init` and before the waiting calls are sent,
  * so the properties it registers are on those calls too.
  */
@@ -43,6 +59,7 @@ export async function startProductAnalytics(
   prepare: (posthog: PostHog) => void,
 ) {
   if (client) return;
+  await afterPageLoad();
   const { default: posthog } = await import("posthog-js");
   if (client) return;
   posthog.init(token, config);
