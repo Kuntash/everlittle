@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import type { Child, FamilyRole, MemoryKind } from "@/features/archive/archive-types";
 import { MemoryStageLabel } from "@/features/archive/components/memory-stage-label";
+import { VoiceRecorder, canRecordAudio } from "@/features/archive/components/voice-recorder";
 import {
   apiFetch,
   createVideoThumbnail,
@@ -17,7 +18,7 @@ import {
 } from "@/features/archive/lib/archive-utils";
 import { productAnalytics } from "@/lib/product-analytics";
 import type { FormEvent } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function MemoryComposer({
   child,
@@ -41,8 +42,23 @@ export function MemoryComposer({
   const [uploadProgress, setUploadProgress] = useState(0);
   const [error, setError] = useState("");
   const [stage, setStage] = useState<"idle" | "saving" | "uploading">("idle");
+  // The composer opens only in the browser, after a tap, so the microphone check can run at once.
+  const [canRecord] = useState(canRecordAudio);
+  const [recording, setRecording] = useState(false);
+  const [audioUrl, setAudioUrl] = useState("");
 
   const needsMedia = kind === "photo" || kind === "voice" || kind === "video";
+  const recordsVoice = kind === "voice" && canRecord;
+
+  useEffect(() => {
+    if (kind !== "voice" || !file) {
+      setAudioUrl("");
+      return;
+    }
+    const url = URL.createObjectURL(file);
+    setAudioUrl(url);
+    return () => URL.revokeObjectURL(url);
+  }, [kind, file]);
 
   function chooseKind(nextKind: MemoryKind) {
     setKind(nextKind);
@@ -52,12 +68,18 @@ export function MemoryComposer({
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    if (recording) {
+      setError("Stop the recording before saving.");
+      return;
+    }
     if (needsMedia && !file) {
       setError(
         kind === "photo"
           ? "Choose a photograph to keep."
           : kind === "voice"
-            ? "Choose an audio recording to keep."
+            ? canRecord
+              ? "Record a voice memory, or choose an audio file."
+              : "Choose an audio recording to keep."
             : "Choose a video to keep.",
       );
       return;
@@ -170,31 +192,69 @@ export function MemoryComposer({
               ),
             )}
           </div>
-          <label className={`attachment-area ${file ? "has-file" : ""}`} hidden={!needsMedia}>
-            <KindIcon kind={kindLabel(kind)} size={76} />
-            <span>
-              {file
-                ? file.name
-                : `Add ${kind === "voice" ? "an audio recording" : kind === "photo" ? "a photo" : "a video"}`}
-            </span>
-            <small>
-              {file ? "Choose a different file" : "Any file that fits your remaining storage"}
-            </small>
-            <Input
-              type="file"
-              aria-label={`Choose ${kind} file`}
-              accept={
-                kind === "photo"
-                  ? "image/*,.heic,.heif"
-                  : kind === "voice"
-                    ? "audio/*,.m4a,.caf"
-                    : "video/*,.mov,.m4v"
-              }
-              disabled={!needsMedia}
-              required={needsMedia}
-              onChange={(event) => setFile(event.target.files?.[0] ?? null)}
-            />
-          </label>
+          {recordsVoice && (
+            <div className={`attachment-area voice-attachment ${file ? "has-file" : ""}`}>
+              {audioUrl ? (
+                <>
+                  <audio src={audioUrl} controls aria-label="Play back the recording" />
+                  <span>{file?.name}</span>
+                </>
+              ) : (
+                <>
+                  <KindIcon kind={kindLabel(kind)} size={76} />
+                  <span>Record a voice memory</span>
+                </>
+              )}
+              <VoiceRecorder
+                hasRecording={Boolean(file)}
+                onRecorded={(recorded) => {
+                  setFile(recorded);
+                  setError("");
+                }}
+                onRecordingChange={setRecording}
+              />
+              <label className="voice-file-choice" hidden={recording}>
+                or choose an audio file
+                <Input
+                  className="sr-only"
+                  type="file"
+                  aria-label="Choose voice file"
+                  accept="audio/*,.m4a,.caf"
+                  onChange={(event) => {
+                    setFile(event.target.files?.[0] ?? null);
+                    setError("");
+                  }}
+                />
+              </label>
+            </div>
+          )}
+          {!recordsVoice && (
+            <label className={`attachment-area ${file ? "has-file" : ""}`} hidden={!needsMedia}>
+              <KindIcon kind={kindLabel(kind)} size={76} />
+              <span>
+                {file
+                  ? file.name
+                  : `Add ${kind === "voice" ? "an audio recording" : kind === "photo" ? "a photo" : "a video"}`}
+              </span>
+              <small>
+                {file ? "Choose a different file" : "Any file that fits your remaining storage"}
+              </small>
+              <Input
+                type="file"
+                aria-label={`Choose ${kind} file`}
+                accept={
+                  kind === "photo"
+                    ? "image/*,.heic,.heif"
+                    : kind === "voice"
+                      ? "audio/*,.m4a,.caf"
+                      : "video/*,.mov,.m4v"
+                }
+                disabled={!needsMedia}
+                required={needsMedia}
+                onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+              />
+            </label>
+          )}
           <Input
             autoFocus
             className="writing-title"
