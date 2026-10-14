@@ -29,7 +29,9 @@ import {
   robotsResponse,
   sitemapResponse,
 } from "@/lib/public-web";
+import { withRequestDatabase } from "@/lib/request-database";
 import { getRuntimeEnv, type RuntimeEnv } from "@/lib/runtime-env";
+import { env } from "cloudflare:workers";
 import { existingAccountSignUpResponse } from "@/lib/signup-guard";
 
 type SignUpPayload = { user?: { id?: string; name?: string } };
@@ -49,7 +51,14 @@ const SESSION_COOKIE = "everlittle.session_token=";
 const CHILD_SESSION_COOKIE = "everlittle.child_session=";
 
 const serverEntry = createServerEntry({
-  async fetch(request) {
+  /* Every query of the request uses one D1 session. Its bookmark goes back to the browser in a cookie. */
+  fetch(request) {
+    return withRequestDatabase(env.DB, request, () => respond(request));
+  },
+});
+
+async function respond(request: Request): Promise<Response> {
+  {
     const url = new URL(request.url);
     const runtime = getRuntimeEnv();
     const deployment = getDeploymentConfig(runtime);
@@ -129,8 +138,8 @@ const serverEntry = createServerEntry({
       return new Response(response.body, { headers, status: response.status });
     }
     return response;
-  },
-});
+  }
+}
 
 export default {
   ...serverEntry,
