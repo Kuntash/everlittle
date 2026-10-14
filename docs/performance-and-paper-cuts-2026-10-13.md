@@ -316,7 +316,37 @@ font replacing the fallback font.
 A1 (database distance), A5, A6 (photo thumbnails), A9 to A12, A14 to A16, P8 to P10, and the paper
 cuts of section 4 other than B9.
 
-## 7. Not measured
+## 7. Read replicas, 14 October 2026
+
+Branch `perf/d1-read-replicas`, on top of the first pass. It answers the decision in section 5
+the way medibara did: the Worker stays where the request enters, and the data comes to it.
+
+- `src/lib/request-database.ts` gives each request one D1 session. `getRuntimeEnv().DB` is that
+  session inside a request, so no query in the app changed.
+- A request that only reads starts from the browser's bookmark, or from any copy when it sent
+  none. A request that may write (any method other than GET and HEAD) starts from the primary, so
+  its checks read current rows.
+- The bookmark goes to the browser in the `everlittle.db_bookmark` cookie for 10 minutes. The
+  next request of the same browser sees at least the data of this one.
+- The scheduled handler uses the primary.
+
+The code does nothing new until read replication is switched on for a database. That is a setting
+of the database, not of this repository: Cloudflare dashboard, D1, `everlittle-hosted-db`,
+Settings, Enable read replication. With it off, every query goes to the primary as before.
+`everlittle-dikichoetso-db` does not need it: its one family is near its database.
+
+What a replica can show late: a change made by someone else in the last second or so, for example
+a payment that Dodo has just reported, seen from another browser. A reload shows it.
+
+Not taken from medibara: the Workers KV cache. Medibara keeps its catalogue there because every
+learner reads the same rows. Everlittle has no such data; every row belongs to one family and is
+private. KV would also be one more resource for each self-hosted installation to create.
+
+Checks: 115 unit tests (4 new), 25 component tests and 55 end-to-end tests pass. A real
+first-owner sign-up ran on a local self-hosted installation through the session. Replica lag is
+not covered: the local D1 has no replicas.
+
+## 8. Not measured
 
 - Signed-in page loads end to end (no test credentials were used).
 - Upload speed for large files.

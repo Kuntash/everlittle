@@ -1,6 +1,7 @@
 import { env } from "cloudflare:workers";
 
 import { getDeploymentConfig } from "@/lib/deployment";
+import { requestDatabase } from "@/lib/request-database";
 
 export type RuntimeEnv = Omit<
   Env,
@@ -31,5 +32,8 @@ export function getRuntimeEnv() {
 
   getDeploymentConfig(runtime);
 
-  return runtime;
+  /* Inside a request, `DB` is that request's D1 session. See `@/lib/request-database`. */
+  const database = requestDatabase(runtime.DB);
+  if (database === runtime.DB) return runtime;
+  return Object.create(runtime, { DB: { value: database, enumerable: true } }) as RuntimeEnv;
 }
