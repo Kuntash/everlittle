@@ -490,8 +490,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/analytics-provider.tsx": {
-    "mtime": 1791944754.3061554,
-    "ast_hash": "ee90edaca7a817917726e4fa06f46547",
+    "mtime": 1791949360.1410778,
+    "ast_hash": "e202ff6c0f9ca0277e1f814674beeed6",
     "semantic_hash": ""
   },
   "apps/web/src/lib/analytics.ts": {
@@ -1205,13 +1205,13 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/components/pricing-section.tsx": {
-    "mtime": 1791944754.3112886,
-    "ast_hash": "7572f87dd3a20709d7ff901db8a427d6",
+    "mtime": 1791949360.1408908,
+    "ast_hash": "8ec490578d886071616c6acf355f7835",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/pricing-page.tsx": {
-    "mtime": 1791944754.3121936,
-    "ast_hash": "3d3a3cfe6ec14322495452282e1d5626",
+    "mtime": 1791949360.1407945,
+    "ast_hash": "d50bd4f437a5a0dea89221680e40a483",
     "semantic_hash": ""
   },
   "apps/web/src/features/onboarding/onboarding-page.tsx": {
@@ -4030,8 +4030,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/home/forest-home.tsx": {
-    "mtime": 1791944754.311608,
-    "ast_hash": "f4618318c20dafb054c4046c030f6ba3",
+    "mtime": 1791949360.1405244,
+    "ast_hash": "b407ce841ccb80fdea4c892852f0d48d",
     "semantic_hash": ""
   },
   "apps/web/src/features/marketing/site-footer.tsx": {
@@ -4150,8 +4150,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/lib/product-analytics.ts": {
-    "mtime": 1791945397.2436662,
-    "ast_hash": "d15a34e54f9892cf5e1920a3fe0c3b6e",
+    "mtime": 1791949175.122422,
+    "ast_hash": "ba22702ef64234764e7378e7a6576b6c",
     "semantic_hash": ""
   },
   "docs/performance-and-paper-cuts-2026-10-13.md": {
@@ -4180,8 +4180,8 @@
     "semantic_hash": ""
   },
   "apps/web/src/components/design/button.tsx": {
-    "mtime": 1791944754.3070655,
-    "ast_hash": "537f9f815fa43ed218036a7fa50d13a4",
+    "mtime": 1791949372.2662473,
+    "ast_hash": "dacb269265087e8fd8dde24f20a7ec6c",
     "semantic_hash": ""
   },
   "apps/web/src/components/design/sliding-tabs.tsx": {
@@ -4202,6 +4202,11 @@
   "apps/web/public/journal/grandparents-mobile-overview.webp": {
     "mtime": 1791945918.0003045,
     "ast_hash": "2de32456c49623c93bb059d0f6f278da",
+    "semantic_hash": ""
+  },
+  "apps/web/test-ui/product-analytics.test.tsx": {
+    "mtime": 1791949169.861458,
+    "ast_hash": "8c4b1fdded83858155c3ee99a1739283",
     "semantic_hash": ""
   }
 }

@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export function MarketingPricingPage() {
   const [billing, setBilling] = useState("Monthly");
+  /* The signup buttons are links to /sign-up. A click records this before the browser follows the link. */
   const start = () => {
     productAnalytics.capture("marketing_signup_cta_clicked", {
       source_path: "/pricing",
@@ -13,7 +14,6 @@ export function MarketingPricingPage() {
       placement: "pricing_page",
       billing_interval: billing.toLowerCase(),
     });
-    window.location.assign("/sign-up");
   };
 
   return (

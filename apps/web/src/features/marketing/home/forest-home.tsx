@@ -5,13 +5,13 @@ import { Illustration } from "@/components/design/illustrations";
 import { Brand } from "@/components/brand";
 import { ArrowRight, Check, Lock, Play, ShieldCheck, Users } from "lucide-react";
 
-const start = (placement: string) => {
+/* The signup buttons are links, so they work before the page's scripts have loaded. A click also records this. */
+const recordStart = (placement: string) => {
   productAnalytics.capture("marketing_signup_cta_clicked", {
     source_path: "/",
     destination_path: "/sign-up",
     placement,
   });
-  window.location.assign("/sign-up");
 };
 
 function useHomeMotion() {
@@ -82,9 +82,14 @@ function Waveform({ bars = 20 }: { bars?: number }) {
 
 function Cta({ placement, children }: { placement: string; children: React.ReactNode }) {
   return (
-    <button className="hv-btn" type="button" onClick={() => start(placement)}>
+    <a
+      className="hv-btn"
+      data-placement={placement}
+      href="/sign-up"
+      onClick={() => recordStart(placement)}
+    >
       {children}
-    </button>
+    </a>
   );
 }
 
@@ -380,13 +385,14 @@ function Pricing() {
               </li>
             ))}
           </ul>
-          <button
+          <a
             className="hv-btn hv-btn-quiet"
-            type="button"
-            onClick={() => start("pricing_paid")}
+            data-placement="pricing_paid"
+            href="/sign-up"
+            onClick={() => recordStart("pricing_paid")}
           >
             Start free, upgrade later
-          </button>
+          </a>
         </article>
       </div>
     </section>
